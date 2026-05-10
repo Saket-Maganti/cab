@@ -1,0 +1,14 @@
+seed: 19
+run_name: ablation_interventions
+benchmark_dir: data/processed/dev_20
+agents:
+  - greedy_tool_agent
+  - react_stub_agent
+  - planner_executor_stub_agent
+max_steps: 10
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true

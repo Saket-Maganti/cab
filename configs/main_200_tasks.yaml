@@ -1,0 +1,18 @@
+seed: 2027
+num_base_tasks: 200
+domains:
+  - travel
+  - calendar_email
+  - file_spreadsheet
+  - shopping_comparison
+  - research_assistant
+  - policy_compliance
+  - coding_debugging
+  - multi_hop_operations
+difficulty_mix:
+  easy: 0.2
+  medium: 0.45
+  hard: 0.3
+  stress: 0.05
+interventions_per_task: 5
+output_dir: data/processed/main_200

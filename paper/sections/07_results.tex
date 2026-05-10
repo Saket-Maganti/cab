@@ -1,0 +1,28 @@
+\section{Results}
+
+This section is a structured placeholder. No final scientific results are claimed in this draft.
+
+\subsection{RQ1: Does clean success overestimate robust competence?}
+\textbf{Planned test.} Compare clean success, intervention success, absolute degradation, relative degradation, and \acrs across agents. This tests \claimref{C1}.
+
+\textbf{TODO.} Insert Table~2 from the frozen main run. Current generated table template: \texttt{tables/table2\_main\_agent\_performance.*}. Do not report the development-run values as paper findings.
+
+\subsection{RQ2: Which intervention families cause the largest degradation?}
+\textbf{Planned test.} Report success and degradation by intervention family, with representative trajectories for tool failure, memory corruption, observation conflict, and premature success signals. This tests \claimref{C2}, \claimref{C7}, and \claimref{C8}.
+
+\textbf{TODO.} Insert Figure~3 and Table~3 from the final run. Current generated templates: \texttt{figures/figure3\_intervention\_family\_breakdown.*} and \texttt{tables/table3\_intervention\_family\_performance.*}.
+
+\subsection{RQ3: Do clean-success rankings match causal-robustness rankings?}
+\textbf{Planned test.} Compare agent rankings under clean success and \acrs, reporting Spearman correlation and rank deltas. This tests \claimref{C4}.
+
+\textbf{TODO.} Insert Figure~4 after main experiments. Current generated template: \texttt{figures/figure4\_ranking\_instability.*}.
+
+\subsection{RQ4: Do trajectory metrics expose failures hidden by final-answer scoring?}
+\textbf{Planned test.} Mine cases where final success is positive but trajectory success or component diagnostics indicate invalid tool use, missing evidence, blind memory trust, failed recovery, contradiction miss, or premature stopping. This tests \claimref{C3}.
+
+\textbf{TODO.} Insert Figure~6 and audited examples from \texttt{results/<run\_dir>/error\_cases/}.
+
+\subsection{RQ5: Can prompting or planning scaffolds improve robustness?}
+\textbf{Planned test.} Compare baseline agents or LLM prompts with and without self-checking, planning scaffolds, tool-verification instructions, and recovery prompts. This tests \claimref{C6}.
+
+\textbf{TODO.} Run ablations and replace the placeholder Table~4. The current table explicitly says ``not yet run.''

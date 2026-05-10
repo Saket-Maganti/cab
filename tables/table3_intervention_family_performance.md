@@ -1,0 +1,12 @@
+| intervention_family | n | final_success_rate | trajectory_faithfulness |
+| --- | --- | --- | --- |
+| ambiguous_instruction | 40 | 0.200 | 0.200 |
+| distractor_evidence | 40 | 0.200 | 0.200 |
+| irrelevant_tools | 20 | 0.200 | 0.200 |
+| long_horizon_dependency | 40 | 0.200 | 0.200 |
+| memory_corruption | 5 | 0.200 | 0.200 |
+| observation_conflict | 45 | 0.200 | 0.200 |
+| premature_success_signal | 15 | 0.200 | 0.200 |
+| tool_corruption | 20 | 0.200 | 0.200 |
+| tool_failure | 35 | 0.200 | 0.200 |
+| tool_removal | 40 | 0.200 | 0.200 |

@@ -1,0 +1,11 @@
+intervention_family,n,final_success_rate,trajectory_faithfulness
+ambiguous_instruction,40,0.2,0.2
+distractor_evidence,40,0.2,0.2
+irrelevant_tools,20,0.2,0.2
+long_horizon_dependency,40,0.2,0.2
+memory_corruption,5,0.2,0.2
+observation_conflict,45,0.2,0.2
+premature_success_signal,15,0.2,0.2
+tool_corruption,20,0.2,0.2
+tool_failure,35,0.2,0.2
+tool_removal,40,0.2,0.2

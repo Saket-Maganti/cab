@@ -1,0 +1,31 @@
+domains:
+  travel:
+    description: Travel planning and option selection with price/refund constraints.
+    typical_tools: [search_database, compare_options, calculate_price]
+  calendar_email:
+    description: Calendar lookup and simulated email drafting workflows.
+    typical_tools: [check_calendar, send_email_draft]
+  file_spreadsheet:
+    description: QA requiring local file and spreadsheet evidence.
+    typical_tools: [read_file, query_spreadsheet]
+  shopping_comparison:
+    description: Product comparison with cost and constraint reasoning.
+    typical_tools: [compare_options, calculate_price]
+  research_assistant:
+    description: Evidence search and claim verification.
+    typical_tools: [search_database, verify_fact]
+  policy_compliance:
+    description: Policy lookup and compliance determination.
+    typical_tools: [lookup_policy, verify_fact]
+  coding_debugging:
+    description: Synthetic code/issue evidence and bug identification.
+    typical_tools: [read_file, search_database]
+  multi_hop_operations:
+    description: Multi-step operational planning with dependencies across tools.
+    typical_tools: [check_calendar, lookup_policy, query_spreadsheet, compare_options, send_email_draft]
+
+difficulties:
+  easy: One or two tools, direct answer.
+  medium: Three to four tools, multi-step.
+  hard: Five or more steps, dependency across observations, possible conflict.
+  stress: Long-horizon or multiple constraints.

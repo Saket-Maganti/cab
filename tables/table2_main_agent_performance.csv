@@ -1,0 +1,6 @@
+agent,clean_success,clean_success_ci95,intervention_success,intervention_success_ci95,acrs,tool_precision,required_tool_recall,recovery_rate,contradiction_resolution
+greedy_tool_agent,0.0,"[0.000, 0.000]",0.0,"[0.000, 0.000]",,1.0,0.809375,1.0,0.0
+planner_executor_stub_agent,0.0,"[0.000, 0.000]",0.0,"[0.000, 0.000]",,1.0,0.959375,1.0,0.0
+random_tool_agent,0.0,"[0.000, 0.000]",0.0,"[0.000, 0.000]",,0.9875,0.602083,1.0,0.0
+react_stub_agent,0.0,"[0.000, 0.000]",0.0,"[0.000, 0.000]",,1.0,0.813542,1.0,0.0
+scripted_oracle_agent,1.0,"[1.000, 1.000]",1.0,"[1.000, 1.000]",1.0,1.0,0.959375,1.0,0.0

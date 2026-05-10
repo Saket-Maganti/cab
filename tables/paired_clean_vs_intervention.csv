@@ -1,0 +1,6 @@
+agent,n_pairs,mean_clean,mean_intervention,mean_difference,cohen_dz,paired_t_p_value
+greedy_tool_agent,20,0.0,0.0,0.0,,
+planner_executor_stub_agent,20,0.0,0.0,0.0,,
+random_tool_agent,20,0.0,0.0,0.0,,
+react_stub_agent,20,0.0,0.0,0.0,,
+scripted_oracle_agent,20,1.0,1.0,0.0,,

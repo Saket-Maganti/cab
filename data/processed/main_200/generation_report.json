@@ -1,0 +1,32 @@
+{
+  "config": {
+    "difficulty_mix": {
+      "easy": 0.2,
+      "hard": 0.3,
+      "medium": 0.45,
+      "stress": 0.05
+    },
+    "domains": [
+      "travel",
+      "calendar_email",
+      "file_spreadsheet",
+      "shopping_comparison",
+      "research_assistant",
+      "policy_compliance",
+      "coding_debugging",
+      "multi_hop_operations"
+    ],
+    "intervention_families": null,
+    "interventions_per_task": 5,
+    "num_base_tasks": 200,
+    "output_dir": "data/processed/main_200",
+    "seed": 2027
+  },
+  "config_hash": "2508af5b0ac04930",
+  "counts": {
+    "base_tasks": 200,
+    "instances": 1200,
+    "interventions": 1000
+  },
+  "quality_passed": true
+}

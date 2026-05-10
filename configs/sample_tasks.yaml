@@ -1,0 +1,24 @@
+seed: 5
+output_path: data/sample/tasks.jsonl
+n_tasks: 12
+include_clean: true
+domains:
+  - travel planning
+  - calendar/email workflow
+  - file and spreadsheet QA
+  - shopping/comparison
+  - research assistant tasks
+  - policy/compliance tasks
+  - coding/debugging tasks
+  - multi-hop operational planning
+interventions:
+  - tool_removal
+  - tool_failure
+  - tool_corruption
+  - irrelevant_tools
+  - memory_corruption
+  - observation_conflict
+  - ambiguous_instruction
+  - long_horizon_dependency
+  - premature_success_signal
+  - distractor_evidence

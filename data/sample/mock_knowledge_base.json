@@ -1,0 +1,113 @@
+{
+  "default_tax_rate": 0.1,
+  "records": [
+    {
+      "id": "saver_hotel",
+      "domain": "travel",
+      "title": "Saver Hotel Boston",
+      "city": "Boston",
+      "refundable": true,
+      "price": 160,
+      "evidence_id": "travel_saver_hotel"
+    },
+    {
+      "id": "flex_hotel",
+      "domain": "travel",
+      "title": "Flex Hotel Boston",
+      "city": "Boston",
+      "refundable": true,
+      "price": 210,
+      "evidence_id": "travel_flex_hotel"
+    },
+    {
+      "id": "camera_b",
+      "domain": "shopping",
+      "title": "Camera Bundle B",
+      "price": 200,
+      "rating": 4.4,
+      "evidence_id": "camera_b_price"
+    }
+  ],
+  "calendar_events": [
+    {
+      "id": "event_design_review",
+      "date": "2026-06-03",
+      "start": "13:00",
+      "end": "14:00",
+      "title": "Design review",
+      "participants": ["mina"]
+    },
+    {
+      "id": "event_hiring_sync",
+      "date": "2026-06-03",
+      "start": "14:00",
+      "end": "15:00",
+      "title": "Hiring sync",
+      "participants": ["mina"]
+    }
+  ],
+  "policies": {
+    "refunds": {
+      "text": "Refunds above 500 dollars require manager approval before processing. Refunds at or below 500 dollars may be handled by support.",
+      "clauses": [
+        {
+          "id": "refunds-approval-threshold",
+          "text": "Refunds above 500 dollars require manager approval before processing."
+        },
+        {
+          "id": "refunds-support-threshold",
+          "text": "Refunds at or below 500 dollars may be handled by support."
+        }
+      ]
+    },
+    "vendor": {
+      "text": "Vendor follow-ups must mention the security addendum when risk is above medium.",
+      "clauses": [
+        {
+          "id": "vendor-security-addendum",
+          "text": "Vendor follow-ups must mention the security addendum when risk is above medium."
+        }
+      ]
+    }
+  },
+  "files": {
+    "launch_note": "The Beta launch depends on Q2 revenue clearing the review threshold.\n\nThe launch owner should verify revenue before approval.",
+    "retry_helper": "for attempt in range(max_retries + 1):\n    run_once()\n\nIssue note: the helper attempts one extra time."
+  },
+  "spreadsheets": {
+    "revenue": [
+      {"quarter": "Q1", "revenue": 3100},
+      {"quarter": "Q2", "revenue": 4200}
+    ],
+    "vendor_scores": [
+      {"id": "vendor_alpha", "score": 0.77, "risk": "low"},
+      {"id": "vendor_beta", "score": 0.91, "risk": "medium"}
+    ]
+  },
+  "product_options": [
+    {"id": "camera_a", "price": 250, "rating": 4.6},
+    {"id": "camera_b", "price": 200, "rating": 4.4}
+  ],
+  "evidence": {
+    "travel_saver_hotel": {
+      "text": "Saver Hotel Boston is refundable and costs 160 before tax.",
+      "supports": true
+    },
+    "travel_flex_hotel": {
+      "text": "Flex Hotel Boston is refundable and costs 210 before tax.",
+      "supports": true
+    },
+    "refund_threshold": {
+      "text": "A 700 dollar refund is above the 500 dollar manager approval threshold.",
+      "supports": true
+    },
+    "latency_claim": {
+      "text": "The Apex report says latency dropped to 118 ms, not below 100 ms.",
+      "supports": false
+    },
+    "calendar_1500": {
+      "text": "Mina is free at 15:00 on 2026-06-03.",
+      "supports": true
+    }
+  }
+}

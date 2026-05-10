@@ -1,0 +1,27 @@
+{
+  "config": {
+    "difficulty_mix": {
+      "easy": 0.25,
+      "hard": 0.25,
+      "medium": 0.5
+    },
+    "domains": [
+      "travel",
+      "calendar_email",
+      "file_spreadsheet",
+      "policy_compliance"
+    ],
+    "intervention_families": null,
+    "interventions_per_task": 3,
+    "num_base_tasks": 20,
+    "output_dir": "data/processed/dev_20",
+    "seed": 42
+  },
+  "config_hash": "23c5f6b11cef2bef",
+  "counts": {
+    "base_tasks": 20,
+    "instances": 80,
+    "interventions": 60
+  },
+  "quality_passed": true
+}

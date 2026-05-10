@@ -1,0 +1,25 @@
+\section{Limitations}
+
+\paragraph{Synthetic environment.}
+The default benchmark uses synthetic tasks and deterministic simulated tools. This supports causal control and reproducibility, but may not capture the ambiguity, latency, partial observability, interface drift, and unexpected failure modes of real applications.
+
+\paragraph{Gap to real-world agents.}
+Performance on \benchmark may not predict deployment behavior for agents connected to live web, email, calendars, codebases, or enterprise tools. The benchmark should be viewed as a controlled diagnostic, not a substitute for domain-specific safety evaluation.
+
+\paragraph{Scoring limitations.}
+The default scorer is deterministic and auditable, but heuristic. It may miss semantically correct answers, reward template-specific wording, or misclassify trajectory faithfulness. Human validation and grader sensitivity analysis are required before strong empirical claims.
+
+\paragraph{LLM-as-judge limitations.}
+If LLM-as-judge scoring is introduced, results may depend on judge model, prompt, sampling settings, and provider version. Judge bias and instability must be measured rather than assumed away.
+
+\paragraph{Intervention realism.}
+Interventions may be too artificial, too obvious, or may change multiple factors despite the design goal. The single-factor-change assumption requires audit evidence, tracked by \claimref{C10}.
+
+\paragraph{Benchmark overfitting.}
+Public tasks, tool schemas, and intervention patterns could be memorized or gamed. Future releases should include held-out templates, versioned splits, and reporting requirements for training contamination.
+
+\paragraph{Cost and API reproducibility.}
+Main LLM experiments may depend on paid APIs, changing model versions, rate limits, and provider-side nondeterminism. The repository should preserve prompts, model identifiers, seeds where supported, costs, and timestamps.
+
+\paragraph{Human validation limits.}
+Human validation can improve label quality but introduces annotator subjectivity, sampling limits, and compensation obligations. Agreement statistics should be reported with the same caution as model metrics.

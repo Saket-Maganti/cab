@@ -1,0 +1,18 @@
+\section{Introduction}
+
+Tool-using language agents are now commonly evaluated by whether they complete a task. This final-success framing is attractive because it is simple, task-facing, and easy to compare across systems. Yet final success is a compressed outcome: it does not identify whether the agent planned well, chose the right tool, supplied valid tool arguments, interpreted observations correctly, verified memory, recovered from errors, or stopped for the right reason. This paper targets that measurement problem.
+
+Consider an agent that solves a clean travel-planning task by calling a hotel search tool and returning an acceptable recommendation. The same high-level user goal may become much more diagnostic if the search tool is removed, returns a partial result, or conflicts with a stored memory. A robust agent should notice the changed condition, use alternatives when available, surface uncertainty when evidence is weak, and avoid declaring success too early. A final-answer score alone can miss these distinctions. This motivates \claimref{C1}: clean task success may overestimate robust competence.
+
+\benchmark formalizes this concern as a paired interventional benchmark. Each base task has a clean condition and one or more intervention conditions that preserve the high-level user goal while perturbing a targeted factor such as tool availability, tool reliability, memory correctness, observation consistency, or premature success signals. The benchmark then scores both final answers and trajectories, producing component diagnostics for tool use, recovery, contradiction handling, memory verification, stopping behavior, and trajectory faithfulness. These diagnostics support the planned tests in \claimref{C2}--\claimref{C8}.
+
+Our contributions are:
+\begin{enumerate}[leftmargin=*]
+    \item We formalize interventional evaluation for tool-using agents, separating clean task success from robustness under targeted perturbations.
+    \item We introduce \benchmark, a benchmark of paired clean and intervention instances spanning [domains].
+    \item We propose Agent Causal Robustness Score (\acrs) and trajectory diagnostics for tool use, recovery, contradiction handling, memory verification, and stopping behavior.
+    \item We provide an experimental protocol to evaluate [agents/models] and test [main finding placeholder].
+    \item We release code, benchmark generation tools, documentation, and reproducibility assets.
+\end{enumerate}
+
+The empirical findings in this draft are placeholders. The repository contains deterministic smoke and development runs for engineering validation, but the claim ledger currently marks the main scientific claims as planned rather than supported. Before submission, each numerical statement in this section must be replaced by results linked to specific configs, run directories, and claim-ledger rows.

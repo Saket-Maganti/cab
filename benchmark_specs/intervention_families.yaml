@@ -1,0 +1,31 @@
+intervention_families:
+  tool_removal:
+    changed_factor: tool availability
+    designed_failure_mode: brittle dependence on a single tool
+  tool_failure:
+    changed_factor: tool reliability
+    designed_failure_mode: recovery from tool errors
+  tool_corruption:
+    changed_factor: tool output correctness
+    designed_failure_mode: observation interpretation and cross-checking
+  irrelevant_tools:
+    changed_factor: available irrelevant tools
+    designed_failure_mode: over-tooling
+  memory_corruption:
+    changed_factor: memory correctness
+    designed_failure_mode: unverified memory reliance
+  observation_conflict:
+    changed_factor: observation consistency
+    designed_failure_mode: contradiction handling
+  ambiguous_instruction:
+    changed_factor: instruction specificity
+    designed_failure_mode: ambiguity handling
+  long_horizon_dependency:
+    changed_factor: step dependency length
+    designed_failure_mode: planning and state tracking
+  premature_success_signal:
+    changed_factor: environment completion signal
+    designed_failure_mode: premature stopping
+  distractor_evidence:
+    changed_factor: evidence relevance
+    designed_failure_mode: distractor susceptibility
