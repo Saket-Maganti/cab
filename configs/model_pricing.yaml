@@ -1,0 +1,116 @@
+registry_version: '0.1'
+currency_default: USD
+defaults_note: 'User-configurable reference defaults for conservative cost upper bounds.
+  Verify current provider pricing before any paid run; entries are not fetched live
+  from provider APIs.
+
+  '
+models:
+- provider: openai
+  model_id: default
+  input_per_1m_tokens: 2.5
+  output_per_1m_tokens: 10.0
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Conservative OpenAI chat default; replace with your target model row.
+  pricing_known: true
+- provider: openai
+  model_id: gpt-4o-mini
+  input_per_1m_tokens: 0.15
+  output_per_1m_tokens: 0.6
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Reference default only; confirm on provider dashboard before paid runs.
+  pricing_known: true
+- provider: anthropic
+  model_id: default
+  input_per_1m_tokens: 3.0
+  output_per_1m_tokens: 15.0
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Conservative Anthropic default; replace with your target model row.
+  pricing_known: true
+- provider: anthropic
+  model_id: claude-3-5-sonnet-latest
+  input_per_1m_tokens: 3.0
+  output_per_1m_tokens: 15.0
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Reference default only; confirm on provider dashboard before paid runs.
+  pricing_known: true
+- provider: gemini
+  model_id: default
+  input_per_1m_tokens: 0.35
+  output_per_1m_tokens: 1.05
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Conservative Gemini default; replace with your target model row.
+  pricing_known: true
+- provider: gemini
+  model_id: gemini-2.0-flash
+  input_per_1m_tokens: 0.1
+  output_per_1m_tokens: 0.4
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Reference default only; confirm on provider dashboard before paid runs.
+  pricing_known: true
+- provider: openrouter
+  model_id: default
+  input_per_1m_tokens: 2.5
+  output_per_1m_tokens: 10.0
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Conservative OpenRouter default; actual route pricing varies by model slug.
+  pricing_known: true
+- provider: openrouter
+  model_id: openai/gpt-4o-mini
+  input_per_1m_tokens: 0.15
+  output_per_1m_tokens: 0.6
+  currency: USD
+  source: user_configurable_default
+  as_of: '2026-05-01'
+  comment: Reference default only; OpenRouter route pricing may differ.
+  pricing_known: true
+- provider: openai_compatible
+  model_id: default
+  input_per_1m_tokens: null
+  output_per_1m_tokens: null
+  currency: USD
+  source: unknown
+  as_of: '2026-05-01'
+  comment: Pricing must be supplied in run config for generic compatible endpoints.
+  pricing_known: false
+- provider: openrouter
+  model_id: google/gemma-2-9b-it:free
+  input_per_1m_tokens: 0.0
+  output_per_1m_tokens: 0.0
+  currency: USD
+  source: free_tier_reference
+  as_of: '2026-05-01'
+  comment: OpenRouter free model route; verify availability before runs.
+  pricing_known: true
+- provider: gemini
+  model_id: gemini-2.0-flash-free-tier
+  input_per_1m_tokens: 0.0
+  output_per_1m_tokens: 0.0
+  currency: USD
+  source: free_tier_reference
+  as_of: '2026-05-01'
+  comment: Treat as zero-cost only when agent_run.extra.free_tier is true.
+  pricing_known: true
+- provider: local_openai
+  model_id: default
+  input_per_1m_tokens: 0.0
+  output_per_1m_tokens: 0.0
+  currency: USD
+  source: local_compute
+  as_of: '2026-05-01'
+  comment: Local open-weight runs are treated as zero API spend.
+  pricing_known: true

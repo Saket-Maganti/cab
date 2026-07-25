@@ -1,0 +1,12 @@
+flowchart LR
+  RUN[Run directory] --> META[run_metadata.json]
+  RUN --> SCORES[scores.jsonl]
+  RUN --> REPORT[report.md]
+  SCORES --> LEDGER[claim_ledger.json]
+  META --> LEDGER
+  TABLES[tables/ figures/] --> LEDGER
+  LEDGER --> PAPER[paper sections via claimref]
+  BLOCK{Evidence level OK?}
+  LEDGER --> BLOCK
+  BLOCK -->|yes| SUPPORTED[supported wording]
+  BLOCK -->|no| PLANNED[planned / engineering_only]

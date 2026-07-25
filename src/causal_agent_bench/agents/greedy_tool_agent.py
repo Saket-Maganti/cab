@@ -16,6 +16,14 @@ class GreedyToolAgent(BaseAgent):
     ) -> AgentAction:
         called = set(self.called_tools(observation_history))
         instruction = self.user_instruction().lower()
+        if self.has_error(observation_history) and "verify_fact" not in called:
+            verifier = self.tool_by_name(available_tools, "verify_fact")
+            if verifier is not None:
+                return tool_action(
+                    "verify_fact",
+                    self.tool_arguments("verify_fact", verifier),
+                    thought="Greedy heuristic switches to verification after a tool error.",
+                )
         priority = _keyword_plan(instruction, self.domain())
         for tool_name in priority:
             tool_spec = self.tool_by_name(available_tools, tool_name)

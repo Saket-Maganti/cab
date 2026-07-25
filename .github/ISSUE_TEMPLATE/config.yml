@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+contact_links:
+  - name: CausalAgentBench docs
+    url: https://github.com/
+    about: See README and docs/ for experiment and claim policies.
+issue_templates:
+  - bug_report.md
+  - experiment_task.md
+  - paper_task.md
+  - reviewer_risk.md

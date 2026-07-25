@@ -1,10 +1,11 @@
-| statistic | value |
-| --- | --- |
-| base_tasks | 20 |
-| clean_instances | 20 |
-| intervention_instances | 60 |
-| domains | calendar_email (5), file_spreadsheet (5), policy_compliance (5), travel (5) |
-| difficulty_levels | easy (9), hard (2), medium (9) |
-| avg_tools_required | 2.750 |
-| avg_available_tools | 2.737 |
-| avg_max_steps | 4.750 |
+| statistic | value | run_dir | config_hash | seed | dataset_version | model_ids | scorer_versions | git_commit | timestamp |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| evidence_scope | pilot_stub_engineering_only | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| base_tasks | 20 | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| clean_instances | 20 | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| intervention_instances | 100 | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| domains | calendar_email_workflow (3), coding_debugging (2), file_spreadsheet_qa (3), operations_planning (2), policy_compliance (2), research_assistant (2), shopping_comparison (3), travel_planning (3) | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| difficulty_levels | easy (4), hard (2), medium (11), stress (3) | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| avg_tools_required | 3.400 | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| avg_available_tools | 3.467 | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |
+| avg_max_steps | 5.400 | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |

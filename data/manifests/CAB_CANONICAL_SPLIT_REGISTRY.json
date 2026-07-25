@@ -1,0 +1,344 @@
+{
+  "cross_role_overlap_count": 0,
+  "cross_role_overlaps": [],
+  "generated_at": "2026-07-23T16:49:30.883503+00:00",
+  "immutability": "Membership and source hashes must be regenerated and reviewed before any result-affecting task change. A changed hash creates a new benchmark version.",
+  "paper_eligible": false,
+  "passed": true,
+  "role_count": 6,
+  "roles": [
+    {
+      "base_task_membership_sha256": "e920b5a9c445bd6ace111dd1be537f716d3568ac89abff06bb422c8f1641520d",
+      "candidate_count": null,
+      "dataset_profile": {
+        "answer_type_counts": {
+          "object": 2,
+          "string": 1
+        },
+        "condition_counts": {
+          "clean": 3,
+          "intervention": 6
+        },
+        "difficulty_counts": {
+          "easy": 2,
+          "medium": 1
+        },
+        "domain_counts": {
+          "calendar_email": 1,
+          "policy_compliance": 1,
+          "travel": 1
+        },
+        "intervention_family_counts": {
+          "ambiguous_instruction": 1,
+          "irrelevant_tools": 1,
+          "memory_corruption": 1,
+          "premature_success_signal": 1,
+          "tool_failure": 1,
+          "tool_removal": 1
+        },
+        "naturalistic_share": 0.0,
+        "naturalistic_task_count": 0,
+        "normalized_instruction_pattern_count": 3,
+        "raw_instance_count": 9,
+        "tool_combination_count": 3,
+        "unique_base_task_count": 3,
+        "unique_template_family_count": 3
+      },
+      "evidence_class": "FIXTURE_ONLY",
+      "human_validation_required": false,
+      "instance_count": 9,
+      "membership_sha256": "0a40634ed2055725b3d7381c4877e544666714d0dc19a0e84666071ca65ee72a",
+      "paper_eligible": false,
+      "release_tier": "development_release",
+      "role": "dev_fixture",
+      "scientific_execution_allowed": false,
+      "source": "data/sample/instances.jsonl",
+      "source_exists": true,
+      "source_sha256": "1a20af2b854b1de81e9d5726cf31865f55cb0fb67f4d39ae9d15c44223efaac5",
+      "status": "FIXTURE_READY",
+      "unique_base_task_count": 3
+    },
+    {
+      "base_task_membership_sha256": "3f9b14acd738542c3876cb16d0baebca7b379ab68adedb0804e58278b2132a7c",
+      "candidate_count": 20,
+      "dataset_profile": {},
+      "evidence_class": "HUMAN_INPUT_REQUIRED",
+      "human_validation_required": true,
+      "instance_count": 30,
+      "membership_sha256": "ba9a6a0048ba56e8f24f6f17481c9f5e46f37d591856f3cd62d8b250d0afebf2",
+      "paper_eligible": false,
+      "release_tier": "harness_only_release",
+      "role": "compact20_pilot",
+      "scientific_execution_allowed": false,
+      "source": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+      "source_exists": true,
+      "source_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+      "status": "HUMAN_REVIEW_PENDING",
+      "unique_base_task_count": 10
+    },
+    {
+      "base_task_membership_sha256": "f396164a11b68bcdf9ec8c0ad562a5186c2b9ef3747a52f3b7c2a07f3d24d94e",
+      "candidate_count": null,
+      "dataset_profile": {
+        "answer_type_counts": {
+          "object": 76,
+          "string": 24
+        },
+        "condition_counts": {
+          "clean": 100,
+          "intervention": 500
+        },
+        "difficulty_counts": {
+          "easy": 25,
+          "hard": 25,
+          "medium": 25,
+          "stress": 25
+        },
+        "domain_counts": {
+          "calendar_email_workflow": 9,
+          "coding_debugging": 8,
+          "customer_support_workflow": 8,
+          "data_cleaning_workflow": 8,
+          "file_qa": 9,
+          "finance_admin_workflow": 8,
+          "operations_planning": 8,
+          "policy_compliance": 8,
+          "research_assistant": 8,
+          "shopping_comparison": 8,
+          "spreadsheet_qa": 9,
+          "travel_planning": 9
+        },
+        "intervention_family_counts": {
+          "ambiguous_instruction": 50,
+          "distractor_evidence": 50,
+          "irrelevant_tools": 50,
+          "long_horizon_dependency": 50,
+          "memory_corruption": 50,
+          "observation_conflict": 50,
+          "premature_success_signal": 50,
+          "tool_corruption": 50,
+          "tool_failure": 50,
+          "tool_removal": 50
+        },
+        "naturalistic_share": 0.0,
+        "naturalistic_task_count": 0,
+        "normalized_instruction_pattern_count": 44,
+        "raw_instance_count": 600,
+        "tool_combination_count": 27,
+        "unique_base_task_count": 100,
+        "unique_template_family_count": 12
+      },
+      "evidence_class": "HUMAN_INPUT_REQUIRED",
+      "human_validation_required": true,
+      "instance_count": 600,
+      "membership_sha256": "3e412b4ac731f4dc976bbdecdf37acc45b98714da70c6cc7db9330627e6f4fed",
+      "paper_eligible": false,
+      "release_tier": "hidden_or_delayed_test_pack",
+      "role": "scale100_confirmatory",
+      "scientific_execution_allowed": false,
+      "source": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
+      "source_exists": true,
+      "source_sha256": "71c7de76013827a4c4f30552dbcb75ca14c586c3f45959b775c967dca7ae2243",
+      "status": "HUMAN_REVIEW_PENDING",
+      "unique_base_task_count": 100
+    },
+    {
+      "base_task_membership_sha256": "83b9b3db82090dfed3f6f84c6f96b048b2cbe5c4e6c33063d73958a20aea2f5c",
+      "candidate_count": null,
+      "dataset_profile": {
+        "answer_type_counts": {
+          "object": 54,
+          "string": 18
+        },
+        "condition_counts": {
+          "clean": 72,
+          "intervention": 360
+        },
+        "difficulty_counts": {
+          "easy": 19,
+          "hard": 16,
+          "medium": 18,
+          "stress": 19
+        },
+        "domain_counts": {
+          "mock_bug_report": 9,
+          "mock_calendar_scheduling": 9,
+          "mock_customer_escalation": 9,
+          "mock_email_thread": 9,
+          "mock_incident_postmortem": 9,
+          "mock_policy_document": 9,
+          "mock_product_database": 9,
+          "mock_spreadsheet_ops": 9
+        },
+        "intervention_family_counts": {
+          "ambiguous_instruction": 36,
+          "distractor_evidence": 36,
+          "irrelevant_tools": 36,
+          "long_horizon_dependency": 36,
+          "memory_corruption": 36,
+          "observation_conflict": 36,
+          "premature_success_signal": 36,
+          "tool_corruption": 36,
+          "tool_failure": 36,
+          "tool_removal": 36
+        },
+        "naturalistic_share": 1.0,
+        "naturalistic_task_count": 72,
+        "normalized_instruction_pattern_count": 47,
+        "raw_instance_count": 432,
+        "tool_combination_count": 17,
+        "unique_base_task_count": 72,
+        "unique_template_family_count": 8
+      },
+      "evidence_class": "HUMAN_INPUT_REQUIRED",
+      "human_validation_required": true,
+      "instance_count": 432,
+      "membership_sha256": "7c680e3b1571dc707b76ad7d2a74d93e5886e543ea4d0065dd8dc78843f17720",
+      "paper_eligible": false,
+      "release_tier": "hidden_or_delayed_test_pack",
+      "role": "naturalistic_transfer",
+      "scientific_execution_allowed": false,
+      "source": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
+      "source_exists": true,
+      "source_sha256": "6788b8b66978c8c9a0bd9c5798dbae77783e1e2b75b9b022feaf33ac86ef6da7",
+      "status": "HUMAN_REVIEW_PENDING",
+      "unique_base_task_count": 72
+    },
+    {
+      "base_task_membership_sha256": "01345f091a3336a8fc9028563270e7cf81ab9d1e679f94d749ebdb3415abe9c6",
+      "candidate_count": null,
+      "dataset_profile": {
+        "answer_type_counts": {
+          "object": 374,
+          "string": 126
+        },
+        "condition_counts": {
+          "clean": 500,
+          "intervention": 2500
+        },
+        "difficulty_counts": {
+          "easy": 122,
+          "hard": 126,
+          "medium": 123,
+          "stress": 129
+        },
+        "domain_counts": {
+          "calendar_email_workflow": 42,
+          "coding_debugging": 42,
+          "customer_support_workflow": 41,
+          "data_cleaning_workflow": 41,
+          "file_qa": 42,
+          "finance_admin_workflow": 41,
+          "operations_planning": 41,
+          "policy_compliance": 42,
+          "research_assistant": 42,
+          "shopping_comparison": 42,
+          "spreadsheet_qa": 42,
+          "travel_planning": 42
+        },
+        "intervention_family_counts": {
+          "ambiguous_instruction": 250,
+          "distractor_evidence": 250,
+          "irrelevant_tools": 250,
+          "long_horizon_dependency": 250,
+          "memory_corruption": 250,
+          "observation_conflict": 250,
+          "premature_success_signal": 250,
+          "tool_corruption": 250,
+          "tool_failure": 250,
+          "tool_removal": 250
+        },
+        "naturalistic_share": 0.0,
+        "naturalistic_task_count": 0,
+        "normalized_instruction_pattern_count": 48,
+        "raw_instance_count": 3000,
+        "tool_combination_count": 27,
+        "unique_base_task_count": 500,
+        "unique_template_family_count": 12
+      },
+      "evidence_class": "HUMAN_INPUT_REQUIRED",
+      "human_validation_required": true,
+      "instance_count": 3000,
+      "membership_sha256": "2047f4f92e52ff8c6a6ee79239ecef9f09e1659f16c5526e7713c72cd9009e24",
+      "paper_eligible": false,
+      "release_tier": "hidden_or_delayed_test_pack",
+      "role": "main500_confirmatory",
+      "scientific_execution_allowed": false,
+      "source": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
+      "source_exists": true,
+      "source_sha256": "46e9112fcc158b7fd9e9652696f259ee26edda27132c6046d6d072d670f9669c",
+      "status": "HUMAN_REVIEW_PENDING",
+      "unique_base_task_count": 500
+    },
+    {
+      "base_task_membership_sha256": "515a6c118b5b5db40ae91439ba66c93b71ffa1f08f76808e44e51723f3fa2e19",
+      "candidate_count": null,
+      "dataset_profile": {
+        "answer_type_counts": {
+          "object": 38,
+          "string": 12
+        },
+        "condition_counts": {
+          "clean": 50,
+          "intervention": 250
+        },
+        "difficulty_counts": {
+          "easy": 15,
+          "hard": 11,
+          "medium": 15,
+          "stress": 9
+        },
+        "domain_counts": {
+          "calendar_email_workflow": 4,
+          "coding_debugging": 4,
+          "customer_support_workflow": 5,
+          "data_cleaning_workflow": 4,
+          "file_qa": 4,
+          "finance_admin_workflow": 4,
+          "operations_planning": 5,
+          "policy_compliance": 4,
+          "research_assistant": 4,
+          "shopping_comparison": 4,
+          "spreadsheet_qa": 4,
+          "travel_planning": 4
+        },
+        "intervention_family_counts": {
+          "ambiguous_instruction": 25,
+          "distractor_evidence": 25,
+          "irrelevant_tools": 25,
+          "long_horizon_dependency": 25,
+          "memory_corruption": 25,
+          "observation_conflict": 25,
+          "premature_success_signal": 25,
+          "tool_corruption": 25,
+          "tool_failure": 25,
+          "tool_removal": 25
+        },
+        "naturalistic_share": 0.0,
+        "naturalistic_task_count": 0,
+        "normalized_instruction_pattern_count": 39,
+        "raw_instance_count": 300,
+        "tool_combination_count": 23,
+        "unique_base_task_count": 50,
+        "unique_template_family_count": 12
+      },
+      "evidence_class": "HUMAN_INPUT_REQUIRED",
+      "human_validation_required": true,
+      "instance_count": 300,
+      "membership_sha256": "2d0474ad75312387a64fcd3d2f7337e72dcf83fca4b6d8d78802b915e856777a",
+      "paper_eligible": false,
+      "post_study_release_tier": "post_study_full_release",
+      "release_tier": "hidden_or_delayed_test_pack",
+      "role": "heldout_challenge",
+      "scientific_execution_allowed": false,
+      "source": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+      "source_exists": true,
+      "source_sha256": "d3d96127dff3ed982afca2bb1c62e584d98e418834c034169a8c6c7854adadf8",
+      "status": "HUMAN_REVIEW_PENDING",
+      "unique_base_task_count": 50
+    }
+  ],
+  "schema_version": "cab_canonical_split_registry_v1",
+  "scientific_execution_allowed": false,
+  "scope": "PRE_EXECUTION_STATIC_REGISTRY"
+}

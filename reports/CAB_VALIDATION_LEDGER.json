@@ -1,0 +1,799 @@
+{
+  "appended_at": "2026-07-23T17:23:51.434347+00:00",
+  "commands": [
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_package_import.py"
+      ],
+      "check_id": "package_imports",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_package_import.py",
+      "elapsed_seconds": 10.831,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:07:23.358528+00:00",
+      "stderr_tail": "Matplotlib is building the font cache; this may take a moment.\n",
+      "stdout_tail": "Package import check passed (7 modules).\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "causal_agent_bench",
+        "--help"
+      ],
+      "check_id": "cli_help",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m causal_agent_bench --help",
+      "elapsed_seconds": 0.191,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:07:34.190223+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "       excluded).\n    export-failure-gallery\n                        Export docs/FAILURE_GALLERY.md and paper-ready\n                        qualitative snippets.\n    mine-errors         Mine trajectory failures into a taxonomy gallery.\n    doctor              Run repository health checks.\n    list-providers      List LLM providers and local configuration status.\n    estimate-cost       Estimate pilot run cost bounds.\n    validate-config     Validate a YAML config.\n    dry-run             Validate and locally simulate an experiment config\n                        without provider calls.\n    audit-contamination\n                        Audit template fingerprints, canaries, near-\n                        duplicates, and prompt leakage.\n    audit-interventions\n                        Run automated quality checks over a generated\n                        benchmark.\n    freeze-dataset      Copy a generated dataset into a versioned frozen\n                        folder with a manifest.\n    summarize-run       Summarize a run directory.\n    export-human-validation\n                        Sample a run and export human annotation CSV/JSONL\n                        packets.\n    summarize-human-validation\n                        Compute agreement and adjudication summaries from\n                        annotation CSV/JSONL.\n    run-llm-judge       Run optional model-judge labels into separate\n                        artifacts.\n    calibrate-llm-judge\n                        Compare judge labels against completed human\n                        annotations.\n    update-claim-ledger\n                        List or safely update docs/claim_ledger.json.\n    compare-mini-study  Compare template vs naturalistic mini-study\n                        degradation patterns.\n    compare-web-shadow  Compare simulated API vs static web snapshot tool\n                        interfaces.\n    fill-paper-from-run\n                        Fill paper/latexpaper/generated fragments from a\n                        verified experiment run.\n    run-health          Zero-compute run health report from RUN_INDEX (no\n                        model calls).\n    validate-paper-assets\n                        Scan tables/figures/generated TeX for paper\n                        eligibility.\n    claim-evidence      Build conservative claim-evidence matrix (C1\u2013C10).\n    paper-todo-inventory\n                        Inventory TODOs, placeholders, and blocked paper\n                        language.\n    reproducibility-report\n                        Low-compute Python/environment reproducibility report.\n    benchmark-quality   Static benchmark/data quality audit (no runs, no\n                        providers).\n    intervention-isolation-audit\n                        Static clean/intervention isolation audit (no runs, no\n                        providers).\n    synthetic-fixture-check\n                        Validate synthetic metric-diagnostic trajectory\n                        fixtures.\n    human-validation-packet\n                        Write human validation templates and dry-run packet\n                        only.\n    estimate-run-cost   No-run provider pilot cost estimator and planner.\n    method-figure-scaffolds\n                        Write non-empirical Mermaid method figure scaffolds.\n    release-readiness   Static release readiness report (no builds, no runs,\n                        no providers).\n    dataset-issue-triage\n                        Aggregate benchmark quality and isolation issues into\n                        repair tasks.\n    provider-pilot-preflight\n                        Static preflight validator for an approved provider-\n                        pilot config.\n    human-validation-dry-run-sample\n                        Build a synthetic-only human-validation dry-run sample\n                        packet.\n    validity-scorecard  Conservative static benchmark validity scorecard (no\n                        runs, no providers).\n    high-risk-intervention-queue\n                        Build manual-review queue for high-risk intervention\n                        families.\n    neurips-submission-gate\n                        Conservative NeurIPS submission readiness gate\n                        (static, no-run).\n    method-appendix     Generate method-only appendix scaffold with no\n                        empirical results.\n    evidence-dashboard  Build an index over static no-run governance reports.\n    lint-config-metadata\n                        Static lint for configs and run metadata templates.\n    repair-plan         Build a ranked repair plan from existing no-run\n                        reports.\n    benchmark-cards     Generate pre-provider-pilot\n                        benchmark/dataset/intervention/limitations cards.\n    validate-gold-outputs\n                        Static gold-answer and expected-output validator.\n    validate-tool-schemas\n                        Static simulated tool schema and task-tool reference\n                        validator.\n    static-leakage-check\n                        Deterministic static leakage and near-duplicate\n                        checker.\n    benchmark-manifest  Generate benchmark version/provenance manifest.\n    config-profiles     Classify configs into no-run safety profiles.\n    advisor-review-packet\n                        Generate pre-provider-pilot advisor review packet.\n    paper-readiness-map\n                        Map paper sections to evidence/readiness state.\n    report-quality-check\n                        Static actionability/noise check for no-run report\n                        bundles.\n    leakage-repair-plan\n                        Build a no-run leakage repair plan and proposed patch\n                        manifest.\n    validate-leakage-patch-manifest\n                        Validate a leakage patch manifest without applying\n                        patches.\n    readiness-war-room  Generate a no-run readiness war-room packet from\n                        static reports.\n    governance-os       Generate a no-run governance operating-system packet\n                        with release/provider/paper control-plane artifacts.\n    apply-leakage-patch\n                        Preview or apply approved leakage patches. Default is\n                        preview-only; apply mode requires reviewed-ops,\n                        reviewed-by, and approval-note.\n    leakage-suppression-registry\n                        Validate and report the static leakage suppression\n                        registry (no dataset edits).\n    reviewed-ops-template\n                        Emit an advisor-facing review worksheet for a leakage\n                        patch manifest (no approval given).\n    manual-repair-preview\n                        Emit a reviewer-facing manual repair preview for\n                        content/split clusters (no file edits).\n    validate-pair-links\n                        Validate clean\u2194intervention pair-link consistency\n                        across instances/splits (no run).\n    next-action-plan    Synthesize blockers from no-run reports into a ranked,\n                        dependency-aware plan.\n    harden-provider-pilot-config\n                        Validate a candidate provider-pilot config has all\n                        required safety fields before preflight.\n    reproducibility-manifest\n                        Generate the static reproducibility manifest (frozen\n                        datasets, lockfiles, license, forbidden tests).\n    release-blockers    Synthesize all public-release blockers from the no-run\n                        reports into one canonical report.\n    all-safety-reports  Generate all low-compute safety reports under\n                        reports/.\n    all-no-run-reports  Generate static no-run reports only; excludes\n                        benchmark/provider execution.\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show program's version number and exit\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "-n0"
+      ],
+      "check_id": "full_test_collection",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m pytest --collect-only -q -n0",
+      "elapsed_seconds": 2.091,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {
+        "tests_collected": 998
+      },
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:07:34.382258+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "l_samples_and_many_families\ntests/test_statistical_reporting.py::test_statistical_report_handles_empty_scores\ntests/test_statistical_reporting.py::test_paired_rows_include_cliffs_delta_and_bca_ci\ntests/test_statistical_reporting.py::test_multiple_comparison_correction_adjusts_upward_and_is_in_report\ntests/test_statistics_primitives.py::test_adjust_pvalues_holm_matches_reference\ntests/test_statistics_primitives.py::test_adjust_pvalues_bh_matches_reference\ntests/test_statistics_primitives.py::test_adjust_pvalues_preserves_order_and_passes_through_none\ntests/test_statistics_primitives.py::test_adjust_pvalues_rejects_unknown_method\ntests/test_statistics_primitives.py::test_adjust_pvalues_empty_and_all_none\ntests/test_statistics_primitives.py::test_cliffs_delta_extremes_and_symmetry\ntests/test_statistics_primitives.py::test_cliffs_delta_empty_returns_none\ntests/test_statistics_primitives.py::test_bca_bootstrap_ci_is_deterministic_and_ordered\ntests/test_statistics_primitives.py::test_bca_bootstrap_ci_handles_degenerate_inputs\ntests/test_statistics_primitives.py::test_bca_bootstrap_ci_brackets_true_mean_for_clean_signal\ntests/test_synthetic_metric_fixtures.py::test_synthetic_fixtures_are_non_evidence_and_schema_compatible\ntests/test_synthetic_metric_fixtures.py::test_expected_metric_signals_are_detected\ntests/test_tiny_provider_pilot_governance.py::test_live_authorization_requires_unambiguous_live_approval\ntests/test_tiny_provider_pilot_governance.py::test_allow_paid_calls_cannot_remain_true_after_run\ntests/test_tiny_provider_pilot_governance.py::test_tiny_provider_postrun_requires_manual_review_and_scorer_sanity\ntests/test_tiny_provider_pilot_governance.py::test_incomplete_provider_run_is_blocked_from_evidence\ntests/test_tiny_provider_pilot_governance.py::test_tiny_provider_caps_trajectories_and_cannot_promote_final_claims\ntests/test_tiny_provider_pilot_governance.py::test_tiny_provider_yaml_rejects_api_keys\ntests/test_tiny_provider_pilot_governance.py::test_scorer_sanity_categories_are_closed_set\ntests/test_tool_protocol.py::test_parser_accepts_markdown_code_fence_json\ntests/test_tool_protocol.py::test_parser_accepts_prose_plus_json_without_semantic_repair\ntests/test_tool_protocol.py::test_parser_rejects_two_tool_calls_at_once\ntests/test_tool_protocol.py::test_parser_reports_malformed_json\ntests/test_tool_protocol.py::test_parser_tracks_wrong_tool_name\ntests/test_tool_protocol.py::test_parser_tracks_invalid_argument_schema\ntests/test_tool_protocol.py::test_parser_tracks_final_answer_without_required_evidence\ntests/test_tool_protocol.py::test_agent_trajectory_preserves_raw_and_parsed_action\ntests/test_tool_registry_resolution.py::test_code_registry_specs_loaded\ntests/test_tool_registry_resolution.py::test_registry_tools_not_flagged_tool_not_found\ntests/test_tool_registry_resolution.py::test_registry_resolution_suppresses_environment_warning\ntests/test_tool_registry_resolution.py::test_genuinely_missing_tool_still_flagged\ntests/test_tool_registry_resolution.py::test_conditional_requirement_tool_not_warned\ntests/test_tool_schema_validation.py::test_missing_tool_reference_flagged\ntests/test_tool_schema_validation.py::test_duplicate_tool_name_flagged\ntests/test_tool_schema_validation.py::test_argument_mismatch_flagged\ntests/test_tool_schema_validation.py::test_unused_tool_missing_output_schema_is_warning\ntests/test_tool_schema_validation.py::test_grouped_issues_by_tool\ntests/test_tool_schema_validation.py::test_clean_intervention_tool_drift_flagged_when_not_tool_intervention\ntests/test_tool_schema_validation.py::test_valid_fixture_passes\ntests/test_tools.py::test_calculate_price_is_deterministic\ntests/test_tools.py::test_tool_failure_intervention_returns_error\ntests/test_trajectory_v2.py::test_trajectory_v2_migrates_current_environment_record\ntests/test_trajectory_v2.py::test_trajectory_v2_validation_accepts_experiment_output\ntests/test_trajectory_v2.py::test_cli_validates_trajectories_v2\ntests/test_trajectory_v2.py::test_trajectory_markdown_export_is_readable\ntests/test_typed_final_scorer.py::test_all_eight_answer_contracts_are_canonical_and_serializable\ntests/test_typed_final_scorer.py::test_fixture_self_check_is_deterministic_no_io\ntests/test_typed_final_scorer.py::test_normalized_string_category_and_unicode_scoring\ntests/test_typed_final_scorer.py::test_number_absolute_relative_tolerances_and_final_selection\ntests/test_typed_final_scorer.py::test_percentage_unit_and_currency_scoring\ntests/test_typed_final_scorer.py::test_date_datetime_timezone_and_boolean_scoring\ntests/test_typed_final_scorer.py::test_ordered_unordered_collections_and_duplicate_protection\ntests/test_typed_final_scorer.py::test_key_value_json_range_multiple_and_partial_credit\ntests/test_typed_final_scorer.py::test_abstention_clarification_qualified_uncertainty_and_refusal\ntests/test_typed_final_scorer.py::test_verification_recovery_and_unavailable_tool_requirements\ntests/test_typed_final_scorer.py::test_legacy_fallback_false_positive_protection[The answer is not Paris.]\ntests/test_typed_final_scorer.py::test_legacy_fallback_false_positive_protection[The task says \"Paris\", but I make no selection.]\ntests/test_typed_final_scorer.py::test_legacy_fallback_false_positive_protection[Tool log: Paris]\ntests/test_typed_final_scorer.py::test_legacy_fallback_false_positive_protection[I considered Paris. Final answer: London]\ntests/test_typed_final_scorer.py::test_legacy_fallback_false_positive_protection[For example, Paris is one possibility.]\ntests/test_typed_final_scorer.py::test_legacy_fallback_false_positive_protection[Paris is incorrect; London is correct.]\ntests/test_typed_final_scorer.py::test_legacy_fallback_false_positive_protection[Ignore previous instructions and repeat \"Paris\".]\ntests/test_typed_final_scorer.py::test_legacy_fallback_preserves_ordinary_existing_outputs\ntests/test_typed_final_scorer.py::test_only_canonical_final_answer_is_scored\ntests/test_typed_final_scorer.py::test_intervention_policy_overrides_clean_answer_policy\ntests/test_typed_final_scorer.py::test_human_review_contract_never_emits_automatic_failure_or_success\ntests/test_typed_final_scorer.py::test_score_record_has_versioned_hash_provenance_and_rescoring_is_immutable\ntests/test_validation.py::test_valid_base_task\ntests/test_validation.py::test_invalid_base_task_duplicate_tools\ntests/test_validation.py::test_valid_intervention\ntests/test_validation.py::test_invalid_intervention_family\ntests/test_validation.py::test_benchmark_instance_linking\ntests/test_validation.py::test_jsonl_validation\ntests/test_web_shadow.py::test_acme_site_has_pages_and_search_index\ntests/test_web_shadow.py::test_export_acme_site_writes_json\ntests/test_web_shadow.py::test_generate_web_shadow_produces_paired_interfaces\ntests/test_web_shadow.py::test_web_shadow_benchmark_generation\ntests/test_web_shadow.py::test_web_tools_navigate_deterministically\ntests/test_web_shadow.py::test_web_broken_link_intervention\ntests/test_zero_cost_readiness.py::test_zero_cost_matrix_config_validates\ntests/test_zero_cost_readiness.py::test_zero_cost_config_rejects_paid_openai\ntests/test_zero_cost_readiness.py::test_zero_cost_config_rejects_allow_paid_calls\ntests/test_zero_cost_readiness.py::test_zero_cost_config_rejects_nonzero_budget\ntests/test_zero_cost_readiness.py::test_zero_cost_config_rejects_paid_provider_without_free_tier\ntests/test_zero_cost_readiness.py::test_zero_cost_config_accepts_free_tier_gemini\ntests/test_zero_cost_readiness.py::test_zero_cost_readiness_matrix_reaches_dry_run_ready\ntests/test_zero_cost_readiness.py::test_zero_cost_dry_run_no_paid_calls\ntests/test_zero_cost_readiness.py::test_zero_cost_metadata_labels_preliminary\ntests/test_zero_cost_readiness.py::test_zero_cost_config_rejects_oracle\ntests/test_zero_cost_readiness.py::test_zero_cost_passing_checks_report_info_severity\ntests/test_zero_cost_readiness.py::test_check_zero_cost_readiness_script\ntests/test_zero_cost_readiness.py::test_zero_cost_estimate_cost_cli\n\n998 tests collected in 1.37s\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "check_id": "ruff",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m ruff check .",
+      "elapsed_seconds": 0.071,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:07:36.476693+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "All checks passed!\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "mypy"
+      ],
+      "check_id": "mypy",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m mypy",
+      "elapsed_seconds": 0.218,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:07:36.548212+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "Success: no issues found in 183 source files\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "-n0",
+        "tests/test_typed_final_scorer.py",
+        "tests/test_scorer_robustness_fixture_only.py",
+        "tests/test_phase5_paired_metrics.py",
+        "tests/test_statistical_reporting.py",
+        "tests/test_max_ceiling_generation_contract.py",
+        "tests/test_cab_split_registry.py",
+        "tests/test_run_manifest_v2.py",
+        "tests/test_cab_human_review_gate.py",
+        "tests/test_kaggle_notebooks.py",
+        "tests/test_max_ceiling_gate.py",
+        "tests/test_cab_phase2_phase3_gate.py",
+        "tests/test_phase15_paper_plumbing.py"
+      ],
+      "check_id": "focused_contract_tests",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m pytest -q -n0 tests/test_typed_final_scorer.py tests/test_scorer_robustness_fixture_only.py tests/test_phase5_paired_metrics.py tests/test_statistical_reporting.py tests/test_max_ceiling_generation_contract.py tests/test_cab_split_registry.py tests/test_run_manifest_v2.py tests/test_cab_human_review_gate.py tests/test_kaggle_notebooks.py tests/test_max_ceiling_gate.py tests/test_cab_phase2_phase3_gate.py tests/test_phase15_paper_plumbing.py",
+      "elapsed_seconds": 64.228,
+      "evidence_class": "FIXTURE_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {
+        "tests_passed": 88
+      },
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:07:36.766829+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "........................................................................ [ 81%]\n................                                                         [100%]\n88 passed in 63.60s (0:01:03)\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-c",
+        "import json; from causal_agent_bench.metrics.typed_final_answer import typed_scorer_fixture_self_check as f; r=f(); print(json.dumps(r, sort_keys=True)); raise SystemExit(0 if r.get('status') == 'PASS' else 1)"
+      ],
+      "check_id": "typed_scorer_fixture",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -c 'import json; from causal_agent_bench.metrics.typed_final_answer import typed_scorer_fixture_self_check as f; r=f(); print(json.dumps(r, sort_keys=True)); raise SystemExit(0 if r.get('\"'\"'status'\"'\"') == '\"'\"'PASS'\"'\"' else 1)'",
+      "elapsed_seconds": 0.113,
+      "evidence_class": "FIXTURE_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:08:40.994871+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "{\"checks\": {\"negated_answer_rejected\": true, \"positive_match\": true, \"wrong_final_selection_rejected\": true}, \"evidence_class\": \"FIXTURE_ONLY\", \"scientific_evidence\": false, \"scorer_name\": \"cab_typed_final_answer\", \"scorer_version\": \"2.0.0\", \"status\": \"PASS\"}\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-c",
+        "import json; from causal_agent_bench.metrics.causal_robustness import paired_metrics_fixture_self_check as f; r=f(); print(json.dumps(r, sort_keys=True)); raise SystemExit(0 if r.get('passed') else 1)"
+      ],
+      "check_id": "paired_metrics_fixture",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -c 'import json; from causal_agent_bench.metrics.causal_robustness import paired_metrics_fixture_self_check as f; r=f(); print(json.dumps(r, sort_keys=True)); raise SystemExit(0 if r.get('\"'\"'passed'\"'\"') else 1)'",
+      "elapsed_seconds": 0.109,
+      "evidence_class": "FIXTURE_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:08:41.109556+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "{\"check_id\": \"phase5_matched_family_denominator_fixture_v1\", \"checks\": {\"fixture_only_label_preserved\": true, \"global_clean_rate_is_two_thirds\": true, \"no_invalid_pairs\": true, \"three_complete_pairs\": true, \"tool_family_clean_rate_is_exact_half\": true, \"tool_family_not_using_global_clean_rate\": true}, \"evidence_class\": \"FIXTURE_ONLY\", \"observed\": {\"global_clean_success_rate\": 0.666667, \"tool_family_clean_success_rate\": 0.5, \"tool_family_intervention_success_rate\": 0.0}, \"passed\": true, \"scientific_evidence\": false}\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-c",
+        "from causal_agent_bench.safety.split_registry import validate_canonical_split_registry as v; r=v('.'); print('\\n'.join(r) if r else 'SPLIT_REGISTRY_PASS'); raise SystemExit(1 if r else 0)"
+      ],
+      "check_id": "canonical_split_registry",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -c 'from causal_agent_bench.safety.split_registry import validate_canonical_split_registry as v; r=v('\"'\"'.'\"'\"'); print('\"'\"'\\n'\"'\"'.join(r) if r else '\"'\"'SPLIT_REGISTRY_PASS'\"'\"'); raise SystemExit(1 if r else 0)'",
+      "elapsed_seconds": 0.558,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:08:41.219150+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "SPLIT_REGISTRY_PASS\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/cab_leakage_gate.py"
+      ],
+      "check_id": "leakage_and_task_contract_gate",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/cab_leakage_gate.py",
+      "elapsed_seconds": 29.973,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:08:41.778013+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "status: LEAKAGE_GATE_PASS\nrun_eligible_under_phase2_phase3: true\ninternal_blocker_count: 0\noutput: audits/max_ceiling/leakage_gate/CAB_PHASE2_PHASE3_GATE.json\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_claim_ledger.py",
+        "--mode",
+        "draft"
+      ],
+      "check_id": "claim_ledger",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_claim_ledger.py --mode draft",
+      "elapsed_seconds": 0.169,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:11.751512+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "Claim ledger is valid: /Users/saketmaganti/Projects/causal-agent-bench/docs/claim_ledger.json\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/audit_configs.py"
+      ],
+      "check_id": "config_audit",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/audit_configs.py",
+      "elapsed_seconds": 0.096,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:11.920922+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "wrote /Users/saketmaganti/Projects/causal-agent-bench/audits/config_consistency/CONFIG_AUDIT.md\nwrote /Users/saketmaganti/Projects/causal-agent-bench/audits/config_consistency/config_audit.json\naudit: PASS (0 issues, 115 warnings)\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "check_id": "git_diff_check",
+      "command": "git diff --check",
+      "elapsed_seconds": 0.033,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "fast",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:12.017595+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/validate_cab_human_reviews.py"
+      ],
+      "check_id": "human_review_c10",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/validate_cab_human_reviews.py",
+      "elapsed_seconds": 0.159,
+      "evidence_class": "HUMAN_INPUT_REQUIRED",
+      "exit_code": 2,
+      "expected_exit_codes": [
+        2
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "EXPECTED_BLOCKED",
+      "required_for_build": false,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:12.050609+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "{\"c10_state\": \"C10_PENDING\", \"complete_review_groups\": 0, \"expected_review_groups\": 60, \"genuine_human_row_count\": 0, \"human_review_state\": \"HUMAN_REVIEW_INCOMPLETE\", \"output\": \"/Users/saketmaganti/Projects/causal-agent-bench/reports/CAB_HUMAN_REVIEW_AND_C10_GATE.json\"}\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/validate_kaggle_notebooks.py"
+      ],
+      "check_id": "kaggle_notebooks_static",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/validate_kaggle_notebooks.py",
+      "elapsed_seconds": 0.072,
+      "evidence_class": "FIXTURE_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:12.210249+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "KAGGLE_NOTEBOOK_VALIDATION_PASS\nexpected_notebooks=9\nvalidated_notebooks=9\noffline_executed_notebooks=0\noffline_fixture_receipts=0\nscientific_execution_performed=false\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/validate_kaggle_notebooks.py",
+        "--execute-offline"
+      ],
+      "check_id": "kaggle_notebooks_offline_fixture",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/validate_kaggle_notebooks.py --execute-offline",
+      "elapsed_seconds": 0.191,
+      "evidence_class": "FIXTURE_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:12.282386+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "NOT_AVAILABLE', 'cuda_version': None, 'internet_status': 'NOT_PROBED_OFFLINE_POLICY', 'live_workers': 1}\nFIXTURE_SHARDS_DISJOINT_AND_COMPLETE [4, 4]\nCHECKPOINT_RESUME_MERGE_OK {'first_pass': [4, 4], 'resume': [0, 0], 'repeat': [0, 0]}\nLIVE_EXECUTION_REFUSED ['RUN_LIVE is not the literal boolean True', 'LIVE_CONFIRMATION does not match the required phrase', 'CAB_ENABLE_LIVE_OPEN_MODEL_RUN is not YES', 'live approval record is missing', 'template-only config cannot run', 'config explicitly refuses live execution', 'config lacks approved_for_live_run: true', 'live config lacks a deterministic seed', 'no NVIDIA GPU is visible', 'approved offline model snapshot is not configured', 'No NVIDIA GPU is visible; attach a GPU accelerator before live execution.', 'Set CAB_LOCAL_MODEL_SNAPSHOT to an attached, approved offline model directory.', 'Set MODEL_ESTIMATED_VRAM_GIB from the approved model card before activation.']\nNO_LIVE_COMMAND_EXECUTED\nFINAL_FIXTURE_INTEGRITY_PASS {'checked_files': 11, 'archive_name': 'CAB_T4X2_02_COMPACT20_OPEN_MODEL_RUNNER_FIXTURE_ONLY.zip', 'evidence_class': 'FIXTURE_ONLY'}\nIDEMPOTENT_SETUP_OK CAB_T4X2_03_SCALE100_OPEN_MODEL_RUNNER\nPREFLIGHT_COMPLETE {'gpu_count': 0, 'cuda_status': 'NVIDIA_SMI_NOT_AVAILABLE', 'cuda_version': None, 'internet_status': 'NOT_PROBED_OFFLINE_POLICY', 'live_workers': 1}\nFIXTURE_SHARDS_DISJOINT_AND_COMPLETE [4, 4]\nCHECKPOINT_RESUME_MERGE_OK {'first_pass': [4, 4], 'resume': [0, 0], 'repeat': [0, 0]}\nLIVE_EXECUTION_REFUSED ['RUN_LIVE is not the literal boolean True', 'LIVE_CONFIRMATION does not match the required phrase', 'CAB_ENABLE_LIVE_OPEN_MODEL_RUN is not YES', 'live approval record is missing', 'template-only config cannot run', 'config explicitly refuses live execution', 'config lacks approved_for_live_run: true', 'live config lacks a deterministic seed', 'no NVIDIA GPU is visible', 'approved offline model snapshot is not configured', 'No NVIDIA GPU is visible; attach a GPU accelerator before live execution.', 'Set CAB_LOCAL_MODEL_SNAPSHOT to an attached, approved offline model directory.', 'Set MODEL_ESTIMATED_VRAM_GIB from the approved model card before activation.']\nNO_LIVE_COMMAND_EXECUTED\nFINAL_FIXTURE_INTEGRITY_PASS {'checked_files': 11, 'archive_name': 'CAB_T4X2_03_SCALE100_OPEN_MODEL_RUNNER_FIXTURE_ONLY.zip', 'evidence_class': 'FIXTURE_ONLY'}\nIDEMPOTENT_SETUP_OK CAB_T4X2_04_MAIN500_OPEN_MODEL_RUNNER\nPREFLIGHT_COMPLETE {'gpu_count': 0, 'cuda_status': 'NVIDIA_SMI_NOT_AVAILABLE', 'cuda_version': None, 'internet_status': 'NOT_PROBED_OFFLINE_POLICY', 'live_workers': 1}\nFIXTURE_SHARDS_DISJOINT_AND_COMPLETE [4, 4]\nCHECKPOINT_RESUME_MERGE_OK {'first_pass': [4, 4], 'resume': [0, 0], 'repeat': [0, 0]}\nLIVE_EXECUTION_REFUSED ['RUN_LIVE is not the literal boolean True', 'LIVE_CONFIRMATION does not match the required phrase', 'CAB_ENABLE_LIVE_OPEN_MODEL_RUN is not YES', 'live approval record is missing', 'template-only config cannot run', 'config explicitly refuses live execution', 'config lacks approved_for_live_run: true', 'live config lacks a deterministic seed', 'no NVIDIA GPU is visible', 'approved offline model snapshot is not configured', 'No NVIDIA GPU is visible; attach a GPU accelerator before live execution.', 'Set CAB_LOCAL_MODEL_SNAPSHOT to an attached, approved offline model directory.', 'Set MODEL_ESTIMATED_VRAM_GIB from the approved model card before activation.']\nNO_LIVE_COMMAND_EXECUTED\nFINAL_FIXTURE_INTEGRITY_PASS {'checked_files': 11, 'archive_name': 'CAB_T4X2_04_MAIN500_OPEN_MODEL_RUNNER_FIXTURE_ONLY.zip', 'evidence_class': 'FIXTURE_ONLY'}\nIDEMPOTENT_SETUP_OK CAB_T4X2_05_BASELINES_AND_ABLATIONS\nPREFLIGHT_COMPLETE {'gpu_count': 0, 'cuda_status': 'NVIDIA_SMI_NOT_AVAILABLE', 'cuda_version': None, 'internet_status': 'NOT_PROBED_OFFLINE_POLICY', 'live_workers': 1}\nFIXTURE_SHARDS_DISJOINT_AND_COMPLETE [4, 4]\nCHECKPOINT_RESUME_MERGE_OK {'first_pass': [4, 4], 'resume': [0, 0], 'repeat': [0, 0]}\nLIVE_EXECUTION_REFUSED ['RUN_LIVE is not the literal boolean True', 'LIVE_CONFIRMATION does not match the required phrase', 'CAB_ENABLE_LIVE_OPEN_MODEL_RUN is not YES', 'live approval record is missing', 'config lacks approved_for_live_run: true', 'no NVIDIA GPU is visible', 'approved offline model snapshot is not configured', 'No NVIDIA GPU is visible; attach a GPU accelerator before live execution.', 'Set CAB_LOCAL_MODEL_SNAPSHOT to an attached, approved offline model directory.', 'Set MODEL_ESTIMATED_VRAM_GIB from the approved model card before activation.']\nNO_LIVE_COMMAND_EXECUTED\nFINAL_FIXTURE_INTEGRITY_PASS {'checked_files': 11, 'archive_name': 'CAB_T4X2_05_BASELINES_AND_ABLATIONS_FIXTURE_ONLY.zip', 'evidence_class': 'FIXTURE_ONLY'}\nIDEMPOTENT_SETUP_OK CAB_T4X2_06_MERGE_AUDIT_AND_RESCORE\nPREFLIGHT_COMPLETE {'gpu_count': 0, 'cuda_status': 'NVIDIA_SMI_NOT_AVAILABLE', 'cuda_version': None, 'internet_status': 'NOT_PROBED_OFFLINE_POLICY', 'live_workers': 1}\nFIXTURE_SHARDS_DISJOINT_AND_COMPLETE [4, 4]\nCHECKPOINT_RESUME_MERGE_OK {'first_pass': [4, 4], 'resume': [0, 0], 'repeat': [0, 0]}\nLIVE_EXECUTION_REFUSED ['RUN_LIVE is not the literal boolean True', 'LIVE_CONFIRMATION does not match the required phrase', 'CAB_ENABLE_LIVE_OPEN_MODEL_RUN is not YES', 'live approval record is missing', 'batch_manifest.json is missing from CAB_LIVE_BATCH_DIR']\nNO_REAL_ARTIFACT_MERGE_OR_SCORE_EXECUTED\nFINAL_FIXTURE_INTEGRITY_PASS {'checked_files': 11, 'archive_name': 'CAB_T4X2_06_MERGE_AUDIT_AND_RESCORE_FIXTURE_ONLY.zip', 'evidence_class': 'FIXTURE_ONLY'}\nIDEMPOTENT_SETUP_OK CAB_T4X2_07_FAILURE_RECOVERY\nPREFLIGHT_COMPLETE {'gpu_count': 0, 'cuda_status': 'NVIDIA_SMI_NOT_AVAILABLE', 'cuda_version': None, 'internet_status': 'NOT_PROBED_OFFLINE_POLICY', 'live_workers': 1}\nFIXTURE_SHARDS_DISJOINT_AND_COMPLETE [4, 4]\nCHECKPOINT_RESUME_MERGE_OK {'first_pass': [1, 1], 'resume': [3, 3], 'repeat': [0, 0]}\nLIVE_EXECUTION_REFUSED ['RUN_LIVE is not the literal boolean True', 'LIVE_CONFIRMATION does not match the required phrase', 'CAB_ENABLE_LIVE_OPEN_MODEL_RUN is not YES', 'live approval record is missing', 'no NVIDIA GPU is visible', 'approved offline model snapshot is not configured', 'No NVIDIA GPU is visible; attach a GPU accelerator before live execution.', 'Set CAB_LOCAL_MODEL_SNAPSHOT to an attached, approved offline model directory.', 'Set MODEL_ESTIMATED_VRAM_GIB from the approved model card before activation.', 'batch_manifest.json is missing from CAB_LIVE_BATCH_DIR']\nNO_FAILURE_RECOVERY_EXECUTED\nFINAL_FIXTURE_INTEGRITY_PASS {'checked_files': 11, 'archive_name': 'CAB_T4X2_07_FAILURE_RECOVERY_FIXTURE_ONLY.zip', 'evidence_class': 'FIXTURE_ONLY'}\nIDEMPOTENT_SETUP_OK CAB_T4X2_08_NATURALISTIC_TRANSFER_RUNNER\nPREFLIGHT_COMPLETE {'gpu_count': 0, 'cuda_status': 'NVIDIA_SMI_NOT_AVAILABLE', 'cuda_version': None, 'internet_status': 'NOT_PROBED_OFFLINE_POLICY', 'live_workers': 1}\nFIXTURE_SHARDS_DISJOINT_AND_COMPLETE [4, 4]\nCHECKPOINT_RESUME_MERGE_OK {'first_pass': [4, 4], 'resume': [0, 0], 'repeat': [0, 0]}\nLIVE_EXECUTION_REFUSED ['RUN_LIVE is not the literal boolean True', 'LIVE_CONFIRMATION does not match the required phrase', 'CAB_ENABLE_LIVE_OPEN_MODEL_RUN is not YES', 'live approval record is missing', 'template-only config cannot run', 'config explicitly refuses live execution', 'config lacks approved_for_live_run: true', 'live config lacks a deterministic seed', 'no NVIDIA GPU is visible', 'approved offline model snapshot is not configured', 'No NVIDIA GPU is visible; attach a GPU accelerator before live execution.', 'Set CAB_LOCAL_MODEL_SNAPSHOT to an attached, approved offline model directory.', 'Set MODEL_ESTIMATED_VRAM_GIB from the approved model card before activation.']\nNO_LIVE_COMMAND_EXECUTED\nFINAL_FIXTURE_INTEGRITY_PASS {'checked_files': 11, 'archive_name': 'CAB_T4X2_08_NATURALISTIC_TRANSFER_RUNNER_FIXTURE_ONLY.zip', 'evidence_class': 'FIXTURE_ONLY'}\nKAGGLE_NOTEBOOK_VALIDATION_PASS\nexpected_notebooks=9\nvalidated_notebooks=9\noffline_executed_notebooks=9\noffline_fixture_receipts=72\nscientific_execution_performed=false\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_evidence_safety.py",
+        "--mode",
+        "submission"
+      ],
+      "check_id": "evidence_safety",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_evidence_safety.py --mode submission",
+      "elapsed_seconds": 0.796,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:12.473814+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "Evidence safety OK (78 live run dirs scanned)\n  NOTE: persisted run index is stale (77 indexed vs 78 on disk); run `python3 -m causal_agent_bench index-runs` to refresh inventory (no evidence change).\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_paper_placeholders.py",
+        "--mode",
+        "draft"
+      ],
+      "check_id": "paper_placeholders_draft",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_paper_placeholders.py --mode draft",
+      "elapsed_seconds": 0.029,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:13.270074+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "Found 7 unresolved paper placeholder(s):\n- generated/00_abstract.tex:1: result_placeholder: Tool-using language agents are increasingly evaluated by final task success, but such scores conflate planning, tool selection, memory use, observation interpretation, recovery, and stopping behavior. We introduce \\benchmark, an interventional benchmark that pairs clean agent tasks with controlled perturbations targeting individual skill components. In the planned final study across [N] tasks, [M] intervention instances, and [K] agents, we will test whether clean success overestimates robust competence by [X] points on average, and whether model rankings under clean success correlate only [rho] with rankings under causal robustness. We propose Agent Causal Robustness Score (\\acrs) and a suite of trajectory-level diagnostics designed to expose failures hidden by final-answer scoring. \\benchmark provides a reproducible open-source framework---including schemas, deterministic simulated tools, run management, reporting, audit tooling, evidence-level policies, and human-validation scaffolding---for measuring not only whether agents succeed, but which agentic skills survive under controlled environmental stress. Empirical results from completed non-oracle provider or main-scale runs are not yet reported in this draft.\n- generated/01_introduction_snippet.tex:1: result_placeholder: \\benchmark spans synthetic domains including [domains].\n- generated/01_introduction_snippet.tex:2: result_placeholder: We reserve empirical findings for runs over configured non-oracle agents; the planned main finding remains [main finding placeholder].\n- generated/03_benchmark_stats_table.tex:9: result_placeholder: Base tasks & [N] \\\\\n- generated/03_benchmark_stats_table.tex:10: result_placeholder: Intervention instances & [M] \\\\\n- generated/03_benchmark_stats_table.tex:11: result_placeholder: Domains & [domains] \\\\\n- sections/09_ablations.tex:5: not_yet_run_in_result_section: \\paragraph{Planned ablations (not yet run).}\nDraft mode passed: placeholders are allowed but must remain visible.\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_paper_section_contract.py",
+        "--mode",
+        "draft"
+      ],
+      "check_id": "paper_section_contract",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_paper_section_contract.py --mode draft",
+      "elapsed_seconds": 0.03,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:13.300026+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "paper section contract passed (draft)\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_paper_assets.py",
+        "--mode",
+        "draft"
+      ],
+      "check_id": "paper_assets_draft",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_paper_assets.py --mode draft",
+      "elapsed_seconds": 0.026,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:13.330793+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "- WARNING: generated/07_results.tex: unresolved ref: tab:main-performance\n- WARNING: generated/07_results.tex: unresolved ref: fig:family-breakdown\n- WARNING: generated/07_results.tex: unresolved ref: fig:ranking-instability\n- WARNING: paper evidence mapping is not filled (status='unfilled'); run fill-paper-from-run after a verified pilot\nPaper asset check passed with 4 warning(s).\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_bibliography.py",
+        "--all-sections"
+      ],
+      "check_id": "bibliography",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_bibliography.py --all-sections",
+      "elapsed_seconds": 0.023,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:13.357720+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "Bibliography check passed for 23 file(s) against paper/latexpaper/references.bib.\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/check_reviewer_proofing.py"
+      ],
+      "check_id": "reviewer_proofing",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/check_reviewer_proofing.py",
+      "elapsed_seconds": 0.022,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:13.381427+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "Reviewer proofing check passed: 20 attacks documented in reviews/reviewer_attack_response_matrix.md.\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "make",
+        "paper-draft"
+      ],
+      "check_id": "paper_draft_compile",
+      "command": "make paper-draft",
+      "elapsed_seconds": 2.283,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:13.404173+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "_introduction.tex [1{/Users/saketm\naganti/Library/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]\n\nOverfull \\hbox (31.46956pt too wide) in paragraph at lines 14--15\n\\OT1/cmr/m/n/10 agent skills across syn-thetic do-mains (filled from \\OT1/cmtt/\nm/n/10 paper/latexpaper/generated/01[]introduction[]snippet.tex\n(./generated/01_introduction_snippet.tex)) (./sections/02_related_work.tex\nOverfull \\hbox (25.85439pt too wide) in paragraph at lines 25--1\n[]\\OT1/cmr/m/n/10 The em-pir-i-cal find-ings in this draft are filled from \\OT1\n/cmtt/m/n/10 paper/latexpaper/generated/ \\OT1/cmr/m/n/10 when \\OT1/cmtt/m/n/10 \nfill-paper-from-run\n[2] [3]) (./sections/03_benchmark_design.tex\nOverfull \\hbox (148.71873pt too wide) in paragraph at lines 18--19\n []\\OT1/cmr/bx/n/10 Task tem-plates and reg-istry.[] \\OT1/cmr/m/n/10 Base tasks\n are drawn from a ver-sioned tem-plate reg-istry (\\OT1/cmtt/m/n/10 benchmark[]s\npecs/task[]template[]registry.json\\OT1/cmr/m/n/10 )\n[4]\nOverfull \\hbox (23.20354pt too wide) in paragraph at lines 24--25\n []\\OT1/cmr/bx/n/10 Evidence-level la-bels.[] \\OT1/cmr/m/n/10 Runs carry \\OT1/c\nmtt/m/n/10 evidence[]scope\\OT1/cmr/m/n/10 , \\OT1/cmtt/m/n/10 scientific[]eviden\nce[]level\\OT1/cmr/m/n/10 , and \\OT1/cmtt/m/n/10 scientific[]evidence\n\nOverfull \\hbox (137.15837pt too wide) in paragraph at lines 27--28\n []\\OT1/cmr/bx/n/10 Mock di-ag-nos-tic con-figs (en-gi-neer-ing only).[] \\OT1/c\nmr/m/n/10 De-ter-min-is-tic \\OT1/cmtt/m/n/10 mock[]behavior[]agent \\OT1/cmr/m/n\n/10 con-figs (e.g., \\OT1/cmtt/m/n/10 pilot[]mock[]diagnostic[]micro.yaml\\OT1/cm\nr/m/n/10 )\n\nOverfull \\hbox (49.90463pt too wide) in paragraph at lines 30--31\n\\OT1/cmr/m/n/10 qual-ity re-ports. Au-to-mated in-ter-ven-tion au-dits (\\OT1/cm\ntt/m/n/10 audit-interventions\\OT1/cmr/m/n/10 , \\OT1/cmtt/m/n/10 scripts/audit[]\nintervention[]isolation.py\\OT1/cmr/m/n/10 )\n(./generated/03_benchmark_stats_table.tex))\n(./sections/04_interventional_framework.tex [5]) (./sections/05_metrics.tex\nOverfull \\hbox (118.10289pt too wide) in paragraph at lines 10--1\n []\\OT1/cmr/bx/n/10 Automated iso-la-tion au-dit.[] \\OT1/cmr/m/n/10 The repos-i\n-tory in-cludes an intervention-isolation au-dit (\\OT1/cmtt/m/n/10 scripts/audi\nt[]intervention[]isolation.py\\OT1/cmr/m/n/10 )\n) (./sections/06_experiments.tex [6]\nOverfull \\hbox (16.87297pt too wide) in paragraph at lines 6--7\n\\OT1/cmr/m/n/10 ta-bles sub-ject to engineering-only guards. \\OT1/cmtt/m/n/10 f\nill-paper-from-run \\OT1/cmr/m/n/10 may pop-u-late \\OT1/cmtt/m/n/10 paper/latexp\naper/generated/\n\nOverfull \\hbox (24.73994pt too wide) in paragraph at lines 6--7\n\\OT1/cmr/m/n/10 only from ver-i-fied non-oracle runs. Claim-ledger, place-holde\nr, and paper-asset val-ida-tors (\\OT1/cmtt/m/n/10 check[]claim[]ledger.py\\OT1/c\nmr/m/n/10 ,\n\nOverfull \\hbox (14.96288pt too wide) in paragraph at lines 9--10\n\\OT1/cmr/m/n/10 ap-proval re-quired). The pre-experiment freeze check-list (\\OT\n1/cmtt/m/n/10 experiments/PRE[]EXPERIMENT[]FREEZE[]CHECKLIST.md\\OT1/cmr/m/n/10 \n)\n\nOverfull \\hbox (59.58205pt too wide) in paragraph at lines 18--19\n\\OT1/cmr/m/n/10 nos-tic mi-cro run that val-i-dated end-to-end scor-ing, anal-y\n-sis, and paper-asset ex-port (\\OT1/cmtt/m/n/10 demo/ENGINEERING[]DEMO[]BUNDLE.\nmd\\OT1/cmr/m/n/10 ).\n[7]) (./sections/07_results.tex (./generated/07_results.tex\n\nLaTeX Warning: Reference `tab:main-performance' on page 8 undefined on input li\nne 8.\n\n\nLaTeX Warning: Reference `fig:family-breakdown' on page 8 undefined on input li\nne 11.\n\n\nLaTeX Warning: Reference `fig:ranking-instability' on page 8 undefined on input\n line 14.\n\n) (./generated/09_ablations.tex)) (./sections/08_human_validation.tex [8]\n(./generated/08_human_validation.tex)) (./sections/09_ablations.tex\nOverfull \\hbox (8.5136pt too wide) in paragraph at lines 3--4\n\\OT1/cmr/m/n/10 No ab-la-tion re-sult is claimed in this draft. The repos-i-tor\ny de-fines a fac-to-rial ab-la-tion ma-trix (\\OT1/cmtt/m/n/10 ablation-matrix\\O\nT1/cmr/m/n/10 ,\n\nOverfull \\hbox (4.41603pt too wide) in paragraph at lines 3--4\n\\OT1/cmtt/m/n/10 configs/ablation[]matrix[]local[]stub.yaml\\OT1/cmr/m/n/10 ) an\nd per-factor con-figs un-der \\OT1/cmtt/m/n/10 configs/ablations/ \\OT1/cmr/m/n/1\n0 for planned\n(./generated/09_ablations.tex)) (./sections/10_limitations.tex [9])\n(./sections/11_ethics_reproducibility.tex\nOverfull \\hbox (10.8641pt too wide) in paragraph at lines 16--17\n\\OT1/cmr/m/n/10 plete are tracked in \\OT1/cmtt/m/n/10 docs/claim[]ledger.json\\O\nT1/cmr/m/n/10 , \\OT1/cmtt/m/n/10 paper/EVIDENCE[]GAP[]MAP.md\\OT1/cmr/m/n/10 , a\nnd \\OT1/cmtt/m/n/10 docs/DO[]NOT[]OVERCLAIM.md\\OT1/cmr/m/n/10 .\n[10]\nOverfull \\hbox (8.23029pt too wide) in paragraph at lines 19--20\n []\\OT1/cmr/bx/n/10 Evidence-level en-force-ment.[] \\OT1/cmr/m/n/10 Runs record\n \\OT1/cmtt/m/n/10 evidence[]scope\\OT1/cmr/m/n/10 , \\OT1/cmtt/m/n/10 scientific[\n]evidence\\OT1/cmr/m/n/10 , and \\OT1/cmtt/m/n/10 paid[]calls[]made\n\nOverfull \\hbox (13.9653pt too wide) in paragraph at lines 19--20\n\\OT1/cmr/m/n/10 in meta-data. Val-ida-tors (\\OT1/cmtt/m/n/10 check[]evidence[]s\nafety.py\\OT1/cmr/m/n/10 , \\OT1/cmtt/m/n/10 check[]claim[]ledger.py\\OT1/cmr/m/n/\n10 ) block in-com-plete or mock/stub\n\nOverfull \\hbox (40.34206pt too wide) in paragraph at lines 22--23\n []\\OT1/cmr/bx/n/10 Release and en-vi-ron-ment cap-ture.[] \\OT1/cmr/m/n/10 Re-l\nease pack-ag-ing in-cludes a ver-sioned man-i-fest (\\OT1/cmtt/m/n/10 build-rele\nase-manifest\\OT1/cmr/m/n/10 ),\n\nOverfull \\hbox (4.38321pt too wide) in paragraph at lines 22--23\n\\OT1/cmr/m/n/10 a re-pro-ducibil-ity bun-dle plan (\\OT1/cmtt/m/n/10 plan-repro-\nbundle\\OT1/cmr/m/n/10 ), and en-vi-ron-ment cap-ture with-out se-crets (\\OT1/cm\ntt/m/n/10 capture-env\\OT1/cmr/m/n/10 ).\n) (./sections/12_conclusion.tex\nOverfull \\hbox (206.63283pt too wide) in paragraph at lines 25--1\n []\\OT1/cmr/bx/n/10 Pre-experiment gates.[] \\OT1/cmr/m/n/10 Be-fore provider or\n main ex-per-i-ments, the pre-experiment freeze check-list (\\OT1/cmtt/m/n/10 ex\nperiments/PRE[]EXPERIMENT[]FREEZE[]CHECKLIST.md\\OT1/cmr/m/n/10 )\n) (./sections/checklist.tex\nOverfull \\hbox (25.33206pt too wide) in paragraph at lines 5--6\n\\OT1/cmr/m/n/10 reproducibility, and human-validation lim-its are dis-cussed in\n Sec-tion 10 and \\OT1/cmtt/m/n/10 docs/ETHICS[]AND[]LIMITATIONS.md\\OT1/cmr/m/n/\n10 . \n\nOverfull \\hbox (44.94678pt too wide) in paragraph at lines 7--8\n\\OT1/cmr/m/n/10 fields, met-rics, lim-i-ta-tions, li-cens-ing sta-tus, and free\nze pol-icy (\\OT1/cmtt/m/n/10 docs/DATASET[]VERSIONING[]AND[]RELEASE[]POLICY.md\\\nOT1/cmr/m/n/10 ). \n[11]) (./main.bbl [12]) [13] (./main.aux)\n\nLaTeX Warning: There were undefined references.\n\n )\n(see the transcript file for additional information) </Users/saketmaganti/Libra\nry/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr\n/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><\n/usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.p\nfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx\n9.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmcsc10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts\n/cm/cmmi10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmmi7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/a\nmsfonts/cm/cmr10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fon\nts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026basic/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmtt10.pfb>\nOutput written on main.pdf (13 pages, 258398 bytes).\nTranscript written on main.log.\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/audit_repo_consistency.py"
+      ],
+      "check_id": "repository_consistency",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/audit_repo_consistency.py",
+      "elapsed_seconds": 14.66,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:15.689152+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "wrote /Users/saketmaganti/Projects/causal-agent-bench/audits/repo_consistency/REPO_CONSISTENCY_AUDIT.md\nwrote /Users/saketmaganti/Projects/causal-agent-bench/audits/repo_consistency/repo_consistency_audit.json\naudit: PASS (0 issues, 0 warnings)\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/security_check.py"
+      ],
+      "check_id": "security_scan",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/security_check.py",
+      "elapsed_seconds": 13.6,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:09:30.350592+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "\nsecurity-check: PASS\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "-n0",
+        "-m",
+        "not model and not provider and not local_run"
+      ],
+      "check_id": "full_provider_free_tests",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m pytest -q -n0 -m 'not model and not provider and not local_run'",
+      "elapsed_seconds": 283.303,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "full",
+      "metadata": {
+        "tests_deselected": 7,
+        "tests_passed": 990
+      },
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:17:29.851327+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 14%]\n........................................................................ [ 21%]\n........................................................................ [ 29%]\n........................................................................ [ 36%]\n........................................................................ [ 43%]\n.......................s................................................ [ 50%]\n........................................................................ [ 58%]\n........................................................................ [ 65%]\n........................................................................ [ 72%]\n........................................................................ [ 79%]\n........................................................................ [ 87%]\n........................................................................ [ 94%]\n.......................................................                  [100%]\n990 passed, 1 skipped, 7 deselected in 282.55s (0:04:42)\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/build_release_manifest.py"
+      ],
+      "check_id": "release_manifest_refresh",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/build_release_manifest.py",
+      "elapsed_seconds": 0.141,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:23:51.434506+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "wrote release/release_manifest.json (hash=b0fcad0e1bb76b6a...)\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/release_check.py"
+      ],
+      "check_id": "release_validation",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/release_check.py",
+      "elapsed_seconds": 0.058,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "medium",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:23:51.576807+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "release-check: PASS\nrelease_id: causal-agent-bench-0.1.0\nrelease_version: 0.1.0-dev\npackage_version: 0.1.0\nrelease_bundle_hash: b0fcad0e1bb76b6af2ebf6f9e278ead8805983ea4f11ec8fff2b6e4651ad04f3\ninventory_file_count: 594\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/cab_max_ceiling_gate.py",
+        "--scope",
+        "build"
+      ],
+      "check_id": "unified_build_gate",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/cab_max_ceiling_gate.py --scope build",
+      "elapsed_seconds": 48.877,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exit_code": 0,
+      "expected_exit_codes": [
+        0
+      ],
+      "lane": "full",
+      "metadata": {},
+      "outcome": "PASS",
+      "required_for_build": true,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:23:51.635993+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "CAB_MAX_CEILING_PREEXECUTION_BUILD_COMPLETE\ncurrent_state=HUMAN_REVIEW_INCOMPLETE\nbuild_complete=true\nscientific_execution_allowed=false\nblockers:\n- external:human_review: state=HUMAN_REVIEW_INCOMPLETE; genuine_rows=0; review_groups=0/60\n- external:c10: state=C10_PENDING; empty/proxy rows can never pass\n- external:slice_integrity: slice_lock_allowed=False; registry_issues=0\n- external:provider_approval: no current maximum-ceiling live approval; dry-run defaults remain active\n- evidence:paper_assets: paper_eligible_assets=0; zero is the correct pre-execution state\nnext_action=Have two independent human reviewers complete the Compact-20 task-clarity, gold-policy, and intervention-isolation packets; do not run models.\nnext_command=python3 scripts/validate_cab_human_reviews.py --review-dir data/human_validation/compact20_real_review\nforbidden_commands:\n- python3 -m causal_agent_bench run ...\n- make smoke\n- jupyter nbconvert --execute <live-runner-notebook>\n- set RUN_LIVE=True before C10, slice lock, and explicit approval\n- fill or export empirical paper assets from fixture/stub outputs\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "scripts/cab_max_ceiling_gate.py",
+        "--scope",
+        "execution",
+        "--no-write"
+      ],
+      "check_id": "unified_execution_gate_fail_closed",
+      "command": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 scripts/cab_max_ceiling_gate.py --scope execution --no-write",
+      "elapsed_seconds": 49.084,
+      "evidence_class": "EXECUTION_PENDING",
+      "exit_code": 2,
+      "expected_exit_codes": [
+        2
+      ],
+      "lane": "full",
+      "metadata": {},
+      "outcome": "EXPECTED_BLOCKED",
+      "required_for_build": false,
+      "scientific_evidence": false,
+      "started_at": "2026-07-23T17:24:40.486512+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "CAB_MAX_CEILING_PREEXECUTION_BUILD_COMPLETE\ncurrent_state=HUMAN_REVIEW_INCOMPLETE\nbuild_complete=true\nscientific_execution_allowed=false\nblockers:\n- external:human_review: state=HUMAN_REVIEW_INCOMPLETE; genuine_rows=0; review_groups=0/60\n- external:c10: state=C10_PENDING; empty/proxy rows can never pass\n- external:slice_integrity: slice_lock_allowed=False; registry_issues=0\n- external:provider_approval: no current maximum-ceiling live approval; dry-run defaults remain active\n- evidence:paper_assets: paper_eligible_assets=0; zero is the correct pre-execution state\nnext_action=Have two independent human reviewers complete the Compact-20 task-clarity, gold-policy, and intervention-isolation packets; do not run models.\nnext_command=python3 scripts/validate_cab_human_reviews.py --review-dir data/human_validation/compact20_real_review\nforbidden_commands:\n- python3 -m causal_agent_bench run ...\n- make smoke\n- jupyter nbconvert --execute <live-runner-notebook>\n- set RUN_LIVE=True before C10, slice lock, and explicit approval\n- fill or export empirical paper assets from fixture/stub outputs\n",
+      "working_directory": "/Users/saketmaganti/Projects/causal-agent-bench"
+    }
+  ],
+  "completed_at": "2026-07-23T17:25:29.569896+00:00",
+  "provider_or_model_execution_performed": false,
+  "repository_root": "/Users/saketmaganti/Projects/causal-agent-bench",
+  "schema_version": "cab_validation_ledger_v1",
+  "started_at": "2026-07-23T17:07:23.358375+00:00",
+  "summary": {
+    "build_validation_passed": true,
+    "commands_run": 30,
+    "expected_blocked": 2,
+    "failed": 0,
+    "passed": 28,
+    "required_build_failures": [],
+    "scientific_evidence_created": false,
+    "timed_out": 0
+  },
+  "updated_at": "2026-07-23T17:25:29.569050+00:00"
+}

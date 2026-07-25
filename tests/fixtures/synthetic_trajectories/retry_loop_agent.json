@@ -1,0 +1,23 @@
+{
+  "schema_version": "trajectory_v2",
+  "run_id": "synthetic_metric_diagnostics",
+  "instance_id": "synthetic.retry_loop_agent",
+  "base_task_id": "synthetic_retry_loop_agent",
+  "agent_name": "synthetic_retry_loop_agent",
+  "steps": [
+    {"step_index": 0, "tool_call": {"tool_name": "lookup", "arguments": {"q": "same"}}, "tool_arguments": {"q": "same"}, "parser_status": "valid_tool_call"},
+    {"step_index": 1, "tool_call": {"tool_name": "lookup", "arguments": {"q": "same"}}, "tool_arguments": {"q": "same"}, "parser_status": "valid_tool_call"},
+    {"step_index": 2, "tool_call": {"tool_name": "lookup", "arguments": {"q": "same"}}, "tool_arguments": {"q": "same"}, "parser_status": "valid_tool_call"}
+  ],
+  "final_answer": "Looped before answering.",
+  "terminated_reason": "max_steps",
+  "metadata": {
+    "synthetic_fixture": true,
+    "not_real_llm_behavior": true,
+    "scientific_evidence": false,
+    "deployment_class": "metric_diagnostic_only",
+    "paper_eligible": false,
+    "expected_failure_category": "retry_loop_agent",
+    "expected_metric_signal": "repeated_calls"
+  }
+}

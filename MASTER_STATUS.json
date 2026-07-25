@@ -1,0 +1,181 @@
+{
+  "advisor_handoff": {
+    "caveats": [
+      "Engineering scaffold only \u2014 not submission-ready",
+      "Mock/stub runs are not real LLM behavior",
+      "C1\u2013C8/C10 remain planned",
+      "Use handoff/ADVISOR_REVIEW_BUNDLE_INDEX.md"
+    ],
+    "safe_to_show": true
+  },
+  "blockers": [
+    "No completed provider-backed non-oracle pilot run.",
+    "Human validation sample/annotations missing.",
+    "Paper asset submission validation failed.",
+    "Paper placeholders remain (submission mode)."
+  ],
+  "build_phases_completed": [
+    "Phase 2\u20138",
+    "Phase 9: mock demo, advisor-ready freeze, E2E validation"
+  ],
+  "claims": {
+    "C1": "planned",
+    "C10": "planned",
+    "C2": "planned",
+    "C3": "planned",
+    "C4": "planned",
+    "C5": "planned",
+    "C6": "planned",
+    "C7": "planned",
+    "C8": "planned",
+    "C9": "engineering_only"
+  },
+  "dangerous_commands": [
+    "python3 -m causal_agent_bench run --config configs/pilot_openai_20.yaml  # paid",
+    "python3 -m causal_agent_bench run --config configs/pilot_multi_provider_20.yaml  # paid",
+    "python3 -m causal_agent_bench run --config configs/pilot_free_local_20.yaml  # long local",
+    "python3 -m causal_agent_bench run --config configs/commercial_api_main_500.yaml  # main scale",
+    "python3 -m causal_agent_bench fill-paper-from-run  # without verified pilot",
+    "make smoke  # runs smoke config"
+  ],
+  "evidence_map": {
+    "dry_run": {
+      "count": 0,
+      "examples": []
+    },
+    "human_validated": {
+      "count": 0,
+      "examples": []
+    },
+    "interrupted_local": {
+      "count": 2,
+      "examples": [
+        "pilot_free_local_20",
+        "pilot_free_local_fast_10"
+      ]
+    },
+    "local_preliminary": {
+      "count": 0,
+      "examples": []
+    },
+    "main_experiment": {
+      "count": 0,
+      "examples": []
+    },
+    "mock_diagnostic": {
+      "count": 5,
+      "examples": [
+        "pilot_mock_diagnostic_micro",
+        "pilot_mock_diagnostic_micro",
+        "pilot_mock_diagnostic_micro"
+      ]
+    },
+    "provider_pilot": {
+      "count": 0,
+      "examples": []
+    },
+    "stub_engineering": {
+      "count": 70,
+      "examples": [
+        "smoke",
+        "smoke",
+        "smoke"
+      ]
+    }
+  },
+  "executive_status": {
+    "classification": "build_infrastructure_ready",
+    "note": "Readiness checker may report local_preliminary due to indexed local/stub runs; no provider pilot or supported empirical claims.",
+    "readiness_checker_level": "local_preliminary",
+    "submission_ready": false
+  },
+  "experiment_readiness": {
+    "next_after_mock": {
+      "allowed_claims": "pipeline reproducibility only (C9)",
+      "config": "configs/pilot_stub_micro_3.yaml",
+      "evidence_level": "stub_engineering",
+      "type": "stub micro"
+    },
+    "safest_tiny_run": {
+      "allowed_claims": "engineering_only \u2014 detector wiring only",
+      "config": "configs/pilot_mock_diagnostic_micro.yaml",
+      "evidence_level": "mock_diagnostic",
+      "requires_approval": false,
+      "type": "mock diagnostic micro"
+    }
+  },
+  "generated_at": "2026-07-23T17:18:37.365106+00:00",
+  "next_steps_ordered": [
+    "Review experiments/PRE_EXPERIMENT_FREEZE_CHECKLIST.md",
+    "Review experiments/SAFE_NEXT_RUN_DECISION_TREE.md",
+    "When ready: mock micro run (configs/pilot_mock_diagnostic_micro.yaml) \u2014 engineering only",
+    "After mock: optional stub micro (configs/pilot_stub_micro_3.yaml) \u2014 pipeline check",
+    "Before any paid run: budget approval + estimate-cost + freeze checklist gate",
+    "Export human validation sample after first complete non-stub pilot"
+  ],
+  "paper_readiness": {
+    "can_write_now": [
+      "Problem statement and motivation",
+      "Benchmark design and intervention framework",
+      "Metric definitions (ACRS, trajectory diagnostics)",
+      "Experimental setup (planned)",
+      "Limitations and ethics"
+    ],
+    "must_wait": [
+      "Results tables with real numbers",
+      "Ranking / performance claims",
+      "Human validation agreement statistics",
+      "Abstract empirical claims ([N], [M], [K], [X], [rho])"
+    ]
+  },
+  "phase9_demo_run": {
+    "bundle": "demo/ENGINEERING_DEMO_BUNDLE.md",
+    "config": "configs/pilot_mock_diagnostic_micro.yaml",
+    "evidence_level": "mock_diagnostic_only",
+    "not_real_llm_behavior": true,
+    "run_directory": "results/20260520T072032Z_pilot_mock_diagnostic_micro",
+    "scientific_evidence": false
+  },
+  "safe_commands": [
+    "make fast-check",
+    "make doctor",
+    "make plan-micro",
+    "make audit-repo",
+    "make audit-configs",
+    "make check-readiness",
+    "make status",
+    "python3 scripts/generate_master_status.py",
+    "python3 scripts/final_build_phase_audit.py",
+    "python3 scripts/check_evidence_safety.py",
+    "python3 scripts/check_claim_ledger.py",
+    "python3 -m causal_agent_bench plan-run --config configs/pilot_stub_micro_3.yaml",
+    "python3 -m causal_agent_bench audit-dataset --config configs/pilot_stub_micro_3.yaml",
+    "python3 -m causal_agent_bench index-runs",
+    "python3 -m causal_agent_bench dry-run --config configs/pilot_stub_micro_3.yaml"
+  ],
+  "what_is_built": [
+    "Pydantic schemas (tasks, interventions, instances, trajectories, scores)",
+    "Deterministic benchmark generation (pilot_v0.1, main_v0.1 candidate)",
+    "Simulated tools and local environment execution",
+    "Experiment runner (config hash, resume, limits, scoring, metadata)",
+    "Run management (plan-run, index-runs, mark-interrupted, run-status)",
+    "Mock/stub agents and mock diagnostic configs",
+    "Analysis export (tables, figures, failure gallery, leaderboard)",
+    "Claim ledger + evidence safety validators",
+    "Paper draft with placeholder protection",
+    "Reviewer/advisor handoff package (Phases 5\u20138)",
+    "Release/reproducibility scaffolding (manifest, repro bundle plan)",
+    "Human validation export protocol (no annotations yet)",
+    "CI fast-check workflows",
+    "Consistency audits (repo, config, build phase)",
+    "Phase 9 engineering demo bundle (mock micro E2E validated)"
+  ],
+  "what_is_not_built": [
+    "Completed provider-backed pilot on frozen split",
+    "Human validation annotations / agreement tables",
+    "Main 500-task multi-provider experiment",
+    "Supported C1\u2013C8 or C10 empirical claims",
+    "Final NeurIPS-ready results or acceptance guarantee",
+    "Frozen benchmark v1.0 with full human audit sign-off"
+  ]
+}

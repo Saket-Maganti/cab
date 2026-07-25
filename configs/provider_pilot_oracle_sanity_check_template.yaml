@@ -1,0 +1,53 @@
+# =============================================================================
+# TEMPLATE ONLY — ORACLE SANITY CHECK (ENGINEERING ONLY)
+# =============================================================================
+# DO NOT RUN WITHOUT APPROVAL — and never use for paper claims.
+#
+# Purpose: verify runner/scoring/export plumbing with scripted_oracle_agent only.
+# - engineering_only / oracle_sanity_only
+# - scientific_evidence: false (always)
+# - NOT paper-eligible
+# - NOT provider-backed evidence
+# - MUST NOT be used with update-claim-ledger --promote-to-supported
+#
+# For provider pilot evidence use: configs/provider_pilot_tiny_template.yaml
+# =============================================================================
+
+seed: 20270551
+run_name: provider_pilot_oracle_sanity_PENDING_APPROVAL
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+
+scientific_evidence_level: preliminary_or_engineering
+evidence_scope: oracle_sanity_only
+provider_type: local
+
+allow_paid_calls: false
+cost_mode: zero_cost
+
+max_instances: 3
+limits:
+  max_instances: 3
+  max_agents: 1
+  max_trajectories: 3
+  stop_after_trajectories: 3
+  max_runtime_minutes: 10
+  max_steps_per_instance: 4
+  max_output_tokens: 256
+
+budget:
+  max_total_usd: 0
+  max_calls: 12
+  require_explicit_paid_approval: true
+  strict_pricing: false
+
+agent_runs:
+  - name: scripted_oracle_pipeline_check
+    agent: scripted_oracle_agent
+
+max_steps: 4
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: false
+fail_fast: true
+auto_score: true

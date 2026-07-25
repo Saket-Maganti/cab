@@ -1,0 +1,23 @@
+{
+  "pack_name": "CAB Insane Uplift Prompt Pack",
+  "project": "causal-agent-bench",
+  "root_path": "/Users/saketmaganti/Projects/causal-agent-bench",
+  "markdown_file_count": 25,
+  "recommended_start": "23_QUICK_START_NEXT_ACTION_PROMPT.md",
+  "purpose": "Move CAB from scaffold to real evidence, audited ACRS/rank-instability findings, paper-grade release, and venue decision.",
+  "phases": [
+    "repo hygiene and claim focus",
+    "Compact-20 review and human validation",
+    "3-model Compact-20 live pilot with strict gates",
+    "post-run audit, scorer sanity, and ACRS/rank-instability analysis",
+    "scale-up, naturalistic transfer, ablations, Main-500 gate",
+    "paper, related work, release, reviewer simulation, submission decision"
+  ],
+  "global_rules": [
+    "No fake evidence",
+    "No fake human annotations",
+    "No claim promotion without evidence",
+    "No API keys in repo",
+    "No provider/model execution except dedicated gated prompts"
+  ]
+}

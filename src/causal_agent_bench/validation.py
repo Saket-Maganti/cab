@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
 
 from causal_agent_bench.schemas import (
     BaseTask,
@@ -13,9 +13,10 @@ from causal_agent_bench.schemas import (
     ScoreRecord,
     ToolSpec,
     Trajectory,
+    TrajectoryV2,
 )
 
-SCHEMA_TYPES = {
+SCHEMA_TYPES: dict[str, type[BaseModel]] = {
     "tools": ToolSpec,
     "tool_specs": ToolSpec,
     "base_tasks": BaseTask,
@@ -25,6 +26,8 @@ SCHEMA_TYPES = {
     "instances": BenchmarkInstance,
     "benchmark_instances": BenchmarkInstance,
     "trajectories": Trajectory,
+    "trajectories_v2": TrajectoryV2,
+    "trajectory_v2": TrajectoryV2,
     "scores": ScoreRecord,
 }
 
@@ -92,6 +95,8 @@ def validate_intervention(base_task: BaseTask, intervention: InterventionSpec) -
         errors.append("memory_corruption intervention requires memory_patch")
     if intervention.family == "ambiguous_instruction" and not intervention.instruction_patch:
         errors.append("ambiguous_instruction intervention requires instruction_patch")
+    if intervention.family.startswith("web_") and not intervention.tool_output_patch:
+        errors.append(f"{intervention.family} intervention requires tool_output_patch")
     return errors
 
 
@@ -122,7 +127,7 @@ def validate_jsonl_file(path: Path, schema_type: str) -> dict[str, Any]:
     if schema_key not in SCHEMA_TYPES:
         allowed = ", ".join(sorted(SCHEMA_TYPES))
         raise ValueError(f"unknown schema type {schema_type!r}; expected one of: {allowed}")
-    model = SCHEMA_TYPES[schema_key]
+    model: type[BaseModel] = SCHEMA_TYPES[schema_key]
     summary: dict[str, Any] = {
         "path": str(path),
         "schema": schema_key,
@@ -158,7 +163,32 @@ def _custom_errors(schema_key: str, obj: Any) -> list[str]:
         return validate_task(obj)
     if schema_key in {"instances", "benchmark_instances"}:
         return validate_instance(obj)
+    if schema_key in {"trajectories_v2", "trajectory_v2"}:
+        return validate_trajectory_v2(obj)
     return []
+
+
+def validate_trajectory_v2(trajectory: TrajectoryV2) -> list[str]:
+    errors: list[str] = []
+    if trajectory.agent_id != trajectory.agent_name and not trajectory.agent_id.strip():
+        errors.append("agent_id must be non-empty")
+    expected_indices = list(range(len(trajectory.steps)))
+    actual_indices = [step.step_index for step in trajectory.steps]
+    if actual_indices != expected_indices:
+        errors.append(
+            f"step_index values must be contiguous from zero; got {actual_indices}, "
+            f"expected {expected_indices}"
+        )
+    for step in trajectory.steps:
+        if step.parser_status == "valid_tool_call" and step.tool_call is None:
+            errors.append(f"step {step.step_index}: valid_tool_call requires tool_call")
+        if step.tool_call is not None and step.tool_arguments != step.tool_call.arguments:
+            errors.append(f"step {step.step_index}: tool_arguments must match tool_call.arguments")
+        if step.tool_error_status == "error" and (
+            step.tool_result is None or step.tool_result.error is None
+        ):
+            errors.append(f"step {step.step_index}: tool_error_status=error requires tool_result.error")
+    return errors
 
 
 def _patched_tools(base_tools: list[str], intervention: InterventionSpec) -> list[str]:

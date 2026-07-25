@@ -1,0 +1,38 @@
+seed: 20270517
+run_name: ablation_action_protocol_local_stub
+benchmark_path: data/sample/instances.jsonl
+agent_runs:
+  - name: action_protocol_json_only
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      action_protocol: json_only
+      ablation:
+        pair_id: action_protocol
+        factor: action_protocol
+        level: json_only
+        comparison_role: reference
+  - name: action_protocol_flexible_text
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      action_protocol: flexible_text
+      ablation:
+        pair_id: action_protocol
+        factor: action_protocol
+        level: flexible_text
+        comparison_role: treatment
+max_steps: 8
+num_repeats: 1
+output_dir: results
+auto_score: true

@@ -1,0 +1,1003 @@
+{
+  "schema_version": 1,
+  "templates": [
+    {
+      "template_id": "travel_refund_lowest_v1",
+      "domain": "travel",
+      "difficulty": "easy",
+      "required_tools": [
+        "search_database",
+        "compare_options"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Find lowest refundable option with taxed total",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "travel_multi_city_v1",
+      "domain": "travel",
+      "difficulty": "medium",
+      "required_tools": [
+        "search_database",
+        "compare_options",
+        "calculate_price"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Compare routes with layover constraints",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "travel_cancellation_policy_v1",
+      "domain": "travel",
+      "difficulty": "hard",
+      "required_tools": [
+        "search_database",
+        "compare_options",
+        "calculate_price"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Pick option satisfying refund window + budget",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "calendar_afternoon_slot_v1",
+      "domain": "calendar_email",
+      "difficulty": "medium",
+      "required_tools": [
+        "check_calendar",
+        "send_email_draft"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "First open afternoon slot + draft email",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "calendar_reschedule_v1",
+      "domain": "calendar_email",
+      "difficulty": "medium",
+      "required_tools": [
+        "check_calendar",
+        "send_email_draft"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Propose alternate slot avoiding conflicts",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "calendar_multi_attendee_v1",
+      "domain": "calendar_email",
+      "difficulty": "hard",
+      "required_tools": [
+        "check_calendar",
+        "send_email_draft"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Find overlap window for two calendars",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "file_spreadsheet_row_lookup_v1",
+      "domain": "file_spreadsheet",
+      "difficulty": "easy",
+      "required_tools": [
+        "read_file",
+        "query_spreadsheet"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Answer from spreadsheet row filter",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "file_spreadsheet_join_v1",
+      "domain": "file_spreadsheet",
+      "difficulty": "medium",
+      "required_tools": [
+        "read_file",
+        "query_spreadsheet"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Join file note with spreadsheet metric",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "file_spreadsheet_aggregate_v1",
+      "domain": "file_spreadsheet",
+      "difficulty": "hard",
+      "required_tools": [
+        "read_file",
+        "query_spreadsheet"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Compute aggregate with file-backed assumption",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "shop_cheapest_in_stock_v1",
+      "domain": "shopping_comparison",
+      "difficulty": "easy",
+      "required_tools": [
+        "compare_options",
+        "calculate_price"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Cheapest in-stock SKU under budget",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "shop_warranty_compare_v1",
+      "domain": "shopping_comparison",
+      "difficulty": "medium",
+      "required_tools": [
+        "compare_options",
+        "calculate_price"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Compare warranty + price tradeoff",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "shop_bundle_discount_v1",
+      "domain": "shopping_comparison",
+      "difficulty": "hard",
+      "required_tools": [
+        "compare_options",
+        "calculate_price"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Bundle discount eligibility across items",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "research_claim_verify_v1",
+      "domain": "research_assistant",
+      "difficulty": "easy",
+      "required_tools": [
+        "search_database",
+        "verify_fact"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Verify single factual claim",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "research_multi_source_v1",
+      "domain": "research_assistant",
+      "difficulty": "medium",
+      "required_tools": [
+        "search_database",
+        "verify_fact"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Cross-check two database entries",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "research_conflict_resolve_v1",
+      "domain": "research_assistant",
+      "difficulty": "hard",
+      "required_tools": [
+        "search_database",
+        "verify_fact"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Resolve conflicting sources with verify_fact",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "policy_threshold_v1",
+      "domain": "policy_compliance",
+      "difficulty": "easy",
+      "required_tools": [
+        "lookup_policy",
+        "verify_fact"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Approval threshold for amount",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "policy_exception_v1",
+      "domain": "policy_compliance",
+      "difficulty": "medium",
+      "required_tools": [
+        "lookup_policy",
+        "verify_fact"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Determine if exception applies",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "policy_multi_rule_v1",
+      "domain": "policy_compliance",
+      "difficulty": "hard",
+      "required_tools": [
+        "lookup_policy",
+        "verify_fact"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Combine two policy clauses",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "code_stacktrace_v1",
+      "domain": "coding_debugging",
+      "difficulty": "easy",
+      "required_tools": [
+        "read_file",
+        "search_database"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Identify failing line from log file",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "code_config_mismatch_v1",
+      "domain": "coding_debugging",
+      "difficulty": "medium",
+      "required_tools": [
+        "read_file",
+        "search_database"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Find config key causing test failure",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "code_regression_bisect_v1",
+      "domain": "coding_debugging",
+      "difficulty": "hard",
+      "required_tools": [
+        "read_file",
+        "search_database"
+      ],
+      "optional_tools": [],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Locate regression from issue database",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "multihop_schedule_policy_v1",
+      "domain": "multi_hop_operations",
+      "difficulty": "medium",
+      "required_tools": [
+        "check_calendar",
+        "lookup_policy",
+        "query_spreadsheet"
+      ],
+      "optional_tools": [
+        "compare_options",
+        "send_email_draft"
+      ],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Calendar slot + policy check + draft",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "multihop_budget_approval_v1",
+      "domain": "multi_hop_operations",
+      "difficulty": "hard",
+      "required_tools": [
+        "check_calendar",
+        "lookup_policy",
+        "query_spreadsheet"
+      ],
+      "optional_tools": [
+        "compare_options",
+        "send_email_draft"
+      ],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Spreadsheet budget + policy approval email",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    },
+    {
+      "template_id": "multihop_vendor_selection_v1",
+      "domain": "multi_hop_operations",
+      "difficulty": "hard",
+      "required_tools": [
+        "check_calendar",
+        "lookup_policy",
+        "query_spreadsheet"
+      ],
+      "optional_tools": [
+        "compare_options",
+        "send_email_draft"
+      ],
+      "hidden_ground_truth_fields": [
+        "best_option_id",
+        "taxed_total",
+        "approval_required"
+      ],
+      "success_criteria_pattern": "Compare vendors then schedule review meeting",
+      "forbidden_assumptions": [
+        "Do not book.",
+        "Do not send email.",
+        "Use example.com addresses only."
+      ],
+      "valid_intervention_families": [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence"
+      ],
+      "expected_robust_behavior": "Complete task via alternate tools, verify conflicting evidence, or abstain with stated uncertainty.",
+      "known_risks": [
+        "Synthetic tool outputs",
+        "Heuristic scoring on ambiguous abstentions"
+      ],
+      "version": "0.1.0",
+      "author": "synthetic",
+      "source": "synthetic"
+    }
+  ]
+}

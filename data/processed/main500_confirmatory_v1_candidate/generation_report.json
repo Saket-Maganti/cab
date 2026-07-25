@@ -1,0 +1,154 @@
+{
+  "benchmark_version": "main500_confirmatory_v1_candidate",
+  "config": {
+    "balanced_intervention_families": true,
+    "benchmark_version": "main500_confirmatory_v1_candidate",
+    "dev_split_size": 0,
+    "difficulty_mix": {
+      "easy": 0.25,
+      "hard": 0.25,
+      "medium": 0.25,
+      "stress": 0.25
+    },
+    "domains": [
+      "travel_planning",
+      "calendar_email_workflow",
+      "file_qa",
+      "spreadsheet_qa",
+      "shopping_comparison",
+      "research_assistant",
+      "policy_compliance",
+      "coding_debugging",
+      "operations_planning",
+      "customer_support_workflow",
+      "finance_admin_workflow",
+      "data_cleaning_workflow"
+    ],
+    "heldout_split_size": 50,
+    "human_audit_sample_size": 200,
+    "id_namespace": "main500_v1",
+    "intervention_families": [
+      "tool_removal",
+      "tool_failure",
+      "tool_corruption",
+      "irrelevant_tools",
+      "memory_corruption",
+      "observation_conflict",
+      "ambiguous_instruction",
+      "long_horizon_dependency",
+      "premature_success_signal",
+      "distractor_evidence"
+    ],
+    "interventions_per_task": 5,
+    "num_base_tasks": 550,
+    "output_dir": "data/processed/main500_confirmatory_v1_candidate",
+    "pilot_split_size": 500,
+    "seed": 20260725,
+    "task_style": "template"
+  },
+  "config_hash": "49042d902b89fc23",
+  "counts": {
+    "base_tasks": 550,
+    "instances": 3300,
+    "interventions": 2750
+  },
+  "distributions": {
+    "difficulties": {
+      "easy": 137,
+      "hard": 137,
+      "medium": 138,
+      "stress": 138
+    },
+    "domains": {
+      "calendar_email_workflow": 46,
+      "coding_debugging": 46,
+      "customer_support_workflow": 46,
+      "data_cleaning_workflow": 45,
+      "file_qa": 46,
+      "finance_admin_workflow": 45,
+      "operations_planning": 46,
+      "policy_compliance": 46,
+      "research_assistant": 46,
+      "shopping_comparison": 46,
+      "spreadsheet_qa": 46,
+      "travel_planning": 46
+    },
+    "intervention_families": {
+      "ambiguous_instruction": 275,
+      "distractor_evidence": 275,
+      "irrelevant_tools": 275,
+      "long_horizon_dependency": 275,
+      "memory_corruption": 275,
+      "observation_conflict": 275,
+      "premature_success_signal": 275,
+      "tool_corruption": 275,
+      "tool_failure": 275,
+      "tool_removal": 275
+    },
+    "tool_patterns": {
+      "check_calendar": 23,
+      "check_calendar -> lookup_policy -> query_spreadsheet": 12,
+      "check_calendar -> lookup_policy -> query_spreadsheet -> compare_options -> send_email_draft": 12,
+      "check_calendar -> lookup_policy -> query_spreadsheet -> compare_options -> send_email_draft -> verify_fact": 14,
+      "check_calendar -> send_email_draft -> verify_fact": 5,
+      "check_calendar -> send_email_draft -> verify_fact -> search_database -> read_file": 14,
+      "check_calendar -> send_email_draft -> verify_fact -> search_database -> read_file -> query_spreadsheet": 12,
+      "compare_options": 14,
+      "compare_options -> calculate_price -> verify_fact": 11,
+      "compare_options -> calculate_price -> verify_fact -> search_database -> read_file": 7,
+      "compare_options -> calculate_price -> verify_fact -> search_database -> read_file -> query_spreadsheet": 14,
+      "lookup_policy": 19,
+      "lookup_policy -> search_database -> verify_fact": 16,
+      "lookup_policy -> search_database -> verify_fact -> send_email_draft -> read_file": 12,
+      "lookup_policy -> search_database -> verify_fact -> send_email_draft -> read_file -> query_spreadsheet": 9,
+      "lookup_policy -> verify_fact -> search_database": 12,
+      "lookup_policy -> verify_fact -> search_database -> read_file -> query_spreadsheet": 8,
+      "lookup_policy -> verify_fact -> search_database -> read_file -> query_spreadsheet -> compare_options": 16,
+      "query_spreadsheet": 27,
+      "query_spreadsheet -> calculate_price -> lookup_policy": 14,
+      "query_spreadsheet -> calculate_price -> lookup_policy -> send_email_draft -> verify_fact": 4,
+      "query_spreadsheet -> calculate_price -> lookup_policy -> send_email_draft -> verify_fact -> search_database": 13,
+      "query_spreadsheet -> compare_options -> verify_fact": 15,
+      "query_spreadsheet -> compare_options -> verify_fact -> search_database -> read_file": 10,
+      "query_spreadsheet -> compare_options -> verify_fact -> search_database -> read_file -> lookup_policy": 8,
+      "read_file": 34,
+      "read_file -> query_spreadsheet -> verify_fact": 12,
+      "read_file -> query_spreadsheet -> verify_fact -> search_database -> lookup_policy": 15,
+      "read_file -> query_spreadsheet -> verify_fact -> search_database -> lookup_policy -> compare_options": 9,
+      "read_file -> search_database -> verify_fact": 5,
+      "read_file -> search_database -> verify_fact -> query_spreadsheet -> lookup_policy": 18,
+      "read_file -> search_database -> verify_fact -> query_spreadsheet -> lookup_policy -> compare_options": 10,
+      "read_file -> verify_fact -> search_database": 12,
+      "read_file -> verify_fact -> search_database -> query_spreadsheet -> lookup_policy": 14,
+      "read_file -> verify_fact -> search_database -> query_spreadsheet -> lookup_policy -> compare_options": 8,
+      "search_database": 20,
+      "search_database -> compare_options -> calculate_price": 13,
+      "search_database -> compare_options -> calculate_price -> verify_fact -> read_file": 11,
+      "search_database -> compare_options -> calculate_price -> verify_fact -> read_file -> query_spreadsheet": 11,
+      "search_database -> verify_fact -> read_file": 11,
+      "search_database -> verify_fact -> read_file -> query_spreadsheet -> lookup_policy": 12,
+      "search_database -> verify_fact -> read_file -> query_spreadsheet -> lookup_policy -> compare_options": 14
+    }
+  },
+  "duplicates": {
+    "instance_ids": [],
+    "instructions": [],
+    "task_ids": []
+  },
+  "quality_passed": true,
+  "quality_warnings": [
+    "intervention validity risk high for main500_v1__calendar_email_workflow_hard_000.observation_conflict: observation_conflict"
+  ],
+  "splits": {
+    "dev": 0,
+    "heldout": 50,
+    "pilot": 500,
+    "pilot_100": 100,
+    "pilot_20": 0
+  },
+  "statistics": {
+    "average_interventions_per_task": 5.0,
+    "average_max_steps": 6.002,
+    "average_required_tools": 3.753
+  }
+}

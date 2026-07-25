@@ -2,45 +2,27 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from causal_agent_bench.analysis.error_analysis import extract_error_cases
-from causal_agent_bench.analysis.figures import build_all_figures
 from causal_agent_bench.analysis.load_results import RunResults, load_run_results
-from causal_agent_bench.analysis.tables import (
-    build_all_tables,
-    dataframe_to_markdown,
-    main_agent_performance_table,
-    statistical_summary,
-)
-from causal_agent_bench.utils.io import write_json
+
+# ``export_paper_assets`` lives in paper_assets.py; re-exported here (and via
+# analysis/__init__.py) for backwards-compatible import paths.
+from causal_agent_bench.analysis.paper_assets import export_paper_assets as export_paper_assets
+from causal_agent_bench.analysis.tables import dataframe_to_markdown, main_agent_performance_table
 
 
-def analyze_run(run_dir: str | Path) -> Path:
+def analyze_run(run_dir: str | Path, *, allow_incomplete: bool = False) -> Path:
+    from causal_agent_bench.runners.run_completion import assert_complete_for_pipeline
+
+    state = assert_complete_for_pipeline(run_dir, operation="analyze", allow_incomplete=allow_incomplete)
     data = load_run_results(run_dir)
     report_path = data.run_dir / "analysis_report.md"
-    report_path.write_text(_analysis_report(data), encoding="utf-8")
+    report = _analysis_report(data)
+    if state["completion_state"] != "complete":
+        report = (
+            "> **INCOMPLETE / PRELIMINARY RUN** — not final scientific evidence.\n\n" + report
+        )
+    report_path.write_text(report, encoding="utf-8")
     return report_path
-
-
-def export_paper_assets(run_dir: str | Path, *, write_global: bool = True) -> list[Path]:
-    data = load_run_results(run_dir)
-    assets_dir = data.run_dir / "paper_assets"
-    figure_dir = assets_dir / "figures"
-    table_dir = assets_dir / "tables"
-    error_dir = data.run_dir / "error_cases"
-    paths: list[Path] = []
-    paths.extend(build_all_figures(data, figure_dir))
-    paths.extend(build_all_tables(data, table_dir))
-    paths.extend(extract_error_cases(data, error_dir))
-    stats_path = assets_dir / "statistical_summary.json"
-    write_json(stats_path, statistical_summary(data))
-    paths.append(stats_path)
-
-    if write_global:
-        root = Path.cwd()
-        paths.extend(build_all_figures(data, root / "figures"))
-        paths.extend(build_all_tables(data, root / "tables"))
-
-    return paths
 
 
 def _analysis_report(data: RunResults) -> str:

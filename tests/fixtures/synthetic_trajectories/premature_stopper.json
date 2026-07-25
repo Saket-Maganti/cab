@@ -1,0 +1,21 @@
+{
+  "schema_version": "trajectory_v2",
+  "run_id": "synthetic_metric_diagnostics",
+  "instance_id": "synthetic.premature_stopper",
+  "base_task_id": "synthetic_premature_stopper",
+  "agent_name": "synthetic_premature_stopper",
+  "steps": [
+    {"step_index": 0, "parser_status": "valid_final_answer", "stop_reason": "stopped_without_required_evidence"}
+  ],
+  "final_answer": "",
+  "terminated_reason": "stopped",
+  "metadata": {
+    "synthetic_fixture": true,
+    "not_real_llm_behavior": true,
+    "scientific_evidence": false,
+    "deployment_class": "metric_diagnostic_only",
+    "paper_eligible": false,
+    "expected_failure_category": "premature_stopper",
+    "expected_metric_signal": "too_few_steps"
+  }
+}

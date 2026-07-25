@@ -1,0 +1,30 @@
+template_only: true
+not_runnable_without_approval: true
+allow_paid_calls: false
+approved_for_live_run: false
+approved_for_dry_run: false
+scientific_claims_allowed: false
+paper_asset_eligibility: false
+claim_promotion_allowed: false
+status: APPROVAL_REQUIRED_DO_NOT_RUN
+planned_design:
+  paired_items: 20
+  conditions_per_pair: 2
+  model_count: 3
+  repeats_per_model_condition: 1
+  exact_planned_trajectories: 120
+models:
+  - role: frontier_api
+    provider: PLACEHOLDER_ENV_ONLY
+    model: PLACEHOLDER_NO_SECRET
+  - role: strong_open_or_local
+    provider: PLACEHOLDER_ENV_ONLY
+    model: PLACEHOLDER_NO_SECRET
+  - role: cheap_baseline
+    provider: PLACEHOLDER_ENV_ONLY
+    model: PLACEHOLDER_NO_SECRET
+approval_requirements:
+  human_review_complete: false
+  c10_validation_complete: false
+  budget_approved: false
+  credentials_verified_env_only: false

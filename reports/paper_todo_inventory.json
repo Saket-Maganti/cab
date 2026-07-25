@@ -1,0 +1,601 @@
+{
+  "by_section": {
+    "ablations": 4,
+    "benchmark design": 6,
+    "ethics/reproducibility": 2,
+    "experiments": 4,
+    "generated files": 24,
+    "human validation": 1,
+    "introduction": 2,
+    "limitations": 2,
+    "metrics": 1,
+    "related work": 1,
+    "results": 1,
+    "unknown": 24
+  },
+  "by_severity": {
+    "blocker_before_empirical_claims": 22,
+    "cleanup": 45,
+    "optional": 5
+  },
+  "generated_at": "2026-05-20T08:27:04.501242+00:00",
+  "items": [
+    {
+      "excerpt": "\\newcommand{\\todo}[1]{\\textcolor{red}{[TODO: #1]}}",
+      "file": "paper/latexpaper/main.tex",
+      "kind": "TODO",
+      "line": 18,
+      "section": "experiments",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "The benchmark reports final-answer scores together with trajectory diagnostics for tool use, recovery, contradiction handling, memory verification, stopping behavior, and trajectory faithfulness. Agen",
+      "file": "paper/latexpaper/sections/01_introduction.tex",
+      "kind": "planned",
+      "line": 9,
+      "section": "introduction",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "The open-source package now includes run planning and status monitoring, resume and interruption handling, deterministic mock diagnostic agents for detector validation, paper-asset export with enginee",
+      "file": "paper/latexpaper/sections/01_introduction.tex",
+      "kind": "placeholder",
+      "line": 21,
+      "section": "introduction",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "ReAct and AgentBoard (above) further motivate logging multi-step behavior; \\CAB{} uses the same motivation but ties trajectory metrics to survival under named interventions, as planned in \\claimref{C3",
+      "file": "paper/latexpaper/sections/02_related_work.tex",
+      "kind": "planned",
+      "line": 26,
+      "section": "related work",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "The planned benchmark spans travel planning, calendar/email workflow, file and spreadsheet question answering, shopping/comparison, research assistant tasks, policy/compliance tasks, coding/debugging ",
+      "file": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "kind": "planned",
+      "line": 6,
+      "section": "benchmark design",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "The planned benchmark spans travel planning, calendar/email workflow, file and spreadsheet question answering, shopping/comparison, research assistant tasks, policy/compliance tasks, coding/debugging ",
+      "file": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "kind": "table_figure_reference",
+      "line": 6,
+      "section": "benchmark design",
+      "severity": "optional"
+    },
+    {
+      "excerpt": "To probe transfer without abandoning control, we added a 40-task mini-study that compares template-generated synthetic tasks with naturalistic synthetic tasks built from mock emails, calendars, spread",
+      "file": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "kind": "TODO",
+      "line": 15,
+      "section": "benchmark design",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "To probe transfer without abandoning control, we added a 40-task mini-study that compares template-generated synthetic tasks with naturalistic synthetic tasks built from mock emails, calendars, spread",
+      "file": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "kind": "table_figure_reference",
+      "line": 15,
+      "section": "benchmark design",
+      "severity": "optional"
+    },
+    {
+      "excerpt": "\\caption{Mini-study comparison of intervention-family degradation between template-generated and naturalistic synthetic tasks. Placeholder until paired validated runs are exported.}",
+      "file": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "kind": "placeholder",
+      "line": 36,
+      "section": "benchmark design",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "\\texttt{[todo]} & \\texttt{[todo]} & \\texttt{[todo]} & \\texttt{[todo]} \\\\",
+      "file": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "kind": "TODO",
+      "line": 42,
+      "section": "benchmark design",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "To test \\claimref{C4}, agents are ranked by clean success and by \\acrs. The analysis reports rank deltas and Spearman correlation between rankings. A low correlation would indicate that clean success ",
+      "file": "paper/latexpaper/sections/05_metrics.tex",
+      "kind": "planned",
+      "line": 23,
+      "section": "metrics",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "The planned main experiments use generated benchmark directories, deterministic seeds, fixed agent lists, and saved run metadata. Every run directory records the config, config hash, Python version, p",
+      "file": "paper/latexpaper/sections/06_experiments.tex",
+      "kind": "planned",
+      "line": 3,
+      "section": "experiments",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "Before execution, configs are validated (\\texttt{validate-config}, \\texttt{plan-run}, \\texttt{dry-run}) and checked against evidence-level policy (\\texttt{docs/EVIDENCE\\_LEVEL\\_POLICY.md}). During exe",
+      "file": "paper/latexpaper/sections/06_experiments.tex",
+      "kind": "placeholder",
+      "line": 6,
+      "section": "experiments",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "The repository currently supports smoke, development, pilot, and planned main benchmark configurations. Pilot data generation is intended for pipeline validation and early failure analysis. A submissi",
+      "file": "paper/latexpaper/sections/06_experiments.tex",
+      "kind": "planned",
+      "line": 12,
+      "section": "experiments",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\textbf{Planned test.} Compare baseline agents or LLM prompts with and without self-checking, planning scaffolds, tool-verification instructions, and recovery prompts. This tests \\claimref{C6}.",
+      "file": "paper/latexpaper/sections/07_results.tex",
+      "kind": "planned",
+      "line": 4,
+      "section": "results",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "Human validation exports and protocols exist; completed annotations and agreement statistics do not. Table~5 and intervention-validity claims (\\claimref{C3}, \\claimref{C10}) remain blocked until a str",
+      "file": "paper/latexpaper/sections/08_human_validation.tex",
+      "kind": "blocked",
+      "line": 6,
+      "section": "human validation",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "No ablation result is claimed in this draft. The repository defines a factorial ablation matrix (\\texttt{ablation-matrix}, \\texttt{configs/ablation\\_matrix\\_local\\_stub.yaml}) and per-factor configs u",
+      "file": "paper/latexpaper/sections/09_ablations.tex",
+      "kind": "planned",
+      "line": 3,
+      "section": "ablations",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\paragraph{Planned ablations (not yet run).}",
+      "file": "paper/latexpaper/sections/09_ablations.tex",
+      "kind": "not yet run",
+      "line": 5,
+      "section": "ablations",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "\\paragraph{Planned ablations (not yet run).}",
+      "file": "paper/latexpaper/sections/09_ablations.tex",
+      "kind": "planned",
+      "line": 5,
+      "section": "ablations",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\paragraph{Planned ablations (not yet run).}",
+      "file": "paper/latexpaper/sections/09_ablations.tex",
+      "kind": "missing_ablations",
+      "line": 5,
+      "section": "ablations",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "Human validation can improve label quality but introduces annotator subjectivity, sampling limits, and compensation obligations. Agreement statistics should be reported with the same caution as model ",
+      "file": "paper/latexpaper/sections/10_limitations.tex",
+      "kind": "missing_human_validation",
+      "line": 25,
+      "section": "limitations",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "Bracketed results, ranking analyses, and ablation tables remain placeholders until \\texttt{fill-paper-from-run} links verified non-oracle LLM runs. Deterministic stub and smoke runs validate engineeri",
+      "file": "paper/latexpaper/sections/10_limitations.tex",
+      "kind": "missing_ablations",
+      "line": 34,
+      "section": "limitations",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "\\paragraph{Compensation placeholder.}",
+      "file": "paper/latexpaper/sections/11_ethics_reproducibility.tex",
+      "kind": "placeholder",
+      "line": 12,
+      "section": "ethics/reproducibility",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "Every reported result should include task version, run config, random seed, model/API version, timestamp, scorer version, and artifact path. Current reproducibility conventions are documented in \\text",
+      "file": "paper/latexpaper/sections/11_ethics_reproducibility.tex",
+      "kind": "planned",
+      "line": 16,
+      "section": "ethics/reproducibility",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{Claims.} Scientific claims are tracked in \\texttt{docs/CLAIM\\_LEDGER.md} and \\texttt{docs/claim\\_ledger.json}. Unsupported claims remain planned, engineering-only, or placeholder. C1--C8",
+      "file": "paper/latexpaper/sections/checklist.tex",
+      "kind": "placeholder",
+      "line": 4,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "\\item \\textbf{Claims.} Scientific claims are tracked in \\texttt{docs/CLAIM\\_LEDGER.md} and \\texttt{docs/claim\\_ledger.json}. Unsupported claims remain planned, engineering-only, or placeholder. C1--C8",
+      "file": "paper/latexpaper/sections/checklist.tex",
+      "kind": "planned",
+      "line": 4,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{Human validation.} Export protocol and forms exist; annotations \\textbf{not complete}. Required before strong claims about label quality, intervention validity, or trajectory-diagnostic ",
+      "file": "paper/latexpaper/sections/checklist.tex",
+      "kind": "missing_human_validation",
+      "line": 8,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "Tool-using language agents are increasingly evaluated by final task success, but such scores conflate planning, tool selection, memory use, observation interpretation, recovery, and stopping behavior.",
+      "file": "paper/latexpaper/generated/00_abstract.tex",
+      "kind": "planned",
+      "line": 1,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "We reserve empirical findings for runs over configured non-oracle agents; the planned main finding remains [main finding placeholder].",
+      "file": "paper/latexpaper/generated/01_introduction_snippet.tex",
+      "kind": "placeholder",
+      "line": 2,
+      "section": "generated files",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "We reserve empirical findings for runs over configured non-oracle agents; the planned main finding remains [main finding placeholder].",
+      "file": "paper/latexpaper/generated/01_introduction_snippet.tex",
+      "kind": "planned",
+      "line": 2,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\caption{Benchmark statistics. Placeholder until \\texttt{fill-paper-from-run} links a verified run.}",
+      "file": "paper/latexpaper/generated/03_benchmark_stats_table.tex",
+      "kind": "placeholder",
+      "line": 3,
+      "section": "generated files",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "This section is a structured placeholder. \\textbf{No final scientific results are claimed in this draft.} Results will be inserted only after completed non-oracle LLM runs, human validation where requ",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "placeholder",
+      "line": 3,
+      "section": "generated files",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "\\textbf{Planned test.} Compare clean success, intervention success, absolute degradation, relative degradation, and \\acrs across agents. This tests \\claimref{C1}.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "planned",
+      "line": 6,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\textbf{TODO.} Run \\texttt{fill-paper-from-run} after a verified non-stub pilot and link Table~\\ref{tab:main-performance}.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "TODO",
+      "line": 8,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\textbf{TODO.} Run \\texttt{fill-paper-from-run} after a verified non-stub pilot and link Table~\\ref{tab:main-performance}.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "table_figure_reference",
+      "line": 8,
+      "section": "generated files",
+      "severity": "optional"
+    },
+    {
+      "excerpt": "\\textbf{TODO.} Insert Figure~\\ref{fig:family-breakdown} from the final run.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "TODO",
+      "line": 11,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\textbf{TODO.} Insert Figure~\\ref{fig:family-breakdown} from the final run.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "table_figure_reference",
+      "line": 11,
+      "section": "generated files",
+      "severity": "optional"
+    },
+    {
+      "excerpt": "\\textbf{TODO.} Insert Figure~\\ref{fig:ranking-instability} after main experiments.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "TODO",
+      "line": 14,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\textbf{TODO.} Insert Figure~\\ref{fig:ranking-instability} after main experiments.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "table_figure_reference",
+      "line": 14,
+      "section": "generated files",
+      "severity": "optional"
+    },
+    {
+      "excerpt": "\\textbf{TODO.} Insert trajectory disagreement figure and audited examples.",
+      "file": "paper/latexpaper/generated/07_results.tex",
+      "kind": "TODO",
+      "line": 17,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "Human validation is not yet complete for paper claims. Table~5 remains a placeholder until annotations and adjudication are finished (\\claimref{C3}, \\claimref{C10}).",
+      "file": "paper/latexpaper/generated/08_human_validation.tex",
+      "kind": "placeholder",
+      "line": 1,
+      "section": "generated files",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "Human validation is not yet complete for paper claims. Table~5 remains a placeholder until annotations and adjudication are finished (\\claimref{C3}, \\claimref{C10}).",
+      "file": "paper/latexpaper/generated/08_human_validation.tex",
+      "kind": "missing_human_validation",
+      "line": 1,
+      "section": "generated files",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "\\item \\textbf{C1}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 3,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C2}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 4,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C3}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 5,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C4}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 6,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C5}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 7,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C6}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 8,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C7}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 9,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C8}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 10,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "\\item \\textbf{C10}: status=planned; eligible artifacts=0.",
+      "file": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "kind": "planned",
+      "line": 12,
+      "section": "generated files",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "- **Results:** Stronger placeholder status note",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "placeholder",
+      "line": 18,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "- **Ablations:** Planned matrix content (was empty)",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "planned",
+      "line": 20,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "## What remains placeholder",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "placeholder",
+      "line": 27,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "- Mini-study comparison table `[todo]` rows",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "TODO",
+      "line": 33,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "- C1\u2013C8, C10: **planned**",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "planned",
+      "line": 37,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| Section | Ready for draft? | Blocked for submission? |",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "blocked",
+      "line": 42,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "| Results | Placeholder only | **Yes** |",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "placeholder",
+      "line": 51,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "| Ablations | Planned only | **Yes** |",
+      "file": "paper/PAPER_STATUS.md",
+      "kind": "planned",
+      "line": 53,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "**Source of truth** for what evidence exists vs what is required. All claims C1\u2013C8, C10 are **planned** unless noted.",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 3,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Current evidence** | Placeholder tables; stub/mock runs (engineering only) |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "placeholder",
+      "line": 13,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 14,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Forbidden wording now** | \"Clean success overestimates\u2026\", \"We show\u2026\", \"significant gap\" |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "empirical_claim_without_eligible_evidence",
+      "line": 22,
+      "section": "unknown",
+      "severity": "blocker_before_empirical_claims"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 32,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 48,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 63,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 76,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 88,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 98,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 108,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Status** | **planned** |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 128,
+      "section": "unknown",
+      "severity": "cleanup"
+    },
+    {
+      "excerpt": "| **Allowed now** | \"Interventions are **designed** to isolate\u2026; audited automatically; human audit **planned**\" |",
+      "file": "paper/EVIDENCE_GAP_MAP.md",
+      "kind": "planned",
+      "line": 131,
+      "section": "unknown",
+      "severity": "cleanup"
+    }
+  ],
+  "total_items": 72
+}

@@ -1,0 +1,12 @@
+{
+  "description": "Experiment state flow",
+  "empirical_result": false,
+  "figure_id": "figure4",
+  "generated_at": "2026-07-23T17:17:52.406196+00:00",
+  "generator": "scripts/generate_placeholder_figures.py",
+  "label": "PLACEHOLDER \u2014 NOT EMPIRICAL RESULT",
+  "placeholder": true,
+  "scientific_evidence": false,
+  "title": "Run lifecycle (schematic)",
+  "warning": "Do not use as final paper result figure."
+}

@@ -1,0 +1,40 @@
+seed: 20270513
+benchmark_version: main_v0.1_500_candidate
+num_base_tasks: 500
+domains:
+- travel_planning
+- calendar_email_workflow
+- file_qa
+- spreadsheet_qa
+- shopping_comparison
+- research_assistant
+- policy_compliance
+- coding_debugging
+- operations_planning
+- customer_support_workflow
+- finance_admin_workflow
+- data_cleaning_workflow
+difficulty_mix:
+  easy: 0.25
+  medium: 0.25
+  hard: 0.25
+  stress: 0.25
+interventions_per_task: 5
+balanced_intervention_families: true
+intervention_families:
+- tool_removal
+- tool_failure
+- tool_corruption
+- irrelevant_tools
+- memory_corruption
+- observation_conflict
+- ambiguous_instruction
+- long_horizon_dependency
+- premature_success_signal
+- distractor_evidence
+dev_split_size: 20
+pilot_split_size: 500
+heldout_split_size: 0
+human_audit_sample_size: 100
+output_dir: data/processed/main_v0_1_500
+allow_paid_calls: false

@@ -60,9 +60,9 @@ def compute_trajectory_metrics(task: BenchmarkTask, trajectory: Trajectory) -> d
     required_call_count = sum(1 for call in calls if call in required_set)
     non_required_call_count = total_calls - required_call_count
     failed_observations = [
-        _observation(step)
+        obs
         for step in trajectory.steps
-        if _observation(step) is not None and _observation(step).get("error") is not None
+        if (obs := _observation(step)) is not None and obs.get("error") is not None
     ]
     invalid_observations = [
         obs for obs in failed_observations if obs is not None and obs.get("error") == "invalid_arguments"

@@ -1,0 +1,46 @@
+seed: 20270542
+run_name: pilot_free_local_micro_3
+cost_mode: zero_cost
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering
+provider_type: local
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+provider_registry_path: configs/providers.yaml
+pricing_registry_path: configs/model_pricing.yaml
+max_instances: 3
+budget:
+  max_total_usd: 0
+  max_calls: 24
+  require_explicit_paid_approval: true
+  strict_pricing: false
+limits:
+  max_instances: 3
+  max_agents: 1
+  max_trajectories: 3
+  max_runtime_minutes: 5
+  stop_after_trajectories: 3
+  max_steps_per_instance: 3
+  max_output_tokens: 256
+agent_runs:
+  - name: direct_tool_local_ollama
+    agent: direct_tool_agent
+    provider: local_openai
+    model: qwen2.5:7b-instruct
+    base_url: "${LOCAL_OPENAI_BASE_URL:-http://localhost:11434/v1}"
+    temperature: 0.0
+    max_tokens: 256
+    retry_count: 1
+    timeout: 60
+    budget_cap_usd: 0.0
+    cache_dir: results/cache/pilot_free_local_micro_3
+    extra:
+      prompt_file: direct_tool_agent.md
+      prompt_version: v1
+      local_server: ollama
+max_steps: 3
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: false
+fail_fast: false
+auto_score: false

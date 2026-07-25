@@ -1,0 +1,9 @@
+flowchart LR
+  BT[Base task] --> CI[Clean instance]
+  BT --> II[Intervention instance]
+  CI --> TR1[Agent trajectory]
+  II --> TR2[Agent trajectory]
+  TR1 --> M1[Metrics]
+  TR2 --> M2[Metrics]
+  M1 --> ACRS[ACRS / aggregates]
+  M2 --> ACRS

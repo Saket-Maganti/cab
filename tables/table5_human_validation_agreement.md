@@ -1,3 +1,3 @@
-| table | status | note |
-| --- | --- | --- |
-| Human validation agreement | not yet run | Run the human validation sample before filling this table. |
+| table | status | note | run_dir | config_hash | seed | dataset_version | model_ids | scorer_versions | git_commit | timestamp |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Human validation agreement | not yet run | Run export-human-validation and summarize-human-validation before filling this table. | results/20260511T162146Z_pilot_20_multi_agent_stub | 6c0a1da78f8a8f53 | 20270511 | unknown | local-stub | deterministic_heuristic_v1 | dea8e25f0e429ed2054c628fb37d24e7c1c9020e | 2026-05-11T16:21:46.439828+00:00 |

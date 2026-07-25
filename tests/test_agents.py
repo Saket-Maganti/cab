@@ -14,20 +14,30 @@ BASELINE_NAMES = [
     "planner_executor_stub_agent",
 ]
 
+LLM_BASELINE_NAMES = [
+    "direct_llm_tool_agent",
+    "react_style_llm_agent",
+    "planner_executor_llm_agent",
+    "self_checking_llm_agent",
+    "memory_verifying_llm_agent",
+    "recovery_prompt_llm_agent",
+    "tool_conservative_llm_agent",
+]
+
 
 def _instance() -> BenchmarkInstance:
     return read_jsonl("data/sample/instances.jsonl", BenchmarkInstance)[0]
 
 
 def test_all_baseline_agents_instantiate():
-    for name in BASELINE_NAMES:
+    for name in BASELINE_NAMES + LLM_BASELINE_NAMES:
         assert get_agent(name).name == name
 
 
 def test_all_baseline_agents_return_valid_action():
     instance = _instance()
     tool_specs = ToolRegistry().specs(instance.available_tools)
-    for name in BASELINE_NAMES:
+    for name in BASELINE_NAMES + LLM_BASELINE_NAMES:
         agent = get_agent(name, seed=3)
         agent.reset(instance)
         action = agent.act([], tool_specs)
@@ -68,21 +78,23 @@ def test_agent_registry_lists_and_aliases():
     names = list_agents()
     assert "random_tool_agent" in names
     assert "planner_executor_stub_agent" in names
+    assert "memory_verifying_llm_agent" in names
     assert get_agent("RandomToolAgent").name == "random_tool_agent"
+    assert get_agent("ReActStyleLLMAgent").name == "react_style_llm_agent"
 
 
 def test_planner_executor_does_not_use_schema_gold_sequence():
     instance = _instance()
     modified_base = instance.base_task.model_copy(
         update={
-            "available_tools": instance.base_task.available_tools + ["lookup_policy"],
+            "available_tools": [*instance.base_task.available_tools, "lookup_policy"],
             "gold_tool_sequence": ["lookup_policy"],
         }
     )
     modified = instance.model_copy(
         update={
             "base_task": modified_base,
-            "available_tools": instance.available_tools + ["lookup_policy"],
+            "available_tools": [*instance.available_tools, "lookup_policy"],
         }
     )
     tool_specs = ToolRegistry().specs(modified.available_tools)

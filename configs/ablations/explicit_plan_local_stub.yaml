@@ -1,0 +1,37 @@
+seed: 20270517
+run_name: ablation_explicit_plan_local_stub
+benchmark_path: data/sample/instances.jsonl
+agent_runs:
+  - name: plan_off
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: explicit_plan
+        factor: explicit_plan
+        level: without_plan
+        comparison_role: reference
+  - name: plan_on
+    agent: planner_executor_llm_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      prompt_addendum_file: ablations/explicit_plan_instruction.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: explicit_plan
+        factor: explicit_plan
+        level: with_plan
+        comparison_role: treatment
+max_steps: 8
+num_repeats: 1
+output_dir: results
+auto_score: true

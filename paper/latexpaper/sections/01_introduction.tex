@@ -1,0 +1,25 @@
+\section{Introduction}
+
+Tool-using language agents are often evaluated by final task success: did the agent complete the booking-like workflow, answer the research question, resolve the issue, or navigate the target environment? This framing is useful because it is task-facing and easy to compare across systems. It is also too compressed for diagnosing agent skill. A single success bit can conflate planning, tool selection, argument construction, observation interpretation, memory use, recovery from tool failures, contradiction handling, and stopping behavior.
+
+The same clean task can therefore hide failures that appear only when a targeted condition changes. Consider an agent that solves a travel-planning task by calling a search tool and returning an acceptable recommendation. If the search tool is unavailable, returns a partial result, or conflicts with stale memory, a robust agent should notice the changed evidence state, use alternatives when possible, state uncertainty when evidence is insufficient, and avoid declaring success too early. A final-answer score can miss whether the agent actually did those things. This motivates \claimref{C1}: clean task success may overestimate robust competence.
+
+\benchmark frames this measurement problem as paired interventional evaluation. Each base task has a clean condition and one or more intervention conditions that preserve the high-level user goal while perturbing a named factor such as tool availability, tool reliability, memory correctness, observation consistency, distractor evidence, or premature success signals. The contribution is not merely to make tasks harder. It is to ask whether specific agent skills survive a controlled change, and to make the intervention metadata auditable enough that reviewers can challenge whether the intended factor was isolated.
+
+The benchmark reports final-answer scores together with trajectory diagnostics for tool use, recovery, contradiction handling, memory verification, stopping behavior, and trajectory faithfulness. Agent Causal Robustness Score (\acrs) is a compact summary of intervention success relative to clean success, but it is not treated as a complete measure of competence. The paper design requires \acrs to be interpreted alongside clean success, intervention success, uncertainty estimates, and component metrics. These diagnostics support the planned tests in \claimref{C2}--\claimref{C8}.
+
+Our contributions are:
+\begin{enumerate}[leftmargin=*]
+    \item We define an interventional evaluation design for tool-using agents, separating clean task success from robustness under targeted perturbations.
+    \item We introduce \benchmark, a benchmark of paired clean and intervened tasks targeting named agent skills across synthetic domains (filled from \texttt{paper/latexpaper/generated/01\_introduction\_snippet.tex} when available).
+    \item We propose \acrs plus trajectory-level diagnostics for tool use, recovery, contradiction handling, memory verification, and stopping behavior.
+    \item We provide a reproducible evaluation package with schemas, configs, deterministic simulated tools, trajectory logs, scoring code, analysis assets, run-management CLI, evidence-level guards, audit tooling, and release/reproducibility scaffolding.
+    \item We report pilot empirical observations only after \texttt{fill-paper-from-run} links a verified non-oracle run; otherwise findings remain placeholders. Mock, stub, dry-run, and interrupted artifacts validate engineering paths only.
+\end{enumerate}
+
+\paragraph{Repository status.}
+The open-source package now includes run planning and status monitoring, resume and interruption handling, deterministic mock diagnostic agents for detector validation, paper-asset export with engineering-only labels, claim-ledger and placeholder validators, and advisor/reviewer documentation. These artifacts support reproducible \emph{framework} evaluation; they do not substitute for completed non-oracle LLM pilots or human validation.
+
+\input{generated/01_introduction_snippet}
+
+The empirical findings in this draft are filled from \texttt{paper/latexpaper/generated/} when \texttt{fill-paper-from-run} links a verified run; otherwise bracketed placeholders remain. Engineering-only stub and mock diagnostic runs must not be cited as scientific evidence. See \texttt{paper/EVIDENCE\_GAP\_MAP.md}, \texttt{paper/PAPER\_SYNC\_MAP.md}, and \texttt{docs/claim\_ledger.json}.

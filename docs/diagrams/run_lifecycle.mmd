@@ -1,0 +1,12 @@
+stateDiagram-v2
+  [*] --> planned
+  planned --> dry_run_ready: dry-run
+  dry_run_ready --> running: run approved
+  running --> interrupted: stop / limit
+  running --> complete: all trajectories
+  interrupted --> running: resume
+  complete --> scored: score
+  scored --> analyzed: analyze
+  analyzed --> audited: audits pass
+  audited --> claim_checked: ledger clean
+  claim_checked --> [*]

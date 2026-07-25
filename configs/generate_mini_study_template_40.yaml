@@ -1,0 +1,37 @@
+seed: 20270541
+benchmark_version: mini_study_template_v0.1
+task_style: template
+num_base_tasks: 40
+domains:
+- travel_planning
+- calendar_email_workflow
+- file_spreadsheet_qa
+- shopping_comparison
+- research_assistant
+- policy_compliance
+- coding_debugging
+- operations_planning
+difficulty_mix:
+  easy: 0.25
+  medium: 0.25
+  hard: 0.25
+  stress: 0.25
+interventions_per_task: 5
+balanced_intervention_families: true
+intervention_families:
+- tool_removal
+- tool_failure
+- tool_corruption
+- irrelevant_tools
+- memory_corruption
+- observation_conflict
+- ambiguous_instruction
+- long_horizon_dependency
+- premature_success_signal
+- distractor_evidence
+dev_split_size: 8
+pilot_split_size: 24
+heldout_split_size: 8
+human_audit_sample_size: 12
+output_dir: data/processed/mini_study_template_40
+allow_paid_calls: false

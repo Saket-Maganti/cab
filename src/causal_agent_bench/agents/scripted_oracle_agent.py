@@ -24,7 +24,7 @@ class ScriptedOracleAgent(BaseAgent):
                     continue
                 return tool_action(
                     tool_name,
-                    self.tool_arguments(tool_name, tool_spec),
+                    self.tool_arguments(tool_name, tool_spec, observation_history),
                     thought=f"Oracle follows gold tool sequence and calls {tool_name}.",
                 )
         return final_action(

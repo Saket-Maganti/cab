@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "name": "cli_help",
+      "passed": true
+    },
+    {
+      "active": [],
+      "name": "no_active_model_runs",
+      "passed": true
+    },
+    {
+      "name": "no_unsupported_supported_claims",
+      "passed": true
+    },
+    {
+      "name": "c9_engineering_only",
+      "passed": true
+    },
+    {
+      "name": "evidence_safety",
+      "passed": true
+    },
+    {
+      "name": "paper_placeholders_draft",
+      "passed": true
+    },
+    {
+      "name": "paper_placeholders_present",
+      "passed": true
+    },
+    {
+      "missing": [],
+      "name": "required_phase8_files",
+      "passed": true
+    },
+    {
+      "classification": "local_preliminary",
+      "name": "submission_readiness",
+      "passed": true,
+      "submission_ready": false
+    }
+  ],
+  "classification": "build_infrastructure_ready",
+  "generated_at": "2026-07-23T17:18:52.878975+00:00",
+  "issues": [],
+  "no_model_runs_executed_by_audit": true,
+  "no_paid_calls_by_audit": true,
+  "passed": true,
+  "readiness_checker_classification": "local_preliminary",
+  "submission_ready": false,
+  "warnings": []
+}

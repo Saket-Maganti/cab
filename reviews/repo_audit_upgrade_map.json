@@ -1,0 +1,244 @@
+{
+  "audit_date": "2026-05-12",
+  "scope": "current working tree, including uncommitted Phase-2 work",
+  "scientific_evidence_policy": "Deterministic smoke, dev, and local-stub runs are engineering artifacts only.",
+  "current_architecture": {
+    "schemas": "Pydantic schemas for tools, actions, tasks, interventions, instances, trajectories, and scores.",
+    "generation": "Deterministic synthetic generation with quality reports, splits, and audit samples.",
+    "tools": "Schema-native deterministic simulated tools plus legacy mock tool support.",
+    "environment": "Local simulated benchmark environment with intervention patches and max-step termination.",
+    "agents": "Deterministic baselines, local-stub LLM agents, provider-backed clients, registry, and aliases.",
+    "runners": "Experiment config validation, execution, metadata, resume, error logging, and cost estimation.",
+    "metrics": "Final success, tool use, recovery, contradiction, memory, stopping, trajectory quality, ACRS, and rankings.",
+    "analysis": "Run loading, tables, figures, error-case mining, and paper-asset export.",
+    "phase2": "Config validation, dry-run planning, intervention audit, dataset freeze, run summary, and claim-ledger update helpers."
+  },
+  "duplication_or_legacy_seams": [
+    "metrics/components.py is legacy BenchmarkTask support while scoring.py uses newer metric modules.",
+    "tools/mock_tools.py is legacy support while tools/simulated.py is schema-native.",
+    "analysis/reports.py wraps analysis/report.py.",
+    "io.py and utils/io.py overlap.",
+    "paper/sections/06_experimental_setup.tex wraps 06_experiments.tex."
+  ],
+  "cli_commands": [
+    {"command": "validate", "status": "works", "notes": "Validated data/sample/instances.jsonl successfully."},
+    {"command": "generate", "status": "works", "notes": "Supports schema-native generation and legacy sample task generation."},
+    {"command": "run", "status": "works_with_caveats", "notes": "Deterministic/local-stub runs work; provider runs need keys and model IDs."},
+    {"command": "score", "status": "works", "notes": "Requires completed run context files."},
+    {"command": "analyze", "status": "works", "notes": "Produces analysis report for completed runs."},
+    {"command": "export-paper-assets", "status": "works", "notes": "Exports tables, figures, stats, error cases, and asset metadata."},
+    {"command": "doctor", "status": "works", "notes": "Passed; 0 optional provider credentials configured."},
+    {"command": "list-providers", "status": "works", "notes": "local_stub configured; OpenAI/Anthropic/Gemini/OpenRouter not configured."},
+    {"command": "estimate-cost", "status": "works_with_caveats", "notes": "Provider dollar estimates unknown without pricing config."},
+    {"command": "validate-config", "status": "works_with_caveats", "notes": "sample_tasks.yaml and validate_pilot_v0_1.yaml are legacy_or_unknown."},
+    {"command": "dry-run", "status": "works", "notes": "Does not call providers or write run directories."},
+    {"command": "audit-interventions", "status": "works", "notes": "pilot_v0.1 passed with one high-validity-risk warning."},
+    {"command": "freeze-dataset", "status": "implemented_not_exercised_in_audit", "notes": "Avoided creating extra frozen artifacts in this audit."},
+    {"command": "summarize-run", "status": "works", "notes": "Works on existing runs."},
+    {"command": "update-claim-ledger", "status": "works", "notes": "Lists claims and guards supported status."}
+  ],
+  "configs": {
+    "count": 18,
+    "experiment_valid": [
+      "configs/smoke.yaml",
+      "configs/dev_20_run.yaml",
+      "configs/main_200_run.yaml",
+      "configs/ablation_interventions.yaml",
+      "configs/human_validation_sample.yaml",
+      "configs/pilot_20_multi_agent.yaml",
+      "configs/pilot_budget_limited.yaml",
+      "configs/pilot_multi_provider_20.yaml",
+      "configs/pilot_openai_20.yaml",
+      "configs/pilot_anthropic_20.yaml",
+      "configs/pilot_openrouter_20.yaml",
+      "configs/pilot_100_multi_agent.yaml",
+      "configs/pilot_200_multi_agent.yaml"
+    ],
+    "generation_valid": [
+      "configs/dev_20_tasks.yaml",
+      "configs/main_200_tasks.yaml",
+      "configs/generate_pilot_v0_1.yaml"
+    ],
+    "legacy_or_unknown": [
+      "configs/sample_tasks.yaml",
+      "configs/validate_pilot_v0_1.yaml"
+    ],
+    "real_pilot_blockers": [
+      "Provider API keys not configured locally.",
+      "Provider model ID environment variables expand to empty strings locally.",
+      "Provider pilot configs lack pricing, so cost estimates are unknown.",
+      "Runtime budget caps are not yet enforced."
+    ]
+  },
+  "datasets": {
+    "sample": {"base_tasks": 3, "interventions": 6, "instances": 9},
+    "dev_20": {"base_tasks": 20, "interventions": 60, "instances": 80, "quality_passed": true},
+    "main_200": {"base_tasks": 200, "interventions": 1000, "instances": 1200, "quality_passed": true},
+    "pilot_v0_1": {
+      "base_tasks": 250,
+      "interventions": 1250,
+      "instances": 1500,
+      "dev_instances": 120,
+      "pilot_20_instances": 120,
+      "pilot_100_instances": 600,
+      "pilot_instances": 1200,
+      "heldout_instances": 300,
+      "human_audit_sample": 100,
+      "quality_passed": true,
+      "audit_warning": "high intervention-validity risk for one observation_conflict intervention"
+    }
+  },
+  "agent_adapters": {
+    "deterministic": [
+      "random_tool_agent",
+      "scripted_oracle_agent",
+      "greedy_tool_agent",
+      "react_stub_agent",
+      "planner_executor_stub_agent"
+    ],
+    "llm_agent_styles": [
+      "direct_tool_agent",
+      "planner_executor_agent",
+      "self_check_agent"
+    ],
+    "providers": {
+      "local_stub": "configured",
+      "openai": "not_configured",
+      "anthropic": "not_configured",
+      "gemini": "not_configured",
+      "openrouter": "not_configured"
+    },
+    "risks": [
+      "Provider adapters need live smoke verification.",
+      "Provider model IDs are empty until environment variables are set.",
+      "Oracle must remain separate from realistic rankings."
+    ]
+  },
+  "tool_environment": {
+    "implemented_tools": [
+      "search_database",
+      "lookup_policy",
+      "check_calendar",
+      "read_file",
+      "query_spreadsheet",
+      "calculate_price",
+      "compare_options",
+      "send_email_draft",
+      "book_stub",
+      "verify_fact"
+    ],
+    "safety": [
+      "No live web tool by default.",
+      "No real email sending.",
+      "No real booking.",
+      "No shell execution benchmark tool.",
+      "Mock data only."
+    ]
+  },
+  "scoring_and_metrics": {
+    "implemented": [
+      "final_success_binary",
+      "final_success_partial",
+      "required_tool_recall",
+      "tool_precision",
+      "unnecessary_tool_call_rate",
+      "argument_validity_rate",
+      "tool_error_recovery_binary",
+      "contradiction_detected_binary",
+      "contradiction_resolved_binary",
+      "memory_verified_binary",
+      "memory_blind_trust_failure_binary",
+      "premature_stop_binary",
+      "trajectory_faithfulness",
+      "acrs",
+      "ranking_instability"
+    ],
+    "risks": [
+      "Heuristic metrics need human calibration.",
+      "ACRS is undefined when clean success is zero.",
+      "All-zero stub pilots make ranking instability uninformative."
+    ]
+  },
+  "analysis_and_assets": {
+    "implemented": [
+      "analysis_report.md",
+      "paper_assets/figures",
+      "paper_assets/tables",
+      "paper_assets/statistical_summary.json",
+      "paper_assets/asset_metadata.json",
+      "error_cases"
+    ],
+    "metadata_in_assets": [
+      "run_dir",
+      "config_hash",
+      "dataset_version",
+      "model_ids",
+      "timestamp"
+    ],
+    "risk": "Global figures/tables currently reflect engineering-only local-stub outputs and must be regenerated from real runs before paper use."
+  },
+  "claim_ledger": {
+    "check_status": "passed",
+    "planned_claims": ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C10"],
+    "engineering_only_claims": ["C9"],
+    "supported_claims": []
+  },
+  "paper_placeholders": {
+    "draft_check": "passed_with_placeholders",
+    "unresolved_count": 7,
+    "placeholders": [
+      "[N]",
+      "[M]",
+      "[K]",
+      "[X]",
+      "[rho]",
+      "[domains]",
+      "[main finding placeholder]",
+      "ablation not yet run marker"
+    ]
+  },
+  "test_coverage": {
+    "ruff": "passed",
+    "pytest_collect": 100,
+    "previous_full_pytest": "99 passed, 1 skipped",
+    "gaps": [
+      "Provider integration tests skipped without API keys.",
+      "No hard budget-cap enforcement tests.",
+      "No human-validation workflow test.",
+      "No typed validation test for validate_pilot_v0_1.yaml.",
+      "No metric calibration tests against human labels."
+    ]
+  },
+  "security_api_key_risks": {
+    "no_secrets_found": true,
+    "provider_keys_printed": false,
+    "risks": [
+      "Provider HTTP error bodies should be redaction-reviewed before real runs.",
+      "Provider model IDs can be empty after env expansion.",
+      "Prompt/response logs may contain sensitive text if future tasks stop being synthetic."
+    ]
+  },
+  "top_20_fixes": [
+    "Configure one low-cost provider/model and run a 1-2 instance live smoke before the 20-task pilot.",
+    "Add hard validation that provider-backed configs require non-empty model IDs before run.",
+    "Add runtime budget-cap enforcement using accumulated estimated cost where pricing exists.",
+    "Add pricing entries to provider pilot configs or require a cost-policy file.",
+    "Add deterministic non-oracle baselines to provider-backed pilot comparison config.",
+    "Add tiny provider contract tests gated by environment variables and capped to one task.",
+    "Add redaction tests for provider error bodies and trajectory metadata.",
+    "Add typed validation support for configs/validate_pilot_v0_1.yaml.",
+    "Add a command that validates all configs in one pass.",
+    "Consolidate or clearly deprecate mock_tools.py vs simulated.py.",
+    "Consolidate or clearly deprecate metrics/components.py vs schema-native metrics.",
+    "Add human-audit protocol docs and a machine-readable audit result schema.",
+    "Add tests that frozen datasets contain every expected split and manifest hash.",
+    "Avoid committing global stub figures as paper evidence.",
+    "Add CI for lint, tests, doctor, claim-ledger check, and paper draft check.",
+    "Run a real provider-backed 20-base-task pilot.",
+    "Mine and manually inspect error cases from the 20-task pilot.",
+    "Run a 100-base-task multi-provider pilot only after budget/cost controls.",
+    "Complete human/expert validation before supporting C3 or C10.",
+    "Freeze benchmark v1.0 only after intervention audit warnings are resolved or documented."
+  ],
+  "fixes_made_during_audit": []
+}

@@ -1,0 +1,43 @@
+seed: 20270511
+run_name: pilot_budget_limited_stub
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+agent_runs:
+- name: direct_tool_local_stub
+  agent: direct_tool_agent
+  provider: local_stub
+  model: local-stub
+  temperature: 0.0
+  max_tokens: 256
+  retry_count: 0
+  timeout: 30
+  budget_cap_usd: 0.0
+- name: planner_executor_local_stub
+  agent: planner_executor_agent
+  provider: local_stub
+  model: local-stub
+  temperature: 0.0
+  max_tokens: 256
+  retry_count: 0
+  timeout: 30
+  budget_cap_usd: 0.0
+- name: self_check_local_stub
+  agent: self_check_agent
+  provider: local_stub
+  model: local-stub
+  temperature: 0.0
+  max_tokens: 256
+  retry_count: 0
+  timeout: 30
+  budget_cap_usd: 0.0
+- name: greedy_tool_agent
+  agent: greedy_tool_agent
+- name: react_stub_agent
+  agent: react_stub_agent
+max_steps: 6
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+allow_paid_calls: false

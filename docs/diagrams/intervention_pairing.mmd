@@ -1,0 +1,10 @@
+flowchart TB
+  BASE[Base task: user goal + tools + ground truth]
+  BASE --> CLEAN[Clean condition]
+  BASE --> INTERV[Intervention condition]
+  INTERV --> PATCH[Single-factor patch]
+  PATCH --> FAM[Family: tool_failure / memory / ...]
+  CLEAN --> GOAL[Goal preserved]
+  INTERV --> GOAL
+  CLEAN --> SCORE_C[Score: expected answer]
+  INTERV --> SCORE_I[Score: expected robust behavior]

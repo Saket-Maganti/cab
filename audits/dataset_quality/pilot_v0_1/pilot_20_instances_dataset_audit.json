@@ -1,0 +1,160 @@
+{
+  "average_max_steps": 5.45,
+  "average_required_tools": 3.25,
+  "clean_instances": 20,
+  "dataset_path": "/Users/saketmaganti/codexprojects/causal-agent-bench/data/processed/pilot_v0_1/pilot_20_instances.jsonl",
+  "difficulty_distribution": {
+    "unknown": 120
+  },
+  "domain_distribution": {
+    "calendar_email_workflow": 18,
+    "coding_debugging": 12,
+    "file_spreadsheet_qa": 18,
+    "operations_planning": 12,
+    "policy_compliance": 12,
+    "research_assistant": 12,
+    "shopping_comparison": 18,
+    "travel_planning": 18
+  },
+  "expected_answer_change_distribution": {
+    "clean": 20,
+    "unknown": 100
+  },
+  "hidden_ground_truth_risk_count": 120,
+  "impossible_task_warnings": 0,
+  "intervention_family_distribution": {
+    "ambiguous_instruction": 10,
+    "clean": 20,
+    "distractor_evidence": 10,
+    "irrelevant_tools": 10,
+    "long_horizon_dependency": 10,
+    "memory_corruption": 10,
+    "observation_conflict": 10,
+    "premature_success_signal": 10,
+    "tool_corruption": 10,
+    "tool_failure": 10,
+    "tool_removal": 10
+  },
+  "intervention_instances": 100,
+  "missing_metadata_count": 120,
+  "n_base_tasks": 20,
+  "n_instances": 120,
+  "near_duplicate_pairs": [
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_000.tool_removal",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_000.tool_failure",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_000.tool_corruption",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_000.irrelevant_tools",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_000.memory_corruption",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_001.clean",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_001.tool_removal",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_001.tool_failure",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_001.tool_corruption",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_001.irrelevant_tools",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_001.memory_corruption",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_002.clean",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_002.tool_removal",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_002.tool_failure",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_002.tool_corruption",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_002.irrelevant_tools",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.clean",
+      "b": "travel_planning_medium_002.memory_corruption",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.tool_removal",
+      "b": "travel_planning_medium_000.tool_failure",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.tool_removal",
+      "b": "travel_planning_medium_000.tool_corruption",
+      "jaccard": 1.0
+    },
+    {
+      "a": "travel_planning_medium_000.tool_removal",
+      "b": "travel_planning_medium_000.irrelevant_tools",
+      "jaccard": 1.0
+    }
+  ],
+  "quality_issue_count": 0,
+  "sample_quality_issues": [],
+  "schema_validation": {
+    "errors": [],
+    "invalid": 0,
+    "path": "/Users/saketmaganti/codexprojects/causal-agent-bench/data/processed/pilot_v0_1/pilot_20_instances.jsonl",
+    "schema": "instances",
+    "total": 120,
+    "valid": 120
+  },
+  "tool_mismatch_warnings": 0,
+  "warnings": [
+    "552 near-duplicate instruction pair(s) detected.",
+    "120 instance(s) missing difficulty/domain metadata.",
+    "120 instance(s) with hidden-ground-truth exposure risk."
+  ]
+}

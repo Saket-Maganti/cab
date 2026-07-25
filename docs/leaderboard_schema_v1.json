@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://causal-agent-bench.dev/schemas/leaderboard/v1.json",
+  "title": "Causal Agent Bench Leaderboard v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "schema_id",
+    "generated_at",
+    "eval_split",
+    "contamination_warning",
+    "reporting_rules",
+    "provenance",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0" },
+    "schema_id": { "type": "string", "const": "causal_agent_bench.leaderboard.v1" },
+    "generated_at": { "type": "string" },
+    "eval_split": { "type": "string" },
+    "split_policy_name": { "type": ["string", "null"] },
+    "splits_path": { "type": ["string", "null"] },
+    "contamination_warning": { "type": "string" },
+    "reporting_rules": {
+      "type": "object",
+      "required": [
+        "exclude_oracle_agents",
+        "disclose_prompts_and_scaffolds",
+        "disclose_model_version",
+        "disclose_cost_and_retries",
+        "no_training_on_held_out_test"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "run_dir": { "type": "string" },
+        "config_hash": { "type": "string" },
+        "seed": { "type": "string" },
+        "dataset_version": { "type": "string" },
+        "model_ids": { "type": "string" },
+        "scorer_versions": { "type": "string" },
+        "git_commit": { "type": "string" },
+        "timestamp": { "type": "string" }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entry_id",
+          "model",
+          "agent_scaffold",
+          "provider",
+          "submitted_at",
+          "dataset_version",
+          "eval_split",
+          "clean_success",
+          "intervention_success",
+          "acrs",
+          "per_family_scores"
+        ],
+        "properties": {
+          "entry_id": { "type": "string" },
+          "model": { "type": "string" },
+          "agent_scaffold": { "type": "string" },
+          "agent_run_name": { "type": "string" },
+          "provider": { "type": "string" },
+          "submitted_at": { "type": "string" },
+          "dataset_version": { "type": "string" },
+          "eval_split": { "type": "string" },
+          "leaderboard_eligibility": { "type": "string" },
+          "clean_success": { "type": ["number", "null"] },
+          "intervention_success": { "type": ["number", "null"] },
+          "acrs": { "type": ["number", "null"] },
+          "estimated_cost_usd": { "type": ["number", "null"] },
+          "avg_latency_s": { "type": ["number", "null"] },
+          "per_family_scores": { "type": "object" },
+          "retry_count": { "type": ["integer", "null"] },
+          "evidence_scope": { "type": "string" },
+          "engineering_only": { "type": "boolean" },
+          "run_dir": { "type": "string" },
+          "config_hash": { "type": "string" },
+          "git_commit": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+seed: 20270553
+run_name: diag_mock_retry_loop_agent
+cost_mode: zero_cost
+allow_paid_calls: false
+scientific_evidence: false
+scientific_evidence_level: preliminary_or_engineering
+evidence_scope: mock_diagnostic_only
+deployment_class: mock_diagnostic_only
+not_real_llm_behavior: true
+provider_type: local
+benchmark_path: data/sample/instances.jsonl
+limits:
+  max_trajectories: 3
+  stop_after_trajectories: 3
+agent_runs:
+  - name: mock_retry_loop_agent
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: retry_loop_agent
+max_steps: 4
+num_repeats: 1
+output_dir: results
+auto_score: true

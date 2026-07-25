@@ -3,6 +3,13 @@ from causal_agent_bench.agents.llm_adapters import (
     GeminiAgent,
     LocalHFChatAgent,
     OpenAIChatAgent,
+    OpenRouterAgent,
 )
 
-__all__ = ["OpenAIChatAgent", "AnthropicAgent", "GeminiAgent", "LocalHFChatAgent"]
+__all__ = [
+    "AnthropicAgent",
+    "GeminiAgent",
+    "LocalHFChatAgent",
+    "OpenAIChatAgent",
+    "OpenRouterAgent",
+]

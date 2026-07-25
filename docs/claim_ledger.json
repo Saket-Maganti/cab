@@ -1,0 +1,363 @@
+{
+  "claims": [
+    {
+      "blocking_items": [
+        "Run final non-oracle pilot",
+        "Compute uncertainty",
+        "Audit task/intervention validity"
+      ],
+      "claim_id": "C1",
+      "claim_text": "Clean success overestimates robust competence under intervention.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "tables/table2_main_agent_performance.csv",
+        "figures/figure2_clean_vs_intervention_success.png"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Scale-100 confirmatory and Main-500 confirmatory paired evaluation",
+      "required_evidence": "Paired clean vs intervention runs across multiple non-oracle agents with confidence intervals; intervention success lower than clean success for credible agents.",
+      "validation_threshold": "Complete matched pairs; preregistered uncertainty; audited scorer; direction and interval reported without suppressing null results.",
+      "current_state": "EXECUTION_PENDING",
+      "allowed_wording": [
+        "Clean success may overestimate robustness; this remains a preregistered empirical hypothesis."
+      ],
+      "forbidden_wording": [
+        "Clean success has been shown to overestimate robust competence.",
+        "The benchmark proves intervention degradation."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/01_introduction.tex",
+        "paper/latexpaper/sections/07_results.tex"
+      ],
+      "short_name": "clean_success_overestimates_robustness",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Run family-balanced benchmark",
+        "Add memory-corruption audit subset"
+      ],
+      "claim_id": "C2",
+      "claim_text": "Tool failure and memory corruption expose hidden weaknesses.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "figures/figure3_intervention_family_breakdown.png",
+        "tables/table3_intervention_family_performance.csv"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Scale-100 and Main-500 intervention-family analysis",
+      "required_evidence": "Intervention-family breakdown showing degradation under tool failure and memory corruption with representative trajectories.",
+      "validation_threshold": "Family-matched denominators, preregistered family sample sizes, clustered intervals, and reviewed representative trajectories.",
+      "current_state": "EXECUTION_PENDING",
+      "allowed_wording": [
+        "Tool failure and memory corruption are designed to test recovery and verification weaknesses."
+      ],
+      "forbidden_wording": [
+        "Tool failure and memory corruption expose hidden weaknesses across models.",
+        "These families are universally the hardest."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/04_interventional_framework.tex",
+        "paper/latexpaper/sections/07_results.tex"
+      ],
+      "short_name": "tool_failure_memory_corruption_expose_weaknesses",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Run human validation subset",
+        "Calibrate deterministic trajectory diagnostics"
+      ],
+      "claim_id": "C3",
+      "claim_text": "Trajectory metrics detect failures missed by final-answer scoring.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "figures/figure6_trajectory_final_disagreement.png",
+        "results/<run_dir>/error_cases/"
+      ],
+      "linked_validation_files": [
+        "tables/table5_human_validation_agreement.csv"
+      ],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Main-500 scorer validation with blinded human review",
+      "required_evidence": "Final-success trajectories where component metrics expose unsupported or unsafe behavior, plus human audit agreement.",
+      "validation_threshold": "Blinded human subset with two independent reviewers, adjudication, and reported scorer false-positive/false-negative uncertainty.",
+      "current_state": "HUMAN_REVIEW_PENDING",
+      "allowed_wording": [
+        "Trajectory diagnostics are intended to reveal process failures that final-answer scoring can miss."
+      ],
+      "forbidden_wording": [
+        "Trajectory metrics detect failures missed by final-answer scoring.",
+        "The automated diagnostics are human validated."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/05_metrics.tex",
+        "paper/latexpaper/sections/08_human_validation.tex"
+      ],
+      "short_name": "trajectory_metrics_reveal_hidden_failures",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Run enough agents/models for ranking analysis"
+      ],
+      "claim_id": "C4",
+      "claim_text": "ACRS changes model rankings relative to clean success.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "figures/figure4_ranking_instability.png",
+        "tables/table2_main_agent_performance.csv"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Main-500 multi-model rank comparison with clustered bootstrap",
+      "required_evidence": "Ranking comparison between clean success and ACRS with Spearman correlation and uncertainty.",
+      "validation_threshold": "At least three eligible non-oracle models on common matched units, with rank probabilities and clustered bootstrap intervals.",
+      "current_state": "EXECUTION_PENDING",
+      "allowed_wording": [
+        "The analysis will test whether clean-success and robustness rankings differ."
+      ],
+      "forbidden_wording": [
+        "ACRS changes model rankings.",
+        "The benchmark yields a new definitive leaderboard."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/05_metrics.tex",
+        "paper/latexpaper/sections/07_results.tex"
+      ],
+      "short_name": "acrs_changes_rankings",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Define planning proxy",
+        "Run scaffold ablation"
+      ],
+      "claim_id": "C5",
+      "claim_text": "Recovery ability is separable from planning ability.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "tables/table2_main_agent_performance.csv",
+        "tables/table4_ablation_results.csv"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Main-500 component analysis and controlled recovery ablation",
+      "required_evidence": "Component analysis showing agents with similar planning/tool-selection scores differ in recovery after failures, or a controlled scaffold ablation.",
+      "validation_threshold": "Preregistered component or ablation contrast on common tasks with paired effect sizes and multiplicity disclosure.",
+      "current_state": "EXECUTION_PENDING",
+      "allowed_wording": [
+        "Recovery is modeled as a distinct benchmark component whose separability remains to be tested."
+      ],
+      "forbidden_wording": [
+        "Recovery ability is separable from planning ability.",
+        "The benchmark identifies independent latent skills."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/05_metrics.tex",
+        "paper/latexpaper/sections/09_ablations.tex"
+      ],
+      "short_name": "recovery_separable_from_planning",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Implement scaffold conditions",
+        "Run ablation config"
+      ],
+      "claim_id": "C6",
+      "claim_text": "Simple self-checking improves some intervention families but not all.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "tables/table4_ablation_results.csv"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Controlled prompt/scaffold ablation on a frozen task slice",
+      "required_evidence": "Prompt/scaffold ablation with fixed agents/tasks showing targeted improvements and tradeoffs.",
+      "validation_threshold": "Frozen-task paired ablation with prompt hashes, equal budgets, uncertainty, and all intervention-family effects disclosed.",
+      "current_state": "EXECUTION_PENDING",
+      "allowed_wording": [
+        "A preregistered ablation will test whether self-checking changes robustness."
+      ],
+      "forbidden_wording": [
+        "Self-checking improves robustness.",
+        "The scaffold is an effective intervention."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/07_results.tex",
+        "paper/latexpaper/sections/09_ablations.tex"
+      ],
+      "short_name": "self_checking_selectively_improves_robustness",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Run irrelevant-tools family with non-oracle agents"
+      ],
+      "claim_id": "C7",
+      "claim_text": "Some agents overuse tools even when unnecessary.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "tables/table2_main_agent_performance.csv",
+        "figures/figure5_failure_mode_distribution.png"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Main-500 irrelevant-tools family analysis",
+      "required_evidence": "Irrelevant-tools intervention showing unnecessary-tool-call rate differences without matching final-success gains.",
+      "validation_threshold": "Eligible irrelevant-tools runs with unnecessary-call rates, matched task success, uncertainty, and audited examples.",
+      "current_state": "EXECUTION_PENDING",
+      "allowed_wording": [
+        "The irrelevant-tools family is designed to measure unnecessary tool use."
+      ],
+      "forbidden_wording": [
+        "Agents overuse tools even when unnecessary.",
+        "Specific models are inefficient tool users."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/04_interventional_framework.tex",
+        "paper/latexpaper/sections/07_results.tex"
+      ],
+      "short_name": "agents_overuse_tools",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Run premature-success-signal family",
+        "Audit examples"
+      ],
+      "claim_id": "C8",
+      "claim_text": "Some agents stop prematurely under misleading success signals.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "figures/figure5_failure_mode_distribution.png",
+        "results/<run_dir>/error_cases/premature_stopping.md"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Main-500 premature-success-signal family analysis",
+      "required_evidence": "Premature-success-signal intervention showing increased premature-stop rate and representative early-final-answer trajectories.",
+      "validation_threshold": "Eligible premature-signal runs with matched premature-stop rates, success effects, uncertainty, and audited examples.",
+      "current_state": "EXECUTION_PENDING",
+      "allowed_wording": [
+        "The premature-success-signal family is designed to test stopping behavior."
+      ],
+      "forbidden_wording": [
+        "Agents stop prematurely under misleading success signals.",
+        "The intervention demonstrates overconfidence."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/04_interventional_framework.tex",
+        "paper/latexpaper/sections/07_results.tex"
+      ],
+      "short_name": "agents_stop_prematurely",
+      "status": "planned"
+    },
+    {
+      "blocking_items": [
+        "Repeat in clean CI environment",
+        "Run real provider-backed pilot before using non-oracle LLM observations as scientific evidence"
+      ],
+      "claim_id": "C9",
+      "claim_text": "CausalAgentBench smoke tests are reproducible without paid services.",
+      "current_evidence_paths": [
+        "README.md",
+        "docs/RUNNING_EXPERIMENTS.md",
+        "docs/REPRODUCIBILITY.md"
+      ],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "docs/REPRODUCIBILITY.md",
+        "docs/RUNNING_EXPERIMENTS.md"
+      ],
+      "linked_validation_files": [],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Provider-free reproducibility validation in a fresh environment",
+      "required_evidence": "Fresh environment run of install, help, validation, smoke CLI, tests, and local analysis without paid services.",
+      "validation_threshold": "Fresh provider-free install, CLI, validation, fixture, and test commands all pass from the documented environment.",
+      "current_state": "ENGINEERING_ONLY",
+      "allowed_wording": [
+        "The repository includes provider-free fixture and validation paths."
+      ],
+      "forbidden_wording": [
+        "The scientific benchmark results are reproducible.",
+        "Provider-free smoke tests validate model behavior."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/03_benchmark_design.tex",
+        "paper/latexpaper/sections/11_ethics_reproducibility.tex"
+      ],
+      "short_name": "smoke_tests_are_local_and_reproducible",
+      "status": "engineering_only"
+    },
+    {
+      "blocking_items": [
+        "Create annotation protocol",
+        "Run expert audit"
+      ],
+      "claim_id": "C10",
+      "claim_text": "Controlled interventions isolate intended skill components.",
+      "current_evidence_paths": [],
+      "last_updated": "2026-05-10",
+      "linked_run_dirs": [],
+      "linked_tables_figures": [
+        "tables/table5_human_validation_agreement.csv",
+        "docs/INTERVENTIONS.md"
+      ],
+      "linked_validation_files": [
+        "tables/table5_human_validation_agreement.csv",
+        "data/frozen/pilot_v0.1/intervention_audit_report.json"
+      ],
+      "notes": "",
+      "owner": "CausalAgentBench maintainers",
+      "required_study": "Independent two-reviewer intervention-isolation audit with adjudication",
+      "required_evidence": "Human or expert audit that interventions preserve the user goal and primarily alter the intended factor.",
+      "validation_threshold": "Every locked candidate has two independent genuine reviews; disagreements are adjudicated; raw agreement is at least 0.80; all final decisions pass.",
+      "current_state": "HUMAN_REVIEW_PENDING",
+      "allowed_wording": [
+        "Interventions are designed to isolate targeted components; human validation is pending."
+      ],
+      "forbidden_wording": [
+        "Controlled interventions isolate intended skill components.",
+        "C10 passed.",
+        "The benchmark supports causal attribution."
+      ],
+      "paper_location": [
+        "paper/latexpaper/sections/04_interventional_framework.tex",
+        "paper/latexpaper/sections/08_human_validation.tex"
+      ],
+      "short_name": "interventions_isolate_targeted_components",
+      "status": "planned"
+    }
+  ],
+  "schema_version": 3
+}

@@ -1,0 +1,60 @@
+registry_version: '0.1'
+note: 'Provider metadata for CausalAgentBench pilot runs. Providers are opt-in via
+  environment variables; none are required for local-stub or dry-run workflows.
+
+  '
+providers:
+  openai:
+    display_name: OpenAI
+    paid: true
+    enabled: false
+    api_key_env: OPENAI_API_KEY
+    model_id_env: OPENAI_MODEL_ID
+    default_base_url: https://api.openai.com/v1/chat/completions
+    openai_compatible: true
+  anthropic:
+    display_name: Anthropic
+    paid: true
+    enabled: false
+    api_key_env: ANTHROPIC_API_KEY
+    model_id_env: ANTHROPIC_MODEL_ID
+    default_base_url: https://api.anthropic.com/v1/messages
+  gemini:
+    display_name: Google Gemini
+    paid: true
+    enabled: false
+    api_key_env:
+    - GOOGLE_API_KEY
+    - GEMINI_API_KEY
+    model_id_env: GEMINI_MODEL_ID
+    default_base_url: https://generativelanguage.googleapis.com/v1beta
+  openrouter:
+    display_name: OpenRouter
+    paid: true
+    enabled: false
+    api_key_env: OPENROUTER_API_KEY
+    model_id_env: OPENROUTER_MODEL_ID
+    default_base_url: https://openrouter.ai/api/v1/chat/completions
+    openai_compatible: true
+  openai_compatible:
+    display_name: OpenAI-compatible endpoint
+    paid: true
+    enabled: false
+    api_key_env: OPENAI_COMPATIBLE_API_KEY
+    model_id_env: OPENAI_COMPATIBLE_MODEL_ID
+    base_url_env: OPENAI_COMPATIBLE_BASE_URL
+    openai_compatible: true
+  local_openai:
+    display_name: Local open-weight server
+    paid: false
+    enabled: false
+    api_key_env: LOCAL_OPENAI_API_KEY
+    model_id_env: LOCAL_OPENAI_MODEL_ID
+    base_url_env: LOCAL_OPENAI_BASE_URL
+    default_base_url: http://localhost:11434/v1
+    openai_compatible: true
+  local_stub:
+    display_name: Local deterministic stub
+    paid: false
+    enabled: true
+    requires_api_key: false

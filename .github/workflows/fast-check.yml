@@ -1,0 +1,36 @@
+name: Fast Check
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  fast-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package
+        run: python -m pip install -e ".[dev]"
+
+      - name: Fast checks
+        run: make fast-check
+        env:
+          MPLCONFIGDIR: /tmp/mpl
+
+      - name: Precommit fast
+        run: bash scripts/precommit_fast.sh

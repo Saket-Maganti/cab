@@ -1,0 +1,79 @@
+seed: 20270540
+run_name: commercial_api_main_500
+allow_paid_calls: true
+benchmark_path: data/processed/main_v0_1_500/pilot_instances.jsonl
+budget_cap_usd: 2000.0
+task_budget_cap_usd: 2.5
+cost_models:
+  openai:
+    default:
+      input_per_1m_tokens: 2.5
+      output_per_1m_tokens: 10.0
+  anthropic:
+    default:
+      input_per_1m_tokens: 3.0
+      output_per_1m_tokens: 15.0
+  gemini:
+    default:
+      input_per_1m_tokens: 1.25
+      output_per_1m_tokens: 5.0
+  openrouter:
+    default:
+      input_per_1m_tokens: 2.0
+      output_per_1m_tokens: 8.0
+agent_runs:
+- name: direct_tool_openai
+  agent: direct_tool_agent
+  provider: openai
+  model: ${OPENAI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 900
+  retry_count: 2
+  timeout: 90
+  budget_cap_usd: 250.0
+  extra:
+    api_version: openai-chat-completions-v1
+    input_tokens_per_call_estimate: 2000
+- name: planner_executor_anthropic
+  agent: planner_executor_agent
+  provider: anthropic
+  model: ${ANTHROPIC_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 1100
+  retry_count: 2
+  timeout: 90
+  budget_cap_usd: 250.0
+  extra:
+    anthropic_version: '2023-06-01'
+    input_tokens_per_call_estimate: 2200
+- name: self_check_gemini
+  agent: self_check_agent
+  provider: gemini
+  model: ${GEMINI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 1100
+  retry_count: 2
+  timeout: 90
+  budget_cap_usd: 250.0
+  extra:
+    input_tokens_per_call_estimate: 2400
+- name: self_check_openrouter
+  agent: self_check_agent
+  provider: openrouter
+  model: ${OPENROUTER_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 1100
+  retry_count: 2
+  timeout: 90
+  budget_cap_usd: 250.0
+  extra:
+    input_tokens_per_call_estimate: 2400
+max_steps: 10
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+budget:
+  require_explicit_paid_approval: true

@@ -1,0 +1,147 @@
+{
+  "benchmark_version": "naturalistic_transfer_v1_candidate",
+  "config": {
+    "balanced_intervention_families": true,
+    "benchmark_version": "naturalistic_transfer_v1_candidate",
+    "dev_split_size": 0,
+    "difficulty_mix": {
+      "easy": 0.25,
+      "hard": 0.25,
+      "medium": 0.25,
+      "stress": 0.25
+    },
+    "domains": [
+      "mock_email_thread",
+      "mock_calendar_scheduling",
+      "mock_spreadsheet_ops",
+      "mock_policy_document",
+      "mock_bug_report",
+      "mock_product_database",
+      "mock_customer_escalation",
+      "mock_incident_postmortem"
+    ],
+    "heldout_split_size": 8,
+    "human_audit_sample_size": 80,
+    "id_namespace": "naturalistic_v1",
+    "intervention_families": [
+      "tool_removal",
+      "tool_failure",
+      "tool_corruption",
+      "irrelevant_tools",
+      "memory_corruption",
+      "observation_conflict",
+      "ambiguous_instruction",
+      "long_horizon_dependency",
+      "premature_success_signal",
+      "distractor_evidence"
+    ],
+    "interventions_per_task": 5,
+    "num_base_tasks": 80,
+    "output_dir": "data/processed/naturalistic_transfer_v1_candidate",
+    "pilot_split_size": 72,
+    "seed": 20260724,
+    "task_style": "naturalistic"
+  },
+  "config_hash": "98e79f773fcfb0e3",
+  "counts": {
+    "base_tasks": 80,
+    "instances": 480,
+    "interventions": 400
+  },
+  "distributions": {
+    "difficulties": {
+      "easy": 20,
+      "hard": 20,
+      "medium": 20,
+      "stress": 20
+    },
+    "domains": {
+      "mock_bug_report": 10,
+      "mock_calendar_scheduling": 10,
+      "mock_customer_escalation": 10,
+      "mock_email_thread": 10,
+      "mock_incident_postmortem": 10,
+      "mock_policy_document": 10,
+      "mock_product_database": 10,
+      "mock_spreadsheet_ops": 10
+    },
+    "intervention_families": {
+      "ambiguous_instruction": 40,
+      "distractor_evidence": 40,
+      "irrelevant_tools": 40,
+      "long_horizon_dependency": 40,
+      "memory_corruption": 40,
+      "observation_conflict": 40,
+      "premature_success_signal": 40,
+      "tool_corruption": 40,
+      "tool_failure": 40,
+      "tool_removal": 40
+    },
+    "tool_patterns": {
+      "check_calendar -> read_file -> send_email_draft": 5,
+      "check_calendar -> read_file -> send_email_draft -> verify_fact -> search_database": 2,
+      "check_calendar -> read_file -> send_email_draft -> verify_fact -> search_database -> query_spreadsheet": 3,
+      "read_file": 15,
+      "read_file -> lookup_policy -> verify_fact": 5,
+      "read_file -> lookup_policy -> verify_fact -> search_database -> query_spreadsheet": 6,
+      "read_file -> lookup_policy -> verify_fact -> search_database -> query_spreadsheet -> compare_options": 2,
+      "read_file -> lookup_policy -> verify_fact -> send_email_draft -> search_database": 6,
+      "read_file -> lookup_policy -> verify_fact -> send_email_draft -> search_database -> query_spreadsheet": 5,
+      "read_file -> query_spreadsheet -> compare_options": 3,
+      "read_file -> query_spreadsheet -> compare_options -> verify_fact -> search_database": 2,
+      "read_file -> query_spreadsheet -> compare_options -> verify_fact -> search_database -> lookup_policy": 2,
+      "read_file -> search_database -> verify_fact": 2,
+      "read_file -> search_database -> verify_fact -> query_spreadsheet -> lookup_policy": 1,
+      "read_file -> search_database -> verify_fact -> query_spreadsheet -> lookup_policy -> compare_options": 3,
+      "read_file -> verify_fact -> search_database": 3,
+      "read_file -> verify_fact -> search_database -> query_spreadsheet -> lookup_policy": 2,
+      "read_file -> verify_fact -> search_database -> query_spreadsheet -> lookup_policy -> compare_options": 3,
+      "search_database": 5,
+      "search_database -> verify_fact -> read_file": 2,
+      "search_database -> verify_fact -> read_file -> query_spreadsheet -> lookup_policy": 1,
+      "search_database -> verify_fact -> read_file -> query_spreadsheet -> lookup_policy -> compare_options": 2
+    }
+  },
+  "duplicates": {
+    "instance_ids": [],
+    "instructions": [
+      "Mock artifact EMAIL-4482:\nFrom: vendor-ops@example.com\nSubject: Re: expedited refund request\nBody: Finance approved the 420 USD expedited refund for ticket REF-992.\n\nUsing only the mock email thread below, determine whether the expedited refund was approved and draft a one-paragraph internal summary. Do not send any email.\n\nHandle conflicting evidence in the artifact bundle and note uncertainty if needed.",
+      "Mock artifact EMAIL-4482:\nFrom: vendor-ops@example.com\nSubject: Re: expedited refund request\nBody: Finance approved the 420 USD expedited refund for ticket REF-992.\n\nUsing only the mock email thread below, determine whether the expedited refund was approved and draft a one-paragraph internal summary. Do not send any email.\n\nPreserve intermediate evidence because later steps depend on it.",
+      "Mock artifact EMAIL-5510:\nFrom: billing@example.com\nSubject: refund follow-up\nBody: The expedited refund for order REF-992 is approved at 420 USD.\n\nUsing only the mock email thread below, determine whether the expedited refund was approved and draft a one-paragraph internal summary. Do not send any email.\n\nKeep the answer concise and cite the artifact explicitly.",
+      "Mock artifact EMAIL-5510:\nFrom: billing@example.com\nSubject: refund follow-up\nBody: The expedited refund for order REF-992 is approved at 420 USD.\n\nUsing only the mock email thread below, determine whether the expedited refund was approved and draft a one-paragraph internal summary. Do not send any email.\n\nUse the available tools before answering and cite the artifact.",
+      "Mock bug report BUG-1182 describes checkout timeouts after deploy 2026.05.01.\n\nUsing the mock bug report and attached log snippet, identify the most likely root cause of the checkout timeout regression.\n\nHandle conflicting evidence in the artifact bundle and note uncertainty if needed.",
+      "Mock bug report BUG-1182 describes checkout timeouts after deploy 2026.05.01.\n\nUsing the mock bug report and attached log snippet, identify the most likely root cause of the checkout timeout regression.\n\nKeep the answer concise and cite the artifact explicitly.",
+      "Mock calendar export CAL-20260714 lists conflicts until 13:30 and an open 45-minute block at 14:00.\n\nReview the mock calendar export for the product review and propose the first 45-minute slot on 2026-07-14 that works for all required attendees. Draft a scheduling email only.\n\nUse the available tools before answering and cite the artifact.",
+      "Mock calendar export CAL-20260714-B shows required attendees free from 14:00 to 15:30.\n\nReview the mock calendar export for the product review and propose the first 45-minute slot on 2026-07-14 that works for all required attendees. Draft a scheduling email only.\n\nHandle conflicting evidence in the artifact bundle and note uncertainty if needed.",
+      "Mock calendar export CAL-20260714-B shows required attendees free from 14:00 to 15:30.\n\nReview the mock calendar export for the product review and propose the first 45-minute slot on 2026-07-14 that works for all required attendees. Draft a scheduling email only.\n\nUse the available tools before answering and cite the artifact.",
+      "Mock catalog table CAT-EU-2026 lists SKU HX-204 as out of stock in EU with 12-day lead time.\n\nQuery the mock product catalog for SKU HX-204 and report whether it is in stock in the EU warehouse and what the listed lead time is.\n\nKeep the answer concise and cite the artifact explicitly.",
+      "Mock escalation bundle ESC-771-B includes replacement-shipping allowance for premium tier.\n\nA mock customer escalation packet includes an email thread, calendar hold, and policy note. Determine whether same-day replacement shipping is allowed and draft a support reply.\n\nHandle conflicting evidence in the artifact bundle and note uncertainty if needed.",
+      "Mock escalation bundle ESC-771-B includes replacement-shipping allowance for premium tier.\n\nA mock customer escalation packet includes an email thread, calendar hold, and policy note. Determine whether same-day replacement shipping is allowed and draft a support reply.\n\nPreserve intermediate evidence because later steps depend on it.",
+      "Mock handbook page POL-TRAVEL-INTL-04b repeats the 800 USD international threshold.\n\nRead the mock travel reimbursement policy excerpt and determine whether a 920 dollar international trip requires pre-approval.\n\nHandle conflicting evidence in the artifact bundle and note uncertainty if needed.",
+      "Mock handbook page POL-TRAVEL-INTL-04b repeats the 800 USD international threshold.\n\nRead the mock travel reimbursement policy excerpt and determine whether a 920 dollar international trip requires pre-approval.\n\nPreserve intermediate evidence because later steps depend on it.",
+      "Mock import note WB-NOTE-12 says northwest missed target by the largest margin.\n\nOpen the mock workbook summary for the regional fulfillment sheet and report which region has the largest negative variance versus the Q2 target.\n\nKeep the answer concise and cite the artifact explicitly.",
+      "Mock incident doc PM-204-B contains mitigation ownership and rollout-status fields.\n\nRead the mock incident postmortem draft and identify the mitigation owner responsible for the delayed rollout rollback.\n\nPreserve intermediate evidence because later steps depend on it.",
+      "Mock incident doc PM-204-B contains mitigation ownership and rollout-status fields.\n\nRead the mock incident postmortem draft and identify the mitigation owner responsible for the delayed rollout rollback.\n\nUse the available tools before answering and cite the artifact.",
+      "Mock inventory snapshot INV-EU-77 confirms SKU HX-204 unavailable in EU.\n\nQuery the mock product catalog for SKU HX-204 and report whether it is in stock in the EU warehouse and what the listed lead time is.\n\nKeep the answer concise and cite the artifact explicitly.",
+      "Mock log snippet LOG-504 shows repeated HTTP 504 responses triggering retries.\n\nUsing the mock bug report and attached log snippet, identify the most likely root cause of the checkout timeout regression.\n\nKeep the answer concise and cite the artifact explicitly.",
+      "Mock packet ESC-771 contains an angry email, a same-day calendar hold, and policy note POL-REPLACE-01.\n\nA mock customer escalation packet includes an email thread, calendar hold, and policy note. Determine whether same-day replacement shipping is allowed and draft a support reply.\n\nUse the available tools before answering and cite the artifact."
+    ],
+    "task_ids": []
+  },
+  "quality_passed": false,
+  "quality_warnings": [
+    "intervention validity risk high for naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict: observation_conflict"
+  ],
+  "splits": {
+    "dev": 0,
+    "heldout": 8,
+    "pilot": 72,
+    "pilot_100": 72,
+    "pilot_20": 0
+  },
+  "statistics": {
+    "average_interventions_per_task": 5.0,
+    "average_max_steps": 6.0,
+    "average_required_tools": 3.75
+  }
+}

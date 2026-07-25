@@ -2,9 +2,9 @@ seed: 23
 run_name: human_validation_sample
 benchmark_dir: data/processed/dev_20
 agents:
-  - scripted_oracle_agent
-  - greedy_tool_agent
-  - react_stub_agent
+- scripted_oracle_agent
+- greedy_tool_agent
+- react_stub_agent
 max_steps: 10
 num_repeats: 1
 output_dir: results
@@ -12,3 +12,4 @@ save_observations: true
 save_agent_thoughts: true
 fail_fast: false
 auto_score: true
+allow_paid_calls: false

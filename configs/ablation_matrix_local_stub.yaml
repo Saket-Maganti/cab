@@ -1,0 +1,52 @@
+matrix_version: '1.0'
+seed: 20270555
+run_name: ablation_matrix_local_stub
+benchmark_path: data/sample/instances.jsonl
+output_dir: results/ablation_matrix
+max_steps: 8
+num_repeats: 1
+auto_score: true
+base_model:
+  agent: direct_llm_tool_agent
+  provider: local_stub
+  model: local-stub
+  temperature: 0.0
+  max_tokens: 512
+  retry_count: 0
+  timeout: 30.0
+  budget_cap_usd: 0.0
+  allow_paid_calls: false
+strategy: explicit
+factors:
+  prompt_style:
+  - direct
+  self_check:
+  - 'off'
+  - 'on'
+  memory_verification:
+  - 'off'
+  recovery_instruction:
+  - 'off'
+  contradiction_instruction:
+  - 'off'
+  uncertainty_instruction:
+  - 'off'
+cells:
+- prompt_style: direct
+  self_check: 'off'
+  memory_verification: 'off'
+  recovery_instruction: 'off'
+  contradiction_instruction: 'off'
+  uncertainty_instruction: 'off'
+- prompt_style: direct
+  self_check: 'on'
+  memory_verification: 'off'
+  recovery_instruction: 'off'
+  contradiction_instruction: 'off'
+  uncertainty_instruction: 'off'
+safeguards:
+  max_cells: 8
+  max_estimated_cost_usd: 0.0
+  require_dry_run_before_execute: false
+  block_paid_providers_without_flag: true
+allow_paid_calls: false

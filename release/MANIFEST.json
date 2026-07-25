@@ -1,0 +1,16 @@
+{
+  "default_live_providers": false,
+  "files": {
+    "docs/CAB_FOCUSED_PROJECT_SURFACE.md": {
+      "sha256": "a372a7e53d0891e3406b6d3647ba90eaccc5eb0a149015c1a6164b331b5d105d"
+    },
+    "docs/CLAIM_ARCHITECTURE.md": {
+      "sha256": "69a9e663084528b8586bbec11937e08d7b52cf72aced1fadc43ee286a12316ec"
+    },
+    "reports/REPO_REALITY_FREEZE.md": {
+      "sha256": "723fd573b948cddc02fafb765055310fd5b391224db6a156c98be555b9318982"
+    }
+  },
+  "paper_evidence": false,
+  "schema": "cab.release.manifest.v1"
+}

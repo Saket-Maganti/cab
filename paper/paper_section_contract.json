@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "scope": "No-run paper authoring contract for NeurIPS conversion. It maps sections to claim IDs and keeps unsupported claims visibly framed as planned, blocked, or engineering-only.",
+  "linked_policy_docs": [
+    "docs/CLAIM_LEDGER.md",
+    "docs/DO_NOT_OVERCLAIM.md",
+    "docs/EVIDENCE_LEVEL_POLICY.md",
+    "docs/NEURIPS_SUBMISSION_GATE.md",
+    "paper/PAPER_SYNC_MAP.md"
+  ],
+  "sections": [
+    {
+      "section_id": "abstract",
+      "section_label": "Abstract",
+      "status": "empirical_placeholder_allowed",
+      "paper_files": [
+        "paper/latexpaper/sections/00_abstract.tex",
+        "paper/latexpaper/generated/00_abstract.tex"
+      ],
+      "claim_ids": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "minimum_claim_status_for_submission": "supported",
+      "required_markers_when_any_claim_unsupported": [
+        "planned final study",
+        "will test",
+        "not yet reported"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "we show",
+        "we find",
+        "we demonstrate",
+        "our results show",
+        "outperforms",
+        "state-of-the-art"
+      ],
+      "must_clear_markers_for_submission": true
+    },
+    {
+      "section_id": "introduction",
+      "section_label": "Introduction",
+      "status": "framing_without_empirical_claims",
+      "paper_files": [
+        "paper/latexpaper/sections/01_introduction.tex",
+        "paper/latexpaper/generated/01_introduction_snippet.tex"
+      ],
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "required_markers_when_any_claim_unsupported": [
+        "hypothesis",
+        "planned tests",
+        "placeholders",
+        "engineering-only"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "we show",
+        "we find",
+        "we demonstrate",
+        "our results show",
+        "significantly improves"
+      ],
+      "must_clear_markers_for_submission": false
+    },
+    {
+      "section_id": "interventional_framework",
+      "section_label": "Interventional Framework",
+      "status": "method_draft_with_c10_risk",
+      "paper_files": [
+        "paper/latexpaper/sections/04_interventional_framework.tex"
+      ],
+      "claim_ids": [
+        "C2",
+        "C3",
+        "C5",
+        "C7",
+        "C8",
+        "C10"
+      ],
+      "allowed_claim_statuses": [
+        "planned",
+        "supported",
+        "weakened",
+        "engineering_only"
+      ],
+      "required_markers_when_any_claim_unsupported": [
+        "audits rather than assumes",
+        "not sufficient",
+        "expert or human"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "human-validated",
+        "validated interventions",
+        "proves isolation"
+      ],
+      "must_clear_markers_for_submission": false
+    },
+    {
+      "section_id": "results",
+      "section_label": "Results RQ1-RQ5",
+      "status": "empirical_blocked",
+      "paper_files": [
+        "paper/latexpaper/sections/07_results.tex",
+        "paper/latexpaper/generated/07_results.tex"
+      ],
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "minimum_claim_status_for_submission": "supported",
+      "required_markers_when_any_claim_unsupported": [
+        "no final scientific results",
+        "planned test",
+        "TODO",
+        "not yet run",
+        "placeholder"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "we show",
+        "we find",
+        "we demonstrate",
+        "our results show",
+        "significantly improves",
+        "outperforms"
+      ],
+      "must_clear_markers_for_submission": true
+    },
+    {
+      "section_id": "human_validation",
+      "section_label": "Human Validation",
+      "status": "human_validation_blocked",
+      "paper_files": [
+        "paper/latexpaper/sections/08_human_validation.tex",
+        "paper/latexpaper/generated/08_human_validation.tex"
+      ],
+      "claim_ids": [
+        "C3",
+        "C10"
+      ],
+      "minimum_claim_status_for_submission": "supported",
+      "required_markers_when_any_claim_unsupported": [
+        "not yet complete",
+        "placeholder",
+        "remain blocked"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "human-validated",
+        "annotators agreed",
+        "agreement statistics show",
+        "validated interventions"
+      ],
+      "must_clear_markers_for_submission": true
+    },
+    {
+      "section_id": "ablations",
+      "section_label": "Ablations",
+      "status": "ablation_blocked",
+      "paper_files": [
+        "paper/latexpaper/sections/09_ablations.tex",
+        "paper/latexpaper/generated/09_ablations.tex"
+      ],
+      "claim_ids": [
+        "C5",
+        "C6"
+      ],
+      "minimum_claim_status_for_submission": "supported",
+      "required_markers_when_any_claim_unsupported": [
+        "no ablation result is claimed",
+        "not yet run",
+        "verified non-oracle"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "self-checking improves",
+        "we find",
+        "we show",
+        "significantly improves"
+      ],
+      "must_clear_markers_for_submission": true
+    },
+    {
+      "section_id": "ethics_reproducibility",
+      "section_label": "Ethics and Reproducibility",
+      "status": "engineering_only_allowed",
+      "paper_files": [
+        "paper/latexpaper/sections/11_ethics_reproducibility.tex"
+      ],
+      "claim_ids": [
+        "C9"
+      ],
+      "allowed_claim_statuses": [
+        "engineering_only",
+        "supported"
+      ],
+      "required_markers_when_any_claim_unsupported": [
+        "broader scientific claims remain planned",
+        "do not imply"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "empirical claims are supported",
+        "scientific results are complete"
+      ],
+      "must_clear_markers_for_submission": false
+    },
+    {
+      "section_id": "conclusion",
+      "section_label": "Conclusion",
+      "status": "hypothesis_until_results",
+      "paper_files": [
+        "paper/latexpaper/sections/12_conclusion.tex"
+      ],
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "minimum_claim_status_for_submission": "supported",
+      "required_markers_when_any_claim_unsupported": [
+        "hypothesis",
+        "remains to be tested",
+        "without claiming"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "we showed",
+        "we found",
+        "results confirm",
+        "agents fail"
+      ],
+      "must_clear_markers_for_submission": true
+    }
+  ]
+}

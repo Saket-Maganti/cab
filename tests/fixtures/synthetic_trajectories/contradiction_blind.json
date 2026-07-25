@@ -1,0 +1,22 @@
+{
+  "schema_version": "trajectory_v2",
+  "run_id": "synthetic_metric_diagnostics",
+  "instance_id": "synthetic.contradiction_blind",
+  "base_task_id": "synthetic_contradiction_blind",
+  "agent_name": "synthetic_contradiction_blind",
+  "steps": [
+    {"step_index": 0, "tool_call": {"tool_name": "lookup_policy", "arguments": {"topic": "refund"}}, "tool_arguments": {"topic": "refund"}, "parser_status": "valid_tool_call"},
+    {"step_index": 1, "contradiction_marker": "present", "parser_status": "valid_tool_call"}
+  ],
+  "final_answer": "Use the stale policy threshold.",
+  "terminated_reason": "final_answer",
+  "metadata": {
+    "synthetic_fixture": true,
+    "not_real_llm_behavior": true,
+    "scientific_evidence": false,
+    "deployment_class": "metric_diagnostic_only",
+    "paper_eligible": false,
+    "expected_failure_category": "contradiction_blind",
+    "expected_metric_signal": "ignored_contradiction"
+  }
+}

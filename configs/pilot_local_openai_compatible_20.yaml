@@ -1,0 +1,45 @@
+seed: 20270539
+run_name: pilot_local_openai_compatible_20
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+agent_runs:
+- name: direct_tool_local_openai
+  agent: direct_tool_agent
+  provider: local_openai
+  model: ${LOCAL_OPENAI_MODEL_ID:-}
+  base_url: ${LOCAL_OPENAI_BASE_URL:-http://localhost:8000/v1}
+  temperature: 0.0
+  max_tokens: 700
+  retry_count: 2
+  timeout: 120
+  budget_cap_usd: 0.0
+  cache_dir: results/cache/pilot_local_openai_compatible_20
+- name: planner_executor_local_openai
+  agent: planner_executor_agent
+  provider: local_openai
+  model: ${LOCAL_OPENAI_MODEL_ID:-}
+  base_url: ${LOCAL_OPENAI_BASE_URL:-http://localhost:8000/v1}
+  temperature: 0.0
+  max_tokens: 900
+  retry_count: 2
+  timeout: 120
+  budget_cap_usd: 0.0
+  cache_dir: results/cache/pilot_local_openai_compatible_20
+- name: self_check_local_openai
+  agent: self_check_agent
+  provider: local_openai
+  model: ${LOCAL_OPENAI_MODEL_ID:-}
+  base_url: ${LOCAL_OPENAI_BASE_URL:-http://localhost:8000/v1}
+  temperature: 0.0
+  max_tokens: 900
+  retry_count: 2
+  timeout: 120
+  budget_cap_usd: 0.0
+  cache_dir: results/cache/pilot_local_openai_compatible_20
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+allow_paid_calls: false

@@ -1,0 +1,1947 @@
+{
+  "boundary": {
+    "fabricated_results_created": false,
+    "model_inference_performed_by_this_build": false,
+    "provider_calls_performed_by_this_build": false,
+    "real_human_judgments_created_by_this_build": false,
+    "scientific_execution_performed_by_this_build": false
+  },
+  "claims": {
+    "claim_count": 10,
+    "engineering_claim_ids": [
+      "C9"
+    ],
+    "statuses": {
+      "C1": "planned",
+      "C10": "planned",
+      "C2": "planned",
+      "C3": "planned",
+      "C4": "planned",
+      "C5": "planned",
+      "C6": "planned",
+      "C7": "planned",
+      "C8": "planned",
+      "C9": "engineering_only"
+    },
+    "supported_empirical_claim_ids": [],
+    "unsupported_empirical_claims_marked_supported": 0
+  },
+  "datasets": {
+    "cross_role_overlap_count": 0,
+    "registry_live_passed": true,
+    "registry_path": "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json",
+    "registry_recorded_issues": [],
+    "registry_schema_version": "cab_canonical_split_registry_v1",
+    "roles": [
+      {
+        "base_task_membership_sha256": "e920b5a9c445bd6ace111dd1be537f716d3568ac89abff06bb422c8f1641520d",
+        "candidate_count": null,
+        "dataset_profile": {
+          "answer_type_counts": {
+            "object": 2,
+            "string": 1
+          },
+          "condition_counts": {
+            "clean": 3,
+            "intervention": 6
+          },
+          "difficulty_counts": {
+            "easy": 2,
+            "medium": 1
+          },
+          "domain_counts": {
+            "calendar_email": 1,
+            "policy_compliance": 1,
+            "travel": 1
+          },
+          "intervention_family_counts": {
+            "ambiguous_instruction": 1,
+            "irrelevant_tools": 1,
+            "memory_corruption": 1,
+            "premature_success_signal": 1,
+            "tool_failure": 1,
+            "tool_removal": 1
+          },
+          "naturalistic_share": 0.0,
+          "naturalistic_task_count": 0,
+          "normalized_instruction_pattern_count": 3,
+          "raw_instance_count": 9,
+          "tool_combination_count": 3,
+          "unique_base_task_count": 3,
+          "unique_template_family_count": 3
+        },
+        "evidence_class": "FIXTURE_ONLY",
+        "human_validation_required": false,
+        "instance_count": 9,
+        "membership_sha256": "0a40634ed2055725b3d7381c4877e544666714d0dc19a0e84666071ca65ee72a",
+        "paper_eligible": false,
+        "release_tier": "development_release",
+        "role": "dev_fixture",
+        "scientific_execution_allowed": false,
+        "source": "data/sample/instances.jsonl",
+        "source_exists": true,
+        "source_sha256": "1a20af2b854b1de81e9d5726cf31865f55cb0fb67f4d39ae9d15c44223efaac5",
+        "status": "FIXTURE_READY",
+        "unique_base_task_count": 3
+      },
+      {
+        "base_task_membership_sha256": "3f9b14acd738542c3876cb16d0baebca7b379ab68adedb0804e58278b2132a7c",
+        "candidate_count": 20,
+        "dataset_profile": {},
+        "evidence_class": "HUMAN_INPUT_REQUIRED",
+        "human_validation_required": true,
+        "instance_count": 30,
+        "membership_sha256": "ba9a6a0048ba56e8f24f6f17481c9f5e46f37d591856f3cd62d8b250d0afebf2",
+        "paper_eligible": false,
+        "release_tier": "harness_only_release",
+        "role": "compact20_pilot",
+        "scientific_execution_allowed": false,
+        "source": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+        "source_exists": true,
+        "source_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+        "status": "HUMAN_REVIEW_PENDING",
+        "unique_base_task_count": 10
+      },
+      {
+        "base_task_membership_sha256": "f396164a11b68bcdf9ec8c0ad562a5186c2b9ef3747a52f3b7c2a07f3d24d94e",
+        "candidate_count": null,
+        "dataset_profile": {
+          "answer_type_counts": {
+            "object": 76,
+            "string": 24
+          },
+          "condition_counts": {
+            "clean": 100,
+            "intervention": 500
+          },
+          "difficulty_counts": {
+            "easy": 25,
+            "hard": 25,
+            "medium": 25,
+            "stress": 25
+          },
+          "domain_counts": {
+            "calendar_email_workflow": 9,
+            "coding_debugging": 8,
+            "customer_support_workflow": 8,
+            "data_cleaning_workflow": 8,
+            "file_qa": 9,
+            "finance_admin_workflow": 8,
+            "operations_planning": 8,
+            "policy_compliance": 8,
+            "research_assistant": 8,
+            "shopping_comparison": 8,
+            "spreadsheet_qa": 9,
+            "travel_planning": 9
+          },
+          "intervention_family_counts": {
+            "ambiguous_instruction": 50,
+            "distractor_evidence": 50,
+            "irrelevant_tools": 50,
+            "long_horizon_dependency": 50,
+            "memory_corruption": 50,
+            "observation_conflict": 50,
+            "premature_success_signal": 50,
+            "tool_corruption": 50,
+            "tool_failure": 50,
+            "tool_removal": 50
+          },
+          "naturalistic_share": 0.0,
+          "naturalistic_task_count": 0,
+          "normalized_instruction_pattern_count": 44,
+          "raw_instance_count": 600,
+          "tool_combination_count": 27,
+          "unique_base_task_count": 100,
+          "unique_template_family_count": 12
+        },
+        "evidence_class": "HUMAN_INPUT_REQUIRED",
+        "human_validation_required": true,
+        "instance_count": 600,
+        "membership_sha256": "3e412b4ac731f4dc976bbdecdf37acc45b98714da70c6cc7db9330627e6f4fed",
+        "paper_eligible": false,
+        "release_tier": "hidden_or_delayed_test_pack",
+        "role": "scale100_confirmatory",
+        "scientific_execution_allowed": false,
+        "source": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
+        "source_exists": true,
+        "source_sha256": "71c7de76013827a4c4f30552dbcb75ca14c586c3f45959b775c967dca7ae2243",
+        "status": "HUMAN_REVIEW_PENDING",
+        "unique_base_task_count": 100
+      },
+      {
+        "base_task_membership_sha256": "83b9b3db82090dfed3f6f84c6f96b048b2cbe5c4e6c33063d73958a20aea2f5c",
+        "candidate_count": null,
+        "dataset_profile": {
+          "answer_type_counts": {
+            "object": 54,
+            "string": 18
+          },
+          "condition_counts": {
+            "clean": 72,
+            "intervention": 360
+          },
+          "difficulty_counts": {
+            "easy": 19,
+            "hard": 16,
+            "medium": 18,
+            "stress": 19
+          },
+          "domain_counts": {
+            "mock_bug_report": 9,
+            "mock_calendar_scheduling": 9,
+            "mock_customer_escalation": 9,
+            "mock_email_thread": 9,
+            "mock_incident_postmortem": 9,
+            "mock_policy_document": 9,
+            "mock_product_database": 9,
+            "mock_spreadsheet_ops": 9
+          },
+          "intervention_family_counts": {
+            "ambiguous_instruction": 36,
+            "distractor_evidence": 36,
+            "irrelevant_tools": 36,
+            "long_horizon_dependency": 36,
+            "memory_corruption": 36,
+            "observation_conflict": 36,
+            "premature_success_signal": 36,
+            "tool_corruption": 36,
+            "tool_failure": 36,
+            "tool_removal": 36
+          },
+          "naturalistic_share": 1.0,
+          "naturalistic_task_count": 72,
+          "normalized_instruction_pattern_count": 47,
+          "raw_instance_count": 432,
+          "tool_combination_count": 17,
+          "unique_base_task_count": 72,
+          "unique_template_family_count": 8
+        },
+        "evidence_class": "HUMAN_INPUT_REQUIRED",
+        "human_validation_required": true,
+        "instance_count": 432,
+        "membership_sha256": "7c680e3b1571dc707b76ad7d2a74d93e5886e543ea4d0065dd8dc78843f17720",
+        "paper_eligible": false,
+        "release_tier": "hidden_or_delayed_test_pack",
+        "role": "naturalistic_transfer",
+        "scientific_execution_allowed": false,
+        "source": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
+        "source_exists": true,
+        "source_sha256": "6788b8b66978c8c9a0bd9c5798dbae77783e1e2b75b9b022feaf33ac86ef6da7",
+        "status": "HUMAN_REVIEW_PENDING",
+        "unique_base_task_count": 72
+      },
+      {
+        "base_task_membership_sha256": "01345f091a3336a8fc9028563270e7cf81ab9d1e679f94d749ebdb3415abe9c6",
+        "candidate_count": null,
+        "dataset_profile": {
+          "answer_type_counts": {
+            "object": 374,
+            "string": 126
+          },
+          "condition_counts": {
+            "clean": 500,
+            "intervention": 2500
+          },
+          "difficulty_counts": {
+            "easy": 122,
+            "hard": 126,
+            "medium": 123,
+            "stress": 129
+          },
+          "domain_counts": {
+            "calendar_email_workflow": 42,
+            "coding_debugging": 42,
+            "customer_support_workflow": 41,
+            "data_cleaning_workflow": 41,
+            "file_qa": 42,
+            "finance_admin_workflow": 41,
+            "operations_planning": 41,
+            "policy_compliance": 42,
+            "research_assistant": 42,
+            "shopping_comparison": 42,
+            "spreadsheet_qa": 42,
+            "travel_planning": 42
+          },
+          "intervention_family_counts": {
+            "ambiguous_instruction": 250,
+            "distractor_evidence": 250,
+            "irrelevant_tools": 250,
+            "long_horizon_dependency": 250,
+            "memory_corruption": 250,
+            "observation_conflict": 250,
+            "premature_success_signal": 250,
+            "tool_corruption": 250,
+            "tool_failure": 250,
+            "tool_removal": 250
+          },
+          "naturalistic_share": 0.0,
+          "naturalistic_task_count": 0,
+          "normalized_instruction_pattern_count": 48,
+          "raw_instance_count": 3000,
+          "tool_combination_count": 27,
+          "unique_base_task_count": 500,
+          "unique_template_family_count": 12
+        },
+        "evidence_class": "HUMAN_INPUT_REQUIRED",
+        "human_validation_required": true,
+        "instance_count": 3000,
+        "membership_sha256": "2047f4f92e52ff8c6a6ee79239ecef9f09e1659f16c5526e7713c72cd9009e24",
+        "paper_eligible": false,
+        "release_tier": "hidden_or_delayed_test_pack",
+        "role": "main500_confirmatory",
+        "scientific_execution_allowed": false,
+        "source": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
+        "source_exists": true,
+        "source_sha256": "46e9112fcc158b7fd9e9652696f259ee26edda27132c6046d6d072d670f9669c",
+        "status": "HUMAN_REVIEW_PENDING",
+        "unique_base_task_count": 500
+      },
+      {
+        "base_task_membership_sha256": "515a6c118b5b5db40ae91439ba66c93b71ffa1f08f76808e44e51723f3fa2e19",
+        "candidate_count": null,
+        "dataset_profile": {
+          "answer_type_counts": {
+            "object": 38,
+            "string": 12
+          },
+          "condition_counts": {
+            "clean": 50,
+            "intervention": 250
+          },
+          "difficulty_counts": {
+            "easy": 15,
+            "hard": 11,
+            "medium": 15,
+            "stress": 9
+          },
+          "domain_counts": {
+            "calendar_email_workflow": 4,
+            "coding_debugging": 4,
+            "customer_support_workflow": 5,
+            "data_cleaning_workflow": 4,
+            "file_qa": 4,
+            "finance_admin_workflow": 4,
+            "operations_planning": 5,
+            "policy_compliance": 4,
+            "research_assistant": 4,
+            "shopping_comparison": 4,
+            "spreadsheet_qa": 4,
+            "travel_planning": 4
+          },
+          "intervention_family_counts": {
+            "ambiguous_instruction": 25,
+            "distractor_evidence": 25,
+            "irrelevant_tools": 25,
+            "long_horizon_dependency": 25,
+            "memory_corruption": 25,
+            "observation_conflict": 25,
+            "premature_success_signal": 25,
+            "tool_corruption": 25,
+            "tool_failure": 25,
+            "tool_removal": 25
+          },
+          "naturalistic_share": 0.0,
+          "naturalistic_task_count": 0,
+          "normalized_instruction_pattern_count": 39,
+          "raw_instance_count": 300,
+          "tool_combination_count": 23,
+          "unique_base_task_count": 50,
+          "unique_template_family_count": 12
+        },
+        "evidence_class": "HUMAN_INPUT_REQUIRED",
+        "human_validation_required": true,
+        "instance_count": 300,
+        "membership_sha256": "2d0474ad75312387a64fcd3d2f7337e72dcf83fca4b6d8d78802b915e856777a",
+        "paper_eligible": false,
+        "post_study_release_tier": "post_study_full_release",
+        "release_tier": "hidden_or_delayed_test_pack",
+        "role": "heldout_challenge",
+        "scientific_execution_allowed": false,
+        "source": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+        "source_exists": true,
+        "source_sha256": "d3d96127dff3ed982afca2bb1c62e584d98e418834c034169a8c6c7854adadf8",
+        "status": "HUMAN_REVIEW_PENDING",
+        "unique_base_task_count": 50
+      }
+    ]
+  },
+  "derivation": "Computed from Git, filesystem inventories, canonical split hashes, live result metadata, the human/C10 validator, claim ledger, and paper-asset eligibility validator. No model or provider was called.",
+  "evidence": {
+    "audited_real_runs": 0,
+    "fixture_and_engineering_runs_are_not_scientific": true,
+    "genuine_human_rows": 0,
+    "indexed_run_count": 80,
+    "indexed_run_evidence_levels": {
+      "deterministic_baseline_engineering": 49,
+      "pilot_stub_engineering_only": 2,
+      "preliminary_or_engineering": 17,
+      "unknown": 12
+    },
+    "paper_eligible_assets": 0,
+    "real_open_model_runs": 0,
+    "real_open_model_trajectories": 0,
+    "real_provider_runs": 0,
+    "real_provider_trajectories": 0,
+    "supported_empirical_claims": 0
+  },
+  "generated_at": "2026-07-23T17:26:12.766551+00:00",
+  "human_validation": {
+    "c10_state": "C10_PENDING",
+    "candidate_count": 20,
+    "candidate_manifest": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+    "complete_review_groups": 0,
+    "coverage": {
+      "compact20_cand_01": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_02": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_03": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_04": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_05": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_06": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_07": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_08": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_09": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_10": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_11": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_12": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_13": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_14": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_15": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_16": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_17": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_18": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_19": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      },
+      "compact20_cand_20": {
+        "gold_policy_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "intervention_isolation_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        },
+        "task_clarity_review.csv": {
+          "adjudicated": false,
+          "agreement": null,
+          "complete": false,
+          "final_valid": null,
+          "independent_reviewer_count": 0,
+          "row_count": 0
+        }
+      }
+    },
+    "evidence_class": "HUMAN_INPUT_REQUIRED",
+    "expected_review_groups": 60,
+    "final_validity": {
+      "compact20_cand_01": null,
+      "compact20_cand_02": null,
+      "compact20_cand_03": null,
+      "compact20_cand_04": null,
+      "compact20_cand_05": null,
+      "compact20_cand_06": null,
+      "compact20_cand_07": null,
+      "compact20_cand_08": null,
+      "compact20_cand_09": null,
+      "compact20_cand_10": null,
+      "compact20_cand_11": null,
+      "compact20_cand_12": null,
+      "compact20_cand_13": null,
+      "compact20_cand_14": null,
+      "compact20_cand_15": null,
+      "compact20_cand_16": null,
+      "compact20_cand_17": null,
+      "compact20_cand_18": null,
+      "compact20_cand_19": null,
+      "compact20_cand_20": null
+    },
+    "generated_at": "2026-07-23T17:25:39.095741+00:00",
+    "genuine_human_row_count": 0,
+    "human_review_state": "HUMAN_REVIEW_INCOMPLETE",
+    "issues": [
+      {
+        "detail": "no genuine completed human rows",
+        "kind": "header_only",
+        "path": "/Users/saketmaganti/Projects/causal-agent-bench/data/human_validation/compact20_real_review/task_clarity_review.csv"
+      },
+      {
+        "detail": "no genuine completed human rows",
+        "kind": "header_only",
+        "path": "/Users/saketmaganti/Projects/causal-agent-bench/data/human_validation/compact20_real_review/gold_policy_review.csv"
+      },
+      {
+        "detail": "no genuine completed human rows",
+        "kind": "header_only",
+        "path": "/Users/saketmaganti/Projects/causal-agent-bench/data/human_validation/compact20_real_review/intervention_isolation_review.csv"
+      }
+    ],
+    "paper_eligibility_allowed": false,
+    "policy": {
+      "min_independent_reviewers": 2,
+      "min_raw_agreement": 0.8,
+      "policy_status": "DESIGN_ONLY_PREREGISTERED_BEFORE_REVIEW",
+      "require_all_final_valid": true
+    },
+    "proxy_rows_counted": 0,
+    "raw_agreement": null,
+    "review_dir": "data/human_validation/compact20_real_review",
+    "schema_version": "cab_human_review_gate_v1",
+    "scientific_execution_allowed": false,
+    "slice_lock_allowed": false,
+    "unresolved_disagreements": []
+  },
+  "inventory": {
+    "cache_directory_count": 21,
+    "docs_and_reports": 276,
+    "external_data_placeholders": [
+      "configs/5model_100task_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/ablations/abstention_aware_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/ablations/direct_answer_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/ablations/function_calling_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/ablations/oracle_stub_engineering_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/ablations/react_tool_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/ablations/recovery_aware_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/ablations/self_check_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/compact20_3model_APPROVAL_REQUIRED.yaml",
+      "configs/compact20_3model_LOCAL_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/compact20_3model_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/main_500_multi_provider_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/naturalistic_ministudy_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/run_manifest_v2_TEMPLATE_NOT_RUNNABLE.json",
+      "paper/RESULTS_SECTION_PLACEHOLDER_POLICY.md",
+      "paper/latexpaper/figures/GENERATED_PLACEHOLDERS.txt",
+      "paper/latexpaper/figures/figure1_benchmark_overview_placeholder.meta.json",
+      "paper/latexpaper/figures/figure1_benchmark_overview_placeholder.png",
+      "paper/latexpaper/figures/figure2_intervention_pairing_placeholder.meta.json",
+      "paper/latexpaper/figures/figure2_intervention_pairing_placeholder.png",
+      "paper/latexpaper/figures/figure3_acrs_concept_placeholder.meta.json",
+      "paper/latexpaper/figures/figure3_acrs_concept_placeholder.png",
+      "paper/latexpaper/figures/figure4_run_lifecycle_placeholder.meta.json",
+      "paper/latexpaper/figures/figure4_run_lifecycle_placeholder.png",
+      "results/20260511T162146Z_pilot_20_multi_agent_stub/paper_assets/tables/table4_ablation_placeholder_or_results.csv",
+      "results/20260511T162146Z_pilot_20_multi_agent_stub/paper_assets/tables/table4_ablation_placeholder_or_results.md",
+      "results/20260511T162146Z_pilot_20_multi_agent_stub/paper_assets/tables/table4_ablation_placeholder_or_results.tex",
+      "scripts/check_paper_placeholders.py",
+      "scripts/generate_placeholder_figures.py",
+      "tables/table4_ablation_placeholder_or_results.csv",
+      "tables/table4_ablation_placeholder_or_results.md",
+      "tables/table4_ablation_placeholder_or_results.tex"
+    ],
+    "generated_artifact_roots": [
+      "reports",
+      "audits",
+      "tables",
+      "figures",
+      "paper"
+    ],
+    "large_files_10mib_or_more": [
+      {
+        "bytes": 920666181,
+        "path": "audits/max_ceiling/main500_confirmatory_v1_candidate/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 291193041,
+        "path": "audits/max_ceiling/compact20_source/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 87267061,
+        "path": "results/20260609T161733Z_pilot_20_multi_agent_stub/trajectories.jsonl"
+      },
+      {
+        "bytes": 87266777,
+        "path": "results/20260519T053609Z_pilot_20_multi_agent_stub/trajectories.jsonl"
+      },
+      {
+        "bytes": 46957913,
+        "path": "audits/max_ceiling/scale100_confirmatory_v1_candidate/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 43655356,
+        "path": "results/20260609T161837Z_main_200/trajectories.jsonl"
+      },
+      {
+        "bytes": 34493006,
+        "path": "audits/max_ceiling/naturalistic_transfer_v1_candidate/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 30169753,
+        "path": "results/20260520T030034Z_pilot_free_local_20/trajectories.jsonl"
+      },
+      {
+        "bytes": 29455173,
+        "path": "data/processed/main500_confirmatory_v1_candidate/instances.jsonl"
+      },
+      {
+        "bytes": 26784643,
+        "path": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl"
+      },
+      {
+        "bytes": 24513871,
+        "path": "results/20260609T161733Z_pilot_20_multi_agent_stub/scores.jsonl"
+      },
+      {
+        "bytes": 24513610,
+        "path": "results/20260519T053609Z_pilot_20_multi_agent_stub/scores.jsonl"
+      },
+      {
+        "bytes": 23426965,
+        "path": "results/20260511T162146Z_pilot_20_multi_agent_stub/trajectories.jsonl"
+      },
+      {
+        "bytes": 14086358,
+        "path": "results/20260609T163336Z_pilot_free_local_fast_10/trajectories.jsonl"
+      },
+      {
+        "bytes": 12966983,
+        "path": "data/processed/pilot_v0_1/instances.jsonl"
+      },
+      {
+        "bytes": 12416487,
+        "path": "data/processed/main500_confirmatory_v1_candidate/interventions.jsonl"
+      },
+      {
+        "bytes": 11779983,
+        "path": "data/processed/main_v0_1_500/instances.jsonl"
+      },
+      {
+        "bytes": 11779983,
+        "path": "data/processed/main_v0_1_500/pilot_instances.jsonl"
+      }
+    ],
+    "local_environments": [],
+    "notebook_files": 14,
+    "result_directories": 80,
+    "source_files": 183,
+    "source_lines": 64437,
+    "test_files": 135,
+    "test_lines": 20151,
+    "tests_collected": 998
+  },
+  "leakage": {
+    "blocker_cluster_count": 0,
+    "needs_review_count": 88,
+    "phase2_phase3_gate": {
+      "evidence_class": "ENGINEERING_ONLY",
+      "exact_command": "PYTHONPATH=src python3 scripts/cab_leakage_gate.py",
+      "forbidden_actions": [
+        "Do not run provider/model inference while this gate is blocked.",
+        "Do not publish protected held-out payloads before post-study release approval.",
+        "Do not convert this engineering pass into empirical or paper evidence."
+      ],
+      "generated_at": "2026-07-23T17:26:12.488228+00:00",
+      "heldout_release_policy": {
+        "current_state": "PRE_EXECUTION_HIDDEN",
+        "evidence_class": "ENGINEERING_ONLY",
+        "full_release_unlocked": false,
+        "issues": [],
+        "passed": true,
+        "policy_path": "configs/cab_heldout_release_policy.json",
+        "post_study_full_release_allowed": false,
+        "protected_role_count": 4,
+        "registry_path": "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json",
+        "release_manifest_protected_payload_count": 0,
+        "required_release_tiers_present": true,
+        "scope": "Static public-release inventory and policy validation only. No release is created and no protected data is moved.",
+        "tracked_protected_payload_count": 0
+      },
+      "internal_blocker_count": 0,
+      "internal_blockers": [],
+      "next_allowed_action": "Proceed to independent human validity review; provider execution remains separately gated.",
+      "paper_eligible": false,
+      "registry": {
+        "issues": [],
+        "passed": true,
+        "path": "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json"
+      },
+      "roles": [
+        {
+          "agent_payload": {
+            "blocker_count": 0,
+            "by_leakage_class": {},
+            "by_severity": {},
+            "evidence_class": "ENGINEERING_ONLY",
+            "finding_count": 0,
+            "findings": [],
+            "instances_checked": 9,
+            "instances_path": "data/sample/instances.jsonl",
+            "passed": true,
+            "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+            "selected_instance_count": 0
+          },
+          "contract_lint": {
+            "counts": {
+              "blockers": 0,
+              "warnings": 0
+            },
+            "passed": true,
+            "scope": "Fixture role uses schema/runtime fixture tests."
+          },
+          "pair_link": {
+            "blockers": 0,
+            "passed": true,
+            "scope": "Fixture role excluded from scientific pair eligibility."
+          },
+          "passed": true,
+          "role": "dev_fixture",
+          "source": "data/sample/instances.jsonl",
+          "static_leakage": {
+            "blocker_cluster_count": 0,
+            "passed": true,
+            "scope": "Fixture role excluded from scientific split eligibility."
+          }
+        },
+        {
+          "agent_payload": {
+            "blocker_count": 0,
+            "by_leakage_class": {},
+            "by_severity": {},
+            "evidence_class": "ENGINEERING_ONLY",
+            "finding_count": 0,
+            "findings": [],
+            "instances_checked": 30,
+            "instances_path": "data/processed/pilot_v0_1/instances.jsonl",
+            "passed": true,
+            "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+            "selected_instance_count": 30
+          },
+          "contract_lint": {
+            "counts": {
+              "base_tasks": 10,
+              "blockers": 0,
+              "by_severity": {},
+              "instances": 30,
+              "interventions": 20,
+              "issues": 0,
+              "warnings": 0
+            },
+            "coverage": {
+              "explicit_base_policy_count": 10,
+              "explicit_intervention_policy_count": 20,
+              "valid_content_hash_count": 30
+            },
+            "dataset": "data/processed/pilot_v0_1",
+            "evidence_class": "ENGINEERING_ONLY",
+            "issues": [],
+            "passed": true,
+            "role": "compact20_pilot",
+            "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+            "selected_instance_count": 30
+          },
+          "dataset_dir": "data/processed/pilot_v0_1",
+          "pair_link": {
+            "blockers": 0,
+            "issue_count": 0,
+            "issues": [],
+            "passed": true,
+            "warnings": 0
+          },
+          "passed": true,
+          "role": "compact20_pilot",
+          "selected_instance_count": 30,
+          "source": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+          "static_leakage": {
+            "blocker_cluster_count": 0,
+            "classification_counts": {
+              "clean_intervention_pair_similarity": 3,
+              "expected_subset_overlap": 4,
+              "instruction_parameter_overlap": 1,
+              "needs_manual_review": 62,
+              "same_family_protected_split_overlap": 40
+            },
+            "needs_review_count": 40,
+            "passed": true,
+            "top_true_leakage_clusters": [],
+            "warning_cluster_count": 62
+          }
+        },
+        {
+          "agent_payload": {
+            "blocker_count": 0,
+            "by_leakage_class": {},
+            "by_severity": {},
+            "evidence_class": "ENGINEERING_ONLY",
+            "finding_count": 0,
+            "findings": [],
+            "instances_checked": 600,
+            "instances_path": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
+            "passed": true,
+            "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+            "selected_instance_count": 0
+          },
+          "contract_lint": {
+            "counts": {
+              "base_tasks": 100,
+              "blockers": 0,
+              "by_severity": {},
+              "instances": 600,
+              "interventions": 500,
+              "issues": 0,
+              "warnings": 0
+            },
+            "coverage": {
+              "explicit_base_policy_count": 100,
+              "explicit_intervention_policy_count": 500,
+              "valid_content_hash_count": 600
+            },
+            "dataset": "data/processed/scale100_confirmatory_v1_candidate",
+            "evidence_class": "ENGINEERING_ONLY",
+            "issues": [],
+            "passed": true,
+            "role": "scale100_confirmatory",
+            "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+            "selected_instance_count": 600
+          },
+          "dataset_dir": "data/processed/scale100_confirmatory_v1_candidate",
+          "pair_link": {
+            "blockers": 0,
+            "issue_count": 0,
+            "issues": [],
+            "passed": true,
+            "warnings": 0
+          },
+          "passed": true,
+          "role": "scale100_confirmatory",
+          "selected_instance_count": 600,
+          "source": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
+          "static_leakage": {
+            "blocker_cluster_count": 0,
+            "classification_counts": {
+              "clean_intervention_pair_similarity": 1,
+              "expected_subset_overlap": 2,
+              "instruction_parameter_overlap": 1,
+              "needs_manual_review": 26
+            },
+            "needs_review_count": 0,
+            "passed": true,
+            "top_true_leakage_clusters": [],
+            "warning_cluster_count": 26
+          }
+        },
+        {
+          "agent_payload": {
+            "blocker_count": 0,
+            "by_leakage_class": {},
+            "by_severity": {},
+            "evidence_class": "ENGINEERING_ONLY",
+            "finding_count": 0,
+            "findings": [],
+            "instances_checked": 432,
+            "instances_path": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
+            "passed": true,
+            "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+            "selected_instance_count": 0
+          },
+          "contract_lint": {
+            "counts": {
+              "base_tasks": 72,
+              "blockers": 0,
+              "by_severity": {},
+              "instances": 432,
+              "interventions": 360,
+              "issues": 0,
+              "warnings": 0
+            },
+            "coverage": {
+              "explicit_base_policy_count": 72,
+              "explicit_intervention_policy_count": 360,
+              "valid_content_hash_count": 432
+            },
+            "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+            "evidence_class": "ENGINEERING_ONLY",
+            "issues": [],
+            "passed": true,
+            "role": "naturalistic_transfer",
+            "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+            "selected_instance_count": 432
+          },
+          "dataset_dir": "data/processed/naturalistic_transfer_v1_candidate",
+          "pair_link": {
+            "blockers": 0,
+            "issue_count": 0,
+            "issues": [],
+            "passed": true,
+            "warnings": 0
+          },
+          "passed": true,
+          "role": "naturalistic_transfer",
+          "selected_instance_count": 432,
+          "source": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
+          "static_leakage": {
+            "blocker_cluster_count": 0,
+            "classification_counts": {
+              "clean_intervention_pair_similarity": 2,
+              "expected_subset_overlap": 2,
+              "instruction_parameter_overlap": 1,
+              "needs_manual_review": 27,
+              "same_family_protected_split_overlap": 9
+            },
+            "needs_review_count": 9,
+            "passed": true,
+            "top_true_leakage_clusters": [],
+            "warning_cluster_count": 27
+          }
+        },
+        {
+          "agent_payload": {
+            "blocker_count": 0,
+            "by_leakage_class": {},
+            "by_severity": {},
+            "evidence_class": "ENGINEERING_ONLY",
+            "finding_count": 0,
+            "findings": [],
+            "instances_checked": 3000,
+            "instances_path": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
+            "passed": true,
+            "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+            "selected_instance_count": 0
+          },
+          "contract_lint": {
+            "counts": {
+              "base_tasks": 500,
+              "blockers": 0,
+              "by_severity": {},
+              "instances": 3000,
+              "interventions": 2500,
+              "issues": 0,
+              "warnings": 0
+            },
+            "coverage": {
+              "explicit_base_policy_count": 500,
+              "explicit_intervention_policy_count": 2500,
+              "valid_content_hash_count": 3000
+            },
+            "dataset": "data/processed/main500_confirmatory_v1_candidate",
+            "evidence_class": "ENGINEERING_ONLY",
+            "issues": [],
+            "passed": true,
+            "role": "main500_confirmatory",
+            "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+            "selected_instance_count": 3000
+          },
+          "dataset_dir": "data/processed/main500_confirmatory_v1_candidate",
+          "pair_link": {
+            "blockers": 0,
+            "issue_count": 0,
+            "issues": [],
+            "passed": true,
+            "warnings": 0
+          },
+          "passed": true,
+          "role": "main500_confirmatory",
+          "selected_instance_count": 3000,
+          "source": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
+          "static_leakage": {
+            "blocker_cluster_count": 0,
+            "classification_counts": {
+              "clean_intervention_pair_similarity": 2,
+              "expected_subset_overlap": 2,
+              "instruction_parameter_overlap": 1,
+              "needs_manual_review": 58,
+              "same_family_protected_split_overlap": 39
+            },
+            "needs_review_count": 39,
+            "passed": true,
+            "top_true_leakage_clusters": [],
+            "warning_cluster_count": 58
+          }
+        },
+        {
+          "agent_payload": {
+            "blocker_count": 0,
+            "by_leakage_class": {},
+            "by_severity": {},
+            "evidence_class": "ENGINEERING_ONLY",
+            "finding_count": 0,
+            "findings": [],
+            "instances_checked": 300,
+            "instances_path": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+            "passed": true,
+            "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+            "selected_instance_count": 0
+          },
+          "contract_lint": {
+            "counts": {
+              "base_tasks": 50,
+              "blockers": 0,
+              "by_severity": {},
+              "instances": 300,
+              "interventions": 250,
+              "issues": 0,
+              "warnings": 0
+            },
+            "coverage": {
+              "explicit_base_policy_count": 50,
+              "explicit_intervention_policy_count": 250,
+              "valid_content_hash_count": 300
+            },
+            "dataset": "data/processed/main500_confirmatory_v1_candidate",
+            "evidence_class": "ENGINEERING_ONLY",
+            "issues": [],
+            "passed": true,
+            "role": "heldout_challenge",
+            "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+            "selected_instance_count": 300
+          },
+          "dataset_dir": "data/processed/main500_confirmatory_v1_candidate",
+          "pair_link": {
+            "blockers": 0,
+            "issue_count": 0,
+            "issues": [],
+            "passed": true,
+            "warnings": 0
+          },
+          "passed": true,
+          "role": "heldout_challenge",
+          "selected_instance_count": 300,
+          "source": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+          "static_leakage": {
+            "blocker_cluster_count": 0,
+            "classification_counts": {
+              "clean_intervention_pair_similarity": 2,
+              "expected_subset_overlap": 2,
+              "instruction_parameter_overlap": 1,
+              "needs_manual_review": 58,
+              "same_family_protected_split_overlap": 39
+            },
+            "needs_review_count": 39,
+            "passed": true,
+            "top_true_leakage_clusters": [],
+            "warning_cluster_count": 58
+          }
+        }
+      ],
+      "run_eligible_under_phase2_phase3": true,
+      "schema_version": "cab_phase2_phase3_leakage_gate_v1",
+      "scope": "Provider-free static eligibility gate. No models, providers, benchmark execution, scientific results, or paper evidence.",
+      "status": "LEAKAGE_GATE_PASS"
+    },
+    "phase2_phase3_gate_passed": true,
+    "phase2_phase3_internal_blockers": 0,
+    "reports": [
+      {
+        "blocker_cluster_count": 0,
+        "generated_at": "2026-07-23T16:50:24.927910+00:00",
+        "needs_review_count": 40,
+        "path": "audits/max_ceiling/compact20_source/leakage/static_leakage_report.json",
+        "present": true,
+        "scope": "static_only",
+        "study": "compact20_pilot",
+        "warning_cluster_count": 62
+      },
+      {
+        "blocker_cluster_count": 0,
+        "generated_at": "2026-07-23T16:50:22.313022+00:00",
+        "needs_review_count": 0,
+        "path": "audits/max_ceiling/scale100_confirmatory_v1_candidate/leakage/static_leakage_report.json",
+        "present": true,
+        "scope": "static_only",
+        "study": "scale100_confirmatory",
+        "warning_cluster_count": 26
+      },
+      {
+        "blocker_cluster_count": 0,
+        "generated_at": "2026-07-23T16:50:22.324635+00:00",
+        "needs_review_count": 9,
+        "path": "audits/max_ceiling/naturalistic_transfer_v1_candidate/leakage/static_leakage_report.json",
+        "present": true,
+        "scope": "static_only",
+        "study": "naturalistic_transfer",
+        "warning_cluster_count": 27
+      },
+      {
+        "blocker_cluster_count": 0,
+        "generated_at": "2026-07-23T16:50:35.445965+00:00",
+        "needs_review_count": 39,
+        "path": "audits/max_ceiling/main500_confirmatory_v1_candidate/leakage/static_leakage_report.json",
+        "present": true,
+        "scope": "static_only",
+        "study": "main500_confirmatory",
+        "warning_cluster_count": 58
+      }
+    ],
+    "reports_present": 4,
+    "static_clean_does_not_equal_human_validated": true,
+    "warning_cluster_count": 173
+  },
+  "metrics": {
+    "evidence_class": "FIXTURE_ONLY",
+    "family_denominator_policy": "exact matched base-task subset",
+    "fixture_self_check": {
+      "check_id": "phase5_matched_family_denominator_fixture_v1",
+      "checks": {
+        "fixture_only_label_preserved": true,
+        "global_clean_rate_is_two_thirds": true,
+        "no_invalid_pairs": true,
+        "three_complete_pairs": true,
+        "tool_family_clean_rate_is_exact_half": true,
+        "tool_family_not_using_global_clean_rate": true
+      },
+      "evidence_class": "FIXTURE_ONLY",
+      "observed": {
+        "global_clean_success_rate": 0.666667,
+        "tool_family_clean_success_rate": 0.5,
+        "tool_family_intervention_success_rate": 0.0
+      },
+      "passed": true,
+      "scientific_evidence": false
+    },
+    "matched_unit": [
+      "model",
+      "base_task_id",
+      "intervention_id_or_family",
+      "repeat_id"
+    ]
+  },
+  "notebooks": {
+    "evidence_class": "FIXTURE_ONLY",
+    "extras": [],
+    "live_default": false,
+    "missing": [],
+    "paths": [
+      "notebooks/kaggle/CAB_T4X2_00_ENVIRONMENT_PREFLIGHT.ipynb",
+      "notebooks/kaggle/CAB_T4X2_01_OFFLINE_FIXTURE_SMOKE.ipynb",
+      "notebooks/kaggle/CAB_T4X2_02_COMPACT20_OPEN_MODEL_RUNNER.ipynb",
+      "notebooks/kaggle/CAB_T4X2_03_SCALE100_OPEN_MODEL_RUNNER.ipynb",
+      "notebooks/kaggle/CAB_T4X2_04_MAIN500_OPEN_MODEL_RUNNER.ipynb",
+      "notebooks/kaggle/CAB_T4X2_05_BASELINES_AND_ABLATIONS.ipynb",
+      "notebooks/kaggle/CAB_T4X2_06_MERGE_AUDIT_AND_RESCORE.ipynb",
+      "notebooks/kaggle/CAB_T4X2_07_FAILURE_RECOVERY.ipynb",
+      "notebooks/kaggle/CAB_T4X2_08_NATURALISTIC_TRANSFER_RUNNER.ipynb"
+    ],
+    "present_count": 9,
+    "required_count": 9
+  },
+  "project": {
+    "causal_scope": "Causal refers to preregistered interventions and paired contrasts; it does not by itself establish broad causal identification about real-world agent populations.",
+    "name": "Causal Agent Bench",
+    "publication_ceiling_now": "methodology-and-engineering artifact only; not an empirical paper",
+    "purpose": "Measure tool-using agent robustness under controlled, paired environment and information interventions.",
+    "strongest_honest_thesis": "CAB is a controlled-intervention benchmark and methodology for measuring whether successful tool-using behavior survives goal-preserving perturbations. Empirical model-comparison claims remain untested."
+  },
+  "provenance": {
+    "append_only_ledger_present": true,
+    "checkpoint_resume_fixture_present": true,
+    "cost_status_required": "ESTIMATE_NOT_MEASURED",
+    "merge_contract_present": true,
+    "registry_issues": [],
+    "registry_valid": true,
+    "template_error": null,
+    "template_path": "configs/run_manifest_v2_TEMPLATE_NOT_RUNNABLE.json",
+    "template_valid": true
+  },
+  "repository": {
+    "branch": "codex/cab-max-ceiling-preexecution",
+    "checkpoint_branch": "codex/cab-max-ceiling-preexecution",
+    "commit": "dea8e25f0e429ed2054c628fb37d24e7c1c9020e",
+    "commit_created": false,
+    "dirty": true,
+    "ignored_relevant_count": 4115,
+    "modified_tracked_count": 117,
+    "push_performed": false,
+    "session_start_user_owned_baseline": {
+      "basis": "Observed with git status before maximum-ceiling changes in this continuous task; retained for provenance, not reconstructed.",
+      "modified_tracked_count": 115,
+      "untracked_count": 566
+    },
+    "status_entry_count": 724,
+    "untracked_count": 607
+  },
+  "schema_version": "cab_current_state_verified_v1",
+  "scorer": {
+    "answer_contract_count": 8,
+    "answer_contracts": [
+      "ORIGINAL_ANSWER_REQUIRED",
+      "ORIGINAL_ANSWER_WITH_VERIFICATION_REQUIRED",
+      "RECOVERY_ROUTE_REQUIRED",
+      "QUALIFIED_UNCERTAINTY_ACCEPTED",
+      "CLARIFICATION_REQUIRED",
+      "ABSTENTION_REQUIRED",
+      "MULTIPLE_VALID_OUTCOMES",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "canonical_final_answer_only": true,
+    "evidence_class": "ENGINEERING_ONLY",
+    "legacy_substring_is_limited_fallback": true,
+    "name": "cab_typed_final_answer",
+    "version": "2.0.0"
+  },
+  "status_sources": [
+    {
+      "canonical": false,
+      "modified_ns": 1783588071421096782,
+      "path": "AUTORUN_STATUS.md",
+      "sha256": "8aa03651e51c2d67f52e34a3558677c6d48f5b7148256898ac8e5bb8292bdfaf"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783609024328693051,
+      "path": "AUTORUN_STATUS_V2.md",
+      "sha256": "ec134136913aabf65cdd02c530e482573def85f5b867ab7c246bc9a4db449cf4"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784827117600863235,
+      "path": "MASTER_STATUS.json",
+      "sha256": "fc929657fb6c7a3a9206eb92d5a36e4205082e0abc463826dc057f0dda3784be"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784827117600609234,
+      "path": "MASTER_STATUS.md",
+      "sha256": "3750cdda8e6dcd3873760914b529943e58a84e2289f8a41f987bc62b8d18f1ef"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784827102880713344,
+      "path": "PROJECT_STATUS.json",
+      "sha256": "2eac866e192168f886232f76f22eb0f11acd0d043983ec195091a4dd4b1592fe"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784827102880525636,
+      "path": "PROJECT_STATUS.md",
+      "sha256": "c08d54fdb247596e08fca048f19dd6eeade0cc5d91b0ba0fc1a99136e08bd62b"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781281910995036811,
+      "path": "PROVIDER_PILOT_PREPARATION_STATUS.md",
+      "sha256": "7f69fe9f57badfe218bc874c1e008683f6f942645fadad14825c54ececfb665a"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784825298445586679,
+      "path": "docs/CLAIM_LEDGER.md",
+      "sha256": "a422a11543fdd97063aed4f16c0dfb3c29ad81e19f4b4b72ecc41328ad510bb9"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1782034855478415094,
+      "path": "docs/CVPR_CLAIM_LEDGER_TARGET.md",
+      "sha256": "ba236fd9e29fc9104e3954e847f4a6693ded6a659ebb6e69a11af42e111a3129"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784824425728801617,
+      "path": "docs/claim_ledger.json",
+      "sha256": "7bf5568bf2eef33e0718a35133aac9050c5ed8feff3615ab4e2b6f0360438ce4"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784824380699015646,
+      "path": "docs/claim_ledger_schema.json",
+      "sha256": "5413d022679932c512852c2a307fe9e68c6ecb04fc31c1e4abd364cedbdf8cf4"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686286447167,
+      "path": "handoff/ADVISOR_DEMO_SCRIPT.md",
+      "sha256": "d64267fefed03f462d4fc4828c4f107149010a0fe44ad5ea8817935990030761"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686287090182,
+      "path": "handoff/ADVISOR_HANDOFF_PACKET.md",
+      "sha256": "1dee474cd0e8748f25e81d9c5ac0109c2e704d6de608ddf763a99273275118f2"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686286297083,
+      "path": "handoff/ADVISOR_MESSAGE_DRAFT.md",
+      "sha256": "e858f6cfc7257d1bb50a0cc36448dfc787390baadf8b95cb61394619aa805f6b"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686286498070,
+      "path": "handoff/ADVISOR_REVIEW_BUNDLE_INDEX.md",
+      "sha256": "b9a530fbcffa215f3259626d83250dd92f2f366eac1bcd6242e6bf27f1d9ea5d"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686287418723,
+      "path": "handoff/ADVISOR_SHOW_AND_TELL_CHECKLIST.md",
+      "sha256": "d15d3747744c02f7d4c45803839f9cecdc6bd5f335c388ba281a4283f6cfbe6b"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686286569834,
+      "path": "handoff/DEMO_SLIDES_OUTLINE.md",
+      "sha256": "d2c817af7fadf0e427eade001c049ea456f74eab975e68158d99bc29acc0eba0"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686287153363,
+      "path": "handoff/ONE_PAGE_PROJECT_BRIEF.md",
+      "sha256": "29dfcdf697d4e2c74b7069f8843883f7b3ab7c053882f343e96f3ca13f01c7eb"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079686286112189,
+      "path": "handoff/PROFESSOR_READY_CHECKLIST.md",
+      "sha256": "9f2406149953ce079c565df37b6f566e280d4e03c5c288ccd3078e83f5e7aa27"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028324088665,
+      "path": "reports/5MODEL_100TASK_SCALEUP_READINESS.md",
+      "sha256": "0f7f4c39964952fc3a21e05fd20a094995b7cbb5ba1d31426c4b28324d1b1973"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028323893164,
+      "path": "reports/BASELINE_AGENT_UPGRADE_REPORT.md",
+      "sha256": "b0c22b921cc94ecfe11d4073771afa997c26c72ab0052720ba0ff62e0bbc1b42"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028299509429,
+      "path": "reports/CAB_AUTORUN_MASTER_STATE.json",
+      "sha256": "917b2348834006f664c16248640571727f30474e3dd073f9da018f3f8d6318b1"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028299572262,
+      "path": "reports/CAB_AUTORUN_MASTER_STATE.md",
+      "sha256": "4305ec4383e70fc85cab2da1de0d7ba74a4b53873a2140cd1c670c3bade74b27"
+    },
+    {
+      "canonical": true,
+      "modified_ns": 1784827480458081361,
+      "path": "reports/CAB_CURRENT_STATE_VERIFIED.json",
+      "sha256": "4d726ef63b0ff478b208c0a21436d8fa3b1548b8ed29b86ecbf1cb3f71a6eee5"
+    },
+    {
+      "canonical": true,
+      "modified_ns": 1784827480458164646,
+      "path": "reports/CAB_CURRENT_STATE_VERIFIED.md",
+      "sha256": "bc3c820690690f6d6c0d027f1efc71a68dc9d7ad9aea014406cedaf1a384f70a"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784827480456942541,
+      "path": "reports/CAB_EXECUTION_ENTRY_GATE.json",
+      "sha256": "aeefce23560034dc07d9bc19cd14e68e9eb36529027c78d8af93ee4226861a11"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784827480457096153,
+      "path": "reports/CAB_EXECUTION_ENTRY_GATE.md",
+      "sha256": "7dd91529aac86ed34711bc4ac9d7a92f08bbdde69a354cbe79ead9c4a9442876"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784826552192286484,
+      "path": "reports/CAB_HUMAN_REVIEW_AND_C10_GATE.json",
+      "sha256": "9f8874ff145faeadff9f034fd9943d7cd33f50c5b540b6abf7e08ed8b80f59a0"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1784827424731171351,
+      "path": "reports/CAB_KAGGLE_T4X2_NOTEBOOK_READINESS.md",
+      "sha256": "2b9c417244dc181ca3198449c31591ae9d91c1e721e229ae0c231f1693aef313"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783613385062362444,
+      "path": "reports/CAB_V3_NEXT_EXECUTION_GATE.md",
+      "sha256": "8717d07fd84e4a389464a7680004573dcea0abb5c829ec5299389a4b516ca451"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783613385062230569,
+      "path": "reports/CAB_V3_NO_EXECUTION_UPGRADE_FINAL_REPORT.md",
+      "sha256": "ddd7fe3acdb55b55a7dba0989795876ac2d4463af2e18a9ae5cae5b0468b000d"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028307771896,
+      "path": "reports/CLAIM_LEDGER_REFOCUS_REPORT.md",
+      "sha256": "c37685fff37f2957817206eafd0d5f337056a0963c67c59df4aa7a729fa6ea17"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028322927705,
+      "path": "reports/COMPACT20_3MODEL_ANALYSIS_REPORT.md",
+      "sha256": "68ff14d737285c0072217dd897bad7f6ebf54f7dc7da0fdbf8b46d898bd6151e"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028309069023,
+      "path": "reports/COMPACT20_3MODEL_CONFIG_SAFETY_REPORT.md",
+      "sha256": "1c37191f92bfea00f5492c9a16b435743be196befcef0e75712e575437d77cd5"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028322428538,
+      "path": "reports/COMPACT20_3MODEL_LIVE_RUN_EXECUTION_REPORT.md",
+      "sha256": "aafd0258915604748ac04282373ce354adc5e015ef657027b83fef7c70ff04c9"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783613206725726541,
+      "path": "reports/COMPACT20_QUALITY_UPGRADE_REPORT.md",
+      "sha256": "1baf047f36d19c654d55831946d4b908d87252b59ab32d3a81a4868bb5cd0d44"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028307668979,
+      "path": "reports/DOC_SPRAWL_REDUCTION_REPORT.md",
+      "sha256": "684d63f33b6d8a481ff46b9a8cc1b44828dcf8730d3a9bae674f4fc9d55f796a"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781805922761645935,
+      "path": "reports/FINAL_NO_RUN_BUILD_GATE.md",
+      "sha256": "62469d27fc3ccc9e1eed8a9e22d27f3002bc1d85cfa644ddf19778e1a5c873ca"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028328235086,
+      "path": "reports/FINAL_SUBMISSION_GATE.md",
+      "sha256": "52886a55c5800946ff002eb63e6dd6fb8c1591bef597587b949c922e1cac4231"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783613326089885816,
+      "path": "reports/HUMAN_VALIDATION_OPS_UPGRADE_REPORT.md",
+      "sha256": "7613e547a57bac819fed7ac492001df817452b1b4886d112807c5203e7b003c3"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783613153137874565,
+      "path": "reports/INTERVENTION_TAXONOMY_UPGRADE_REPORT.md",
+      "sha256": "6e0434164ba93b61ce5a402cd20f6ecd5ed49997d7cde4e061f2f441ebb9bd06"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028325991292,
+      "path": "reports/MAIN_500_RUN_GATE.md",
+      "sha256": "e278cfdfb85626dc75d9cba1a737ba9c7484265ed85617de598a3ca415f55b1d"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028325116041,
+      "path": "reports/NATURALISTIC_MINISTUDY_READINESS.md",
+      "sha256": "03c29abd904eb1a223556463202dd8263b8d21a14d0aa586fee68ba14f37f2e9"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781079758443754315,
+      "path": "reports/NEURIPS_ARTIFACT_READINESS_CHECKLIST.md",
+      "sha256": "9a088ef187e4e7fca2ecb45b57cca0f5c0d50d0f878ad23e89d8f055d4e12e78"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783613385062077694,
+      "path": "reports/RELEASE_HARDENING_V2_REPORT.md",
+      "sha256": "5c96f754b54277ec761df3cdba95c7afa514862ac79ec5028418b46a82415c3f"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1783588028327935377,
+      "path": "reports/RELEASE_READINESS_AUDIT.md",
+      "sha256": "eccc42fb5ea49b3566dd51c98c20df61f9c243281b9e61c5b463d03f8c8b579d"
+    },
+    {
+      "canonical": false,
+      "modified_ns": 1781282322941002580,
+      "path": "reports/TINY_PROVIDER_DRYRUN_READINESS.md",
+      "sha256": "91c0bee5ca7d2a8e92abc4eb1c8f244969b2841a5768da0e0b416b07dd028f58"
+    }
+  ],
+  "validation": {
+    "ledger_path": "reports/CAB_VALIDATION_LEDGER.json",
+    "record_count": 30,
+    "summary": {
+      "build_validation_passed": true,
+      "commands_run": 30,
+      "expected_blocked": 2,
+      "failed": 0,
+      "passed": 28,
+      "required_build_failures": [],
+      "scientific_evidence_created": false,
+      "timed_out": 0
+    }
+  }
+}

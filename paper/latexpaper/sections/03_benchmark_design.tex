@@ -1,0 +1,45 @@
+\section{Benchmark Design}
+
+\benchmark is organized around base tasks, clean instances, intervention instances, trajectories, and scores. A base task specifies a user instruction, success criteria, required information, forbidden assumptions, available tools, hidden ground truth for scoring, an optional gold tool sequence, maximum step budget, domain, difficulty, and metadata. A clean instance exposes the base task without perturbation. An intervention instance references the same base task and applies a controlled change with explicit metadata describing the intended factor.
+
+\paragraph{Task domains.}
+The planned benchmark spans travel planning, calendar/email workflow, file and spreadsheet question answering, shopping/comparison, research assistant tasks, policy/compliance tasks, coding/debugging tasks, and multi-hop operational planning. The released generator currently supports these synthetic domains with deterministic templates. The final paper should report the exact domain counts from the submitted dataset in Table~\ref{tab:benchmark-stats}.
+
+\paragraph{Simulated tools.}
+The default environment uses deterministic local tools: database search, policy lookup, calendar checking, file reading, spreadsheet querying, price calculation, option comparison, email-draft creation, booking stubs, and fact verification. No default experiment uses live web access, real email sending, real bookings, private data, or paid model calls.
+
+\paragraph{Why start synthetic.}
+Live web, desktop, or enterprise tasks are more realistic and are central to the broader agent-evaluation literature \citep{deng2023mind2webgeneralistagentweb,zhou2024webarenarealisticwebenvironment,jimenez2024swebenchlanguagemodelsresolve}. They also make causal attribution brittle: tool outputs drift, access permissions change, websites update, and hidden state is hard to audit. \benchmark starts with deterministic simulation because the first scientific question is not whether an agent can operate a particular website, but whether targeted changes to tool availability, memory, observations, and stopping signals expose separable failures. This is a deliberate tradeoff. The benchmark needs later external-validity work on messier environments.
+
+\paragraph{Synthetic-to-realistic mini-study.}
+To probe transfer without abandoning control, we added a 40-task mini-study that compares template-generated synthetic tasks with naturalistic synthetic tasks built from mock emails, calendars, spreadsheets, policy excerpts, bug reports, and product-database artifacts. The environment remains local and deterministic. The engineering comparison script reports whether intervention-family degradation patterns are similar across cohorts (Table~\ref{tab:mini-study-family-comparison}). \todo{Populate this table from validated runs; do not use stub-only outputs as scientific evidence.} If the patterns diverge, template-only degradation curves should not be used as external-validity evidence.
+
+\paragraph{Task templates and registry.}
+Base tasks are drawn from a versioned template registry (\texttt{benchmark\_specs/task\_template\_registry.json}) spanning domains and difficulty tiers documented in \texttt{docs/BENCHMARK\_TAXONOMY.md}. Templates define required tools, success criteria, and intervention hooks; the registry supports audit and reproducible regeneration.
+
+\paragraph{Dataset versioning and freeze policy.}
+Processed datasets live under \texttt{data/processed/}; frozen releases use \texttt{data/frozen/} with a manifest (\texttt{freeze-dataset}, \texttt{docs/DATASET\_VERSIONING\_AND\_RELEASE\_POLICY.md}). Submission-ready experiments require a frozen version hash linked in run metadata.
+
+\paragraph{Evidence-level labels.}
+Runs carry \texttt{evidence\_scope}, \texttt{scientific\_evidence\_level}, and \texttt{scientific\_evidence} flags (\texttt{docs/EVIDENCE\_LEVEL\_POLICY.md}). Mock diagnostic, stub, dry-run, and interrupted runs are labeled engineering-only and must not support paper result claims.
+
+\paragraph{Mock diagnostic configs (engineering only).}
+Deterministic \texttt{mock\_behavior\_agent} configs (e.g., \texttt{pilot\_mock\_diagnostic\_micro.yaml}) exercise trajectory detectors and export paths without calling LLMs. A Phase~9 end-to-end mock micro run validated scoring, analysis, and paper-asset export with \texttt{eligible\_for\_paper\_claims: false}; this is pipeline validation, not empirical evidence about real agents.
+
+\paragraph{Artifacts and validation.}
+Benchmark data is stored as JSONL and validated with Pydantic schemas. Generated datasets include core JSONL files for base tasks, interventions, and instances, plus generation and quality reports. Automated intervention audits (\texttt{audit-interventions}, \texttt{scripts/audit\_intervention\_isolation.py}) flag isolation violations. Runs save trajectories, errors, score records, aggregate summaries, config hashes, run reports, and metadata. The reproducibility goal is tracked by \claimref{C9}.
+
+\input{generated/03_benchmark_stats_table}
+
+\begin{table}[t]
+\centering
+\caption{Mini-study comparison of intervention-family degradation between template-generated and naturalistic synthetic tasks. Placeholder until paired validated runs are exported.}
+\label{tab:mini-study-family-comparison}
+\begin{tabular}{lccc}
+\toprule
+Intervention family & Template deg. & Naturalistic deg. & Abs. diff \\
+\midrule
+\texttt{[todo]} & \texttt{[todo]} & \texttt{[todo]} & \texttt{[todo]} \\
+\bottomrule
+\end{tabular}
+\end{table}

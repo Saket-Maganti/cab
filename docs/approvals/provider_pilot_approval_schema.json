@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Provider Pilot Approval Block",
+  "description": "Fields required in configs/provider_pilot_tiny_APPROVED.yaml after advisor and budget sign-off. Template must keep all approval flags false.",
+  "type": "object",
+  "required": [
+    "advisor_approved",
+    "budget_approved",
+    "approved_for_dry_run",
+    "approved_for_live_run",
+    "approved_by",
+    "approval_date",
+    "advisor_approval_id",
+    "max_budget_usd"
+  ],
+  "properties": {
+    "advisor_approved": { "type": "boolean", "const": true },
+    "budget_approved": { "type": "boolean" },
+    "approved_for_dry_run": { "type": "boolean" },
+    "approved_for_live_run": { "type": "boolean" },
+    "approved_by": { "type": "string", "minLength": 1 },
+    "approval_date": { "type": "string", "format": "date" },
+    "advisor_approval_id": { "type": "string", "minLength": 1 },
+    "max_budget_usd": { "type": "number", "minimum": 0, "maximum": 25 },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

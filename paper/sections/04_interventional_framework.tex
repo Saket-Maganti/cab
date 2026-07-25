@@ -1,7 +1,0 @@
-\section{Interventional Framework}
-
-For each base task $b$, \benchmark constructs a clean instance $x_b^0$ and intervention instances $x_b^j$ for intervention families $j$. Each intervention is intended to change one targeted factor while keeping the user's high-level goal fixed. The intervention metadata records the family, changed factor, expected robust behavior, severity, patch details, and whether the final answer is expected to change.
-
-The current intervention families are tool removal, tool failure, tool corruption, irrelevant tools, memory corruption, observation conflict, ambiguous instruction, long-horizon dependency, premature success signal, and distractor evidence. These families target the skill components described in the claim ledger: recovery under failures (\claimref{C2}, \claimref{C5}), contradiction handling (\claimref{C3}, \claimref{C8}), memory verification (\claimref{C2}, \claimref{C3}), tool overuse (\claimref{C7}), and stopping behavior (\claimref{C8}).
-
-The causal interpretation depends on intervention validity. A tool-failure condition should primarily affect tool reliability, not silently alter the user's objective or the correct answer unless explicitly specified. A memory-corruption condition should make memory less trustworthy while still allowing verification. The benchmark includes quality checks that flag interventions likely to change multiple factors, but expert or human audit remains necessary. This remaining risk is tracked by \claimref{C10}.

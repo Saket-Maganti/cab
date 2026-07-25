@@ -1,0 +1,18 @@
+{
+  "pack_name": "CAB Execution God-Tier Prompt Pack V2",
+  "project": "causal-agent-bench",
+  "root_path": "/Users/saketmaganti/Projects/causal-agent-bench",
+  "created_file_count": 23,
+  "purpose": "Execution-focused stage: human review, C10 validation, approved Compact-20 provider run, audit, ACRS/rank analysis, paper assets, 5-model scale-up.",
+  "start_with": "21_MASTER_EXECUTION_ORCHESTRATOR.md",
+  "human_review_instructions": "22_HUMAN_REVIEW_INSTRUCTIONS_FOR_USER.md",
+  "global_rules": [
+    "No fabricated results",
+    "No fabricated human annotations",
+    "No proxy labels as human validation",
+    "No claim promotion without audited evidence",
+    "No API keys in repository",
+    "No broad sweeps before gates",
+    "Always lock allow_paid_calls=false after execution"
+  ]
+}

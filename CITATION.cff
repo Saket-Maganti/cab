@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this software or benchmark, please cite it as below."
+title: "CausalAgentBench: When Agent Success Is Not Agent Skill"
+version: 0.1.0
+date-released: 2026-05-15
+license: MIT
+type: software
+repository-code: "https://github.com/REPLACE_ORG/causal-agent-bench"
+authors:
+  - family-names: "CausalAgentBench Contributors"
+    name: "CausalAgentBench Contributors"
+keywords:
+  - language models
+  - agents
+  - benchmarks
+  - tool use
+  - robustness
+  - interventions
+abstract: >-
+  CausalAgentBench is a research benchmark for tool-using language agents under
+  controlled interventions. It pairs clean task instances with targeted
+  perturbations to measure whether specific agent skills survive environmental
+  stress. This repository is an initial research scaffold; empirical claims
+  require verified non-stub runs documented in docs/claim_ledger.json.
+preferred-citation:
+  type: article
+  title: "When Agent Success Is Not Agent Skill: A Causal Benchmark for Tool-Using LLM Agents"
+  authors:
+    - family-names: "CausalAgentBench Contributors"
+      name: "CausalAgentBench Contributors"
+  year: 2026
+  notes: "Paper draft in repository; update authors and venue when published."

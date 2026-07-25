@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "ai_proxy_test_only",
+  "labels": [
+    "ai_proxy_review",
+    "synthetic_review_for_pipeline_testing",
+    "not_human_annotation"
+  ],
+  "candidate_count": 5,
+  "paper_asset_eligibility": false,
+  "c10_support": false,
+  "human_annotation_count": 0,
+  "provider_backed_evidence_count": 0,
+  "use_limit": "For downstream analysis pipeline testing only.",
+  "candidates": [
+    {
+      "candidate_id": "compact20_cand_11",
+      "base_task_id": "travel_planning_medium_000",
+      "clean_instance_id": "travel_planning_medium_000.clean",
+      "intervention_instance_id": "travel_planning_medium_000.memory_corruption",
+      "family": "memory_corruption",
+      "domain": "travel_planning",
+      "difficulty": "medium",
+      "proxy_status": "ai_proxy_test_only",
+      "review_labels": "ai_proxy_review;synthetic_review_for_pipeline_testing;not_human_annotation",
+      "paper_eligible": false,
+      "c10_evidence": false,
+      "human_annotation": false,
+      "use_limit": "pipeline_testing_only_not_human_validation"
+    },
+    {
+      "candidate_id": "compact20_cand_12",
+      "base_task_id": "file_spreadsheet_qa_medium_000",
+      "clean_instance_id": "file_spreadsheet_qa_medium_000.clean",
+      "intervention_instance_id": "file_spreadsheet_qa_medium_000.memory_corruption",
+      "family": "memory_corruption",
+      "domain": "file_spreadsheet_qa",
+      "difficulty": "medium",
+      "proxy_status": "ai_proxy_test_only",
+      "review_labels": "ai_proxy_review;synthetic_review_for_pipeline_testing;not_human_annotation",
+      "paper_eligible": false,
+      "c10_evidence": false,
+      "human_annotation": false,
+      "use_limit": "pipeline_testing_only_not_human_validation"
+    },
+    {
+      "candidate_id": "compact20_cand_13",
+      "base_task_id": "research_assistant_easy_000",
+      "clean_instance_id": "research_assistant_easy_000.clean",
+      "intervention_instance_id": "research_assistant_easy_000.memory_corruption",
+      "family": "memory_corruption",
+      "domain": "research_assistant",
+      "difficulty": "easy",
+      "proxy_status": "ai_proxy_test_only",
+      "review_labels": "ai_proxy_review;synthetic_review_for_pipeline_testing;not_human_annotation",
+      "paper_eligible": false,
+      "c10_evidence": false,
+      "human_annotation": false,
+      "use_limit": "pipeline_testing_only_not_human_validation"
+    },
+    {
+      "candidate_id": "compact20_cand_14",
+      "base_task_id": "coding_debugging_stress_000",
+      "clean_instance_id": "coding_debugging_stress_000.clean",
+      "intervention_instance_id": "coding_debugging_stress_000.memory_corruption",
+      "family": "memory_corruption",
+      "domain": "coding_debugging",
+      "difficulty": "stress",
+      "proxy_status": "ai_proxy_test_only",
+      "review_labels": "ai_proxy_review;synthetic_review_for_pipeline_testing;not_human_annotation",
+      "paper_eligible": false,
+      "c10_evidence": false,
+      "human_annotation": false,
+      "use_limit": "pipeline_testing_only_not_human_validation"
+    },
+    {
+      "candidate_id": "compact20_cand_15",
+      "base_task_id": "travel_planning_medium_001",
+      "clean_instance_id": "travel_planning_medium_001.clean",
+      "intervention_instance_id": "travel_planning_medium_001.memory_corruption",
+      "family": "memory_corruption",
+      "domain": "travel_planning",
+      "difficulty": "medium",
+      "proxy_status": "ai_proxy_test_only",
+      "review_labels": "ai_proxy_review;synthetic_review_for_pipeline_testing;not_human_annotation",
+      "paper_eligible": false,
+      "c10_evidence": false,
+      "human_annotation": false,
+      "use_limit": "pipeline_testing_only_not_human_validation"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ class RandomToolAgent(BaseAgent):
         available_tools: list[ToolSpec],
     ) -> AgentAction:
         usable_tools = [tool for tool in available_tools if tool.is_available]
-        if not usable_tools or observation_history and self.rng.random() < 0.35:
+        if not usable_tools or (observation_history and self.rng.random() < 0.35):
             return final_action(
                 "Unable to determine from the available evidence.",
                 thought="Random lower-bound agent stops.",

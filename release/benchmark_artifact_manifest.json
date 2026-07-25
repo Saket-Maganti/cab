@@ -1,0 +1,172 @@
+{
+  "schema_version": "benchmark_artifact_manifest_v1",
+  "generated_at": "2026-06-10T00:00:00+00:00",
+  "benchmark_id": "causal-agent-bench",
+  "benchmark_version": "0.1.0-dev",
+  "package_version": "0.1.0",
+  "release_id": "causal-agent-bench-0.1.0",
+  "benchmark_status": "research_scaffold",
+  "artifact_classification": "infrastructure_artifact_candidate",
+  "dataset_versions": [
+    {
+      "id": "pilot_v0.1",
+      "path": "data/frozen/pilot_v0.1",
+      "manifest": "data/frozen/pilot_v0.1/freeze_manifest.json",
+      "status": "frozen_pilot_ready"
+    },
+    {
+      "id": "main_200",
+      "path": null,
+      "status": "blocked_not_frozen"
+    },
+    {
+      "id": "main_v0.1_500",
+      "path": null,
+      "status": "blocked_not_frozen"
+    }
+  ],
+  "split_policy": "release_disjoint_v1",
+  "config_profiles": {
+    "smoke_stub": {
+      "examples": ["configs/smoke.yaml", "configs/pilot_stub_micro_3.yaml"],
+      "paper_eligible": false,
+      "requires_approval": false,
+      "artifact_review_default": false
+    },
+    "mock_diagnostic": {
+      "examples": ["configs/pilot_mock_diagnostic_micro.yaml"],
+      "paper_eligible": false,
+      "evidence_scope": "mock_diagnostic_only",
+      "artifact_review_default": false
+    },
+    "provider_pilot_template": {
+      "path": "configs/provider_pilot_tiny_template.yaml",
+      "paper_eligible": false,
+      "requires_approval": true,
+      "allow_paid_calls": false,
+      "template_only": true,
+      "gate_status": "template_safe_but_not_runnable"
+    },
+    "provider_pilot_approved": {
+      "path": "configs/provider_pilot_tiny_APPROVED.yaml",
+      "must_not_exist_without_signed_approval": true,
+      "paper_eligible": "pending_post_run_audit"
+    },
+    "main_multi_provider": {
+      "path": "configs/commercial_api_main_500.yaml",
+      "paper_eligible": false,
+      "requires_approval": true,
+      "blocked": true
+    }
+  },
+  "evidence_state": {
+    "paper_eligible_runs": 0,
+    "eligible_empirical_assets": 0,
+    "provider_backed_scientific_evidence": false,
+    "human_validation_annotations": false,
+    "leakage_blocker_clusters": 0,
+    "approved_provider_config_present": false,
+    "run_index_may_be_stale": true,
+    "public_release_ready": false
+  },
+  "claims": {
+    "C1": "planned",
+    "C2": "planned",
+    "C3": "planned",
+    "C4": "planned",
+    "C5": "planned",
+    "C6": "planned",
+    "C7": "planned",
+    "C8": "planned",
+    "C9": "engineering_only",
+    "C10": "planned"
+  },
+  "reproduction_modes": {
+    "static_only": {
+      "tier": 0,
+      "supports_paper_empirical_claims": false,
+      "commands": [
+        "Read docs/REVIEWER_QUICKSTART_NEURIPS.md",
+        "Read reports/claim_evidence_matrix.md"
+      ]
+    },
+    "no_run_reports": {
+      "tier": 1,
+      "supports_paper_empirical_claims": false,
+      "commands": [
+        "python3 -m causal_agent_bench all-no-run-reports --output-dir /tmp/cab_reports",
+        "python3 scripts/check_evidence_safety.py"
+      ]
+    },
+    "stub_mock_engineering": {
+      "tier": 2,
+      "supports_paper_empirical_claims": false,
+      "supports_C9_only": true,
+      "note": "Not default for NeurIPS artifact review; engineering validation only"
+    },
+    "approved_provider_pilot": {
+      "tier": 3,
+      "supports_paper_empirical_claims": "pending_post_run_audit",
+      "blocked": true,
+      "requires": ["signed_approval_forms", "API_keys", "provider_pilot_tiny_APPROVED.yaml"]
+    },
+    "full_multi_provider_benchmark": {
+      "tier": 4,
+      "supports_paper_empirical_claims": true,
+      "blocked": true
+    },
+    "human_validation_and_paper_assets": {
+      "tier": 5,
+      "supports_paper_empirical_claims": "partial_C3_C10",
+      "blocked": true
+    }
+  },
+  "human_validation_required_assets": [
+    "configs/human_validation_sample.yaml",
+    "docs/HUMAN_VALIDATION_PROTOCOL.md",
+    "tables/table5_human_validation_agreement.csv"
+  ],
+  "blocked_assets": [
+    "tables/table2_main_agent_performance.csv",
+    "figures/figure2_clean_vs_intervention_success.png",
+    "figures/figure4_ranking_instability.png",
+    "paper/latexpaper/generated/07_results.tex empirical insertions",
+    "configs/*_APPROVED.yaml without signed docs",
+    "public_zenodo_hf_bundle"
+  ],
+  "safe_commands": [
+    "python3 scripts/check_evidence_safety.py",
+    "python3 scripts/check_run_index.py",
+    "python3 -m causal_agent_bench all-no-run-reports --output-dir /tmp/cab_reports",
+    "python3 -m causal_agent_bench validate-config --config configs/provider_pilot_tiny_template.yaml",
+    "python3 -m causal_agent_bench plan-run --config configs/provider_pilot_tiny_template.yaml",
+    "python3 -m causal_agent_bench estimate-run-cost --config configs/provider_pilot_tiny_template.yaml --output-dir /tmp/cab_cost",
+    "python3 -m causal_agent_bench benchmark-manifest --output-dir reports/benchmark_manifest",
+    "python3 scripts/check_claim_ledger.py --mode draft",
+    "python3 -m pytest tests/test_neurips_artifact_upgrade.py -q"
+  ],
+  "forbidden_commands": [
+    "python3 -m causal_agent_bench run --config configs/pilot_openai_20.yaml",
+    "python3 -m causal_agent_bench run --config configs/commercial_api_main_500.yaml",
+    "python3 -m causal_agent_bench fill-paper-from-run",
+    "make smoke",
+    "make test"
+  ],
+  "forbidden_actions": [
+    "allow_paid_calls=true without signed budget approval",
+    "auto_create_APPROVED_yaml",
+    "mutate_results_metadata_to_eligibility",
+    "promote_claims_without_post_run_audit",
+    "edit_frozen_data_without_repair_workflow"
+  ],
+  "canonical_docs": [
+    "docs/NEURIPS_ARTIFACT_READINESS_CHECKLIST.md",
+    "docs/NEURIPS_CONTRIBUTION_MAP.md",
+    "docs/BENCHMARK_ARTIFACT_MANIFEST.md",
+    "docs/REVIEWER_QUICKSTART_NEURIPS.md",
+    "docs/REPRODUCIBILITY_TIERS.md",
+    "docs/DATASET_RELEASE_READINESS.md",
+    "docs/NEURIPS_SELF_REVIEW_RUBRIC.md",
+    "GOD_TIER_MANIFEST.md"
+  ]
+}

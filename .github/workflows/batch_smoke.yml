@@ -1,0 +1,54 @@
+name: Batch smoke
+
+on:
+  push:
+    paths:
+      - "src/causal_agent_bench/runners/batch.py"
+      - "src/causal_agent_bench/runners/resume.py"
+      - "src/causal_agent_bench/runners/experiment.py"
+      - "tests/test_batch_runner.py"
+      - ".github/workflows/batch_smoke.yml"
+  pull_request:
+    paths:
+      - "src/causal_agent_bench/runners/batch.py"
+      - "src/causal_agent_bench/runners/resume.py"
+      - "src/causal_agent_bench/runners/experiment.py"
+      - "tests/test_batch_runner.py"
+      - ".github/workflows/batch_smoke.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  batch-merge-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package
+        run: python -m pip install -e ".[dev]"
+
+      - name: Batch runner tests
+        run: python -m pytest tests/test_batch_runner.py -q
+
+      - name: Plan and merge smoke shards
+        run: |
+          python -m causal_agent_bench batch-plan \
+            --config configs/smoke.yaml \
+            --shard-by instance \
+            --shard-count 2 \
+            --output-dir results/ci_batch_smoke
+          python -m causal_agent_bench run --config results/ci_batch_smoke/shards/shard_000/config.yaml
+          python -m causal_agent_bench run --config results/ci_batch_smoke/shards/shard_001/config.yaml
+          python -m causal_agent_bench batch-merge --batch-dir results/ci_batch_smoke
+          python -m causal_agent_bench failure-report --run-dir results/ci_batch_smoke/merged/run

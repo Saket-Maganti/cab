@@ -1,0 +1,2635 @@
+{
+  "audited_at": "2026-05-19T05:34:44.608775+00:00",
+  "benchmark_dir": "data/frozen/pilot_v0.1",
+  "canaries": {
+    "expected": {
+      "calendar_email_workflow_hard_027": "CAB-CANARY-pilot_v0.1-d3eb85fad7f6",
+      "calendar_email_workflow_medium_025": "CAB-CANARY-pilot_v0.1-60e518e75d03",
+      "calendar_email_workflow_medium_026": "CAB-CANARY-pilot_v0.1-7a66c8b61b92",
+      "calendar_email_workflow_medium_028": "CAB-CANARY-pilot_v0.1-4811836ed872",
+      "calendar_email_workflow_medium_031": "CAB-CANARY-pilot_v0.1-1d0da7529cb9",
+      "calendar_email_workflow_stress_006": "CAB-CANARY-pilot_v0.1-1db3115e024b",
+      "calendar_email_workflow_stress_007": "CAB-CANARY-pilot_v0.1-329561347270",
+      "calendar_email_workflow_stress_008": "CAB-CANARY-pilot_v0.1-38f89e0db9c5",
+      "calendar_email_workflow_stress_029": "CAB-CANARY-pilot_v0.1-db5bd234278c",
+      "calendar_email_workflow_stress_030": "CAB-CANARY-pilot_v0.1-c789936fd882",
+      "coding_debugging_easy_005": "CAB-CANARY-pilot_v0.1-5bd2b93ba905",
+      "coding_debugging_easy_007": "CAB-CANARY-pilot_v0.1-ab042f155042",
+      "coding_debugging_easy_028": "CAB-CANARY-pilot_v0.1-239721965868",
+      "coding_debugging_easy_030": "CAB-CANARY-pilot_v0.1-42be02a87631",
+      "coding_debugging_hard_026": "CAB-CANARY-pilot_v0.1-0c29bf6423ae",
+      "coding_debugging_hard_029": "CAB-CANARY-pilot_v0.1-f66499c14edf",
+      "coding_debugging_medium_027": "CAB-CANARY-pilot_v0.1-15679400a64a",
+      "coding_debugging_stress_006": "CAB-CANARY-pilot_v0.1-b8b8cf0ab735",
+      "coding_debugging_stress_025": "CAB-CANARY-pilot_v0.1-b03f9d32522c",
+      "file_spreadsheet_qa_easy_007": "CAB-CANARY-pilot_v0.1-97f085e0b0bf",
+      "file_spreadsheet_qa_easy_030": "CAB-CANARY-pilot_v0.1-0e1d11275fe5",
+      "file_spreadsheet_qa_hard_025": "CAB-CANARY-pilot_v0.1-0e958dcce93d",
+      "file_spreadsheet_qa_hard_026": "CAB-CANARY-pilot_v0.1-ecfe119e28c9",
+      "file_spreadsheet_qa_hard_029": "CAB-CANARY-pilot_v0.1-a990ce1d99a0",
+      "file_spreadsheet_qa_medium_027": "CAB-CANARY-pilot_v0.1-4266af22746c",
+      "file_spreadsheet_qa_stress_006": "CAB-CANARY-pilot_v0.1-1514619fc63f",
+      "file_spreadsheet_qa_stress_008": "CAB-CANARY-pilot_v0.1-81bd668aa0ce",
+      "file_spreadsheet_qa_stress_028": "CAB-CANARY-pilot_v0.1-8eacc2b54fe4",
+      "operations_planning_easy_026": "CAB-CANARY-pilot_v0.1-000e16f7034f",
+      "operations_planning_hard_005": "CAB-CANARY-pilot_v0.1-fb75acd552c7",
+      "operations_planning_hard_006": "CAB-CANARY-pilot_v0.1-17685a70849b",
+      "operations_planning_hard_027": "CAB-CANARY-pilot_v0.1-8cddfb7dcb98",
+      "operations_planning_medium_007": "CAB-CANARY-pilot_v0.1-14d97ea97a29",
+      "operations_planning_medium_029": "CAB-CANARY-pilot_v0.1-6f727ca77ba6",
+      "operations_planning_stress_025": "CAB-CANARY-pilot_v0.1-8b604a59d00e",
+      "operations_planning_stress_028": "CAB-CANARY-pilot_v0.1-7ddea2b45f31",
+      "operations_planning_stress_030": "CAB-CANARY-pilot_v0.1-24e1bd1bdf1f",
+      "policy_compliance_easy_030": "CAB-CANARY-pilot_v0.1-3c57573c52fe",
+      "policy_compliance_hard_025": "CAB-CANARY-pilot_v0.1-8b379c07de8b",
+      "policy_compliance_hard_026": "CAB-CANARY-pilot_v0.1-4f87befc3de5",
+      "policy_compliance_hard_027": "CAB-CANARY-pilot_v0.1-ee745181c913",
+      "policy_compliance_hard_028": "CAB-CANARY-pilot_v0.1-bdba43b354b6",
+      "policy_compliance_medium_005": "CAB-CANARY-pilot_v0.1-519bc19aa983",
+      "policy_compliance_medium_006": "CAB-CANARY-pilot_v0.1-4a5a7b0aedd6",
+      "policy_compliance_medium_008": "CAB-CANARY-pilot_v0.1-9b7c9beddd00",
+      "policy_compliance_stress_007": "CAB-CANARY-pilot_v0.1-35fae1d01b51",
+      "policy_compliance_stress_029": "CAB-CANARY-pilot_v0.1-3536e7462d7a",
+      "research_assistant_hard_007": "CAB-CANARY-pilot_v0.1-31fbc5f3b8d0",
+      "research_assistant_hard_025": "CAB-CANARY-pilot_v0.1-d2f16bf284f2",
+      "research_assistant_hard_026": "CAB-CANARY-pilot_v0.1-1ebbee21dd1f",
+      "research_assistant_hard_027": "CAB-CANARY-pilot_v0.1-5a19fa377ad0",
+      "research_assistant_hard_029": "CAB-CANARY-pilot_v0.1-a88bef17f341",
+      "research_assistant_stress_006": "CAB-CANARY-pilot_v0.1-b5d52a3ea46a",
+      "research_assistant_stress_008": "CAB-CANARY-pilot_v0.1-09d3dd29aa1a",
+      "research_assistant_stress_028": "CAB-CANARY-pilot_v0.1-7c6f3cccf1d5",
+      "research_assistant_stress_030": "CAB-CANARY-pilot_v0.1-c70c04fe87a8",
+      "shopping_comparison_easy_006": "CAB-CANARY-pilot_v0.1-8e42a982c77b",
+      "shopping_comparison_easy_028": "CAB-CANARY-pilot_v0.1-6571e16808a2",
+      "shopping_comparison_medium_007": "CAB-CANARY-pilot_v0.1-1e88c4a5521f",
+      "shopping_comparison_medium_026": "CAB-CANARY-pilot_v0.1-7b662ec57dda",
+      "shopping_comparison_stress_008": "CAB-CANARY-pilot_v0.1-2f2629bd2734",
+      "shopping_comparison_stress_025": "CAB-CANARY-pilot_v0.1-c9382374768c",
+      "shopping_comparison_stress_027": "CAB-CANARY-pilot_v0.1-a2b89d406bc1",
+      "shopping_comparison_stress_029": "CAB-CANARY-pilot_v0.1-7ce48ab53619",
+      "shopping_comparison_stress_030": "CAB-CANARY-pilot_v0.1-1c4b57abcce2",
+      "travel_planning_easy_026": "CAB-CANARY-pilot_v0.1-d8acd20f2e83",
+      "travel_planning_easy_027": "CAB-CANARY-pilot_v0.1-2b8f6189cd2c",
+      "travel_planning_hard_008": "CAB-CANARY-pilot_v0.1-e53b165970cf",
+      "travel_planning_hard_030": "CAB-CANARY-pilot_v0.1-a5415f900dff",
+      "travel_planning_medium_006": "CAB-CANARY-pilot_v0.1-05b6ea2c5cd7",
+      "travel_planning_medium_007": "CAB-CANARY-pilot_v0.1-acd889d27426",
+      "travel_planning_medium_029": "CAB-CANARY-pilot_v0.1-3ef6b7e2b909",
+      "travel_planning_stress_025": "CAB-CANARY-pilot_v0.1-4fe182574cf7",
+      "travel_planning_stress_028": "CAB-CANARY-pilot_v0.1-54f3a00ed736",
+      "travel_planning_stress_031": "CAB-CANARY-pilot_v0.1-cb0eed12fadd"
+    },
+    "expected_count": 75,
+    "findings": [
+      {
+        "category": "canary_missing",
+        "detail": "75 hidden tasks lack metadata.contamination_canary",
+        "severity": "warning",
+        "subject": "hidden_splits"
+      }
+    ],
+    "leaks_in_public": [],
+    "missing": [
+      "policy_compliance_medium_005",
+      "coding_debugging_easy_005",
+      "operations_planning_hard_005",
+      "travel_planning_medium_006",
+      "calendar_email_workflow_stress_006",
+      "file_spreadsheet_qa_stress_006",
+      "shopping_comparison_easy_006",
+      "research_assistant_stress_006",
+      "policy_compliance_medium_006",
+      "coding_debugging_stress_006",
+      "operations_planning_hard_006",
+      "travel_planning_medium_007",
+      "calendar_email_workflow_stress_007",
+      "file_spreadsheet_qa_easy_007",
+      "shopping_comparison_medium_007",
+      "research_assistant_hard_007",
+      "policy_compliance_stress_007",
+      "coding_debugging_easy_007",
+      "operations_planning_medium_007",
+      "travel_planning_hard_008",
+      "calendar_email_workflow_stress_008",
+      "file_spreadsheet_qa_stress_008",
+      "shopping_comparison_stress_008",
+      "research_assistant_stress_008",
+      "policy_compliance_medium_008",
+      "travel_planning_stress_025",
+      "calendar_email_workflow_medium_025",
+      "file_spreadsheet_qa_hard_025",
+      "shopping_comparison_stress_025",
+      "research_assistant_hard_025",
+      "policy_compliance_hard_025",
+      "coding_debugging_stress_025",
+      "operations_planning_stress_025",
+      "travel_planning_easy_026",
+      "calendar_email_workflow_medium_026",
+      "file_spreadsheet_qa_hard_026",
+      "shopping_comparison_medium_026",
+      "research_assistant_hard_026",
+      "policy_compliance_hard_026",
+      "coding_debugging_hard_026",
+      "operations_planning_easy_026",
+      "travel_planning_easy_027",
+      "calendar_email_workflow_hard_027",
+      "file_spreadsheet_qa_medium_027",
+      "shopping_comparison_stress_027",
+      "research_assistant_hard_027",
+      "policy_compliance_hard_027",
+      "coding_debugging_medium_027",
+      "operations_planning_hard_027",
+      "travel_planning_stress_028"
+    ],
+    "stored": {},
+    "stored_count": 0
+  },
+  "contamination_risks": [
+    "Public task instructions and tool schemas may appear in pretraining corpora.",
+    "Models may memorize template variants seen during method development on pilot splits.",
+    "Repeated submissions on the held-out test split enable adaptive overfitting.",
+    "Oracle or hidden-metadata exposure inflates scores without realistic agent skill.",
+    "Near-duplicate instructions across splits reduce effective held-out size."
+  ],
+  "dataset_version": "pilot_v0.1",
+  "findings": [
+    {
+      "category": "canary_missing",
+      "detail": "75 hidden tasks lack metadata.contamination_canary",
+      "severity": "warning",
+      "subject": "hidden_splits"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and validation",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_004"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and test",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_006"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and test",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_007"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_009"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_010"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_012"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_015"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_021"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_022"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "travel_planning_medium_000|travel_planning_medium_029"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_009"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_012"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_015"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_016"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_020"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_021"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and validation",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_003"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and validation",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_004"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and pilot",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_016"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and pilot",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_018"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and pilot",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_019"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_027"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and test",
+      "severity": "warning",
+      "subject": "shopping_comparison_easy_000|shopping_comparison_easy_006"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_easy_000|shopping_comparison_easy_009"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_easy_000|shopping_comparison_easy_011"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_easy_000|shopping_comparison_easy_012"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_easy_000|shopping_comparison_easy_015"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_easy_000|shopping_comparison_easy_023"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "shopping_comparison_easy_000|shopping_comparison_easy_028"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and validation",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_005"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_009"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_010"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_013"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_016"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_020"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_021"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.909 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_easy_000|research_assistant_easy_024"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and pilot",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_009"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and pilot",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_010"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and pilot",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_015"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and pilot",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_018"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and pilot",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_021"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and pilot",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_024"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_025"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_026"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_027"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "policy_compliance_hard_000|policy_compliance_hard_028"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.905 between dev and validation",
+      "severity": "warning",
+      "subject": "coding_debugging_stress_000|coding_debugging_stress_002"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.905 between dev and validation",
+      "severity": "warning",
+      "subject": "coding_debugging_stress_000|coding_debugging_stress_004"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.905 between dev and test",
+      "severity": "warning",
+      "subject": "coding_debugging_stress_000|coding_debugging_stress_006"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.905 between dev and pilot",
+      "severity": "warning",
+      "subject": "coding_debugging_stress_000|coding_debugging_stress_010"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.905 between dev and pilot",
+      "severity": "warning",
+      "subject": "coding_debugging_stress_000|coding_debugging_stress_018"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.905 between dev and pilot",
+      "severity": "warning",
+      "subject": "coding_debugging_stress_000|coding_debugging_stress_022"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.905 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "coding_debugging_stress_000|coding_debugging_stress_025"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and test",
+      "severity": "warning",
+      "subject": "operations_planning_medium_000|operations_planning_medium_007"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "operations_planning_medium_000|operations_planning_medium_014"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "operations_planning_medium_000|operations_planning_medium_020"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "operations_planning_medium_000|operations_planning_medium_021"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and pilot",
+      "severity": "warning",
+      "subject": "operations_planning_medium_000|operations_planning_medium_024"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.920 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "operations_planning_medium_000|operations_planning_medium_029"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and validation",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_004"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and test",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_006"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and test",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_007"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_009"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_010"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_012"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_015"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_021"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_022"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "travel_planning_medium_001|travel_planning_medium_029"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and validation",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_005"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_011"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_017"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_019"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and pilot",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_023"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_025"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_026"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_028"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_031"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and validation",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_003"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and validation",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_004"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and pilot",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_016"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and pilot",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_018"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and pilot",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_019"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.913 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_027"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and validation",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_003"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and test",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_007"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_010"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_013"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_014"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_016"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_017"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_018"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and pilot",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_024"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.917 between dev and heldout_templates",
+      "severity": "warning",
+      "subject": "shopping_comparison_medium_001|shopping_comparison_medium_026"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and validation",
+      "severity": "warning",
+      "subject": "research_assistant_hard_001|research_assistant_hard_003"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and test",
+      "severity": "warning",
+      "subject": "research_assistant_hard_001|research_assistant_hard_007"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_hard_001|research_assistant_hard_011"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_hard_001|research_assistant_hard_012"
+    },
+    {
+      "category": "near_duplicate_instruction",
+      "detail": "Instruction Jaccard 0.926 between dev and pilot",
+      "severity": "warning",
+      "subject": "research_assistant_hard_001|research_assistant_hard_014"
+    },
+    {
+      "category": "intervention_expected_behavior_exposed",
+      "detail": "intervention_expected_behavior is included in LLM agent task context by design; do not use for blind model ranking without scaffold ablation",
+      "severity": "warning",
+      "subject": "llm_tool_agents"
+    }
+  ],
+  "fingerprinting": {
+    "collisions": [],
+    "findings": [],
+    "fingerprints_by_task": {
+      "calendar_email_workflow_easy_000": "8911a62aa19fb43a",
+      "calendar_email_workflow_easy_009": "25a29d628dd07e5b",
+      "calendar_email_workflow_easy_012": "1bbc9cf02e18c2a6",
+      "calendar_email_workflow_easy_015": "c30e6a37d974d327",
+      "calendar_email_workflow_easy_016": "aa419915c563c3ae",
+      "calendar_email_workflow_easy_020": "0edf8a4a9e9d71a4",
+      "calendar_email_workflow_easy_021": "aa906ba127b4d9f2",
+      "calendar_email_workflow_hard_004": "aab7702e68af1d61",
+      "calendar_email_workflow_hard_013": "27cb66c2d37b6d90",
+      "calendar_email_workflow_hard_014": "ffe9a8bd56f3c43e",
+      "calendar_email_workflow_hard_018": "fbe4d524b50b4a8c",
+      "calendar_email_workflow_hard_022": "998a760cf3eb6be8",
+      "calendar_email_workflow_hard_024": "81143068c3b8f74e",
+      "calendar_email_workflow_hard_027": "a765bdf2a987439c",
+      "calendar_email_workflow_medium_001": "7eff529ace782eab",
+      "calendar_email_workflow_medium_005": "98941cfac83eaf6f",
+      "calendar_email_workflow_medium_011": "9f2a005a436cf2b0",
+      "calendar_email_workflow_medium_017": "921ab812c152035f",
+      "calendar_email_workflow_medium_019": "7b156b4aa9a8bcc7",
+      "calendar_email_workflow_medium_023": "3e75c6cf5db0912b",
+      "calendar_email_workflow_medium_025": "2341b74c8f9999b8",
+      "calendar_email_workflow_medium_026": "1e6f214695aa1f0a",
+      "calendar_email_workflow_medium_028": "540b09e9fbe9f0cd",
+      "calendar_email_workflow_medium_031": "011178015f1ef266",
+      "calendar_email_workflow_stress_002": "c9428769251a8af4",
+      "calendar_email_workflow_stress_003": "f9255b024d42876f",
+      "calendar_email_workflow_stress_006": "b68543b55a74d55f",
+      "calendar_email_workflow_stress_007": "5f37d6f784a55d18",
+      "calendar_email_workflow_stress_008": "2d0078966bfc9cef",
+      "calendar_email_workflow_stress_010": "0aa32e199c10ef1b",
+      "calendar_email_workflow_stress_029": "1e7606dc137a0dad",
+      "calendar_email_workflow_stress_030": "1f87cf6625228464",
+      "coding_debugging_easy_005": "949c9b929600240e",
+      "coding_debugging_easy_007": "5837116b134b03d3",
+      "coding_debugging_easy_011": "e0115040be644457",
+      "coding_debugging_easy_014": "edfcd97974a09ed9",
+      "coding_debugging_easy_016": "b944dc49b305600b",
+      "coding_debugging_easy_017": "5265bf8397b20063",
+      "coding_debugging_easy_023": "4824553191ff9a47",
+      "coding_debugging_easy_024": "2887874a098c06f9",
+      "coding_debugging_easy_028": "55dce061e31dc847",
+      "coding_debugging_easy_030": "709c5d77053c05cc",
+      "coding_debugging_hard_003": "f22784432ae868d4",
+      "coding_debugging_hard_008": "19a6d15bdb7aa963",
+      "coding_debugging_hard_009": "fa1aa32758b7a03b",
+      "coding_debugging_hard_012": "f22bfbb500fc52d2",
+      "coding_debugging_hard_013": "8fb52ecca758b554",
+      "coding_debugging_hard_021": "b3c1919f212a5083",
+      "coding_debugging_hard_026": "e0bdec7dee818169",
+      "coding_debugging_hard_029": "84ef4ac15675af0e",
+      "coding_debugging_medium_001": "b2502bb4017f5a0e",
+      "coding_debugging_medium_015": "4904459ebbd8a996",
+      "coding_debugging_medium_019": "a0da18ebf70333ca",
+      "coding_debugging_medium_020": "1f625cad82f213ef",
+      "coding_debugging_medium_027": "36da0b3bde448538",
+      "coding_debugging_stress_000": "2192e7ce3e7038ac",
+      "coding_debugging_stress_002": "c862b10b912e71d5",
+      "coding_debugging_stress_004": "5439e37dc9253676",
+      "coding_debugging_stress_006": "444932f99be4d2b1",
+      "coding_debugging_stress_010": "3e5bb6d3af8524d9",
+      "coding_debugging_stress_018": "fd615d8c644b3331",
+      "coding_debugging_stress_022": "56c6c578d6d08481",
+      "coding_debugging_stress_025": "f09e4cdbf9e09faa",
+      "file_spreadsheet_qa_easy_007": "ed99804f28541667",
+      "file_spreadsheet_qa_easy_009": "a0e498715d693b87",
+      "file_spreadsheet_qa_easy_010": "56cf925352825265",
+      "file_spreadsheet_qa_easy_012": "92a198a6b4cc49f8",
+      "file_spreadsheet_qa_easy_013": "1cffab22272f5666",
+      "file_spreadsheet_qa_easy_014": "b555521eb347c47e",
+      "file_spreadsheet_qa_easy_023": "af7a41ee3cf4a8c1",
+      "file_spreadsheet_qa_easy_024": "c57f51014284c543",
+      "file_spreadsheet_qa_easy_030": "885d82402b609af6",
+      "file_spreadsheet_qa_hard_005": "5643c859d8d4f129",
+      "file_spreadsheet_qa_hard_015": "1c96a2d30b68d1f2",
+      "file_spreadsheet_qa_hard_020": "a9a11c6cc3275e07",
+      "file_spreadsheet_qa_hard_021": "99da57fe3b08a55b",
+      "file_spreadsheet_qa_hard_025": "8a4e20ce6f9b8902",
+      "file_spreadsheet_qa_hard_026": "3e7814ca6a9864de",
+      "file_spreadsheet_qa_hard_029": "37aff5bef50c1a5b",
+      "file_spreadsheet_qa_medium_000": "af0db8310e9190bb",
+      "file_spreadsheet_qa_medium_001": "b287525344e850b0",
+      "file_spreadsheet_qa_medium_002": "6a558810e208d6c6",
+      "file_spreadsheet_qa_medium_003": "c6ef8cfbda9636f2",
+      "file_spreadsheet_qa_medium_004": "1722fefcfe2755c1",
+      "file_spreadsheet_qa_medium_016": "9f49d5a3da71d879",
+      "file_spreadsheet_qa_medium_018": "f615b9aeb83fb04a",
+      "file_spreadsheet_qa_medium_019": "776878e016c277ad",
+      "file_spreadsheet_qa_medium_027": "996376314cb0b770",
+      "file_spreadsheet_qa_stress_006": "b4f1c2b682928b3e",
+      "file_spreadsheet_qa_stress_008": "0d439c7d26673f58",
+      "file_spreadsheet_qa_stress_011": "2d5c1063c3afefd4",
+      "file_spreadsheet_qa_stress_017": "8971ef54870ddec7",
+      "file_spreadsheet_qa_stress_022": "a5ef7219da6e63df",
+      "file_spreadsheet_qa_stress_028": "94d75c942fdccaae",
+      "operations_planning_easy_002": "b44eebb18289db8d",
+      "operations_planning_easy_008": "f3dfd506c6b6315b",
+      "operations_planning_easy_009": "3fc76a02dd93dd79",
+      "operations_planning_easy_010": "28400bc2ed85a2c2",
+      "operations_planning_easy_017": "fb0572686b5f0380",
+      "operations_planning_easy_018": "b0b14c8e2326fad2",
+      "operations_planning_easy_026": "a9d2f3b5ce3a5a49",
+      "operations_planning_hard_004": "9015682359aab9f6",
+      "operations_planning_hard_005": "f631664803f1460f",
+      "operations_planning_hard_006": "bfa43094c6ca885b",
+      "operations_planning_hard_011": "49085f56d7d6b653",
+      "operations_planning_hard_013": "20d1b92535a6d086",
+      "operations_planning_hard_016": "88e581e49e646dce",
+      "operations_planning_hard_019": "204d55b03eb324f8",
+      "operations_planning_hard_022": "137cf3f0ee89de13",
+      "operations_planning_hard_023": "fd1342e6425c6a5c",
+      "operations_planning_hard_027": "63fdc6791767fbbc",
+      "operations_planning_medium_000": "fb57b0990bf61714",
+      "operations_planning_medium_007": "3174ad41b5bbbef7",
+      "operations_planning_medium_014": "9c725363c5eebf8f",
+      "operations_planning_medium_020": "9cd7733527aed641",
+      "operations_planning_medium_021": "4054d716a141d4ae",
+      "operations_planning_medium_024": "fc75afe7b7da754d",
+      "operations_planning_medium_029": "f6e658127dc40663",
+      "operations_planning_stress_001": "43d15d6149226db5",
+      "operations_planning_stress_003": "1f3843596f6b1115",
+      "operations_planning_stress_012": "c54af81b7848f984",
+      "operations_planning_stress_015": "d5359ad6d5c59a8c",
+      "operations_planning_stress_025": "e28c89d14646f8f5",
+      "operations_planning_stress_028": "6ef2ac3386762e87",
+      "operations_planning_stress_030": "c563b1a191304b7a",
+      "policy_compliance_easy_001": "52b3e16fdbfe0fde",
+      "policy_compliance_easy_014": "f1be71b1aa26a5fa",
+      "policy_compliance_easy_019": "4288c686e06be1be",
+      "policy_compliance_easy_022": "921e38256503eb1d",
+      "policy_compliance_easy_030": "b5f62b9084e70309",
+      "policy_compliance_hard_000": "05bf5e6b34878740",
+      "policy_compliance_hard_009": "0b07b24c8d216e83",
+      "policy_compliance_hard_010": "17314e52a818538f",
+      "policy_compliance_hard_015": "4b837e96b89fa9bf",
+      "policy_compliance_hard_018": "deb552709a97b20d",
+      "policy_compliance_hard_021": "9b005cb80e5d4c41",
+      "policy_compliance_hard_024": "b337f3225c0ec9a6",
+      "policy_compliance_hard_025": "bc7d1c0b86655353",
+      "policy_compliance_hard_026": "23eb0c0dddb254a4",
+      "policy_compliance_hard_027": "5f72fb871a183e25",
+      "policy_compliance_hard_028": "a6e22fbdc3105458",
+      "policy_compliance_medium_004": "2e329270688cd5ec",
+      "policy_compliance_medium_005": "e7cf813b736ffe29",
+      "policy_compliance_medium_006": "d0290fe17ff4d5b1",
+      "policy_compliance_medium_008": "4984b1cfaae11f33",
+      "policy_compliance_medium_012": "7e908115ec938167",
+      "policy_compliance_stress_002": "c7570d5cd182b0ed",
+      "policy_compliance_stress_003": "ad1ae88ef67bb8ec",
+      "policy_compliance_stress_007": "f6eaad9851035290",
+      "policy_compliance_stress_011": "557961af805a6575",
+      "policy_compliance_stress_013": "33e816e5971aa81f",
+      "policy_compliance_stress_016": "427f926315df40dc",
+      "policy_compliance_stress_017": "02e958865f1c39fb",
+      "policy_compliance_stress_020": "a6a8b2f31102ac2d",
+      "policy_compliance_stress_023": "29b7e80a862499ac",
+      "policy_compliance_stress_029": "439e6bf1f2694528",
+      "research_assistant_easy_000": "f4c26dce31ab70f9",
+      "research_assistant_easy_005": "b68e4951f396f505",
+      "research_assistant_easy_009": "aceb2c14eaa4211f",
+      "research_assistant_easy_010": "52219656e20caf15",
+      "research_assistant_easy_013": "161f4de94ea705f9",
+      "research_assistant_easy_016": "f40835389698f733",
+      "research_assistant_easy_020": "5d85e5ebf9474ed7",
+      "research_assistant_easy_021": "d9a8c2f9e70a4c99",
+      "research_assistant_easy_024": "d19ea9cd6202e01d",
+      "research_assistant_hard_001": "220c5ffdf7307916",
+      "research_assistant_hard_003": "cff606fa3a0d3001",
+      "research_assistant_hard_007": "82570e9c47c027ff",
+      "research_assistant_hard_011": "e399b41390de78d3",
+      "research_assistant_hard_012": "e94d71f59db8b0ee",
+      "research_assistant_hard_014": "75339fa6de327cfa",
+      "research_assistant_hard_015": "292786a35137f7bc",
+      "research_assistant_hard_023": "6c1097183009ac90",
+      "research_assistant_hard_025": "8ce8d165cbc3bc0b",
+      "research_assistant_hard_026": "b35b7f6071c286a3",
+      "research_assistant_hard_027": "31c053513af92d91",
+      "research_assistant_hard_029": "b27e74ba919fafc8",
+      "research_assistant_medium_017": "3c20c463c91ca0b4",
+      "research_assistant_medium_018": "0facef8f543da8c0",
+      "research_assistant_stress_002": "7cb33b06770e6e3c",
+      "research_assistant_stress_004": "057aa41e25ef5bd0",
+      "research_assistant_stress_006": "a24a83dd4c818b13",
+      "research_assistant_stress_008": "e3b0818468f7222e",
+      "research_assistant_stress_019": "4a831a8b4bbba966",
+      "research_assistant_stress_022": "b7e87e6b0f7018c7",
+      "research_assistant_stress_028": "7e7ced97d1b06c01",
+      "research_assistant_stress_030": "b43d2f14376624b8",
+      "shopping_comparison_easy_000": "ae6160197a96c172",
+      "shopping_comparison_easy_006": "f2eb0ba8652fa672",
+      "shopping_comparison_easy_009": "9b929c03c3b4dbc3",
+      "shopping_comparison_easy_011": "79cac4c0ce8e6417",
+      "shopping_comparison_easy_012": "197ef253f9611aa5",
+      "shopping_comparison_easy_015": "4c3be62bad1f9560",
+      "shopping_comparison_easy_023": "19d28223040559a3",
+      "shopping_comparison_easy_028": "6f289d9945e715be",
+      "shopping_comparison_hard_019": "676fd99d2d668224",
+      "shopping_comparison_hard_021": "468c207bbaa6b580",
+      "shopping_comparison_hard_022": "d789cd8a25f9704e",
+      "shopping_comparison_medium_001": "34763622cc2764ee",
+      "shopping_comparison_medium_002": "fdb3f5f37db48377",
+      "shopping_comparison_medium_003": "ea5a44803c8ab0c2",
+      "shopping_comparison_medium_007": "df8ce6525c71281e",
+      "shopping_comparison_medium_010": "226a5ccffa94ecdc",
+      "shopping_comparison_medium_013": "606c2283308bdfa1",
+      "shopping_comparison_medium_014": "1cdeff24fc68a451",
+      "shopping_comparison_medium_016": "022d79ade72cb477",
+      "shopping_comparison_medium_017": "e2c0e418dccf02b6",
+      "shopping_comparison_medium_018": "bf9356ac28784359",
+      "shopping_comparison_medium_024": "605a8f591909268e",
+      "shopping_comparison_medium_026": "82b93572a64cc352",
+      "shopping_comparison_stress_004": "afd5551c70f1280b",
+      "shopping_comparison_stress_005": "60a87d4034031dd1",
+      "shopping_comparison_stress_008": "2bf9138c80ed2b32",
+      "shopping_comparison_stress_020": "b93cb05920f40dd1",
+      "shopping_comparison_stress_025": "527831e07d26a7a1",
+      "shopping_comparison_stress_027": "3286a42d576e5e31",
+      "shopping_comparison_stress_029": "95f1faf4746b8d6d",
+      "shopping_comparison_stress_030": "685da625a7ab5fa2",
+      "travel_planning_easy_003": "33e3c4ec407d1dbe",
+      "travel_planning_easy_011": "1b6ecbd119f47735",
+      "travel_planning_easy_016": "73d1f9626f9ab232",
+      "travel_planning_easy_017": "3b0aefbd0ae0fd19",
+      "travel_planning_easy_018": "a220875c59555ef2",
+      "travel_planning_easy_026": "3244de410da1a685",
+      "travel_planning_easy_027": "da246b40391fe91d",
+      "travel_planning_hard_005": "4b9c5f2858aba368",
+      "travel_planning_hard_008": "9fe7bdf84d6f5cdb",
+      "travel_planning_hard_023": "332b5a22513395c9",
+      "travel_planning_hard_030": "91bb31bbe8210b50",
+      "travel_planning_medium_000": "370eb6f113f36e80",
+      "travel_planning_medium_001": "96e24d76d2ee3ce2",
+      "travel_planning_medium_002": "0b2b18c021145444",
+      "travel_planning_medium_004": "541e949fca7efe2f",
+      "travel_planning_medium_006": "f7ec28568fb74175",
+      "travel_planning_medium_007": "ea68173f2be1b1e2",
+      "travel_planning_medium_009": "bd63fb19e8c01828",
+      "travel_planning_medium_010": "1b9761f45976810e",
+      "travel_planning_medium_012": "1205baac112ab347",
+      "travel_planning_medium_015": "8dc236b118ba3474",
+      "travel_planning_medium_021": "2e52408147b8acc7",
+      "travel_planning_medium_022": "5a90a8ccc9079cff",
+      "travel_planning_medium_029": "89c50ab58f548ea9",
+      "travel_planning_stress_013": "5f5f5ae86d5c0bd7",
+      "travel_planning_stress_014": "4a6dc6d2d438f44f",
+      "travel_planning_stress_019": "cae35399ee66efc1",
+      "travel_planning_stress_020": "7e58e141b3cb506f",
+      "travel_planning_stress_024": "f3d02d3dcdf4a0b4",
+      "travel_planning_stress_025": "3a09812a7f6d864a",
+      "travel_planning_stress_028": "bf930e44fb67c9ad",
+      "travel_planning_stress_031": "692f9d2a9815b815"
+    },
+    "templates_per_split": {
+      "dev": {
+        "05bf5e6b34878740": 1,
+        "0b2b18c021145444": 1,
+        "2192e7ce3e7038ac": 1,
+        "220c5ffdf7307916": 1,
+        "34763622cc2764ee": 1,
+        "370eb6f113f36e80": 1,
+        "43d15d6149226db5": 1,
+        "52b3e16fdbfe0fde": 1,
+        "6a558810e208d6c6": 1,
+        "7eff529ace782eab": 1,
+        "8911a62aa19fb43a": 1,
+        "96e24d76d2ee3ce2": 1,
+        "ae6160197a96c172": 1,
+        "af0db8310e9190bb": 1,
+        "b2502bb4017f5a0e": 1,
+        "b287525344e850b0": 1,
+        "c9428769251a8af4": 1,
+        "f4c26dce31ab70f9": 1,
+        "fb57b0990bf61714": 1,
+        "fdb3f5f37db48377": 1
+      },
+      "heldout_templates": {
+        "011178015f1ef266": 1,
+        "1e6f214695aa1f0a": 1,
+        "1e7606dc137a0dad": 1,
+        "1f87cf6625228464": 1,
+        "2341b74c8f9999b8": 1,
+        "23eb0c0dddb254a4": 1,
+        "31c053513af92d91": 1,
+        "3244de410da1a685": 1,
+        "3286a42d576e5e31": 1,
+        "36da0b3bde448538": 1,
+        "37aff5bef50c1a5b": 1,
+        "3a09812a7f6d864a": 1,
+        "3e7814ca6a9864de": 1,
+        "439e6bf1f2694528": 1,
+        "527831e07d26a7a1": 1,
+        "540b09e9fbe9f0cd": 1,
+        "55dce061e31dc847": 1,
+        "5f72fb871a183e25": 1,
+        "63fdc6791767fbbc": 1,
+        "685da625a7ab5fa2": 1,
+        "692f9d2a9815b815": 1,
+        "6ef2ac3386762e87": 1,
+        "6f289d9945e715be": 1,
+        "709c5d77053c05cc": 1,
+        "7e7ced97d1b06c01": 1,
+        "82b93572a64cc352": 1,
+        "84ef4ac15675af0e": 1,
+        "885d82402b609af6": 1,
+        "89c50ab58f548ea9": 1,
+        "8a4e20ce6f9b8902": 1,
+        "8ce8d165cbc3bc0b": 1,
+        "91bb31bbe8210b50": 1,
+        "94d75c942fdccaae": 1,
+        "95f1faf4746b8d6d": 1,
+        "996376314cb0b770": 1,
+        "a6e22fbdc3105458": 1,
+        "a765bdf2a987439c": 1,
+        "a9d2f3b5ce3a5a49": 1,
+        "b27e74ba919fafc8": 1,
+        "b35b7f6071c286a3": 1,
+        "b43d2f14376624b8": 1,
+        "b5f62b9084e70309": 1,
+        "bc7d1c0b86655353": 1,
+        "bf930e44fb67c9ad": 1,
+        "c563b1a191304b7a": 1,
+        "da246b40391fe91d": 1,
+        "e0bdec7dee818169": 1,
+        "e28c89d14646f8f5": 1,
+        "f09e4cdbf9e09faa": 1,
+        "f6e658127dc40663": 1
+      },
+      "pilot": {
+        "022d79ade72cb477": 1,
+        "02e958865f1c39fb": 1,
+        "0aa32e199c10ef1b": 1,
+        "0b07b24c8d216e83": 1,
+        "0edf8a4a9e9d71a4": 1,
+        "0facef8f543da8c0": 1,
+        "1205baac112ab347": 1,
+        "137cf3f0ee89de13": 1,
+        "161f4de94ea705f9": 1,
+        "17314e52a818538f": 1,
+        "197ef253f9611aa5": 1,
+        "19a6d15bdb7aa963": 1,
+        "19d28223040559a3": 1,
+        "1b6ecbd119f47735": 1,
+        "1b9761f45976810e": 1,
+        "1bbc9cf02e18c2a6": 1,
+        "1c96a2d30b68d1f2": 1,
+        "1cdeff24fc68a451": 1,
+        "1cffab22272f5666": 1,
+        "1f625cad82f213ef": 1,
+        "204d55b03eb324f8": 1,
+        "20d1b92535a6d086": 1,
+        "226a5ccffa94ecdc": 1,
+        "25a29d628dd07e5b": 1,
+        "27cb66c2d37b6d90": 1,
+        "28400bc2ed85a2c2": 1,
+        "2887874a098c06f9": 1,
+        "292786a35137f7bc": 1,
+        "29b7e80a862499ac": 1,
+        "2d5c1063c3afefd4": 1,
+        "2e52408147b8acc7": 1,
+        "332b5a22513395c9": 1,
+        "33e816e5971aa81f": 1,
+        "3b0aefbd0ae0fd19": 1,
+        "3c20c463c91ca0b4": 1,
+        "3e5bb6d3af8524d9": 1,
+        "3e75c6cf5db0912b": 1,
+        "3fc76a02dd93dd79": 1,
+        "4054d716a141d4ae": 1,
+        "427f926315df40dc": 1,
+        "4288c686e06be1be": 1,
+        "468c207bbaa6b580": 1,
+        "4824553191ff9a47": 1,
+        "4904459ebbd8a996": 1,
+        "49085f56d7d6b653": 1,
+        "4a6dc6d2d438f44f": 1,
+        "4a831a8b4bbba966": 1,
+        "4b837e96b89fa9bf": 1,
+        "4c3be62bad1f9560": 1,
+        "52219656e20caf15": 1,
+        "5265bf8397b20063": 1,
+        "557961af805a6575": 1,
+        "56c6c578d6d08481": 1,
+        "56cf925352825265": 1,
+        "5a90a8ccc9079cff": 1,
+        "5d85e5ebf9474ed7": 1,
+        "5f5f5ae86d5c0bd7": 1,
+        "605a8f591909268e": 1,
+        "606c2283308bdfa1": 1,
+        "676fd99d2d668224": 1,
+        "6c1097183009ac90": 1,
+        "73d1f9626f9ab232": 1,
+        "75339fa6de327cfa": 1,
+        "776878e016c277ad": 1,
+        "79cac4c0ce8e6417": 1,
+        "7b156b4aa9a8bcc7": 1,
+        "7e58e141b3cb506f": 1,
+        "7e908115ec938167": 1,
+        "81143068c3b8f74e": 1,
+        "88e581e49e646dce": 1,
+        "8971ef54870ddec7": 1,
+        "8dc236b118ba3474": 1,
+        "8fb52ecca758b554": 1,
+        "921ab812c152035f": 1,
+        "921e38256503eb1d": 1,
+        "92a198a6b4cc49f8": 1,
+        "998a760cf3eb6be8": 1,
+        "99da57fe3b08a55b": 1,
+        "9b005cb80e5d4c41": 1,
+        "9b929c03c3b4dbc3": 1,
+        "9c725363c5eebf8f": 1,
+        "9cd7733527aed641": 1,
+        "9f2a005a436cf2b0": 1,
+        "9f49d5a3da71d879": 1,
+        "a0da18ebf70333ca": 1,
+        "a0e498715d693b87": 1,
+        "a220875c59555ef2": 1,
+        "a5ef7219da6e63df": 1,
+        "a6a8b2f31102ac2d": 1,
+        "a9a11c6cc3275e07": 1,
+        "aa419915c563c3ae": 1,
+        "aa906ba127b4d9f2": 1,
+        "aceb2c14eaa4211f": 1,
+        "af7a41ee3cf4a8c1": 1,
+        "b0b14c8e2326fad2": 1,
+        "b337f3225c0ec9a6": 1,
+        "b3c1919f212a5083": 1,
+        "b555521eb347c47e": 1,
+        "b7e87e6b0f7018c7": 1,
+        "b93cb05920f40dd1": 1,
+        "b944dc49b305600b": 1,
+        "bd63fb19e8c01828": 1,
+        "bf9356ac28784359": 1,
+        "c30e6a37d974d327": 1,
+        "c54af81b7848f984": 1,
+        "c57f51014284c543": 1,
+        "cae35399ee66efc1": 1,
+        "d19ea9cd6202e01d": 1,
+        "d5359ad6d5c59a8c": 1,
+        "d789cd8a25f9704e": 1,
+        "d9a8c2f9e70a4c99": 1,
+        "deb552709a97b20d": 1,
+        "e0115040be644457": 1,
+        "e2c0e418dccf02b6": 1,
+        "e399b41390de78d3": 1,
+        "e94d71f59db8b0ee": 1,
+        "edfcd97974a09ed9": 1,
+        "f1be71b1aa26a5fa": 1,
+        "f22bfbb500fc52d2": 1,
+        "f3d02d3dcdf4a0b4": 1,
+        "f3dfd506c6b6315b": 1,
+        "f40835389698f733": 1,
+        "f615b9aeb83fb04a": 1,
+        "fa1aa32758b7a03b": 1,
+        "fb0572686b5f0380": 1,
+        "fbe4d524b50b4a8c": 1,
+        "fc75afe7b7da754d": 1,
+        "fd1342e6425c6a5c": 1,
+        "fd615d8c644b3331": 1,
+        "ffe9a8bd56f3c43e": 1
+      },
+      "test": {
+        "0d439c7d26673f58": 1,
+        "2bf9138c80ed2b32": 1,
+        "2d0078966bfc9cef": 1,
+        "3174ad41b5bbbef7": 1,
+        "444932f99be4d2b1": 1,
+        "4984b1cfaae11f33": 1,
+        "5837116b134b03d3": 1,
+        "5f37d6f784a55d18": 1,
+        "82570e9c47c027ff": 1,
+        "949c9b929600240e": 1,
+        "9fe7bdf84d6f5cdb": 1,
+        "a24a83dd4c818b13": 1,
+        "b4f1c2b682928b3e": 1,
+        "b68543b55a74d55f": 1,
+        "bfa43094c6ca885b": 1,
+        "d0290fe17ff4d5b1": 1,
+        "df8ce6525c71281e": 1,
+        "e3b0818468f7222e": 1,
+        "e7cf813b736ffe29": 1,
+        "ea68173f2be1b1e2": 1,
+        "ed99804f28541667": 1,
+        "f2eb0ba8652fa672": 1,
+        "f631664803f1460f": 1,
+        "f6eaad9851035290": 1,
+        "f7ec28568fb74175": 1
+      },
+      "validation": {
+        "057aa41e25ef5bd0": 1,
+        "1722fefcfe2755c1": 1,
+        "1f3843596f6b1115": 1,
+        "2e329270688cd5ec": 1,
+        "33e3c4ec407d1dbe": 1,
+        "4b9c5f2858aba368": 1,
+        "541e949fca7efe2f": 1,
+        "5439e37dc9253676": 1,
+        "5643c859d8d4f129": 1,
+        "60a87d4034031dd1": 1,
+        "7cb33b06770e6e3c": 1,
+        "9015682359aab9f6": 1,
+        "98941cfac83eaf6f": 1,
+        "aab7702e68af1d61": 1,
+        "ad1ae88ef67bb8ec": 1,
+        "afd5551c70f1280b": 1,
+        "b44eebb18289db8d": 1,
+        "b68e4951f396f505": 1,
+        "c6ef8cfbda9636f2": 1,
+        "c7570d5cd182b0ed": 1,
+        "c862b10b912e71d5": 1,
+        "cff606fa3a0d3001": 1,
+        "ea5a44803c8ab0c2": 1,
+        "f22784432ae868d4": 1,
+        "f9255b024d42876f": 1
+      }
+    },
+    "unique_fingerprint_count": 250
+  },
+  "git_commit": "dea8e25f0e429ed2054c628fb37d24e7c1c9020e",
+  "mitigations": [
+    "Use disjoint release splits (`release_disjoint_v1`) and report the eval split explicitly.",
+    "Assign per-task template fingerprints and audit cross-split template collisions.",
+    "Embed canary strings on hidden splits and scan public splits for leakage.",
+    "Run prompt-leakage checks before agent evaluation exports.",
+    "Exclude oracle agents from leaderboard rows; label engineering-only runs.",
+    "Version datasets with `dataset_hash` and freeze manifests before headline claims."
+  ],
+  "near_duplicate_threshold": 0.85,
+  "near_duplicates": {
+    "findings": [
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and validation",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_004"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and test",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_006"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and test",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_007"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_009"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_010"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_012"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_015"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_021"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_022"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "travel_planning_medium_000|travel_planning_medium_029"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_009"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_012"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_015"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_016"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_020"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_easy_000|calendar_email_workflow_easy_021"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and validation",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_003"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and validation",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_004"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and pilot",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_016"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and pilot",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_018"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and pilot",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_019"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_000|file_spreadsheet_qa_medium_027"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and test",
+        "severity": "warning",
+        "subject": "shopping_comparison_easy_000|shopping_comparison_easy_006"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_easy_000|shopping_comparison_easy_009"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_easy_000|shopping_comparison_easy_011"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_easy_000|shopping_comparison_easy_012"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_easy_000|shopping_comparison_easy_015"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_easy_000|shopping_comparison_easy_023"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "shopping_comparison_easy_000|shopping_comparison_easy_028"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and validation",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_005"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_009"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_010"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_013"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_016"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_020"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_021"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.909 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_easy_000|research_assistant_easy_024"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and pilot",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_009"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and pilot",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_010"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and pilot",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_015"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and pilot",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_018"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and pilot",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_021"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and pilot",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_024"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_025"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_026"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_027"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.923 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "policy_compliance_hard_000|policy_compliance_hard_028"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.905 between dev and validation",
+        "severity": "warning",
+        "subject": "coding_debugging_stress_000|coding_debugging_stress_002"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.905 between dev and validation",
+        "severity": "warning",
+        "subject": "coding_debugging_stress_000|coding_debugging_stress_004"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.905 between dev and test",
+        "severity": "warning",
+        "subject": "coding_debugging_stress_000|coding_debugging_stress_006"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.905 between dev and pilot",
+        "severity": "warning",
+        "subject": "coding_debugging_stress_000|coding_debugging_stress_010"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.905 between dev and pilot",
+        "severity": "warning",
+        "subject": "coding_debugging_stress_000|coding_debugging_stress_018"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.905 between dev and pilot",
+        "severity": "warning",
+        "subject": "coding_debugging_stress_000|coding_debugging_stress_022"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.905 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "coding_debugging_stress_000|coding_debugging_stress_025"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and test",
+        "severity": "warning",
+        "subject": "operations_planning_medium_000|operations_planning_medium_007"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "operations_planning_medium_000|operations_planning_medium_014"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "operations_planning_medium_000|operations_planning_medium_020"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "operations_planning_medium_000|operations_planning_medium_021"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and pilot",
+        "severity": "warning",
+        "subject": "operations_planning_medium_000|operations_planning_medium_024"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.920 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "operations_planning_medium_000|operations_planning_medium_029"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and validation",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_004"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and test",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_006"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and test",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_007"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_009"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_010"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_012"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_015"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_021"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_022"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "travel_planning_medium_001|travel_planning_medium_029"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and validation",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_005"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_011"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_017"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_019"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and pilot",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_023"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_025"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_026"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_028"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "calendar_email_workflow_medium_001|calendar_email_workflow_medium_031"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and validation",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_003"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and validation",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_004"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and pilot",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_016"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and pilot",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_018"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and pilot",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_019"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.913 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "file_spreadsheet_qa_medium_001|file_spreadsheet_qa_medium_027"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and validation",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_003"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and test",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_007"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_010"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_013"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_014"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_016"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_017"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_018"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and pilot",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_024"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.917 between dev and heldout_templates",
+        "severity": "warning",
+        "subject": "shopping_comparison_medium_001|shopping_comparison_medium_026"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and validation",
+        "severity": "warning",
+        "subject": "research_assistant_hard_001|research_assistant_hard_003"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and test",
+        "severity": "warning",
+        "subject": "research_assistant_hard_001|research_assistant_hard_007"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_hard_001|research_assistant_hard_011"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_hard_001|research_assistant_hard_012"
+      },
+      {
+        "category": "near_duplicate_instruction",
+        "detail": "Instruction Jaccard 0.926 between dev and pilot",
+        "severity": "warning",
+        "subject": "research_assistant_hard_001|research_assistant_hard_014"
+      }
+    ],
+    "pairs": [
+      {
+        "jaccard": 0.9333,
+        "split_a": "dev",
+        "split_b": "validation",
+        "task_a": "calendar_email_workflow_stress_002",
+        "task_b": "calendar_email_workflow_stress_003"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "dev",
+        "split_b": "test",
+        "task_a": "calendar_email_workflow_stress_002",
+        "task_b": "calendar_email_workflow_stress_006"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "dev",
+        "split_b": "test",
+        "task_a": "calendar_email_workflow_stress_002",
+        "task_b": "calendar_email_workflow_stress_007"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "dev",
+        "split_b": "test",
+        "task_a": "calendar_email_workflow_stress_002",
+        "task_b": "calendar_email_workflow_stress_008"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_stress_002",
+        "task_b": "calendar_email_workflow_stress_010"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "dev",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_002",
+        "task_b": "calendar_email_workflow_stress_029"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "dev",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_002",
+        "task_b": "calendar_email_workflow_stress_030"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "test",
+        "task_a": "calendar_email_workflow_stress_003",
+        "task_b": "calendar_email_workflow_stress_006"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "test",
+        "task_a": "calendar_email_workflow_stress_003",
+        "task_b": "calendar_email_workflow_stress_007"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "test",
+        "task_a": "calendar_email_workflow_stress_003",
+        "task_b": "calendar_email_workflow_stress_008"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_stress_003",
+        "task_b": "calendar_email_workflow_stress_010"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_003",
+        "task_b": "calendar_email_workflow_stress_029"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_003",
+        "task_b": "calendar_email_workflow_stress_030"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_hard_004",
+        "task_b": "calendar_email_workflow_hard_013"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_hard_004",
+        "task_b": "calendar_email_workflow_hard_014"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_hard_004",
+        "task_b": "calendar_email_workflow_hard_018"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_hard_004",
+        "task_b": "calendar_email_workflow_hard_022"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_hard_004",
+        "task_b": "calendar_email_workflow_hard_024"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_hard_004",
+        "task_b": "calendar_email_workflow_hard_027"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_stress_006",
+        "task_b": "calendar_email_workflow_stress_010"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_006",
+        "task_b": "calendar_email_workflow_stress_029"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_006",
+        "task_b": "calendar_email_workflow_stress_030"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_stress_007",
+        "task_b": "calendar_email_workflow_stress_010"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_007",
+        "task_b": "calendar_email_workflow_stress_029"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_007",
+        "task_b": "calendar_email_workflow_stress_030"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_stress_008",
+        "task_b": "calendar_email_workflow_stress_010"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_008",
+        "task_b": "calendar_email_workflow_stress_029"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_008",
+        "task_b": "calendar_email_workflow_stress_030"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_010",
+        "task_b": "calendar_email_workflow_stress_029"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_stress_010",
+        "task_b": "calendar_email_workflow_stress_030"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_hard_013",
+        "task_b": "calendar_email_workflow_hard_027"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_hard_014",
+        "task_b": "calendar_email_workflow_hard_027"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_hard_018",
+        "task_b": "calendar_email_workflow_hard_027"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_hard_022",
+        "task_b": "calendar_email_workflow_hard_027"
+      },
+      {
+        "jaccard": 0.9333,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_hard_024",
+        "task_b": "calendar_email_workflow_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "test",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_005"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "test",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_006"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_011"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_013"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_016"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_019"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_022"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_023"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_004",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_005",
+        "task_b": "operations_planning_hard_011"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_005",
+        "task_b": "operations_planning_hard_013"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_005",
+        "task_b": "operations_planning_hard_016"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_005",
+        "task_b": "operations_planning_hard_019"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_005",
+        "task_b": "operations_planning_hard_022"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_005",
+        "task_b": "operations_planning_hard_023"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_005",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_006",
+        "task_b": "operations_planning_hard_011"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_006",
+        "task_b": "operations_planning_hard_013"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_006",
+        "task_b": "operations_planning_hard_016"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_006",
+        "task_b": "operations_planning_hard_019"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_006",
+        "task_b": "operations_planning_hard_022"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "operations_planning_hard_006",
+        "task_b": "operations_planning_hard_023"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_006",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_011",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_013",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_016",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_019",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_022",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.931,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "operations_planning_hard_023",
+        "task_b": "operations_planning_hard_027"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "test",
+        "task_a": "travel_planning_hard_005",
+        "task_b": "travel_planning_hard_008"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "travel_planning_hard_005",
+        "task_b": "travel_planning_hard_023"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "travel_planning_hard_005",
+        "task_b": "travel_planning_hard_030"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "file_spreadsheet_qa_hard_005",
+        "task_b": "file_spreadsheet_qa_hard_015"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "file_spreadsheet_qa_hard_005",
+        "task_b": "file_spreadsheet_qa_hard_020"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "pilot",
+        "task_a": "file_spreadsheet_qa_hard_005",
+        "task_b": "file_spreadsheet_qa_hard_021"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_005",
+        "task_b": "file_spreadsheet_qa_hard_025"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_005",
+        "task_b": "file_spreadsheet_qa_hard_026"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "validation",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_005",
+        "task_b": "file_spreadsheet_qa_hard_029"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "test",
+        "split_b": "pilot",
+        "task_a": "travel_planning_hard_008",
+        "task_b": "travel_planning_hard_023"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "test",
+        "split_b": "heldout_templates",
+        "task_a": "travel_planning_hard_008",
+        "task_b": "travel_planning_hard_030"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_015",
+        "task_b": "file_spreadsheet_qa_hard_025"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_015",
+        "task_b": "file_spreadsheet_qa_hard_026"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_015",
+        "task_b": "file_spreadsheet_qa_hard_029"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_020",
+        "task_b": "file_spreadsheet_qa_hard_025"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_020",
+        "task_b": "file_spreadsheet_qa_hard_026"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_020",
+        "task_b": "file_spreadsheet_qa_hard_029"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_021",
+        "task_b": "file_spreadsheet_qa_hard_025"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_021",
+        "task_b": "file_spreadsheet_qa_hard_026"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "file_spreadsheet_qa_hard_021",
+        "task_b": "file_spreadsheet_qa_hard_029"
+      },
+      {
+        "jaccard": 0.9286,
+        "split_a": "pilot",
+        "split_b": "heldout_templates",
+        "task_a": "travel_planning_hard_023",
+        "task_b": "travel_planning_hard_030"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "validation",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_005"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_011"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_017"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_019"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_023"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_025"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_026"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_028"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "heldout_templates",
+        "task_a": "calendar_email_workflow_medium_001",
+        "task_b": "calendar_email_workflow_medium_031"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "validation",
+        "task_a": "research_assistant_hard_001",
+        "task_b": "research_assistant_hard_003"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "test",
+        "task_a": "research_assistant_hard_001",
+        "task_b": "research_assistant_hard_007"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "research_assistant_hard_001",
+        "task_b": "research_assistant_hard_011"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "research_assistant_hard_001",
+        "task_b": "research_assistant_hard_012"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "research_assistant_hard_001",
+        "task_b": "research_assistant_hard_014"
+      },
+      {
+        "jaccard": 0.9259,
+        "split_a": "dev",
+        "split_b": "pilot",
+        "task_a": "research_assistant_hard_001",
+        "task_b": "research_assistant_hard_015"
+      }
+    ],
+    "truncated_findings": 535
+  },
+  "passed": true,
+  "prompt_leakage": {
+    "by_category": {
+      "intervention_expected_behavior_exposed": 1
+    },
+    "findings": [
+      {
+        "category": "intervention_expected_behavior_exposed",
+        "detail": "intervention_expected_behavior is included in LLM agent task context by design; do not use for blind model ranking without scaffold ablation",
+        "severity": "warning",
+        "subject": "llm_tool_agents"
+      }
+    ],
+    "instances_checked": 1500,
+    "truncated_findings": 0
+  },
+  "remaining_limitations": [
+    "Synthetic tasks are not a proxy for live web or enterprise tool environments.",
+    "Canary and near-duplicate checks are heuristic; they do not prove absence of memorization.",
+    "Tool descriptions are shared across tasks and may still correlate with public documentation.",
+    "Human validation is still required before strong robustness claims."
+  ],
+  "splits_path": "data/frozen/pilot_v0.1/splits.json",
+  "summary": {
+    "n_base_tasks": 250,
+    "n_critical_errors": 0,
+    "n_errors": 0,
+    "n_instances": 1500,
+    "n_warnings": 102
+  }
+}

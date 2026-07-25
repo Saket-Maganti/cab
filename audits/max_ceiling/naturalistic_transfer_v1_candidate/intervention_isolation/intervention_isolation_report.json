@@ -1,0 +1,3619 @@
+{
+  "base_tasks_path": "data/processed/naturalistic_transfer_v1_candidate/base_tasks.jsonl",
+  "dataset_version": "naturalistic_transfer_v1_candidate",
+  "generated_at": "2026-07-23T16:50:21.698283+00:00",
+  "git_commit": "dea8e25f0e429ed2054c628fb37d24e7c1c9020e",
+  "instances_path": "data/processed/naturalistic_transfer_v1_candidate/instances.jsonl",
+  "interventions": {
+    "naturalistic_v1__natural_mock_bug_report_easy_001.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_001",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_001.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_001.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_001",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_001.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_001.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_001",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_001.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_001.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_001",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_001.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_001.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_001",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_001.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_003.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_003",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_003.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_003.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_003",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_003.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_003.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_003",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_003.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_003.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_003",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_003.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_003.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_003",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_003.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_004.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_004",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_004.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_004.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_004",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_004.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_004.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_004",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_004.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_004.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_004",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_004.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_004.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_004",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_004.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_006.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_006",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_006.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_006.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_006",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_006.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_006.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_006",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_006.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_006.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_006",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_006.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_easy_006.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_easy_006",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_easy_006.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_hard_009.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_hard_009",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_hard_009.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_hard_009.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_hard_009",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_hard_009.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_hard_009.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_hard_009",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_hard_009.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_hard_009.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_hard_009",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_hard_009.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_hard_009.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_hard_009",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_hard_009.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_005.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_005",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_005.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_005.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_005",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_005.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_005.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_005",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_005.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_005.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_005",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_005.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_005.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_005",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_005.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_008.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_008",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_008.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_008.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_008",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_008.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_008.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_008",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_008.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_008.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_008",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_008.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_medium_008.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_medium_008",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_medium_008.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_000.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_000",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_000.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_000.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_000",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_000.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_000.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_000",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_000.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_000.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_000",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_000.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_000.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_000",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_000.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_002.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_002",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_002.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_002.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_002",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_002.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_002.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_002",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_002.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_002.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_002",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_002.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_002.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_002",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_002.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_007.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_007",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_007.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_007.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_007",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_007.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_007.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_007",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_007.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_007.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_007",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_007.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_bug_report_stress_007.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_bug_report_stress_007",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_bug_report_stress_007.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_001.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_001.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_001.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_001.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_001.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_001.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_002.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_002.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_002.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_002.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_easy_002.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_easy_002.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_003.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_003.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_003.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_003.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_003.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_003.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_006.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_006.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_006.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_006.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_006.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_006.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_007.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_007.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_007.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_007.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_hard_007.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_hard_007.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_004.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_004.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_004.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_004.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_004.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_004.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_008.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_008.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_008.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_008.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_medium_008.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_medium_008.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_000.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_000.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_000.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_000.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_000.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_000.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_005.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_005.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_005.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_005.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_005.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_005.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_009.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_009.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_009.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_009.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_customer_escalation_stress_009.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_customer_escalation_stress_009.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_003.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_003",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_003.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_003.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_003",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_003.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_003.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_003",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_003.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_003.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_003",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_003.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_003.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_003",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_003.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_007.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_007",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_007.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_007.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_007",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_007.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_007.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_007",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_007.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_007.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_007",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_007.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_easy_007.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_easy_007",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_easy_007.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_002.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_002",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_002.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_002.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_002",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_002.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_002.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_002",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_002.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_002.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_002",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_002.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_002.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_002",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_002.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_005.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_005",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_005.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_005.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_005",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_005.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_005.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_005",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_005.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_005.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_005",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_005.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_005.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_005",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_005.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_008.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_008",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_008.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_008.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_008",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_008.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_008.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_008",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_008.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_008.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_008",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_008.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_hard_008.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_hard_008",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_hard_008.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_000.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_000",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_000.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_000",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_000.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_000",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_000.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_000.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_000",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_000.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_000.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_000",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_000.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_001.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_001",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_001.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_001.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_001",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_001.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_001.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_001",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_001.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_001.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_001",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_001.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_001.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_001",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_001.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_009.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_009",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_009.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_009.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_009",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_009.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_009.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_009",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_009.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_009.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_009",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_009.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_medium_009.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_medium_009",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_medium_009.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_004.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_004",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_004.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_004.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_004",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_004.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_004.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_004",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_004.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_004.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_004",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_004.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_004.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_004",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_004.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_006.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_006",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_006.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_006.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_006",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_006.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_006.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_006",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_006.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_006.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_006",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_006.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_email_thread_stress_006.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_email_thread_stress_006",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_email_thread_stress_006.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_000.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_000.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_000.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_000.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_000.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_006.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_006.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_006.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_006.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_easy_006.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_001.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_001.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_001.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_001.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_001.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_009.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_009.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_009.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_009.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_hard_009.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_002.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_002.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_002.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_002.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_002.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_003.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_003.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_003.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_003.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_003.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_007.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_007.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_007.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_007.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_medium_007.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_004.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_004.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_004.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_004.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_004.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_005.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_005.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_005.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_005.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_005.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_008.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_008.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_008.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_008.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_incident_postmortem_stress_008.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_000.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_000",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_000.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_000.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_000",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_000.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_000.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_000",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_000.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_000.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_000",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_000.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_000.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_000",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_000.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_003.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_003",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_003.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_003.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_003",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_003.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_003.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_003",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_003.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_003.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_003",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_003.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_easy_003.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_easy_003",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_easy_003.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_001.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_001",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_001.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_001.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_001",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_001.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_001.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_001",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_001.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_001.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_001",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_001.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_001.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_001",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_001.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_002.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_002",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_002.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_002.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_002",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_002.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_002.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_002",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_002.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_002.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_002",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_002.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_002.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_002",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_002.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_004.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_004",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_004.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_004.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_004",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_004.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_004.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_004",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_004.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_004.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_004",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_004.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_004.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_004",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_004.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_006.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_006",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_006.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_006.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_006",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_006.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_006.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_006",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_006.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_006.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_006",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_006.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_006.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_006",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_006.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_008.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_008",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_008.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_008.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_008",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_008.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_008.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_008",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_008.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_008.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_008",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_008.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_008.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_008",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_008.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_009.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_009",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_009.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_009.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_009",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_009.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_009.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_009",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_009.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_009.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_009",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_009.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_hard_009.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_hard_009",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_hard_009.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_005.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_005",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_005.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_005.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_005",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_005.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_005.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_005",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_005.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_005.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_005",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_005.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_005.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_005",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_005.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_007.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_007",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_007.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_007.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_007",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_007.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_007.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_007",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_007.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_007.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_007",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_007.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_policy_document_stress_007.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_policy_document_stress_007",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_policy_document_stress_007.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_003.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_003",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_003.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_003.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_003",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_003.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_003.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_003",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_003.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_003.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_003",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_003.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_003.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_003",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_003.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_006.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_006",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_006.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_006.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_006",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_006.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_006.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_006",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_006.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_006.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_006",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_006.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_006.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_006",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_006.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_007.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_007",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_007.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_007.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_007",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_007.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_007.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_007",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_007.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_007.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_007",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_007.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_007.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_007",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_007.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_008.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_008",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_008.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_008.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_008",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_008.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_008.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_008",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_008.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_008.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_008",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_008.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_008.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_008",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_008.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_009.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_009",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_009.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_009.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_009",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_009.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_009.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_009",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_009.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_009.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_009",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_009.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_easy_009.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_easy_009",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_easy_009.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_hard_004.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_hard_004",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_hard_004.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_hard_004.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_hard_004",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_hard_004.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_hard_004.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_hard_004",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_hard_004.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_hard_004.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_hard_004",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_hard_004.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_hard_004.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_hard_004",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_hard_004.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_000.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_000",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_000.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_000.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_000",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_000.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_000.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_000",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_000.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_000.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_000",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_000.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_000.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_000",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_000.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_001.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_001",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_001.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_001.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_001",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_001.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_001.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_001",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_001.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_001.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_001",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_001.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_medium_001.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_medium_001",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_medium_001.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_002.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_002",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_002.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_002.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_002",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_002.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_002.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_002",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_002.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_002.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_002",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_002.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_002.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_002",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_002.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_005.ambiguous_instruction": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_005",
+      "changed_factor": "instruction specificity",
+      "family": "ambiguous_instruction",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_005.ambiguous_instruction",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_005.distractor_evidence": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_005",
+      "changed_factor": "evidence relevance",
+      "family": "distractor_evidence",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_005.distractor_evidence",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_005.long_horizon_dependency": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_005",
+      "changed_factor": "step dependency length",
+      "family": "long_horizon_dependency",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_005.long_horizon_dependency",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_005.observation_conflict": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_005",
+      "changed_factor": "observation consistency",
+      "family": "observation_conflict",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_005.observation_conflict",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_product_database_stress_005.premature_success_signal": {
+      "base_task_id": "naturalistic_v1__natural_mock_product_database_stress_005",
+      "changed_factor": "environment completion signal",
+      "family": "premature_success_signal",
+      "intervention_id": "naturalistic_v1__natural_mock_product_database_stress_005.premature_success_signal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.irrelevant_tools": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004",
+      "changed_factor": "available irrelevant tools",
+      "family": "irrelevant_tools",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.irrelevant_tools",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.memory_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004",
+      "changed_factor": "memory correctness",
+      "family": "memory_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.memory_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.tool_corruption": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004",
+      "changed_factor": "tool output correctness",
+      "family": "tool_corruption",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.tool_corruption",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.tool_failure": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004",
+      "changed_factor": "tool reliability",
+      "family": "tool_failure",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.tool_failure",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    },
+    "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.tool_removal": {
+      "base_task_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004",
+      "changed_factor": "tool availability",
+      "family": "tool_removal",
+      "intervention_id": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.tool_removal",
+      "isolation_flags": [],
+      "issues": [],
+      "passed": true
+    }
+  },
+  "interventions_path": "data/processed/naturalistic_transfer_v1_candidate/interventions.jsonl",
+  "passed": true,
+  "quality_report_passed": false,
+  "scope": "Intervention isolation audit only; engineering QA, not scientific evidence.",
+  "summary": {
+    "failed": 0,
+    "flag_counts": {},
+    "interventions_audited": 400,
+    "passed": 400
+  }
+}

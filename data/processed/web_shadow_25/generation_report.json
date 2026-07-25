@@ -1,0 +1,104 @@
+{
+  "benchmark_version": "web_shadow_v0.1",
+  "config": {
+    "balanced_intervention_families": false,
+    "benchmark_version": "web_shadow_v0.1",
+    "dev_split_size": 10,
+    "difficulty_mix": {
+      "easy": 0.2,
+      "hard": 0.25,
+      "medium": 0.4,
+      "stress": 0.15
+    },
+    "domains": [
+      "web_shadow_product",
+      "web_shadow_docs",
+      "web_shadow_search",
+      "web_shadow_legal",
+      "web_shadow_support"
+    ],
+    "heldout_split_size": 10,
+    "human_audit_sample_size": 8,
+    "intervention_families": null,
+    "interventions_per_task": 5,
+    "num_base_tasks": 50,
+    "output_dir": "data/processed/web_shadow_25",
+    "pilot_split_size": 30,
+    "seed": 20270542,
+    "task_style": "web_shadow"
+  },
+  "config_hash": "40ebf2ae838a1739",
+  "counts": {
+    "base_tasks": 50,
+    "instances": 300,
+    "interventions": 250
+  },
+  "distributions": {
+    "difficulties": {
+      "easy": 10,
+      "hard": 12,
+      "medium": 20,
+      "stress": 8
+    },
+    "domains": {
+      "web_shadow_docs": 6,
+      "web_shadow_legal": 4,
+      "web_shadow_navigation": 14,
+      "web_shadow_pricing": 4,
+      "web_shadow_product": 8,
+      "web_shadow_search": 12,
+      "web_shadow_support": 2
+    },
+    "intervention_families": {
+      "distractor_evidence": 25,
+      "long_horizon_dependency": 25,
+      "observation_conflict": 25,
+      "tool_corruption": 25,
+      "tool_failure": 25,
+      "web_broken_link": 25,
+      "web_conflicting_page": 25,
+      "web_hidden_evidence": 25,
+      "web_irrelevant_search_result": 25,
+      "web_stale_page": 25
+    },
+    "tool_patterns": {
+      "lookup_policy": 1,
+      "lookup_policy -> read_file -> verify_fact": 1,
+      "lookup_policy -> verify_fact": 2,
+      "read_file": 2,
+      "read_file -> search_database": 1,
+      "read_file -> verify_fact": 5,
+      "search_database": 1,
+      "search_database -> lookup_policy": 1,
+      "search_database -> read_file": 4,
+      "search_database -> verify_fact": 7,
+      "web_open_page -> web_extract_section": 6,
+      "web_open_page -> web_follow_link": 4,
+      "web_open_page -> web_follow_link -> web_extract_section": 9,
+      "web_search_snapshot -> web_open_page -> web_extract_section": 6
+    }
+  },
+  "duplicates": {
+    "instance_ids": [],
+    "instructions": [],
+    "task_ids": []
+  },
+  "quality_passed": false,
+  "quality_warnings": [
+    "domain imbalance: distribution is uneven: {'web_shadow_docs': 6, 'web_shadow_legal': 4, 'web_shadow_navigation': 14, 'web_shadow_pricing': 4, 'web_shadow_product': 8, 'web_shadow_search': 12, 'web_shadow_support': 2}",
+    "difficulty imbalance: distribution is uneven: {'easy': 10, 'hard': 12, 'medium': 20, 'stress': 8}",
+    "intervention validity risk high for webshadow_web_snapshot_widget_pro_sku_hard.web_conflicting_page: web_conflicting_page"
+  ],
+  "splits": {
+    "dev": 10,
+    "heldout": 10,
+    "pilot": 30,
+    "pilot_100": 30,
+    "pilot_20": 10
+  },
+  "statistics": {
+    "average_interventions_per_task": 5.0,
+    "average_max_steps": 5.0,
+    "average_required_tools": 2.24
+  }
+}

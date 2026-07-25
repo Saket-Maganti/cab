@@ -21,6 +21,7 @@ def score_recovery(trajectory: Trajectory) -> dict[str, bool | int | None]:
     if not failure_indices:
         return {
             "tool_error_recovery_binary": None,
+            "correct_abstention_uncertainty_binary": None,
             "steps_to_recovery": None,
             "repeated_failed_call_count": 0,
         }
@@ -39,6 +40,9 @@ def score_recovery(trajectory: Trajectory) -> dict[str, bool | int | None]:
         if any(word in final_answer for word in UNCERTAINTY_WORDS):
             recovery_index = index
             break
+    uncertainty_answer = any(
+        word in str(trajectory.final_answer or "").lower() for word in UNCERTAINTY_WORDS
+    )
     repeated = 0
     seen_failed = set()
     for step in trajectory.steps:
@@ -53,6 +57,7 @@ def score_recovery(trajectory: Trajectory) -> dict[str, bool | int | None]:
             seen_failed.add(tool)
     return {
         "tool_error_recovery_binary": recovery_index is not None,
+        "correct_abstention_uncertainty_binary": uncertainty_answer,
         "steps_to_recovery": None if recovery_index is None else recovery_index - first_failure,
         "repeated_failed_call_count": repeated,
     }

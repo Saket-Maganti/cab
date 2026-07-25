@@ -1,0 +1,29 @@
+\section{Metrics}
+
+\paragraph{Final task success.}
+The benchmark reports binary and partial final-answer success using deterministic heuristic scoring in the default package. Human or model-based scoring can be added later, but any such scorer must be separately validated.
+
+\paragraph{Trajectory diagnostics.}
+Trajectory metrics include required-tool recall, tool precision, unnecessary-tool-call rate, missing required tools, invalid tool calls, argument validity, argument errors, recovery from tool errors, repeated failed calls, contradiction detection and resolution, memory use and verification, blind trust in corrupted memory, premature stopping, maximum-step failure, correct stopping, trajectory efficiency, and trajectory faithfulness. These metrics support \claimref{C3}, \claimref{C5}, \claimref{C7}, and \claimref{C8}.
+
+\paragraph{Agent Causal Robustness Score.}
+For an agent $a$, let $S_{\mathrm{clean}}(a)$ denote clean-condition success rate and $S_{\mathrm{int}}(a)$ denote intervention-condition success rate. The initial robustness score is
+\[
+\acrs(a) = \frac{S_{\mathrm{int}}(a)}{S_{\mathrm{clean}}(a)}.
+\]
+When $S_{\mathrm{clean}}(a)=0$, \acrs is undefined rather than forced to zero. Per-family robustness is computed analogously:
+\[
+\acrs_j(a) = \frac{S_j(a)}{S_{\mathrm{clean}}(a)}.
+\]
+The benchmark also reports absolute degradation $S_{\mathrm{clean}}(a)-S_{\mathrm{int}}(a)$ and relative degradation $1-\acrs(a)$ when defined.
+
+\acrs is intentionally simple and intentionally incomplete. It should never be reported without clean success, intervention success, sample size, uncertainty, and component metrics. An agent with low clean success can have undefined or misleading \acrs; an agent with equally poor clean and intervention performance can look superficially robust. The paper treats \acrs as a summary index, not as a sufficient statistic for agent competence.
+
+\paragraph{Ranking instability.}
+To test \claimref{C4}, agents are ranked by clean success and by \acrs. The analysis reports rank deltas and Spearman correlation between rankings. A low correlation would indicate that clean success and causal robustness produce materially different model comparisons. This effect is a planned empirical question, not an assumed novelty claim: if rankings are stable, the paper should report that honestly and emphasize component diagnostics instead.
+
+\paragraph{Anti-gaming and heuristic scores.}
+Trajectory and final-answer scores are rule-based and auditable, which aids reproducibility but allows template-specific shortcuts if agents overfit public tasks. Held-out template splits, versioned releases, and human audits of interventions and labels are part of the intended mitigation. Trajectory metrics should be interpreted as structured hypotheses about failure modes until human agreement studies are complete (\claimref{C3}).
+
+\paragraph{Incomplete, mock, and stub runs.}
+Scores from mock diagnostic agents, local stubs, dry runs, or interrupted executions may be exported for engineering validation but are tagged \texttt{engineering\_only} or \texttt{mock\_diagnostic\_only} and must not support scientific conclusions about LLM agents. The export pipeline sets \texttt{eligible\_for\_paper\_claims: false} for such runs by default.

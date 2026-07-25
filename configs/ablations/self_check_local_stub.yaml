@@ -1,0 +1,37 @@
+seed: 20270517
+run_name: ablation_self_check_local_stub
+benchmark_path: data/sample/instances.jsonl
+agent_runs:
+  - name: self_check_off
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: self_check
+        factor: self_check_before_final
+        level: without_self_check
+        comparison_role: reference
+  - name: self_check_on
+    agent: self_checking_llm_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      prompt_addendum_file: ablations/self_check_instruction.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: self_check
+        factor: self_check_before_final
+        level: with_self_check
+        comparison_role: treatment
+max_steps: 8
+num_repeats: 1
+output_dir: results
+auto_score: true

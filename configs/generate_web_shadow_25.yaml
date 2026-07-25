@@ -1,0 +1,23 @@
+seed: 20270542
+benchmark_version: web_shadow_v0.1
+task_style: web_shadow
+num_base_tasks: 50
+domains:
+- web_shadow_product
+- web_shadow_docs
+- web_shadow_search
+- web_shadow_legal
+- web_shadow_support
+difficulty_mix:
+  easy: 0.2
+  medium: 0.4
+  hard: 0.25
+  stress: 0.15
+interventions_per_task: 5
+balanced_intervention_families: false
+dev_split_size: 10
+pilot_split_size: 30
+heldout_split_size: 10
+human_audit_sample_size: 8
+output_dir: data/processed/web_shadow_25
+allow_paid_calls: false

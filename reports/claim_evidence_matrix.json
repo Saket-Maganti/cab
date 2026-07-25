@@ -1,0 +1,409 @@
+{
+  "claims": [
+    {
+      "affected_sections": [
+        "abstract",
+        "introduction",
+        "results",
+        "conclusion"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Run final non-oracle pilot",
+        "Compute uncertainty",
+        "Audit task/intervention validity",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C1",
+      "claim_text": "Clean success overestimates robust competence under intervention.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "tables/table2_main_agent_performance.csv",
+        "figures/figure2_clean_vs_intervention_success.png"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Paired clean vs intervention runs across multiple non-oracle agents with confidence intervals; intervention success lower than clean success for credible agents.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "results",
+        "conclusion"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Run family-balanced benchmark",
+        "Add memory-corruption audit subset",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C2",
+      "claim_text": "Tool failure and memory corruption expose hidden weaknesses.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "figures/figure3_intervention_family_breakdown.png",
+        "tables/table3_intervention_family_performance.csv"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Intervention-family breakdown showing degradation under tool failure and memory corruption with representative trajectories.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "results",
+        "human_validation"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Run human validation subset",
+        "Calibrate deterministic trajectory diagnostics",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C3",
+      "claim_text": "Trajectory metrics detect failures missed by final-answer scoring.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "figures/figure6_trajectory_final_disagreement.png",
+        "results/<run_dir>/error_cases/ (missing)"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Final-success trajectories where component metrics expose unsupported or unsafe behavior, plus human audit agreement.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "results",
+        "conclusion"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Run enough agents/models for ranking analysis",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C4",
+      "claim_text": "ACRS changes model rankings relative to clean success.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "figures/figure4_ranking_instability.png",
+        "tables/table2_main_agent_performance.csv"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Ranking comparison between clean success and ACRS with Spearman correlation and uncertainty.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "results",
+        "ablations"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Define planning proxy",
+        "Run scaffold ablation",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C5",
+      "claim_text": "Recovery ability is separable from planning ability.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "tables/table2_main_agent_performance.csv",
+        "tables/table4_ablation_results.csv"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Component analysis showing agents with similar planning/tool-selection scores differ in recovery after failures, or a controlled scaffold ablation.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "ablations",
+        "results"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Implement scaffold conditions",
+        "Run ablation config",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C6",
+      "claim_text": "Simple self-checking improves some intervention families but not all.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "tables/table4_ablation_results.csv"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Prompt/scaffold ablation with fixed agents/tasks showing targeted improvements and tradeoffs.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "results"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Run irrelevant-tools family with non-oracle agents",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C7",
+      "claim_text": "Some agents overuse tools even when unnecessary.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "tables/table2_main_agent_performance.csv",
+        "figures/figure5_failure_mode_distribution.png"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Irrelevant-tools intervention showing unnecessary-tool-call rate differences without matching final-success gains.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "results"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Run premature-success-signal family",
+        "Audit examples",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C8",
+      "claim_text": "Some agents stop prematurely under misleading success signals.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "figures/figure5_failure_mode_distribution.png",
+        "results/<run_dir>/error_cases/premature_stopping.md (missing)"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Premature-success-signal intervention showing increased premature-stop rate and representative early-final-answer trajectories.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    },
+    {
+      "affected_sections": [
+        "ethics/reproducibility",
+        "limitations"
+      ],
+      "available_evidence": [
+        "README.md",
+        "docs/RUNNING_EXPERIMENTS.md",
+        "docs/REPRODUCIBILITY.md"
+      ],
+      "blocking_missing_items": [
+        "Repeat in clean CI environment",
+        "Run real provider-backed pilot before using non-oracle LLM observations as scientific evidence",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C9",
+      "claim_text": "CausalAgentBench smoke tests are reproducible without paid services.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "docs/REPRODUCIBILITY.md",
+        "docs/RUNNING_EXPERIMENTS.md"
+      ],
+      "ledger_status": "engineering_only",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Fresh environment run of install, help, validation, smoke CLI, tests, and local analysis without paid services.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": true,
+        "human_validation": false,
+        "introduction": true,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "engineering_only"
+    },
+    {
+      "affected_sections": [
+        "human_validation",
+        "benchmark design",
+        "results"
+      ],
+      "available_evidence": [],
+      "blocking_missing_items": [
+        "Create annotation protocol",
+        "Run expert audit",
+        "No verified complete provider/main scientific evidence"
+      ],
+      "claim_id": "C10",
+      "claim_text": "Controlled interventions isolate intended skill components.",
+      "eligible_artifacts": [],
+      "ineligible_artifacts": [
+        "tables/table5_human_validation_agreement.csv",
+        "docs/INTERVENTIONS.md"
+      ],
+      "ledger_status": "planned",
+      "linked_runs_ineligible": [
+        "20260510T110807Z_dev_20",
+        "20260510T110830Z_smoke",
+        "20260510T165955Z_dev_20",
+        "20260510T171419Z_smoke",
+        "20260510T171542Z_smoke"
+      ],
+      "linked_runs_scientific": [],
+      "required_evidence": "Human or expert audit that interventions preserve the user goal and primarily alter the intended factor.",
+      "section_allowed": {
+        "ablations": false,
+        "abstract": false,
+        "conclusion": false,
+        "ethics/reproducibility": false,
+        "human_validation": false,
+        "introduction": false,
+        "limitations/future_work_only": true,
+        "results": false
+      },
+      "status": "planned"
+    }
+  ],
+  "eligible_run_count": 0,
+  "generated_at": "2026-05-20T08:27:04.490699+00:00"
+}

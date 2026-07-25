@@ -1,0 +1,22 @@
+path,category,recommendation,reason,evidence_relevance,paper_relevance,release_relevance,safety_gate_relevance,duplicate_or_obsolete,references_risk
+README.md,public_entry,keep_public,"Primary repo entry; must stay conservative",medium,medium,high,medium,no,high
+GOD_TIER_MANIFEST.md,meta_governance,archive_later,"Branding is not reviewer-facing evidence",low,low,low,low,yes,medium
+PROJECT_DOSSIER.md,internal_handoff,keep_internal,"Useful orientation, too large for public paper packet",medium,medium,low,medium,no,medium
+docs/CLAIM_LEDGER.md,evidence_gate,keep_public,"Core claim discipline",high,high,high,high,no,high
+docs/DO_NOT_OVERCLAIM.md,evidence_gate,keep_public,"Prevents unsupported result language",high,high,high,high,no,high
+docs/NEURIPS_SUBMISSION_GATE.md,submission_gate,keep_public,"Keeps NOT_READY state visible",high,high,medium,high,no,high
+docs/COMPACT_PAPER_STRATEGY.md,paper_strategy,keep_internal,"Current compact paper strategy",medium,high,low,high,no,medium
+paper/COMPACT_EMPIRICAL_PAPER_BLUEPRINT.md,paper_strategy,keep_internal,"No-run paper blueprint",medium,high,low,high,no,medium
+reports/GOLD_OUTPUT_TRIAGE_COMPACT_PLAN.md,data_quality,keep_internal,"Gold warning blocker summary",high,high,medium,high,no,medium
+reports/INTERVENTION_VALIDITY_DOSSIER.md,validation,keep_internal,"C10 blocker summary",high,high,medium,high,no,medium
+docs/FOCUSED_PROJECT_THESIS.md,no_run_build,keep_internal,"Canonical no-run thesis",medium,high,medium,high,no,medium
+docs/CLAIM_TRIAGE_NO_RUN.md,no_run_build,keep_internal,"C1-C10 current status",high,high,medium,high,no,medium
+docs/COMPACT20_SELECTION_CRITERIA.md,manual_review,keep_internal,"Manual slice criteria",medium,high,low,medium,no,low
+docs/C10_INTERVENTION_ISOLATION_VALIDATION_PROTOCOL.md,manual_review,keep_internal,"C10 validation protocol",high,high,medium,high,no,medium
+paper/NO_RUN_PAPER_SKELETON.md,paper_strategy,keep_internal,"Draft skeleton only",medium,high,low,high,no,low
+paper/FIGURE_TABLE_SPEC_NO_RUN.md,paper_strategy,keep_internal,"Future asset specification",medium,high,low,high,no,low
+experiments/FUTURE_3MODEL_COMPACT20_PILOT_RUNBOOK_NO_EXECUTION.md,future_runbook,keep_internal,"Planning only, no approval",medium,high,low,high,no,medium
+configs/compact20_3model_TEMPLATE_NOT_APPROVED.yaml,template,keep_internal,"Safety-locked non-runnable template",medium,medium,low,high,no,medium
+docs/REVIEWER_SIMULATION_NO_RUN.md,review_strategy,keep_internal,"Simulated reviewer reactions, not facts",low,high,low,medium,no,low
+docs/SUBMISSION_LADDER.md,submission_strategy,keep_internal,"Honest venue path",medium,high,medium,high,no,medium
+

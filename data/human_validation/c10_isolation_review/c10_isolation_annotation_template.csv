@@ -1,0 +1,1 @@
+sample_id,candidate_id,base_task_id,clean_instance_id,intervention_instance_id,family,reviewer_id,goal_preserved,target_factor_changed,non_target_factors_preserved,answer_policy_clear,expected_answer_policy,is_isolated,include_in_validation,confidence,notes

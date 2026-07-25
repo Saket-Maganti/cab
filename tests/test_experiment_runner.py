@@ -35,11 +35,16 @@ def test_experiment_smoke_run_creates_expected_files(tmp_path):
         "config.yaml",
         "config_hash.txt",
         "run_metadata.json",
+        "metadata.json",
+        "python_version.txt",
+        "package_version.txt",
+        "README.md",
         "instances.jsonl",
         "trajectories.jsonl",
         "errors.jsonl",
         "scores.jsonl",
         "aggregate_scores.json",
+        "aggregate_summary.json",
         "aggregate_scores.csv",
         "score_report.md",
     }
@@ -59,6 +64,9 @@ def test_run_metadata_contains_required_fields(tmp_path):
         "config_hash",
         "number_of_instances",
         "agents",
+        "model_ids",
+        "benchmark_instances_path",
+        "dataset_version",
         "machine",
     ]:
         assert key in metadata
@@ -89,6 +97,51 @@ def test_errors_are_logged_for_bad_agent(tmp_path):
     assert len(errors) == 9
     assert errors[0]["error_type"] == "ValueError"
     assert errors[0]["skipped"] is True
+
+
+def test_zero_run_budget_skips_paid_provider_before_api_key_lookup(tmp_path):
+    config = ExperimentConfig.model_validate(
+        {
+            "seed": 7,
+            "run_name": "budget_skip",
+            "benchmark_path": "data/sample/instances.jsonl",
+            "allow_paid_calls": True,
+            "cost_models": {
+                "openai": {
+                    "default": {
+                        "input_per_1m_tokens": 0.0,
+                        "output_per_1m_tokens": 0.0,
+                    }
+                }
+            },
+            "agent_runs": [
+                {
+                    "name": "paid_agent",
+                    "agent": "direct_tool_agent",
+                    "provider": "openai",
+                    "model": "fake-model",
+                    "max_tokens": 16,
+                    "extra": {"input_tokens_per_call_estimate": 0},
+                }
+            ],
+            "budget_cap_usd": 0.0,
+            "max_steps": 2,
+            "num_repeats": 1,
+            "output_dir": str(tmp_path),
+            "auto_score": False,
+        }
+    )
+
+    result = run_experiment(config)
+    run_dir = result["run_dir"]
+    errors = read_jsonl(run_dir / "errors.jsonl")
+
+    assert result["trajectories"] == []
+    assert errors
+    assert {error["error_type"] for error in errors} == {"BudgetExceededError"}
+    assert {error["budget_scope"] for error in errors} == {"run"}
+    assert all(error["skipped"] is True for error in errors)
+    assert (run_dir / "trajectories.jsonl").read_text(encoding="utf-8") == ""
 
 
 def test_auto_scoring_is_triggered(tmp_path):

@@ -1,0 +1,6 @@
+agent,evidence_scope,clean_rank,acrs_rank,rank_delta,clean_success,intervention_success,acrs,spearman_clean_vs_acrs,kendall_tau_clean_vs_acrs,run_dir,config_hash,dataset_version,model_ids,timestamp
+direct_tool_local_stub,pilot_stub_engineering_only,1,1,0,0.0,0.0,,1.0,1.0,results/20260511T162146Z_pilot_20_multi_agent_stub,6c0a1da78f8a8f53,unknown,local-stub,2026-05-11T16:21:46.439828+00:00
+greedy_tool_agent,pilot_stub_engineering_only,2,2,0,0.0,0.0,,1.0,1.0,results/20260511T162146Z_pilot_20_multi_agent_stub,6c0a1da78f8a8f53,unknown,local-stub,2026-05-11T16:21:46.439828+00:00
+planner_executor_local_stub,pilot_stub_engineering_only,3,3,0,0.0,0.0,,1.0,1.0,results/20260511T162146Z_pilot_20_multi_agent_stub,6c0a1da78f8a8f53,unknown,local-stub,2026-05-11T16:21:46.439828+00:00
+react_stub_agent,pilot_stub_engineering_only,4,4,0,0.0,0.0,,1.0,1.0,results/20260511T162146Z_pilot_20_multi_agent_stub,6c0a1da78f8a8f53,unknown,local-stub,2026-05-11T16:21:46.439828+00:00
+self_check_local_stub,pilot_stub_engineering_only,5,5,0,0.0,0.0,,1.0,1.0,results/20260511T162146Z_pilot_20_multi_agent_stub,6c0a1da78f8a8f53,unknown,local-stub,2026-05-11T16:21:46.439828+00:00

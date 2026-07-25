@@ -1,0 +1,91 @@
+# =============================================================================
+# TEMPLATE ONLY — DO NOT RUN WITHOUT APPROVAL
+# =============================================================================
+# Provider-backed LLM evidence pilot (no oracle/mock/stub agents in this file).
+#
+# - NOT paper-eligible until post-run safety reports pass.
+# - scientific_evidence remains false until manual post-run verification.
+# - No claims may be promoted from this config alone.
+# - Oracle pipeline checks: configs/provider_pilot_oracle_sanity_check_template.yaml
+#
+# See: docs/PROVIDER_PILOT_READINESS_PACKET.md
+#      docs/PROVIDER_PILOT_METADATA_REQUIREMENTS.md
+#      docs/POST_PROVIDER_PILOT_CHECKLIST.md
+#
+# Before running:
+#   1. Complete pre-run checklist in PROVIDER_PILOT_READINESS_PACKET.md
+#   2. Copy to configs/provider_pilot_tiny_APPROVED.yaml (do not edit template in place)
+#   3. Set real model IDs via env vars (never commit API keys)
+#   4. Set allow_paid_calls: true ONLY after explicit budget approval
+#   5. Run validate-config and dry-run first (no API calls in dry-run)
+# =============================================================================
+
+seed: 20270550
+run_name: provider_pilot_tiny_PENDING_APPROVAL
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+provider_registry_path: configs/providers.yaml
+pricing_registry_path: configs/model_pricing.yaml
+
+# Evidence defaults — written false at run start; true only after post-run review.
+template_only: true
+scientific_evidence: false
+scientific_evidence_level: preliminary_or_engineering
+evidence_scope: provider_pilot_pending_verification
+provider_type: default
+require_dry_run_before_live: true
+
+allow_paid_calls: false
+cost_mode: default
+
+max_instances: 5
+limits:
+  max_instances: 5
+  max_agents: 1
+  max_trajectories: 5
+  stop_after_trajectories: 5
+  max_runtime_minutes: 30
+  max_steps_per_instance: 6
+  max_output_tokens: 512
+  max_api_calls: 40
+
+budget_cap_usd: 5.0
+task_budget_cap_usd: 0.75
+budget:
+  max_total_usd: 5.0
+  max_calls: 40
+  require_explicit_paid_approval: true
+  strict_pricing: true
+
+approval:
+  advisor_approved: false
+  budget_approved: false
+  approved_for_dry_run: false
+  approved_for_live_run: false
+  approved_by: null
+  approval_date: null
+  advisor_approval_id: null
+  max_budget_usd: 5.0
+  notes: "TEMPLATE ONLY — copy to an APPROVED config after advisor review."
+
+# Single provider-backed non-oracle agent — replace placeholders before approval.
+agent_runs:
+  - name: direct_tool_provider_pilot
+    agent: direct_tool_agent
+    provider: openai
+    model: ${OPENAI_MODEL_ID:-PLACEHOLDER_SET_BEFORE_RUN}
+    temperature: 0.0
+    max_tokens: 512
+    retry_count: 2
+    timeout: 60
+    budget_cap_usd: 5.0
+    extra:
+      api_version: openai-chat-completions-v1
+      input_tokens_per_call_estimate: 1200
+
+max_steps: 6
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: true
+auto_score: true

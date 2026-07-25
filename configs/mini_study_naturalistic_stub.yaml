@@ -1,0 +1,26 @@
+seed: 20270541
+run_name: mini_study_naturalistic_stub
+benchmark_path: data/processed/mini_study_naturalistic_40/pilot_instances.jsonl
+agent_runs:
+- name: direct_tool_local_stub
+  agent: direct_tool_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: planner_executor_local_stub
+  agent: planner_executor_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: greedy_tool_agent
+  agent: greedy_tool_agent
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+allow_paid_calls: false

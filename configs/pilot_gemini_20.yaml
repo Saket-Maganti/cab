@@ -1,0 +1,30 @@
+seed: 2027
+run_name: pilot_gemini_20
+benchmark_path: data/processed/pilot_v0_1/dev_instances.jsonl
+agent_runs:
+- name: direct_tool_gemini
+  agent: direct_tool_agent
+  provider: gemini
+  model: ${GEMINI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 700
+  retry_count: 2
+  timeout: 60
+  budget_cap_usd: 25.0
+- name: self_check_gemini
+  agent: self_check_agent
+  provider: gemini
+  model: ${GEMINI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 900
+  retry_count: 2
+  timeout: 60
+  budget_cap_usd: 25.0
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+allow_paid_calls: false

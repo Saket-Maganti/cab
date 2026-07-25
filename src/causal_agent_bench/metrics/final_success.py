@@ -2,29 +2,38 @@ from __future__ import annotations
 
 from typing import Any
 
-from causal_agent_bench.metrics.base import expected_answer_fragments, success_criteria
+from causal_agent_bench.metrics.typed_final_answer import (
+    SCORER_NAME,
+    SCORER_VERSION,
+    TypedScoreResult,
+    score_typed_final_answer,
+    typed_scorer_fixture_self_check,
+)
 from causal_agent_bench.schemas import Trajectory
 
 
-def score_final_success(context: Any, trajectory: Trajectory) -> dict[str, float | int]:
-    answer = (trajectory.final_answer or "").lower()
-    fragments = [fragment.lower() for fragment in expected_answer_fragments(context) if fragment]
-    if fragments:
-        matches = sum(1 for fragment in fragments if fragment in answer)
-        partial = matches / len(fragments)
-        binary = float(matches == len(fragments))
-    else:
-        criteria = success_criteria(context)
-        matches = sum(1 for criterion in criteria if _criterion_hint(criterion) in answer)
-        partial = matches / len(criteria) if criteria else 0.0
-        binary = float(partial == 1.0 and bool(criteria))
-    return {
-        "final_success_binary": int(binary),
-        "final_success_partial": round(partial, 6),
-    }
+def score_final_success(
+    context: Any,
+    trajectory: Trajectory,
+) -> dict[str, float | int | bool | str | None]:
+    """Backward-compatible metric mapping from the canonical typed scorer."""
+
+    return score_final_success_result(context, trajectory).metrics()
 
 
-def _criterion_hint(criterion: str) -> str:
-    words = [word.strip(".,;:!?").lower() for word in criterion.split()]
-    useful = [word for word in words if len(word) > 4]
-    return useful[0] if useful else criterion.lower()
+def score_final_success_result(
+    context: Any,
+    trajectory: Trajectory,
+) -> TypedScoreResult:
+    """Return the typed result, diagnostics, and scorer/gold provenance."""
+
+    return score_typed_final_answer(context, trajectory)
+
+
+__all__ = [
+    "SCORER_NAME",
+    "SCORER_VERSION",
+    "score_final_success",
+    "score_final_success_result",
+    "typed_scorer_fixture_self_check",
+]

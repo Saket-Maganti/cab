@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adjudicated_label": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "adjudication_required": {
+      "type": "boolean"
+    },
+    "annotator_failure_category": {
+      "type": "string"
+    },
+    "annotator_id_hash": {
+      "type": "string"
+    },
+    "clean_or_intervention": {
+      "enum": [
+        "clean",
+        "intervention"
+      ],
+      "type": "string"
+    },
+    "confidence_1_to_5": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "evidence_span_or_step": {
+      "type": "string"
+    },
+    "gold_answer_correct_yes_no": {
+      "enum": [
+        "yes",
+        "no",
+        "unsure",
+        ""
+      ],
+      "type": "string"
+    },
+    "intervention_isolation_valid_yes_no": {
+      "enum": [
+        "yes",
+        "no",
+        "unsure",
+        ""
+      ],
+      "type": "string"
+    },
+    "intervention_type": {
+      "type": "string"
+    },
+    "invalid_sample_flag": {
+      "enum": [
+        "true",
+        "false",
+        ""
+      ],
+      "type": "string"
+    },
+    "invalid_sample_reason": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "predicted_failure_category": {
+      "type": "string"
+    },
+    "sample_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "task_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "task_understandable_yes_no": {
+      "enum": [
+        "yes",
+        "no",
+        "unsure",
+        ""
+      ],
+      "type": "string"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "trajectory_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "trajectory_label_valid_yes_no": {
+      "enum": [
+        "yes",
+        "no",
+        "unsure",
+        ""
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "sample_id",
+    "trajectory_id",
+    "task_id",
+    "intervention_type",
+    "clean_or_intervention",
+    "predicted_failure_category",
+    "task_understandable_yes_no",
+    "intervention_isolation_valid_yes_no",
+    "gold_answer_correct_yes_no",
+    "trajectory_label_valid_yes_no",
+    "annotator_failure_category",
+    "evidence_span_or_step",
+    "confidence_1_to_5",
+    "invalid_sample_flag",
+    "invalid_sample_reason",
+    "notes",
+    "adjudication_required",
+    "adjudicated_label",
+    "annotator_id_hash",
+    "timestamp"
+  ],
+  "title": "Causal Agent Bench Human Validation Annotation",
+  "type": "object"
+}

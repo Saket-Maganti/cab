@@ -1,0 +1,23 @@
+% Auto-generated failure gallery snippets. Do not cite as final results without validated runs.
+% Source: illustrative_scaffold | run: None
+
+\paragraph{Tool failure recovery.}
+Under tool failure, the agent repeats the failing call and answers confidently without recovery, yet a lenient final-answer matcher might still accept the number.
+
+\paragraph{Memory corruption.}
+The agent trusts corrupted memory after a contradicting policy tool result, showing memory verification failure invisible to answer-only scoring.
+
+\paragraph{Observation conflict.}
+Conflicting observations are ignored; the trajectory never resolves or discloses uncertainty.
+
+\paragraph{Irrelevant tool distraction.}
+Irrelevant tools consume the budget and derail evidence gathering while a terse wrong answer can still fail silently under weak matchers.
+
+\paragraph{Premature success signal.}
+The agent stops after a misleading success cue without verifying required evidence.
+
+\paragraph{Distractor evidence.}
+The agent latches onto irrelevant evidence; final-answer scoring does not mark which observations were used.
+
+\paragraph{Long-horizon dependency.}
+A broken dependency chain drops intermediate evidence; the answer looks structured but uses the wrong prior result.

@@ -1,0 +1,2 @@
+review_id,review_date,reviewer,source_report,task_id,instance_id,base_task_id,intervention_type,clean_or_intervention,task_instruction_clear,required_information_clear,tool_setup_clear,intervention_isolated,possible_multi_factor_confound,high_risk_family,exclude_from_compact,needs_gold_policy_review,notes,recommended_action,evidence_label
+,,,,,,,,,,,,,,,,,,,,engineering_only/no_provider_evidence/not_scientific_model_performance

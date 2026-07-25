@@ -1,0 +1,37 @@
+seed: 20270517
+run_name: ablation_uncertainty_abstention_local_stub
+benchmark_path: data/sample/instances.jsonl
+agent_runs:
+  - name: uncertainty_abstention_off
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: uncertainty_abstention
+        factor: uncertainty_abstention_instruction
+        level: without_uncertainty_abstention
+        comparison_role: reference
+  - name: uncertainty_abstention_on
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      prompt_addendum_file: ablations/uncertainty_abstention_instruction.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: uncertainty_abstention
+        factor: uncertainty_abstention_instruction
+        level: with_uncertainty_abstention
+        comparison_role: treatment
+max_steps: 8
+num_repeats: 1
+output_dir: results
+auto_score: true
