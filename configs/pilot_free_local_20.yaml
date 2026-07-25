@@ -1,0 +1,67 @@
+seed: 20270540
+run_name: pilot_free_local_20
+cost_mode: zero_cost
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering
+provider_type: local
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+provider_registry_path: configs/providers.yaml
+pricing_registry_path: configs/model_pricing.yaml
+budget:
+  max_total_usd: 0
+  max_calls: 2880
+  require_explicit_paid_approval: true
+  strict_pricing: false
+agent_runs:
+  - name: direct_tool_local_ollama
+    agent: direct_tool_agent
+    provider: local_openai
+    model: "${LOCAL_OPENAI_MODEL_ID:-}"
+    base_url: "${LOCAL_OPENAI_BASE_URL:-http://localhost:11434/v1}"
+    temperature: 0.0
+    max_tokens: 700
+    retry_count: 2
+    timeout: 120
+    budget_cap_usd: 0.0
+    cache_dir: results/cache/pilot_free_local_20
+    extra:
+      prompt_file: direct_tool_agent.md
+      prompt_version: v1
+      local_server: ollama
+  - name: planner_executor_local_ollama
+    agent: planner_executor_agent
+    provider: local_openai
+    model: "${LOCAL_OPENAI_MODEL_ID:-}"
+    base_url: "${LOCAL_OPENAI_BASE_URL:-http://localhost:11434/v1}"
+    temperature: 0.0
+    max_tokens: 900
+    retry_count: 2
+    timeout: 120
+    budget_cap_usd: 0.0
+    cache_dir: results/cache/pilot_free_local_20
+    extra:
+      prompt_file: planner_executor_agent.md
+      prompt_version: v1
+      local_server: ollama
+  - name: self_check_local_ollama
+    agent: self_check_agent
+    provider: local_openai
+    model: "${LOCAL_OPENAI_MODEL_ID:-}"
+    base_url: "${LOCAL_OPENAI_BASE_URL:-http://localhost:11434/v1}"
+    temperature: 0.0
+    max_tokens: 900
+    retry_count: 2
+    timeout: 120
+    budget_cap_usd: 0.0
+    cache_dir: results/cache/pilot_free_local_20
+    extra:
+      prompt_file: self_check_agent.md
+      prompt_version: v1
+      local_server: ollama
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true

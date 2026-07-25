@@ -1,0 +1,48 @@
+# Static Leakage Suppression Registry
+#
+# This file documents reviewed false-positive or template-reuse clusters that
+# should NOT appear as active blockers in the static leakage report. Every
+# entry must be reviewed before being added.
+#
+# HARD RULES
+# - Suppressions cannot hide answer_leakage, duplicate_id_leakage,
+#   hidden_metadata_visible, or intervention_label_leakage clusters; those are
+#   always treated as blockers regardless of any entry here.
+# - Suppressions cannot promote evidence. The keys scientific_evidence,
+#   allow_paid_calls, paper_eligible, and promote_to_supported are forbidden
+#   and any entry containing them is rejected.
+# - Suppressions never modify dataset files, results/, claim_ledger, paper
+#   assets, or run metadata.
+# - Suppressions only mark clusters as `suppressed=true` in the report; the
+#   raw findings remain in JSON for traceability.
+#
+# Schema (per entry):
+#   id:               optional stable identifier (auto-derived if omitted)
+#   reviewer:         required, human reviewer name/handle
+#   reason:           required, short justification
+#   scope:            required, one of static_leakage_* values below
+#   date:             required, ISO date the suppression was reviewed
+#   review_after:     optional, ISO date after which suppression auto-expires
+#   classifications:  optional list of cluster_classification values to match
+#   cluster_ids:      optional list of root_cause_id / cluster_id values
+#   root_cause_ids:   optional alias for cluster_ids
+#
+# Allowed scopes:
+#   static_leakage_false_positive
+#   static_leakage_template_reuse
+#   static_leakage_pair_similarity
+#   static_leakage_tool_description
+#   static_leakage_system_instruction
+#   static_leakage_needs_review_documented
+
+suppressions: []
+# Example (commented):
+# suppressions:
+#   - id: supp_example_tool_descriptions
+#     reviewer: advisor-tbd
+#     reason: shared tool descriptions across all sql-lookup tasks, reviewed in repo audit
+#     scope: static_leakage_tool_description
+#     date: 2026-05-27
+#     review_after: 2026-08-27
+#     classifications:
+#       - shared_tool_description

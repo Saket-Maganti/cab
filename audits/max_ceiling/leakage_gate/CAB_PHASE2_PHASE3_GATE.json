@@ -1,0 +1,395 @@
+{
+  "evidence_class": "ENGINEERING_ONLY",
+  "exact_command": "PYTHONPATH=src python3 scripts/cab_leakage_gate.py",
+  "forbidden_actions": [
+    "Do not run provider/model inference while this gate is blocked.",
+    "Do not publish protected held-out payloads before post-study release approval.",
+    "Do not convert this engineering pass into empirical or paper evidence."
+  ],
+  "generated_at": "2026-07-23T17:09:11.687582+00:00",
+  "heldout_release_policy": {
+    "current_state": "PRE_EXECUTION_HIDDEN",
+    "evidence_class": "ENGINEERING_ONLY",
+    "full_release_unlocked": false,
+    "issues": [],
+    "passed": true,
+    "policy_path": "configs/cab_heldout_release_policy.json",
+    "post_study_full_release_allowed": false,
+    "protected_role_count": 4,
+    "registry_path": "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json",
+    "release_manifest_protected_payload_count": 0,
+    "required_release_tiers_present": true,
+    "scope": "Static public-release inventory and policy validation only. No release is created and no protected data is moved.",
+    "tracked_protected_payload_count": 0
+  },
+  "internal_blocker_count": 0,
+  "internal_blockers": [],
+  "next_allowed_action": "Proceed to independent human validity review; provider execution remains separately gated.",
+  "paper_eligible": false,
+  "registry": {
+    "issues": [],
+    "passed": true,
+    "path": "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json"
+  },
+  "roles": [
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "by_leakage_class": {},
+        "by_severity": {},
+        "evidence_class": "ENGINEERING_ONLY",
+        "finding_count": 0,
+        "findings": [],
+        "instances_checked": 9,
+        "instances_path": "data/sample/instances.jsonl",
+        "passed": true,
+        "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+        "selected_instance_count": 0
+      },
+      "contract_lint": {
+        "counts": {
+          "blockers": 0,
+          "warnings": 0
+        },
+        "passed": true,
+        "scope": "Fixture role uses schema/runtime fixture tests."
+      },
+      "pair_link": {
+        "blockers": 0,
+        "passed": true,
+        "scope": "Fixture role excluded from scientific pair eligibility."
+      },
+      "passed": true,
+      "role": "dev_fixture",
+      "source": "data/sample/instances.jsonl",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "passed": true,
+        "scope": "Fixture role excluded from scientific split eligibility."
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "by_leakage_class": {},
+        "by_severity": {},
+        "evidence_class": "ENGINEERING_ONLY",
+        "finding_count": 0,
+        "findings": [],
+        "instances_checked": 30,
+        "instances_path": "data/processed/pilot_v0_1/instances.jsonl",
+        "passed": true,
+        "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+        "selected_instance_count": 30
+      },
+      "contract_lint": {
+        "counts": {
+          "base_tasks": 10,
+          "blockers": 0,
+          "by_severity": {},
+          "instances": 30,
+          "interventions": 20,
+          "issues": 0,
+          "warnings": 0
+        },
+        "coverage": {
+          "explicit_base_policy_count": 10,
+          "explicit_intervention_policy_count": 20,
+          "valid_content_hash_count": 30
+        },
+        "dataset": "data/processed/pilot_v0_1",
+        "evidence_class": "ENGINEERING_ONLY",
+        "issues": [],
+        "passed": true,
+        "role": "compact20_pilot",
+        "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+        "selected_instance_count": 30
+      },
+      "dataset_dir": "data/processed/pilot_v0_1",
+      "pair_link": {
+        "blockers": 0,
+        "issue_count": 0,
+        "issues": [],
+        "passed": true,
+        "warnings": 0
+      },
+      "passed": true,
+      "role": "compact20_pilot",
+      "selected_instance_count": 30,
+      "source": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "classification_counts": {
+          "clean_intervention_pair_similarity": 3,
+          "expected_subset_overlap": 4,
+          "instruction_parameter_overlap": 1,
+          "needs_manual_review": 62,
+          "same_family_protected_split_overlap": 40
+        },
+        "needs_review_count": 40,
+        "passed": true,
+        "top_true_leakage_clusters": [],
+        "warning_cluster_count": 62
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "by_leakage_class": {},
+        "by_severity": {},
+        "evidence_class": "ENGINEERING_ONLY",
+        "finding_count": 0,
+        "findings": [],
+        "instances_checked": 600,
+        "instances_path": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
+        "passed": true,
+        "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+        "selected_instance_count": 0
+      },
+      "contract_lint": {
+        "counts": {
+          "base_tasks": 100,
+          "blockers": 0,
+          "by_severity": {},
+          "instances": 600,
+          "interventions": 500,
+          "issues": 0,
+          "warnings": 0
+        },
+        "coverage": {
+          "explicit_base_policy_count": 100,
+          "explicit_intervention_policy_count": 500,
+          "valid_content_hash_count": 600
+        },
+        "dataset": "data/processed/scale100_confirmatory_v1_candidate",
+        "evidence_class": "ENGINEERING_ONLY",
+        "issues": [],
+        "passed": true,
+        "role": "scale100_confirmatory",
+        "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+        "selected_instance_count": 600
+      },
+      "dataset_dir": "data/processed/scale100_confirmatory_v1_candidate",
+      "pair_link": {
+        "blockers": 0,
+        "issue_count": 0,
+        "issues": [],
+        "passed": true,
+        "warnings": 0
+      },
+      "passed": true,
+      "role": "scale100_confirmatory",
+      "selected_instance_count": 600,
+      "source": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "classification_counts": {
+          "clean_intervention_pair_similarity": 1,
+          "expected_subset_overlap": 2,
+          "instruction_parameter_overlap": 1,
+          "needs_manual_review": 26
+        },
+        "needs_review_count": 0,
+        "passed": true,
+        "top_true_leakage_clusters": [],
+        "warning_cluster_count": 26
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "by_leakage_class": {},
+        "by_severity": {},
+        "evidence_class": "ENGINEERING_ONLY",
+        "finding_count": 0,
+        "findings": [],
+        "instances_checked": 432,
+        "instances_path": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
+        "passed": true,
+        "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+        "selected_instance_count": 0
+      },
+      "contract_lint": {
+        "counts": {
+          "base_tasks": 72,
+          "blockers": 0,
+          "by_severity": {},
+          "instances": 432,
+          "interventions": 360,
+          "issues": 0,
+          "warnings": 0
+        },
+        "coverage": {
+          "explicit_base_policy_count": 72,
+          "explicit_intervention_policy_count": 360,
+          "valid_content_hash_count": 432
+        },
+        "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+        "evidence_class": "ENGINEERING_ONLY",
+        "issues": [],
+        "passed": true,
+        "role": "naturalistic_transfer",
+        "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+        "selected_instance_count": 432
+      },
+      "dataset_dir": "data/processed/naturalistic_transfer_v1_candidate",
+      "pair_link": {
+        "blockers": 0,
+        "issue_count": 0,
+        "issues": [],
+        "passed": true,
+        "warnings": 0
+      },
+      "passed": true,
+      "role": "naturalistic_transfer",
+      "selected_instance_count": 432,
+      "source": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "classification_counts": {
+          "clean_intervention_pair_similarity": 2,
+          "expected_subset_overlap": 2,
+          "instruction_parameter_overlap": 1,
+          "needs_manual_review": 27,
+          "same_family_protected_split_overlap": 9
+        },
+        "needs_review_count": 9,
+        "passed": true,
+        "top_true_leakage_clusters": [],
+        "warning_cluster_count": 27
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "by_leakage_class": {},
+        "by_severity": {},
+        "evidence_class": "ENGINEERING_ONLY",
+        "finding_count": 0,
+        "findings": [],
+        "instances_checked": 3000,
+        "instances_path": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
+        "passed": true,
+        "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+        "selected_instance_count": 0
+      },
+      "contract_lint": {
+        "counts": {
+          "base_tasks": 500,
+          "blockers": 0,
+          "by_severity": {},
+          "instances": 3000,
+          "interventions": 2500,
+          "issues": 0,
+          "warnings": 0
+        },
+        "coverage": {
+          "explicit_base_policy_count": 500,
+          "explicit_intervention_policy_count": 2500,
+          "valid_content_hash_count": 3000
+        },
+        "dataset": "data/processed/main500_confirmatory_v1_candidate",
+        "evidence_class": "ENGINEERING_ONLY",
+        "issues": [],
+        "passed": true,
+        "role": "main500_confirmatory",
+        "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+        "selected_instance_count": 3000
+      },
+      "dataset_dir": "data/processed/main500_confirmatory_v1_candidate",
+      "pair_link": {
+        "blockers": 0,
+        "issue_count": 0,
+        "issues": [],
+        "passed": true,
+        "warnings": 0
+      },
+      "passed": true,
+      "role": "main500_confirmatory",
+      "selected_instance_count": 3000,
+      "source": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "classification_counts": {
+          "clean_intervention_pair_similarity": 2,
+          "expected_subset_overlap": 2,
+          "instruction_parameter_overlap": 1,
+          "needs_manual_review": 58,
+          "same_family_protected_split_overlap": 39
+        },
+        "needs_review_count": 39,
+        "passed": true,
+        "top_true_leakage_clusters": [],
+        "warning_cluster_count": 58
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "by_leakage_class": {},
+        "by_severity": {},
+        "evidence_class": "ENGINEERING_ONLY",
+        "finding_count": 0,
+        "findings": [],
+        "instances_checked": 300,
+        "instances_path": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+        "passed": true,
+        "scope": "Static scan of the runtime task allowlist plus instruction, memory, and tool-output mutation surfaces. No model or provider is invoked.",
+        "selected_instance_count": 0
+      },
+      "contract_lint": {
+        "counts": {
+          "base_tasks": 50,
+          "blockers": 0,
+          "by_severity": {},
+          "instances": 300,
+          "interventions": 250,
+          "issues": 0,
+          "warnings": 0
+        },
+        "coverage": {
+          "explicit_base_policy_count": 50,
+          "explicit_intervention_policy_count": 250,
+          "valid_content_hash_count": 300
+        },
+        "dataset": "data/processed/main500_confirmatory_v1_candidate",
+        "evidence_class": "ENGINEERING_ONLY",
+        "issues": [],
+        "passed": true,
+        "role": "heldout_challenge",
+        "scope": "Provider-free schema, linkage, policy, invariance, payload, and content-hash lint only.",
+        "selected_instance_count": 300
+      },
+      "dataset_dir": "data/processed/main500_confirmatory_v1_candidate",
+      "pair_link": {
+        "blockers": 0,
+        "issue_count": 0,
+        "issues": [],
+        "passed": true,
+        "warnings": 0
+      },
+      "passed": true,
+      "role": "heldout_challenge",
+      "selected_instance_count": 300,
+      "source": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "classification_counts": {
+          "clean_intervention_pair_similarity": 2,
+          "expected_subset_overlap": 2,
+          "instruction_parameter_overlap": 1,
+          "needs_manual_review": 58,
+          "same_family_protected_split_overlap": 39
+        },
+        "needs_review_count": 39,
+        "passed": true,
+        "top_true_leakage_clusters": [],
+        "warning_cluster_count": 58
+      }
+    }
+  ],
+  "run_eligible_under_phase2_phase3": true,
+  "schema_version": "cab_phase2_phase3_leakage_gate_v1",
+  "scope": "Provider-free static eligibility gate. No models, providers, benchmark execution, scientific results, or paper evidence.",
+  "status": "LEAKAGE_GATE_PASS"
+}

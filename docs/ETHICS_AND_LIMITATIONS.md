@@ -1,37 +1,91 @@
 # Ethics and Limitations
 
-## Synthetic Benchmark Limits
+**Release:** `0.1.0-rc1`
 
-This benchmark can make agents look better or worse than they would behave in open-ended deployments. Synthetic tools are useful for control, but they do not cover all real operational risks, interface changes, ambiguous data, latency, or human-in-the-loop workflows.
+## Intended Use
 
-## Simulated Actions
+Support responsible research on robust tool-using agents: transparent limitations, claim-ledger discipline, and safe defaults (no live side effects in the default environment).
 
-The default environment does not send real email, create real calendar events, make real bookings, purchase products, access live web pages, or call paid model APIs. The `send_email_draft` and `book_stub` tools are simulations only.
+## Out-of-Scope Use
 
-## Data and Privacy
+- Deploying benchmark agents against real users without separate safety review.
+- Using synthetic success rates to justify automated decisions in high-stakes domains.
+- Omitting oracle/stub labeling in public comparisons.
 
-Default tasks use synthetic mock data only. No API keys, private documents, personal email, real calendar data, or customer records should be committed. Any future human-authored or enterprise task data must go through privacy review.
+## Data Construction
 
-## Scoring Limits
+Synthetic tasks avoid personal data by design. Human-validation samples may include task text exported for annotation — follow `docs/HUMAN_VALIDATION_PROTOCOL.md` for consent, compensation, and escalation.
 
-Default scoring is deterministic and auditable, but heuristic. It may miss semantically valid answers or overfit to template wording. If LLM-as-judge scoring is used, judge prompts, model versions, instability, and bias must be reported.
+## Synthetic Data Policy
 
-## Intervention Validity
+- No default collection of user PII or proprietary corpora.
+- Simulated tools only (`send_email_draft`, `book_stub`, static `web_*` tools).
+- Researchers adding real data must complete privacy review and update the dataset card.
+- See [SECURITY_AND_PRIVACY.md](SECURITY_AND_PRIVACY.md) for secrets handling and `.env.example`.
 
-Interventions are designed to change one factor at a time, but they may accidentally alter difficulty, available evidence, or answerability. Human or expert audit is required before making causal claims about isolated skill components.
+## Intervention Families
 
-## Misuse Risks
+Interventions may cause agents to produce incorrect or overconfident answers in simulation. They must not be used to elicit harmful content or to automate real harmful actions. Web-shadow tools do not access the live internet.
 
-- Treating smoke results as a leaderboard.
-- Overgeneralizing from template tasks.
-- Using oracle stub baselines as realistic model estimates.
-- Training on public benchmark instances and reporting contaminated results.
-- Optimizing agents to benchmark quirks rather than robust behavior.
+## Scoring Methodology
 
-## Human Validation
+Heuristic scoring can disadvantage non-English phrasing or valid paraphrases. LLM judges introduce bias and instability — report judge model, prompts, and agreement with humans (`docs/LLM_JUDGE_RISKS.md`).
 
-If human validation is used, annotators should receive clear instructions, fair compensation, consent information, and an escalation route for ambiguous examples. Reports should include agreement rates and adjudication procedures.
+## Validation Status
 
-## Responsible Release
+Human validation and intervention audits are **incomplete** for publication-grade claims. Stub runs are **engineering-only** (`validation_status.scientific_evidence_from_stub_runs: forbidden` in `release/release_manifest.json`).
 
-Public releases should be versioned and should distinguish code, generated data, run artifacts, and paper claims. Claims should remain tied to `docs/CLAIM_LEDGER.md`.
+## Known Failure Modes
+
+- **Overconfidence:** high clean success under templates does not imply deployment readiness.
+- **Misleading robustness:** ACRS alone can hide uniformly low success.
+- **Oracle misuse:** `scripted_oracle_agent` is an upper bound, not a product agent.
+- **Environmental harm:** not applicable to default sandbox; applies if users wire real tools externally.
+- **Annotator burden:** ambiguous tasks without clear rubrics waste annotator time.
+
+## Contamination Risk
+
+Training on public benchmark instances without disclosure undermines community trust. Report data exposure and use held-out evaluation splits.
+
+## Maintenance Plan
+
+- Track claim status in `docs/claim_ledger.json`.
+- Update this document when enabling real tools, human data, or paid API defaults.
+- Release-check gate before version tags.
+
+## License
+
+MIT (`LICENSE`). Ethical use remains the responsibility of downstream researchers.
+
+---
+
+## Synthetic benchmark limits
+
+Template tasks understate ambiguity, latency, authentication, and interface drift present in production systems.
+
+## Simulated actions
+
+The default environment does not send email, modify calendars, complete purchases, or browse the live web. Commercial API runs require explicit opt-in (`docs/COMMERCIAL_API_RUNS.md`).
+
+## Data and privacy
+
+Do not commit API keys, `.env` files, private documents, or customer records. Redaction helpers strip secrets from persisted run metadata where implemented.
+
+## Intervention validity
+
+Single-factor design is a **target**, not a guarantee. Expert review is required before causal skill claims (Claim C10).
+
+## Misuse risks
+
+- Treating smoke results as leaderboards.
+- Overgeneralizing from synthetic tasks.
+- Contaminated training on benchmark instances.
+- Optimizing to heuristic scorer quirks.
+
+## Human validation
+
+When annotations are collected: fair compensation, clear instructions, agreement reporting, and adjudication for disagreements (`docs/HUMAN_VALIDATION_GUIDELINES.md`).
+
+## Responsible release
+
+Versioned releases via `release/release_manifest.json`. Distinguish code, frozen data, run artifacts, and paper claims.

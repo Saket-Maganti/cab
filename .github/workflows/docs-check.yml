@@ -1,0 +1,47 @@
+name: Docs Check
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package
+        run: python -m pip install -e ".[dev]"
+
+      - name: Required docs exist
+        run: |
+          test -f docs/BENCHMARK_TAXONOMY.md
+          test -f docs/RISK_REGISTER.md
+          test -f docs/EXPERIMENT_STATE_MACHINE.md
+          test -f paper/PAPER_SYNC_MAP.md
+          test -f docs/DATASET_VERSIONING_AND_RELEASE_POLICY.md
+          test -f docs/HELDOUT_RELEASE_GOVERNANCE.md
+          test -f docs/CAB_FOCUSED_PROJECT_SURFACE.md
+          test -f docs/LEADERBOARD_AND_GAMING_POLICY.md
+
+      - name: Release manifest
+        run: python3 -m causal_agent_bench build-release-manifest
+
+      - name: Repro bundle plan
+        run: python3 -m causal_agent_bench plan-repro-bundle
+
+      - name: Command plans
+        run: python3 -m causal_agent_bench command-plan --experiment all

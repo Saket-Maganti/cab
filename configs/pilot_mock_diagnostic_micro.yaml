@@ -1,0 +1,31 @@
+seed: 20270550
+run_name: pilot_mock_diagnostic_micro
+cost_mode: zero_cost
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering
+evidence_scope: mock_diagnostic_only
+provider_type: local
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+max_instances: 3
+budget:
+  max_total_usd: 0
+  max_calls: 24
+  require_explicit_paid_approval: true
+  strict_pricing: false
+limits:
+  max_instances: 3
+  max_agents: 1
+  max_trajectories: 3
+  max_steps_per_instance: 4
+  stop_after_trajectories: 3
+agent_runs:
+  - name: mock_tool_overuser
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: tool_overuser
+max_steps: 4
+num_repeats: 1
+output_dir: results
+save_observations: true
+auto_score: true
+fail_fast: false

@@ -1,0 +1,26 @@
+{
+  "schema_version": "trajectory_v2",
+  "run_id": "synthetic_metric_diagnostics",
+  "instance_id": "synthetic.argument_sloppy",
+  "base_task_id": "synthetic_argument_sloppy",
+  "agent_name": "synthetic_argument_sloppy",
+  "steps": [
+    {
+      "step_index": 0,
+      "tool_call": {"tool_name": "calculate_price", "arguments": {"__malformed__": true, "amount": "not-a-number"}},
+      "tool_arguments": {"__malformed__": true, "amount": "not-a-number"},
+      "parser_status": "invalid_argument_schema"
+    }
+  ],
+  "final_answer": "I calculated it anyway.",
+  "terminated_reason": "final_answer",
+  "metadata": {
+    "synthetic_fixture": true,
+    "not_real_llm_behavior": true,
+    "scientific_evidence": false,
+    "deployment_class": "metric_diagnostic_only",
+    "paper_eligible": false,
+    "expected_failure_category": "argument_sloppy",
+    "expected_metric_signal": "malformed_tool_args"
+  }
+}

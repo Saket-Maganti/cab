@@ -1,0 +1,1921 @@
+{
+  "assets": [
+    {
+      "asset_type": "csv",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/paired_clean_vs_intervention.csv",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/paired_clean_vs_intervention.md",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/paired_clean_vs_intervention.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table1_benchmark_statistics.csv",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "safe_only_for_appendix_engineering_validation"
+    },
+    {
+      "asset_type": "md",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table1_benchmark_statistics.md",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "safe_only_for_appendix_engineering_validation"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table1_benchmark_statistics.tex",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "safe_only_for_appendix_engineering_validation"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_main_agent_performance.csv",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_main_agent_performance.md",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_main_agent_performance.tex",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_oracle_sanity_check.csv",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_oracle_sanity_check.md",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_oracle_sanity_check.tex",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table3_intervention_family_performance.csv",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table3_intervention_family_performance.md",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table3_intervention_family_performance.tex",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table4_ablation_placeholder_or_results.csv",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table4_ablation_placeholder_or_results.md",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table4_ablation_placeholder_or_results.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table4_ablation_results.csv",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table4_ablation_results.md",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table4_ablation_results.tex",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table5_human_validation_agreement.csv",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table5_human_validation_agreement.md",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table5_human_validation_agreement.tex",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table_ranking_instability.csv",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table_ranking_instability.md",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table_ranking_instability.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure1_benchmark_schematic.md",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure2_clean_vs_intervention_success.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure2_clean_vs_intervention_success.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_breakdown.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_breakdown.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_degradation.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_degradation.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure4_ranking_instability.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure4_ranking_instability.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_cost_vs_robustness.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_cost_vs_robustness.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_failure_mode_distribution.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_failure_mode_distribution.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_error_case_taxonomy.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_error_case_taxonomy.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_failure_taxonomy.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_failure_taxonomy.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_final_disagreement.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_final_disagreement.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure5_failure_mode_distribution.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure5_failure_mode_distribution.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_error_case_taxonomy.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_error_case_taxonomy.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_trajectory_final_disagreement.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_trajectory_final_disagreement.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/00_abstract.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/01_introduction_snippet.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/03_benchmark_stats_table.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/07_results.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/08_human_validation.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_human_validation"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/09_ablations.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/failure_gallery_short.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/00_abstract.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/01_introduction.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/02_related_work.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "unsafe_for_results_section",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/04_interventional_framework.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/05_metrics.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/06_experiments.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/07_results.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/08_human_validation.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/09_ablations.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/10_limitations.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/11_ethics_reproducibility.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/12_conclusion.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/checklist.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    }
+  ],
+  "eligible_count": 0,
+  "flagged_assets": [
+    {
+      "asset_type": "csv",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/paired_clean_vs_intervention.csv",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/paired_clean_vs_intervention.md",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/paired_clean_vs_intervention.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table1_benchmark_statistics.csv",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "safe_only_for_appendix_engineering_validation"
+    },
+    {
+      "asset_type": "md",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table1_benchmark_statistics.md",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "safe_only_for_appendix_engineering_validation"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table1_benchmark_statistics.tex",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "safe_only_for_appendix_engineering_validation"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_main_agent_performance.csv",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_main_agent_performance.md",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_main_agent_performance.tex",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_oracle_sanity_check.csv",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_oracle_sanity_check.md",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table2_oracle_sanity_check.tex",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table3_intervention_family_performance.csv",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table3_intervention_family_performance.md",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "engineering_only",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": false,
+        "scientific_evidence": false
+      },
+      "path": "tables/table3_intervention_family_performance.tex",
+      "reasons": [
+        "eligibility.engineering_only or not eligible_for_paper_claims"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table4_ablation_placeholder_or_results.csv",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table4_ablation_placeholder_or_results.md",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table4_ablation_placeholder_or_results.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table4_ablation_results.csv",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table4_ablation_results.md",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table4_ablation_results.tex",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table5_human_validation_agreement.csv",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "md",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table5_human_validation_agreement.md",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "placeholder",
+      "has_meta": true,
+      "meta_summary": {
+        "engineering_only": true,
+        "evidence_scope": "pilot_stub_engineering_only",
+        "placeholder": true,
+        "scientific_evidence": false
+      },
+      "path": "tables/table5_human_validation_agreement.tex",
+      "reasons": [
+        "meta.placeholder=true",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "csv",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table_ranking_instability.csv",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table_ranking_instability.md",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "tables/table_ranking_instability.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "md",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure1_benchmark_schematic.md",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure2_clean_vs_intervention_success.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure2_clean_vs_intervention_success.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_breakdown.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_breakdown.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_degradation.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure3_intervention_family_degradation.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure4_ranking_instability.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure4_ranking_instability.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_cost_vs_robustness.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_cost_vs_robustness.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_failure_mode_distribution.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure5_failure_mode_distribution.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_error_case_taxonomy.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_error_case_taxonomy.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_failure_taxonomy.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_failure_taxonomy.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_final_disagreement.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/figure6_trajectory_final_disagreement.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure5_failure_mode_distribution.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure5_failure_mode_distribution.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_error_case_taxonomy.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_error_case_taxonomy.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "pdf",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_trajectory_final_disagreement.pdf",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "png",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "figures/legacy/figure6_trajectory_final_disagreement.png",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/00_abstract.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/01_introduction_snippet.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/03_benchmark_stats_table.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/07_results.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/08_human_validation.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_human_validation"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/09_ablations.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/claim_evidence_matrix.tex",
+      "reasons": [
+        "no .meta.json sidecar",
+        "file content contains placeholder/blocked language"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/generated/failure_gallery_short.tex",
+      "reasons": [
+        "no .meta.json sidecar"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "missing_metadata",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/00_abstract.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/01_introduction.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/02_related_work.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/03_benchmark_design.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "unsafe_for_results_section",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/04_interventional_framework.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/05_metrics.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/06_experiments.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/07_results.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/08_human_validation.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/09_ablations.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/10_limitations.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/11_ethics_reproducibility.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/12_conclusion.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    },
+    {
+      "asset_type": "tex_generated",
+      "classification": "placeholder",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/checklist.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata",
+        "generated TeX contains placeholder/blocked language"
+      ],
+      "recommendation": "not_safe_to_use"
+    }
+  ],
+  "flagged_count": 74,
+  "generated_at": "2026-07-23T17:27:40.239108+00:00",
+  "scope": "Static paper asset eligibility check only; no claim is promoted or asset exported.",
+  "summary": {
+    "classification_counts": {
+      "engineering_only": 9,
+      "missing_metadata": 43,
+      "placeholder": 21,
+      "unsafe_for_results_section": 1
+    },
+    "eligible_count": 0,
+    "flagged_count": 74,
+    "total_assets": 74
+  },
+  "total_assets": 74,
+  "verdicts": {
+    "all_flagged": true,
+    "any_eligible_assets": false,
+    "needs_review": true
+  }
+}

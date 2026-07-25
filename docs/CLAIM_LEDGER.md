@@ -2,6 +2,20 @@
 
 Every paper claim must be linked to actual experiments or marked as planned/unproven. Do not move a claim to `Supported` without adding run IDs, configs, seeds, and reproducible artifact paths.
 
+Machine-readable companion: `docs/claim_ledger.json` (schema v3 in
+`docs/claim_ledger_schema.json`). Schema v3 adds the required study,
+validation threshold, validator-derived current state, allowed wording,
+forbidden wording, and governed paper locations. Those planning fields do not
+promote a claim.
+
+```bash
+python scripts/check_claim_ledger.py              # ledger schema + paper claimrefs
+python scripts/check_paper_claims.py --list-ids     # claim IDs cited in paper/
+python -m causal_agent_bench update-claim-ledger --run-dir results/<run_dir>
+```
+
+Run `python scripts/check_claim_ledger.py --mode submission` before treating any claim as submission-ready.
+
 Status meanings:
 
 - `Planned`: required experiment or validation has not been run.
@@ -21,3 +35,9 @@ Status meanings:
 | C8 | Some agents stop prematurely under misleading success signals. | Premature-success-signal intervention showing increased premature-stop rate and examples of early final answers. | Metric and error-case category implemented; final experiment not run. | Planned | The signal may be too obvious or too artificial. | Figure/table: premature-stop rate by agent and condition. |
 | C9 | CausalAgentBench is reproducible without paid services for smoke tests. | Fresh environment run of install, help, smoke CLI, lint, tests, and local dev run. | Local commands passed with `python3`; resume now rejects config-hash mismatches; `python` pyenv shim on this machine points to a missing 3.11. | Engineering-only | Local machine success may not imply clean clone reproducibility. | Reproducibility log/table in appendix or artifact README. |
 | C10 | Controlled interventions isolate intended skill components. | Human or expert audit that interventions preserve the user goal and primarily alter the intended factor. | Quality checks implemented; human/expert audit not yet run. | Planned | If auditors find multi-factor changes, causal interpretation weakens. | Table: intervention-validity agreement by family. |
+
+## Pilot Notes
+
+- `pilot_v0.1` generation artifacts exist locally and pass schema validation.
+- A `pilot_20_multi_agent_stub` run exercises 3 local-stub LLM-style agents and 2 deterministic non-oracle baselines. This is engineering-only because no real provider-backed LLM calls were made.
+- Main claims C1-C8 and C10 remain `Planned`; the stub run must not be used as scientific evidence.

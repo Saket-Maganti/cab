@@ -1,0 +1,15 @@
+\section*{NeurIPS Checklist Draft}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Claims.} Scientific claims are tracked in \texttt{docs/CLAIM\_LEDGER.md} and \texttt{docs/claim\_ledger.json}. Unsupported claims remain planned, engineering-only, or placeholder. C1--C8 and C10 are not marked supported.
+    \item \textbf{Limitations.} Synthetic-environment, scoring, intervention-validity, mock/stub scope, overfitting, API-reproducibility, and human-validation limits are discussed in Section~10 and \texttt{docs/ETHICS\_AND\_LIMITATIONS.md}.
+    \item \textbf{Reproducibility.} Code, configs, schemas, run-management CLI, evidence validators, release manifest, and run metadata are part of the repository. Final reported LLM runs must include artifact paths, seeds, config hashes, prompt hashes, scorer versions, and git commits. Engineering mock/stub runs validate the pipeline only.
+    \item \textbf{Data.} Default data is synthetic. Dataset and benchmark cards document intended use, construction, fields, metrics, limitations, licensing status, and freeze policy (\texttt{docs/DATASET\_VERSIONING\_AND\_RELEASE\_POLICY.md}).
+    \item \textbf{Human validation.} Export protocol and forms exist; annotations \textbf{not complete}. Required before strong claims about label quality, intervention validity, or trajectory-diagnostic reliability.
+    \item \textbf{Compute and cost.} Smoke and mock tests do not require paid services. Main LLM experiments must report provider, model version, date, sampling settings, retries, cost, latency, and budget caps. \texttt{allow\_paid\_calls} defaults to false.
+    \item \textbf{Ethics.} Default tools do not send real email, make bookings, browse live web, access private data, or execute shell commands as benchmark tools (\texttt{docs/SECURITY\_AND\_PRIVACY.md}).
+    \item \textbf{Reviewer proofing.} Mock reviews and attack matrices are in \texttt{reviews/}. Update after each verified non-oracle run.
+    \item \textbf{External validity.} Synthetic-first design, optional mini-study and web-shadow probes, and explicit non-transfer claims are documented in Section~3 and Section~10.
+    \item \textbf{Open-weight models.} Supported via local OpenAI-compatible configs; preliminary only until validated. Interrupted runs must not be scored as evidence.
+    \item \textbf{Results status.} \textbf{Pending.} No final empirical numbers in this draft; placeholders preserved.
+\end{enumerate}

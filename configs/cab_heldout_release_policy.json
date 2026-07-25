@@ -1,0 +1,87 @@
+{
+  "schema_version": "cab_heldout_release_policy_v1",
+  "policy_id": "cab_heldout_release_pre_execution_v1",
+  "current_state": "PRE_EXECUTION_HIDDEN",
+  "full_release_unlocked": false,
+  "release_tiers": {
+    "development_release": {
+      "allowed": [
+        "synthetic fixtures",
+        "schemas",
+        "tests",
+        "documentation"
+      ],
+      "forbidden": [
+        "scientific claims"
+      ]
+    },
+    "harness_only_release": {
+      "allowed": [
+        "runner code",
+        "scorer code",
+        "aggregate counts",
+        "hashed manifests"
+      ],
+      "forbidden": [
+        "held-out prompts",
+        "held-out answer keys"
+      ]
+    },
+    "hidden_or_delayed_test_pack": {
+      "allowed": [
+        "aggregate counts",
+        "content hashes",
+        "schema metadata"
+      ],
+      "forbidden": [
+        "task IDs",
+        "task prompts",
+        "visible contexts",
+        "hidden evaluator contexts",
+        "gold answers",
+        "gold policies",
+        "scorer policies",
+        "intervention patches",
+        "tool outputs"
+      ]
+    },
+    "post_study_full_release": {
+      "allowed": [
+        "full pack only after every unlock prerequisite is independently verified"
+      ],
+      "forbidden": [
+        "release while any prerequisite remains false or unreviewed"
+      ]
+    }
+  },
+  "protected_roles": {
+    "scale100_confirmatory": "hidden_or_delayed_test_pack",
+    "naturalistic_transfer": "hidden_or_delayed_test_pack",
+    "main500_confirmatory": "hidden_or_delayed_test_pack",
+    "heldout_challenge": "hidden_or_delayed_test_pack"
+  },
+  "protected_payload_globs": [
+    "data/processed/scale100_confirmatory_v1_candidate/**/*.jsonl",
+    "data/processed/naturalistic_transfer_v1_candidate/**/*.jsonl",
+    "data/processed/main500_confirmatory_v1_candidate/**/*.jsonl",
+    "data/**/heldout_base_tasks.jsonl",
+    "data/**/heldout_instances.jsonl"
+  ],
+  "allowed_public_metadata": [
+    "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json",
+    "configs/generate_scale100_confirmatory_v1.yaml",
+    "configs/generate_naturalistic_transfer_v1.yaml",
+    "configs/generate_main500_confirmatory_v1.yaml",
+    "configs/cab_heldout_release_policy.json"
+  ],
+  "unlock_prerequisites": [
+    "confirmatory execution completed under an immutable manifest",
+    "merge completeness and hash validation passed",
+    "human validity and adjudication gates passed",
+    "claim and paper evidence gates passed",
+    "release inventory received independent approval",
+    "an intentional release tag was created"
+  ],
+  "approval_records": [],
+  "policy_note": "This policy protects evaluation content; it does not claim that pretraining contamination has been eliminated."
+}

@@ -1,0 +1,41 @@
+seed: 20260723
+benchmark_version: scale100_confirmatory_v1_candidate
+id_namespace: scale100_v1
+num_base_tasks: 100
+domains:
+- travel_planning
+- calendar_email_workflow
+- file_qa
+- spreadsheet_qa
+- shopping_comparison
+- research_assistant
+- policy_compliance
+- coding_debugging
+- operations_planning
+- customer_support_workflow
+- finance_admin_workflow
+- data_cleaning_workflow
+difficulty_mix:
+  easy: 0.25
+  medium: 0.25
+  hard: 0.25
+  stress: 0.25
+interventions_per_task: 5
+balanced_intervention_families: true
+intervention_families:
+- tool_removal
+- tool_failure
+- tool_corruption
+- irrelevant_tools
+- memory_corruption
+- observation_conflict
+- ambiguous_instruction
+- long_horizon_dependency
+- premature_success_signal
+- distractor_evidence
+dev_split_size: 0
+pilot_split_size: 100
+heldout_split_size: 0
+human_audit_sample_size: 100
+output_dir: data/processed/scale100_confirmatory_v1_candidate
+allow_paid_calls: false

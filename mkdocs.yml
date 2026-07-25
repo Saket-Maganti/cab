@@ -1,0 +1,54 @@
+site_name: CausalAgentBench
+site_description: >-
+  Interventional benchmark for tool-using LLM agents — paired clean/intervention
+  tasks, ACRS metrics, and a reproducible evaluation scaffold.
+repo_url: https://github.com/Saket-Maganti/causal-agent-bench
+docs_dir: docs
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+
+# Curated entry points into the (large) docs/ tree. Files not listed here are still
+# published; this is the primary navigation, not an exhaustive index.
+nav:
+  - Home: index.md
+  - Quickstart: QUICKSTART.md
+  - Benchmark:
+      - Benchmark card: BENCHMARK_CARD.md
+      - Dataset card: DATASET_CARD.md
+      - Taxonomy: BENCHMARK_TAXONOMY.md
+      - Interventions: INTERVENTIONS.md
+      - Failure taxonomy: FAILURE_TAXONOMY.md
+  - Metrics: METRICS.md
+  - Reproducibility: REPRODUCIBILITY.md
+  - CLI reference: CLI_REFERENCE.md
+  - Policy:
+      - Evidence levels: EVIDENCE_LEVEL_POLICY.md
+      - Ethics & limitations: ETHICS_AND_LIMITATIONS.md
+  - Glossary: GLOSSARY.md

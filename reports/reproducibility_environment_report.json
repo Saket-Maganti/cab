@@ -1,0 +1,49 @@
+{
+  "dot_python_version": "3.11.9",
+  "generated_at": "2026-05-20T08:27:04.637240+00:00",
+  "imports": {
+    "causal_agent_bench": {
+      "available": true,
+      "version": "0.1.0"
+    },
+    "matplotlib": {
+      "available": true,
+      "version": "3.10.8"
+    },
+    "numpy": {
+      "available": true,
+      "version": "2.4.4"
+    },
+    "pandas": {
+      "available": true,
+      "version": "2.3.3"
+    },
+    "pydantic": {
+      "available": true,
+      "version": "2.12.5"
+    },
+    "yaml": {
+      "available": true,
+      "version": "6.0.3"
+    }
+  },
+  "lockfiles": [],
+  "pyproject_python_requirement": "requires-python = \">=3.11\"",
+  "python": {
+    "active_version": "Python 3.11.9",
+    "python3_on_path": "/Users/saketmaganti/.pyenv/shims/python3",
+    "python_on_path": "/Users/saketmaganti/.pyenv/shims/python",
+    "sys_executable": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+    "sys_version": "3.11.9"
+  },
+  "readme_command_style": {
+    "python": 0,
+    "python3": 43
+  },
+  "recommendations": [
+    "Fix pyenv 3.11.9 mismatch or standardize docs on python3 from a working interpreter.",
+    "Add a lockfile or pinned requirements strategy for reproducible installs.",
+    "Safe validation: python3 -m pytest tests/test_safety_reports.py -q",
+    "Before provider runs: python3 -m causal_agent_bench.cli all-safety-reports"
+  ]
+}

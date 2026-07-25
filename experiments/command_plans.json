@@ -1,0 +1,205 @@
+{
+  "experiments": {
+    "main_500": {
+      "approval_needed": true,
+      "commands": {
+        "audit": [
+          "python3 -m causal_agent_bench audit-interventions --benchmark-dir data/frozen/pilot_v0.1",
+          "python3 scripts/audit_intervention_isolation.py --dataset data/frozen/pilot_v0.1/instances.jsonl",
+          "python3 -m causal_agent_bench audit-dataset --config configs/pilot_stub_micro_3.yaml"
+        ],
+        "claim_ledger": [
+          "python3 scripts/check_claim_ledger.py --mode draft",
+          "python3 scripts/check_evidence_safety.py"
+        ],
+        "dry_run": [
+          "python3 -m causal_agent_bench dry-run --config configs/main_500_multi_provider.yaml --output-dir results/dry_runs"
+        ],
+        "plan_run": [
+          "python3 -m causal_agent_bench plan-run --config configs/main_500_multi_provider.yaml"
+        ],
+        "post_run": [
+          "python3 -m causal_agent_bench run-status --latest",
+          "python3 -m causal_agent_bench generate-report --latest",
+          "python3 -m causal_agent_bench score --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench analyze --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench export-paper-assets --run-dir results/<run_dir>"
+        ],
+        "preflight": [
+          "make fast-check",
+          "python3 scripts/check_submission_readiness.py",
+          "python3 -m causal_agent_bench validate-config --config configs/main_500_multi_provider.yaml",
+          "python3 scripts/check_zero_cost_readiness.py --config configs/main_500_multi_provider.yaml --require zero_cost_ready"
+        ],
+        "readiness": [
+          "python3 scripts/check_submission_readiness.py",
+          "python3 scripts/check_claim_ledger.py --mode draft"
+        ],
+        "run": [
+          "python3 -m causal_agent_bench run --config configs/main_500_multi_provider.yaml"
+        ]
+      },
+      "config": "configs/main_500_multi_provider.yaml",
+      "do_not_run_now": true,
+      "evidence_level": "main_experiment",
+      "executes_run": false,
+      "expected_cost_usd": 500,
+      "expected_runtime_s": 86400,
+      "experiment": "main_500",
+      "generated_at": "2026-07-23T17:17:52.126711+00:00",
+      "title": "Main 500-task experiment",
+      "warning": "DO NOT RUN NOW \u2014 main experiment gate must pass first."
+    },
+    "micro_local": {
+      "approval_needed": true,
+      "commands": {
+        "audit": [
+          "python3 -m causal_agent_bench audit-interventions --benchmark-dir data/frozen/pilot_v0.1",
+          "python3 scripts/audit_intervention_isolation.py --dataset data/frozen/pilot_v0.1/instances.jsonl",
+          "python3 -m causal_agent_bench audit-dataset --config configs/pilot_stub_micro_3.yaml"
+        ],
+        "claim_ledger": [
+          "python3 scripts/check_claim_ledger.py --mode draft",
+          "python3 scripts/check_evidence_safety.py"
+        ],
+        "dry_run": [
+          "python3 -m causal_agent_bench dry-run --config configs/pilot_free_local_micro_3.yaml --output-dir results/dry_runs"
+        ],
+        "plan_run": [
+          "python3 -m causal_agent_bench plan-run --config configs/pilot_free_local_micro_3.yaml"
+        ],
+        "post_run": [
+          "python3 -m causal_agent_bench run-status --latest",
+          "python3 -m causal_agent_bench generate-report --latest",
+          "python3 -m causal_agent_bench score --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench analyze --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench export-paper-assets --run-dir results/<run_dir>"
+        ],
+        "preflight": [
+          "make fast-check",
+          "python3 scripts/check_submission_readiness.py",
+          "python3 -m causal_agent_bench validate-config --config configs/pilot_free_local_micro_3.yaml",
+          "python3 scripts/check_zero_cost_readiness.py --config configs/pilot_free_local_micro_3.yaml --require zero_cost_ready"
+        ],
+        "readiness": [
+          "python3 scripts/check_submission_readiness.py",
+          "python3 scripts/check_claim_ledger.py --mode draft"
+        ],
+        "run": [
+          "python3 -m causal_agent_bench run --config configs/pilot_free_local_micro_3.yaml"
+        ]
+      },
+      "config": "configs/pilot_free_local_micro_3.yaml",
+      "do_not_run_now": true,
+      "evidence_level": "local_model_preliminary",
+      "executes_run": false,
+      "expected_cost_usd": 0,
+      "expected_runtime_s": 600,
+      "experiment": "micro_local",
+      "generated_at": "2026-07-23T17:17:52.126704+00:00",
+      "title": "Micro local open-weight (preliminary)",
+      "warning": "DO NOT RUN NOW without explicit approval \u2014 Ollama/local model calls."
+    },
+    "micro_stub": {
+      "approval_needed": false,
+      "commands": {
+        "audit": [
+          "python3 -m causal_agent_bench audit-interventions --benchmark-dir data/frozen/pilot_v0.1",
+          "python3 scripts/audit_intervention_isolation.py --dataset data/frozen/pilot_v0.1/instances.jsonl",
+          "python3 -m causal_agent_bench audit-dataset --config configs/pilot_stub_micro_3.yaml"
+        ],
+        "claim_ledger": [
+          "python3 scripts/check_claim_ledger.py --mode draft",
+          "python3 scripts/check_evidence_safety.py"
+        ],
+        "dry_run": [
+          "python3 -m causal_agent_bench dry-run --config configs/pilot_stub_micro_3.yaml --output-dir results/dry_runs"
+        ],
+        "plan_run": [
+          "python3 -m causal_agent_bench plan-run --config configs/pilot_stub_micro_3.yaml"
+        ],
+        "post_run": [
+          "python3 -m causal_agent_bench run-status --latest",
+          "python3 -m causal_agent_bench generate-report --latest",
+          "python3 -m causal_agent_bench score --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench analyze --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench export-paper-assets --run-dir results/<run_dir>"
+        ],
+        "preflight": [
+          "make fast-check",
+          "python3 scripts/check_submission_readiness.py",
+          "python3 -m causal_agent_bench validate-config --config configs/pilot_stub_micro_3.yaml",
+          "python3 scripts/check_zero_cost_readiness.py --config configs/pilot_stub_micro_3.yaml --require zero_cost_ready"
+        ],
+        "readiness": [
+          "python3 scripts/check_submission_readiness.py",
+          "python3 scripts/check_claim_ledger.py --mode draft"
+        ],
+        "run": [
+          "python3 -m causal_agent_bench run --config configs/pilot_stub_micro_3.yaml"
+        ]
+      },
+      "config": "configs/pilot_stub_micro_3.yaml",
+      "do_not_run_now": false,
+      "evidence_level": "stub_engineering",
+      "executes_run": false,
+      "expected_cost_usd": 0,
+      "expected_runtime_s": 15,
+      "experiment": "micro_stub",
+      "generated_at": "2026-07-23T17:17:52.126688+00:00",
+      "title": "Micro stub (engineering)",
+      "warning": "Engineering only \u2014 not real LLM behavior."
+    },
+    "provider_pilot": {
+      "approval_needed": true,
+      "commands": {
+        "audit": [
+          "python3 -m causal_agent_bench audit-interventions --benchmark-dir data/frozen/pilot_v0.1",
+          "python3 scripts/audit_intervention_isolation.py --dataset data/frozen/pilot_v0.1/instances.jsonl",
+          "python3 -m causal_agent_bench audit-dataset --config configs/pilot_stub_micro_3.yaml"
+        ],
+        "claim_ledger": [
+          "python3 scripts/check_claim_ledger.py --mode draft",
+          "python3 scripts/check_evidence_safety.py"
+        ],
+        "dry_run": [
+          "python3 -m causal_agent_bench dry-run --config configs/pilot_multi_provider_20.yaml --output-dir results/dry_runs"
+        ],
+        "plan_run": [
+          "python3 -m causal_agent_bench plan-run --config configs/pilot_multi_provider_20.yaml"
+        ],
+        "post_run": [
+          "python3 -m causal_agent_bench run-status --latest",
+          "python3 -m causal_agent_bench generate-report --latest",
+          "python3 -m causal_agent_bench score --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench analyze --run-dir results/<run_dir>",
+          "python3 -m causal_agent_bench export-paper-assets --run-dir results/<run_dir>"
+        ],
+        "preflight": [
+          "make fast-check",
+          "python3 scripts/check_submission_readiness.py",
+          "python3 -m causal_agent_bench validate-config --config configs/pilot_multi_provider_20.yaml",
+          "python3 scripts/check_zero_cost_readiness.py --config configs/pilot_multi_provider_20.yaml --require zero_cost_ready"
+        ],
+        "readiness": [
+          "python3 scripts/check_submission_readiness.py",
+          "python3 scripts/check_claim_ledger.py --mode draft"
+        ],
+        "run": [
+          "python3 -m causal_agent_bench run --config configs/pilot_multi_provider_20.yaml"
+        ]
+      },
+      "config": "configs/pilot_multi_provider_20.yaml",
+      "do_not_run_now": true,
+      "evidence_level": "provider_pilot",
+      "executes_run": false,
+      "expected_cost_usd": 25,
+      "expected_runtime_s": 3600,
+      "experiment": "provider_pilot",
+      "generated_at": "2026-07-23T17:17:52.126709+00:00",
+      "title": "Provider pilot (20 tasks)",
+      "warning": "DO NOT RUN NOW \u2014 paid API calls require budget approval."
+    }
+  },
+  "generated_at": "2026-07-23T17:17:52.126715+00:00"
+}

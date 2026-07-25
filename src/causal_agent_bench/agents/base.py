@@ -88,11 +88,31 @@ class BaseAgent(ABC):
             return answer
         return "Done."
 
-    def tool_arguments(self, tool_name: str, tool_spec: ToolSpec | None = None) -> dict[str, Any]:
+    def tool_arguments(
+        self,
+        tool_name: str,
+        tool_spec: ToolSpec | None = None,
+        observation_history: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         if self.legacy_task is not None:
             args = self.legacy_task.expected_behavior.tool_arguments.get(tool_name)
             if args is not None:
                 return dict(args)
+        if self.instance is not None:
+            hidden = self.instance.base_task.hidden_ground_truth
+            call_plan = hidden.get("oracle_tool_calls")
+            if isinstance(call_plan, list) and call_plan:
+                index = len(self.called_tools(observation_history or []))
+                if index < len(call_plan):
+                    step = call_plan[index]
+                    if isinstance(step, dict):
+                        if step.get("tool") == tool_name:
+                            return dict(step.get("arguments", {}))
+                        if tool_name in step:
+                            return dict(step[tool_name])
+            per_tool = hidden.get("oracle_tool_args", {}).get(tool_name)
+            if isinstance(per_tool, dict):
+                return dict(per_tool)
         return default_tool_arguments(tool_name, self.user_instruction(), self.domain(), oracle=self)
 
     def called_tools(self, observation_history: list[dict[str, Any]]) -> list[str]:
@@ -161,6 +181,29 @@ def default_tool_arguments(
         return {"item_id": "saver_hotel", "confirmation_required": True}
     if tool_name == "verify_fact":
         return {"claim": user_instruction, "evidence_ids": ["refund_threshold", "calendar_1500", "travel_saver_hotel"]}
+    if tool_name == "web_open_page":
+        start = "/"
+        if oracle is not None and oracle.instance is not None:
+            start = oracle.instance.base_task.hidden_ground_truth.get("navigation", {}).get("start_url", "/")
+        return {"url": start}
+    if tool_name == "web_follow_link":
+        nav = {}
+        if oracle is not None and oracle.instance is not None:
+            nav = oracle.instance.base_task.hidden_ground_truth.get("navigation", {})
+        href = nav.get("follow_href")
+        if href:
+            return {"href": href}
+        return {"link_text": "documentation"}
+    if tool_name == "web_search_snapshot":
+        query = "task"
+        if oracle is not None and oracle.instance is not None:
+            query = oracle.instance.base_task.hidden_ground_truth.get("navigation", {}).get("search_query", query)
+        return {"query": query}
+    if tool_name == "web_extract_section":
+        section_id = "sku"
+        if oracle is not None and oracle.instance is not None:
+            section_id = oracle.instance.base_task.hidden_ground_truth.get("navigation", {}).get("section_id", section_id)
+        return {"section_id": section_id}
     return {}
 
 

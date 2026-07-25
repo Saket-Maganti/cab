@@ -1,0 +1,26 @@
+seed: 20270547
+run_name: pilot_mock_agents_10
+cost_mode: zero_cost
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering
+provider_type: local
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+max_instances: 10
+budget:
+  max_total_usd: 0
+  max_calls: 80
+  require_explicit_paid_approval: true
+  strict_pricing: false
+limits:
+  max_instances: 10
+  max_agents: 1
+  max_trajectories: 10
+agent_runs:
+  - name: mock_helpful
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: helpful
+max_steps: 4
+num_repeats: 1
+output_dir: results
+auto_score: false

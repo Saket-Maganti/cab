@@ -5,6 +5,7 @@ from causal_agent_bench.metrics.recovery import score_recovery
 from causal_agent_bench.metrics.statistics import ranking_instability
 from causal_agent_bench.metrics.tool_use import score_tool_use
 from causal_agent_bench.metrics.trajectory import score_contradiction, score_memory
+from causal_agent_bench.metrics.v2 import aggregate_metrics_v2
 from causal_agent_bench.schemas import (
     BaseTask,
     BenchmarkInstance,
@@ -224,3 +225,79 @@ def test_aggregate_score_generation(tmp_path):
     aggregate = read_json(run_dir / "aggregate_scores.json")
     assert aggregate["n_score_records"] == 2
     assert aggregate["by_agent"]["agent_a"]["clean_success_rate"] == 1.0
+    assert (run_dir / "metrics_v2.json").exists()
+    assert (run_dir / "metrics_v2.csv").exists()
+    assert (run_dir / "metrics_v2.md").exists()
+    assert (run_dir / "metrics_v2.tex").exists()
+
+
+def test_metrics_v2_toy_values_and_undefined_acrs():
+    records = [
+        _score_record("agent_a", "clean", "clean1", final=1, recall=1, precision=1, invalid=0),
+        _score_record("agent_a", "clean", "clean2", final=0, recall=0.5, precision=0.5, invalid=1),
+        _score_record("agent_a", "intervention", "int1", family="tool_failure", final=1, recovery=True, abstain=True),
+        _score_record("agent_a", "intervention", "int2", family="memory_corruption", final=0, memory_verified=False, blind=True, premature=True),
+        _score_record("agent_b", "clean", "clean1", final=0),
+        _score_record("agent_b", "intervention", "int1", final=1),
+    ]
+
+    summary = aggregate_metrics_v2(records)
+    agent_a = summary["by_agent"]["agent_a"]["metrics"]
+    agent_b = summary["by_agent"]["agent_b"]["metrics"]
+
+    assert agent_a["clean_success"] == 0.5
+    assert agent_a["intervention_success"] == 0.5
+    assert agent_a["acrs"] == 1.0
+    assert agent_a["absolute_degradation"] == 0.0
+    assert agent_a["relative_degradation"] == 0.0
+    assert agent_a["tool_recall"] == 0.75
+    assert agent_a["invalid_call_rate"] == 0.25
+    assert agent_a["recovery_rate_after_tool_failure"] == 1.0
+    assert agent_a["blind_corrupted_memory_trust_rate"] == 1.0
+    assert agent_a["premature_stopping_rate"] == 1.0
+    assert agent_a["correct_abstention_uncertainty_rate"] == 1.0
+    assert summary["by_agent"]["agent_a"]["families"]["tool_failure"]["acrs_family"] == 2.0
+    assert summary["by_agent"]["agent_a"]["confidence_intervals"]["clean_success"]["low"] is not None
+    assert agent_b["clean_success"] == 0.0
+    assert agent_b["acrs"] is None
+
+
+def _score_record(
+    agent,
+    condition,
+    instance_id,
+    *,
+    family=None,
+    final=0,
+    recall=None,
+    precision=None,
+    invalid=0,
+    recovery=None,
+    abstain=None,
+    memory_verified=None,
+    blind=None,
+    premature=None,
+):
+    from causal_agent_bench.schemas import ScoreRecord
+
+    return ScoreRecord(
+        run_id="toy",
+        instance_id=instance_id,
+        agent_name=agent,
+        metrics={
+            "final_success_binary": final,
+            "required_tool_recall": recall,
+            "tool_precision": precision,
+            "invalid_tool_call_count": invalid,
+            "tool_error_recovery_binary": recovery,
+            "correct_abstention_uncertainty_binary": abstain,
+            "contradiction_detected_binary": None,
+            "contradiction_resolved_binary": None,
+            "memory_verified_binary": memory_verified,
+            "memory_blind_trust_failure_binary": blind,
+            "premature_stop_binary": premature,
+            "trajectory_efficiency": 1.0,
+        },
+        diagnostics={"condition": condition, "intervention_family": family},
+        metadata={},
+    )

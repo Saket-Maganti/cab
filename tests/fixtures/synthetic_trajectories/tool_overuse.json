@@ -1,0 +1,27 @@
+{
+  "schema_version": "trajectory_v2",
+  "run_id": "synthetic_metric_diagnostics",
+  "instance_id": "synthetic.tool_overuse",
+  "base_task_id": "synthetic_tool_overuse",
+  "agent_name": "synthetic_tool_overuser",
+  "steps": [
+    {"step_index": 0, "tool_call": {"tool_name": "lookup", "arguments": {"q": "a"}}, "tool_arguments": {"q": "a"}, "parser_status": "valid_tool_call"},
+    {"step_index": 1, "tool_call": {"tool_name": "lookup", "arguments": {"q": "b"}}, "tool_arguments": {"q": "b"}, "parser_status": "valid_tool_call"},
+    {"step_index": 2, "tool_call": {"tool_name": "lookup", "arguments": {"q": "c"}}, "tool_arguments": {"q": "c"}, "parser_status": "valid_tool_call"},
+    {"step_index": 3, "tool_call": {"tool_name": "verify", "arguments": {"id": "a"}}, "tool_arguments": {"id": "a"}, "parser_status": "valid_tool_call"},
+    {"step_index": 4, "tool_call": {"tool_name": "verify", "arguments": {"id": "b"}}, "tool_arguments": {"id": "b"}, "parser_status": "valid_tool_call"},
+    {"step_index": 5, "tool_call": {"tool_name": "lookup", "arguments": {"q": "d"}}, "tool_arguments": {"q": "d"}, "parser_status": "valid_tool_call"},
+    {"step_index": 6, "tool_call": {"tool_name": "lookup", "arguments": {"q": "e"}}, "tool_arguments": {"q": "e"}, "parser_status": "valid_tool_call"}
+  ],
+  "final_answer": "Answer after unnecessary tool use.",
+  "terminated_reason": "final_answer",
+  "metadata": {
+    "synthetic_fixture": true,
+    "not_real_llm_behavior": true,
+    "scientific_evidence": false,
+    "deployment_class": "metric_diagnostic_only",
+    "paper_eligible": false,
+    "expected_failure_category": "tool_overuse",
+    "expected_metric_signal": "excessive_tool_calls"
+  }
+}

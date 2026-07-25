@@ -6,8 +6,12 @@ from causal_agent_bench.generation.instances import (
     generate_benchmark,
 )
 from causal_agent_bench.generation.interventions import generate_interventions_for_task
-from causal_agent_bench.generation.quality_checks import check_base_task, check_intervention
-from causal_agent_bench.schemas import BaseTask, TaskGoal
+from causal_agent_bench.generation.quality_checks import (
+    check_base_task,
+    check_intervention,
+    run_quality_checks,
+)
+from causal_agent_bench.schemas import BaseTask, BenchmarkInstance, TaskGoal
 from causal_agent_bench.validation import validate_jsonl_file
 
 
@@ -82,6 +86,68 @@ def test_quality_checker_catches_bad_examples():
     intervention = generate_interventions_for_task(good, seed=1, count=1, families=["tool_failure"])[0]
     broken = intervention.model_copy(update={"memory_patch": {"extra": "factor"}})
     assert "intervention changes too many factors" in check_intervention(good, broken)
+
+
+def test_generated_interventions_include_audit_guide_metadata():
+    base_task = generate_base_tasks(1, 1, ["travel"], {"easy": 1.0})[0]
+    intervention = generate_interventions_for_task(
+        base_task,
+        seed=1,
+        count=1,
+        families=["tool_failure"],
+    )[0]
+
+    assert intervention.target_factor == "tool reliability"
+    assert "user goal" in intervention.non_target_factors
+    assert intervention.acceptable_severity_range
+    assert intervention.invalid_examples
+    assert check_intervention(base_task, intervention) == []
+
+
+def test_intervention_audit_scores_invalid_intervention_instances():
+    base_task = generate_base_tasks(1, 1, ["travel"], {"easy": 1.0})[0]
+    intervention = generate_interventions_for_task(
+        base_task,
+        seed=1,
+        count=1,
+        families=["tool_failure"],
+    )[0]
+    invalid = intervention.model_copy(
+        update={
+            "tool_availability_patch": {"removed_tools": [base_task.available_tools[0]]},
+            "metadata": {**intervention.metadata, "goal_preserved": False},
+        }
+    )
+    clean = BenchmarkInstance(
+        instance_id=f"{base_task.task_id}.clean",
+        base_task=base_task,
+        condition="clean",
+        intervention=None,
+        available_tools=list(base_task.available_tools),
+        initial_memory={},
+        environment_seed=1,
+        metadata={"synthetic": True},
+    )
+    bad_instance = BenchmarkInstance(
+        instance_id=f"{base_task.task_id}.tool_failure.bad",
+        base_task=base_task,
+        condition="intervention",
+        intervention=invalid,
+        available_tools=list(base_task.available_tools),
+        initial_memory={},
+        environment_seed=2,
+        metadata={"synthetic": True},
+    )
+
+    report = run_quality_checks([base_task], [invalid], [clean, bad_instance])
+
+    assert report["passed"] is False
+    assert report["instance_validity_scores"][bad_instance.instance_id]["score"] == "fail"
+    assert report["validity_score_counts"]["fail"] == 1
+    assert any(
+        "user goal" in issue
+        for issue in report["instance_validity_scores"][bad_instance.instance_id]["issues"]
+    )
 
 
 def test_generated_jsonl_validates_with_schemas(tmp_path):

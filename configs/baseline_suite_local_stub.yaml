@@ -1,0 +1,60 @@
+seed: 20270516
+run_name: baseline_suite_local_stub
+benchmark_path: data/sample/instances.jsonl
+agent_runs:
+- name: random_tool_agent
+  agent: random_tool_agent
+- name: greedy_tool_agent
+  agent: greedy_tool_agent
+- name: scripted_oracle_agent
+  agent: scripted_oracle_agent
+- name: direct_llm_local_stub
+  agent: direct_llm_tool_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: react_style_llm_local_stub
+  agent: react_style_llm_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: planner_executor_llm_local_stub
+  agent: planner_executor_llm_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: self_checking_llm_local_stub
+  agent: self_checking_llm_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: memory_verifying_llm_local_stub
+  agent: memory_verifying_llm_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: recovery_prompt_llm_local_stub
+  agent: recovery_prompt_llm_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+- name: tool_conservative_llm_local_stub
+  agent: tool_conservative_llm_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+  budget_cap_usd: 0.0
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+allow_paid_calls: false

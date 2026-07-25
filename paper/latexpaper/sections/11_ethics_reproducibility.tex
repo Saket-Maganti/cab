@@ -1,0 +1,25 @@
+\section{Ethics and Reproducibility}
+
+\paragraph{Data and actions.}
+Default tasks use synthetic mock data. The simulated email tool creates drafts only; it never sends real email. The booking tool is a stub and never makes real reservations. The benchmark should not include private personal data, API keys, proprietary documents, or live credentials.
+
+\paragraph{Responsible release.}
+\benchmark can be used to diagnose robustness failures, but it can also be gamed if treated as a static leaderboard. Releases should be versioned, include held-out components when possible, and distinguish oracle sanity checks from realistic agents. Leaderboard exports should exclude \texttt{scripted\_oracle\_agent} from model rankings by default; see the reviewer attack matrix (\texttt{reviews/reviewer\_attack\_response\_matrix.md}, attack~17).
+
+\paragraph{Human subjects.}
+If human validation is used, annotators should receive clear instructions, fair compensation, consent information, and a process for reporting ambiguous or uncomfortable examples. The paper must report the validation protocol and agreement statistics.
+
+\paragraph{Compensation placeholder.}
+The repository includes protocol placeholders for annotator qualifications, expected time per item, compensation rate, consent language, and adjudication responsibilities. These must be completed before collecting labels used in paper claims.
+
+\paragraph{Transparency.}
+Every reported result should include task version, run config, random seed, model/API version, timestamp, scorer version, and artifact path. Current reproducibility conventions are documented in \texttt{docs/REPRODUCIBILITY.md}. Empirical claim requirements and forbidden wording before experiments complete are tracked in \texttt{docs/claim\_ledger.json}, \texttt{paper/EVIDENCE\_GAP\_MAP.md}, and \texttt{docs/DO\_NOT\_OVERCLAIM.md}. The smoke-test and mock-pipeline reproducibility claim is tracked by \claimref{C9}; broader scientific claims remain planned until the main experiments are complete.
+
+\paragraph{Evidence-level enforcement.}
+Runs record \texttt{evidence\_scope}, \texttt{scientific\_evidence}, and \texttt{paid\_calls\_made} in metadata. Validators (\texttt{check\_evidence\_safety.py}, \texttt{check\_claim\_ledger.py}) block incomplete or mock/stub runs from supporting paper claims. Paid API calls are disabled by default (\texttt{allow\_paid\_calls: false}).
+
+\paragraph{Release and environment capture.}
+Release packaging includes a versioned manifest (\texttt{build-release-manifest}), a reproducibility bundle plan (\texttt{plan-repro-bundle}), and environment capture without secrets (\texttt{capture-env}). These artifacts support artifact evaluation and future public releases; they do not imply that main experimental results are complete.
+
+\paragraph{Pre-experiment gates.}
+Before provider or main experiments, the pre-experiment freeze checklist (\texttt{experiments/PRE\_EXPERIMENT\_FREEZE\_CHECKLIST.md}) and main experiment gate (\texttt{experiments/MAIN\_EXPERIMENT\_GATE.md}) must pass. This draft reports framework readiness, not gate completion for main results.

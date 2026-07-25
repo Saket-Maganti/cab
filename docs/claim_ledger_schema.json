@@ -1,0 +1,40 @@
+{
+  "schema_version": 3,
+  "description": "Machine-readable schema for docs/claim_ledger.json",
+  "claim_fields": {
+    "claim_id": "Stable identifier, e.g. C1",
+    "claim_text": "Human-readable claim sentence used in governance docs",
+    "short_name": "Snake-case slug for scripts and tables",
+    "status": "planned | engineering_only | supported | weakened | rejected",
+    "required_study": "Named study or validation program required to evaluate the claim",
+    "required_evidence": "What must exist before the claim can be supported",
+    "validation_threshold": "Preregistered minimum condition for supporting or rejecting the claim",
+    "current_state": "Validator-derived evidence/workflow state; it does not independently promote status",
+    "allowed_wording": "Non-empty list of wording allowed at the current evidence state",
+    "forbidden_wording": "Non-empty list of wording prohibited at the current evidence state",
+    "paper_location": "Non-empty list of paper source locations governed by the claim",
+    "linked_run_dirs": "Experiment run directories (repo-relative) backing the claim",
+    "linked_tables_figures": "Tables and figures tied to the claim",
+    "linked_validation_files": "Human-validation or audit artifacts",
+    "current_evidence_paths": "All reproducible artifact paths (includes runs, tables, figures)",
+    "blocking_items": "Open tasks before promotion",
+    "notes": "Free-form maintainer notes",
+    "owner": "Responsible party",
+    "last_updated": "ISO date (YYYY-MM-DD)"
+  },
+  "validation_rules": {
+    "supported_requires": [
+      "linked_run_dirs",
+      "current_evidence_paths",
+      "existing artifact paths on disk",
+      "required_study",
+      "validation_threshold",
+      "allowed_wording",
+      "forbidden_wording",
+      "paper_location"
+    ],
+    "engineering_only_scope": "Smoke/stub runs only; not scientific evidence",
+    "paper_cross_check": "scripts/check_paper_claims.py",
+    "promotion_rule": "Adding schema-v3 planning fields never promotes status or current_state"
+  }
+}

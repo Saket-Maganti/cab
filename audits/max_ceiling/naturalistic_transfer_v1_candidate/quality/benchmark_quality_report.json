@@ -1,0 +1,3362 @@
+{
+  "classification_counts": {
+    "high_risk_intervention": 1,
+    "quality_report_mentions_warnings": 1,
+    "quality_report_warning": 1
+  },
+  "cluster_count": 3,
+  "dataset_count": 1,
+  "datasets": [
+    {
+      "clean_instance_count": 80,
+      "clean_intervention_pair_count": 400,
+      "dataset_dir": "/Users/saketmaganti/Projects/causal-agent-bench/data/processed/naturalistic_transfer_v1_candidate",
+      "dataset_relpath": "data/processed/naturalistic_transfer_v1_candidate",
+      "distributions": {
+        "difficulty_distribution": {
+          "easy": 20,
+          "hard": 20,
+          "medium": 20,
+          "stress": 20
+        },
+        "intervention_type_distribution": {
+          "ambiguous_instruction": 40,
+          "distractor_evidence": 40,
+          "irrelevant_tools": 40,
+          "long_horizon_dependency": 40,
+          "memory_corruption": 40,
+          "observation_conflict": 40,
+          "premature_success_signal": 40,
+          "tool_corruption": 40,
+          "tool_failure": 40,
+          "tool_removal": 40
+        },
+        "task_category_distribution": {
+          "mock_bug_report": 10,
+          "mock_calendar_scheduling": 10,
+          "mock_customer_escalation": 10,
+          "mock_email_thread": 10,
+          "mock_incident_postmortem": 10,
+          "mock_policy_document": 10,
+          "mock_product_database": 10,
+          "mock_spreadsheet_ops": 10
+        },
+        "tool_coverage_distribution": {
+          "check_calendar,lookup_policy,query_spreadsheet,read_file,search_database,send_email_draft,verify_fact": 3,
+          "check_calendar,lookup_policy,read_file,search_database,send_email_draft,verify_fact": 3,
+          "check_calendar,lookup_policy,read_file,send_email_draft,verify_fact": 4,
+          "check_calendar,query_spreadsheet,read_file,search_database,send_email_draft,verify_fact": 3,
+          "check_calendar,read_file,search_database,send_email_draft,verify_fact": 2,
+          "check_calendar,read_file,send_email_draft,verify_fact": 5,
+          "compare_options,lookup_policy,query_spreadsheet,read_file,search_database,verify_fact": 13,
+          "compare_options,query_spreadsheet,read_file,search_database,verify_fact": 2,
+          "compare_options,query_spreadsheet,read_file,verify_fact": 6,
+          "compare_options,read_file,search_database,verify_fact": 2,
+          "compare_options,search_database,verify_fact": 5,
+          "lookup_policy,query_spreadsheet,read_file,search_database,send_email_draft,verify_fact": 2,
+          "lookup_policy,query_spreadsheet,read_file,search_database,verify_fact": 9,
+          "lookup_policy,read_file,search_database,send_email_draft,verify_fact": 3,
+          "lookup_policy,read_file,send_email_draft,verify_fact": 5,
+          "lookup_policy,read_file,verify_fact": 2,
+          "read_file,search_database,verify_fact": 11
+        }
+      },
+      "duplicate_instance_ids": [],
+      "duplicate_task_ids": [],
+      "generation_quality": {
+        "generation_report_present": true,
+        "quality_passed": false,
+        "quality_report_present": true,
+        "quality_warnings": [
+          "intervention validity risk high for naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict: observation_conflict"
+        ]
+      },
+      "instance_count": 480,
+      "intervention_count": 400,
+      "intervention_instance_count": 400,
+      "issue_counts": {
+        "informational": 1,
+        "warning": 241
+      },
+      "issues": [
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_stress_000.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_000.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_000.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_000.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_000.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_000.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_stress_000.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_medium_001.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_001.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_001.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_001.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_001.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_001.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_easy_001.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_001.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_001.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_001.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_001.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_medium_001.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_easy_001.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_hard_002.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_002.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_002.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_002.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_002.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_002.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_stress_002.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_002.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_002.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_002.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_002.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_002.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_easy_002.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_easy_003.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_003.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_003.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_003.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_003.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_003.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_easy_003.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_003.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_003.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_003.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_003.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_003.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_hard_003.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_stress_004.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_004.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_004.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_004.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_004.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_004.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_easy_004.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_hard_004.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_hard_004.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_hard_004.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_hard_004.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_hard_004.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_medium_004.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_hard_005.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_005.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_005.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_005.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_medium_005.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_005.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_005.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_stress_005.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_stress_005.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_stress_006.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_006.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_006.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_006.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_006.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_006.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_easy_006.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_006.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_006.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_006.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_006.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_006.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_hard_006.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_easy_007.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_007.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_007.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_007.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_007.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_stress_007.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_stress_007.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_007.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_007.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_007.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_007.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_007.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_hard_007.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_hard_008.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_008.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_008.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_008.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_008.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_008.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_medium_008.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_008.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_008.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_008.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_008.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_008.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_medium_008.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_medium_009.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_009.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_009.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_009.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_009.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_hard_009.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_bug_report_hard_009.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_009.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_009.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_009.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_009.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_product_database_easy_009.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_customer_escalation_stress_009.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "quality_report_warning",
+          "message": "intervention validity risk high for naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict: observation_conflict",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "quality_report_mentions_warnings",
+          "message": "quality_report.md contains warning/failed language; review details",
+          "severity": "informational"
+        }
+      ],
+      "near_duplicate_instance_id_groups": [],
+      "recommended_fixes": [
+        "Queue high-risk interventions for manual/human isolation review.",
+        "Resolve generation quality warnings or document why they are acceptable."
+      ],
+      "scores": {
+        "breakdown": [
+          {
+            "category": "pair_completeness",
+            "notes": "400/400 intervention instances paired",
+            "score": 100,
+            "weight": 16
+          },
+          {
+            "category": "intervention_coverage",
+            "notes": "10 intervention types",
+            "score": 100,
+            "weight": 8
+          },
+          {
+            "category": "task_category_balance",
+            "notes": "8 categories",
+            "score": 100,
+            "weight": 6
+          },
+          {
+            "category": "difficulty_balance",
+            "notes": "4 difficulty levels",
+            "score": 100,
+            "weight": 6
+          },
+          {
+            "category": "tool_coverage",
+            "notes": "17 tool patterns",
+            "score": 100,
+            "weight": 6
+          },
+          {
+            "category": "expected_outputs",
+            "notes": "0 missing expected outputs",
+            "score": 100,
+            "weight": 14
+          },
+          {
+            "category": "duplicate_ids",
+            "notes": "0 duplicate-id issues",
+            "score": 100,
+            "weight": 14
+          },
+          {
+            "category": "heldout_split_status",
+            "notes": "heldout_present=True",
+            "score": 100,
+            "weight": 12
+          },
+          {
+            "category": "generation_warnings",
+            "notes": "1 generation warnings",
+            "score": 86,
+            "weight": 5
+          },
+          {
+            "category": "high_risk_interventions",
+            "notes": "240 high-risk interventions",
+            "score": 0,
+            "weight": 4
+          },
+          {
+            "category": "metadata_completeness",
+            "notes": "0 missing scenario metadata",
+            "score": 100,
+            "weight": 5
+          },
+          {
+            "category": "dataset_leakage_risk",
+            "notes": "0 leakage risks",
+            "score": 100,
+            "weight": 4
+          }
+        ],
+        "main_benchmark_readiness_score": 95,
+        "overall_quality_score": 95,
+        "provider_pilot_readiness_score": 95,
+        "release_readiness_score": 70,
+        "scoring_note": "Static readiness score only; not empirical evidence and not claim support."
+      },
+      "split_summary": {
+        "base_task_total": 80,
+        "benchmark_version": "naturalistic_transfer_v1_candidate",
+        "declared_policy": "dev is a deterministic subset of pilot for quick iteration; heldout uses later template variants when available.",
+        "heldout_present": true,
+        "heldout_size": 48,
+        "instance_total": 480,
+        "leakage_risks": [],
+        "split_metadata_present": true,
+        "split_sizes": {
+          "dev": {
+            "instances": 0,
+            "tasks": 0
+          },
+          "heldout": {
+            "instances": 48,
+            "tasks": 8
+          },
+          "pilot": {
+            "instances": 432,
+            "tasks": 72
+          },
+          "pilot_100": {
+            "instances": 432,
+            "tasks": 72
+          },
+          "pilot_20": {
+            "instances": 0,
+            "tasks": 0
+          }
+        },
+        "splits_present": true
+      },
+      "task_count": 80,
+      "top_blockers": [],
+      "top_warnings": [
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.premature_success_signal needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.distractor_evidence needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.memory_corruption needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.observation_conflict needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.ambiguous_instruction needs human review before causal-validity claims",
+          "severity": "warning"
+        },
+        {
+          "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+          "id": "high_risk_intervention",
+          "message": "naturalistic_v1__natural_mock_policy_document_easy_000.long_horizon_dependency needs human review before causal-validity claims",
+          "severity": "warning"
+        }
+      ],
+      "verdicts": {
+        "blocked_from_main_benchmark_ready_label": false,
+        "ready_for_main_claims": true,
+        "ready_for_provider_pilot": true,
+        "ready_for_release": false
+      }
+    }
+  ],
+  "generated_at": "2026-07-23T16:50:21.753954+00:00",
+  "issues": [
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_000.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_000.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_000.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_000.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_000.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_000.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_stress_000.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_000.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_000.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_000.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_000.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_000.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_stress_000.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_000.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_medium_001.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_001.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_001.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_001.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_001.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_001.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_001.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_001.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_easy_001.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_001.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_001.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_001.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_001.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_medium_001.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_easy_001.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_001.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_hard_002.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_002.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_002.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_002.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_002.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_002.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_002.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_002.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_stress_002.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_002.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_002.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_002.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_002.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_002.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_easy_002.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_002.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_easy_003.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_003.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_003.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_003.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_003.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_003.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_003.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_easy_003.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_easy_003.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_003.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_003.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_003.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_003.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_003.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_hard_003.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_003.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_stress_004.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_004.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_stress_004.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_004.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_004.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_004.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_004.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_004.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_easy_004.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_hard_004.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_hard_004.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_hard_004.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_hard_004.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_hard_004.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_medium_004.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_004.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_hard_005.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_005.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_005.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_005.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_005.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_005.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_medium_005.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_005.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_005.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_stress_005.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_stress_005.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_005.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_stress_006.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_stress_006.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_006.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_006.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_006.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_006.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_006.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_006.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_easy_006.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_006.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_006.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_006.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_006.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_006.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_hard_006.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_easy_006.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_easy_007.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_007.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_easy_007.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_007.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_007.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_007.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_007.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_stress_007.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_stress_007.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_007.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_007.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_007.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_007.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_007.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_hard_007.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_medium_007.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_hard_008.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_medium_008.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_hard_008.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_008.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_008.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_008.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_008.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_008.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_medium_008.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_008.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_008.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_008.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_008.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_008.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_medium_008.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_stress_008.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_email_thread_medium_009.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_calendar_scheduling_hard_009.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_spreadsheet_ops_medium_009.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_009.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_009.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_009.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_009.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_policy_document_hard_009.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_bug_report_hard_009.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_009.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_009.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_009.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_009.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_product_database_easy_009.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_customer_escalation_stress_009.memory_corruption needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.observation_conflict needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.ambiguous_instruction needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.long_horizon_dependency needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.premature_success_signal needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "high_risk_intervention",
+      "message": "naturalistic_v1__natural_mock_incident_postmortem_hard_009.distractor_evidence needs human review before causal-validity claims",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "quality_report_warning",
+      "message": "intervention validity risk high for naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict: observation_conflict",
+      "severity": "warning"
+    },
+    {
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "id": "quality_report_mentions_warnings",
+      "message": "quality_report.md contains warning/failed language; review details",
+      "severity": "informational"
+    }
+  ],
+  "raw_finding_count": 242,
+  "report_paths": {
+    "json": "/Users/saketmaganti/Projects/causal-agent-bench/audits/max_ceiling/naturalistic_transfer_v1_candidate/quality/benchmark_quality_report.json",
+    "markdown": "/Users/saketmaganti/Projects/causal-agent-bench/audits/max_ceiling/naturalistic_transfer_v1_candidate/quality/benchmark_quality_report.md"
+  },
+  "root_cause_summary": [
+    {
+      "cluster_classification": "high_risk_intervention",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "warning",
+      "rank": 1,
+      "readiness_gate": "must_fix_before_main_benchmark",
+      "representative_messages": [
+        "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption needs human review before causal-validity claims",
+        "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict needs human review before causal-validity claims",
+        "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction needs human review before causal-validity claims"
+      ],
+      "root_cause_id": "bq_root_high_risk_intervention__data_processed_naturalistic_transfer_v1_candidate__warning",
+      "root_cause_title": "high_risk_intervention in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "warning",
+      "symptom_count": 240
+    },
+    {
+      "cluster_classification": "quality_report_warning",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "warning",
+      "rank": 2,
+      "readiness_gate": "must_fix_before_main_benchmark",
+      "representative_messages": [
+        "intervention validity risk high for naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict: observation_conflict"
+      ],
+      "root_cause_id": "bq_root_quality_report_warning__data_processed_naturalistic_transfer_v1_candidate__warning",
+      "root_cause_title": "quality_report_warning in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "warning",
+      "symptom_count": 1
+    },
+    {
+      "cluster_classification": "quality_report_mentions_warnings",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "informational",
+      "rank": 3,
+      "readiness_gate": "nice_to_have",
+      "representative_messages": [
+        "quality_report.md contains warning/failed language; review details"
+      ],
+      "root_cause_id": "bq_root_quality_report_mentions_warnings__data_processed_naturalistic_transfer_v1_candidate__informational",
+      "root_cause_title": "quality_report_mentions_warnings in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "informational",
+      "symptom_count": 1
+    }
+  ],
+  "root_causes": [
+    {
+      "cluster_classification": "high_risk_intervention",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "warning",
+      "rank": 1,
+      "readiness_gate": "must_fix_before_main_benchmark",
+      "representative_messages": [
+        "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption needs human review before causal-validity claims",
+        "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict needs human review before causal-validity claims",
+        "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction needs human review before causal-validity claims"
+      ],
+      "root_cause_id": "bq_root_high_risk_intervention__data_processed_naturalistic_transfer_v1_candidate__warning",
+      "root_cause_title": "high_risk_intervention in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "warning",
+      "symptom_count": 240
+    },
+    {
+      "cluster_classification": "quality_report_warning",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "warning",
+      "rank": 2,
+      "readiness_gate": "must_fix_before_main_benchmark",
+      "representative_messages": [
+        "intervention validity risk high for naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict: observation_conflict"
+      ],
+      "root_cause_id": "bq_root_quality_report_warning__data_processed_naturalistic_transfer_v1_candidate__warning",
+      "root_cause_title": "quality_report_warning in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "warning",
+      "symptom_count": 1
+    },
+    {
+      "cluster_classification": "quality_report_mentions_warnings",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "informational",
+      "rank": 3,
+      "readiness_gate": "nice_to_have",
+      "representative_messages": [
+        "quality_report.md contains warning/failed language; review details"
+      ],
+      "root_cause_id": "bq_root_quality_report_mentions_warnings__data_processed_naturalistic_transfer_v1_candidate__informational",
+      "root_cause_title": "quality_report_mentions_warnings in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "informational",
+      "symptom_count": 1
+    }
+  ],
+  "scope": "Static benchmark/data/config inspection only; no agents, providers, local models, or benchmark runs are invoked.",
+  "summary": {
+    "blockers": 0,
+    "classification_counts": {
+      "high_risk_intervention": 1,
+      "quality_report_mentions_warnings": 1,
+      "quality_report_warning": 1
+    },
+    "cluster_count": 3,
+    "dataset_issue_counts": {
+      "data/processed/naturalistic_transfer_v1_candidate": {
+        "informational": 1,
+        "warning": 241
+      }
+    },
+    "informational": 1,
+    "issue_counts": {
+      "informational": 1,
+      "warning": 241
+    },
+    "raw_issue_count": 242,
+    "scores": {
+      "main_benchmark_readiness_score": 95,
+      "overall_quality_score": 95,
+      "provider_pilot_readiness_score": 95,
+      "release_readiness_score": 70
+    },
+    "suppressed_symptom_count": 239,
+    "total_clean_intervention_pairs": 400,
+    "total_instances": 480,
+    "total_tasks": 80,
+    "warnings": 241
+  },
+  "top_clusters": [
+    {
+      "cluster_classification": "high_risk_intervention",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "warning",
+      "rank": 1,
+      "readiness_gate": "must_fix_before_main_benchmark",
+      "representative_messages": [
+        "naturalistic_v1__natural_mock_email_thread_medium_000.memory_corruption needs human review before causal-validity claims",
+        "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict needs human review before causal-validity claims",
+        "naturalistic_v1__natural_mock_calendar_scheduling_medium_000.ambiguous_instruction needs human review before causal-validity claims"
+      ],
+      "root_cause_id": "bq_root_high_risk_intervention__data_processed_naturalistic_transfer_v1_candidate__warning",
+      "root_cause_title": "high_risk_intervention in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "warning",
+      "symptom_count": 240
+    },
+    {
+      "cluster_classification": "quality_report_warning",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "warning",
+      "rank": 2,
+      "readiness_gate": "must_fix_before_main_benchmark",
+      "representative_messages": [
+        "intervention validity risk high for naturalistic_v1__natural_mock_calendar_scheduling_medium_000.observation_conflict: observation_conflict"
+      ],
+      "root_cause_id": "bq_root_quality_report_warning__data_processed_naturalistic_transfer_v1_candidate__warning",
+      "root_cause_title": "quality_report_warning in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "warning",
+      "symptom_count": 1
+    },
+    {
+      "cluster_classification": "quality_report_mentions_warnings",
+      "dataset": "data/processed/naturalistic_transfer_v1_candidate",
+      "leakage_risk": "informational",
+      "rank": 3,
+      "readiness_gate": "nice_to_have",
+      "representative_messages": [
+        "quality_report.md contains warning/failed language; review details"
+      ],
+      "root_cause_id": "bq_root_quality_report_mentions_warnings__data_processed_naturalistic_transfer_v1_candidate__informational",
+      "root_cause_title": "quality_report_mentions_warnings in data/processed/naturalistic_transfer_v1_candidate",
+      "severity": "informational",
+      "symptom_count": 1
+    }
+  ],
+  "verdicts": {
+    "benchmark_quality_ready_for_main_claims": true,
+    "benchmark_quality_ready_for_provider_pilot": true,
+    "benchmark_quality_ready_for_release": false
+  }
+}

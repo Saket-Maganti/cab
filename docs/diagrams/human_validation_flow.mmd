@@ -1,0 +1,6 @@
+flowchart TB
+  RUN[Complete run] --> SAMPLE[Stratified sample export]
+  SAMPLE --> ANNOT[Annotators label failures]
+  ANNOT --> AGREE[Agreement metrics]
+  AGREE --> TABLE5[table5_human_validation]
+  AGREE --> CLAIMS[Claims C3 C10]

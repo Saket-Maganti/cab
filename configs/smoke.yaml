@@ -2,11 +2,11 @@ seed: 7
 run_name: smoke
 benchmark_path: data/sample/instances.jsonl
 agents:
-  - random_tool_agent
-  - scripted_oracle_agent
-  - greedy_tool_agent
-  - react_stub_agent
-  - planner_executor_stub_agent
+- random_tool_agent
+- scripted_oracle_agent
+- greedy_tool_agent
+- react_stub_agent
+- planner_executor_stub_agent
 max_steps: 8
 num_repeats: 1
 output_dir: results
@@ -14,3 +14,5 @@ save_observations: true
 save_agent_thoughts: true
 fail_fast: false
 auto_score: true
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering

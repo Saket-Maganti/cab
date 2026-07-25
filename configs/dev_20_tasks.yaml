@@ -1,13 +1,14 @@
 seed: 42
 num_base_tasks: 20
 domains:
-  - travel
-  - calendar_email
-  - file_spreadsheet
-  - policy_compliance
+- travel
+- calendar_email
+- file_spreadsheet
+- policy_compliance
 difficulty_mix:
   easy: 0.25
   medium: 0.5
   hard: 0.25
 interventions_per_task: 3
 output_dir: data/processed/dev_20
+allow_paid_calls: false

@@ -1,0 +1,27 @@
+\section{Experimental Setup}
+
+The planned main experiments use generated benchmark directories, deterministic seeds, fixed agent lists, and saved run metadata. Every run directory records the config, config hash, Python version, package version, timestamp, git commit when available, trajectories, errors, scores, aggregate summaries, evidence-scope labels, and paper assets. The canonical commands are documented in \texttt{docs/RUNNING\_EXPERIMENTS.md}, \texttt{docs/CLI\_REFERENCE.md}, and \texttt{experiments/SAFE\_NEXT\_RUN\_DECISION\_TREE.md}.
+
+\paragraph{Run pipeline and governance.}
+Before execution, configs are validated (\texttt{validate-config}, \texttt{plan-run}, \texttt{dry-run}) and checked against evidence-level policy (\texttt{docs/EVIDENCE\_LEVEL\_POLICY.md}). During execution, \texttt{run-status} and \texttt{monitor} report progress; \texttt{mark-interrupted} labels incomplete runs without deleting artifacts. After completion, \texttt{score}, \texttt{analyze}, \texttt{generate-report}, and \texttt{export-paper-assets} produce reports and tables subject to engineering-only guards. \texttt{fill-paper-from-run} may populate \texttt{paper/latexpaper/generated/} only from verified non-oracle runs. Claim-ledger, placeholder, and paper-asset validators (\texttt{check\_claim\_ledger.py}, \texttt{check\_paper\_placeholders.py}, \texttt{validate\_paper\_assets.py}) enforce honest wording before submission.
+
+\paragraph{Benchmark stages.}
+The repository defines micro mock/stub configs (seconds, zero cost), local open-weight pilots (preliminary, not scientific evidence until validated), and provider pilots/main configs (budget approval required). The pre-experiment freeze checklist (\texttt{experiments/PRE\_EXPERIMENT\_FREEZE\_CHECKLIST.md}) gates each stage. No main-scale or provider experiment is claimed complete in this draft.
+
+\paragraph{Benchmark versions.}
+The repository currently supports smoke, development, pilot, and planned main benchmark configurations. Pilot data generation is intended for pipeline validation and early failure analysis. A submission-ready experiment requires a frozen dataset version, a documented split policy with development, pilot, validation, test, and held-out-template partitions, intervention-validity audit reports with per-instance pass/warning/fail scores, a dataset hash, and a claim-ledger update linking every reported table or figure to reproducible artifacts.
+
+\paragraph{Agents.}
+The package includes deterministic baseline agents: RandomToolAgent, ScriptedOracleAgent, GreedyToolAgent, ReActStyleStubAgent, and PlannerExecutorStubAgent. The oracle baseline uses hidden task metadata and is only an upper-bound sanity check; it must be excluded from realistic model-ranking claims. Mock diagnostic agents (\texttt{mock\_behavior\_agent}) script failure modes for detector validation only. The package also includes LLM-backed agent adapters and prompt templates for direct tool use, planner-executor behavior, and self-checking. Publishable experiments must report provider, model identifier, sampling parameters, prompt version hash, cost, latency, and retry settings. They must not rely only on deterministic stubs or mocks.
+
+\paragraph{Runs.}
+Engineering artifacts include deterministic smoke runs, local-stub pilots, and a Phase~9 mock diagnostic micro run that validated end-to-end scoring, analysis, and paper-asset export (\texttt{demo/ENGINEERING\_DEMO\_BUNDLE.md}). These artifacts validate schemas, execution, scoring, and export paths, but they are not final scientific evidence about LLM agents. The final paper must replace all bracketed values with runs over the frozen benchmark and audited non-oracle LLM agents.
+
+\paragraph{Statistical reporting.}
+The analysis layer exports bootstrap confidence intervals, paired comparisons between clean and intervention conditions, per-family degradation, rank correlations, and effect-size summaries. Paired comparisons are important because intervention instances are linked to base clean tasks. These scripts are deterministic and generate explicit placeholders when required experiment families have not been run.
+
+\paragraph{Oracle exclusion and leaderboards.}
+\texttt{ScriptedOracleAgent} may appear in sanity-check tables but must be excluded from realistic agent rankings, \acrs comparisons, and clean-vs-intervention headline figures. Table exporters and paper-fill workflows should filter oracle agents by default so upper-bound scores cannot be mistaken for deployable LLM performance.
+
+\paragraph{Cost, latency, and open-weight runs.}
+Run metadata records token usage, estimated cost, and latency where providers expose them (\texttt{docs/COST\_LATENCY.md}). Main tables should report these fields for each non-oracle LLM configuration. Optional \texttt{local\_openai} configs support open-weight models via an OpenAI-compatible server; such runs are tagged \texttt{local\_open\_weight\_unvalidated} and are not merged with commercial API results without explicit justification (\texttt{docs/OPEN\_WEIGHT\_LOCAL\_MODELS.md}). Interrupted local runs must be marked incomplete and excluded from scientific evidence.

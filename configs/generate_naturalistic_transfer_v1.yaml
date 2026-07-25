@@ -1,0 +1,38 @@
+seed: 20260724
+benchmark_version: naturalistic_transfer_v1_candidate
+id_namespace: naturalistic_v1
+task_style: naturalistic
+num_base_tasks: 80
+domains:
+- mock_email_thread
+- mock_calendar_scheduling
+- mock_spreadsheet_ops
+- mock_policy_document
+- mock_bug_report
+- mock_product_database
+- mock_customer_escalation
+- mock_incident_postmortem
+difficulty_mix:
+  easy: 0.25
+  medium: 0.25
+  hard: 0.25
+  stress: 0.25
+interventions_per_task: 5
+balanced_intervention_families: true
+intervention_families:
+- tool_removal
+- tool_failure
+- tool_corruption
+- irrelevant_tools
+- memory_corruption
+- observation_conflict
+- ambiguous_instruction
+- long_horizon_dependency
+- premature_success_signal
+- distractor_evidence
+dev_split_size: 0
+pilot_split_size: 72
+heldout_split_size: 8
+human_audit_sample_size: 80
+output_dir: data/processed/naturalistic_transfer_v1_candidate
+allow_paid_calls: false

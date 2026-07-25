@@ -1,0 +1,25 @@
+{
+  "evidence_class": "ENGINEERING_ONLY",
+  "generated_at": "2026-07-23T17:23:44.726749+00:00",
+  "missing": [],
+  "paths": [
+    "reports/CAB_MAX_CEILING_FORENSIC_AUDIT.md",
+    "reports/CAB_CURRENT_STATE_VERIFIED.json",
+    "reports/CAB_CURRENT_STATE_VERIFIED.md",
+    "reports/CAB_REPOSITORY_CONTRADICTION_MATRIX.md",
+    "reports/CAB_REPAIR_AND_UPGRADE_LEDGER.md",
+    "reports/CAB_LEAKAGE_AND_CONTAMINATION_AUDIT.md",
+    "reports/CAB_SCORER_VALIDITY_AUDIT.md",
+    "reports/CAB_PAIRED_METRIC_AND_STATISTICAL_AUDIT.md",
+    "reports/CAB_DATASET_DIVERSITY_AND_SPLIT_AUDIT.md",
+    "reports/CAB_KAGGLE_T4X2_NOTEBOOK_READINESS.md",
+    "reports/CAB_EXECUTION_ENTRY_GATE.md",
+    "reports/CAB_HIGHEST_CEILING_ROADMAP.md",
+    "reports/CAB_VERIFICATION_COMMANDS.md",
+    "CAB_COMPLETE_EXECUTION_AND_RUN_HANDBOOK.md",
+    "cabv2.md"
+  ],
+  "present_artifact_count": 15,
+  "required_artifact_count": 15,
+  "scientific_evidence_created": false
+}

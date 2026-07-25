@@ -1,0 +1,44 @@
+{
+  "asset_id": "table3_intervention_family_performance",
+  "asset_type": "table",
+  "caption": "Table 3: Per-intervention-family success and degradation metrics. [run=results/20260511T162146Z_pilot_20_multi_agent_stub, config=6c0a1da78f8a8f53, dataset=unknown, models=local-stub, seed=20270511, git=dea8e25f0e429ed2054c628fb37d24e7c1c9020e. Engineering-only export; not for final paper claims.]",
+  "eligibility": {
+    "agents": [
+      "direct_tool_local_stub",
+      "greedy_tool_agent",
+      "planner_executor_local_stub",
+      "react_stub_agent",
+      "self_check_local_stub"
+    ],
+    "eligible_for_paper_claims": false,
+    "engineering_only": true,
+    "evidence_scope": "pilot_stub_engineering_only",
+    "non_oracle_agents": [
+      "direct_tool_local_stub",
+      "greedy_tool_agent",
+      "planner_executor_local_stub",
+      "react_stub_agent",
+      "self_check_local_stub"
+    ],
+    "oracle_only": false,
+    "run_dir": "results/20260511T162146Z_pilot_20_multi_agent_stub",
+    "run_name": "pilot_20_multi_agent_stub"
+  },
+  "formats": [
+    "csv",
+    "md",
+    "tex"
+  ],
+  "placeholder": false,
+  "provenance": {
+    "config_hash": "6c0a1da78f8a8f53",
+    "dataset_version": "unknown",
+    "git_commit": "dea8e25f0e429ed2054c628fb37d24e7c1c9020e",
+    "model_ids": "local-stub",
+    "run_dir": "results/20260511T162146Z_pilot_20_multi_agent_stub",
+    "scorer_versions": "deterministic_heuristic_v1",
+    "seed": "20270511",
+    "timestamp": "2026-05-11T16:21:46.439828+00:00"
+  },
+  "title": "Table 3: Intervention-family performance"
+}

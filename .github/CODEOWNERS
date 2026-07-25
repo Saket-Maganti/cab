@@ -1,0 +1,21 @@
+# Code owners — GitHub auto-requests review from these owners on matching paths.
+# Update the handle/team below to the correct GitHub owner(s) for this repo.
+# Syntax: https://docs.github.com/articles/about-code-owners
+
+# Default owner for everything.
+*                                   @Saket-Maganti
+
+# Scientific core — metrics, scoring, and generation gate the benchmark's
+# validity, so they warrant explicit review ownership.
+/src/causal_agent_bench/metrics/    @Saket-Maganti
+/src/causal_agent_bench/generation/ @Saket-Maganti
+/src/causal_agent_bench/scoring.py  @Saket-Maganti
+
+# Safety, release, and reproducibility gates.
+/src/causal_agent_bench/safety/     @Saket-Maganti
+/src/causal_agent_bench/release/    @Saket-Maganti
+/scripts/                           @Saket-Maganti
+
+# CI / repo configuration.
+/.github/                           @Saket-Maganti
+/pyproject.toml                     @Saket-Maganti

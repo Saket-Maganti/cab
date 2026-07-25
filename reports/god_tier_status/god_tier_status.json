@@ -1,0 +1,85 @@
+{
+  "evidence": {
+    "claims": {
+      "C1": "planned",
+      "C10": "planned",
+      "C2": "planned",
+      "C3": "planned",
+      "C4": "planned",
+      "C5": "planned",
+      "C6": "planned",
+      "C7": "planned",
+      "C8": "planned",
+      "C9": "engineering_only"
+    },
+    "eligible_paper_assets": 0,
+    "paper_eligible_runs": 0
+  },
+  "forbidden_now": [
+    "python3 -m causal_agent_bench run --config ...",
+    "claim promotion / fill-paper-from-run --promote-to-supported",
+    "allow_paid_calls=true without signed live approval"
+  ],
+  "generated_at": "2026-06-19T17:31:34.007748+00:00",
+  "legend": {
+    "empirical_evidence": "none",
+    "empirical_paper": "blocked",
+    "infrastructure": "strong",
+    "provider_pilot_execution": "dry_run_ready_live_blocked",
+    "public_release": "blocked"
+  },
+  "provider_gate": {
+    "approved_config_path": "/Users/saketmaganti/Projects/causal-agent-bench/configs/provider_pilot_tiny_APPROVED.yaml",
+    "approved_config_present": true,
+    "config_path": "/Users/saketmaganti/Projects/causal-agent-bench/configs/provider_pilot_tiny_APPROVED.yaml",
+    "gate_status": "ready_for_dry_run",
+    "template_path": "/Users/saketmaganti/Projects/causal-agent-bench/configs/provider_pilot_tiny_template.yaml",
+    "verdicts": {
+      "blocked": false,
+      "live_run_blocked": true,
+      "paper_evidence_blocked_until_post_run_audit": true,
+      "ready_for_approval_review": false,
+      "ready_for_dry_run": true,
+      "ready_for_live_provider_run": false,
+      "template_safe_but_not_runnable": false
+    }
+  },
+  "readiness": {
+    "advisor_review_packet": false,
+    "constraints_lockfile": true,
+    "full_audit_dossier": true,
+    "leakage_repair_script": true
+  },
+  "run_index": {
+    "index_present": true,
+    "index_stale": true,
+    "indexed_run_count": 77,
+    "live_run_count": 79,
+    "note": "Inventory-only comparison. Refreshing the index never changes run eligibility or evidence state \u2014 classification gates run independently.",
+    "orphaned_index_run_count": 0,
+    "orphaned_index_run_ids": [],
+    "orphaned_index_run_ids_truncated": 0,
+    "refresh_command": "python3 -m causal_agent_bench index-runs",
+    "results_root": "results",
+    "unindexed_paper_eligible_count": 0,
+    "unindexed_paper_eligible_run_ids": [],
+    "unindexed_run_count": 2,
+    "unindexed_run_ids": [
+      "20260619T172234Z_smoke",
+      "20260619T172542Z_smoke"
+    ],
+    "unindexed_run_ids_truncated": 0
+  },
+  "safe_next_commands": [
+    "python3 scripts/check_evidence_safety.py",
+    "python3 scripts/check_run_index.py",
+    "python3 -m causal_agent_bench all-no-run-reports --output-dir /tmp/cab_god_tier",
+    "python3 -m causal_agent_bench validate-config --config configs/provider_pilot_tiny_APPROVED.yaml"
+  ],
+  "scope": "Static god-tier status banner. No provider calls. No claim promotion.",
+  "verdicts": {
+    "evidence_honesty_preserved": true,
+    "god_tier_empirical_paper": false,
+    "god_tier_infrastructure": true
+  }
+}

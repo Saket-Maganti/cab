@@ -207,6 +207,8 @@ class VerifyFactTool(BaseTool):
 
 
 def build_simulated_tools() -> list[BaseTool]:
+    from causal_agent_bench.tools.web_snapshot import build_web_snapshot_tools
+
     return [
         SearchDatabaseTool(),
         LookupPolicyTool(),
@@ -218,6 +220,7 @@ def build_simulated_tools() -> list[BaseTool]:
         SendEmailDraftTool(),
         BookStubTool(),
         VerifyFactTool(),
+        *build_web_snapshot_tools(),
     ]
 
 

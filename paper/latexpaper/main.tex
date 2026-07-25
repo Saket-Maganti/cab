@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{xspace}
+
+\newcommand{\CAB}{\textsc{CausalAgentBench}\xspace}
+\newcommand{\ACRS}{\textsc{ACRS}\xspace}
+\newcommand{\benchmark}{\CAB}
+\newcommand{\acrs}{\ACRS}
+\newcommand{\claimref}[1]{\textbf{Claim~#1}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\title{When Agent Success Is Not Agent Skill:\\A Causal Benchmark for Tool-Using LLM Agents}
+\author{CausalAgentBench Contributors}
+\date{}
+
+\begin{document}
+\maketitle
+
+\input{sections/00_abstract}
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_benchmark_design}
+\input{sections/04_interventional_framework}
+\input{sections/05_metrics}
+\input{sections/06_experiments}
+\input{sections/07_results}
+\input{sections/08_human_validation}
+\input{sections/09_ablations}
+\input{sections/10_limitations}
+\input{sections/11_ethics_reproducibility}
+\input{sections/12_conclusion}
+\input{sections/checklist}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

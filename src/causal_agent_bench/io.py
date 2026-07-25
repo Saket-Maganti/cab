@@ -4,7 +4,7 @@ import json
 import random
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, TypeVar
+from typing import Any, TypeVar, overload
 
 import numpy as np
 import yaml
@@ -45,6 +45,10 @@ def write_jsonl(path: str | Path, rows: Iterable[BaseModel | dict[str, Any]]) ->
             f.write(json.dumps(payload, sort_keys=True, default=str) + "\n")
 
 
+@overload
+def read_jsonl(path: str | Path, model: type[T]) -> list[T]: ...
+@overload
+def read_jsonl(path: str | Path, model: None = ...) -> list[dict[str, Any]]: ...
 def read_jsonl(path: str | Path, model: type[T] | None = None) -> list[T] | list[dict[str, Any]]:
     adapter = TypeAdapter(model) if model is not None else None
     rows: list[Any] = []

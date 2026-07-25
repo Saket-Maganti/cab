@@ -1,0 +1,16 @@
+seed: 42
+run_name: web_shadow_api_stub
+benchmark_dir: data/processed/web_shadow_25
+agent_runs:
+- name: direct_stub
+  agent: direct_tool_agent
+  provider: local_stub
+  model: local-stub
+  retry_count: 0
+max_steps: 6
+num_repeats: 1
+output_dir: runs/web_shadow_api_stub
+evidence_scope: pilot_stub_engineering_only
+instance_metadata_filter:
+  tool_interface: api
+allow_paid_calls: false

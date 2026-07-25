@@ -1,0 +1,28 @@
+{
+  "schema_version": "paper_evidence_mapping_v1",
+  "status": "unfilled",
+  "filled_at": null,
+  "run_dir": null,
+  "config_hash": null,
+  "dataset_version": null,
+  "evidence_scope": null,
+  "git_commit": null,
+  "model_ids": null,
+  "scorer": "deterministic_heuristic_v1",
+  "non_oracle_agents": [],
+  "oracle_agents": [],
+  "summary": {},
+  "claim_artifacts": {},
+  "generated_fragments": [
+    "paper/generated/00_abstract.tex",
+    "paper/generated/01_introduction_snippet.tex",
+    "paper/generated/03_benchmark_stats_table.tex",
+    "paper/generated/07_results.tex",
+    "paper/generated/08_human_validation.tex",
+    "paper/generated/09_ablations.tex"
+  ],
+  "limitations": [
+    "Run scripts/fill_paper_from_run.py after a verified pilot with non-oracle agents.",
+    "Engineering-only stub runs require --allow-engineering-only and must not be cited as scientific evidence."
+  ]
+}

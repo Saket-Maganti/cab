@@ -7,7 +7,7 @@ from statistics import mean
 from typing import Any
 
 from causal_agent_bench.metrics.causal_robustness import agent_robustness
-from causal_agent_bench.metrics.final_success import score_final_success
+from causal_agent_bench.metrics.final_success import score_final_success_result
 from causal_agent_bench.metrics.recovery import score_recovery
 from causal_agent_bench.metrics.statistics import ranking_instability
 from causal_agent_bench.metrics.tool_use import score_tool_use
@@ -17,6 +17,7 @@ from causal_agent_bench.metrics.trajectory import (
     score_stopping,
     score_trajectory_quality,
 )
+from causal_agent_bench.metrics.v2 import aggregate_metrics_v2, export_metrics_v2
 from causal_agent_bench.schemas import (
     BenchmarkInstance,
     BenchmarkTask,
@@ -29,7 +30,10 @@ from causal_agent_bench.utils.io import read_json, read_jsonl, write_json, write
 
 def score_trajectory(context: Any, trajectory: Trajectory) -> ScoreRecord:
     metrics: dict[str, float | int | bool | str | None] = {}
-    metrics.update(score_final_success(context, trajectory))
+    final_result = score_final_success_result(context, trajectory)
+    intervention_id = _intervention_id(context)
+    repeat_id = _repeat_id(context, trajectory)
+    metrics.update(final_result.metrics())
     metrics.update(score_tool_use(context, trajectory))
     metrics.update(score_recovery(trajectory))
     metrics.update(score_contradiction(context, trajectory))
@@ -39,8 +43,11 @@ def score_trajectory(context: Any, trajectory: Trajectory) -> ScoreRecord:
     diagnostics = {
         "condition": _condition(context),
         "intervention_family": _family(context),
+        "intervention_id": intervention_id,
         "base_task_id": _base_task_id(context),
+        "repeat_id": repeat_id,
         "terminated_reason": trajectory.terminated_reason,
+        "final_answer_scoring": final_result.diagnostics(),
         "failure_modes": _failure_modes(metrics),
     }
     return ScoreRecord(
@@ -51,7 +58,18 @@ def score_trajectory(context: Any, trajectory: Trajectory) -> ScoreRecord:
         diagnostics=diagnostics,
         metadata={
             "model_name": trajectory.model_name,
-            "scorer": "deterministic_heuristic_v1",
+            "intervention_id": intervention_id,
+            "repeat_id": repeat_id,
+            "scorer": final_result.provenance["scorer_name"],
+            **final_result.provenance,
+            "token_cost_metadata": dict(trajectory.token_cost_metadata or {}),
+            "estimated_cost_usd": _trajectory_metadata_number(trajectory, "estimated_cost_usd"),
+            "latency_s": _trajectory_metadata_number(trajectory, "latency_s"),
+            "model_call_count": _trajectory_metadata_number(trajectory, "model_call_count"),
+            "tool_call_count": _trajectory_metadata_number(trajectory, "tool_call_count"),
+            "prompt_tokens": _trajectory_metadata_number(trajectory, "prompt_tokens"),
+            "completion_tokens": _trajectory_metadata_number(trajectory, "completion_tokens"),
+            "total_tokens": _trajectory_metadata_number(trajectory, "total_tokens"),
         },
     )
 
@@ -81,7 +99,11 @@ def aggregate_score_records(records: list[ScoreRecord]) -> dict[str, Any]:
 
     for agent, agent_records in by_agent_records.items():
         metric_means = _metric_means(agent_records)
-        by_agent_metrics[agent] = {**agent_scores.get(agent, {}), **metric_means}
+        by_agent_metrics[agent] = {
+            **agent_scores.get(agent, {}),
+            **metric_means,
+            **_cost_latency_metrics(agent_records, agent_scores.get(agent, {})),
+        }
 
     by_instance = {
         instance_id: {
@@ -120,19 +142,32 @@ def aggregate_score_records(records: list[ScoreRecord]) -> dict[str, Any]:
     }
 
 
-def score_run(run_dir: str | Path) -> ScoreSummary:
+def score_run(run_dir: str | Path, *, allow_incomplete: bool = False) -> ScoreSummary:
+    from causal_agent_bench.runners.run_completion import assert_complete_for_pipeline
+
     run_dir = Path(run_dir)
+    state = assert_complete_for_pipeline(run_dir, operation="score", allow_incomplete=allow_incomplete)
     contexts = _load_contexts(run_dir)
     trajectories = read_jsonl(run_dir / "trajectories.jsonl", Trajectory)
     records = score_records(contexts, trajectories)
     aggregate = aggregate_score_records(records)
+    metrics_v2 = aggregate_metrics_v2(records)
     metadata = _load_metadata(run_dir)
+    if state["completion_state"] != "complete":
+        aggregate["completion_state"] = "incomplete"
+        aggregate["scientific_evidence"] = False
+        aggregate["preliminary_only"] = True
+        metrics_v2["completion_state"] = "incomplete"
+        metrics_v2["scientific_evidence"] = False
     aggregate["metadata"] = metadata
+    metrics_v2["metadata"] = metadata
 
     write_jsonl(run_dir / "scores.jsonl", records)
     write_json(run_dir / "aggregate_scores.json", aggregate)
+    write_json(run_dir / "aggregate_summary.json", aggregate)
     _write_aggregate_csv(run_dir / "aggregate_scores.csv", aggregate)
     _write_score_report(run_dir / "score_report.md", aggregate)
+    export_metrics_v2(run_dir, metrics_v2)
 
     compat = ScoreSummary(
         run_dir=str(run_dir),
@@ -185,6 +220,30 @@ def _base_task_id(context: Any) -> str:
     return context.clean_task_id or context.task_id
 
 
+def _intervention_id(context: Any) -> str | None:
+    intervention = (
+        context.intervention
+        if isinstance(context, BenchmarkInstance)
+        else getattr(context, "intervention", None)
+    )
+    value = getattr(intervention, "intervention_id", None)
+    return str(value) if value is not None else None
+
+
+def _repeat_id(context: Any, trajectory: Trajectory) -> str | int | None:
+    context_metadata = getattr(context, "metadata", {}) or {}
+    base_task = context.base_task if isinstance(context, BenchmarkInstance) else context
+    base_metadata = getattr(base_task, "metadata", {}) or {}
+    for metadata in (trajectory.metadata, context_metadata, base_metadata):
+        if not isinstance(metadata, dict):
+            continue
+        for key in ("repeat_id", "repeat", "seed"):
+            value = metadata.get(key)
+            if value is not None and str(value).strip():
+                return value if isinstance(value, (str, int)) else str(value)
+    return None
+
+
 def _failure_modes(metrics: dict[str, Any]) -> list[str]:
     failures = []
     if metrics.get("final_success_binary") == 0:
@@ -212,6 +271,51 @@ def _failure_modes(metrics: dict[str, Any]) -> list[str]:
 def _metric_means(records: list[ScoreRecord]) -> dict[str, Any]:
     keys = sorted({key for record in records for key in record.metrics})
     return {key: _mean([record.metrics.get(key) for record in records]) for key in keys}
+
+
+def _cost_latency_metrics(records: list[ScoreRecord], agent_scores: dict[str, Any]) -> dict[str, Any]:
+    avg_cost = _mean([_metadata_number(record, "estimated_cost_usd") for record in records])
+    avg_latency = _mean([_metadata_number(record, "latency_s") for record in records])
+    avg_model_calls = _mean([_metadata_number(record, "model_call_count") for record in records])
+    avg_tool_calls = _mean([_metadata_number(record, "tool_call_count") for record in records])
+    final_success = _mean([record.metrics.get("final_success_binary") for record in records])
+    acrs_value = agent_scores.get("acrs")
+    return {
+        "avg_cost_per_task_usd": avg_cost,
+        "avg_latency_per_task_s": avg_latency,
+        "avg_model_calls_per_task": avg_model_calls,
+        "avg_tool_calls_per_task": avg_tool_calls,
+        "cost_normalized_success": _normalized(final_success, avg_cost),
+        "cost_normalized_acrs": _normalized(acrs_value, avg_cost),
+        "latency_normalized_success": _normalized(final_success, avg_latency),
+        "latency_normalized_acrs": _normalized(acrs_value, avg_latency),
+    }
+
+
+def _metadata_number(record: ScoreRecord, key: str) -> float | None:
+    value = record.metadata.get(key)
+    token_metadata = record.metadata.get("token_cost_metadata")
+    if value is None and isinstance(token_metadata, dict):
+        value = token_metadata.get(key)
+    if value is None:
+        return None
+    return float(value)
+
+
+def _normalized(score: Any, denominator: float | None) -> float | None:
+    if score is None or denominator is None:
+        return None
+    return round(float(score) / (1.0 + denominator), 6)
+
+
+def _trajectory_metadata_number(trajectory: Trajectory, key: str) -> float | int | None:
+    value = trajectory.metadata.get(key)
+    token_metadata = trajectory.token_cost_metadata
+    if value is None and isinstance(token_metadata, dict):
+        value = token_metadata.get(key)
+    if value is None:
+        return None
+    return value if isinstance(value, int) else float(value)
 
 
 def _mean(values: list[Any]) -> float | None:
@@ -242,6 +346,10 @@ def _write_aggregate_csv(path: Path, aggregate: dict[str, Any]) -> None:
         "trajectory_faithfulness",
         "required_tool_recall",
         "tool_precision",
+        "avg_cost_per_task_usd",
+        "avg_latency_per_task_s",
+        "cost_normalized_success",
+        "cost_normalized_acrs",
         "n_trajectories",
     ]
     with path.open("w", encoding="utf-8", newline="") as f:

@@ -1,0 +1,37 @@
+seed: 20270517
+run_name: ablation_memory_verification_local_stub
+benchmark_path: data/sample/instances.jsonl
+agent_runs:
+  - name: memory_verification_off
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: memory_verification
+        factor: memory_verification_instruction
+        level: without_memory_verification
+        comparison_role: reference
+  - name: memory_verification_on
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      prompt_addendum_file: ablations/memory_verification_instruction.md
+      system_safety_file: system_safety_ablation_minimal.md
+      ablation:
+        pair_id: memory_verification
+        factor: memory_verification_instruction
+        level: with_memory_verification
+        comparison_role: treatment
+max_steps: 8
+num_repeats: 1
+output_dir: results
+auto_score: true

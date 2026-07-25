@@ -5,9 +5,9 @@ from causal_agent_bench.agents.react_stub_agent import ReActStyleStubAgent
 from causal_agent_bench.agents.scripted_oracle_agent import ScriptedOracleAgent
 
 __all__ = [
-    "RandomToolAgent",
-    "ScriptedOracleAgent",
     "GreedyToolAgent",
-    "ReActStyleStubAgent",
     "PlannerExecutorStubAgent",
+    "RandomToolAgent",
+    "ReActStyleStubAgent",
+    "ScriptedOracleAgent",
 ]

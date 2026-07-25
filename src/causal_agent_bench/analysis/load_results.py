@@ -14,6 +14,7 @@ from causal_agent_bench.utils.io import read_json, read_jsonl
 @dataclass(frozen=True)
 class RunResults:
     run_dir: Path
+    run_metadata: dict[str, Any]
     aggregate: dict[str, Any]
     scores: list[ScoreRecord]
     instances: list[BenchmarkInstance]
@@ -28,7 +29,9 @@ def load_run_results(run_dir: str | Path, *, ensure_scores: bool = True) -> RunR
     run_path = Path(run_dir)
     if ensure_scores and not (run_path / "aggregate_scores.json").exists():
         score_run(run_path)
-    aggregate = read_json(run_path / "aggregate_scores.json")
+    aggregate_path = run_path / "aggregate_scores.json"
+    aggregate = read_json(aggregate_path) if aggregate_path.exists() else {}
+    run_metadata = _read_run_metadata(run_path)
     scores = read_jsonl(run_path / "scores.jsonl", ScoreRecord)
     instances: list[BenchmarkInstance] = []
     legacy_tasks: list[BenchmarkTask] = []
@@ -39,6 +42,7 @@ def load_run_results(run_dir: str | Path, *, ensure_scores: bool = True) -> RunR
     trajectories = read_jsonl(run_path / "trajectories.jsonl", Trajectory)
     return RunResults(
         run_dir=run_path,
+        run_metadata=run_metadata,
         aggregate=aggregate,
         scores=scores,
         instances=instances,
@@ -50,10 +54,18 @@ def load_run_results(run_dir: str | Path, *, ensure_scores: bool = True) -> RunR
     )
 
 
+def _read_run_metadata(run_path: Path) -> dict[str, Any]:
+    for name in ["metadata.json", "run_metadata.json"]:
+        path = run_path / name
+        if path.exists():
+            return read_json(path)
+    return {}
+
+
 def scores_to_dataframe(scores: list[ScoreRecord]) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
     for score in scores:
-        row = {
+        row: dict[str, Any] = {
             "run_id": score.run_id,
             "instance_id": score.instance_id,
             "agent_name": score.agent_name,
@@ -122,17 +134,35 @@ def trajectories_to_dataframe(trajectories: list[Trajectory]) -> pd.DataFrame:
     rows = []
     for trajectory in trajectories:
         tool_calls = extract_tool_calls(trajectory)
+        token_usage = trajectory.metadata.get("token_usage")
+        token_usage = token_usage if isinstance(token_usage, dict) else {}
         rows.append(
             {
                 "run_id": trajectory.run_id,
                 "instance_id": trajectory.instance_id,
                 "agent_name": trajectory.agent_name,
+                "model_name": trajectory.model_name,
                 "repeat": trajectory.metadata.get("repeat", 0),
                 "terminated_reason": trajectory.terminated_reason,
                 "final_answer": trajectory.final_answer,
                 "n_steps": len(trajectory.steps),
-                "n_tool_calls": len(tool_calls),
+                "n_tool_calls": trajectory.metadata.get("tool_call_count", len(tool_calls)),
+                "model_call_count": trajectory.metadata.get("model_call_count", _model_call_count(trajectory)),
+                "llm_call_count": trajectory.metadata.get("llm_call_count", _llm_call_count(trajectory)),
+                "total_retries": trajectory.metadata.get("total_retries", _total_retries(trajectory)),
                 "tool_calls": tool_calls,
+                "agent_type": trajectory.metadata.get("agent_type"),
+                "provider": trajectory.metadata.get("provider"),
+                "model": trajectory.metadata.get("model") or trajectory.model_name,
+                "latency_s": trajectory.metadata.get("latency_s"),
+                "estimated_cost_usd": trajectory.metadata.get("estimated_cost_usd"),
+                "token_usage": token_usage,
+                "prompt_tokens": trajectory.metadata.get("prompt_tokens", token_usage.get("input_tokens")),
+                "completion_tokens": trajectory.metadata.get(
+                    "completion_tokens",
+                    token_usage.get("output_tokens"),
+                ),
+                "total_tokens": trajectory.metadata.get("total_tokens", token_usage.get("total_tokens")),
             }
         )
     return pd.DataFrame(rows)
@@ -148,3 +178,20 @@ def extract_tool_calls(trajectory: Trajectory) -> list[str]:
         if isinstance(tool_call, dict) and tool_call.get("tool_name"):
             calls.append(str(tool_call["tool_name"]))
     return calls
+
+
+def _llm_calls(trajectory: Trajectory) -> list[dict[str, Any]]:
+    calls = trajectory.metadata.get("llm_calls")
+    return calls if isinstance(calls, list) else []
+
+
+def _llm_call_count(trajectory: Trajectory) -> int:
+    return len(_llm_calls(trajectory))
+
+
+def _model_call_count(trajectory: Trajectory) -> int:
+    return sum(1 for call in _llm_calls(trajectory) if call.get("provider_call_made", True))
+
+
+def _total_retries(trajectory: Trajectory) -> int:
+    return sum(int(call.get("retries") or 0) for call in _llm_calls(trajectory))

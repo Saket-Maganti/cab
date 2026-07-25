@@ -1,0 +1,55 @@
+seed: 20270548
+run_name: pilot_mock_agents_failure_modes
+cost_mode: zero_cost
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering
+provider_type: local
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+max_instances: 6
+budget:
+  max_total_usd: 0
+  max_calls: 48
+  require_explicit_paid_approval: true
+  strict_pricing: false
+limits:
+  max_instances: 6
+  max_agents: 6
+  max_trajectories: 6
+  max_steps_per_instance: 3
+agent_runs:
+  - name: mock_helpful
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: helpful
+  - name: mock_brittle
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: brittle
+  - name: mock_tool_overuser
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: tool_overuser
+  - name: mock_memory_blind
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: memory_blind
+  - name: mock_contradiction_blind
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: contradiction_blind
+  - name: mock_premature_stop
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: premature_stop
+  - name: mock_recovery_weak
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: recovery_weak
+  - name: mock_argument_sloppy
+    agent: mock_behavior_agent
+    extra:
+      mock_behavior: argument_sloppy
+max_steps: 3
+num_repeats: 1
+output_dir: results
+auto_score: false

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Compact-20 candidate quality review schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id",
+    "task_clarity_risk",
+    "gold_ambiguity_risk",
+    "scorer_fragility_risk",
+    "intervention_confounding_risk",
+    "human_review_required",
+    "fixture_only_not_evidence"
+  ],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1},
+    "task_clarity_risk": {"enum": ["low", "medium", "high", "unknown"]},
+    "gold_ambiguity_risk": {"enum": ["low", "medium", "high", "unknown"]},
+    "scorer_fragility_risk": {"enum": ["low", "medium", "high", "unknown"]},
+    "intervention_confounding_risk": {"enum": ["low", "medium", "high", "unknown"]},
+    "exclusion_reason": {"type": "string"},
+    "replacement_priority": {"enum": ["none", "low", "medium", "high", "unknown"]},
+    "human_review_required": {"type": "boolean"},
+    "reviewer_id": {"type": "string"},
+    "timestamp": {"type": "string"},
+    "notes": {"type": "string"},
+    "fixture_only_not_evidence": {"const": true}
+  }
+}

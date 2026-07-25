@@ -1,0 +1,8 @@
+{
+  "current_state": "NO_PROVIDER_BACKED_COMPACT20_EVIDENCE",
+  "human_labels_created": false,
+  "next_gate": "manual human review and explicit provider approval",
+  "provider_calls_executed": false,
+  "schema": "cab.insane.autorun.master_state.v1",
+  "scientific_claims_allowed": false
+}

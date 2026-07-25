@@ -1,0 +1,38 @@
+flowchart TB
+  subgraph Config["Configs"]
+    YAML[configs/*.yaml]
+    HASH[config_hash.txt]
+  end
+  subgraph Data["Dataset"]
+    BT[base_tasks.jsonl]
+    INT[interventions.jsonl]
+    INST[instances.jsonl]
+  end
+  subgraph Runner["Agent runner"]
+    AGT[agents/]
+    TOOLS[synthetic tools]
+    TRAJ[trajectories.jsonl]
+  end
+  subgraph Eval["Evaluation"]
+    SCORE[scoring.py]
+    ANAL[analysis/]
+    ACRS[ACRS aggregate]
+  end
+  subgraph Paper["Paper assets"]
+    FIGS[figures/ tables/]
+    MAN[paper_assets_manifest]
+  end
+  subgraph Claims["Claim ledger"]
+    LEDGER[docs/claim_ledger.json]
+  end
+  YAML --> Runner
+  INST --> Runner
+  AGT --> TOOLS
+  TOOLS --> TRAJ
+  TRAJ --> SCORE
+  SCORE --> ANAL
+  ANAL --> ACRS
+  ANAL --> FIGS
+  FIGS --> MAN
+  MAN --> LEDGER
+  HASH --> MAN

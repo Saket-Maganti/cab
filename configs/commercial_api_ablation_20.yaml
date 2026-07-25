@@ -1,0 +1,60 @@
+seed: 20270540
+run_name: commercial_api_ablation_20
+allow_paid_calls: true
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+budget_cap_usd: 40.0
+task_budget_cap_usd: 1.5
+cost_models:
+  openai:
+    default:
+      input_per_1m_tokens: 2.5
+      output_per_1m_tokens: 10.0
+agent_runs:
+- name: memory_verification_off_openai
+  agent: direct_llm_tool_agent
+  provider: openai
+  model: ${OPENAI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 800
+  retry_count: 2
+  timeout: 60
+  budget_cap_usd: 20.0
+  extra:
+    api_version: openai-chat-completions-v1
+    input_tokens_per_call_estimate: 2000
+    prompt_file: ablations/base_tool_agent.md
+    system_safety_file: system_safety_ablation_minimal.md
+    ablation:
+      pair_id: memory_verification
+      factor: memory_verification_instruction
+      level: without_memory_verification
+      comparison_role: reference
+- name: memory_verification_on_openai
+  agent: direct_llm_tool_agent
+  provider: openai
+  model: ${OPENAI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 800
+  retry_count: 2
+  timeout: 60
+  budget_cap_usd: 20.0
+  extra:
+    api_version: openai-chat-completions-v1
+    input_tokens_per_call_estimate: 2200
+    prompt_file: ablations/base_tool_agent.md
+    prompt_addendum_file: ablations/memory_verification_instruction.md
+    system_safety_file: system_safety_ablation_minimal.md
+    ablation:
+      pair_id: memory_verification
+      factor: memory_verification_instruction
+      level: with_memory_verification
+      comparison_role: treatment
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+budget:
+  require_explicit_paid_approval: true

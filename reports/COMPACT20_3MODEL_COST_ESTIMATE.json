@@ -1,0 +1,6 @@
+{
+  "budget_approved": false,
+  "estimated_cost_usd": "requires provider prices and approval",
+  "planned_trajectories": 120,
+  "status": "PLANNED_ONLY"
+}

@@ -1,0 +1,38 @@
+seed: 20270517
+run_name: ablation_tool_description_detail_local_stub
+benchmark_path: data/sample/instances.jsonl
+agent_runs:
+  - name: tool_descriptions_short
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      tool_description_mode: short
+      ablation:
+        pair_id: tool_description_detail
+        factor: tool_descriptions
+        level: short
+        comparison_role: reference
+  - name: tool_descriptions_detailed
+    agent: direct_llm_tool_agent
+    provider: local_stub
+    model: local-stub
+    retry_count: 0
+    budget_cap_usd: 0.0
+    extra:
+      prompt_file: ablations/base_tool_agent.md
+      system_safety_file: system_safety_ablation_minimal.md
+      tool_description_mode: detailed
+      ablation:
+        pair_id: tool_description_detail
+        factor: tool_descriptions
+        level: detailed
+        comparison_role: treatment
+max_steps: 8
+num_repeats: 1
+output_dir: results
+auto_score: true

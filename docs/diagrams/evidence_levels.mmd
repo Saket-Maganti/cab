@@ -1,0 +1,16 @@
+flowchart TB
+  DR[dry_run] --> STUB[stub_engineering]
+  STUB --> MOCK[mock_diagnostic]
+  MOCK --> LOCAL[local_preliminary]
+  LOCAL --> PILOT[provider_pilot]
+  PILOT --> MAIN[main_experiment]
+  MAIN --> HV[human_validated]
+  HV --> SUB[submission_ready]
+  style DR fill:#eee
+  style STUB fill:#eee
+  style MOCK fill:#eee
+  style LOCAL fill:#ffd
+  style PILOT fill:#ffd
+  style MAIN fill:#dfd
+  style HV fill:#dfd
+  style SUB fill:#cdf

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "not_real_llm_behavior": {
+      "type": "boolean"
+    },
+    "predicted_failure_category": {
+      "type": "string"
+    },
+    "provider_model_redacted": {
+      "const": true,
+      "type": "boolean"
+    },
+    "redaction_notice": {
+      "type": "string"
+    },
+    "sample_id": {
+      "type": "string"
+    },
+    "synthetic_fixture": {
+      "type": "boolean"
+    },
+    "task_metadata": {
+      "properties": {
+        "clean_or_intervention": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "intervention_type": {
+          "type": "string"
+        },
+        "success_criteria": {
+          "type": "array"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "user_instruction": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trajectory_steps": {
+      "items": {
+        "properties": {
+          "action_type": {
+            "type": "string"
+          },
+          "observation_excerpt": {
+            "type": "string"
+          },
+          "step_index": {
+            "type": "integer"
+          },
+          "tool_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "sample_id",
+    "task_metadata",
+    "trajectory_steps",
+    "redaction_notice"
+  ],
+  "title": "AnonymizedTrajectoryPacket",
+  "type": "object"
+}

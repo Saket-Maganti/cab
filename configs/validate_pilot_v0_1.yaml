@@ -1,0 +1,13 @@
+benchmark_version: pilot_v0.1
+base_tasks_path: data/processed/pilot_v0_1/base_tasks.jsonl
+interventions_path: data/processed/pilot_v0_1/interventions.jsonl
+instances_path: data/processed/pilot_v0_1/instances.jsonl
+splits_path: data/processed/pilot_v0_1/splits.json
+expected:
+  min_base_tasks: 250
+  pilot_base_tasks: 200
+  heldout_base_tasks: 50
+  min_instances: 1000
+  domains: 8
+  intervention_families: 10
+allow_paid_calls: false

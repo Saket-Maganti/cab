@@ -1,0 +1,89 @@
+template_only: true
+not_runnable_without_approval: true
+allow_paid_calls: false
+approved_for_live_run: false
+approved_for_dry_run: false
+
+status: TEMPLATE_NOT_APPROVED_DO_NOT_RUN
+evidence_scope: planned_paper_eligible_pilot
+scientific_claims: false
+scientific_claims_allowed: false
+paper_asset_eligibility: false
+claim_promotion_allowed: false
+claim_policy:
+  promote_claims: false
+  mark_paper_assets_eligible: false
+
+purpose: first_3model_compact20_paper_eligible_pilot_after_approval
+compact20_slice_path: PLACEHOLDER_APPROVED_COMPACT20_SLICE_JSONL_OR_MANIFEST
+manual_review_sources:
+  compact20_manifest: data/human_validation/no_api_task_review/compact20_candidate_manifest.json
+  task_review_sheet: data/human_validation/no_api_task_review/compact20_task_review.csv
+  gold_policy_review_sheet: data/human_validation/no_api_task_review/compact20_gold_policy_review.csv
+  c10_protocol: docs/C10_INTERVENTION_ISOLATION_VALIDATION_PROTOCOL.md
+
+planned_design:
+  paired_items: 20
+  conditions_per_pair: 2
+  model_count: 3
+  repeats_per_model_condition: 1
+  exact_planned_trajectories: 120
+  expected_model_pair_records: 60
+  deferred_scales:
+    main_200: true
+    main_500: true
+
+placeholder_model_categories:
+  - category: frontier_api_model_placeholder
+    provider_id: PLACEHOLDER_FRONTIER_API_PROVIDER
+    model_id: PLACEHOLDER_FRONTIER_API_MODEL
+    role: high_capability_reference
+  - category: strong_open_or_local_model_placeholder
+    provider_id: PLACEHOLDER_STRONG_OPEN_OR_LOCAL_PROVIDER
+    model_id: PLACEHOLDER_STRONG_OPEN_OR_LOCAL_MODEL
+    role: reproducible_open_model_reference
+  - category: smaller_cheaper_baseline_model_placeholder
+    provider_id: PLACEHOLDER_SMALLER_OR_CHEAPER_PROVIDER
+    model_id: PLACEHOLDER_SMALLER_OR_CHEAPER_MODEL
+    role: cost_sensitive_baseline
+
+required_model_metadata:
+  - provider_id
+  - model_id
+  - model_release_or_snapshot
+  - deployment_class
+  - pricing_registry_entry_or_zero_cost_note
+  - temperature
+  - max_tokens
+  - retry_policy
+  - prompt_file
+  - prompt_version
+  - prompt_hash
+  - config_hash
+  - run_id
+  - git_commit
+
+budget_policy:
+  max_total_usd: PLACEHOLDER_REQUIRES_APPROVAL
+  max_calls: PLACEHOLDER_REQUIRES_APPROVAL
+  stop_on_unknown_price: true
+  require_explicit_paid_approval: true
+
+approval_requirements:
+  manual_compact20_review_complete: false
+  gold_policy_review_complete: false
+  c10_review_status: NOT_COMPLETE
+  live_run_approval_documented: false
+  budget_approval_documented: false
+  post_run_audit_required_before_claims: true
+
+forbidden_until_approved:
+  - provider_calls
+  - local_llm_calls
+  - benchmark_execution
+  - main_200
+  - main_500
+  - compact20_execution
+  - compact50_execution
+  - claim_promotion
+  - paper_asset_eligibility

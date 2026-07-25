@@ -1,0 +1,63 @@
+# Pre-commit hooks for CausalAgentBench.
+#
+#   make pre-commit-install        # one-time: install the git hook
+#   pre-commit run --all-files     # run every hook over the whole tree
+#
+# Design notes:
+#   * Code *formatting* is intentionally NOT enforced. This repository does not
+#     use `ruff format` (running it would rewrite ~185 files). Only ruff's
+#     linter — which the tree already passes — and the typed-core mypy gate are
+#     enforced here, matching .github/workflows/ci.yml.
+#   * Generated and pinned scientific artifacts are excluded so hygiene hooks
+#     never rewrite reproducible outputs (tables, figures, frozen data, the
+#     release manifest, run outputs, and generated LaTeX).
+#   * Keep `rev:` for ruff-pre-commit in sync with the ruff pin in pyproject.
+
+default_language_version:
+  python: python3.11
+
+exclude: |
+  (?x)^(
+    tables/.*|
+    figures/.*|
+    data/.*|
+    release/.*|
+    results/.*|
+    paper/latexpaper/generated/.*|
+    .*\.ipynb
+  )$
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.8
+    hooks:
+      - id: ruff
+        name: ruff (lint)
+        args: [--fix]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: debug-statements
+      - id: check-added-large-files
+        args: [--maxkb=2048]
+
+  - repo: local
+    hooks:
+      - id: mypy-typed-core
+        name: mypy (typed core)
+        entry: python -m mypy
+        language: system
+        types: [python]
+        pass_filenames: false
+        require_serial: true

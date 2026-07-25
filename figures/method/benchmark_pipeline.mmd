@@ -1,0 +1,7 @@
+flowchart LR
+    A["Task specifications"] --> B["Clean instances"]
+    A --> C["Intervention instances"]
+    B --> D["Static validation"]
+    C --> D
+    D --> E["No-run reports"]
+    E --> F["Provider pilot review gate"]

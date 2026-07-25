@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-05-20T07:25:00Z",
+  "label": "ENGINEERING_ONLY — NOT REAL LLM EVIDENCE",
+  "project_thesis": "Final task success can hide which agentic skills survive under controlled interventions; CausalAgentBench pairs clean and intervention instances to measure robustness beyond final-answer scoring.",
+  "what_this_demo_proves": [
+    "End-to-end pipeline: config → run → score → analyze → export → report → failure gallery",
+    "Mock diagnostic agent executes scripted failure modes deterministically",
+    "Scoring and trajectory diagnostics fire on mock trajectories",
+    "Paper asset export labels engineering_only and blocks paper claims",
+    "Evidence safety gates remain satisfied after a micro run"
+  ],
+  "what_this_demo_does_not_prove": [
+    "Real LLM agent behavior or performance",
+    "C1–C8 or C10 empirical claims",
+    "Model rankings or clean-vs-intervention degradation at scale",
+    "Human validation agreement",
+    "NeurIPS-ready results"
+  ],
+  "run_directory": "results/20260520T072032Z_pilot_mock_diagnostic_micro",
+  "config": "configs/pilot_mock_diagnostic_micro.yaml",
+  "evidence_level": "mock_diagnostic_only",
+  "evidence_scope": "mock_diagnostic_only",
+  "scientific_evidence": false,
+  "not_real_llm_behavior": true,
+  "paid_calls_made": false,
+  "provider_type": "mock",
+  "run_status": "complete",
+  "trajectories_generated": 3,
+  "agents": ["mock_tool_overuser"],
+  "mock_behavior": "tool_overuser",
+  "scores_generated": true,
+  "analysis_report": "results/20260520T072032Z_pilot_mock_diagnostic_micro/analysis_report.md",
+  "run_report": "results/20260520T072032Z_pilot_mock_diagnostic_micro/report.md",
+  "failure_gallery": "results/20260520T072032Z_pilot_mock_diagnostic_micro/failure_gallery.md",
+  "paper_assets_manifest": "results/20260520T072032Z_pilot_mock_diagnostic_micro/paper_assets/paper_assets_manifest.json",
+  "paper_assets_eligible_for_claims": false,
+  "command_sequence": [
+    "python3 -m causal_agent_bench plan-run --config configs/pilot_mock_diagnostic_micro.yaml",
+    "python3 -m causal_agent_bench run --config configs/pilot_mock_diagnostic_micro.yaml",
+    "python3 -m causal_agent_bench score --run-dir results/20260520T072032Z_pilot_mock_diagnostic_micro",
+    "python3 -m causal_agent_bench analyze --run-dir results/20260520T072032Z_pilot_mock_diagnostic_micro",
+    "python3 -m causal_agent_bench export-paper-assets --run-dir results/20260520T072032Z_pilot_mock_diagnostic_micro --allow-engineering-only --no-write-global",
+    "python3 -m causal_agent_bench generate-report --run-dir results/20260520T072032Z_pilot_mock_diagnostic_micro",
+    "python3 -m causal_agent_bench failure-gallery --run-dir results/20260520T072032Z_pilot_mock_diagnostic_micro"
+  ],
+  "figures_available": [
+    "results/20260520T072032Z_pilot_mock_diagnostic_micro/paper_assets/figures/figure2_clean_vs_intervention_success.png",
+    "results/20260520T072032Z_pilot_mock_diagnostic_micro/paper_assets/figures/figure3_intervention_family_breakdown.png"
+  ],
+  "limitations": [
+    "n=3 trajectories on travel_planning subset only",
+    "Single mock agent with scripted tool_overuser behavior",
+    "Deterministic heuristic scoring only",
+    "Exported figures are diagnostic illustrations, not submission figures"
+  ],
+  "next_real_experiment": "Bounded provider pilot (configs/pilot_multi_provider_20.yaml) after budget approval and PRE_EXPERIMENT_FREEZE_CHECKLIST",
+  "claim_ledger_impact": "No changes — C1–C8/C10 remain planned; C9 engineering_only only"
+}

@@ -1,0 +1,58 @@
+template_only: true
+not_runnable_without_approval: true
+allow_paid_calls: false
+approved_for_live_run: false
+approved_for_dry_run: false
+
+status: LOCAL_TEMPLATE_NOT_APPROVED_DO_NOT_RUN
+evidence_scope: planned_local_sanity_only_not_paper_eligible
+scientific_claims_allowed: false
+paper_asset_eligibility: false
+claim_promotion_allowed: false
+
+purpose: optional_local_open_model_sanity_template_after_manual_review
+compact20_slice_path: PLACEHOLDER_APPROVED_COMPACT20_SLICE_JSONL_OR_MANIFEST
+
+local_model_policy:
+  deployment_class: local_open_weight_unvalidated
+  allowed_use: debugging_and_pipeline_sanity_only
+  cannot_substitute_for_provider_backed_pilot: true
+  requires_full_reproducibility_metadata_before_any_upgrade: true
+
+placeholder_model_categories:
+  - category: strong_open_local_placeholder
+    provider_id: PLACEHOLDER_LOCAL_OPENAI_COMPATIBLE_SERVER
+    model_id: PLACEHOLDER_STRONG_OPEN_MODEL
+    role: local_open_model_sanity_reference
+  - category: smaller_local_baseline_placeholder
+    provider_id: PLACEHOLDER_LOCAL_OPENAI_COMPATIBLE_SERVER
+    model_id: PLACEHOLDER_SMALL_LOCAL_MODEL
+    role: low_cost_local_baseline
+  - category: optional_remote_open_placeholder
+    provider_id: PLACEHOLDER_OPEN_MODEL_HOST
+    model_id: PLACEHOLDER_OPEN_MODEL_REMOTE
+    role: open_model_comparison_if_approved
+
+planned_design:
+  paired_items: 20
+  conditions_per_pair: 2
+  model_count: 3
+  repeats_per_model_condition: 1
+  exact_planned_trajectories: 120
+
+approval_requirements:
+  manual_compact20_review_complete: false
+  gold_policy_review_complete: false
+  c10_review_status: NOT_COMPLETE
+  local_server_reproducibility_review_complete: false
+  post_run_audit_required_before_claims: true
+
+forbidden_until_approved:
+  - local_llm_calls
+  - benchmark_execution
+  - main_200
+  - main_500
+  - compact20_execution
+  - claim_promotion
+  - paper_asset_eligibility
+

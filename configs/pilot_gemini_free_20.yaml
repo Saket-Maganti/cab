@@ -1,0 +1,56 @@
+seed: 20270542
+run_name: pilot_gemini_free_20
+cost_mode: zero_cost
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering
+provider_type: free_tier
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+provider_registry_path: configs/providers.yaml
+pricing_registry_path: configs/model_pricing.yaml
+budget:
+  max_total_usd: 0
+  max_calls: 1920
+  require_explicit_paid_approval: true
+  strict_pricing: false
+agent_runs:
+  - name: direct_tool_gemini_free
+    agent: direct_tool_agent
+    provider: gemini
+    model: "${GEMINI_MODEL_ID:-gemini-2.0-flash}"
+    temperature: 0.0
+    max_tokens: 700
+    retry_count: 2
+    timeout: 90
+    budget_cap_usd: 0.0
+    pricing:
+      input_per_1m_tokens: 0.0
+      output_per_1m_tokens: 0.0
+    extra:
+      free_tier: true
+      prompt_file: direct_tool_agent.md
+      prompt_version: v1
+      input_tokens_per_call_estimate: 1800
+  - name: self_check_gemini_free
+    agent: self_check_agent
+    provider: gemini
+    model: "${GEMINI_MODEL_ID:-gemini-2.0-flash}"
+    temperature: 0.0
+    max_tokens: 900
+    retry_count: 2
+    timeout: 90
+    budget_cap_usd: 0.0
+    pricing:
+      input_per_1m_tokens: 0.0
+      output_per_1m_tokens: 0.0
+    extra:
+      free_tier: true
+      prompt_file: self_check_agent.md
+      prompt_version: v1
+      input_tokens_per_call_estimate: 2200
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true

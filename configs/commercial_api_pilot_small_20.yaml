@@ -1,0 +1,45 @@
+seed: 20270540
+run_name: commercial_api_pilot_small_20
+allow_paid_calls: true
+benchmark_path: data/processed/pilot_v0_1/pilot_20_instances.jsonl
+budget_cap_usd: 35.0
+task_budget_cap_usd: 1.5
+cost_models:
+  openai:
+    default:
+      input_per_1m_tokens: 2.5
+      output_per_1m_tokens: 10.0
+agent_runs:
+- name: direct_tool_openai
+  agent: direct_tool_agent
+  provider: openai
+  model: ${OPENAI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 700
+  retry_count: 2
+  timeout: 60
+  budget_cap_usd: 20.0
+  extra:
+    api_version: openai-chat-completions-v1
+    input_tokens_per_call_estimate: 1800
+- name: self_check_openai
+  agent: self_check_agent
+  provider: openai
+  model: ${OPENAI_MODEL_ID:-}
+  temperature: 0.0
+  max_tokens: 900
+  retry_count: 2
+  timeout: 60
+  budget_cap_usd: 20.0
+  extra:
+    api_version: openai-chat-completions-v1
+    input_tokens_per_call_estimate: 2200
+max_steps: 8
+num_repeats: 1
+output_dir: results
+save_observations: true
+save_agent_thoughts: true
+fail_fast: false
+auto_score: true
+budget:
+  require_explicit_paid_approval: true

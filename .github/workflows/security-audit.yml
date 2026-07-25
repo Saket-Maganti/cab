@@ -1,0 +1,42 @@
+name: Security audit
+
+# Scans the pinned runtime dependencies (constraints.txt) for known
+# vulnerabilities. Runs on dependency changes and weekly, in its own workflow so a
+# transitive CVE surfaces clearly without blocking unrelated test/gate workflows.
+on:
+  push:
+    paths:
+      - "pyproject.toml"
+      - "constraints.txt"
+      - ".github/workflows/security-audit.yml"
+  pull_request:
+    paths:
+      - "pyproject.toml"
+      - "constraints.txt"
+      - ".github/workflows/security-audit.yml"
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  pip-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pip-audit
+        run: python -m pip install pip-audit
+
+      - name: Audit pinned runtime dependencies
+        run: python -m pip_audit --requirement constraints.txt --strict

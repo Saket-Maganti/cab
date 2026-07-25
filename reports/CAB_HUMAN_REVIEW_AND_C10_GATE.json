@@ -1,0 +1,586 @@
+{
+  "c10_state": "C10_PENDING",
+  "candidate_count": 20,
+  "candidate_manifest": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+  "complete_review_groups": 0,
+  "coverage": {
+    "compact20_cand_01": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_02": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_03": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_04": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_05": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_06": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_07": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_08": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_09": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_10": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_11": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_12": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_13": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_14": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_15": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_16": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_17": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_18": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_19": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    },
+    "compact20_cand_20": {
+      "gold_policy_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "intervention_isolation_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      },
+      "task_clarity_review.csv": {
+        "adjudicated": false,
+        "agreement": null,
+        "complete": false,
+        "final_valid": null,
+        "independent_reviewer_count": 0,
+        "row_count": 0
+      }
+    }
+  },
+  "evidence_class": "HUMAN_INPUT_REQUIRED",
+  "expected_review_groups": 60,
+  "final_validity": {
+    "compact20_cand_01": null,
+    "compact20_cand_02": null,
+    "compact20_cand_03": null,
+    "compact20_cand_04": null,
+    "compact20_cand_05": null,
+    "compact20_cand_06": null,
+    "compact20_cand_07": null,
+    "compact20_cand_08": null,
+    "compact20_cand_09": null,
+    "compact20_cand_10": null,
+    "compact20_cand_11": null,
+    "compact20_cand_12": null,
+    "compact20_cand_13": null,
+    "compact20_cand_14": null,
+    "compact20_cand_15": null,
+    "compact20_cand_16": null,
+    "compact20_cand_17": null,
+    "compact20_cand_18": null,
+    "compact20_cand_19": null,
+    "compact20_cand_20": null
+  },
+  "generated_at": "2026-07-23T17:09:12.191585+00:00",
+  "genuine_human_row_count": 0,
+  "human_review_state": "HUMAN_REVIEW_INCOMPLETE",
+  "issues": [
+    {
+      "detail": "no genuine completed human rows",
+      "kind": "header_only",
+      "path": "/Users/saketmaganti/Projects/causal-agent-bench/data/human_validation/compact20_real_review/task_clarity_review.csv"
+    },
+    {
+      "detail": "no genuine completed human rows",
+      "kind": "header_only",
+      "path": "/Users/saketmaganti/Projects/causal-agent-bench/data/human_validation/compact20_real_review/gold_policy_review.csv"
+    },
+    {
+      "detail": "no genuine completed human rows",
+      "kind": "header_only",
+      "path": "/Users/saketmaganti/Projects/causal-agent-bench/data/human_validation/compact20_real_review/intervention_isolation_review.csv"
+    }
+  ],
+  "paper_eligibility_allowed": false,
+  "policy": {
+    "min_independent_reviewers": 2,
+    "min_raw_agreement": 0.8,
+    "policy_status": "DESIGN_ONLY_PREREGISTERED_BEFORE_REVIEW",
+    "require_all_final_valid": true
+  },
+  "proxy_rows_counted": 0,
+  "raw_agreement": null,
+  "review_dir": "data/human_validation/compact20_real_review",
+  "schema_version": "cab_human_review_gate_v1",
+  "scientific_execution_allowed": false,
+  "slice_lock_allowed": false,
+  "unresolved_disagreements": []
+}

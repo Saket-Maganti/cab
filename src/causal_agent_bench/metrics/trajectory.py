@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, cast
 
 from causal_agent_bench.metrics.base import (
     called_tools,
@@ -63,6 +63,7 @@ def score_stopping(context: Any, trajectory: Trajectory) -> dict[str, bool]:
 
 def score_trajectory_quality(context: Any, trajectory: Trajectory) -> dict[str, float | int]:
     final_scores = score_final_success(context, trajectory)
+    final_success_partial = cast(float | int, final_scores["final_success_partial"])
     required = required_tools(context)
     call_count = len(called_tools(trajectory))
     expected_fragments = [fragment.lower() for fragment in expected_answer_fragments(context) if fragment]
@@ -70,11 +71,11 @@ def score_trajectory_quality(context: Any, trajectory: Trajectory) -> dict[str, 
     supported = (
         sum(1 for fragment in expected_fragments if fragment in observed) / len(expected_fragments)
         if expected_fragments
-        else final_scores["final_success_partial"]
+        else final_success_partial
     )
     efficiency = len(required) / call_count if call_count else 0.0
     efficiency = min(efficiency, 1.0)
-    faithfulness = min(float(final_scores["final_success_partial"]), float(supported))
+    faithfulness = min(float(final_success_partial), supported)
     return {
         "trajectory_success_binary": int(final_scores["final_success_binary"] == 1 and faithfulness > 0),
         "trajectory_efficiency": round(efficiency, 6),

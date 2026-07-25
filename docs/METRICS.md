@@ -10,6 +10,12 @@ Running `python -m causal_agent_bench score --run-dir <run_dir>` writes:
 - `aggregate_scores.json`: aggregate metrics by agent, instance, and intervention family.
 - `aggregate_scores.csv`: compact agent-level table.
 - `score_report.md`: human-readable scoring report.
+- `metrics_v2.json`: expanded metric cards, confidence intervals, component scores, and rank instability.
+- `metrics_v2.csv`: expanded agent-level metrics table.
+- `metrics_v2.md`: markdown summary of expanded metrics.
+- `metrics_v2.tex`: LaTeX summary of expanded metrics.
+- `paper_assets/stats_summary.json`: statistical reporting summary with paired tests, bootstraps, rank correlations, effect sizes, and warnings.
+- `paper_assets/stats_summary.md`: human-readable statistical reporting summary.
 - `scores.json`: compatibility summary for earlier analysis helpers.
 
 ## Final Task Success
@@ -106,6 +112,123 @@ The scorer reports:
 - rank delta per agent.
 
 This is descriptive until experiments include enough non-oracle agents and confidence intervals.
+
+## Statistical Reporting
+
+`export-paper-assets` writes `stats_summary.json` and `stats_summary.md` under the run-local `paper_assets/` directory. These reports include:
+
+- base-task-paired clean-vs-intervention comparisons per agent,
+- paired t-test and Wilcoxon p-values where sample size and variation allow,
+- task-level bootstrap confidence intervals for paired degradation and ACRS,
+- intervention-family bootstrap confidence intervals and per-family degradation,
+- agent-level bootstrap summaries for clean success, intervention success, and ACRS,
+- Spearman and Kendall rank correlation between clean-success and ACRS rankings,
+- multiple-comparison warnings when many intervention families are tested,
+- minimum sample-size warnings for small paired or per-family samples.
+
+P-values and confidence intervals are descriptive until the final frozen dataset, non-oracle agent runs, and validation artifacts are complete. Treat uncorrected per-family comparisons as exploratory unless the paper specifies a correction plan.
+
+## Metrics v2 Cards
+
+Metrics v2 exports a card for each metric with definition, interpretation, failure modes, and when not to use it.
+
+### Clean Success
+
+- Definition: mean final-answer success on clean instances.
+- Interpretation: higher means the agent solves unperturbed tasks more often.
+- Failure modes: can be high even when trajectories are unfaithful.
+- When not to use: never use alone as robustness evidence.
+
+### Intervention Success
+
+- Definition: mean final-answer success on intervention instances.
+- Interpretation: higher means the agent succeeds more often under perturbation.
+- Failure modes: can hide invalid trajectories or invalid interventions.
+- When not to use: do not compare without clean success and intervention audit status.
+
+### Absolute Degradation
+
+- Definition: `clean_success - intervention_success`.
+- Interpretation: lower is better.
+- Failure modes: depends on clean baseline; agents with low clean success may show small degradation.
+- When not to use: when either split has too few examples.
+
+### Relative Degradation And ACRS
+
+- Definition: `ACRS = intervention_success / clean_success`; `relative_degradation = 1 - ACRS`.
+- Interpretation: ACRS near 1 means intervention success matches clean success.
+- Failure modes: undefined when clean success is zero; high ACRS can reflect poor performance in both conditions.
+- When not to use: do not rank agents by ACRS alone.
+
+### Per-Family ACRS
+
+- Definition: intervention-family success divided by clean success.
+- Interpretation: identifies which intervention families most affect an agent.
+- Failure modes: noisy for small family counts.
+- When not to use: when family counts are too small or intervention validity is unresolved.
+
+### Tool Recall And Precision
+
+- Definition: required-tool recall and required-tool precision among tool calls.
+- Interpretation: higher recall means required tools were used; higher precision means fewer irrelevant calls.
+- Failure modes: recall can reward over-tooling; precision can penalize useful optional exploration.
+- When not to use: without final success and trajectory context.
+
+### Invalid Call Rate
+
+- Definition: fraction of trajectories with at least one invalid tool call.
+- Interpretation: lower is better.
+- Failure modes: depends on parser and environment strictness.
+- When not to use: as a semantic correctness metric.
+
+### Recovery Rate After Tool Failure
+
+- Definition: mean recovery indicator for trajectories where a failure/corruption/partial output occurred.
+- Interpretation: higher means agents adapt after failures.
+- Failure modes: undefined when no recoverable failure occurs.
+- When not to use: on clean-only runs or runs without tool failures.
+
+### Contradiction Detection And Resolution
+
+- Definition: rates for detecting and resolving conflicting observations.
+- Interpretation: higher is better on conflict-bearing tasks.
+- Failure modes: keyword heuristics can miss paraphrases.
+- When not to use: without human validation for contradiction labels.
+
+### Memory Verification And Blind Trust
+
+- Definition: memory verification rate and blind corrupted-memory trust rate.
+- Interpretation: verification should be high; blind trust should be low.
+- Failure modes: implicit verification may be undercounted.
+- When not to use: on tasks without memory or memory-corruption conditions.
+
+### Premature Stopping
+
+- Definition: fraction of trajectories that stop before required evidence/tools are gathered and final success fails.
+- Interpretation: lower is better.
+- Failure modes: relies on required-tool metadata.
+- When not to use: when success can be achieved without tools by design.
+
+### Correct Abstention Or Uncertainty
+
+- Definition: uncertainty/limitation response after a tool failure, corruption, or partial output.
+- Interpretation: higher is better when evidence is insufficient.
+- Failure modes: can reward over-cautious answers.
+- When not to use: as a blanket success metric.
+
+### Trajectory Efficiency
+
+- Definition: required tool count divided by actual tool-call count, capped at 1.
+- Interpretation: higher means fewer extra calls for the required evidence path.
+- Failure modes: can look good for agents that call too few tools.
+- When not to use: without recall and success.
+
+### Cost-Normalized And Latency-Normalized Robustness
+
+- Definition: ACRS divided by `1 + mean_cost` or `1 + mean_latency`.
+- Interpretation: rough robustness per cost/latency unit.
+- Failure modes: missing or approximate cost/latency metadata.
+- When not to use: across providers or hardware without comparable measurement.
 
 ## Example
 

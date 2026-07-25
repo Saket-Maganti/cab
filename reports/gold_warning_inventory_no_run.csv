@@ -1,0 +1,5 @@
+warning_type,count,intervention_families_affected,severity,manual_review_required,auto_fix_allowed,frozen_data_affected,recommended_action
+answer-changing-without-gold-change,500,"tool_removal; tool_failure; observation_conflict; stale_memory; premature_success_signal",high,yes,no,possible,"Review selected Compact-20/50 rows before any provider run"
+other_gold_output_warnings,7,"not fully expanded in static summary",medium,yes,no,possible,"Classify in manual queue; do not patch from aggregate report"
+unresolved_manual_review_queue,507,"all queued warning rows",high,yes,no,possible,"Block compact execution until selected rows are reviewed"
+

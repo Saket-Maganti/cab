@@ -1,63 +1,66 @@
-# Reproducibility
+# Reproducibility (low-compute)
 
-## Determinism
+## Safe setup
 
-- Task generation accepts a fixed seed.
-- Tools operate only on task-local mock data.
-- Runs save config hash, seed, timestamp, and git commit when available.
-- Trajectories are saved as JSONL.
-- Schema-native experiment runs write the original config, a stable config hash, run metadata, trajectories, errors, scores, aggregate tables, and a score report into a timestamped run directory.
-
-## Commands
+Prefer **`python3`** for all commands (local `python` may be broken under pyenv).
 
 ```bash
-pip install -e ".[dev]"
-pytest
-python -m causal_agent_bench generate --config configs/dev_20_tasks.yaml
-python -m causal_agent_bench run --config configs/dev_20_run.yaml
-python -m causal_agent_bench score --run-dir results/<timestamp>_dev_20
-python -m causal_agent_bench analyze --run-dir results/<timestamp>_dev_20
+python3 -m pip install -e ".[dev]"
+python3 -m causal_agent_bench doctor
+python3 -m causal_agent_bench reproducibility-report
 ```
 
-For the smallest local check:
+The environment report is written to `reports/reproducibility_environment_report.md` (no package installs, no API calls).
+
+## Safe validation
 
 ```bash
-python -m causal_agent_bench run --config configs/smoke.yaml
+python3 -m pytest tests/test_safety_reports.py -q
+python3 -m causal_agent_bench all-safety-reports
 ```
 
-## Run Metadata
+## Artifact reproduction
 
-Each schema-native run records:
+Engineering smoke paths are documented in `artifact/scripts/reproduce_deterministic.sh`. Full provider reproduction requires API keys and is **not** implied by local stub/mock outputs.
 
-- timestamp,
-- git commit when available,
-- Python version,
-- package version,
-- seed,
-- config hash,
-- number of instances,
-- agent list,
-- basic machine information.
+## Lockfiles
 
-## Paper Claims
+If no lockfile is present, pin dependencies in your environment before large runs. See `reports/reproducibility_environment_report.json` for detected lockfiles and README `python` vs `python3` usage.
 
-Every result in the paper must point to:
+## Static no-run bundle
 
-- a claim ID in `docs/CLAIM_LEDGER.md`,
-- a run config,
-- a run directory,
-- generated scores and analysis assets,
-- the scorer version or commit,
-- any human-validation protocol used.
-
-Development artifacts such as `results/20260510T110807Z_dev_20` may be used to test scripts, but they should not be cited as final scientific evidence.
-
-## Resume
+For reproducibility review without model execution, use:
 
 ```bash
-python -m causal_agent_bench run --config configs/dev_20_run.yaml --resume results/<timestamp>_dev_20
+python3 -m causal_agent_bench all-no-run-reports --output-dir /tmp/cab_no_run_build_reports
 ```
 
-## TODO
+This bundle is reproducible as static file inspection. It does not reproduce provider behavior, human annotations, or empirical paper results.
+## Advanced No-Run Provenance
 
-Add pinned lockfiles, CI artifacts, container images, and archived final-run artifacts for camera-ready experiments.
+The benchmark manifest records static provenance before provider spend:
+
+```bash
+python3 -m causal_agent_bench benchmark-manifest --output-dir reports/benchmark_manifest
+```
+
+It captures git branch/commit when available, dirty-tree count, data/config
+paths, dataset versions, frozen split manifests, run index summary, evidence
+state, claim state, provider-preflight status, no-run report timestamps, Python
+version, package version, lockfile status, and license/doc presence.
+
+Release hygiene:
+
+- Dirty tree is a release blocker or must be explicitly documented.
+- Missing commit hash is a warning.
+- Missing lockfile is a warning.
+- No provider evidence blocks empirical paper readiness.
+
+For a full static refresh:
+
+```bash
+python3 -m causal_agent_bench all-no-run-reports --output-dir /tmp/cab_advanced_upgrade_reports
+```
+
+This command remains no-run only. It must not run benchmarks, call providers,
+call local LLMs, use API keys, promote claims, or mutate run outputs.

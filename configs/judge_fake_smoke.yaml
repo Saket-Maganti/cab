@@ -1,0 +1,18 @@
+judge_provider: fake_judge
+judge_model: fake-judge-v1
+prompt_version: judge_v0
+temperature: 0.0
+max_tokens: 128
+retries: 0
+sample_size: 10
+seed: 0
+dimensions:
+- final_answer_correctness
+- intervention_validity
+- trajectory_error_taxonomy
+- contradiction_handling
+- recovery_behavior
+fake_judge: true
+allow_label_overwrite: false
+allow_paid_calls: false
+scientific_evidence_level: preliminary_or_engineering

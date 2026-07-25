@@ -1,0 +1,7 @@
+flowchart TB
+    A["Base task goal"] --> B["Clean variant"]
+    A --> C["Intervention variant"]
+    C --> D["Intended causal factor"]
+    B --> E["Paired static metadata"]
+    C --> E
+    E --> F["Isolation review"]

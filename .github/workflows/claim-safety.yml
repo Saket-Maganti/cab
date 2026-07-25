@@ -1,0 +1,48 @@
+name: Claim Safety
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  claim-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package
+        run: python -m pip install -e ".[dev]"
+
+      - name: Claim ledger
+        run: python3 scripts/check_claim_ledger.py --mode draft
+
+      - name: Evidence safety
+        run: python3 scripts/check_evidence_safety.py --mode draft
+
+      - name: Paper placeholders draft
+        run: python3 scripts/check_paper_placeholders.py --mode draft
+
+      - name: Lint paper claims draft
+        run: python3 scripts/lint_paper_claims.py --mode draft
+
+      - name: Paper assets draft
+        run: python3 scripts/validate_paper_assets.py --mode draft || true
+
+      - name: Submission readiness (non-blocking)
+        run: python3 scripts/check_submission_readiness.py || true
+
+      - name: Sample dataset validation
+        run: python3 -m causal_agent_bench validate data/sample/instances.jsonl --schema instances

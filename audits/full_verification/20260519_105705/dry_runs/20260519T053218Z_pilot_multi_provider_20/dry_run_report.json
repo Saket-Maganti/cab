@@ -1,0 +1,281 @@
+{
+  "config": {
+    "agents": [
+      "direct_tool_openai",
+      "planner_executor_anthropic",
+      "self_check_openrouter"
+    ],
+    "auto_score": true,
+    "benchmark_exists": true,
+    "benchmark_path": "/Users/saketmaganti/codexprojects/causal-agent-bench/data/processed/pilot_v0_1/dev_instances.jsonl",
+    "config_hash": "7d8a95b469e3e07d",
+    "config_type": "experiment",
+    "instances": 120,
+    "issues": [
+      {
+        "field": "agent_runs.direct_tool_openai.model",
+        "fix": "Set the model field or the corresponding *_MODEL_ID environment variable.",
+        "message": "Model is empty for paid provider 'openai'.",
+        "severity": "error"
+      },
+      {
+        "field": "agent_runs.direct_tool_openai.provider",
+        "fix": "Set one of ['OPENAI_API_KEY'] before running paid provider experiments.",
+        "message": "API key is not configured for provider 'openai'.",
+        "severity": "warning"
+      },
+      {
+        "field": "agent_runs.direct_tool_openai.pricing",
+        "fix": "Add input_per_1m_tokens/output_per_1m_tokens if you want numeric cost bounds.",
+        "message": "Pricing is not configured; cost estimates will be unknown.",
+        "severity": "warning"
+      },
+      {
+        "field": "agent_runs.planner_executor_anthropic.model",
+        "fix": "Set the model field or the corresponding *_MODEL_ID environment variable.",
+        "message": "Model is empty for paid provider 'anthropic'.",
+        "severity": "error"
+      },
+      {
+        "field": "agent_runs.planner_executor_anthropic.provider",
+        "fix": "Set one of ['ANTHROPIC_API_KEY'] before running paid provider experiments.",
+        "message": "API key is not configured for provider 'anthropic'.",
+        "severity": "warning"
+      },
+      {
+        "field": "agent_runs.planner_executor_anthropic.pricing",
+        "fix": "Add input_per_1m_tokens/output_per_1m_tokens if you want numeric cost bounds.",
+        "message": "Pricing is not configured; cost estimates will be unknown.",
+        "severity": "warning"
+      },
+      {
+        "field": "agent_runs.self_check_openrouter.model",
+        "fix": "Set the model field or the corresponding *_MODEL_ID environment variable.",
+        "message": "Model is empty for paid provider 'openrouter'.",
+        "severity": "error"
+      },
+      {
+        "field": "agent_runs.self_check_openrouter.provider",
+        "fix": "Set one of ['OPENROUTER_API_KEY'] before running paid provider experiments.",
+        "message": "API key is not configured for provider 'openrouter'.",
+        "severity": "warning"
+      },
+      {
+        "field": "agent_runs.self_check_openrouter.pricing",
+        "fix": "Add input_per_1m_tokens/output_per_1m_tokens if you want numeric cost bounds.",
+        "message": "Pricing is not configured; cost estimates will be unknown.",
+        "severity": "warning"
+      },
+      {
+        "field": "allow_paid_calls",
+        "fix": "Set allow_paid_calls: true explicitly before running paid provider experiments.",
+        "message": "Commercial API providers are configured but allow_paid_calls is false.",
+        "severity": "error"
+      }
+    ],
+    "path": "configs/pilot_multi_provider_20.yaml",
+    "provider_checks": [
+      {
+        "agent": "direct_tool_agent",
+        "agent_run": "direct_tool_openai",
+        "api_key_configured": false,
+        "base_url_configured": false,
+        "model_configured": false,
+        "provider": "openai",
+        "required_env_vars": [
+          "OPENAI_API_KEY"
+        ]
+      },
+      {
+        "agent": "planner_executor_agent",
+        "agent_run": "planner_executor_anthropic",
+        "api_key_configured": false,
+        "base_url_configured": false,
+        "model_configured": false,
+        "provider": "anthropic",
+        "required_env_vars": [
+          "ANTHROPIC_API_KEY"
+        ]
+      },
+      {
+        "agent": "self_check_agent",
+        "agent_run": "self_check_openrouter",
+        "api_key_configured": false,
+        "base_url_configured": false,
+        "model_configured": false,
+        "provider": "openrouter",
+        "required_env_vars": [
+          "OPENROUTER_API_KEY"
+        ]
+      }
+    ],
+    "ready_to_run": false,
+    "run_name": "pilot_multi_provider_20",
+    "valid": true
+  },
+  "cost_estimate": {
+    "agent_runs": [
+      {
+        "agent_run": "direct_tool_openai",
+        "budget_cap_usd": 25.0,
+        "input_tokens_upper_bound": 0,
+        "instances": 120,
+        "known_cost_upper_bound_usd": null,
+        "known_output_cost_upper_bound_usd": null,
+        "llm_calls_upper_bound": 960,
+        "max_steps": 8,
+        "model": "",
+        "num_repeats": 1,
+        "output_tokens_upper_bound": 672000,
+        "pricing_configured": false,
+        "pricing_source": "none",
+        "provider": "openai",
+        "task_budget_cap_usd": null,
+        "total_tokens_upper_bound": 672000
+      },
+      {
+        "agent_run": "planner_executor_anthropic",
+        "budget_cap_usd": 25.0,
+        "input_tokens_upper_bound": 0,
+        "instances": 120,
+        "known_cost_upper_bound_usd": null,
+        "known_output_cost_upper_bound_usd": null,
+        "llm_calls_upper_bound": 960,
+        "max_steps": 8,
+        "model": "",
+        "num_repeats": 1,
+        "output_tokens_upper_bound": 864000,
+        "pricing_configured": false,
+        "pricing_source": "none",
+        "provider": "anthropic",
+        "task_budget_cap_usd": null,
+        "total_tokens_upper_bound": 864000
+      },
+      {
+        "agent_run": "self_check_openrouter",
+        "budget_cap_usd": 25.0,
+        "input_tokens_upper_bound": 0,
+        "instances": 120,
+        "known_cost_upper_bound_usd": null,
+        "known_output_cost_upper_bound_usd": null,
+        "llm_calls_upper_bound": 960,
+        "max_steps": 8,
+        "model": "",
+        "num_repeats": 1,
+        "output_tokens_upper_bound": 864000,
+        "pricing_configured": false,
+        "pricing_source": "none",
+        "provider": "openrouter",
+        "task_budget_cap_usd": null,
+        "total_tokens_upper_bound": 864000
+      }
+    ],
+    "budget_status": "no_run_cap",
+    "config_run_name": "pilot_multi_provider_20",
+    "instances": 120,
+    "known_cost_upper_bound_usd": null,
+    "known_output_cost_upper_bound_usd": null,
+    "note": "This is a conservative token estimate. Actual input tokens, provider pricing, retries, and cached-token discounts vary by provider and model.",
+    "run_budget_cap_usd": null
+  },
+  "dataset_probe": {
+    "benchmark_path": "/Users/saketmaganti/codexprojects/causal-agent-bench/data/processed/pilot_v0_1/dev_instances.jsonl",
+    "sample_condition": "clean",
+    "sample_instance_id": "travel_planning_medium_000.clean"
+  },
+  "dry_run": true,
+  "num_agent_runs": 3,
+  "num_instances": 120,
+  "num_repeats": 1,
+  "planned_trajectories": 360,
+  "providers": [
+    {
+      "agent": "direct_tool_agent",
+      "agent_run": "direct_tool_openai",
+      "model": "",
+      "provider": "openai",
+      "provider_configured": false,
+      "requires_api_key_for_real_run": true,
+      "secret_values_logged": false
+    },
+    {
+      "agent": "planner_executor_agent",
+      "agent_run": "planner_executor_anthropic",
+      "model": "",
+      "provider": "anthropic",
+      "provider_configured": false,
+      "requires_api_key_for_real_run": true,
+      "secret_values_logged": false
+    },
+    {
+      "agent": "self_check_agent",
+      "agent_run": "self_check_openrouter",
+      "model": "",
+      "provider": "openrouter",
+      "provider_configured": false,
+      "requires_api_key_for_real_run": true,
+      "secret_values_logged": false
+    }
+  ],
+  "safety": {
+    "api_keys_printed": false,
+    "provider_calls_replaced_with_local_stub": true,
+    "will_call_providers": false,
+    "will_write_results": true
+  },
+  "simulations": [
+    {
+      "agent": "direct_tool_agent",
+      "agent_run": "direct_tool_openai",
+      "dry_provider": "local_stub",
+      "estimated_cost_usd": 0.0,
+      "final_answer_present": true,
+      "instance_id": "travel_planning_medium_000.clean",
+      "model": "",
+      "ok": true,
+      "provider": "openai",
+      "provider_calls_made": false,
+      "steps": 2,
+      "terminated_reason": "final_answer"
+    },
+    {
+      "agent": "planner_executor_agent",
+      "agent_run": "planner_executor_anthropic",
+      "dry_provider": "local_stub",
+      "estimated_cost_usd": 0.0,
+      "final_answer_present": true,
+      "instance_id": "travel_planning_medium_000.clean",
+      "model": "",
+      "ok": true,
+      "provider": "anthropic",
+      "provider_calls_made": false,
+      "steps": 2,
+      "terminated_reason": "final_answer"
+    },
+    {
+      "agent": "self_check_agent",
+      "agent_run": "self_check_openrouter",
+      "dry_provider": "local_stub",
+      "estimated_cost_usd": 0.0,
+      "final_answer_present": true,
+      "instance_id": "travel_planning_medium_000.clean",
+      "model": "",
+      "ok": true,
+      "provider": "openrouter",
+      "provider_calls_made": false,
+      "steps": 2,
+      "terminated_reason": "final_answer"
+    }
+  ],
+  "tool_schema_report": {
+    "available_tools": [
+      "search_database",
+      "compare_options",
+      "calculate_price"
+    ],
+    "checked_tools": 14,
+    "issues": [],
+    "valid": true
+  },
+  "would_execute": true
+}

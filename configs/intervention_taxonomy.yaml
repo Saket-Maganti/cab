@@ -1,0 +1,376 @@
+version: "0.1-pre-provider-pilot"
+scope: "Machine-readable no-run intervention taxonomy. It does not validate empirical claims."
+interventions:
+  - intervention_type: tool_removal
+    description: "Remove one relevant tool while preserving the user goal and non-removed tools."
+    intended_causal_factor: "tool availability"
+    allowed_changed_fields:
+      - available_tools
+      - tool_availability_patch
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+    answer_preservation: depends
+    requires_human_review: true
+    examples:
+      - "Remove a search tool and expect a limitation-aware answer."
+    risks:
+      - "Removing a required evidence source can change the answer policy rather than the factual target."
+    severity_if_violated: blocker
+  - intervention_type: irrelevant_tools
+    description: "Add or expose irrelevant tools without changing the user goal."
+    intended_causal_factor: "tool distractor availability"
+    allowed_changed_fields:
+      - available_tools
+      - tool_availability_patch
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: false
+    examples:
+      - "Add a plausible but irrelevant lookup tool."
+    risks:
+      - "A distractor may accidentally reveal or obscure target evidence."
+    severity_if_violated: warning
+  - intervention_type: tool_failure
+    description: "Force a relevant tool to fail deterministically."
+    intended_causal_factor: "tool reliability"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+    answer_preservation: depends
+    requires_human_review: true
+    examples:
+      - "Return a deterministic simulated error from one lookup tool."
+    risks:
+      - "A failure may remove all evidence and require a limitation answer."
+    severity_if_violated: blocker
+  - intervention_type: tool_corruption
+    description: "Return subtly incorrect output from a relevant tool."
+    intended_causal_factor: "tool output correctness"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Override one numeric field in a tool response."
+    risks:
+      - "Corruption can become answer-changing if hidden ground truth is changed to match it."
+    severity_if_violated: blocker
+  - intervention_type: memory_corruption
+    description: "Change initial memory/context while preserving task facts and instruction."
+    intended_causal_factor: "initial memory"
+    allowed_changed_fields:
+      - initial_memory
+      - memory_patch
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Seed a stale remembered threshold that conflicts with tool evidence."
+    risks:
+      - "Memory edits can leak hidden labels or change the visible task."
+    severity_if_violated: blocker
+  - intervention_type: observation_conflict
+    description: "Introduce conflicting observation evidence while preserving task goal and ground truth."
+    intended_causal_factor: "observation conflict"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Add a conflicting page snippet that should be cross-checked."
+    risks:
+      - "Conflict may accidentally become the only visible evidence."
+    severity_if_violated: blocker
+  - intervention_type: distractor_evidence
+    description: "Add irrelevant but plausible evidence."
+    intended_causal_factor: "distractor observation"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Return an unrelated policy row alongside the correct row."
+    risks:
+      - "Distractors can be too easy or accidentally identify the answer."
+    severity_if_violated: warning
+  - intervention_type: premature_success_signal
+    description: "Expose a misleading success cue before the task is actually complete."
+    intended_causal_factor: "premature stopping signal"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+      - metadata
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Observation says complete before required evidence has been checked."
+    risks:
+      - "Metadata-only signals may not be visible to the agent."
+    severity_if_violated: warning
+  - intervention_type: ambiguous_instruction
+    description: "Patch instruction wording to introduce ambiguity while keeping the target task family explicit."
+    intended_causal_factor: "instruction ambiguity"
+    allowed_changed_fields:
+      - instruction_patch
+      - user_instruction
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+    answer_preservation: depends
+    requires_human_review: true
+    examples:
+      - "Replace a precise constraint with a deliberately underspecified one."
+    risks:
+      - "Ambiguity can create a new task rather than an intervention."
+    severity_if_violated: blocker
+  - intervention_type: long_horizon_dependency
+    description: "Require later tool calls to depend on earlier observations (dependency injected via tool_output_patch); the underlying target answer is unchanged."
+    intended_causal_factor: "step dependency length"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    allowed_change_categories:
+      - observation_conflict
+      - metadata_only
+      - provenance_only
+      - formatting_only
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Require one extra verification step before final answer."
+    risks:
+      - "Longer horizon edits can change success criteria or difficulty too broadly."
+    severity_if_violated: blocker
+  - intervention_type: web_broken_link
+    description: "Simulate a broken web link or unavailable page."
+    intended_causal_factor: "web retrieval availability"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+    answer_preservation: depends
+    requires_human_review: true
+    examples:
+      - "One page fetch returns a deterministic 404."
+    risks:
+      - "The broken page may remove all evidence."
+    severity_if_violated: blocker
+  - intervention_type: web_stale_page
+    description: "Expose stale web content while preserving the intended current answer."
+    intended_causal_factor: "web content freshness"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Search result contains an obsolete policy value."
+    risks:
+      - "Stale content can be indistinguishable from an answer-changing update."
+    severity_if_violated: blocker
+  - intervention_type: web_irrelevant_search_result
+    description: "Inject irrelevant web search result content."
+    intended_causal_factor: "search-result distraction"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: false
+    examples:
+      - "Top search result is off-topic but plausible."
+    risks:
+      - "Irrelevant result can accidentally disclose the correct answer."
+    severity_if_violated: warning
+  - intervention_type: web_conflicting_page
+    description: "Expose a web page that conflicts with another evidence source."
+    intended_causal_factor: "web evidence conflict"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "A static page disagrees with a database row."
+    risks:
+      - "Conflict can become answer-changing without explicit rationale."
+    severity_if_violated: blocker
+  - intervention_type: web_hidden_evidence
+    description: "Place required evidence in a less obvious web observation."
+    intended_causal_factor: "evidence salience"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "Relevant value appears only in a footnote-like snippet."
+    risks:
+      - "Hidden evidence can become impossible to discover."
+    severity_if_violated: blocker
+  - intervention_type: argument_perturbation
+    description: "Perturb expected tool arguments without changing the task target."
+    intended_causal_factor: "tool argument formation"
+    allowed_changed_fields:
+      - tool_arguments
+      - argument_schema
+      - patch_details
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: false
+    examples:
+      - "Require an exact date-format argument."
+    risks:
+      - "Schema changes may become tool-interface interventions."
+    severity_if_violated: warning
+  - intervention_type: stopping_recovery
+    description: "Create a recoverable stopping or early-completion trap."
+    intended_causal_factor: "recovery behavior"
+    allowed_changed_fields:
+      - tool_output_patch
+      - observations
+      - patch_details
+      - metadata
+    expected_unchanged_fields:
+      - base_task_id
+      - available_tools
+      - user_instruction
+      - success_criteria
+      - hidden_ground_truth
+      - initial_memory
+      - expected_final_answer
+    answer_preservation: answer_preserving
+    requires_human_review: true
+    examples:
+      - "A tool response looks final but lacks a required validation fact."
+    risks:
+      - "Recovery target can be underspecified."
+    severity_if_violated: warning
