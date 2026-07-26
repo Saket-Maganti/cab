@@ -431,6 +431,12 @@ def summarize_complete_pairs(
         for family in families.values()
         if family["acrs_family"] is not None
     ]
+    family_clean_conditioned = [
+        family["conditional_robustness_among_clean_successes"]
+        for family in families.values()
+        if family["conditional_robustness_among_clean_successes"]
+        is not None
+    ]
     recovery_values = [
         float(pair["recovery_success"])
         for pair in pairs
@@ -455,7 +461,17 @@ def summarize_complete_pairs(
         "macro_acrs_reportable_family_count": len(family_ratios),
         "macro_acrs_excluded_family_count": len(families)
         - len(family_ratios),
+        "family_macro_clean_conditioned_robustness": _mean_or_none(
+            family_clean_conditioned
+        ),
+        "family_macro_clean_conditioned_reportable_family_count": len(
+            family_clean_conditioned
+        ),
+        "family_macro_clean_conditioned_excluded_family_count": (
+            len(families) - len(family_clean_conditioned)
+        ),
         "absolute_degradation": absolute,
+        "paired_absolute_degradation": absolute,
         "relative_degradation": relative,
         "conditional_robustness_among_clean_successes": conditional,
         "conditional_degradation_among_clean_successes": (
@@ -468,6 +484,14 @@ def summarize_complete_pairs(
         ),
         "worst_family_robustness": (
             min(family_ratios) if family_ratios else None
+        ),
+        "worst_family_acrs": (
+            min(family_ratios) if family_ratios else None
+        ),
+        "worst_family_clean_conditioned_robustness": (
+            min(family_clean_conditioned)
+            if family_clean_conditioned
+            else None
         ),
         "families": families,
         "transition_profile": transition_profile,

@@ -339,6 +339,51 @@ def test_recovery_abstention_and_transition_outcomes_are_preserved() -> None:
     assert result["false_abstention_rate"] == 0.0
 
 
+def test_identity_intervention_has_zero_degradation_and_full_retention() -> None:
+    result = agent_robustness(
+        _paired_rows([(1, 1), (0, 0), (1, 1)])
+    )["agent_a"]
+
+    assert result["paired_absolute_degradation"] == 0.0
+    assert result["conditional_robustness_among_clean_successes"] == 1.0
+    assert result["acrs"] == 1.0
+    assert result["transition_profile"]["success_to_failure"]["count"] == 0
+    assert result["transition_profile"]["failure_to_success"]["count"] == 0
+
+
+def test_family_macro_and_worst_clean_conditioned_robustness() -> None:
+    rows = [
+        *_paired_rows(
+            [(1, 1), (1, 0)],
+            family="tool_failure",
+        ),
+        _row("m0", "clean", 1),
+        _row(
+            "m0",
+            "intervention",
+            1,
+            family="memory_corruption",
+            intervention_id="m0.memory_corruption",
+        ),
+    ]
+    result = agent_robustness(rows)["agent_a"]
+
+    assert (
+        result["family_macro_clean_conditioned_robustness"]
+        == 0.75
+    )
+    assert (
+        result["worst_family_clean_conditioned_robustness"]
+        == 0.5
+    )
+    assert (
+        result[
+            "family_macro_clean_conditioned_reportable_family_count"
+        ]
+        == 2
+    )
+
+
 def test_clustered_and_stratified_bootstraps_are_deterministic() -> None:
     rows = [
         *_paired_rows([(1, 0), (1, 1)], family="tool_failure"),
@@ -515,3 +560,72 @@ def test_matched_aggregate_property_matches_pairwise_arithmetic(
         "n_pairs",
     ):
         assert forward[key] == reversed_result[key]
+
+
+@given(
+    st.lists(
+        st.tuples(
+            st.integers(min_value=0, max_value=1),
+            st.integers(min_value=0, max_value=1),
+        ),
+        min_size=1,
+        max_size=30,
+    )
+)
+@settings(max_examples=40, deadline=None)
+def test_transition_identity_equals_paired_absolute_degradation(
+    outcomes: list[tuple[int, int]],
+) -> None:
+    result = agent_robustness(_paired_rows(outcomes))["agent_a"]
+    transitions = result["transition_profile"]
+    expected = (
+        transitions["success_to_failure"]["count"]
+        - transitions["failure_to_success"]["count"]
+    ) / result["n_pairs"]
+
+    assert result["paired_absolute_degradation"] == pytest.approx(
+        expected,
+        abs=1e-6,
+    )
+
+
+@given(
+    st.lists(
+        st.tuples(
+            st.integers(min_value=0, max_value=1),
+            st.integers(min_value=0, max_value=1),
+        ),
+        min_size=1,
+        max_size=30,
+    )
+)
+@settings(max_examples=40, deadline=None)
+def test_improving_intervention_outcomes_is_monotone(
+    outcomes: list[tuple[int, int]],
+) -> None:
+    improved = [
+        (clean, max(intervention, clean))
+        for clean, intervention in outcomes
+    ]
+    before = agent_robustness(_paired_rows(outcomes))["agent_a"]
+    after = agent_robustness(_paired_rows(improved))["agent_a"]
+
+    assert (
+        after["intervention_success_rate"]
+        >= before["intervention_success_rate"]
+    )
+    assert (
+        after["paired_absolute_degradation"]
+        <= before["paired_absolute_degradation"]
+    )
+    if (
+        before["conditional_robustness_among_clean_successes"]
+        is not None
+    ):
+        assert (
+            after["conditional_robustness_among_clean_successes"]
+            >= before["conditional_robustness_among_clean_successes"]
+        )
+    if before["acrs"] is not None:
+        assert after["acrs"] is not None
+        assert after["acrs"] >= before["acrs"]
