@@ -127,6 +127,58 @@ def _check_paths_exist(paths: list[str], repo_root: Path) -> list[str]:
     return errors
 
 
+def _check_forbidden_release_payloads(
+    paths: list[str],
+    repo_root: Path,
+) -> list[str]:
+    """Reject private/protected payload paths from every release category."""
+
+    policy_path = repo_root / "configs/cab_heldout_release_policy.json"
+    policy: dict = {}
+    if policy_path.is_file():
+        try:
+            value = json.loads(policy_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            value = {}
+        if isinstance(value, dict):
+            policy = value
+    private_root = str(
+        policy.get(
+            "private_payload_root",
+            "private_data/heldout_challenge_v2/",
+        )
+    ).rstrip("/")
+    patterns = [
+        str(value)
+        for value in policy.get(
+            "protected_payload_globs",
+            [
+                "private_data/heldout_challenge_v2/**",
+                "data/**/heldout_challenge_v2*.jsonl",
+                "data/**/*protected*heldout*.jsonl",
+            ],
+        )
+        if isinstance(value, str)
+    ]
+    allowed = {
+        str(value)
+        for value in policy.get("allowed_public_metadata", [])
+        if isinstance(value, str)
+    }
+    errors: list[str] = []
+    for value in paths:
+        if value in allowed:
+            continue
+        candidate = Path(value)
+        private = value == private_root or value.startswith(f"{private_root}/")
+        protected = any(candidate.match(pattern) for pattern in patterns)
+        if private or protected:
+            errors.append(
+                f"forbidden private/protected release payload: {value}"
+            )
+    return errors
+
+
 def _check_card_sections(cards: list[str], required_sections: list[str], repo_root: Path) -> list[str]:
     errors: list[str] = []
     for rel_path in cards:
@@ -178,6 +230,7 @@ def run_release_check(
     errors.extend(_check_complete_inventory(manifest, root))
     inventory = _collect_manifest_paths(manifest)
     errors.extend(_check_paths_exist(inventory, root))
+    errors.extend(_check_forbidden_release_payloads(inventory, root))
     errors.extend(
         _check_card_sections(
             manifest.get("section_validated_cards") or manifest.get("cards", []),

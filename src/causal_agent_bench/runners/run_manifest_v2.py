@@ -69,6 +69,9 @@ class CanonicalRunManifest(BaseModel):
     token_budget: int = Field(ge=0)
     timeout_seconds: int = Field(gt=0)
     retry_policy: dict[str, Any]
+    raac_policy: dict[str, Any] | None = None
+    raac_comparison_mode: Literal["equal_budget", "practical_budget"] | None = None
+    raac_overhead: dict[str, Any] = Field(default_factory=dict)
     start_time: datetime | None = None
     end_time: datetime | None = None
     status: RunStatus = "planned"
@@ -209,6 +212,8 @@ def validate_merge_manifests(
         "model_id",
         "model_revision",
         "prompt_hash",
+        "raac_policy",
+        "raac_comparison_mode",
     )
     conflicts: list[str] = []
     if manifests:
@@ -274,6 +279,9 @@ def write_manifest_template(path: str | Path) -> Path:
         "token_budget": 0,
         "timeout_seconds": 1,
         "retry_policy": {"max_retries": 0, "equal_across_models": True},
+        "raac_policy": None,
+        "raac_comparison_mode": None,
+        "raac_overhead": {},
         "start_time": None,
         "end_time": None,
         "status": "planned",
@@ -316,4 +324,3 @@ def _hash_payload(payload: dict[str, Any]) -> str:
         default=str,
     ).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
-

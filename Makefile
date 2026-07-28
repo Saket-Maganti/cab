@@ -12,7 +12,7 @@ CAB_MAX_CEILING_TESTS := \
 	tests/test_claim_ledger.py \
 	tests/test_release_check.py
 
-.PHONY: install test test-serial coverage lock audit spell mutate lint typecheck smoke fast-check precommit pre-commit-install build-check security-check artifact-check artifact-smoke artifact-deterministic release-check release-dry-run paper-fill export-leaderboard export-failure-gallery ablation-matrix batch-smoke audit-contamination paper paper-draft paper-check paper-submission-check submission-precheck submission-check help doctor plan-micro audit-configs audit-repo check-claims check-paper check-readiness index-runs check-run-index god-tier-status no-run-reports governance-reports clean-pycache status master-status final-audit max-ceiling-tests max-ceiling-tests-serial split-registry-check kaggle-fixture-check max-ceiling-static-gates max-ceiling-ci max-ceiling-ci-serial
+.PHONY: install test test-serial coverage lock audit spell mutate lint typecheck smoke fast-check precommit pre-commit-install build-check security-check artifact-check artifact-smoke artifact-deterministic release-check release-dry-run paper-fill export-leaderboard export-failure-gallery ablation-matrix batch-smoke audit-contamination paper paper-draft paper-check paper-submission-check submission-precheck submission-check help doctor plan-micro audit-configs audit-repo check-claims check-paper check-readiness index-runs check-run-index god-tier-status no-run-reports governance-reports clean-pycache status master-status final-audit max-ceiling-tests max-ceiling-tests-serial split-registry-check kaggle-fixture-check iclr-resource-check max-ceiling-static-gates max-ceiling-ci max-ceiling-ci-serial
 
 help:
 	@echo "Safe targets: install, test, coverage, lint, typecheck, fast-check, precommit,"
@@ -45,6 +45,9 @@ split-registry-check:
 
 kaggle-fixture-check:
 	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) scripts/validate_kaggle_notebooks.py --execute-offline
+
+iclr-resource-check:
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) scripts/cab_resource_preflight.py --worker-mode low_memory --bootstrap-mode pilot --output /tmp/cab_resource_preflight.json
 
 max-ceiling-static-gates: split-registry-check kaggle-fixture-check
 	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) scripts/security_check.py

@@ -50,6 +50,46 @@ def run_cab_leakage_gate(
             continue
         role = str(role_row.get("role", ""))
         source = _resolve(root, str(role_row.get("source", "")))
+        if role_row.get("source_kind") == "public_commitment_manifest":
+            role_reports.append(
+                {
+                    "role": role,
+                    "source": _relative(source, root),
+                    "materialized": False,
+                    "contract_lint": {
+                        "passed": True,
+                        "scope": (
+                            "No public payload exists; manifest safety is "
+                            "validated by heldout_release_policy."
+                        ),
+                        "counts": {"blockers": 0, "warnings": 0},
+                    },
+                    "pair_link": {
+                        "passed": True,
+                        "scope": (
+                            "Private membership is represented by HMAC "
+                            "commitments and is not execution-ready."
+                        ),
+                        "blockers": 0,
+                    },
+                    "static_leakage": {
+                        "passed": True,
+                        "blocker_cluster_count": 0,
+                        "scope": (
+                            "Payload-free public commitment; private overlap "
+                            "checks run only when private payload is materialized."
+                        ),
+                    },
+                    "agent_payload": {
+                        "passed": True,
+                        "blocker_count": 0,
+                        "scope": "No agent-visible payload is present in public Git.",
+                    },
+                    "scientific_execution_allowed": False,
+                    "passed": True,
+                }
+            )
+            continue
         if role == "dev_fixture":
             payload_scan = scan_agent_visible_dataset(source, repo_root=root)
             role_reports.append(
@@ -84,7 +124,7 @@ def run_cab_leakage_gate(
         contract = lint_task_intervention_dataset(
             dataset_dir,
             repo_root=root,
-            role=role,
+            role=str(role_row.get("historical_source_role", role)),
             selected_instance_ids=selected_ids,
             strict_explicit_policies=True,
         )

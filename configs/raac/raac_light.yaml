@@ -1,0 +1,25 @@
+schema_version: cab_raac_policy_v1
+name: raac_light
+evidence_class: DESIGN_ONLY
+scientific_evidence: false
+paper_eligible: false
+raac:
+  enabled: true
+  variant: RAAC_LIGHT
+  comparison_mode: practical_budget
+  equal_budget_contract: null
+  evidence_class: EXECUTION_PENDING
+  observable_signals_only: true
+  checkpoint_every_decision: 1
+declared_compute_contract:
+  max_extra_model_calls: 3
+  max_extra_tool_calls: 3
+  max_retries: 1
+  max_alternate_routes: 1
+  max_verification_steps: 1
+  max_clarification_steps: 0
+  token_budget: 384
+  wall_clock_budget_seconds: 30.0
+termination_rule: >-
+  After one retry, one optional alternate route, and one verification, answer
+  only with sufficient observable evidence; otherwise qualify or abstain.

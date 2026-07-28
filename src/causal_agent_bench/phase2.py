@@ -153,6 +153,9 @@ def validate_config_file(config_path: str | Path) -> dict[str, Any]:
             "run_dir": config.run_dir,
             "run_dir_exists": Path(config.run_dir).exists(),
             "export_paper_assets": config.export_paper_assets,
+            "raac_treatment_analysis": config.raac_treatment_analysis,
+            "raac_overhead_analysis": config.raac_overhead_analysis,
+            "raac_clean_tradeoff_analysis": config.raac_clean_tradeoff_analysis,
         }
     if {"run_dir"}.issubset(raw):
         config = ScoringConfig.model_validate(raw)

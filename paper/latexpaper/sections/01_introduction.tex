@@ -4,17 +4,25 @@ Tool-using language agents are often evaluated by final task success: did the ag
 
 The same clean task can therefore hide failures that appear only when a targeted condition changes. Consider an agent that solves a travel-planning task by calling a search tool and returning an acceptable recommendation. If the search tool is unavailable, returns a partial result, or conflicts with stale memory, a robust agent should notice the changed evidence state, use alternatives when possible, state uncertainty when evidence is insufficient, and avoid declaring success too early. A final-answer score can miss whether the agent actually did those things. This motivates \claimref{C1}: clean task success may overestimate robust competence.
 
-\benchmark frames this measurement problem as paired interventional evaluation. Each base task has a clean condition and one or more intervention conditions that preserve the high-level user goal while perturbing a named factor such as tool availability, tool reliability, memory correctness, observation consistency, distractor evidence, or premature success signals. The contribution is not merely to make tasks harder. It is to ask whether specific agent skills survive a controlled change, and to make the intervention metadata auditable enough that reviewers can challenge whether the intended factor was isolated.
+We frame this measurement problem as an intervention-validity and paired-inference methodology, with \benchmark as its empirical vehicle. Each base task has a clean condition and one or more intervention conditions that preserve the high-level user goal while perturbing a named factor such as tool availability, tool reliability, memory correctness, observation consistency, distractor evidence, or premature success signals. The contribution is not merely to make tasks harder. It is to ask whether specific agent skills survive a controlled change, and to make the intervention metadata auditable enough that reviewers can challenge whether the intended factor was isolated.
 
 The benchmark reports final-answer scores together with trajectory diagnostics for tool use, recovery, contradiction handling, memory verification, stopping behavior, and trajectory faithfulness. Agent Causal Robustness Score (\acrs) is a compact summary of intervention success relative to clean success, but it is not treated as a complete measure of competence. The paper design requires \acrs to be interpreted alongside clean success, intervention success, uncertainty estimates, and component metrics. These diagnostics support the planned tests in \claimref{C2}--\claimref{C8}.
 
+We additionally introduce Recovery-Aware Agent Control (\RAAC), a bounded,
+model-agnostic controller that receives neither intervention labels nor gold
+answers. \RAAC reacts only to observable tool and evidence anomalies and can
+verify, retry, use an alternate route, cross-check, clarify, answer
+conditionally, or abstain. Its planned tests compare equal-budget and practical
+budget modes and report clean-path cost, false abstention, and full overhead;
+no effectiveness claim is made before audited execution.
+
 Our contributions are:
 \begin{enumerate}[leftmargin=*]
-    \item We define an interventional evaluation design for tool-using agents, separating clean task success from robustness under targeted perturbations.
-    \item We introduce \benchmark, a benchmark of paired clean and intervened tasks targeting named agent skills across synthetic domains (filled from \texttt{paper/latexpaper/generated/01\_introduction\_snippet.tex} when available).
-    \item We propose \acrs plus trajectory-level diagnostics for tool use, recovery, contradiction handling, memory verification, and stopping behavior.
-    \item We provide a reproducible evaluation package with schemas, configs, deterministic simulated tools, trajectory logs, scoring code, analysis assets, run-management CLI, evidence-level guards, audit tooling, and release/reproducibility scaffolding.
-    \item We report pilot empirical observations only after \texttt{fill-paper-from-run} links a verified non-oracle run; otherwise findings remain placeholders. Mock, stub, dry-run, and interrupted artifacts validate engineering paths only.
+    \item We define an intervention-validity methodology for auditing goal preservation, manipulation success, invariance, solvability, and answer contracts.
+    \item We define paired robustness inference with base-task clustering, family stratification, clean-conditioned denominators, and rank uncertainty.
+    \item We introduce \RAAC with typed states, observable signals, bounded compute contracts, auditable traces, and explicit abstention.
+    \item We construct \benchmark plus a naturalistic-transfer protocol to test whether controlled robustness predicts messier workflow outcomes.
+    \item We provide a leakage-resistant reproducibility package with schemas, deterministic tools, run and notebook infrastructure, human/C10 gates, evidence-level guards, and fail-closed paper assets.
 \end{enumerate}
 
 \paragraph{Repository status.}

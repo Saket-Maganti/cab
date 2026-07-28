@@ -966,9 +966,9 @@ def _verification_report(
 def _handbook(state: dict[str, Any], generated_at: str) -> str:
     roles = {row["role"]: row for row in state["datasets"]["roles"]}
     compact_instances = roles["compact20_pilot"]["instance_count"]
-    scale_instances = roles["scale100_confirmatory"]["instance_count"]
+    scale_instances = roles["scale100_public_development_v1"]["instance_count"]
     natural_instances = roles["naturalistic_transfer"]["instance_count"]
-    main_instances = roles["main500_confirmatory"]["instance_count"]
+    main_instances = roles["main500_public_development_v1"]["instance_count"]
     runs = _handbook_runs(
         compact_instances=compact_instances,
         scale_instances=scale_instances,

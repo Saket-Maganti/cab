@@ -1,0 +1,31 @@
+schema_version: cab_iclr_resource_profiles_v1
+evidence_class: DESIGN_ONLY
+estimates_label: ESTIMATE_NOT_MEASURED
+mac_m4_16gb:
+  serial:
+    max_workers: 1
+    chunk_rows: 250
+  low_memory:
+    max_workers: 2
+    chunk_rows: 500
+  four_worker:
+    max_workers: 4
+    chunk_rows: 500
+  adaptive:
+    max_workers: 4
+    minimum_memory_gib_per_worker: 3
+bootstrap:
+  pilot:
+    replicates: 1000
+    shard_size: 250
+  final:
+    replicates: 10000
+    shard_size: 250
+  clustering_unit: base_task_id
+  family_stratification: true
+  deterministic_seed: 20260728
+retention:
+  keep_raw_evidence: true
+  automatic_raw_deletion: false
+  compress_completed_shards: true
+  intermediate_regeneration_allowed_only_when_manifested: true

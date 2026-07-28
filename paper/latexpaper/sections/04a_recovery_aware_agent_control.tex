@@ -1,0 +1,38 @@
+\section{Recovery-Aware Agent Control}
+
+Recovery-Aware Agent Control (\RAAC) is a model-agnostic control layer for
+tool-using agents. It observes interaction events, not benchmark condition
+labels. The controller is forbidden from receiving the intervention family,
+intervention identifier, hidden expected behaviour, answer key, evaluator
+metadata, or gold. Its input is limited to observable signals such as tool
+errors, timeout, malformed or partial output, missing required fields, schema
+mismatch, contradictory observations, stale timestamps, inconsistent repeated
+results, impossible values, insufficient evidence, unverifiable success, and
+exhausted budgets.
+
+\paragraph{State and action contract.}
+The typed state machine moves through planning, acting, observation validation,
+anomaly detection, bounded retry, alternate routing, cross-checking,
+clarification, abstention, final verification, answering, and termination.
+Illegal transitions fail closed. Every decision records its reason code,
+trigger, remaining model/tool/token/time budgets, action, trace index, and
+evidence class. A termination rule and monotone budget consumption prevent
+infinite recovery loops.
+
+\paragraph{Policies and fairness.}
+\texttt{RAAC\_LIGHT} permits one verification, one retry, and at most one
+alternate route for limited T4 compute. \texttt{RAAC\_FULL} permits additional
+bounded contradiction resolution, clarification, abstention, and final
+verification. Component ablations remove verification, retry, abstention,
+cross-checking, alternate routing, or final verification. Equal-budget mode is
+the primary causal comparison; practical-budget mode is a separate deployment
+analysis. Both report clean and intervention success, extra model/tool calls,
+tokens, latency, and measured cost.
+
+\paragraph{Evidence status.}
+Deterministic fixtures exercise clean success, transient and persistent failure,
+conflict, stale evidence, malformed and partial output, premature success,
+insufficient evidence, clarification, abstention, and alternate-route recovery.
+They validate controller mechanics only. The hypothesis that \RAAC improves
+robustness or preserves clean performance remains to be tested on locked,
+human-validated tasks with audited non-oracle agents.

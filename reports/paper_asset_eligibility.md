@@ -1,14 +1,14 @@
 # Paper asset eligibility
 
-Generated: 2026-07-23T17:27:40.239108+00:00
+Generated: 2026-07-28T04:37:01.433269+00:00
 
 Zero-compute scan of tables/, figures/, and generated LaTeX. Missing metadata is never eligible.
 
 ## Summary
 
-- Total assets scanned: 74
+- Total assets scanned: 75
 - Eligible for paper claims: 0
-- Flagged: 74
+- Flagged: 75
 
 ## Flagged assets
 
@@ -333,6 +333,11 @@ Zero-compute scan of tables/, figures/, and generated LaTeX. Missing metadata is
 - Reasons: generated/section TeX has no eligibility metadata; TeX contains empirical/results-like content without eligible metadata; generated TeX contains placeholder/blocked language
 
 ### `paper/latexpaper/sections/04_interventional_framework.tex`
+- Classification: `unsafe_for_results_section`
+- Recommendation: `needs_metadata_review`
+- Reasons: generated/section TeX has no eligibility metadata; TeX contains empirical/results-like content without eligible metadata
+
+### `paper/latexpaper/sections/04a_recovery_aware_agent_control.tex`
 - Classification: `unsafe_for_results_section`
 - Recommendation: `needs_metadata_review`
 - Reasons: generated/section TeX has no eligibility metadata; TeX contains empirical/results-like content without eligible metadata

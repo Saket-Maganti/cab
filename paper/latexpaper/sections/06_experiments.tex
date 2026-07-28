@@ -6,7 +6,20 @@ The planned main experiments use generated benchmark directories, deterministic 
 Before execution, configs are validated (\texttt{validate-config}, \texttt{plan-run}, \texttt{dry-run}) and checked against evidence-level policy (\texttt{docs/EVIDENCE\_LEVEL\_POLICY.md}). During execution, \texttt{run-status} and \texttt{monitor} report progress; \texttt{mark-interrupted} labels incomplete runs without deleting artifacts. After completion, \texttt{score}, \texttt{analyze}, \texttt{generate-report}, and \texttt{export-paper-assets} produce reports and tables subject to engineering-only guards. \texttt{fill-paper-from-run} may populate \texttt{paper/latexpaper/generated/} only from verified non-oracle runs. Claim-ledger, placeholder, and paper-asset validators (\texttt{check\_claim\_ledger.py}, \texttt{check\_paper\_placeholders.py}, \texttt{validate\_paper\_assets.py}) enforce honest wording before submission.
 
 \paragraph{Benchmark stages.}
-The repository defines micro mock/stub configs (seconds, zero cost), local open-weight pilots (preliminary, not scientific evidence until validated), and provider pilots/main configs (budget approval required). The pre-experiment freeze checklist (\texttt{experiments/PRE\_EXPERIMENT\_FREEZE\_CHECKLIST.md}) gates each stage. No main-scale or provider experiment is claimed complete in this draft.
+The repository defines Tier~0 one-task live smoke, Tier~1 Compact-20, Tier~2
+Scale-100, Tier~3 naturalistic transfer, and a conditional Tier~4 main
+expansion. The open-model core is designed for dual-T4 data parallelism with
+quantisation and single-GPU fallback. Provider lanes are optional. Human review,
+C10, slice lock, scorer sanity, execution approval, and run audit gate the
+tiers. No live tier is claimed complete in this draft.
+
+\paragraph{\RAAC comparisons.}
+The primary policy comparison is standard tool use versus
+\texttt{RAAC\_LIGHT} under an equal compute contract. A preregistered subset
+adds \texttt{RAAC\_FULL} and selected component ablations. Practical-budget
+comparisons are labelled separately. Every table must show clean-task change,
+intervention-task change, false abstention, model/tool-call overhead, tokens,
+latency, and measured cost; estimates may not be substituted for measurement.
 
 \paragraph{Benchmark versions.}
 The repository currently supports smoke, development, pilot, and planned main benchmark configurations. Pilot data generation is intended for pipeline validation and early failure analysis. A submission-ready experiment requires a frozen dataset version, a documented split policy with development, pilot, validation, test, and held-out-template partitions, intervention-validity audit reports with per-instance pass/warning/fail scores, a dataset hash, and a claim-ledger update linking every reported table or figure to reproducible artifacts.
@@ -18,7 +31,13 @@ The package includes deterministic baseline agents: RandomToolAgent, ScriptedOra
 Engineering artifacts include deterministic smoke runs, local-stub pilots, and a Phase~9 mock diagnostic micro run that validated end-to-end scoring, analysis, and paper-asset export (\texttt{demo/ENGINEERING\_DEMO\_BUNDLE.md}). These artifacts validate schemas, execution, scoring, and export paths, but they are not final scientific evidence about LLM agents. The final paper must replace all bracketed values with runs over the frozen benchmark and audited non-oracle LLM agents.
 
 \paragraph{Statistical reporting.}
-The analysis layer exports bootstrap confidence intervals, paired comparisons between clean and intervention conditions, per-family degradation, rank correlations, and effect-size summaries. Paired comparisons are important because intervention instances are linked to base clean tasks. These scripts are deterministic and generate explicit placeholders when required experiment families have not been run.
+The analysis layer exports base-task cluster bootstrap intervals, exact paired
+tests, family-stratified sensitivity, clean-conditioned denominators, rank and
+pairwise-superiority probabilities, multiplicity adjustments, effect sizes,
+equivalence contracts, scorer-error sensitivity, missingness and opportunity
+diagnostics, \RAAC clean-performance trade-offs, naturalistic predictive
+validity, and a cost-normalised frontier. Undefined edge cases produce blocked
+states rather than fabricated values.
 
 \paragraph{Oracle exclusion and leaderboards.}
 \texttt{ScriptedOracleAgent} may appear in sanity-check tables but must be excluded from realistic agent rankings, \acrs comparisons, and clean-vs-intervention headline figures. Table exporters and paper-fill workflows should filter oracle agents by default so upper-bound scores cannot be mistaken for deployable LLM performance.

@@ -1,25 +1,23 @@
-# Human Review UI Guide
+# Human Review Sheet Guide
 
-Status: instructions only. Do not fill rows from this document.
+Status: instructions only; no judgments are embedded here.
 
-## Reviewer Task
+Open `review_items.jsonl` with a local text/JSON viewer and
+`review_judgments.csv` with a CSV editor that preserves UTF-8 and the header.
+Filter to the reviewer slot assigned by the coordinator.
 
-For each Compact-20 candidate, inspect the clean/intervention pair and answer the review fields in the CSVs. Use your own judgment; do not copy AI-proxy labels.
+Do not sort only one column, rename columns, add formulas, or export in a locale
+that rewrites timestamps. Save a CSV copy, reopen it, and confirm the candidate
+IDs and row count are unchanged before returning it.
 
-## Review Choices
+Allowed review values:
 
-- `yes`: criterion clearly passes.
-- `no`: criterion clearly fails.
-- `unclear`: criterion cannot be resolved from the packet.
-- `exclude`: task should not be run until repaired or replaced.
+- dimensions 1–9: `yes`, `no`, `unclear`;
+- ambiguity: `acceptable`, `problematic`, `unclear`;
+- exclusion: `include`, `revise`, `exclude`;
+- confidence: integer 1–5.
 
-## Required Metadata
-
-Every completed row needs `reviewer_id`, `timestamp`, and notes for any `no`, `unclear`, or `exclude`.
-
-## Do Not
-
-- Do not infer missing information.
-- Do not change task content.
-- Do not paste proxy labels into human fields.
-- Do not mark C10 complete.
+Leave no assigned human field blank. Never fill an unassigned slot. Never
+paste AI/proxy labels or ask an AI to draft notes. Report accidental model or
+peer-label exposure to the coordinator; the affected row is ineligible until
+the blinding deviation is resolved.

@@ -1,6 +1,9 @@
+# Permanently public/contaminated legacy candidate. Never use as confirmatory data.
 seed: 20260725
 benchmark_version: main500_confirmatory_v1_candidate
 id_namespace: main500_v1
+scientific_disposition: CONTAMINATED_NOT_CONFIRMATORY
+confirmatory_eligible: false
 num_base_tasks: 550
 domains:
 - travel_planning

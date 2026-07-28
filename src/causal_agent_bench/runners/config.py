@@ -7,6 +7,7 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from causal_agent_bench.raac.config import RAACRunConfig
 from causal_agent_bench.utils.io import load_yaml
 
 KNOWN_PROVIDERS = {
@@ -58,6 +59,7 @@ class AgentRunConfig(BaseModel):
     base_url: str | None = None
     api_key_env: str | None = None
     cache_dir: str | None = None
+    raac: RAACRunConfig | None = None
     extra: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("provider")
@@ -197,6 +199,7 @@ class ExperimentConfig(BaseModel):
     base_url: str | None = None
     api_key_env: str | None = None
     cache_dir: str | None = None
+    raac: RAACRunConfig | None = None
     evidence_scope: str | None = None
     instance_metadata_filter: dict[str, Any] = Field(default_factory=dict)
     limits: RunLimitsConfig | None = None
@@ -361,9 +364,15 @@ class ExperimentConfig(BaseModel):
                 base_url=self.base_url,
                 api_key_env=self.api_key_env,
                 cache_dir=self.cache_dir,
+                raac=self.raac,
             )
             for agent in self.agents
         ]
+
+    def resolved_raac(self, agent_run: AgentRunConfig) -> RAACRunConfig | None:
+        """Return the per-agent RAAC policy, falling back to the run-level policy."""
+
+        return agent_run.raac if agent_run.raac is not None else self.raac
 
     def resolved_pricing(
         self,
@@ -535,6 +544,9 @@ class AnalysisConfig(BaseModel):
 
     run_dir: str
     export_paper_assets: bool = False
+    raac_treatment_analysis: bool = False
+    raac_overhead_analysis: bool = False
+    raac_clean_tradeoff_analysis: bool = False
 
 
 class CostEstimationConfig(BaseModel):

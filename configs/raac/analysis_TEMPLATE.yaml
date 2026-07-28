@@ -1,0 +1,5 @@
+run_dir: results/REPLACE_WITH_AUDITED_RUN
+export_paper_assets: false
+raac_treatment_analysis: true
+raac_overhead_analysis: true
+raac_clean_tradeoff_analysis: true

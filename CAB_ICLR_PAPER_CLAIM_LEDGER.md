@@ -1,0 +1,29 @@
+# CAB ICLR Paper Claim Ledger
+
+Status: pre-execution. Supported empirical claims: 0.
+
+The wording below is a ceiling, not draft results. Promotion requires audited
+evidence and an explicit machine-readable claim-ledger update.
+
+| ID | RQ / hypothesis | Required study and sample | Required validation and effect | Robustness checks | Current evidence | Allowed wording now | Forbidden wording now | Paper location |
+|---|---|---|---|---|---|---|---|---|
+| ICLR-C1 | RQ1: clean success and controlled robustness are distinct | locked Scale-100, powered open-model panel, paired clean/intervention trials | C10 pass, scorer validation, nonzero paired contrast or precise null relative to SESOI | cluster/family bootstrap, exact paired test, missingness, scorer sensitivity | `DESIGN_ONLY`; paired implementation tested | “We will test whether clean success overstates robustness.” | “Clean success overstates skill”; any number or rank claim | abstract, introduction, results |
+| ICLR-C2 | RQ2: degradation varies by intervention family | locked Scale-100 with adequate clusters per family | human-valid interventions; multiplicity-adjusted family estimates | family-stratified bootstrap, model×family interaction | `DESIGN_ONLY` | “The plan estimates family-specific degradation.” | “Family X is hardest” | method, results |
+| ICLR-C3 | RQ3: paired inference changes uncertainty/rank interpretation | common-support multi-model panel | audited complete pairs and rank probability contract | synchronized cluster bootstrap, ties, alternate metrics | `ENGINEERING_ONLY`; fixture-tested | “CAB provides paired and rank-uncertainty estimators.” | “Robustness changes model rankings” | paired inference, results |
+| ICLR-C4 | H4: intervention-validity gates exclude confounded tasks | genuine dual review, adjudication, manipulation checks, full candidate coverage | canonical C10 thresholds and slice hash freeze | agreement CIs, prevalence, exclusion sensitivity | `HUMAN_INPUT_REQUIRED`; 0 rows | “Validity is audited rather than assumed.” | “Interventions are human-validated” | construction, human validation |
+| ICLR-C5 | RQ4: RAAC improves intervention success under equal budget | standard vs `RAAC_LIGHT` on locked paired tasks; preregistered `RAAC_FULL` subset | hidden-label blindness, compute parity, audited traces, positive effect relative to SESOI | clean trade-off, overhead, policy ablations, model/family heterogeneity | `ENGINEERING_ONLY`; implementation/fixtures only | “We introduce RAAC and plan an equal-budget evaluation.” | “RAAC improves robustness” | RAAC method, experiments, results |
+| ICLR-C6 | H6: RAAC avoids unnecessary clean intervention | clean trials under standard, LIGHT, FULL | no hidden metadata; false-abstention and clean-cost thresholds frozen | clean success equivalence/non-inferiority, trace audit | `ENGINEERING_ONLY` | “RAAC includes bounded clean-path behavior.” | “RAAC preserves clean performance” | RAAC method, ablations |
+| ICLR-C7 | RQ5: verification, retry, alternate route, clarification, abstention, and final verification have separable contributions | selected RAAC ablations on common locked support | budget matching and multiple-comparison plan | full-versus-component comparisons and interaction caution | `DESIGN_ONLY` | “The ablation plan isolates controller components.” | “Verification is the key component” | ablations |
+| ICLR-C8 | RQ6: controlled robustness predicts naturalistic outcomes beyond clean success | locked 50–100 naturalistic set and informative model subset | provenance/licence/privacy/injection/C10 pass; adequate panel | correlation CI, multivariable regression, calibration, leave-family-out | `EXECUTION_PENDING` | “We will test predictive validity.” | “CAB predicts real-world failures” | transfer method, results |
+| ICLR-C9 | H9: recovery/abstention denominators change conclusions relative to raw rates | audited opportunity-labelled trajectories | opportunity flags validated against blinded traces | missing-opportunity and scorer-flip sensitivity | `ENGINEERING_ONLY`; denominator checks exist | “CAB makes opportunity denominators explicit.” | any comparative recovery or abstention result | metrics, appendix |
+| ICLR-C10 | H10: an open-model core is feasible on free T4×2 sessions | measured approved smoke and Compact-20 sessions | pinned revisions/licences, measured VRAM/runtime, integrity audit | single-GPU fallback, quantisation and resume tests | `DESIGN_ONLY`; offline fixtures only | “The infrastructure targets dual T4 with fallbacks.” | “Model X fits/runs in Y minutes/GiB” | reproducibility |
+| ICLR-C11 | RQ7: robustness gains justify their compute overhead | audited policy outcomes plus measured calls/tokens/latency/cost | equal/practical budget separation and complete metering | Pareto frontier, alternative cost weights | `ENGINEERING_ONLY` | “The plan reports a cost-normalised frontier.” | “RAAC is efficient” | results, cost appendix |
+| ICLR-C12 | Release claim: CAB is leakage-resistant and reproducible | public-safe release, protected v2 private architecture, audited manifests | contamination gate, secret scan, release validation, exact hashes | history disclosure, bundle inspection, reproduction on clean environment | `ENGINEERING_ONLY`; pre-execution repair in progress | “CAB uses fail-closed leakage and evidence gates.” | “The benchmark is uncontaminated”; “secrecy restored” | limitations, reproducibility |
+
+## Promotion rule
+
+A claim may move from the current state only when the named study, validation,
+effect/precision criterion, robustness checks, code revision, data hash, scorer
+version, and evidence class are linked in the machine-readable ledger. Fixture,
+design, proxy review, estimated runtime/cost, or preliminary unaudited evidence
+cannot promote a paper claim.

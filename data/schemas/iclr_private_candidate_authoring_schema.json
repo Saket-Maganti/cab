@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://causal-agent-bench.local/schemas/iclr-private-candidate-authoring-v1.json",
+  "title": "CAB private ICLR candidate authoring packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dataset_id",
+    "split_role",
+    "target_count",
+    "tasks"
+  ],
+  "properties": {
+    "dataset_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "split_role": {
+      "type": "string",
+      "pattern": "_v2_protected$"
+    },
+    "target_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenario_key",
+          "domain",
+          "workflow_class",
+          "difficulty",
+          "instruction",
+          "artifact_type",
+          "artifact_facts",
+          "answer_key",
+          "answer_contract",
+          "tools",
+          "intervention_families",
+          "licence"
+        ],
+        "properties": {
+          "scenario_key": {
+            "type": "string",
+            "minLength": 3
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 3
+          },
+          "workflow_class": {
+            "type": "string",
+            "minLength": 3
+          },
+          "difficulty": {
+            "enum": [
+              "easy",
+              "medium",
+              "hard",
+              "stress"
+            ]
+          },
+          "instruction": {
+            "type": "string",
+            "minLength": 40
+          },
+          "artifact_type": {
+            "type": "string",
+            "minLength": 3
+          },
+          "artifact_facts": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "answer_key": {
+            "type": "object",
+            "minProperties": 1
+          },
+          "answer_contract": {
+            "enum": [
+              "ORIGINAL_ANSWER_REQUIRED",
+              "ORIGINAL_ANSWER_WITH_VERIFICATION_REQUIRED",
+              "RECOVERY_ROUTE_REQUIRED",
+              "QUALIFIED_UNCERTAINTY_ACCEPTED",
+              "CLARIFICATION_REQUIRED",
+              "ABSTENTION_REQUIRED",
+              "MULTIPLE_VALID_OUTCOMES",
+              "HUMAN_REVIEW_REQUIRED"
+            ]
+          },
+          "tools": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 2
+            }
+          },
+          "intervention_families": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "licence": {
+            "type": "string",
+            "minLength": 2
+          }
+        }
+      }
+    }
+  }
+}

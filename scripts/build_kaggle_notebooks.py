@@ -28,6 +28,7 @@ class NotebookSpec:
     exact_live_outputs: tuple[str, ...]
     requires_model_snapshot: bool
     supports_real_artifacts: bool = True
+    carries_raac_matrix: bool = False
 
 
 SPECS = (
@@ -133,10 +134,15 @@ SPECS = (
             "controls, fixture runs, and future real evidence explicitly separated."
         ),
         live_kind="runner",
-        live_config="configs/ablation_matrix_local_stub.yaml",
+        live_config="configs/raac/kaggle_t4x2_raac_TEMPLATE_NOT_APPROVED.yaml",
         exact_inputs=(
-            "configs/ablation_matrix_local_stub.yaml",
-            "configs/ablations/",
+            "configs/raac/kaggle_t4x2_raac_TEMPLATE_NOT_APPROVED.yaml",
+            "configs/raac/kaggle_t4x2_matrix.yaml",
+            "configs/raac/raac_light.yaml",
+            "configs/raac/raac_full.yaml",
+            "configs/raac/ablations.yaml",
+            "configs/raac/baselines.yaml",
+            "configs/raac/equal_budget.yaml",
             "CAB_LOCAL_MODEL_SNAPSHOT (environment-only directory setting)",
         ),
         exact_live_outputs=(
@@ -146,6 +152,7 @@ SPECS = (
             "live_batch/live_integrity_manifest.json",
         ),
         requires_model_snapshot=True,
+        carries_raac_matrix=True,
     ),
     NotebookSpec(
         stem="CAB_T4X2_06_MERGE_AUDIT_AND_RESCORE",
@@ -304,6 +311,36 @@ def _configuration_cell(spec: NotebookSpec) -> dict[str, object]:
         if not value.startswith("CAB_") and "*" not in value
     ]
     required_paths = "".join(f'    Path("{value}"),\n' for value in exact_paths)
+    raac_matrix = "\n"
+    if spec.carries_raac_matrix:
+        raac_matrix = """
+# Frozen RAAC treatment matrix. These are config selectors, not result claims.
+RAAC_MATRIX_ENABLED = True
+RAAC_MATRIX_CONFIG_PATH = Path("configs/raac/kaggle_t4x2_matrix.yaml")
+RAAC_STANDARD_ARM = "STANDARD_TOOL_USE"
+RAAC_PRIMARY_ARMS = ("STANDARD_TOOL_USE", "RAAC_LIGHT", "RAAC_FULL")
+RAAC_ABLATION_ARMS = (
+    "VERIFY_ONLY",
+    "RETRY_ONLY",
+    "ABSTAIN_ONLY",
+    "NO_CROSS_CHECK",
+    "NO_ALTERNATE_ROUTE",
+    "NO_FINAL_VERIFY",
+)
+RAAC_BUDGET_MODES = ("equal_budget", "practical_budget")
+RAAC_SELECTED_BUDGET_MODE = "practical_budget"
+RAAC_REQUIRED_COMPUTE_FIELDS = (
+    "max_extra_model_calls",
+    "max_extra_tool_calls",
+    "max_retries",
+    "max_alternate_routes",
+    "max_verification_steps",
+    "max_clarification_steps",
+    "token_budget",
+    "wall_clock_budget_seconds",
+    "termination_rule",
+)
+"""
     return _code_cell(
         f"""# CAB_ROLE: configuration - edit only this cell before an approved real-artifact session.
 from pathlib import Path
@@ -328,8 +365,7 @@ LIVE_BATCH_DIR_SETTING = "artifacts/kaggle/live_batch"
 LIVE_CONFIG_PATH = {live_config}
 APPROVAL_RECORD = Path("docs/approvals/CAB_KAGGLE_T4X2_LIVE_APPROVAL.md")
 REQUIRED_REPOSITORY_INPUTS = [
-{required_paths}]
-
+{required_paths}]{raac_matrix}
 LIVE_KIND = "{spec.live_kind}"
 SUPPORTS_REAL_ARTIFACTS = {spec.supports_real_artifacts!r}
 REQUIRES_MODEL_SNAPSHOT = {spec.requires_model_snapshot!r}
@@ -479,6 +515,25 @@ def _setup_cell(spec: NotebookSpec) -> dict[str, object]:
         """
     if spec.live_kind == "none":
         source = source.replace("        import subprocess\n", "")
+    if spec.carries_raac_matrix:
+        source += """
+        from causal_agent_bench.raac.kaggle import (  # noqa: E402
+            load_raac_kaggle_matrix,
+            materialize_raac_kaggle_config,
+        )
+
+        RAAC_MATRIX = load_raac_kaggle_matrix(REPO_ROOT / RAAC_MATRIX_CONFIG_PATH)
+        if set(RAAC_PRIMARY_ARMS) != set(RAAC_MATRIX["primary_arms"]):
+            raise RuntimeError("notebook RAAC primary arms differ from the frozen matrix")
+        if set(RAAC_ABLATION_ARMS) != set(RAAC_MATRIX["ablation_arms"]):
+            raise RuntimeError("notebook RAAC ablations differ from the frozen matrix")
+        if set(RAAC_BUDGET_MODES) != set(RAAC_MATRIX["budget_modes"]):
+            raise RuntimeError("notebook RAAC budget modes differ from the frozen matrix")
+        if set(RAAC_REQUIRED_COMPUTE_FIELDS) != set(RAAC_MATRIX["required_compute_fields"]):
+            raise RuntimeError("notebook RAAC compute fields differ from the frozen matrix")
+        if RAAC_SELECTED_BUDGET_MODE not in RAAC_BUDGET_MODES:
+            raise RuntimeError("selected RAAC budget mode is not declared")
+        """
     return _code_cell(source, "setup")
 
 
@@ -808,9 +863,17 @@ def _activation_cell() -> dict[str, object]:
     )
 
 
-def _runner_live_cell() -> dict[str, object]:
-    return _code_cell(
-        """
+def _runner_live_cell(spec: NotebookSpec) -> dict[str, object]:
+    raac_materialization = ""
+    if spec.carries_raac_matrix:
+        raac_materialization = """            config_path = materialize_raac_kaggle_config(
+                config_path,
+                live_batch_root / "selected_raac_config.yaml",
+                comparison_mode=RAAC_SELECTED_BUDGET_MODE,
+            )
+
+"""
+    source = """
         # CAB_ROLE: live_plan - unreachable on run-all defaults; starts real inference if authorized.
         LIVE_EXECUTED = False
         LIVE_COMMANDS = []
@@ -819,7 +882,7 @@ def _runner_live_cell() -> dict[str, object]:
             config_path = LIVE_CONFIG_PATH if LIVE_CONFIG_PATH.is_absolute() else REPO_ROOT / LIVE_CONFIG_PATH
             live_batch_root = NOTEBOOK_OUTPUT_DIR / "live_batch"
             live_batch_root.mkdir(parents=True, exist_ok=True)
-            active_workers = int(LIVE_WORKER_PLAN["active_workers"])
+__RAAC_MATERIALIZATION__            active_workers = int(LIVE_WORKER_PLAN["active_workers"])
             plan_command = [
                 sys.executable,
                 "-m",
@@ -907,7 +970,9 @@ def _runner_live_cell() -> dict[str, object]:
             LIVE_EXECUTED = True
         else:
             print("NO_LIVE_COMMAND_EXECUTED")
-        """,
+        """
+    return _code_cell(
+        source.replace("__RAAC_MATERIALIZATION__", raac_materialization),
         "live_plan",
     )
 
@@ -1105,7 +1170,7 @@ def _none_live_cell() -> dict[str, object]:
 
 def _live_cell(spec: NotebookSpec) -> dict[str, object]:
     if spec.live_kind == "runner":
-        return _runner_live_cell()
+        return _runner_live_cell(spec)
     if spec.live_kind == "merge":
         return _merge_live_cell()
     if spec.live_kind == "recovery":

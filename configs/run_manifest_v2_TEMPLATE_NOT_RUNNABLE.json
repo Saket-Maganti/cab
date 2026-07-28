@@ -18,6 +18,9 @@
   "prompt_version": "PIN_BEFORE_EXECUTION",
   "provider": "PIN_BEFORE_EXECUTION",
   "quantization": "none",
+  "raac_comparison_mode": null,
+  "raac_overhead": {},
+  "raac_policy": null,
   "repeat": 0,
   "retry_policy": {
     "equal_across_models": true,

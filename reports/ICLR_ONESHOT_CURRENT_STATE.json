@@ -1,0 +1,131 @@
+{
+  "schema_version": "cab_iclr_oneshot_current_state_v1",
+  "captured_date": "2026-07-28",
+  "scope": "FINAL_PREPUBLICATION_PROVIDER_FREE_VERIFICATION",
+  "current_state": "HUMAN_VALIDATION_REQUIRED",
+  "build_complete": true,
+  "repository": {
+    "branch": "main",
+    "pre_run_commit": "d3469045a78de3a20b37783b29167805e7417e04",
+    "upstream": "origin/main",
+    "origin": "https://github.com/Saket-Maganti/cab.git",
+    "publication_state": "PENDING_FINAL_COMMIT_AND_REMOTE_VERIFICATION",
+    "preexisting_untracked_paths_preserved": [
+      "reports/ICLR_PROMPT1_POSTFIX_BASELINE.md"
+    ]
+  },
+  "prompt1_repair": {
+    "initial_focused_command_exit_code": 1,
+    "initial_elapsed_seconds": 64.03,
+    "initial_passed": 0,
+    "initial_failed": 4,
+    "final_blocker_slice_passed": true,
+    "public_v1_payloads_permanently_invalidated": true,
+    "methodology_ready_state_is_canonical": true,
+    "release_inventory_and_hash_refreshed": true
+  },
+  "protected_architecture": {
+    "public_contamination_registry_present": true,
+    "history_contains_exposed_v1_payloads": true,
+    "history_rewrite_would_restore_scientific_secrecy": false,
+    "tracked_private_v2_file_count": 0,
+    "private_roots_ignored": true,
+    "public_payload_fragment_match_count": 0
+  },
+  "canonical_split_registry": {
+    "schema_version": "cab_canonical_split_registry_v1",
+    "role_count": 9,
+    "cross_role_overlap_count": 0,
+    "passed": true,
+    "protected_roles": {
+      "scale100_confirmatory_v2_protected": {
+        "base_tasks": 100,
+        "interventions": 500,
+        "instances": 600,
+        "status": "HUMAN_INPUT_REQUIRED"
+      },
+      "naturalistic_transfer_v2_protected": {
+        "base_tasks": 60,
+        "interventions": 300,
+        "instances": 360,
+        "status": "HUMAN_INPUT_REQUIRED"
+      },
+      "heldout_challenge_v2_protected": {
+        "base_tasks": 50,
+        "interventions": 250,
+        "instances": 300,
+        "status": "PRIVATE_IDS_LOCKED_PAYLOAD_AUTHORING_PENDING"
+      }
+    }
+  },
+  "human_validation": {
+    "candidate_count": 20,
+    "required_independent_reviewers_per_candidate": 2,
+    "genuine_human_rows": 0,
+    "complete_review_groups": 0,
+    "human_review_state": "HUMAN_REVIEW_INCOMPLETE",
+    "c10_state": "C10_PENDING",
+    "slice_lock_allowed": false
+  },
+  "raac": {
+    "implementation_present": true,
+    "typed_state_count": 12,
+    "observable_anomaly_signal_count": 16,
+    "canonical_policy_count": 13,
+    "ablation_count": 6,
+    "baseline_wrapper_count": 5,
+    "hidden_metadata_blindness_enforced": true,
+    "bounded_compute_contracts": true,
+    "scientific_effect_claimed": false
+  },
+  "infrastructure": {
+    "canonical_agent_runner_and_manifest_integration": true,
+    "kaggle_notebook_count": 9,
+    "offline_fixture_notebooks_passed": 9,
+    "live_execution_default": false,
+    "m4_bounded_worker_modes": [
+      "serial",
+      "low_memory",
+      "four_worker",
+      "adaptive"
+    ],
+    "paper_scaffold_present": true,
+    "paper_results_are_placeholders": true,
+    "draft_pdf_page_count": 14
+  },
+  "validation": {
+    "focused": {
+      "exit_code": 0,
+      "passed": 145,
+      "elapsed_seconds": 69.05
+    },
+    "provider_free_full": {
+      "exit_code": 0,
+      "passed": 1091,
+      "skipped": 1,
+      "elapsed_seconds": 171.32
+    },
+    "ruff_exit_code": 0,
+    "mypy_exit_code": 0,
+    "mypy_source_files": 205,
+    "json_files_parsed": 15,
+    "yaml_files_parsed": 102,
+    "security_check_passed": true,
+    "release_check_passed": true,
+    "split_registry_check_passed": true,
+    "private_candidate_static_validation_passed": true,
+    "paper_compile_passed": true,
+    "unexpected_blockers": 0
+  },
+  "evidence_counts": {
+    "genuine_human_rows": 0,
+    "real_trajectories": 0,
+    "audited_real_runs": 0,
+    "paper_eligible_assets": 0,
+    "supported_empirical_claims": 0
+  },
+  "exact_next_allowed_action": "Complete the blank Compact-20 review packet with two independent, qualified human reviewers; do not run models.",
+  "scientific_execution_allowed": false,
+  "scientific_execution_performed_by_build": false,
+  "evidence_class": "ENGINEERING_ONLY"
+}

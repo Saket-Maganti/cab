@@ -1,5 +1,10 @@
 # Human Validation Protocol
 
+> The canonical ICLR task/intervention validation protocol is now
+> `docs/ICLR_HUMAN_VALIDATION_PROTOCOL.md`. This older trajectory-validation
+> protocol remains for the separate postrun C3 lane. It cannot substitute for
+> the canonical C10 review sheet or validator.
+
 This protocol prepares the future human-validation lane for Causal Agent Bench. It is workflow scaffolding only until real annotators complete annotation packets, agreement metrics are computed, and adjudication records are stored.
 
 Human validation is meant to verify task understandability, clean/intervention pairing quality, intervention isolation, expected-label validity, trajectory failure-category labels, and whether evidence spans support the assigned labels. It cannot by itself prove model performance, provider behavior, causal robustness, or main benchmark claims without verified provider-backed runs and claim-evidence review.

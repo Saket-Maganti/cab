@@ -1,0 +1,29 @@
+{
+  "answer_contract": {
+    "passed": false,
+    "report_path": "",
+    "report_sha256": "",
+    "status": "PENDING_VERIFIED_REPORT"
+  },
+  "candidate_manifest_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+  "evidence_class": "HUMAN_INPUT_REQUIRED",
+  "leakage_gate": {
+    "passed": false,
+    "report_path": "",
+    "report_sha256": "",
+    "status": "PENDING_VERIFIED_REPORT"
+  },
+  "manipulation_checks": {
+    "passed": true,
+    "report_path": "manipulation_checks.json",
+    "report_sha256": "a507a3509cc91ab46a85938fb5cc8272e20e8305ef2075f0fa15f9769c7fb781"
+  },
+  "schema_version": "cab_c10_prerequisites_v1",
+  "slice_freeze": {
+    "candidate_count": 20,
+    "candidate_manifest_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+    "frozen": true,
+    "scope": "C10 review slice; regenerate if candidate membership changes.",
+    "slice_hash": "5e0328628774e08518863f51d76c7a93fcb0a5b20d798b51350f716226ebac9f"
+  }
+}

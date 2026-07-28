@@ -54,9 +54,13 @@ def main(argv: list[str] | None = None) -> int:
             {
                 "human_review_state": payload["human_review_state"],
                 "c10_state": payload["c10_state"],
+                "contract_evaluation_state": payload[
+                    "contract_evaluation_state"
+                ],
                 "genuine_human_row_count": payload["genuine_human_row_count"],
                 "complete_review_groups": payload["complete_review_groups"],
                 "expected_review_groups": payload["expected_review_groups"],
+                "c10_blockers": payload["c10_blockers"],
                 "output": str(output),
             },
             sort_keys=True,
@@ -67,4 +71,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

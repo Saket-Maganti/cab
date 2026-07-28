@@ -1,0 +1,247 @@
+{
+  "aggregate_counts": {
+    "base_task_count": 60,
+    "instance_count": 360,
+    "intervention_count": 300
+  },
+  "aggregate_diversity": {
+    "answer_contract_counts": {
+      "ORIGINAL_ANSWER_REQUIRED": 12,
+      "ORIGINAL_ANSWER_WITH_VERIFICATION_REQUIRED": 12,
+      "QUALIFIED_UNCERTAINTY_ACCEPTED": 24,
+      "RECOVERY_ROUTE_REQUIRED": 12
+    },
+    "answer_overlap_group_count": 0,
+    "canonical_answer_contract_count": 4,
+    "coarse_structural_archetype_count": 40,
+    "coarse_structural_duplicate_group_count": 16,
+    "coarse_structural_duplicate_task_count": 36,
+    "content_hash_count": 60,
+    "difficulty_counts": {
+      "easy": 15,
+      "hard": 15,
+      "medium": 15,
+      "stress": 15
+    },
+    "domain_counts": {
+      "calendar_bundle": 6,
+      "data_pipeline": 6,
+      "email_casework": 6,
+      "incident_response": 6,
+      "policy_packet": 6,
+      "repository_debug": 6,
+      "service_config_logs": 6,
+      "spreadsheet_export": 6,
+      "support_tickets": 6,
+      "travel_records": 6
+    },
+    "exact_duplicate_group_count": 0,
+    "genuinely_distinct_lower_bound": 60,
+    "intervention_family_counts": {
+      "ambiguous_instruction": 30,
+      "distractor_evidence": 30,
+      "irrelevant_tools": 30,
+      "long_horizon_dependency": 30,
+      "memory_corruption": 30,
+      "observation_conflict": 30,
+      "premature_success_signal": 30,
+      "tool_corruption": 30,
+      "tool_failure": 30,
+      "tool_removal": 30
+    },
+    "lexical_near_duplicate_pair_count": 0,
+    "lexical_similarity_summary": {
+      "maximum_similarity": 0.711111,
+      "median_similarity": 0.557692,
+      "p95_similarity": 0.62,
+      "pair_count": 1770,
+      "primary_threshold": 0.82,
+      "primary_threshold_pair_count": 0,
+      "threshold_pair_counts": {
+        "0.70": 1,
+        "0.75": 0,
+        "0.82": 0,
+        "0.90": 0
+      }
+    },
+    "manipulation_check_count": 300,
+    "missing_manipulation_check_count": 0,
+    "noncanonical_answer_contract_task_count": 0,
+    "normalized_duplicate_group_count": 0,
+    "normalized_instruction_pattern_count": 60,
+    "raw_task_count": 60,
+    "role_overlap": {
+      "compact20_pilot": {
+        "answer_hash_overlap": 0,
+        "content_hash_overlap": 0,
+        "exact_instruction_overlap": 0,
+        "lexical_near_duplicate_pair_count": 0,
+        "normalized_instruction_overlap": 0,
+        "task_id_overlap": 0
+      },
+      "contaminated_main500_v1": {
+        "answer_hash_overlap": 0,
+        "content_hash_overlap": 0,
+        "exact_instruction_overlap": 0,
+        "lexical_near_duplicate_pair_count": 0,
+        "normalized_instruction_overlap": 0,
+        "task_id_overlap": 0
+      },
+      "contaminated_naturalistic_v1": {
+        "answer_hash_overlap": 0,
+        "content_hash_overlap": 0,
+        "exact_instruction_overlap": 0,
+        "lexical_near_duplicate_pair_count": 0,
+        "normalized_instruction_overlap": 0,
+        "task_id_overlap": 0
+      },
+      "contaminated_scale100_v1": {
+        "answer_hash_overlap": 0,
+        "content_hash_overlap": 0,
+        "exact_instruction_overlap": 0,
+        "lexical_near_duplicate_pair_count": 0,
+        "normalized_instruction_overlap": 0,
+        "task_id_overlap": 0
+      },
+      "public_development": {
+        "answer_hash_overlap": 0,
+        "content_hash_overlap": 0,
+        "exact_instruction_overlap": 0,
+        "lexical_near_duplicate_pair_count": 0,
+        "normalized_instruction_overlap": 0,
+        "task_id_overlap": 0
+      }
+    },
+    "role_overlap_signal_count": 0,
+    "source_type_counts": {
+      "privately authored repository-local synthetic scenario": 60
+    },
+    "structural_duplicate_group_count": 0,
+    "task_style_counts": {
+      "naturalistic": 60
+    },
+    "template_id_missing_count": 0,
+    "template_variant_risk": "low",
+    "tool_combination_count": 10,
+    "unique_content_hash_count": 60,
+    "unique_scenario_id_count": 60,
+    "unique_task_id_count": 60,
+    "unique_template_id_count": 60,
+    "unique_workflow_class_count": 60
+  },
+  "aggregate_safety": {
+    "artifact_type_count": 60,
+    "blocker_counts": {
+      "absolute_path_match_count": 0,
+      "label_revealing_task_id_count": 0,
+      "missing_answer_isolation_attestation": 0,
+      "missing_injection_scan_requirement": 0,
+      "missing_licence": 0,
+      "missing_privacy_policy": 0,
+      "missing_provenance": 0,
+      "non_example_email_match_count": 0,
+      "nonopaque_task_id_count": 0,
+      "prompt_injection_match_count": 0,
+      "secret_pattern_match_count": 0,
+      "visible_hidden_field_declaration_count": 0
+    },
+    "static_passed": true,
+    "task_count": 60
+  },
+  "candidate_materialized": true,
+  "commitments": {
+    "algorithm": "SHA-256",
+    "base_task_payload_commitment_sha256": "3cd059ff79a380e76983544d82cf60366e36f745a9d3baa2643f1ee6b0cd7c5e",
+    "private_payload_commitment_sha256": "e3d365e6541136c268df43a2f4e2793c87b9cc41eb86b147b76fe2941bbbc290"
+  },
+  "confirmatory_eligible": false,
+  "contains_answers": false,
+  "contains_evaluator_metadata": false,
+  "contains_intervention_payloads": false,
+  "contains_task_ids": false,
+  "contains_task_text": false,
+  "dataset_id": "naturalistic_transfer_v2",
+  "evidence_class": "HUMAN_INPUT_REQUIRED",
+  "human_validation_state": "HUMAN_INPUT_REQUIRED",
+  "injection_summary": {
+    "human_artifact_injection_review_required": true,
+    "prompt_injection_match_count": 0,
+    "static_scan_passed": true
+  },
+  "licence_summary": {
+    "human_licence_review_required": true,
+    "licence_counts": {
+      "repository-authored synthetic under project DATA_LICENSE.md": 60
+    },
+    "policy_file": "DATA_LICENSE.md",
+    "third_party_material_count": 0
+  },
+  "paper_eligible": false,
+  "payload_files_public": false,
+  "privacy_summary": {
+    "blocker_counts": {
+      "absolute_path_match_count": 0,
+      "label_revealing_task_id_count": 0,
+      "missing_answer_isolation_attestation": 0,
+      "missing_injection_scan_requirement": 0,
+      "missing_licence": 0,
+      "missing_privacy_policy": 0,
+      "missing_provenance": 0,
+      "non_example_email_match_count": 0,
+      "nonopaque_task_id_count": 0,
+      "prompt_injection_match_count": 0,
+      "secret_pattern_match_count": 0,
+      "visible_hidden_field_declaration_count": 0
+    },
+    "human_privacy_and_pii_review_required": true,
+    "static_scan_passed": true
+  },
+  "private_file_commitments": [
+    {
+      "bytes": 251091,
+      "role": "candidate_tasks.jsonl",
+      "sha256": "3cd059ff79a380e76983544d82cf60366e36f745a9d3baa2643f1ee6b0cd7c5e"
+    },
+    {
+      "bytes": 32940,
+      "role": "human_review_items.jsonl",
+      "sha256": "86ae0091c678f9450be3089926802eca1b7183aeed30fe51186357cd3fc207c9"
+    },
+    {
+      "bytes": 82350,
+      "role": "human_review_judgments.csv",
+      "sha256": "793cd874418c600680431993a5071c6d249c4dc78e08b7b80017664730c42c79"
+    },
+    {
+      "bytes": 774,
+      "role": "private_manifest.json",
+      "sha256": "a697b501d2d6e6773b31496a5b20c4862120673f55fb002eaed91ebb5db165ec"
+    }
+  ],
+  "private_payload_root": "private_data/naturalistic_transfer_v2",
+  "private_payload_root_must_be_ignored": true,
+  "provenance_summary": {
+    "human_privacy_review_required": true,
+    "licence_counts": {
+      "repository-authored synthetic under project DATA_LICENSE.md": 60
+    },
+    "privacy_static_passed": true,
+    "source": "privately authored repository-local synthetic scenarios"
+  },
+  "review_commitments": {
+    "adjudication_required_on_disagreement": true,
+    "candidate_review_item_count": 60,
+    "completed_human_judgment_count": 0,
+    "dimensions_per_task": 11,
+    "model_identity_blinded": true,
+    "model_output_blinded": true,
+    "required_independent_reviewers_per_task": 2,
+    "review_judgments_are_blank": true,
+    "state": "HUMAN_INPUT_REQUIRED"
+  },
+  "review_packet_materialized": true,
+  "schema_version": "cab_public_safe_candidate_manifest_v1",
+  "scientific_disposition": "HUMAN_INPUT_REQUIRED",
+  "scientific_execution_allowed": false,
+  "split_role": "naturalistic_transfer_v2_protected"
+}

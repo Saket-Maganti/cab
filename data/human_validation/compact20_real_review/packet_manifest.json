@@ -1,0 +1,60 @@
+{
+  "candidate_count": 20,
+  "candidate_manifest_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+  "candidate_slice_hash": "5e0328628774e08518863f51d76c7a93fcb0a5b20d798b51350f716226ebac9f",
+  "claim_boundary": "Blank packet and deterministic checks are not human evidence. C10 remains pending until the canonical validator passes genuine dual review, adjudication, leakage, answer-contract, and freeze gates.",
+  "evidence_class": "HUMAN_INPUT_REQUIRED",
+  "files": {
+    "REVIEWER_QUALIFICATION_EXAMPLES.md": {
+      "path": "data/human_validation/compact20_real_review/REVIEWER_QUALIFICATION_EXAMPLES.md",
+      "sha256": "63bff4e84db36aef36025942b86acb5f2ec9069bfeff97005e7508a55bc511c5"
+    },
+    "adjudication.csv": {
+      "path": "data/human_validation/compact20_real_review/adjudication.csv",
+      "sha256": "fba911b10db83113eeb99d4b1abdd8c2777b9125510aedb3e340ea022e0bf67b"
+    },
+    "c10_prerequisites.json": {
+      "path": "data/human_validation/compact20_real_review/c10_prerequisites.json",
+      "sha256": "ccb5d02b365739f1547756423c83a4a2e5a4596717cc44936b5e3cd50b7304ed"
+    },
+    "manipulation_checks.json": {
+      "path": "data/human_validation/compact20_real_review/manipulation_checks.json",
+      "sha256": "a507a3509cc91ab46a85938fb5cc8272e20e8305ef2075f0fa15f9769c7fb781"
+    },
+    "review_items.jsonl": {
+      "path": "data/human_validation/compact20_real_review/review_items.jsonl",
+      "sha256": "8c7ae2b0987e8eff9b6e827b188b3acbacd7ee2a3b92e2189c662f888e52cfd8"
+    },
+    "review_judgments.csv": {
+      "path": "data/human_validation/compact20_real_review/review_judgments.csv",
+      "sha256": "4cb00d614eb3be2dbcfc777d0068375d8fc307d6d3aad25c704b85577d423428"
+    },
+    "review_session.json": {
+      "path": "data/human_validation/compact20_real_review/review_session.json",
+      "sha256": "c22ac64cbedb084162e5637e0867f9c2d0db0ecefad2635f27e1eb084f9b70ef"
+    },
+    "reviewer_registry.csv": {
+      "path": "data/human_validation/compact20_real_review/reviewer_registry.csv",
+      "sha256": "28f02c170332086b7a571e06e26c5c5a0ff380aa8b6a49544269dd258a922279"
+    }
+  },
+  "generated_at": "2026-07-28T04:41:46.728680+00:00",
+  "genuine_human_adjudication_rows": 0,
+  "genuine_human_review_rows": 0,
+  "review_assignment_rows": 40,
+  "review_dimensions": [
+    "task_clarity",
+    "clean_gold_correctness",
+    "manipulation_success",
+    "goal_preservation",
+    "invariance_preservation",
+    "solvability",
+    "answer_contract_correctness",
+    "scorer_compatibility",
+    "realism",
+    "ambiguity",
+    "exclusion_recommendation"
+  ],
+  "reviewers_per_candidate": 2,
+  "schema_version": "cab_c10_packet_manifest_v1"
+}

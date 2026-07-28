@@ -1,0 +1,103 @@
+{
+  "blockers": [
+    {
+      "class": "HUMAN",
+      "code": "GENUINE_HUMAN_REVIEW_REQUIRED",
+      "detail": "genuine_rows=0; state=HUMAN_REVIEW_INCOMPLETE"
+    },
+    {
+      "class": "HUMAN",
+      "code": "C10_PENDING",
+      "detail": "C10_PENDING"
+    },
+    {
+      "class": "HUMAN",
+      "code": "SLICE_LOCK_PENDING",
+      "detail": "slice locking is forbidden until human validation and C10 pass"
+    },
+    {
+      "class": "EXECUTION",
+      "code": "AUDITED_EXECUTION_PENDING",
+      "detail": "no audited real model runs exist"
+    },
+    {
+      "class": "EMPIRICAL",
+      "code": "PAPER_EVIDENCE_PENDING",
+      "detail": "no paper-eligible empirical assets exist"
+    }
+  ],
+  "build_blockers": [],
+  "build_complete": true,
+  "checks": [
+    {
+      "check_id": "maximum_ceiling_build",
+      "detail": "build_complete=True; build_blockers=0",
+      "evidence_class": "ENGINEERING_ONLY",
+      "passed": true,
+      "scope": "BUILD"
+    },
+    {
+      "check_id": "protected_split_architecture",
+      "detail": "passed=True; issue_count=0",
+      "evidence_class": "ENGINEERING_ONLY",
+      "passed": true,
+      "scope": "BUILD"
+    },
+    {
+      "check_id": "required_iclr_artifacts",
+      "detail": "all required pre-execution artifacts are present",
+      "evidence_class": "ENGINEERING_ONLY",
+      "passed": true,
+      "scope": "BUILD"
+    },
+    {
+      "check_id": "protected_v2_registry",
+      "detail": "registry_passed=True; overlaps=0; issues=[]",
+      "evidence_class": "ENGINEERING_ONLY",
+      "passed": true,
+      "scope": "BUILD"
+    },
+    {
+      "check_id": "raac_method",
+      "detail": "states=12; policies=13; baselines=5; hidden_keys=15",
+      "evidence_class": "ENGINEERING_ONLY",
+      "passed": true,
+      "scope": "BUILD"
+    },
+    {
+      "check_id": "kaggle_notebooks",
+      "detail": "present=9/9; live_default=False",
+      "evidence_class": "ENGINEERING_ONLY",
+      "passed": true,
+      "scope": "BUILD"
+    }
+  ],
+  "current_state": "HUMAN_VALIDATION_REQUIRED",
+  "evidence_boundary": {
+    "fixture_output_is_scientific_evidence": false,
+    "human_rows_created_by_gate": false,
+    "provider_or_model_calls_performed_by_gate": false,
+    "scientific_execution_performed_by_gate": false
+  },
+  "evidence_counts": {
+    "audited_real_runs": 0,
+    "genuine_human_rows": 0,
+    "paper_eligible_assets": 0,
+    "real_trajectories": 0,
+    "supported_empirical_claims": 0
+  },
+  "exact_next_allowed_action": "Complete the blank Compact-20 review packet with two independent, qualified human reviewers; do not run models.",
+  "exit_code": 2,
+  "forbidden_actions": [
+    "Do not execute Compact-20, Scale-100, naturalistic transfer, or Main-500.",
+    "Do not call provider APIs, run local/Hugging Face models, or launch Kaggle jobs.",
+    "Do not treat fixture, proxy, or engineering output as scientific evidence.",
+    "Do not fill paper results, rankings, intervals, or RAAC effects before audited runs.",
+    "Do not expose private task payloads, answers, intervention labels, or evaluator metadata."
+  ],
+  "generated_at": "2026-07-28T04:37:51.706222+00:00",
+  "paper_eligible": false,
+  "schema_version": "cab_iclr_preexecution_gate_v1",
+  "scientific_execution_allowed": false,
+  "status": "EXPECTED_HUMAN_OR_EVIDENCE_BLOCK"
+}

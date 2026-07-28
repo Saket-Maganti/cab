@@ -28,6 +28,7 @@ python -m causal_agent_bench validate results/<run>/trajectories.jsonl --schema 
 | `stop_reason` / `terminated_reason` | Why the trajectory ended. | Supports premature-stop and max-step-failure metrics. |
 | `started_at` / `completed_at` | Optional run timestamps. | Useful for audit trails and latency accounting. |
 | `token_cost_metadata` | Token usage, estimated cost, latency, model-call count, tool-call count, retry counts, and related fields. | Required for pilot cost reporting and provider reproducibility. |
+| `raac_metadata` | Optional policy, contract, remaining budgets, realized overhead, public decision trace, and evidence class. | Supports RAAC treatment auditing without exposing hidden benchmark metadata. |
 | `metadata` | Flexible extra metadata. | Preserves run-specific context without loosening core fields. |
 
 ## Step Fields
@@ -50,6 +51,10 @@ python -m causal_agent_bench validate results/<run>/trajectories.jsonl --schema 
 | `started_at` / `completed_at` | Optional per-step timestamps. | Useful for latency audits. |
 | `token_cost_metadata` | Step-level LLM/cost metadata, when available. | Allows cost attribution by step. |
 | `action`, `observation`, `state` | Compatibility fields retained from v1 logs. | Keeps existing metrics and analysis code working during the transition. |
+| `raac_state` | Typed controller state after the decision, when RAAC is enabled. | Validates legal state transitions. |
+| `raac_decision` | Typed control decision. | Separates retry, routing, checking, clarification, abstention, and termination. |
+| `raac_signals` | Observable anomaly signals used by the decision. | Audits label blindness and opportunity flags. |
+| `raac_trace_index` | Zero-based index into the root RAAC trace. | Links step behavior to deterministic controller records. |
 
 ## Compatibility
 
