@@ -2,8 +2,8 @@
 
 - **Release ID:** `causal-agent-bench-0.1.0`
 - **Package version:** `0.1.0`
-- **Generated:** `2026-07-28T04:53:24.082715+00:00`
-- **Git commit:** `30f21c0b3e60387fda2605fe5a0613aaebe75442` (dirty=True)
+- **Generated:** `2026-07-28T05:00:52.500639+00:00`
+- **Git commit:** `8058bd75218d04f2f719d39581b4aa13c97dc46e` (dirty=True)
 - **Python:** `3.11.9`
 - **Bundle hash:** `0c8c1b990eb0890065d7cfccfd487df4fd9c651315e46f45bd5fcf990cb3ac64`
 

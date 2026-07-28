@@ -145,7 +145,7 @@
   "default_frozen_dataset": "data/frozen/pilot_v0.1",
   "default_frozen_manifest": "data/frozen/pilot_v0.1/freeze_manifest.json",
   "dependency_hashes": {
-    "pyproject.toml": "28a3671385cf5868baa4ba160355f1bc237cb52b5570c98e1f72f0aada502acc"
+    "pyproject.toml": "d7db8e0ecfabbea1939089ae6f682e3fc35909d37fad95ceecd38f401a79020a"
   },
   "docs": [
     "docs/ABLATIONS.md",
@@ -406,7 +406,7 @@
     "scripts/check_experiment_state.py": "df30fa34582426def5e1205b2eb0e52540ff2bff0b1a03ad8421c44c44a73c78",
     "scripts/check_iclr_preexecution_readiness.py": "86a27f21ee29ed8a176e1d9d8d9352a3459357d0b331440cf51bc7937af06784"
   },
-  "generated_at": "2026-07-28T04:53:24.082715+00:00",
+  "generated_at": "2026-07-28T05:00:52.500639+00:00",
   "inventory_file_count": 652,
   "inventory_policy": {
     "categories": {
@@ -520,7 +520,7 @@
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "30f21c0b3e60387fda2605fe5a0613aaebe75442",
+    "git_commit": "8058bd75218d04f2f719d39581b4aa13c97dc46e",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",

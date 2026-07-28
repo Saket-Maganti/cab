@@ -106,6 +106,14 @@ description, and one protocol sentence. Those spellings were normalized.
 and whitespace checks all passed locally before the final push. The final
 release bundle hash is the value recorded above.
 
+The following Python 3.13 matrix job passed 1,092 tests (three skipped) but
+ended with a collection error because
+`tests/test_cab_insane_autorun_artifacts.py` imports `nbformat` while the
+project's `dev` extra did not declare it. `nbformat>=5.10` was added to the
+development dependencies. TOML parsing, the four affected notebook-artifact
+tests, `codespell`, Ruff, security, release, and whitespace checks passed
+locally before the dependency repair was pushed.
+
 ## Preserved and excluded material
 
 - Preserved unrelated user edit:
