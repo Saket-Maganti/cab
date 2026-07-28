@@ -232,3 +232,25 @@ or invented empirical results are permitted.
   aggregate legacy-status endpoint was pending with zero attached contexts.
 - Next phase: commit this mandatory publication record, push it to `main`, and
   repeat exact remote-SHA and CI-state verification.
+
+## Phase 17 — Remote CI follow-up
+
+- Implementation-check outcomes:
+  - passed: Docs Check, Batch smoke, Claim Safety;
+  - in progress at observation: CI and Max Ceiling Provider-Free Gates;
+  - failed: Fast Check and Docs deployment.
+- Fast Check root cause: GitHub's newer Ruff enforced `RUF036` on two
+  pre-existing union annotations in
+  `src/causal_agent_bench/agents/llm_clients.py`.
+- Repair: reordered the union members without semantic change.
+- Exact local workflow: `make fast-check`, exit `0`, 61.0 seconds; included
+  Ruff, mypy over 205 source files, 91 fast tests, 62 governance tests,
+  evidence/claim/paper checks, zero-cost preflights, and security.
+- Release check: exit `0`; refreshed bundle hash
+  `7db51c3dd07eebb6f4ac2a5e86fdeb10d050c9dfb20e1ff0095586ad21651578`,
+  652 files.
+- Docs diagnosis: the site built and uploaded; `actions/deploy-pages` returned
+  HTTP 404 because GitHub Pages is not enabled in repository settings. No
+  repository setting was changed implicitly.
+- Next phase: push the focused CI repair, verify exact remote SHA, and observe
+  the replacement workflows without waiting indefinitely.
