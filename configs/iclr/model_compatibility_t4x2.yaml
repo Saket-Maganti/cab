@@ -1,0 +1,62 @@
+schema_version: cab_t4x2_model_compatibility_v1
+evidence_class: DESIGN_ONLY
+estimate_label: ESTIMATE_NOT_MEASURED
+disclaimer: Exact revisions, memory, throughput, and licences must be revalidated at run time.
+categories:
+  strong_open_instruct:
+    model_id: RUN_TIME_SELECTION_REQUIRED
+    revision: PIN_AT_RUN_TIME
+    licence: VERIFY_AT_RUN_TIME
+    parameter_count: ESTIMATE_NOT_MEASURED
+    chat_template: VERIFY_AT_RUN_TIME
+    context_length: VERIFY_AT_RUN_TIME
+    tool_support: prompt_or_native_adapter
+    recommended_quantisation: 4bit
+    expected_vram_gib_range: ESTIMATE_NOT_MEASURED
+    t4_single_gpu_feasibility: PREFLIGHT_REQUIRED
+    two_gpu_placement: optional_model_parallel_if_single_gpu_preflight_fails
+    fallback: smaller_efficient_open
+  second_open_family:
+    model_id: RUN_TIME_SELECTION_REQUIRED
+    revision: PIN_AT_RUN_TIME
+    licence: VERIFY_AT_RUN_TIME
+    parameter_count: ESTIMATE_NOT_MEASURED
+    chat_template: VERIFY_AT_RUN_TIME
+    context_length: VERIFY_AT_RUN_TIME
+    tool_support: prompt_or_native_adapter
+    recommended_quantisation: 4bit
+    expected_vram_gib_range: ESTIMATE_NOT_MEASURED
+    t4_single_gpu_feasibility: PREFLIGHT_REQUIRED
+    two_gpu_placement: optional
+    fallback: smaller_efficient_open
+  smaller_efficient_open:
+    model_id: RUN_TIME_SELECTION_REQUIRED
+    revision: PIN_AT_RUN_TIME
+    licence: VERIFY_AT_RUN_TIME
+    parameter_count: ESTIMATE_NOT_MEASURED
+    chat_template: VERIFY_AT_RUN_TIME
+    context_length: VERIFY_AT_RUN_TIME
+    tool_support: prompt_adapter
+    recommended_quantisation: fp16_or_8bit
+    expected_vram_gib_range: ESTIMATE_NOT_MEASURED
+    t4_single_gpu_feasibility: PREFLIGHT_REQUIRED
+    two_gpu_placement: not_required_if_preflight_passes
+    fallback: engineering_fixture_only
+  optional_reasoning_open:
+    model_id: RUN_TIME_SELECTION_REQUIRED
+    revision: PIN_AT_RUN_TIME
+    licence: VERIFY_AT_RUN_TIME
+    parameter_count: ESTIMATE_NOT_MEASURED
+    chat_template: VERIFY_AT_RUN_TIME
+    context_length: VERIFY_AT_RUN_TIME
+    tool_support: adapter_required
+    recommended_quantisation: 4bit
+    expected_vram_gib_range: ESTIMATE_NOT_MEASURED
+    t4_single_gpu_feasibility: PREFLIGHT_REQUIRED
+    two_gpu_placement: optional
+    fallback: omit_category
+optional_provider_categories:
+  - strong_proprietary
+  - second_provider_family
+open_model_core_required: true
+provider_lane_required: false

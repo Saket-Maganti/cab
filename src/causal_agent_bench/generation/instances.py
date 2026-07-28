@@ -51,6 +51,8 @@ class BenchmarkGenerationConfig(BaseModel):
     human_audit_sample_size: int = 0
     task_style: str = "template"
     id_namespace: str | None = None
+    scientific_disposition: str = "PUBLIC_DEVELOPMENT_ONLY"
+    confirmatory_eligible: bool = False
 
     @property
     def normalized_id_namespace(self) -> str | None:
@@ -65,6 +67,11 @@ class BenchmarkGenerationConfig(BaseModel):
 
 
 def generate_benchmark(config: BenchmarkGenerationConfig) -> dict[str, Any]:
+    if config.confirmatory_eligible:
+        raise ValueError(
+            "the public deterministic generator cannot create protected or "
+            "confirmatory packs; use the private held-out authoring workflow"
+        )
     if config.task_style == "naturalistic":
         base_tasks = generate_naturalistic_base_tasks(
             seed=config.seed,
@@ -106,6 +113,18 @@ def generate_benchmark(config: BenchmarkGenerationConfig) -> dict[str, Any]:
             )
             for task in base_tasks
         ]
+    base_tasks = [
+        task.model_copy(
+            update={
+                "metadata": {
+                    **task.metadata,
+                    "scientific_disposition": config.scientific_disposition,
+                    "confirmatory_eligible": False,
+                }
+            }
+        )
+        for task in base_tasks
+    ]
     base_tasks = [
         attach_base_task_policies(
             task,
@@ -261,14 +280,14 @@ def _canonical_split_role(
     if "main500" in version:
         pilot_size = config.pilot_split_size or config.num_base_tasks
         return (
-            "main500_confirmatory"
+            "main500_public_development_v1"
             if task_index < pilot_size
-            else "heldout_challenge"
+            else "heldout_challenge_v1_contaminated"
         )
     if "scale100" in version:
-        return "scale100_confirmatory"
+        return "scale100_public_development_v1"
     if "naturalistic" in version:
-        return "naturalistic_transfer"
+        return "naturalistic_public_development_v1"
     if "pilot_v0" in version:
         return "compact20_pilot"
     return "dev_fixture"

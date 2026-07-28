@@ -45,6 +45,20 @@ def trajectory_to_markdown(trajectory: Trajectory | TrajectoryV2 | dict[str, Any
         for key, value in sorted(record.token_cost_metadata.items()):
             lines.append(f"- `{key}`: `{value}`")
 
+    if record.raac_metadata:
+        lines.extend(["", "## RAAC", ""])
+        for key in (
+            "variant",
+            "comparison_mode",
+            "evidence_class",
+            "observable_signals_only",
+        ):
+            if key in record.raac_metadata:
+                lines.append(f"- `{key}`: `{record.raac_metadata[key]}`")
+        overhead = record.raac_metadata.get("overhead")
+        if isinstance(overhead, dict):
+            lines.append(f"- `overhead`: `{overhead}`")
+
     lines.extend(["", "## Steps", ""])
     if not record.steps:
         lines.append("No steps recorded.")
@@ -60,6 +74,9 @@ def trajectory_to_markdown(trajectory: Trajectory | TrajectoryV2 | dict[str, Any
                 f"- Recovery marker: `{step.recovery_marker}`",
                 f"- Contradiction marker: `{step.contradiction_marker}`",
                 f"- Memory-use marker: `{step.memory_use_marker}`",
+                f"- RAAC state: `{step.raac_state}`",
+                f"- RAAC decision: `{step.raac_decision}`",
+                f"- RAAC signals: `{step.raac_signals}`",
             ]
         )
         if step.raw_model_output is not None:

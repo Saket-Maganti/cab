@@ -86,7 +86,7 @@ def test_task_intervention_linter_passes_canonical_generated_pack(
     report = lint_task_intervention_dataset(
         result["output_dir"],
         repo_root=tmp_path,
-        role="scale100_confirmatory",
+        role="scale100_public_development_v1",
     )
     assert report["passed"] is True, report["issues"][:3]
     assert report["coverage"]["explicit_base_policy_count"] == 3
@@ -112,7 +112,7 @@ def test_task_intervention_linter_blocks_tampered_content_hash(
     report = lint_task_intervention_dataset(
         result["output_dir"],
         repo_root=tmp_path,
-        role="scale100_confirmatory",
+        role="scale100_public_development_v1",
     )
     codes = {issue["code"] for issue in report["issues"]}
     assert report["passed"] is False
@@ -141,7 +141,7 @@ def test_task_intervention_linter_blocks_derived_only_scientific_policy(
     report = lint_task_intervention_dataset(
         output_dir,
         repo_root=tmp_path,
-        role="scale100_confirmatory",
+        role="scale100_public_development_v1",
     )
     assert report["passed"] is False
     assert any(

@@ -1,0 +1,23 @@
+schema_version: cab_raac_policy_registry_v1
+evidence_class: DESIGN_ONLY
+scientific_evidence: false
+paper_eligible: false
+policies:
+  DIRECT_ANSWER:
+    display_name: direct answer
+    raac_recovery_enabled: false
+  STANDARD_TOOL_USE:
+    display_name: standard tool use
+    raac_recovery_enabled: false
+  REACT_STYLE:
+    display_name: ReAct-style
+    raac_recovery_enabled: false
+  SELF_CHECK:
+    display_name: self-check
+    max_extra_model_calls: 1
+    max_verification_steps: 1
+  ORACLE_ENGINEERING_ONLY:
+    display_name: oracle engineering-only control
+    evidence_class_ceiling: ENGINEERING_ONLY
+    scientific_evidence: false
+    paper_eligible: false

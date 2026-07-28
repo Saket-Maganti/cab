@@ -41,6 +41,12 @@ from causal_agent_bench.safety.split_registry import (
     build_canonical_split_registry,
     validate_canonical_split_registry,
 )
+from causal_agent_bench.safety.workflow_state import (
+    WorkflowState,
+    parse_workflow_state,
+    workflow_state_allows_live_execution,
+    workflow_state_allows_paper_evidence,
+)
 from causal_agent_bench.validation import validate_jsonl_file
 
 CANONICAL_EVIDENCE_CLASSES = (
@@ -472,7 +478,12 @@ def evaluate_max_ceiling_gate(repo_root: str | Path) -> dict[str, Any]:
         row for row in checks if row["scope"] in {"external", "evidence"} and not row["passed"]
     ]
     build_complete = not build_blockers
-    current_state = _workflow_state(build_complete, human, approval_ok, state["evidence"])
+    current_state = _workflow_state(
+        build_complete,
+        human,
+        approval_ok,
+        state["evidence"],
+    )
     study_gates = _study_gates(state, checks)
     return {
         "schema_version": "cab_max_ceiling_gate_v1",
@@ -485,11 +496,16 @@ def evaluate_max_ceiling_gate(repo_root: str | Path) -> dict[str, Any]:
         "current_state": current_state,
         "build_complete": build_complete,
         "scientific_execution_allowed": (
+            workflow_state_allows_live_execution(current_state)
+            and
             build_complete
             and not external_blockers
             and all(gate["execution_ready"] for gate in study_gates.values())
         ),
-        "paper_eligible": state["evidence"]["paper_eligible_assets"] > 0,
+        "paper_eligible": (
+            workflow_state_allows_paper_evidence(current_state)
+            and state["evidence"]["paper_eligible_assets"] > 0
+        ),
         "checks": checks,
         "build_blockers": build_blockers,
         "external_blockers": external_blockers,
@@ -1286,22 +1302,22 @@ def _workflow_state(
     human: dict[str, Any],
     approval_ok: bool,
     evidence: dict[str, Any],
-) -> str:
+) -> WorkflowState:
     if not build_complete:
-        return "METHODOLOGY_READY"
+        return WorkflowState.METHODOLOGY_READY
     if human["human_review_state"] != "HUMAN_REVIEW_COMPLETE":
-        return str(human["human_review_state"])
+        return parse_workflow_state(str(human["human_review_state"]))
     if human["c10_state"] != "PASS":
-        return str(human["c10_state"])
+        return parse_workflow_state(str(human["c10_state"]))
     if not human["slice_lock_allowed"]:
-        return "SLICE_LOCK_PENDING"
+        return WorkflowState.SLICE_LOCK_PENDING
     if not approval_ok:
-        return "PROVIDER_APPROVAL_PENDING"
+        return WorkflowState.PROVIDER_APPROVAL_PENDING
     if evidence["audited_real_runs"] == 0:
-        return "COMPACT20_READY"
+        return WorkflowState.COMPACT20_READY
     if evidence["paper_eligible_assets"] == 0:
-        return "COMPACT20_AUDIT_PENDING"
-    return "PAPER_CANDIDATE_READY"
+        return WorkflowState.COMPACT20_AUDIT_PENDING
+    return WorkflowState.PAPER_CANDIDATE_READY
 
 
 def _run_text(

@@ -7,6 +7,13 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
+from causal_agent_bench.safety.protected_heldout import (
+    CONTAMINATION_REGISTRY_PATH,
+    PRIVATE_ROOT,
+    PUBLIC_MANIFEST_PATH,
+    path_is_registered_contamination,
+    validate_protected_heldout_architecture,
+)
 from causal_agent_bench.safety.split_registry import (
     CANONICAL_SPLIT_REGISTRY_PATH,
 )
@@ -43,6 +50,16 @@ def validate_heldout_release_policy(
         issues,
         "release_manifest_invalid",
         required=False,
+    )
+    contamination_path = policy.get(
+        "contamination_registry_path",
+        str(CONTAMINATION_REGISTRY_PATH),
+    )
+    contamination_file = _resolve(root, str(contamination_path))
+    contamination = _read_json(
+        contamination_file,
+        issues,
+        "contamination_registry_invalid",
     )
 
     tiers = policy.get("release_tiers")
@@ -179,6 +196,35 @@ def validate_heldout_release_policy(
             )
         )
 
+    contaminated_public_patterns = [
+        str(value)
+        for value in policy.get("contaminated_public_payload_globs", [])
+        if isinstance(value, str)
+    ]
+    tracked_contaminated_public = sorted(
+        _tracked_files(root, contaminated_public_patterns)
+    )
+    unregistered_contaminated_public = sorted(
+        path
+        for path in tracked_contaminated_public
+        if not path_is_registered_contamination(path, contamination)
+    )
+    for path in unregistered_contaminated_public:
+        issues.append(
+            _issue(
+                root / path,
+                root,
+                "contamination_registry",
+                "blocker",
+                "unregistered_public_contaminated_payload",
+                path,
+                (
+                    "Register the exposure with a permanent non-confirmatory "
+                    "disposition; do not relabel it as protected."
+                ),
+            )
+        )
+
     inventory = _release_inventory(manifest)
     protected_inventory = sorted(
         path
@@ -199,6 +245,39 @@ def validate_heldout_release_policy(
             )
         )
 
+    private_payload_root = str(
+        policy.get("private_payload_root", f"{PRIVATE_ROOT.as_posix()}/")
+    ).rstrip("/")
+    private_inventory = sorted(
+        path
+        for path in inventory
+        if path == private_payload_root
+        or path.startswith(f"{private_payload_root}/")
+    )
+    for path in private_inventory:
+        issues.append(
+            _issue(
+                manifest_file,
+                root,
+                "release_inventory",
+                "blocker",
+                "private_payload_in_release_manifest",
+                path,
+                "Private files must never enter a public release inventory.",
+            )
+        )
+
+    architecture = validate_protected_heldout_architecture(
+        root,
+        public_manifest_path=str(
+            policy.get("public_manifest_path", PUBLIC_MANIFEST_PATH)
+        ),
+        contamination_registry_path=str(contamination_path),
+        split_registry_path=registry_file,
+        private_root=private_payload_root,
+    )
+    issues.extend(architecture["issues"])
+
     blockers = [
         issue for issue in issues if issue["severity"] in {"blocker", "error"}
     ]
@@ -215,7 +294,16 @@ def validate_heldout_release_policy(
         "required_release_tiers_present": not missing_tiers,
         "protected_role_count": len(protected_roles),
         "tracked_protected_payload_count": len(tracked_protected),
+        "registered_public_contaminated_payload_count": (
+            len(tracked_contaminated_public)
+            - len(unregistered_contaminated_public)
+        ),
+        "unregistered_public_contaminated_payload_count": len(
+            unregistered_contaminated_public
+        ),
         "release_manifest_protected_payload_count": len(protected_inventory),
+        "release_manifest_private_payload_count": len(private_inventory),
+        "protected_architecture": architecture,
         "post_study_full_release_allowed": False,
         "passed": not blockers,
         "issues": issues,
@@ -245,6 +333,13 @@ def _release_inventory(manifest: dict[str, Any]) -> set[str]:
         "configs",
         "scripts",
         "source_packages",
+        "benchmark_specs",
+        "dataset_versions",
+        "paper_files",
+        "notebooks",
+        "data_manifests",
+        "root_documents",
+        "license_files",
     ):
         values = manifest.get(field, [])
         if isinstance(values, list):

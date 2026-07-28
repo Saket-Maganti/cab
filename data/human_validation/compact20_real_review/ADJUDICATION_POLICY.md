@@ -1,21 +1,31 @@
 # Compact-20 Adjudication Policy
 
-Status: no-execution adjudication rules.
+Adjudication begins only after both initial review sheets are locked and raw
+agreement is computed.
 
-## When To Adjudicate
+## Required cases
 
-Adjudicate when reviewers disagree on task clarity, gold policy, intervention isolation, or exclusion status.
+Create one `adjudication.csv` row for every candidate × dimension where the
+independent labels differ. Link the exact reviewer IDs and labels with `|`
+separators.
 
-## Adjudicator Duties
+## Adjudicator eligibility
 
-- read both reviewer notes,
-- decide final review status,
-- record `adjudicator_id`, timestamp, and rationale,
-- preserve minority concern in notes,
-- escalate any unresolved ambiguity to replacement policy.
+The adjudicator must be qualified and registered with an `adj_...` privacy-safe
+ID. They cannot be either reviewer for the candidate, a candidate author, or a
+person with a disclosed conflict. AI/proxy adjudication is forbidden.
 
-## Forbidden
+## Decision
 
-- Do not convert AI-proxy labels into human labels.
-- Do not resolve disagreement by choosing the answer that would make results stronger.
-- Do not mark C10 complete unless all required rows have real human decisions.
+The adjudicator reads the candidate packet and both rationales, selects one
+allowed final value for that dimension, writes a substantive rationale, and
+records a timezone-aware timestamp. Preserve minority concerns in the
+rationale. If evidence is insufficient, choose the dimension's `unclear` or
+revision/exclusion value; never choose a pass value merely to clear C10.
+
+Adjudication resolves a final label but does not change or replace initial
+labels, raw agreement, kappa/alpha inputs, prevalence diagnostics, or the
+reported disagreement rate.
+
+Invalid linkage, duplicated decisions, missing rationale, a non-separate
+adjudicator, or unresolved disagreement keeps C10 pending.

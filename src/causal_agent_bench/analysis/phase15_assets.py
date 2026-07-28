@@ -62,6 +62,7 @@ REQUIRED_PHASE15_ASSET_FAMILIES = (
     "intervention_validity",
     "naturalistic_transfer",
     "ablations",
+    "raac_effect_overhead",
     "failure_gallery",
     "cost_runtime_appendix",
 )
@@ -299,6 +300,37 @@ PHASE15_ASSET_CONTRACTS = (
             "tables/table_ablations.tex",
         ),
         "Audited frozen-task ablation with prompt hashes and equal budgets.",
+    ),
+    Phase15AssetContract(
+        "table_raac_effect_overhead",
+        "raac_effect_overhead",
+        "table",
+        "ablation",
+        "_raac_effect_overhead_table",
+        (
+            "tables/table_raac_effect_overhead.csv",
+            "tables/table_raac_effect_overhead.md",
+            "tables/table_raac_effect_overhead.tex",
+        ),
+        (
+            "Audited standard/RAAC common-support outcomes with measured "
+            "calls, latency, cost, and locked budget mode."
+        ),
+    ),
+    Phase15AssetContract(
+        "figure_raac_effect_overhead",
+        "raac_effect_overhead",
+        "figure",
+        "ablation",
+        "_raac_effect_overhead_figure",
+        (
+            "figures/figure_raac_effect_overhead.png",
+            "figures/figure_raac_effect_overhead.pdf",
+        ),
+        (
+            "Audited standard/RAAC common-support outcomes with measured "
+            "calls, latency, cost, and locked budget mode."
+        ),
     ),
     Phase15AssetContract(
         "failure_gallery",
@@ -647,6 +679,14 @@ def export_phase15_asset_bundle(
         )
         paths.extend(
             _write_table(
+                _raac_effect_overhead_table(loaded["ablation"]),
+                table_dir / "table_raac_effect_overhead",
+                loaded["ablation"],
+                "table_raac_effect_overhead",
+            )
+        )
+        paths.extend(
+            _write_table(
                 _cost_runtime_table(loaded["main"]),
                 table_dir / "table_cost_runtime_appendix",
                 loaded["main"],
@@ -708,6 +748,14 @@ def export_phase15_asset_bundle(
                 figure_dir / "figure_scorer_sensitivity",
                 loaded["scorer_validation"],
                 "figure_scorer_sensitivity",
+            )
+        )
+        paths.extend(
+            _write_figure(
+                _raac_effect_overhead_figure(loaded["ablation"]),
+                figure_dir / "figure_raac_effect_overhead",
+                loaded["ablation"],
+                "figure_raac_effect_overhead",
             )
         )
         paths.extend(
@@ -1182,6 +1230,78 @@ def _cost_runtime_table(data: RunResults) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _raac_effect_overhead_table(data: RunResults) -> pd.DataFrame:
+    """Return audited RAAC effect and measured-overhead rows.
+
+    Phase 15 export is already gated to paper-eligible evidence. This additional
+    filter prevents a generic ablation run from being mislabeled as RAAC.
+    """
+
+    frame = ablation_results_table(data)
+    required = {
+        "factor",
+        "level",
+        "intervention_family",
+        "success_rate",
+        "delta_success_vs_reference",
+        "clean_success_rate",
+        "intervention_success_rate",
+        "avg_model_calls",
+        "avg_tool_calls",
+        "avg_total_tokens",
+        "avg_latency_s",
+        "estimated_cost_usd",
+    }
+    missing = sorted(required - set(frame.columns))
+    if missing:
+        raise ValueError(
+            "paper-eligible RAAC export missing required columns: "
+            + ", ".join(missing)
+        )
+    raac_mask = (
+        frame["factor"].astype(str).str.contains("raac|recovery_aware", case=False, regex=True)
+        | frame["level"].astype(str).str.contains(
+            "raac|standard_tool_use",
+            case=False,
+            regex=True,
+        )
+    )
+    selected = frame[raac_mask & frame["intervention_family"].eq("overall")].copy()
+    levels = {str(value).upper() for value in selected["level"].dropna()}
+    has_raac = any("RAAC" in value for value in levels)
+    has_reference = any(
+        value in {"STANDARD_TOOL_USE", "STANDARD", "BASELINE", "DIRECT_ANSWER"}
+        for value in levels
+    ) or selected["comparison_role"].eq("reference").any()
+    if selected.empty or not has_raac or not has_reference:
+        raise ValueError(
+            "paper-eligible RAAC export requires common-support standard and RAAC rows"
+        )
+    columns = [
+        "pair_id",
+        "factor",
+        "level",
+        "comparison_role",
+        "agent",
+        "model_id",
+        "n",
+        "clean_success_rate",
+        "intervention_success_rate",
+        "success_rate",
+        "delta_success_vs_reference",
+        "acrs",
+        "delta_acrs_vs_reference",
+        "avg_model_calls",
+        "avg_tool_calls",
+        "avg_total_tokens",
+        "avg_latency_s",
+        "estimated_cost_usd",
+        "prompt_version_hash",
+        "evidence_scope",
+    ]
+    return selected[[column for column in columns if column in selected.columns]]
+
+
 def _rank_probability_figure(stats: dict[str, Any]) -> plt.Figure:
     rank = _dict(stats.get("rank_uncertainty"))
     matrix = _dict(rank.get("pairwise_rank_probability_matrix"))
@@ -1294,6 +1414,46 @@ def _scorer_sensitivity_figure(report: dict[str, Any]) -> plt.Figure:
     ax.set_title("Sensitivity to human-estimated scorer error")
     ax.legend(frameon=False)
     ax.grid(axis="y", alpha=0.25)
+    fig.tight_layout()
+    return fig
+
+
+def _raac_effect_overhead_figure(data: RunResults) -> plt.Figure:
+    """Plot measured model-call overhead against intervention success."""
+
+    frame = _raac_effect_overhead_table(data).copy()
+    frame["avg_model_calls"] = pd.to_numeric(
+        frame["avg_model_calls"],
+        errors="coerce",
+    )
+    frame["intervention_success_rate"] = pd.to_numeric(
+        frame["intervention_success_rate"],
+        errors="coerce",
+    )
+    frame = frame.dropna(
+        subset=["avg_model_calls", "intervention_success_rate"]
+    )
+    if frame.empty:
+        raise ValueError(
+            "paper-eligible RAAC figure requires measured model-call overhead "
+            "and intervention success"
+        )
+    fig, ax = plt.subplots(figsize=(7, 4.5))
+    for row in frame.to_dict(orient="records"):
+        x_value = _required_float(row["avg_model_calls"])
+        y_value = _required_float(row["intervention_success_rate"])
+        ax.scatter(x_value, y_value, s=45)
+        ax.annotate(
+            str(row.get("level") or row.get("agent") or "policy"),
+            (x_value, y_value),
+            xytext=(4, 4),
+            textcoords="offset points",
+            fontsize=8,
+        )
+    ax.set_xlabel("Measured mean model calls per trajectory")
+    ax.set_ylabel("Intervention success")
+    ax.set_title("RAAC effect and measured overhead")
+    ax.grid(alpha=0.25)
     fig.tight_layout()
     return fig
 

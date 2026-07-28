@@ -19,6 +19,9 @@ ROLE_SOURCES: tuple[dict[str, Any], ...] = (
         "evidence_class": "FIXTURE_ONLY",
         "release_tier": "development_release",
         "human_validation_required": False,
+        "scientific_disposition": "PUBLIC_DEVELOPMENT_ONLY",
+        "confirmatory_eligible": False,
+        "public_payload": True,
     },
     {
         "role": "compact20_pilot",
@@ -26,35 +29,91 @@ ROLE_SOURCES: tuple[dict[str, Any], ...] = (
         "evidence_class": "HUMAN_INPUT_REQUIRED",
         "release_tier": "harness_only_release",
         "human_validation_required": True,
+        "scientific_disposition": "PILOT_ONLY",
+        "confirmatory_eligible": False,
+        "public_payload": True,
     },
     {
-        "role": "scale100_confirmatory",
+        "role": "scale100_confirmatory_v2_protected",
+        "source": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "source_kind": "public_commitment_manifest",
+        "evidence_class": "HUMAN_INPUT_REQUIRED",
+        "release_tier": "hidden_or_delayed_test_pack",
+        "human_validation_required": True,
+        "scientific_disposition": "HUMAN_INPUT_REQUIRED",
+        "confirmatory_eligible": False,
+        "public_payload": False,
+    },
+    {
+        "role": "naturalistic_transfer_v2_protected",
+        "source": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+        "source_kind": "public_commitment_manifest",
+        "evidence_class": "HUMAN_INPUT_REQUIRED",
+        "release_tier": "hidden_or_delayed_test_pack",
+        "human_validation_required": True,
+        "scientific_disposition": "HUMAN_INPUT_REQUIRED",
+        "confirmatory_eligible": False,
+        "public_payload": False,
+    },
+    {
+        "role": "scale100_public_development_v1",
         "source": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
-        "evidence_class": "HUMAN_INPUT_REQUIRED",
-        "release_tier": "hidden_or_delayed_test_pack",
-        "human_validation_required": True,
+        "evidence_class": "DESIGN_ONLY",
+        "release_tier": "development_release",
+        "human_validation_required": False,
+        "scientific_disposition": "CONTAMINATED_NOT_CONFIRMATORY",
+        "contamination_record_id": "scale100-v1-public-candidate",
+        "historical_source_role": "scale100_confirmatory",
+        "confirmatory_eligible": False,
+        "public_payload": True,
     },
     {
-        "role": "naturalistic_transfer",
+        "role": "naturalistic_public_development_v1",
         "source": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
-        "evidence_class": "HUMAN_INPUT_REQUIRED",
-        "release_tier": "hidden_or_delayed_test_pack",
-        "human_validation_required": True,
+        "evidence_class": "DESIGN_ONLY",
+        "release_tier": "development_release",
+        "human_validation_required": False,
+        "scientific_disposition": "CONTAMINATED_NOT_CONFIRMATORY",
+        "contamination_record_id": "naturalistic-v1-public-candidate",
+        "historical_source_role": "naturalistic_transfer",
+        "confirmatory_eligible": False,
+        "public_payload": True,
     },
     {
-        "role": "main500_confirmatory",
+        "role": "main500_public_development_v1",
         "source": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
-        "evidence_class": "HUMAN_INPUT_REQUIRED",
-        "release_tier": "hidden_or_delayed_test_pack",
-        "human_validation_required": True,
+        "evidence_class": "DESIGN_ONLY",
+        "release_tier": "development_release",
+        "human_validation_required": False,
+        "scientific_disposition": "CONTAMINATED_NOT_CONFIRMATORY",
+        "contamination_record_id": "main500-v1-public-candidate",
+        "historical_source_role": "main500_confirmatory",
+        "confirmatory_eligible": False,
+        "public_payload": True,
     },
     {
-        "role": "heldout_challenge",
+        "role": "heldout_challenge_v1_contaminated",
         "source": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+        "evidence_class": "DESIGN_ONLY",
+        "release_tier": "development_release",
+        "human_validation_required": False,
+        "scientific_disposition": "CONTAMINATED_NOT_CONFIRMATORY",
+        "contamination_record_id": "main500-v1-public-candidate",
+        "historical_source_role": "heldout_challenge",
+        "confirmatory_eligible": False,
+        "public_payload": True,
+    },
+    {
+        "role": "heldout_challenge_v2_protected",
+        "source": "data/manifests/heldout_challenge_v2_public_manifest.json",
+        "source_kind": "public_commitment_manifest",
         "evidence_class": "HUMAN_INPUT_REQUIRED",
         "release_tier": "hidden_or_delayed_test_pack",
         "post_study_release_tier": "post_study_full_release",
         "human_validation_required": True,
+        "scientific_disposition": "PRIVATE_CANDIDATE_PENDING_REVIEW",
+        "confirmatory_eligible": False,
+        "public_payload": False,
     },
 )
 
@@ -66,33 +125,77 @@ def build_canonical_split_registry(repo_root: str | Path) -> dict[str, Any]:
 
     for definition in ROLE_SOURCES:
         source = root / definition["source"]
-        if definition["role"] == "compact20_pilot":
+        source_kind = definition.get("source_kind", "materialized_payload")
+        if source_kind == "public_commitment_manifest":
+            (
+                instance_ids,
+                base_task_ids,
+                committed_counts,
+                committed_hashes,
+                profile,
+                protected_status,
+            ) = _public_commitment_members(source)
+        elif definition["role"] == "compact20_pilot":
             instance_ids, base_task_ids = _compact20_members(source)
+            committed_counts = {}
+            committed_hashes = {}
+            profile = {}
+            protected_status = None
         else:
             instance_ids, base_task_ids = _jsonl_members(source)
+            committed_counts = {}
+            committed_hashes = {}
+            profile = _dataset_profile(source) if source.suffix == ".jsonl" else {}
+            protected_status = None
         memberships[definition["role"]] = base_task_ids
-        profile = _dataset_profile(source) if source.suffix == ".jsonl" else {}
+        instance_count = int(
+            committed_counts.get("target_instance_count", len(instance_ids))
+        )
+        base_task_count = int(
+            committed_counts.get("target_base_task_count", len(base_task_ids))
+        )
+        intervention_count = committed_counts.get("target_intervention_count")
+        role_status = (
+            protected_status
+            or (
+                "FIXTURE_READY"
+                if definition["role"] == "dev_fixture" and instance_ids
+                else str(definition["scientific_disposition"])
+                if source.exists()
+                else "MATERIALIZATION_PENDING"
+            )
+        )
         roles.append(
             {
                 **definition,
                 "source_exists": source.exists(),
                 "source_sha256": _sha256_file(source) if source.exists() else None,
-                "membership_sha256": _sha256_values(instance_ids),
-                "base_task_membership_sha256": _sha256_values(base_task_ids),
-                "instance_count": len(instance_ids),
-                "unique_base_task_count": len(base_task_ids),
+                "membership_sha256": (
+                    committed_hashes.get("instance_membership_hmac_sha256")
+                    or committed_hashes.get("private_payload_commitment_sha256")
+                    or _sha256_values(instance_ids)
+                ),
+                "base_task_membership_sha256": (
+                    committed_hashes.get("base_task_membership_hmac_sha256")
+                    or committed_hashes.get(
+                        "base_task_payload_commitment_sha256"
+                    )
+                    or _sha256_values(base_task_ids)
+                ),
+                "membership_visibility": (
+                    "PRIVATE_COMMITMENT_ONLY"
+                    if source_kind == "public_commitment_manifest"
+                    else "PUBLIC_EXACT_MEMBERSHIP"
+                ),
+                "instance_count": instance_count,
+                "intervention_count": intervention_count,
+                "unique_base_task_count": base_task_count,
                 "candidate_count": (
                     _compact20_candidate_count(source)
                     if definition["role"] == "compact20_pilot"
                     else None
                 ),
-                "status": (
-                    "FIXTURE_READY"
-                    if definition["role"] == "dev_fixture" and instance_ids
-                    else "HUMAN_REVIEW_PENDING"
-                    if instance_ids
-                    else "MATERIALIZATION_PENDING"
-                ),
+                "status": role_status,
                 "dataset_profile": profile,
                 "scientific_execution_allowed": False,
                 "paper_eligible": False,
@@ -226,6 +329,125 @@ def _compact20_candidate_count(path: Path) -> int:
         return 0
     rows = payload.get("candidates", []) if isinstance(payload, dict) else []
     return sum(1 for row in rows if isinstance(row, dict) and row.get("candidate_id"))
+
+
+def _public_commitment_members(
+    path: Path,
+) -> tuple[
+    set[str],
+    set[str],
+    dict[str, int],
+    dict[str, str],
+    dict[str, Any],
+    str | None,
+]:
+    if not path.exists():
+        return set(), set(), {}, {}, {}, None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return set(), set(), {}, {}, {}, None
+    if not isinstance(payload, dict):
+        return set(), set(), {}, {}, {}, None
+    counts = payload.get("aggregate_counts")
+    commitments = payload.get("commitments")
+    profile = payload.get("distribution_summary")
+    if not isinstance(profile, dict):
+        profile = payload.get("aggregate_diversity")
+    if not isinstance(counts, dict):
+        raw_count = (
+            profile.get("raw_task_count")
+            if isinstance(profile, dict)
+            else None
+        )
+        counts = (
+            {
+                "target_base_task_count": raw_count,
+                "target_instance_count": raw_count,
+            }
+            if isinstance(raw_count, int)
+            and not isinstance(raw_count, bool)
+            and raw_count >= 0
+            else {}
+        )
+    else:
+        counts = {
+            **counts,
+            "target_base_task_count": counts.get(
+                "target_base_task_count",
+                counts.get("base_task_count"),
+            ),
+            "target_intervention_count": counts.get(
+                "target_intervention_count",
+                counts.get("intervention_count"),
+            ),
+            "target_instance_count": counts.get(
+                "target_instance_count",
+                counts.get("instance_count"),
+            ),
+        }
+    if not isinstance(commitments, dict):
+        private_file_commitments = payload.get("private_file_commitments")
+        if isinstance(private_file_commitments, list):
+            safe_rows = [
+                {
+                    "role": str(row.get("role", "")),
+                    "sha256": str(row.get("sha256", "")),
+                    "bytes": int(row.get("bytes", 0)),
+                }
+                for row in private_file_commitments
+                if isinstance(row, dict)
+                and re.fullmatch(r"[0-9a-f]{64}", str(row.get("sha256", "")))
+                and isinstance(row.get("bytes"), int)
+                and not isinstance(row.get("bytes"), bool)
+            ]
+            aggregate_commitment = hashlib.sha256(
+                json.dumps(
+                    safe_rows,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                ).encode("utf-8")
+            ).hexdigest()
+            candidate_commitment = next(
+                (
+                    row["sha256"]
+                    for row in safe_rows
+                    if row["role"] == "candidate_tasks.jsonl"
+                ),
+                aggregate_commitment,
+            )
+            commitments = {
+                "base_task_payload_commitment_sha256": candidate_commitment,
+                "private_payload_commitment_sha256": aggregate_commitment,
+            }
+        else:
+            commitments = {}
+    protected_status = (
+        payload.get("private_materialization_state")
+        or payload.get("human_validation_state")
+    )
+    return (
+        set(),
+        set(),
+        {
+            str(key): int(value)
+            for key, value in counts.items()
+            if isinstance(key, str)
+            and isinstance(value, int)
+            and not isinstance(value, bool)
+        }
+        if isinstance(counts, dict)
+        else {},
+        {
+            str(key): str(value)
+            for key, value in commitments.items()
+            if isinstance(key, str) and isinstance(value, str)
+        }
+        if isinstance(commitments, dict)
+        else {},
+        dict(profile) if isinstance(profile, dict) else {},
+        str(protected_status) if protected_status else None,
+    )
 
 
 def _jsonl_members(path: Path) -> tuple[set[str], set[str]]:

@@ -1,0 +1,131 @@
+seed: 20260728
+run_name: kaggle_t4x2_raac_TEMPLATE_NOT_APPROVED
+benchmark_path: data/frozen/REPLACE_WITH_LOCKED_INSTANCES.jsonl
+output_dir: results/kaggle_t4x2_raac
+agent_runs:
+  - &open_model_arm
+    name: open_model_standard_tool_use
+    agent: local_hf_chat_agent
+    provider: local_openai
+    model: REPLACE_WITH_PINNED_OPEN_MODEL_REVISION
+    temperature: 0.0
+    max_tokens: 1024
+    retry_count: 0
+    timeout: 60
+    pricing:
+      input_per_1m_tokens: 0.0
+      output_per_1m_tokens: 0.0
+    raac:
+      enabled: false
+      variant: STANDARD_TOOL_USE
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_raac_light
+    raac:
+      enabled: true
+      variant: RAAC_LIGHT
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_raac_full
+    raac:
+      enabled: true
+      variant: RAAC_FULL
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_verify_only
+    raac:
+      enabled: true
+      variant: VERIFY_ONLY
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_retry_only
+    raac:
+      enabled: true
+      variant: RETRY_ONLY
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_abstain_only
+    raac:
+      enabled: true
+      variant: ABSTAIN_ONLY
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_no_cross_check
+    raac:
+      enabled: true
+      variant: NO_CROSS_CHECK
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_no_alternate_route
+    raac:
+      enabled: true
+      variant: NO_ALTERNATE_ROUTE
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+  - <<: *open_model_arm
+    name: open_model_no_final_verify
+    raac:
+      enabled: true
+      variant: NO_FINAL_VERIFY
+      comparison_mode: practical_budget
+      equal_budget_contract: null
+      evidence_class: EXECUTION_PENDING
+      observable_signals_only: true
+      checkpoint_every_decision: 1
+max_steps: 12
+num_repeats: 1
+save_observations: true
+save_agent_thoughts: false
+write_markdown_trajectories: true
+fail_fast: false
+auto_score: true
+allow_paid_calls: false
+cost_mode: zero_cost
+scientific_evidence_level: preliminary_or_engineering
+scientific_evidence: false
+template_only: true
+require_dry_run_before_live: true
+provider_type: local
+budget_cap_usd: 0.0
+task_budget_cap_usd: 0.0
+approval:
+  advisor_approved: false
+  budget_approved: false
+  approved_for_dry_run: false
+  approved_for_live_run: false
+  notes: TEMPLATE_NOT_APPROVED; do not execute.
+limits:
+  max_runtime_minutes: 480
+  max_steps_per_instance: 12
+  max_output_tokens: 1024

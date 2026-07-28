@@ -1,0 +1,51 @@
+{
+  "aggregate_counts": {
+    "publicly_disclosed_base_task_count": 0,
+    "publicly_disclosed_instance_count": 0,
+    "target_base_task_count": 50,
+    "target_instance_count": 300,
+    "target_intervention_count": 250
+  },
+  "canonical_role": "heldout_challenge_v2_protected",
+  "commitments": {
+    "algorithm": "HMAC-SHA256_WITH_PRIVATE_KEY",
+    "base_task_membership_hmac_sha256": "3300c6ed48ba7ad2ef7d2a48ca9857ee2b6f7a2ea96d969e70c8a45d639a5510",
+    "generation_design_sha256": "d2397200b657a05cda27c7ae85c9f6dd70465426f17efce3fa9c51e355af358d",
+    "id_namespace_hmac_sha256": "7f896567f86dc2f66130640b177fdc6ed683e349b92fcf26373b082260e5a8c3",
+    "instance_membership_hmac_sha256": "4d9994a41d80536c29735d1f6a138295799d1593a02f06d0de122f245e479ce3",
+    "seed_hmac_sha256": "c9c038a1949ce0813124df95d2318a85365e6bca5b5eb4e92f1c880e8a5f890c"
+  },
+  "distribution_summary": {
+    "selection_basis": "design coverage and private human review only",
+    "target_difficulty_levels": 4,
+    "target_domain_count_minimum": 8,
+    "target_intervention_family_count_minimum": 10
+  },
+  "full_release_unlocked": false,
+  "generated_at": "2026-07-28T02:49:09.243840+00:00",
+  "generation_constraints": {
+    "answer_overlap_avoided_where_feasible": true,
+    "exact_and_near_duplicate_scan_required": true,
+    "human_review_and_c10_required": true,
+    "model_output_based_selection_forbidden": true,
+    "new_private_identifier_namespace": true,
+    "new_private_seed": true,
+    "public_v1_identifier_reuse_forbidden": true,
+    "public_v1_text_reuse_forbidden": true,
+    "trivial_parameter_replacement_forbidden": true
+  },
+  "license_summary": "CAB-authored synthetic material under DATA_LICENSE.md; third-party private material is forbidden without separate provenance review.",
+  "manifest_version": 2,
+  "paper_eligible": false,
+  "private_materialization_state": "PRIVATE_IDS_LOCKED_PAYLOAD_AUTHORING_PENDING",
+  "private_storage": {
+    "files_tracked_in_public_git": false,
+    "gitignored": true,
+    "root": "private_data/heldout_challenge_v2/"
+  },
+  "provenance_summary": "Repository-authored private candidate; payload authoring, review, and lock remain pending outside public Git.",
+  "public_metadata_only": true,
+  "schema_version": "cab_protected_heldout_public_manifest_v2",
+  "scientific_execution_allowed": false,
+  "split_version": "heldout_challenge_v2"
+}

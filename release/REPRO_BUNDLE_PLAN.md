@@ -1,6 +1,6 @@
 # Reproducibility Bundle Plan
 
-Generated: `2026-07-23T17:17:51.669466+00:00`
+Generated: `2026-07-28T04:30:02.531093+00:00`
 
 ## Included (future public release)
 
@@ -25,7 +25,7 @@ Generated: `2026-07-23T17:17:51.669466+00:00`
 - `configs/ablations/react_tool_TEMPLATE_NOT_APPROVED.yaml`
 - `configs/ablations/recovery_aware_TEMPLATE_NOT_APPROVED.yaml`
 - `configs/ablations/self_check_TEMPLATE_NOT_APPROVED.yaml`
-- ... 79 more
+- ... 90 more
 
 ### synthetic_datasets
 - `data/frozen/pilot_v0.1/`

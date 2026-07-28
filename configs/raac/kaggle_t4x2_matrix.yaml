@@ -1,0 +1,44 @@
+schema_version: cab_raac_kaggle_matrix_v1
+evidence_class: DESIGN_ONLY
+scientific_evidence: false
+paper_eligible: false
+runner_template: configs/raac/kaggle_t4x2_raac_TEMPLATE_NOT_APPROVED.yaml
+primary_arms:
+  - STANDARD_TOOL_USE
+  - RAAC_LIGHT
+  - RAAC_FULL
+ablation_arms:
+  - VERIFY_ONLY
+  - RETRY_ONLY
+  - ABSTAIN_ONLY
+  - NO_CROSS_CHECK
+  - NO_ALTERNATE_ROUTE
+  - NO_FINAL_VERIFY
+baseline_registry: configs/raac/baselines.yaml
+ablation_registry: configs/raac/ablations.yaml
+policy_configs:
+  RAAC_LIGHT: configs/raac/raac_light.yaml
+  RAAC_FULL: configs/raac/raac_full.yaml
+budget_modes:
+  - equal_budget
+  - practical_budget
+equal_budget_config: configs/raac/equal_budget.yaml
+required_compute_fields:
+  - max_extra_model_calls
+  - max_extra_tool_calls
+  - max_retries
+  - max_alternate_routes
+  - max_verification_steps
+  - max_clarification_steps
+  - token_budget
+  - wall_clock_budget_seconds
+  - termination_rule
+kaggle_policy:
+  requested_gpu_workers: 2
+  parallelism: independent_data_parallel
+  preferred_dtype: float16
+  quantization_fallback: 4bit_when_fp16_preflight_fails
+  tensor_parallel_default: false
+  checkpoint_every_trajectory: 1
+execution_state: EXECUTION_PENDING
+approval_required: true

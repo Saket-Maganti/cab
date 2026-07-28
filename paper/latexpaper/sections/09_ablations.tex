@@ -1,6 +1,11 @@
 \section{Ablations}
 
-No ablation result is claimed in this draft. The repository defines a factorial ablation matrix (\texttt{ablation-matrix}, \texttt{configs/ablation\_matrix\_local\_stub.yaml}) and per-factor configs under \texttt{configs/ablations/} for planned comparisons including self-checking prompts, planner--executor decomposition, memory-verification instructions, recovery prompts, tool-description detail, scoring sensitivity, and local vs provider model backends.
+No ablation result is claimed in this draft. The primary ablation family
+compares \texttt{RAAC\_FULL} with \texttt{VERIFY\_ONLY},
+\texttt{RETRY\_ONLY}, \texttt{ABSTAIN\_ONLY},
+\texttt{NO\_CROSS\_CHECK}, \texttt{NO\_ALTERNATE\_ROUTE}, and
+\texttt{NO\_FINAL\_VERIFY} under locked budgets. Existing prompt, planner,
+memory-verification, scoring, and backend ablations remain secondary.
 
 \paragraph{Planned ablations (not yet run).}
 \begin{itemize}[leftmargin=*]
@@ -10,6 +15,7 @@ No ablation result is claimed in this draft. The repository defines a factorial 
     \item Tool-description detail and step-budget reminders
     \item Scorer sensitivity and export filters
     \item Cost/latency tradeoffs across provider tiers
+    \item \RAAC state-machine component removal under equal budgets
 \end{itemize}
 
 Results will populate Table~4 only after verified non-oracle runs. Stub or mock matrix cells validate export wiring only.

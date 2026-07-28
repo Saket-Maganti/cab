@@ -4,7 +4,11 @@
 **Status:** Protocol and templates ready · **No completed annotations exist**  
 **Claims gated:** C3 (trajectory vs final scoring) · C10 (intervention isolation validity)
 
-This document is the authoritative human-validation specification. It does **not** claim annotations, agreement statistics, or expert validation have been completed.
+The authoritative pre-execution C10 specification is now
+`docs/ICLR_HUMAN_VALIDATION_PROTOCOL.md`. This document remains a legacy
+overview of both pre-execution validity review and the later trajectory/C3
+lane. It does **not** claim annotations, agreement statistics, or expert
+validation have been completed.
 
 ---
 

@@ -1,0 +1,168 @@
+{
+  "schema_version": "cab_public_contamination_registry_v1",
+  "registry_id": "cab-public-exposure-permanent-invalidation-2026-07-28",
+  "policy": {
+    "deletion_restores_secrecy": false,
+    "history_rewrite_restores_scientific_eligibility": false,
+    "paper_eligible_evidence_allowed": false,
+    "public_exposure_is_permanent": true
+  },
+  "allowed_dispositions": [
+    "PUBLIC_DEVELOPMENT_ONLY",
+    "PILOT_ONLY",
+    "CONTAMINATED_NOT_CONFIRMATORY",
+    "INVALID_FOR_FUTURE_EVALUATION"
+  ],
+  "records": [
+    {
+      "record_id": "main500-v1-public-candidate",
+      "path_prefixes": [
+        "data/processed/main500_confirmatory_v1_candidate/"
+      ],
+      "canonical_source_path": "data/processed/main500_confirmatory_v1_candidate/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "8628fab2fb439dc4447b8d4ae82e36efca9191309df58dd3f55b99efb519c57d",
+      "recipe_paths": [
+        "configs/generate_main500_confirmatory_v1.yaml"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [
+        "main500_v1"
+      ],
+      "scientific_disposition": "CONTAMINATED_NOT_CONFIRMATORY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Public development, scorer testing, demonstrations, and explicitly labelled non-confirmatory pilots only."
+    },
+    {
+      "record_id": "scale100-v1-public-candidate",
+      "path_prefixes": [
+        "data/processed/scale100_confirmatory_v1_candidate/"
+      ],
+      "canonical_source_path": "data/processed/scale100_confirmatory_v1_candidate/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "93f23427deb773e5f673e80c73f93b1d3839128b33e768de1d5d5d813b51cde2",
+      "recipe_paths": [
+        "configs/generate_scale100_confirmatory_v1.yaml"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [
+        "scale100_v1"
+      ],
+      "scientific_disposition": "CONTAMINATED_NOT_CONFIRMATORY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Public development, scorer testing, demonstrations, and explicitly labelled non-confirmatory pilots only."
+    },
+    {
+      "record_id": "naturalistic-v1-public-candidate",
+      "path_prefixes": [
+        "data/processed/naturalistic_transfer_v1_candidate/"
+      ],
+      "canonical_source_path": "data/processed/naturalistic_transfer_v1_candidate/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "74af8019f4d0baf0350c8241e3abd540bb8c27b653818cd48860abed90d4c71e",
+      "recipe_paths": [
+        "configs/generate_naturalistic_transfer_v1.yaml"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [
+        "naturalistic_v1"
+      ],
+      "scientific_disposition": "CONTAMINATED_NOT_CONFIRMATORY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Public development and provenance-method testing only; not naturalistic external-validity evidence."
+    },
+    {
+      "record_id": "pilot-v0-1-public",
+      "path_prefixes": [
+        "data/processed/pilot_v0_1/"
+      ],
+      "canonical_source_path": "data/processed/pilot_v0_1/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "a759c073515c6d681407ea3b7ce5554728af53f2f0a57c78c178bc9f3a32eb12",
+      "recipe_paths": [
+        "configs/generate_pilot_v0_1.yaml"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [],
+      "scientific_disposition": "PILOT_ONLY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Public pilot, pipeline debugging, and engineering reproducibility only."
+    },
+    {
+      "record_id": "pilot-v0-1-frozen-public",
+      "path_prefixes": [
+        "data/frozen/pilot_v0.1/"
+      ],
+      "canonical_source_path": "data/frozen/pilot_v0.1/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "907a2ade3b9b84299a2e9c4f5cac50d02ad1c123ae96b5c30fedcf224167e900",
+      "recipe_paths": [
+        "data/frozen/pilot_v0.1/generation_report.json"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [],
+      "scientific_disposition": "PILOT_ONLY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Frozen public pilot and engineering-reproducibility checks only."
+    },
+    {
+      "record_id": "pilot-v0-1-reproduction-public",
+      "path_prefixes": [
+        "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/"
+      ],
+      "canonical_source_path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "0c67b3d5347d007afff07655f0714a76aba75740d9569ff171a51b7d8e2fe354",
+      "recipe_paths": [
+        "audits/full_verification/20260519_105705/07_generation_reproducibility.md"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [],
+      "scientific_disposition": "PILOT_ONLY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Historical reproducibility audit and public pilot debugging only."
+    },
+    {
+      "record_id": "web-shadow-25-public",
+      "path_prefixes": [
+        "data/processed/web_shadow_25/"
+      ],
+      "canonical_source_path": "data/processed/web_shadow_25/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "fe01311cc44711d96ed59fe8d91adada5643540cb8f041ada0133d833cf960ee",
+      "recipe_paths": [
+        "configs/generate_web_shadow_25.yaml"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [],
+      "scientific_disposition": "PUBLIC_DEVELOPMENT_ONLY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Public development, web-tool simulation, and fixture validation only."
+    },
+    {
+      "record_id": "main-v0-1-public-empty-heldout",
+      "path_prefixes": [
+        "data/processed/main_v0_1_500/"
+      ],
+      "canonical_source_path": "data/processed/main_v0_1_500/base_tasks.jsonl",
+      "canonical_source_sha256_at_exposure": "3e54abf7d073ee254381987851e1f9e44287d4a6e0ddaa52e29452da42d495f8",
+      "recipe_paths": [
+        "configs/generate_main_v0_1_500.yaml"
+      ],
+      "exposure_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "exposed_id_namespaces": [],
+      "scientific_disposition": "PUBLIC_DEVELOPMENT_ONLY",
+      "confirmatory_eligible": false,
+      "paper_eligible": false,
+      "external_validity_eligible": false,
+      "allowed_future_use": "Public development only; the tracked heldout files are empty and confer no protected status."
+    }
+  ]
+}

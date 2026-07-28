@@ -17,7 +17,7 @@
     "**/.pytest_cache/**",
     "**/*.pyc"
   ],
-  "generated_at": "2026-07-23T17:17:51.669466+00:00",
+  "generated_at": "2026-07-28T04:30:02.531093+00:00",
   "include": {
     "analysis_scripts": [
       "scripts/reproduce_artifact.py",
@@ -80,7 +80,10 @@
       "configs/generate_pilot_v0_1.yaml",
       "configs/generate_scale100_confirmatory_v1.yaml",
       "configs/generate_web_shadow_25.yaml",
+      "configs/human_validation/c10_contract_v1.json",
       "configs/human_validation_sample.yaml",
+      "configs/iclr/model_compatibility_t4x2.yaml",
+      "configs/iclr/resource_profiles.yaml",
       "configs/intervention_taxonomy.yaml",
       "configs/judge_fake_smoke.yaml",
       "configs/main_200_run.yaml",
@@ -120,6 +123,14 @@
       "configs/provider_pilot_tiny_APPROVED.yaml",
       "configs/provider_pilot_tiny_template.yaml",
       "configs/providers.yaml",
+      "configs/raac/ablations.yaml",
+      "configs/raac/analysis_TEMPLATE.yaml",
+      "configs/raac/baselines.yaml",
+      "configs/raac/equal_budget.yaml",
+      "configs/raac/kaggle_t4x2_matrix.yaml",
+      "configs/raac/kaggle_t4x2_raac_TEMPLATE_NOT_APPROVED.yaml",
+      "configs/raac/raac_full.yaml",
+      "configs/raac/raac_light.yaml",
       "configs/run_manifest_v2_TEMPLATE_NOT_RUNNABLE.json",
       "configs/sample_tasks.yaml",
       "configs/smoke.yaml",
@@ -229,8 +240,8 @@
       "paper/latexpaper/sections/02_related_work.tex",
       "paper/latexpaper/sections/03_benchmark_design.tex",
       "paper/latexpaper/sections/04_interventional_framework.tex",
-      "paper/latexpaper/sections/05_metrics.tex",
-      "paper/latexpaper/sections/06_experiments.tex"
+      "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
+      "paper/latexpaper/sections/05_metrics.tex"
     ],
     "release_metadata": [
       "release/release_manifest.json",

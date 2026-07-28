@@ -574,6 +574,15 @@ def _ablation_row(
         "avg_latency_s": _round(
             trajectories.get("latency_s", pd.Series(dtype=float)).dropna().mean()
         ),
+        "avg_model_calls": _round(
+            trajectories.get("model_call_count", pd.Series(dtype=float)).dropna().mean()
+        ),
+        "avg_tool_calls": _round(
+            trajectories.get("n_tool_calls", pd.Series(dtype=float)).dropna().mean()
+        ),
+        "avg_total_tokens": _round(
+            trajectories.get("total_tokens", pd.Series(dtype=float)).dropna().mean()
+        ),
         "tool_overuse": _round(
             scores.get("unnecessary_tool_call_rate", pd.Series(dtype=float)).dropna().mean()
         ),

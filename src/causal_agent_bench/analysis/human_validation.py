@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import html
 import json
+import math
 import random
 from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
+from statistics import NormalDist, median
 from typing import Any
 
 from causal_agent_bench.analysis.error_analysis import mine_error_cases
@@ -143,6 +146,9 @@ def summarize_human_validation_annotations(
         "agreement": agreement,
         "disagreement_examples": disagreements,
         "adjudication": _adjudication_summary(rows),
+        "exclusion": _exclusion_summary(rows),
+        "family_specific_validity": _family_specific_validity(rows),
+        "reviewer_confidence": _reviewer_confidence_summary(rows),
         "scope": "Human validation summary; do not cite as scientific evidence unless completed annotations and adjudication are documented.",
     }
     write_json(out / "validation_agreement.json", summary)
@@ -155,25 +161,134 @@ def summarize_human_validation_annotations(
     return summary
 
 
-def compute_agreement(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+def compute_agreement(
+    rows: list[dict[str, Any]],
+    *,
+    dimensions: list[str] | tuple[str, ...] | None = None,
+    item_key: str = "item_id",
+    reviewer_key: str = "annotator_id",
+    confidence_level: float = 0.95,
+    min_items_for_ci: int = 5,
+    bootstrap_repetitions: int = 1_000,
+) -> dict[str, dict[str, Any]]:
+    """Compute nominal agreement with explicit applicability and CI states.
+
+    Cohen's kappa is reported only for units with exactly two distinct
+    reviewers. Krippendorff's alpha supports two or more reviewers and missing
+    annotations. Point estimates with too few units are retained for workflow
+    diagnostics, but their interval state is fail-closed.
+    """
+
+    selected_dimensions = list(dimensions or ANNOTATION_DIMENSIONS)
     by_dimension: dict[str, dict[str, Any]] = {}
-    for dimension in ANNOTATION_DIMENSIONS:
+    for dimension in selected_dimensions:
         item_labels: dict[str, list[str]] = defaultdict(list)
+        item_reviewers: dict[str, list[str]] = defaultdict(list)
+        duplicate_reviewer_units: set[str] = set()
         for row in rows:
             label = _normalized_label(row.get(dimension))
             if label is None:
                 continue
-            item_id = str(row.get("item_id") or "")
+            item_id = str(row.get(item_key) or "")
             if not item_id:
                 continue
+            reviewer_id = str(row.get(reviewer_key) or "").strip()
+            if reviewer_id and reviewer_id in item_reviewers[item_id]:
+                duplicate_reviewer_units.add(item_id)
+                continue
             item_labels[item_id].append(label)
+            item_reviewers[item_id].append(reviewer_id)
+        for item_id, reviewers in item_reviewers.items():
+            if reviewers and all(reviewers):
+                ordered = sorted(
+                    zip(reviewers, item_labels[item_id], strict=True)
+                )
+                item_reviewers[item_id] = [
+                    reviewer for reviewer, _ in ordered
+                ]
+                item_labels[item_id] = [
+                    label for _, label in ordered
+                ]
         comparable = {item: labels for item, labels in item_labels.items() if len(labels) >= 2}
+        two_reviewer = {
+            item: labels
+            for item, labels in comparable.items()
+            if len(labels) == 2
+            and len({reviewer for reviewer in item_reviewers[item] if reviewer}) == 2
+        }
+        reviewer_pairs = {
+            tuple(sorted(reviewer for reviewer in item_reviewers[item] if reviewer))
+            for item in two_reviewer
+        }
+        consistent_two_reviewer = (
+            two_reviewer if len(reviewer_pairs) == 1 else {}
+        )
+        raw = _percent_agreement(comparable)
+        kappa = _cohens_kappa(consistent_two_reviewer)
+        alpha = _krippendorff_alpha(comparable)
+        raw_successes = sum(1 for labels in comparable.values() if len(set(labels)) == 1)
+        comparable_count = len(comparable)
+        analysis_state = (
+            "READY"
+            if comparable_count >= min_items_for_ci
+            else "BLOCKED_INSUFFICIENT_SAMPLE"
+        )
+        kappa_state = (
+            _kappa_state(
+                consistent_two_reviewer,
+                min_items_for_ci=min_items_for_ci,
+            )
+            if len(reviewer_pairs) <= 1
+            else "BLOCKED_INCONSISTENT_REVIEWER_PAIR"
+        )
+        alpha_state = _alpha_state(comparable, min_items_for_ci=min_items_for_ci)
+        seed_prefix = f"cab-human-agreement-v2:{dimension}"
         by_dimension[dimension] = {
-            "items_with_two_or_more_annotations": len(comparable),
-            "percent_agreement": _percent_agreement(comparable),
-            "cohens_kappa": _cohens_kappa(comparable),
-            "krippendorffs_alpha": _krippendorff_alpha(comparable),
-            "label_counts": dict(sorted(Counter(label for labels in item_labels.values() for label in labels).items())),
+            "analysis_state": analysis_state,
+            "items_with_any_annotation": len(item_labels),
+            "items_with_two_or_more_annotations": comparable_count,
+            "items_with_exactly_two_distinct_reviewers": len(two_reviewer),
+            "distinct_two_reviewer_pairs": len(reviewer_pairs),
+            "duplicate_reviewer_units_rejected": sorted(duplicate_reviewer_units),
+            "raw_agreement": raw,
+            # Backward-compatible name retained for existing table writers.
+            "percent_agreement": raw,
+            "raw_agreement_ci": _wilson_interval(
+                raw_successes,
+                comparable_count,
+                confidence_level=confidence_level,
+                min_items=min_items_for_ci,
+            ),
+            "cohens_kappa": kappa,
+            "cohens_kappa_state": kappa_state,
+            "cohens_kappa_ci": _bootstrap_agreement_interval(
+                consistent_two_reviewer,
+                statistic=_cohens_kappa,
+                metric_state=kappa_state,
+                confidence_level=confidence_level,
+                repetitions=bootstrap_repetitions,
+                seed_text=f"{seed_prefix}:kappa",
+            ),
+            "krippendorffs_alpha": alpha,
+            "krippendorffs_alpha_state": alpha_state,
+            "krippendorffs_alpha_ci": _bootstrap_agreement_interval(
+                comparable,
+                statistic=_krippendorff_alpha,
+                metric_state=alpha_state,
+                confidence_level=confidence_level,
+                repetitions=bootstrap_repetitions,
+                seed_text=f"{seed_prefix}:alpha",
+            ),
+            "prevalence": _prevalence_diagnostics(item_labels),
+            "label_counts": dict(
+                sorted(
+                    Counter(
+                        label
+                        for labels in item_labels.values()
+                        for label in labels
+                    ).items()
+                )
+            ),
         }
     return by_dimension
 
@@ -415,7 +530,7 @@ def _percent_agreement(item_labels: dict[str, list[str]]) -> float | None:
 
 
 def _cohens_kappa(item_labels: dict[str, list[str]]) -> float | None:
-    pairs = [labels[:2] for labels in item_labels.values() if len(labels) == 2]
+    pairs = [labels for labels in item_labels.values() if len(labels) == 2]
     if not pairs:
         return None
     observed = sum(1 for first, second in pairs if first == second) / len(pairs)
@@ -427,29 +542,218 @@ def _cohens_kappa(item_labels: dict[str, list[str]]) -> float | None:
         for label in labels
     )
     if expected == 1:
-        return 1.0
+        return None
     return round((observed - expected) / (1 - expected), 6)
 
 
 def _krippendorff_alpha(item_labels: dict[str, list[str]]) -> float | None:
-    pair_disagreements = []
+    observed_disagreement_weight = 0.0
+    coincidence_count = 0
     label_counts: Counter[str] = Counter()
     for labels in item_labels.values():
         label_counts.update(labels)
         if len(labels) < 2:
             continue
+        coincidence_count += len(labels)
         for first, second in combinations(labels, 2):
-            pair_disagreements.append(0 if first == second else 1)
-    if not pair_disagreements:
+            if first != second:
+                # Krippendorff's coincidence matrix weights each unordered
+                # coder pair by 2/(m_u-1) for a unit with m_u coders.
+                observed_disagreement_weight += 2 / (len(labels) - 1)
+    if coincidence_count == 0:
         return None
-    observed = sum(pair_disagreements) / len(pair_disagreements)
+    observed = observed_disagreement_weight / coincidence_count
     total = sum(label_counts.values())
     if total <= 1:
         return None
-    expected = 1 - sum(count * (count - 1) for count in label_counts.values()) / (total * (total - 1))
+    expected = 1 - sum(
+        count * (count - 1) for count in label_counts.values()
+    ) / (total * (total - 1))
     if expected == 0:
-        return 1.0
+        return None
     return round(1 - observed / expected, 6)
+
+
+def _kappa_state(
+    item_labels: dict[str, list[str]],
+    *,
+    min_items_for_ci: int,
+) -> str:
+    if len(item_labels) < min_items_for_ci:
+        return "BLOCKED_INSUFFICIENT_SAMPLE"
+    labels = {label for values in item_labels.values() for label in values}
+    if len(labels) < 2 or _cohens_kappa(item_labels) is None:
+        return "BLOCKED_DEGENERATE_PREVALENCE"
+    return "READY"
+
+
+def _alpha_state(
+    item_labels: dict[str, list[str]],
+    *,
+    min_items_for_ci: int,
+) -> str:
+    if len(item_labels) < min_items_for_ci:
+        return "BLOCKED_INSUFFICIENT_SAMPLE"
+    labels = {label for values in item_labels.values() for label in values}
+    if len(labels) < 2 or _krippendorff_alpha(item_labels) is None:
+        return "BLOCKED_DEGENERATE_PREVALENCE"
+    return "READY"
+
+
+def _wilson_interval(
+    successes: int,
+    total: int,
+    *,
+    confidence_level: float,
+    min_items: int,
+) -> dict[str, Any]:
+    if total < min_items:
+        return {
+            "state": "BLOCKED_INSUFFICIENT_SAMPLE",
+            "confidence_level": confidence_level,
+            "method": "Wilson score",
+            "low": None,
+            "high": None,
+            "n": total,
+        }
+    z = NormalDist().inv_cdf(0.5 + confidence_level / 2)
+    proportion = successes / total
+    denominator = 1 + z * z / total
+    centre = (proportion + z * z / (2 * total)) / denominator
+    margin = (
+        z
+        * math.sqrt(
+            proportion * (1 - proportion) / total
+            + z * z / (4 * total * total)
+        )
+        / denominator
+    )
+    return {
+        "state": "READY",
+        "confidence_level": confidence_level,
+        "method": "Wilson score",
+        "low": round(max(0.0, centre - margin), 6),
+        "high": round(min(1.0, centre + margin), 6),
+        "n": total,
+    }
+
+
+def _bootstrap_agreement_interval(
+    item_labels: dict[str, list[str]],
+    *,
+    statistic: Any,
+    metric_state: str,
+    confidence_level: float,
+    repetitions: int,
+    seed_text: str,
+) -> dict[str, Any]:
+    if metric_state != "READY":
+        return {
+            "state": metric_state,
+            "confidence_level": confidence_level,
+            "method": "deterministic item bootstrap",
+            "low": None,
+            "high": None,
+            "valid_repetitions": 0,
+            "requested_repetitions": repetitions,
+        }
+    item_ids = sorted(item_labels)
+    seed = int.from_bytes(
+        hashlib.sha256(seed_text.encode("utf-8")).digest()[:8],
+        byteorder="big",
+    )
+    rng = random.Random(seed)
+    estimates: list[float] = []
+    for _ in range(repetitions):
+        sampled: dict[str, list[str]] = {}
+        for sample_index in range(len(item_ids)):
+            selected = item_ids[rng.randrange(len(item_ids))]
+            sampled[f"{sample_index}:{selected}"] = item_labels[selected]
+        value = statistic(sampled)
+        if value is not None and math.isfinite(float(value)):
+            estimates.append(float(value))
+    minimum_valid = max(100, repetitions // 5)
+    if len(estimates) < minimum_valid:
+        return {
+            "state": "BLOCKED_DEGENERATE_BOOTSTRAP",
+            "confidence_level": confidence_level,
+            "method": "deterministic item bootstrap",
+            "low": None,
+            "high": None,
+            "valid_repetitions": len(estimates),
+            "requested_repetitions": repetitions,
+        }
+    estimates.sort()
+    tail = (1 - confidence_level) / 2
+    low = _quantile(estimates, tail)
+    high = _quantile(estimates, 1 - tail)
+    return {
+        "state": "READY",
+        "confidence_level": confidence_level,
+        "method": "deterministic item bootstrap",
+        "low": round(low, 6),
+        "high": round(high, 6),
+        "valid_repetitions": len(estimates),
+        "requested_repetitions": repetitions,
+    }
+
+
+def _quantile(sorted_values: list[float], probability: float) -> float:
+    if len(sorted_values) == 1:
+        return sorted_values[0]
+    position = (len(sorted_values) - 1) * probability
+    lower = math.floor(position)
+    upper = math.ceil(position)
+    if lower == upper:
+        return sorted_values[lower]
+    weight = position - lower
+    return sorted_values[lower] * (1 - weight) + sorted_values[upper] * weight
+
+
+def _prevalence_diagnostics(
+    item_labels: dict[str, list[str]],
+) -> dict[str, Any]:
+    counts = Counter(label for labels in item_labels.values() for label in labels)
+    total = sum(counts.values())
+    if not total:
+        return {
+            "state": "BLOCKED_INSUFFICIENT_SAMPLE",
+            "total_labels": 0,
+            "label_proportions": {},
+            "majority_label": None,
+            "majority_prevalence": None,
+            "normalized_entropy": None,
+            "warning": "NO_LABELS",
+        }
+    proportions = {
+        label: count / total for label, count in sorted(counts.items())
+    }
+    majority_label, majority_count = max(
+        counts.items(),
+        key=lambda item: (item[1], item[0]),
+    )
+    entropy = -sum(
+        probability * math.log(probability)
+        for probability in proportions.values()
+        if probability > 0
+    )
+    normalized_entropy = (
+        entropy / math.log(len(proportions))
+        if len(proportions) > 1
+        else 0.0
+    )
+    prevalence = majority_count / total
+    return {
+        "state": "READY",
+        "total_labels": total,
+        "label_proportions": {
+            label: round(value, 6) for label, value in proportions.items()
+        },
+        "majority_label": majority_label,
+        "majority_prevalence": round(prevalence, 6),
+        "normalized_entropy": round(normalized_entropy, 6),
+        "warning": "HIGH_PREVALENCE" if prevalence >= 0.90 else None,
+    }
 
 
 def _disagreement_examples(rows: list[dict[str, Any]], limit: int = 20) -> list[dict[str, Any]]:
@@ -491,6 +795,28 @@ def _disagreement_examples(rows: list[dict[str, Any]], limit: int = 20) -> list[
 
 
 def _adjudication_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    by_item: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        item_id = str(row.get("item_id") or "")
+        if item_id:
+            by_item[item_id].append(row)
+    disagreement_groups = 0
+    adjudicated_groups = 0
+    for item_rows in by_item.values():
+        for dimension in ANNOTATION_DIMENSIONS:
+            labels = {
+                label
+                for row in item_rows
+                if (label := _normalized_label(row.get(dimension))) is not None
+            }
+            if len(labels) <= 1:
+                continue
+            disagreement_groups += 1
+            if any(
+                _normalized_label(row.get(f"adjudicated_{dimension}")) is not None
+                for row in item_rows
+            ):
+                adjudicated_groups += 1
     adjudicated_counts = {
         dimension: sum(
             1 for row in rows if _normalized_label(row.get(f"adjudicated_{dimension}")) is not None
@@ -501,6 +827,149 @@ def _adjudication_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "two_annotators_per_item_recommended": True,
         "adjudicated_label_columns": [f"adjudicated_{dimension}" for dimension in ANNOTATION_DIMENSIONS],
         "adjudicated_label_counts": adjudicated_counts,
+        "disagreement_groups": disagreement_groups,
+        "adjudicated_disagreement_groups": adjudicated_groups,
+        "adjudication_rate": (
+            round(adjudicated_groups / disagreement_groups, 6)
+            if disagreement_groups
+            else None
+        ),
+        "state": (
+            "READY"
+            if disagreement_groups == 0 or adjudicated_groups == disagreement_groups
+            else "ADJUDICATION_INCOMPLETE"
+        ),
+    }
+
+
+def _exclusion_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    final_by_item: dict[str, str] = {}
+    for row in rows:
+        item_id = str(row.get("item_id") or "")
+        if not item_id:
+            continue
+        candidates = (
+            row.get("adjudicated_exclusion_recommendation"),
+            row.get("exclusion_recommendation"),
+            row.get("invalid_sample_flag"),
+        )
+        for value in candidates:
+            normalized = _normalized_label(value)
+            if normalized is not None:
+                final_by_item[item_id] = normalized
+                break
+    if not final_by_item:
+        return {
+            "state": "BLOCKED_NO_EXCLUSION_LABELS",
+            "items_with_final_recommendation": 0,
+            "excluded_items": 0,
+            "exclusion_rate": None,
+        }
+    excluded_values = {"yes", "exclude", "excluded", "true", "1"}
+    excluded = sum(value in excluded_values for value in final_by_item.values())
+    return {
+        "state": "READY",
+        "items_with_final_recommendation": len(final_by_item),
+        "excluded_items": excluded,
+        "exclusion_rate": round(excluded / len(final_by_item), 6),
+    }
+
+
+def _family_specific_validity(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    validity_dimensions = (
+        "goal_preserved",
+        "changed_factor_isolated",
+        "manipulation_success",
+        "invariance_preserved",
+    )
+    by_family: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        family = str(row.get("intervention_family") or "").strip()
+        if family:
+            by_family[family].append(row)
+    if not by_family:
+        return {
+            "state": "BLOCKED_NO_FAMILY_LABELS",
+            "families": {},
+        }
+    output: dict[str, Any] = {}
+    positive = {"yes", "true", "pass", "valid", "1"}
+    for family, family_rows in sorted(by_family.items()):
+        dimensions: dict[str, Any] = {}
+        for dimension in validity_dimensions:
+            labels = [
+                label
+                for row in family_rows
+                if (label := _normalized_label(
+                    row.get(f"adjudicated_{dimension}") or row.get(dimension)
+                ))
+                is not None
+            ]
+            dimensions[dimension] = {
+                "n_labels": len(labels),
+                "valid_rate": (
+                    round(sum(label in positive for label in labels) / len(labels), 6)
+                    if labels
+                    else None
+                ),
+            }
+        output[family] = {
+            "annotation_rows": len(family_rows),
+            "dimensions": dimensions,
+        }
+    return {"state": "READY", "families": output}
+
+
+def _reviewer_confidence_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    by_reviewer: dict[str, list[float]] = defaultdict(list)
+    invalid_values = 0
+    for row in rows:
+        reviewer = str(
+            row.get("annotator_id")
+            or row.get("reviewer_id")
+            or "unknown"
+        ).strip()
+        raw_value = row.get("reviewer_confidence")
+        if raw_value in {None, ""}:
+            raw_value = row.get("confidence_1_to_5")
+        if raw_value in {None, ""}:
+            continue
+        try:
+            value = float(str(raw_value))
+        except (TypeError, ValueError):
+            invalid_values += 1
+            continue
+        if not 1 <= value <= 5:
+            invalid_values += 1
+            continue
+        by_reviewer[reviewer or "unknown"].append(value)
+    all_values = [value for values in by_reviewer.values() for value in values]
+    if not all_values:
+        return {
+            "state": "BLOCKED_NO_CONFIDENCE_LABELS",
+            "n_ratings": 0,
+            "invalid_values_rejected": invalid_values,
+            "overall": None,
+            "by_reviewer": {},
+        }
+    return {
+        "state": "READY",
+        "n_ratings": len(all_values),
+        "invalid_values_rejected": invalid_values,
+        "overall": {
+            "mean": round(sum(all_values) / len(all_values), 6),
+            "median": round(float(median(all_values)), 6),
+            "minimum": min(all_values),
+            "maximum": max(all_values),
+        },
+        "by_reviewer": {
+            reviewer: {
+                "n": len(values),
+                "mean": round(sum(values) / len(values), 6),
+                "median": round(float(median(values)), 6),
+            }
+            for reviewer, values in sorted(by_reviewer.items())
+        },
     }
 
 
@@ -509,9 +978,19 @@ def _write_agreement_table(out: Path, agreement: dict[str, dict[str, Any]]) -> N
         {
             "dimension": dimension,
             "items": stats["items_with_two_or_more_annotations"],
+            "analysis_state": stats["analysis_state"],
             "percent_agreement": stats["percent_agreement"],
+            "agreement_ci_low": stats["raw_agreement_ci"]["low"],
+            "agreement_ci_high": stats["raw_agreement_ci"]["high"],
             "cohens_kappa": stats["cohens_kappa"],
+            "cohens_kappa_ci_low": stats["cohens_kappa_ci"]["low"],
+            "cohens_kappa_ci_high": stats["cohens_kappa_ci"]["high"],
             "krippendorffs_alpha": stats["krippendorffs_alpha"],
+            "krippendorffs_alpha_ci_low": stats["krippendorffs_alpha_ci"]["low"],
+            "krippendorffs_alpha_ci_high": stats["krippendorffs_alpha_ci"]["high"],
+            "majority_label": stats["prevalence"]["majority_label"],
+            "majority_prevalence": stats["prevalence"]["majority_prevalence"],
+            "prevalence_warning": stats["prevalence"]["warning"],
         }
         for dimension, stats in agreement.items()
     ]
@@ -519,7 +998,23 @@ def _write_agreement_table(out: Path, agreement: dict[str, dict[str, Any]]) -> N
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(
             handle,
-            fieldnames=["dimension", "items", "percent_agreement", "cohens_kappa", "krippendorffs_alpha"],
+            fieldnames=[
+                "dimension",
+                "items",
+                "analysis_state",
+                "percent_agreement",
+                "agreement_ci_low",
+                "agreement_ci_high",
+                "cohens_kappa",
+                "cohens_kappa_ci_low",
+                "cohens_kappa_ci_high",
+                "krippendorffs_alpha",
+                "krippendorffs_alpha_ci_low",
+                "krippendorffs_alpha_ci_high",
+                "majority_label",
+                "majority_prevalence",
+                "prevalence_warning",
+            ],
         )
         writer.writeheader()
         writer.writerows(rows)
@@ -529,26 +1024,32 @@ def _write_agreement_table(out: Path, agreement: dict[str, dict[str, Any]]) -> N
 
 def _write_markdown_table(path: Path, rows: list[dict[str, Any]]) -> None:
     lines = [
-        "| Dimension | Items | Percent agreement | Cohen's kappa | Krippendorff's alpha |",
-        "|---|---:|---:|---:|---:|",
+        "| Dimension | Items | State | Raw agreement (95% CI) | Cohen's kappa | Krippendorff's alpha | Majority prevalence |",
+        "|---|---:|---|---:|---:|---:|---:|",
     ]
     for row in rows:
         lines.append(
-            f"| `{row['dimension']}` | {row['items']} | {_fmt(row['percent_agreement'])} | {_fmt(row['cohens_kappa'])} | {_fmt(row['krippendorffs_alpha'])} |"
+            f"| `{row['dimension']}` | {row['items']} | `{row['analysis_state']}` | "
+            f"{_fmt(row['percent_agreement'])} "
+            f"[{_fmt(row['agreement_ci_low'])}, {_fmt(row['agreement_ci_high'])}] | "
+            f"{_fmt(row['cohens_kappa'])} | {_fmt(row['krippendorffs_alpha'])} | "
+            f"{_fmt(row['majority_prevalence'])} |"
         )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _write_latex_table(path: Path, rows: list[dict[str, Any]]) -> None:
     lines = [
-        "\\begin{tabular}{lrrrr}",
+        "\\begin{tabular}{lrrrrr}",
         "\\toprule",
-        "Dimension & Items & Agreement & $\\kappa$ & $\\alpha$ \\\\",
+        "Dimension & Items & Agreement & $\\kappa$ & $\\alpha$ & Majority prev. \\\\",
         "\\midrule",
     ]
     for row in rows:
         lines.append(
-            f"{row['dimension'].replace('_', ' ')} & {row['items']} & {_fmt(row['percent_agreement'])} & {_fmt(row['cohens_kappa'])} & {_fmt(row['krippendorffs_alpha'])} \\\\"
+            f"{row['dimension'].replace('_', ' ')} & {row['items']} & "
+            f"{_fmt(row['percent_agreement'])} & {_fmt(row['cohens_kappa'])} & "
+            f"{_fmt(row['krippendorffs_alpha'])} & {_fmt(row['majority_prevalence'])} \\\\"
         )
     lines.extend(["\\bottomrule", "\\end{tabular}", ""])
     path.write_text("\n".join(lines), encoding="utf-8")
@@ -565,12 +1066,18 @@ def _validation_report_markdown(summary: dict[str, Any]) -> str:
         "",
         "## Agreement",
         "",
-        "| Dimension | Items | Percent agreement | Cohen's kappa | Krippendorff's alpha |",
-        "|---|---:|---:|---:|---:|",
+        "| Dimension | Items | State | Raw agreement (95% CI) | Cohen's kappa | Krippendorff's alpha | Majority prevalence |",
+        "|---|---:|---|---:|---:|---:|---:|",
     ]
     for dimension, stats in summary["agreement"].items():
         lines.append(
-            f"| `{dimension}` | {stats['items_with_two_or_more_annotations']} | {_fmt(stats['percent_agreement'])} | {_fmt(stats['cohens_kappa'])} | {_fmt(stats['krippendorffs_alpha'])} |"
+            f"| `{dimension}` | {stats['items_with_two_or_more_annotations']} | "
+            f"`{stats['analysis_state']}` | {_fmt(stats['percent_agreement'])} "
+            f"[{_fmt(stats['raw_agreement_ci']['low'])}, "
+            f"{_fmt(stats['raw_agreement_ci']['high'])}] | "
+            f"{_fmt(stats['cohens_kappa'])} | "
+            f"{_fmt(stats['krippendorffs_alpha'])} | "
+            f"{_fmt(stats['prevalence']['majority_prevalence'])} |"
         )
     lines.extend(["", "## Disagreement Examples", ""])
     examples = summary.get("disagreement_examples", [])
@@ -582,6 +1089,13 @@ def _validation_report_markdown(summary: dict[str, Any]) -> str:
         )
     lines.extend(
         [
+            "",
+            "## Review Operations",
+            "",
+            f"- Adjudication: `{summary['adjudication']}`",
+            f"- Exclusions: `{summary['exclusion']}`",
+            f"- Reviewer confidence: `{summary['reviewer_confidence']}`",
+            f"- Family-specific validity: `{summary['family_specific_validity']}`",
             "",
             "## Ethics And Compensation Placeholder",
             "",

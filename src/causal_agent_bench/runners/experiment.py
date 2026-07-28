@@ -196,6 +196,7 @@ def run_experiment(
                         save_agent_thoughts=config.save_agent_thoughts,
                         agent_run_id=agent_run_id,
                         agent_kwargs=_agent_kwargs(agent_run, config, limiter=limiter),
+                        raac_config=config.resolved_raac(agent_run),
                     )
                 except Exception as exc:
                     record = runner_error_record(

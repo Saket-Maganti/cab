@@ -105,6 +105,36 @@
       "must_clear_markers_for_submission": false
     },
     {
+      "section_id": "recovery_aware_agent_control",
+      "section_label": "Recovery-Aware Agent Control",
+      "status": "method_draft_effect_blocked",
+      "paper_files": [
+        "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex"
+      ],
+      "claim_ids": [
+        "C5",
+        "C6"
+      ],
+      "allowed_claim_statuses": [
+        "planned",
+        "supported",
+        "weakened",
+        "engineering_only"
+      ],
+      "required_markers_when_any_claim_unsupported": [
+        "remains to be tested",
+        "validate controller mechanics only",
+        "no effectiveness claim"
+      ],
+      "forbidden_when_any_claim_unsupported": [
+        "we find",
+        "we show",
+        "significantly improves",
+        "outperforms standard"
+      ],
+      "must_clear_markers_for_submission": false
+    },
+    {
       "section_id": "results",
       "section_label": "Results RQ1-RQ5",
       "status": "empirical_blocked",

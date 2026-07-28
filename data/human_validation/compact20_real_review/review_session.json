@@ -1,0 +1,14 @@
+{
+  "ai_or_proxy_review_permitted": false,
+  "candidate_manifest": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+  "candidate_manifest_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+  "candidate_slice_hash": "5e0328628774e08518863f51d76c7a93fcb0a5b20d798b51350f716226ebac9f",
+  "completed_at": null,
+  "evidence_class": "HUMAN_INPUT_REQUIRED",
+  "human_only_attestation": false,
+  "human_only_attestation_note": "Set true only after genuine humans complete the registered independent review without AI/proxy assistance.",
+  "model_identity_blinded": true,
+  "model_output_blinded": true,
+  "review_mode": "pending",
+  "schema_version": "cab_c10_review_session_v1"
+}

@@ -84,3 +84,32 @@ def test_release_check_flags_incomplete_canonical_inventory(tmp_path):
 
     assert report["passed"] is False
     assert any("incomplete source_packages inventory" in error for error in report["errors"])
+
+
+def test_release_check_rejects_private_payload_path(tmp_path):
+    manifest_path = tmp_path / "manifest.json"
+    private_path = tmp_path / "private_data/heldout_challenge_v2/tasks.jsonl"
+    private_path.parent.mkdir(parents=True)
+    private_path.write_text('{"task_text": "must not ship"}\n', encoding="utf-8")
+    manifest = {
+        "release_id": "test",
+        "package_version": "0.1.0",
+        "cards": [],
+        "docs": [],
+        "configs": [],
+        "scripts": [],
+        "source_packages": [],
+        "data_manifests": [
+            "private_data/heldout_challenge_v2/tasks.jsonl"
+        ],
+        "required_card_sections": [],
+    }
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    report = run_release_check(manifest_path, repo_root=tmp_path)
+
+    assert report["passed"] is False
+    assert any(
+        "forbidden private/protected release payload" in error
+        for error in report["errors"]
+    )

@@ -5,6 +5,8 @@ from typing import Any
 
 from causal_agent_bench.agents.registry import get_agent
 from causal_agent_bench.environment import BenchmarkEnvironment
+from causal_agent_bench.raac.adapters import RAACAgentWrapper
+from causal_agent_bench.raac.config import RAACRunConfig
 from causal_agent_bench.schemas import AgentAction, BenchmarkInstance, Trajectory
 
 
@@ -20,8 +22,11 @@ def execute_agent_on_instance(
     save_agent_thoughts: bool,
     agent_run_id: str | None = None,
     agent_kwargs: dict[str, Any] | None = None,
+    raac_config: RAACRunConfig | None = None,
 ) -> Trajectory:
     agent = get_agent(agent_name, seed=seed, **(agent_kwargs or {}))
+    if raac_config is not None and raac_config.enabled:
+        agent = RAACAgentWrapper(agent, raac_config)
     trajectory_agent_name = agent_run_id or agent.name
     env = BenchmarkEnvironment(
         instance,
@@ -54,6 +59,8 @@ def execute_agent_on_instance(
     )
     if hasattr(agent, "run_metadata"):
         trajectory.metadata.update(agent.run_metadata())
+    if isinstance(trajectory.metadata.get("raac"), dict):
+        trajectory.raac_metadata = dict(trajectory.metadata["raac"])
     _attach_trajectory_cost_summary(trajectory)
     trajectory = Trajectory.model_validate(trajectory.model_dump(mode="python"))
     if not save_observations or not save_agent_thoughts:

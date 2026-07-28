@@ -122,6 +122,16 @@ def build_run_metadata(
         "num_repeats": config.num_repeats,
         "max_instances": config.max_instances,
         "max_api_calls": config.max_api_calls,
+        "raac": (
+            config.raac.model_dump(mode="json")
+            if config.raac is not None
+            else None
+        ),
+        "raac_agent_policies": {
+            agent_run.run_id(): resolved.model_dump(mode="json")
+            for agent_run in agent_runs
+            if (resolved := config.resolved_raac(agent_run)) is not None
+        },
         "budget_cap_usd": config.budget_cap_usd,
         "task_budget_cap_usd": config.task_budget_cap_usd,
         "cost_models_configured": bool(config.cost_models),

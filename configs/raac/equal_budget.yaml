@@ -1,0 +1,20 @@
+schema_version: cab_raac_comparison_v1
+name: raac_equal_budget
+evidence_class: DESIGN_ONLY
+comparison_mode: equal_budget
+shared_compute_contract:
+  max_extra_model_calls: 8
+  max_extra_tool_calls: 6
+  max_retries: 2
+  max_alternate_routes: 2
+  max_verification_steps: 3
+  max_clarification_steps: 1
+  token_budget: 1536
+  wall_clock_budget_seconds: 90.0
+  termination_rule: >-
+    Terminate when the shared ceiling cannot fund a legal next action; otherwise
+    answer, qualify, abstain, or label an infrastructure failure.
+accounting:
+  include_unused_allowance: true
+  report_realized_overhead: true
+  report_clean_task_overhead: true

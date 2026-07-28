@@ -352,6 +352,7 @@ class Trajectory(StrictModel):
     started_at: datetime | None = None
     completed_at: datetime | None = None
     token_cost_metadata: dict[str, Any] = Field(default_factory=dict)
+    raac_metadata: dict[str, Any] = Field(default_factory=dict)
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     @model_validator(mode="before")
@@ -414,6 +415,8 @@ class Trajectory(StrictModel):
                 }.items()
                 if value is not None
             }
+        if not self.raac_metadata and isinstance(self.metadata.get("raac"), dict):
+            self.raac_metadata = dict(self.metadata["raac"])
         return self
 
     @property
@@ -466,6 +469,10 @@ class TrajectoryStep(StrictModel):
     started_at: datetime | None = None
     completed_at: datetime | None = None
     token_cost_metadata: dict[str, Any] = Field(default_factory=dict)
+    raac_state: str | None = None
+    raac_decision: str | None = None
+    raac_signals: list[str] = Field(default_factory=list)
+    raac_trace_index: int | None = Field(default=None, ge=0)
 
     @model_validator(mode="after")
     def populate_v2_step_fields(self) -> TrajectoryStep:
@@ -510,6 +517,14 @@ class TrajectoryStep(StrictModel):
                 }.items()
                 if value is not None
             }
+        if self.raac_state is None:
+            self.raac_state = action_metadata.get("raac_state")
+        if self.raac_decision is None:
+            self.raac_decision = action_metadata.get("raac_decision")
+        if not self.raac_signals and action_metadata.get("raac_signal") is not None:
+            self.raac_signals = [str(action_metadata["raac_signal"])]
+        if self.raac_trace_index is None and action_metadata.get("raac_trace_index") is not None:
+            self.raac_trace_index = int(action_metadata["raac_trace_index"])
         return self
 
 
@@ -533,6 +548,10 @@ class TrajectoryStepV2(StrictModel):
     action: AgentAction | None = None
     observation: ToolObservation | None = None
     state: dict[str, Any] = Field(default_factory=dict)
+    raac_state: str | None = None
+    raac_decision: str | None = None
+    raac_signals: list[str] = Field(default_factory=list)
+    raac_trace_index: int | None = Field(default=None, ge=0)
 
     @model_validator(mode="before")
     @classmethod
@@ -563,6 +582,11 @@ class TrajectoryStepV2(StrictModel):
         normalized.setdefault("recovery_marker", action_metadata.get("recovery_marker"))
         normalized.setdefault("contradiction_marker", action_metadata.get("contradiction_marker"))
         normalized.setdefault("memory_use_marker", action_metadata.get("memory_use_marker"))
+        normalized.setdefault("raac_state", action_metadata.get("raac_state"))
+        normalized.setdefault("raac_decision", action_metadata.get("raac_decision"))
+        if not normalized.get("raac_signals") and action_metadata.get("raac_signal") is not None:
+            normalized["raac_signals"] = [str(action_metadata["raac_signal"])]
+        normalized.setdefault("raac_trace_index", action_metadata.get("raac_trace_index"))
         if normalized.get("final_answer") is None and isinstance(action_payload, dict):
             normalized["final_answer"] = action_payload.get("final_answer")
         normalized.pop("index", None)
@@ -586,6 +610,7 @@ class TrajectoryV2(StrictModel):
     started_at: datetime | None = None
     completed_at: datetime | None = None
     token_cost_metadata: dict[str, Any] = Field(default_factory=dict)
+    raac_metadata: dict[str, Any] = Field(default_factory=dict)
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     @model_validator(mode="before")
@@ -636,6 +661,10 @@ class TrajectoryV2(StrictModel):
                 }.items()
                 if value is not None
             },
+        )
+        normalized.setdefault(
+            "raac_metadata",
+            metadata.get("raac") if isinstance(metadata.get("raac"), dict) else {},
         )
         return normalized
 

@@ -1,0 +1,37 @@
+schema_version: cab_raac_policy_registry_v1
+evidence_class: DESIGN_ONLY
+scientific_evidence: false
+paper_eligible: false
+base_policy: RAAC_FULL
+policies:
+  VERIFY_ONLY:
+    retry: false
+    alternate_route: false
+    cross_check: false
+    verify: true
+    clarification: false
+    abstention: true
+    final_verify: true
+  RETRY_ONLY:
+    retry: true
+    alternate_route: false
+    cross_check: false
+    verify: false
+    clarification: false
+    abstention: false
+    final_verify: false
+  ABSTAIN_ONLY:
+    retry: false
+    alternate_route: false
+    cross_check: false
+    verify: false
+    clarification: false
+    abstention: true
+    abstain_on_any_anomaly: true
+    final_verify: false
+  NO_CROSS_CHECK:
+    cross_check: false
+  NO_ALTERNATE_ROUTE:
+    alternate_route: false
+  NO_FINAL_VERIFY:
+    final_verify: false

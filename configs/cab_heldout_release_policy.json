@@ -1,6 +1,6 @@
 {
-  "schema_version": "cab_heldout_release_policy_v1",
-  "policy_id": "cab_heldout_release_pre_execution_v1",
+  "schema_version": "cab_heldout_release_policy_v2",
+  "policy_id": "cab_heldout_release_pre_execution_v2",
   "current_state": "PRE_EXECUTION_HIDDEN",
   "full_release_unlocked": false,
   "release_tiers": {
@@ -55,20 +55,32 @@
     }
   },
   "protected_roles": {
-    "scale100_confirmatory": "hidden_or_delayed_test_pack",
-    "naturalistic_transfer": "hidden_or_delayed_test_pack",
-    "main500_confirmatory": "hidden_or_delayed_test_pack",
-    "heldout_challenge": "hidden_or_delayed_test_pack"
+    "heldout_challenge_v2_protected": "hidden_or_delayed_test_pack",
+    "naturalistic_transfer_v2_protected": "hidden_or_delayed_test_pack",
+    "scale100_confirmatory_v2_protected": "hidden_or_delayed_test_pack"
   },
+  "private_payload_root": "private_data/heldout_challenge_v2/",
+  "public_manifest_path": "data/manifests/heldout_challenge_v2_public_manifest.json",
+  "contamination_registry_path": "data/manifests/CAB_PUBLIC_CONTAMINATION_REGISTRY.json",
   "protected_payload_globs": [
-    "data/processed/scale100_confirmatory_v1_candidate/**/*.jsonl",
-    "data/processed/naturalistic_transfer_v1_candidate/**/*.jsonl",
-    "data/processed/main500_confirmatory_v1_candidate/**/*.jsonl",
+    "private_data/**",
+    "data/**/heldout_challenge_v2*.jsonl",
+    "data/**/*protected*heldout*.jsonl"
+  ],
+  "contaminated_public_payload_globs": [
     "data/**/heldout_base_tasks.jsonl",
-    "data/**/heldout_instances.jsonl"
+    "data/**/heldout_instances.jsonl",
+    "data/**/heldout_templates_base_tasks.jsonl",
+    "data/**/heldout_templates_instances.jsonl",
+    "audits/**/heldout_base_tasks.jsonl",
+    "audits/**/heldout_instances.jsonl"
   ],
   "allowed_public_metadata": [
     "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json",
+    "data/manifests/CAB_PUBLIC_CONTAMINATION_REGISTRY.json",
+    "data/manifests/heldout_challenge_v2_public_manifest.json",
+    "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+    "data/manifests/scale100_confirmatory_v2_public_manifest.json",
     "configs/generate_scale100_confirmatory_v1.yaml",
     "configs/generate_naturalistic_transfer_v1.yaml",
     "configs/generate_main500_confirmatory_v1.yaml",
@@ -83,5 +95,5 @@
     "an intentional release tag was created"
   ],
   "approval_records": [],
-  "policy_note": "This policy protects evaluation content; it does not claim that pretraining contamination has been eliminated."
+  "policy_note": "Public v1 payloads are permanently contaminated and explicitly development/pilot-only. Only private v2 commitments may represent a future protected challenge; deletion or history rewriting cannot restore scientific secrecy."
 }

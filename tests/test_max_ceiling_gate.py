@@ -2,12 +2,20 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from causal_agent_bench.safety.max_ceiling_gate import (
     CANONICAL_EVIDENCE_CLASSES,
     REQUIRED_FINAL_ARTIFACTS,
     REQUIRED_NOTEBOOKS,
     derive_current_state,
     evaluate_max_ceiling_gate,
+)
+from causal_agent_bench.safety.workflow_state import (
+    WorkflowState,
+    parse_workflow_state,
+    workflow_state_allows_live_execution,
+    workflow_state_allows_paper_evidence,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,12 +36,21 @@ def test_max_ceiling_state_is_derived_and_evidence_bounded() -> None:
 def test_unified_gate_separates_build_and_external_blockers() -> None:
     gate = evaluate_max_ceiling_gate(ROOT)
     assert gate["scientific_execution_allowed"] is False
-    assert gate["current_state"] in {
-        "HUMAN_REVIEW_PENDING",
-        "HUMAN_REVIEW_INCOMPLETE",
-        "ADJUDICATION_PENDING",
-        "C10_PENDING",
-    }
+    state = parse_workflow_state(gate["current_state"])
+    assert (
+        parse_workflow_state("METHODOLOGY_READY")
+        is WorkflowState.METHODOLOGY_READY
+    )
+    if not gate["build_complete"]:
+        assert state is WorkflowState.METHODOLOGY_READY
+    assert workflow_state_allows_live_execution(state) is False
+    assert workflow_state_allows_paper_evidence(state) is False
+    assert gate["paper_eligible"] is False
+    assert (
+        gate["state_snapshot"]["human_validation"]["human_review_state"]
+        == "HUMAN_REVIEW_INCOMPLETE"
+    )
+    assert gate["state_snapshot"]["human_validation"]["c10_state"] == "C10_PENDING"
     check_ids = {row["check_id"] for row in gate["checks"]}
     assert {
         "repository_consistency",
@@ -54,7 +71,15 @@ def test_unified_gate_separates_build_and_external_blockers() -> None:
         "release_status",
     } <= check_ids
     assert any(row["check_id"] == "human_review" for row in gate["external_blockers"])
-    assert gate["exact_next_allowed_action"].endswith("do not run models.")
+    if gate["build_complete"]:
+        assert gate["exact_next_allowed_action"].endswith("do not run models.")
+    else:
+        assert gate["exact_next_allowed_action"].startswith("Repair build check")
+
+
+def test_unknown_workflow_state_is_rejected() -> None:
+    with pytest.raises(ValueError):
+        parse_workflow_state("UNKNOWN_FUTURE_STATE")
 
 
 def test_required_inventory_is_exact() -> None:

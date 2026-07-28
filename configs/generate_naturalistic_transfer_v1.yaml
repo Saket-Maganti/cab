@@ -1,6 +1,9 @@
+# Permanently public/contaminated legacy candidate. Not external-validity evidence.
 seed: 20260724
 benchmark_version: naturalistic_transfer_v1_candidate
 id_namespace: naturalistic_v1
+scientific_disposition: CONTAMINATED_NOT_CONFIRMATORY
+confirmatory_eligible: false
 task_style: naturalistic
 num_base_tasks: 80
 domains:

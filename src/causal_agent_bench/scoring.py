@@ -18,6 +18,7 @@ from causal_agent_bench.metrics.trajectory import (
     score_trajectory_quality,
 )
 from causal_agent_bench.metrics.v2 import aggregate_metrics_v2, export_metrics_v2
+from causal_agent_bench.raac.opportunities import raac_opportunity_flags
 from causal_agent_bench.schemas import (
     BenchmarkInstance,
     BenchmarkTask,
@@ -40,6 +41,7 @@ def score_trajectory(context: Any, trajectory: Trajectory) -> ScoreRecord:
     metrics.update(score_memory(context, trajectory))
     metrics.update(score_stopping(context, trajectory))
     metrics.update(score_trajectory_quality(context, trajectory))
+    metrics.update(raac_opportunity_flags(trajectory))
     diagnostics = {
         "condition": _condition(context),
         "intervention_family": _family(context),
@@ -70,6 +72,7 @@ def score_trajectory(context: Any, trajectory: Trajectory) -> ScoreRecord:
             "prompt_tokens": _trajectory_metadata_number(trajectory, "prompt_tokens"),
             "completion_tokens": _trajectory_metadata_number(trajectory, "completion_tokens"),
             "total_tokens": _trajectory_metadata_number(trajectory, "total_tokens"),
+            "raac": dict(trajectory.raac_metadata or {}),
         },
     )
 
@@ -263,6 +266,12 @@ def _failure_modes(metrics: dict[str, Any]) -> list[str]:
         pass
     if metrics.get("memory_blind_trust_failure_binary"):
         failures.append("memory_blind_trust")
+    if metrics.get("raac_budget_exhaustion_binary"):
+        failures.append("raac_budget_exhaustion")
+    if metrics.get("raac_unverified_success_failure_binary"):
+        failures.append("raac_unverified_success")
+    if metrics.get("raac_infrastructure_failure_binary"):
+        failures.append("raac_infrastructure_failure")
     if metrics.get("trajectory_faithfulness", 0) < 1 and metrics.get("final_success_binary") == 1:
         failures.append("unfaithful_success")
     return failures

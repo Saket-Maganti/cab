@@ -832,6 +832,18 @@
     },
     {
       "asset_type": "tex_generated",
+      "classification": "unsafe_for_results_section",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
       "classification": "placeholder",
       "has_meta": false,
       "meta_summary": {},
@@ -1782,6 +1794,18 @@
     },
     {
       "asset_type": "tex_generated",
+      "classification": "unsafe_for_results_section",
+      "has_meta": false,
+      "meta_summary": {},
+      "path": "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
+      "reasons": [
+        "generated/section TeX has no eligibility metadata",
+        "TeX contains empirical/results-like content without eligible metadata"
+      ],
+      "recommendation": "needs_metadata_review"
+    },
+    {
+      "asset_type": "tex_generated",
       "classification": "placeholder",
       "has_meta": false,
       "meta_summary": {},
@@ -1898,21 +1922,21 @@
       "recommendation": "not_safe_to_use"
     }
   ],
-  "flagged_count": 74,
-  "generated_at": "2026-07-23T17:27:40.239108+00:00",
+  "flagged_count": 75,
+  "generated_at": "2026-07-28T04:37:01.433269+00:00",
   "scope": "Static paper asset eligibility check only; no claim is promoted or asset exported.",
   "summary": {
     "classification_counts": {
       "engineering_only": 9,
       "missing_metadata": 43,
       "placeholder": 21,
-      "unsafe_for_results_section": 1
+      "unsafe_for_results_section": 2
     },
     "eligible_count": 0,
-    "flagged_count": 74,
-    "total_assets": 74
+    "flagged_count": 75,
+    "total_assets": 75
   },
-  "total_assets": 74,
+  "total_assets": 75,
   "verdicts": {
     "all_flagged": true,
     "any_eligible_assets": false,

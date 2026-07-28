@@ -1,0 +1,36 @@
+{
+  "claim_id": "C10",
+  "description": "Controlled interventions isolate intended skill components.",
+  "evidence_class_on_pass": "AUDITED_REAL_EVIDENCE",
+  "min_independent_reviewers": 2,
+  "min_items_for_agreement": 5,
+  "min_qualification_rate": 0.8,
+  "min_raw_agreement": 0.8,
+  "no_ai_or_proxy_review": true,
+  "require_all_final_valid": true,
+  "require_full_candidate_coverage": true,
+  "require_model_identity_blinding": true,
+  "require_model_output_blinding": true,
+  "require_separate_adjudicator": true,
+  "required_dimensions": [
+    "task_clarity",
+    "clean_gold_correctness",
+    "manipulation_success",
+    "goal_preservation",
+    "invariance_preservation",
+    "solvability",
+    "answer_contract_correctness",
+    "scorer_compatibility",
+    "realism",
+    "ambiguity",
+    "exclusion_recommendation"
+  ],
+  "required_prerequisites": [
+    "leakage_gate",
+    "answer_contract",
+    "slice_freeze",
+    "manipulation_checks"
+  ],
+  "schema_version": "cab_c10_contract_v1",
+  "threshold_note": "Raw agreement is gated per dimension and overall. Kappa and alpha are reported with prevalence diagnostics but are not pass thresholds because degenerate prevalence can make chance-corrected coefficients undefined."
+}
