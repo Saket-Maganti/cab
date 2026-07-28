@@ -272,3 +272,17 @@ or invented empirical results are permitted.
   652 files.
 - Next phase: commit and push this final CI repair, verify the remote SHA, and
   observe the replacement checks.
+
+## Phase 19 — Python 3.13 development-dependency repair
+
+- The replacement broad CI Python 3.13 job passed 1,092 tests with three
+  skips, then ended with one collection error:
+  `ModuleNotFoundError: No module named 'nbformat'`.
+- Root cause: `tests/test_cab_insane_autorun_artifacts.py` directly imports
+  `nbformat`, but the project's `dev` optional dependency set did not declare
+  it. The Python 3.13 runner had no incidental copy installed.
+- Repair: added `nbformat>=5.10` to `project.optional-dependencies.dev`.
+- Local validation: TOML parse, four affected notebook-artifact tests,
+  `codespell`, Ruff, security, release, and whitespace checks passed.
+- Next phase: push the dependency repair, verify the exact remote SHA, and
+  inspect the replacement Python matrix state.
