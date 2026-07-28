@@ -209,3 +209,26 @@ or invented empirical results are permitted.
 - Unexpected blockers: none.
 - Next phase: final report, explicit staging/security review, direct main
   commit, push, remote SHA verification, and CI observation.
+
+## Phase 16 — Direct-main publication
+
+- Staged scope: 153 task-owned files; 26,838 insertions and 591 deletions.
+- Pre-commit sanitation:
+  - security, release, split-registry, held-out commitment, private-candidate,
+    and whitespace checks passed;
+  - staged private paths: 0;
+  - tracked private paths: 0;
+  - the pre-existing untracked
+    `reports/ICLR_PROMPT1_POSTFIX_BASELINE.md` remained excluded.
+- Implementation commit:
+  `45f9209631c6152314dcb82d3e315a8cf4e751a9`
+  (`Complete CAB ICLR pre-execution build`).
+- Push: `git push origin main`, exit `0`; no force push and no pull request.
+- First remote verification:
+  local and `refs/heads/main` both resolved to
+  `45f9209631c6152314dcb82d3e315a8cf4e751a9`.
+- GitHub Actions observation: CI queued; Fast Check, Docs Check, Claim Safety,
+  Max Ceiling Provider-Free Gates, Batch smoke, and Docs in progress. The
+  aggregate legacy-status endpoint was pending with zero attached contexts.
+- Next phase: commit this mandatory publication record, push it to `main`, and
+  repeat exact remote-SHA and CI-state verification.
