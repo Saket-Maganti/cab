@@ -43,7 +43,7 @@
   commitment check, private-candidate validator, and `git diff --check`:
   passed.
 - Release bundle hash:
-  `daca304de2c3557f22108f773a58b45f3f432785d65558b5fc0bd76b498a6e7a`
+  `7db51c3dd07eebb6f4ac2a5e86fdeb10d050c9dfb20e1ff0095586ad21651578`
   with 652 inventoried files.
 
 ## Push and verification
@@ -73,9 +73,31 @@ the implementation commit:
 - `Docs`: in progress.
 
 The aggregate commit-status endpoint reported `pending` with no attached
-legacy status contexts. No CI success claim is made here. The final publication
-handoff records the state observed for the final remote head without waiting
-indefinitely.
+legacy status contexts. No CI success claim is made here.
+
+### Follow-up CI diagnosis and repair
+
+The next observation found:
+
+- `Fast Check`: failed because GitHub's newer Ruff version enforced `RUF036`
+  on two pre-existing union annotations in
+  `src/causal_agent_bench/agents/llm_clients.py`;
+- `Docs`: the site build and artifact upload succeeded, but the deployment
+  failed with HTTP 404 because GitHub Pages is not enabled in repository
+  settings;
+- `Docs Check`, `Batch smoke`, and `Claim Safety`: succeeded;
+- `CI` and `Max Ceiling Provider-Free Gates`: still in progress.
+
+The two union annotations were normalized without semantic change. The exact
+CI command, `make fast-check`, then passed locally in 61.0 seconds, including
+Ruff, mypy over 205 source files, 91 fast tests, 62 governance tests, evidence
+safety, claim checks, paper-placeholder checks, zero-cost preflights, and the
+security check. The release manifest was refreshed and passed. The focused
+repair and this updated audit record are in the immediately following commit;
+its exact SHA is recorded by the final verified Git log and task handoff.
+
+GitHub Pages enablement remains an external repository-setting action. It was
+not changed silently; the documentation build itself is healthy.
 
 ## Preserved and excluded material
 
@@ -93,6 +115,7 @@ indefinitely.
 
 ## Remaining publication blocker
 
-None. Remaining project gates are scientific rather than publication
-failures: genuine human review, adjudication, C10, slice locking, real model
-execution, audited postrun analysis, and evidence-backed final paper writing.
+The Git push is complete. GitHub Pages deployment remains blocked only by the
+repository setting that enables Pages. Remaining scientific gates are genuine
+human review, adjudication, C10, slice locking, real model execution, audited
+postrun analysis, and evidence-backed final paper writing.

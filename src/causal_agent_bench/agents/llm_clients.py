@@ -1012,8 +1012,8 @@ def _with_response_metadata(
     response: LLMResponse,
     metadata: dict[str, Any],
     *,
-    estimated_cost_usd: float | None | object = _UNSET,
-    latency_s: float | None | object = _UNSET,
+    estimated_cost_usd: float | object | None = _UNSET,
+    latency_s: float | object | None = _UNSET,
 ) -> LLMResponse:
     cost = response.estimated_cost_usd if estimated_cost_usd is _UNSET else cast("float | None", estimated_cost_usd)
     latency = response.latency_s if latency_s is _UNSET else cast("float | None", latency_s)
