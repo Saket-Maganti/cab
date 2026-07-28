@@ -47,7 +47,7 @@ behind high observational accuracy.
 ## 2. How to evaluate each answer type
 
 - **Multiple-choice:** constrain output to an index/letter (parser; reuse the strict-parse philosophy of
-  `schemas.py` `ToolCallParseResult`). Map free text → choice by exact/normalized match; unparseable =
+  `schemas.py` `ToolCallParseResult`). Map free text → choice by exact/normalized match; unparsable =
   wrong (logged). Randomize choice order per item to kill position bias; fix the permutation by seed.
 - **Free-form answers:** normalize, then match to `answer_choices` via canonical synonyms; for genuinely
   open answers use an **LLM judge with a rubric + human-audited subset** (`docs/LLM_JUDGE_PROTOCOL.md`)

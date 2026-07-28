@@ -77,7 +77,7 @@ FIXTURE_SCENARIOS: dict[str, FixtureScenario] = {
     ),
     "malformed_output": FixtureScenario(
         name="malformed_output",
-        description="Unparseable output triggers bounded recovery.",
+        description="Unparsable output triggers bounded recovery.",
         events=[ObservationEnvelope(raw_output="{not-json"), _success()],
     ),
     "partial_output": FixtureScenario(

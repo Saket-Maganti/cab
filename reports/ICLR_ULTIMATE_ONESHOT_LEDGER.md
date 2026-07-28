@@ -254,3 +254,21 @@ or invented empirical results are permitted.
   repository setting was changed implicitly.
 - Next phase: push the focused CI repair, verify exact remote SHA, and observe
   the replacement workflows without waiting indefinitely.
+
+## Phase 18 — Broad CI spelling repair
+
+- The replacement `Fast Check`, Docs Check, Claim Safety, and Max Ceiling
+  Provider-Free Gates all passed on GitHub.
+- The broad CI lint/type job passed Ruff and mypy but failed its independent
+  `codespell` step on four wording-only findings:
+  two pre-existing comments, one RAAC fixture description, and one evaluation
+  protocol sentence.
+- Repair: normalized `re-declaring` to `redeclaring` and `unparseable` to
+  `unparsable`; no executable semantics changed.
+- Local validation: `codespell`, Ruff, mypy, 28 focused RAAC/tool-schema tests,
+  security, release, and whitespace checks all passed.
+- Refreshed release bundle hash:
+  `0c8c1b990eb0890065d7cfccfd487df4fd9c651315e46f45bd5fcf990cb3ac64`,
+  652 files.
+- Next phase: commit and push this final CI repair, verify the remote SHA, and
+  observe the replacement checks.
