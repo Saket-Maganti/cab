@@ -43,7 +43,7 @@
   commitment check, private-candidate validator, and `git diff --check`:
   passed.
 - Release bundle hash:
-  `7db51c3dd07eebb6f4ac2a5e86fdeb10d050c9dfb20e1ff0095586ad21651578`
+  `0c8c1b990eb0890065d7cfccfd487df4fd9c651315e46f45bd5fcf990cb3ac64`
   with 652 inventoried files.
 
 ## Push and verification
@@ -98,6 +98,13 @@ its exact SHA is recorded by the final verified Git log and task handoff.
 
 GitHub Pages enablement remains an external repository-setting action. It was
 not changed silently; the documentation build itself is healthy.
+
+The replacement broad CI run then exposed the independent `codespell` step:
+four wording-only findings in two pre-existing comments, one RAAC fixture
+description, and one protocol sentence. Those spellings were normalized.
+`codespell`, Ruff, mypy, 28 focused RAAC/tool-schema tests, security, release,
+and whitespace checks all passed locally before the final push. The final
+release bundle hash is the value recorded above.
 
 ## Preserved and excluded material
 

@@ -25,7 +25,7 @@ def load_code_registry_tool_specs() -> tuple[dict[str, Any], ...]:
     This benchmark's tools live as Python classes (the deterministic simulated
     tool environment), not as per-dataset schema files. Treating that registry
     as the repo-default tool environment is what lets static validation resolve
-    task tool references without re-declaring every schema in each dataset.
+    task tool references without redeclaring every schema in each dataset.
     Returns an empty tuple if the registry cannot be imported, so validation
     degrades gracefully rather than crashing or executing any tool.
     """
@@ -150,7 +150,7 @@ def validate_tool_schemas_for_dataset(
             _validate_call(path, root, entity, call, tools_by_name, issues)
         # Only warn about a missing tool environment when references cannot be
         # resolved at all. A repo-default code registry that covers every
-        # referenced tool *is* the environment, so re-declaring it per dataset is
+        # referenced tool *is* the environment, so redeclaring it per dataset is
         # unnecessary noise (unresolved tools are still flagged as tool_not_found).
         refs_resolved = all(ref in tools_by_name for ref in refs)
         environment_known = (
