@@ -35,9 +35,9 @@ Submissions must disclose:
 
 See templates:
 
-- [docs/templates/MODEL_RUN_CARD_TEMPLATE.md](templates/MODEL_RUN_CARD_TEMPLATE.md)
-- [docs/templates/AGENT_CARD_TEMPLATE.md](templates/AGENT_CARD_TEMPLATE.md)
-- [docs/templates/RUN_CARD_TEMPLATE.md](templates/RUN_CARD_TEMPLATE.md)
+- [docs/templates/MODEL_RUN_CARD_TEMPLATE.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/docs/templates/MODEL_RUN_CARD_TEMPLATE.md)
+- [docs/templates/AGENT_CARD_TEMPLATE.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/docs/templates/AGENT_CARD_TEMPLATE.md)
+- [docs/templates/RUN_CARD_TEMPLATE.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/docs/templates/RUN_CARD_TEMPLATE.md)
 
 ## Contamination
 

@@ -65,12 +65,12 @@ Check `evidence_scope` in `run_metadata.json`.
 python3 scripts/check_claim_ledger.py --mode draft
 ```
 
-See [../paper/EVIDENCE_GAP_MAP.md](../paper/EVIDENCE_GAP_MAP.md).
+See [paper/EVIDENCE_GAP_MAP.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/paper/EVIDENCE_GAP_MAP.md).
 
 ## 8. Add a task template
 
-1. Edit [../benchmark_specs/task_template_registry.json](../benchmark_specs/task_template_registry.json)
-2. Update [../benchmark_specs/TASK_TEMPLATE_REGISTRY.md](../benchmark_specs/TASK_TEMPLATE_REGISTRY.md)
+1. Edit [benchmark_specs/task_template_registry.json](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/benchmark_specs/task_template_registry.json)
+2. Update [benchmark_specs/TASK_TEMPLATE_REGISTRY.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/benchmark_specs/TASK_TEMPLATE_REGISTRY.md)
 3. Regenerate dataset if needed (generation config)
 
 ## 9. Add an intervention
@@ -88,8 +88,8 @@ See [../paper/EVIDENCE_GAP_MAP.md](../paper/EVIDENCE_GAP_MAP.md).
 
 ## 11. Add documentation
 
-1. Place in `docs/` and link from [docs/README.md](README.md)
-2. For paper-facing docs, update [../paper/PAPER_TASK_BOARD.md](../paper/PAPER_TASK_BOARD.md)
+1. Place in `docs/` and link from [docs/index.md](index.md)
+2. For paper-facing docs, update [paper/PAPER_TASK_BOARD.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/paper/PAPER_TASK_BOARD.md)
 
 ## 12. Avoid overclaiming
 
@@ -101,5 +101,5 @@ See [../paper/EVIDENCE_GAP_MAP.md](../paper/EVIDENCE_GAP_MAP.md).
 
 - [REPO_MAP.md](REPO_MAP.md)
 - [GLOSSARY.md](GLOSSARY.md)
-- [../handoff/ADVISOR_DEMO_SCRIPT.md](../handoff/ADVISOR_DEMO_SCRIPT.md)
-- [../CONTRIBUTING.md](../CONTRIBUTING.md)
+- [handoff/ADVISOR_DEMO_SCRIPT.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/handoff/ADVISOR_DEMO_SCRIPT.md)
+- [CONTRIBUTING.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/CONTRIBUTING.md)

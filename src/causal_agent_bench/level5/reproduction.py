@@ -92,7 +92,7 @@ def public_fixture_authoring_spec() -> BenchmarkAuthoringSpec:
             parameters={"warning": "retry_allowed"},
             expected_target_hash=target_hash,
             invariance_contract="The warning does not change the arithmetic target.",
-            manipulation_check="The warning is visible before tool use.",
+            manipulation_check="check.warning_visible_v1",
             expected_opportunity="Agent may verify and continue.",
             prompt_suffix=" The tool may emit a non-fatal warning.",
         ),

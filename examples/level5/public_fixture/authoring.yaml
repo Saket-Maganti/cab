@@ -34,7 +34,7 @@ intervention:
   mechanism_count: 1
   expected_target_hash: 2bf175f9655e7bb7357b9f0a7c6051465a5ae701104ffe741b98e852c0e4d460
   invariance_contract: The warning does not change the arithmetic target.
-  manipulation_check: The warning is visible before tool use.
+  manipulation_check: check.warning_visible_v1
   expected_opportunity: Agent may verify and continue.
   prompt_suffix: ' The tool may emit a non-fatal warning.'
   hidden_fields: {}

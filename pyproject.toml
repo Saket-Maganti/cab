@@ -36,6 +36,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+  "build>=1.2",
   "codespell>=2.3",
   "hypothesis>=6.100",
   "matplotlib>=3.7",
@@ -46,6 +47,7 @@ dev = [
   "pytest-cov>=5.0",
   "pytest-xdist>=3.5",
   "ruff>=0.5",
+  "twine>=5.0",
 ]
 docs = [
   "mkdocs-material>=9.5",

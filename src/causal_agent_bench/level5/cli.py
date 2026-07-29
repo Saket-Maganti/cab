@@ -26,9 +26,11 @@ from causal_agent_bench.level5.evaluator import (
     evaluate_fixture_submission,
 )
 from causal_agent_bench.level5.evidence import (
+    CertificateRepository,
     CertificateType,
     EvidenceGraph,
     NodeType,
+    PersistentEvidenceGraph,
     issue_certificate,
     model_card_template,
 )
@@ -40,7 +42,12 @@ from causal_agent_bench.level5.execution import (
     compile_run_plan,
     fixture_20_spec,
 )
-from causal_agent_bench.level5.governance import Level5BuildState, level5_check
+from causal_agent_bench.level5.governance import (
+    HardeningBuildState,
+    Level5BuildState,
+    hardening_check,
+    level5_check,
+)
 from causal_agent_bench.level5.plugins import ExampleScorerPlugin, PluginManager
 from causal_agent_bench.level5.registry import SQLiteRegistry
 from causal_agent_bench.level5.reliability import FaultKind, run_fixture_chaos_campaign
@@ -48,6 +55,10 @@ from causal_agent_bench.level5.reproduction import (
     public_fixture_authoring_spec,
     run_internal_fixture_reproduction,
     run_red_team_fixture_campaign,
+)
+from causal_agent_bench.level5.signing import (
+    FixtureHMACSigner,
+    FixtureHMACVerifier,
 )
 
 LEVEL5_COMMANDS = {
@@ -65,6 +76,7 @@ LEVEL5_COMMANDS = {
     "evaluator",
     "evidence",
     "certify",
+    "certificate",
     "model-card",
     "claims",
     "plugins",
@@ -84,7 +96,39 @@ def _registry(args: Any) -> None:
     command = args.registry_command
     if command == "init":
         registry.initialize()
-        _print({"initialized": True, "path": str(registry.path), "schema_version": 1})
+        _print(
+            {
+                "initialized": True,
+                "path": str(registry.path),
+                "schema_version": registry.schema_version(),
+            }
+        )
+    elif command == "version":
+        _print(
+            {
+                "path": str(registry.path),
+                "schema_version": registry.schema_version(),
+                "supported_schema_version": 3,
+            }
+        )
+    elif command == "migrate":
+        if args.dry_run:
+            _print(registry.migration_plan(args.target_version))
+        else:
+            version = registry.migrate(
+                args.target_version,
+                export_before_upgrade=args.export_before_upgrade,
+            )
+            _print(
+                {
+                    "migrated": True,
+                    "schema_version": version,
+                    "history": registry.migration_history(),
+                }
+            )
+    elif command == "events":
+        registry.initialize()
+        _print({"events": registry.audit_events()})
     elif command in {"doctor", "verify"}:
         result = registry.verify()
         _print(result)
@@ -391,6 +435,53 @@ def _certify(args: Any) -> None:
     _print({**certificate, "output": str(output)})
 
 
+def _certificate(args: Any) -> None:
+    registry = SQLiteRegistry(args.path)
+    graph = PersistentEvidenceGraph(registry)
+    repository = CertificateRepository(registry)
+    signer = FixtureHMACSigner.development()
+    verifier = FixtureHMACVerifier.development()
+    command = args.certificate_command
+    if command == "issue-fixture":
+        node_id = "node.fixture.certificate_subject"
+        if not graph.get_node(node_id):
+            graph.add_node(
+                node_id,
+                NodeType.RUN,
+                content_hash("fixture-certificate-subject"),
+                EvidenceClass.FIXTURE_ONLY,
+                metadata={"fixture": True},
+            )
+        certificate = repository.issue(
+            CertificateType.RUN_INTEGRITY,
+            node_id,
+            [node_id],
+            signer=signer,
+        )
+        _print(certificate)
+    elif command == "verify":
+        result = repository.verify(args.certificate_id, verifier=verifier)
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "revoke":
+        _print(
+            {
+                "revocation_id": repository.revoke(
+                    args.certificate_id,
+                    reason=args.reason,
+                )
+            }
+        )
+    elif command == "list":
+        _print({"certificates": repository.list()})
+    elif command == "transparency-verify":
+        result = repository.transparency_verify()
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+
+
 def _gate(state_path: str) -> dict[str, Any]:
     state = Level5BuildState.from_path(state_path)
     return level5_check(state)
@@ -444,6 +535,8 @@ def handle_level5_command(args: Any) -> bool:
         _evidence(args)
     elif command == "certify":
         _certify(args)
+    elif command == "certificate":
+        _certificate(args)
     elif command == "model-card":
         card = model_card_template(args.model_id, args.revision)
         if args.output:
@@ -482,7 +575,13 @@ def handle_level5_command(args: Any) -> bool:
         output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         _print({**report, "output": str(output)})
     elif command == "level5":
-        _print(_gate(args.state))
+        if args.level5_command == "hardening-check":
+            result = hardening_check(HardeningBuildState.from_path(args.state))
+            _print(result)
+            if not result["hardening_ready"]:
+                raise SystemExit(1)
+        else:
+            _print(_gate(args.state))
     elif command == "release-check":
         from scripts.release_check import run_release_check
 

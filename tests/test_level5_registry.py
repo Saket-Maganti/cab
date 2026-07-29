@@ -20,15 +20,15 @@ def test_registry_init_idempotency_freeze_and_public_export(tmp_path):
     assert again.frozen is True
     assert registry.verify()["passed"] is True
     exported = registry.export_public()
-    assert exported["schema_version"] == 1
+    assert exported["schema_version"] == 3
     assert exported["entities"][0]["entity_id"] == "project.cab"
     assert [event["event_type"] for event in exported["events"]] == [
         "REGISTERED",
         "FROZEN",
     ]
-    assert registry.migrate(1) == 1
+    assert registry.migrate(3) == 3
     with pytest.raises(ValueError, match="downgrade"):
-        registry.migrate(0)
+        registry.migrate(1)
 
 
 def test_registry_rejects_conflicts_unknown_kinds_and_private_payloads(tmp_path):
@@ -91,7 +91,7 @@ def test_registry_dependencies_use_foreign_keys(tmp_path):
     registry.register("project", "project.cab", {"name": "CAB"})
     registry.register("study", "study.fixture", {"name": "fixture"})
     registry.link("study", "study.fixture", "project", "project.cab", "belongs_to")
-    with pytest.raises(sqlite3.IntegrityError):
+    with pytest.raises(ValueError, match="missing child"):
         registry.link("study", "study.missing", "project", "project.cab", "belongs_to")
 
 

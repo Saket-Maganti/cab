@@ -13,6 +13,12 @@ import yaml
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from causal_agent_bench.level5.core import canonical_json, content_hash, utc_now
+from causal_agent_bench.level5.registry import SQLiteRegistry
+
+MAX_AUTHORING_BYTES = 1_000_000
+MAX_AUTHORING_DEPTH = 16
+MAX_AUTHORING_NODES = 10_000
+MAX_SCHEMA_PROPERTIES = 128
 
 
 class PrivacyClass(StrEnum):
@@ -75,6 +81,22 @@ class ToolSpec(BaseModel):
     def validate_schema(self) -> ToolSpec:
         if self.input_schema.get("type") != "object":
             raise ValueError("tool input_schema.type must be 'object'")
+        _validate_bounded_value(self.input_schema, context=f"tool {self.name} schema")
+        properties = self.input_schema.get("properties", {})
+        if not isinstance(properties, dict):
+            raise ValueError("tool input_schema.properties must be an object")
+        if len(properties) > MAX_SCHEMA_PROPERTIES:
+            raise ValueError("tool input_schema has too many properties")
+        if any(
+            isinstance(value, str)
+            and (
+                value.startswith(("http://", "https://", "file://"))
+                or ".." in value.split("/")
+            )
+            for key, value in _walk_pairs(self.input_schema)
+            if key in {"$ref", "$id"}
+        ):
+            raise ValueError("remote or traversal schema references are forbidden")
         return self
 
 
@@ -102,6 +124,7 @@ class BaseTaskSpec(BaseModel):
     licence: str
     privacy_class: PrivacyClass = PrivacyClass.PUBLIC
     split_role: SplitRole = SplitRole.PUBLIC_FIXTURE
+    difficulty: str = Field(default="UNSPECIFIED", max_length=64)
 
 
 class InterventionSpec(BaseModel):
@@ -130,8 +153,20 @@ class BenchmarkAuthoringSpec(BaseModel):
     @classmethod
     def from_path(cls, path: str | Path) -> BenchmarkAuthoringSpec:
         path = Path(path)
-        text = path.read_text(encoding="utf-8")
-        value = json.loads(text) if path.suffix == ".json" else yaml.safe_load(text)
+        raw = path.read_bytes()
+        if len(raw) > MAX_AUTHORING_BYTES:
+            raise ValueError(
+                f"authoring file exceeds {MAX_AUTHORING_BYTES} byte safety limit"
+            )
+        text = raw.decode("utf-8")
+        if path.suffix.lower() == ".json":
+            value = json.loads(text)
+        else:
+            documents = list(yaml.safe_load_all(text))
+            if len(documents) != 1:
+                raise ValueError("authoring YAML must contain exactly one document")
+            value = documents[0]
+        _validate_bounded_value(value, context="authoring document")
         return cls.model_validate(value)
 
 
@@ -155,6 +190,66 @@ class CompiledInstance(BaseModel):
     receipt: CompilationReceipt
 
 
+def _walk_pairs(value: Any) -> list[tuple[str, Any]]:
+    pairs: list[tuple[str, Any]] = []
+    if isinstance(value, dict):
+        for key, item in value.items():
+            pairs.append((str(key), item))
+            pairs.extend(_walk_pairs(item))
+    elif isinstance(value, list):
+        for item in value:
+            pairs.extend(_walk_pairs(item))
+    return pairs
+
+
+def _validate_bounded_value(value: Any, *, context: str) -> None:
+    """Reject parser-amplification and deeply nested authoring payloads."""
+
+    seen: set[int] = set()
+    node_count = 0
+
+    def visit(item: Any, depth: int) -> None:
+        nonlocal node_count
+        node_count += 1
+        if node_count > MAX_AUTHORING_NODES:
+            raise ValueError(f"{context} exceeds the node-count safety limit")
+        if depth > MAX_AUTHORING_DEPTH:
+            raise ValueError(f"{context} exceeds the nesting-depth safety limit")
+        if isinstance(item, (dict, list)):
+            identity = id(item)
+            if identity in seen:
+                raise ValueError(f"{context} contains aliases or recursive structures")
+            seen.add(identity)
+            values = item.values() if isinstance(item, dict) else item
+            for child in values:
+                visit(child, depth + 1)
+        elif isinstance(item, str) and len(item.encode("utf-8")) > MAX_AUTHORING_BYTES:
+            raise ValueError(f"{context} contains an oversized string")
+
+    visit(value, 0)
+
+
+def _validate_scorer_tool_contract(task: BaseTaskSpec) -> None:
+    if not re.fullmatch(r"[a-z][a-z0-9_.-]{2,127}(?::[a-z0-9_.-]+)?", task.scorer_binding):
+        raise ValueError("scorer_binding must be a versionable, typed identifier")
+    answer_kind = task.answer_contract.kind
+    if answer_kind == "json" and not any(
+        tool.input_schema.get("type") == "object" for tool in task.tools
+    ):
+        raise ValueError("JSON answer contracts require an object-capable tool")
+    if task.answer_contract.normalization not in {
+        "strip",
+        "lower_strip",
+        "canonical_json",
+        "integer",
+        "number",
+        "boolean",
+    }:
+        raise ValueError("unknown answer normalization contract")
+    if task.answer_contract.normalization == "canonical_json" and answer_kind != "json":
+        raise ValueError("canonical_json normalization requires a JSON answer contract")
+
+
 def compile_intervention(spec: BenchmarkAuthoringSpec) -> CompiledInstance:
     """Compile one authoring spec, rejecting uncontrolled or leaky interventions."""
 
@@ -169,6 +264,16 @@ def compile_intervention(spec: BenchmarkAuthoringSpec) -> CompiledInstance:
     tool_names = [tool.name for tool in task.tools]
     if len(tool_names) != len(set(tool_names)):
         raise ValueError("tool role collision: duplicate tool names")
+    _validate_scorer_tool_contract(task)
+    if not re.fullmatch(
+        r"[a-z][a-z0-9_.-]{2,127}(?::[a-z0-9_.-]+)?",
+        intervention.manipulation_check,
+    ):
+        raise ValueError("manipulation_check must name a deterministic fixture contract")
+    if set(intervention.hidden_fields).intersection(
+        {"prompt", "tools", "answer_contract", "target_hash", "gold_answer"}
+    ):
+        raise ValueError("hidden fields collide with governed public or answer fields")
     public_text = canonical_json(
         {
             "prompt": task.prompt,
@@ -200,6 +305,9 @@ def compile_intervention(spec: BenchmarkAuthoringSpec) -> CompiledInstance:
         "manipulation_check": intervention.manipulation_check,
         "expected_opportunity": intervention.expected_opportunity,
         "scorer_binding": task.scorer_binding,
+        "source_id": task.source_id,
+        "author_id": task.author_id,
+        "difficulty": task.difficulty,
         "licence": task.licence,
         "privacy_class": task.privacy_class.value,
         "split_role": task.split_role.value,
@@ -228,6 +336,111 @@ def compile_intervention(spec: BenchmarkAuthoringSpec) -> CompiledInstance:
     return CompiledInstance(public=public, private=private, receipt=receipt)
 
 
+class BenchmarkRepository:
+    """Append-only benchmark provenance and lifecycle records in the CAB registry."""
+
+    def __init__(self, registry: SQLiteRegistry) -> None:
+        self.registry = registry
+        self.registry.initialize()
+
+    def record_compilation(self, compiled: CompiledInstance) -> str:
+        payload = {
+            "public": compiled.public,
+            "receipt": compiled.receipt.model_dump(mode="json"),
+            "private_commitment": compiled.receipt.private_hash,
+        }
+        return self._append(
+            compiled.receipt.benchmark_id,
+            "COMPILATION",
+            payload,
+            TaskLifecycle.STATIC_VALIDATED,
+            public=True,
+        )
+
+    def transition(
+        self,
+        benchmark_id: str,
+        current: TaskLifecycle,
+        target: TaskLifecycle,
+        *,
+        evidence: dict[str, Any],
+    ) -> str:
+        advance_lifecycle(current, target)
+        if target in {TaskLifecycle.C10_ELIGIBLE, TaskLifecycle.FROZEN} and not evidence.get(
+            "active_certificate_ids"
+        ):
+            raise ValueError("certified review evidence is required for this transition")
+        return self._append(
+            benchmark_id,
+            "LIFECYCLE_TRANSITION",
+            {
+                "from": current.value,
+                "to": target.value,
+                "evidence": evidence,
+            },
+            target,
+            public=True,
+        )
+
+    def records(self, benchmark_id: str) -> list[dict[str, Any]]:
+        with self.registry._connect() as connection:
+            rows = connection.execute(
+                """
+                SELECT * FROM benchmark_records
+                WHERE benchmark_id = ?
+                ORDER BY created_at, record_id
+                """,
+                (benchmark_id,),
+            ).fetchall()
+        return [
+            {
+                **dict(row),
+                "payload": json.loads(str(row["payload_json"])),
+                "public": bool(row["public"]),
+            }
+            for row in rows
+        ]
+
+    def _append(
+        self,
+        benchmark_id: str,
+        record_type: str,
+        payload: dict[str, Any],
+        lifecycle: TaskLifecycle,
+        *,
+        public: bool,
+    ) -> str:
+        payload_json = canonical_json(payload)
+        payload_hash = content_hash(payload)
+        record_id = f"benchmark.{content_hash([benchmark_id, record_type, payload_hash])[:24]}"
+        with self.registry.transaction() as connection:
+            connection.execute(
+                """
+                INSERT OR IGNORE INTO benchmark_records(
+                    record_id, benchmark_id, record_type, payload_json, payload_hash,
+                    lifecycle, public, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    record_id,
+                    benchmark_id,
+                    record_type,
+                    payload_json,
+                    payload_hash,
+                    lifecycle.value,
+                    int(public),
+                    utc_now(),
+                ),
+            )
+            row = connection.execute(
+                "SELECT payload_hash FROM benchmark_records WHERE record_id = ?",
+                (record_id,),
+            ).fetchone()
+            if row is None or row["payload_hash"] != payload_hash:
+                raise RuntimeError("benchmark record idempotency collision")
+        return record_id
+
+
 def advance_lifecycle(current: TaskLifecycle, target: TaskLifecycle) -> TaskLifecycle:
     if target not in LIFECYCLE_TRANSITIONS[current]:
         raise ValueError(f"illegal task lifecycle transition: {current.value} -> {target.value}")
@@ -247,16 +460,37 @@ def diversity_report(instances: list[dict[str, Any]]) -> dict[str, Any]:
     normalised_duplicates = [
         text for text, count in Counter(normalised).items() if count > 1
     ]
+    dimension_names = (
+        "domain",
+        "intervention_family",
+        "split_role",
+        "scorer_binding",
+        "privacy_class",
+        "source_id",
+        "author_id",
+        "difficulty",
+    )
     dimensions = {
         name: dict(sorted(Counter(str(row.get(name, "UNKNOWN")) for row in instances).items()))
-        for name in (
-            "domain",
-            "intervention_family",
-            "split_role",
-            "scorer_binding",
-            "privacy_class",
-        )
+        for name in dimension_names
     }
+    dimensions["answer_kind"] = dict(
+        sorted(
+            Counter(
+                str(row.get("answer_contract", {}).get("kind", "UNKNOWN"))
+                for row in instances
+            ).items()
+        )
+    )
+    dimensions["tool_family"] = dict(
+        sorted(
+            Counter(
+                str(tool.get("name", "UNKNOWN"))
+                for row in instances
+                for tool in row.get("tools", [])
+            ).items()
+        )
+    )
     structural_fingerprints = [
         content_hash(
             {
@@ -267,6 +501,36 @@ def diversity_report(instances: list[dict[str, Any]]) -> dict[str, Any]:
         )
         for row in instances
     ]
+    concentration = {
+        name: (
+            max(counts.values()) / sum(counts.values())
+            if counts and sum(counts.values())
+            else 0.0
+        )
+        for name, counts in dimensions.items()
+    }
+    split_commitment = content_hash(
+        sorted(
+            (
+                str(row.get("instance_id", "")),
+                str(row.get("split_role", "UNKNOWN")),
+                str(row.get("privacy_class", "UNKNOWN")),
+            )
+            for row in instances
+        )
+    )
+    failures = []
+    if exact:
+        failures.append("EXACT_DUPLICATES")
+    if normalised_duplicates:
+        failures.append("NORMALISED_DUPLICATES")
+    if len(instances) >= 4:
+        failures.extend(
+            f"{name.upper()}_CONCENTRATION"
+            for name, ratio in concentration.items()
+            if name in {"domain", "source_id", "author_id", "intervention_family"}
+            and ratio > 0.75
+        )
     return {
         "count": len(instances),
         "exact_duplicates": sorted(exact),
@@ -275,8 +539,11 @@ def diversity_report(instances: list[dict[str, Any]]) -> dict[str, Any]:
             count - 1 for count in Counter(structural_fingerprints).values() if count > 1
         ),
         "dimensions": dimensions,
+        "concentration": concentration,
+        "split_commitment": split_commitment,
+        "failures": sorted(failures),
         "semantic_plugin": "OPTIONAL_NOT_LOADED",
-        "passed": not exact and not normalised_duplicates,
+        "passed": not failures,
     }
 
 
@@ -336,6 +603,7 @@ __all__ = [
     "AnswerContract",
     "BaseTaskSpec",
     "BenchmarkAuthoringSpec",
+    "BenchmarkRepository",
     "CompilationReceipt",
     "CompiledInstance",
     "InterventionSpec",

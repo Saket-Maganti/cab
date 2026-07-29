@@ -4,7 +4,7 @@ This document indexes reviewer-facing materials for *When Agent Success Is Not A
 
 ## Primary artifact
 
-- **[Reviewer attack response matrix](../reviews/reviewer_attack_response_matrix.md)** — 20 likely reviewer attacks with status, required fixes, paper sections, evidence needs, and submission blocking flags.
+- **[Reviewer attack response matrix](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/reviews/reviewer_attack_response_matrix.md)** — 20 likely reviewer attacks with status, required fixes, paper sections, evidence needs, and submission blocking flags.
 - **Prioritized fix list** — embedded at the top of the matrix (P0–P3).
 
 ## Related governance

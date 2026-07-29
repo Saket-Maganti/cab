@@ -23,4 +23,4 @@
 - Provenance footer: run dir, config hash, dataset version, scorer version
 - Linked in claim ledger before submission wording
 
-See [../FIGURE_TABLE_BLUEPRINT.md](../FIGURE_TABLE_BLUEPRINT.md), [../../docs/FIGURES_AND_TABLES.md](../../docs/FIGURES_AND_TABLES.md).
+See [FIGURE_TABLE_BLUEPRINT.md](FIGURE_TABLE_BLUEPRINT.md), [FIGURES_AND_TABLES.md](FIGURES_AND_TABLES.md).

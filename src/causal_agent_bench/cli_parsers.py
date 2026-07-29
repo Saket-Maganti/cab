@@ -898,6 +898,9 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
     registry_sub = registry.add_subparsers(dest="registry_command", required=True)
     for name, help_text in (
         ("init", "Initialize or migrate a SQLite registry."),
+        ("version", "Print the current and supported schema versions."),
+        ("migrate", "Plan or execute an ordered registry migration."),
+        ("events", "Inspect the append-only registry event stream."),
         ("doctor", "Check registry schema, integrity, hashes, and privacy."),
         ("export", "Export a deterministic public-safe registry snapshot."),
         ("verify", "Verify registry integrity without mutation."),
@@ -913,6 +916,10 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
             child.add_argument("--output", default=".cab/backups/registry.sqlite3")
         if name == "restore":
             child.add_argument("--backup", required=True)
+        if name == "migrate":
+            child.add_argument("--target-version", type=int, default=3)
+            child.add_argument("--dry-run", action="store_true")
+            child.add_argument("--export-before-upgrade", default=None)
         if name == "results":
             child.add_argument("--results-path", default="reports/level5/evaluation_registry.json")
 
@@ -1024,6 +1031,21 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
 
     certify = subparsers.add_parser("certify", help="Issue a fixture-only integrity certificate.")
     certify.add_argument("--output", default=".cab/fixture_certificate.json")
+    certificate = subparsers.add_parser(
+        "certificate",
+        help="Manage persistent fixture certificates and their transparency log.",
+    )
+    certificate_sub = certificate.add_subparsers(
+        dest="certificate_command",
+        required=True,
+    )
+    for name in ("issue-fixture", "verify", "revoke", "list", "transparency-verify"):
+        child = certificate_sub.add_parser(name)
+        child.add_argument("--path", default=".cab/registry.sqlite3")
+        if name in {"verify", "revoke"}:
+            child.add_argument("--certificate-id", required=True)
+        if name == "revoke":
+            child.add_argument("--reason", required=True)
     model_card = subparsers.add_parser("model-card", help="Create a blocked model-card template.")
     model_card.add_argument("--model-id", required=True)
     model_card.add_argument("--revision", required=True)
@@ -1048,6 +1070,11 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
     level5_sub = level5.add_subparsers(dest="level5_command", required=True)
     level5_check = level5_sub.add_parser("check")
     level5_check.add_argument("--state", default="reports/level5/CAB_LEVEL5_BUILD_STATE.json")
+    hardening_check = level5_sub.add_parser("hardening-check")
+    hardening_check.add_argument(
+        "--state",
+        default="reports/level5_hardening/CAB_LEVEL5_HARDENING_STATE.json",
+    )
 
     release_check = subparsers.add_parser(
         "release-check",

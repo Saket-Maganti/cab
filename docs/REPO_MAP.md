@@ -10,7 +10,7 @@ Guide for contributors, advisors, and future you.
 | `configs/` | Experiment and generation YAML configs |
 | `data/` | Sample, processed, and frozen datasets |
 | `results/` | Run outputs (gitignored patterns; index at `results/run_index.json`) |
-| `docs/` | Documentation hub — start at [README.md](README.md) |
+| `docs/` | Documentation hub — start at [index.md](index.md) |
 | `paper/` | Paper coordination docs + `latexpaper/` LaTeX bundle |
 | `scripts/` | Standalone validation and utility scripts |
 | `experiments/` | Command plans, gates, registry |
@@ -63,7 +63,7 @@ Generated per run: `config.yaml`, `run_metadata.json`, `trajectories.jsonl`, `sc
 
 ## `docs/`
 
-Navigation hub: [docs/README.md](README.md). Diagrams: [diagrams/](diagrams/).
+Navigation hub: [docs/index.md](index.md). Diagrams: `docs/diagrams/`.
 
 ## `paper/`
 
@@ -95,4 +95,4 @@ Generation: `generate_placeholder_figures.py` (schematic only).
 - Incomplete runs presented as final evidence
 - Fake filled placeholders in paper
 
-See [ONBOARDING.md](ONBOARDING.md), [../CONTRIBUTING.md](../CONTRIBUTING.md).
+See [ONBOARDING.md](ONBOARDING.md), [CONTRIBUTING.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/CONTRIBUTING.md).
