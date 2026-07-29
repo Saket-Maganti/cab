@@ -1,0 +1,345 @@
+{
+  "campaign_id": "redteam.hardening.5f4a52d523568b9f3055336b",
+  "cases": [
+    {
+      "attack": "archive_traversal",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "findings": [
+          {
+            "kind": "archive_traversal",
+            "severity": "REJECT"
+          }
+        ],
+        "policy_hash": "97f598748d7df43362ac50fc3c82a8a07e2a61832c6ee0b0e7820ecac3f3e25c"
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "symlink_escape",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "findings": [
+          {
+            "kind": "unsafe_symlink",
+            "severity": "REJECT"
+          }
+        ],
+        "policy_hash": "798e0c15191d6a9fc7de62415734bc1319a159672d9d0ec8a7bd3bfa3d879b78"
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "environment_scraping",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "findings": [
+          {
+            "kind": "filesystem_enumeration",
+            "severity": "DISQUALIFY"
+          }
+        ],
+        "output_bytes": 22
+      },
+      "outcome": "DETECTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "output_flooding",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "findings": [
+          {
+            "kind": "oversized_output",
+            "severity": "DISQUALIFY"
+          }
+        ],
+        "output_bytes": 2048
+      },
+      "outcome": "DETECTED",
+      "severity": "HIGH"
+    },
+    {
+      "attack": "prompt_echo",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "findings": [
+          {
+            "kind": "prompt_echo",
+            "severity": "DISQUALIFY"
+          }
+        ],
+        "output_bytes": 18
+      },
+      "outcome": "DETECTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "encoded_exfiltration",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "findings": [
+          {
+            "kind": "encoded_dump",
+            "severity": "DISQUALIFY"
+          }
+        ],
+        "output_bytes": 22
+      },
+      "outcome": "DETECTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "duplicate_result_injection",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "constraint": "PRIMARY_KEY"
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "artifact_substitution",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "errors": [
+          "0682c5f2076f099c34cfdd15a9e063849ed437a49677e6fcc5b4198c76575be5: artifact integrity failure: 0682c5f2076f099c34cfdd15a9e063849ed437a49677e6fcc5b4198c76575be5"
+        ],
+        "passed": false,
+        "verified": 0
+      },
+      "outcome": "DETECTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "certificate_tampering",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "database_guard": "certificates are immutable; append a revocation"
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "evidence_graph_tampering",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "edge_count": 0,
+        "errors": [
+          "metadata hash mismatch: node.redteam"
+        ],
+        "graph_hash": "8bd2ee306497d62f7c2d154b5ded09fe0189fbdf240b0e38b183afcd40321855",
+        "node_count": 2,
+        "passed": false,
+        "transition_count": 0,
+        "transparency": {
+          "entry_count": 4,
+          "errors": [],
+          "head_hash": "5ddef857fd5ec56ea3b9c5ee6a97921dc7f897fe06ea3adff7c77f6013b83ce9",
+          "passed": true
+        }
+      },
+      "outcome": "DETECTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "plugin_gate_override",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "reason": "plugins cannot request governance capabilities: ['gate_override']"
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "session_forgery",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "token_storage": "HASH_ONLY"
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "csrf",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "csrf": "REJECTED"
+      },
+      "outcome": "PREVENTED",
+      "severity": "HIGH"
+    },
+    {
+      "attack": "sql_injection",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "parameterized_query": true
+      },
+      "outcome": "CONTAINED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "malicious_benchmark_schema",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "reason": "1 validation error for ToolSpec\n  Value error, remote or traversal schema references are forbidden [type=value_error, input_value={'name': 'malicious_schem.../../../protected.json'}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/value_error"
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "stale_lease_takeover",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "expected_invariants": [
+          "stale_detected"
+        ],
+        "fault_outcome": "RECOVERED",
+        "observations": {
+          "lease_reclaimed": true,
+          "stale_detected": true
+        },
+        "receipt": "ecd311fd0cd4461a5a6a6151ff25e626cb2233e722cfa51c357567f969e4bcde"
+      },
+      "outcome": "CONTAINED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "retry_amplification",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "expected_invariants": [
+          "bounded_retry",
+          "unit_recovered"
+        ],
+        "fault_outcome": "RECOVERED",
+        "observations": {
+          "bounded_retry_succeeded": true,
+          "mid_transfer_disconnect_detected": true
+        },
+        "receipt": "028a007857ba560cb238b35dd82cc965cea440b57bcc787b22052339f6111434"
+      },
+      "outcome": "CONTAINED",
+      "severity": "HIGH"
+    },
+    {
+      "attack": "quota_bypass",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "expected_invariants": [
+          "quota_enforced",
+          "work_deferred"
+        ],
+        "fault_outcome": "PREVENTED",
+        "observations": {
+          "lease_denied": true,
+          "work_deferred": true
+        },
+        "receipt": "1a5a9894f70e31068f6de439f0e6f2441a0ce66527a13c357e141faad350972b"
+      },
+      "outcome": "CONTAINED",
+      "severity": "HIGH"
+    },
+    {
+      "attack": "abstention_abuse",
+      "automatically_mitigated": false,
+      "error": null,
+      "evidence": {
+        "decision_state": "PENDING_GENUINE_HUMAN_REVIEW",
+        "evidence_packet": "a846901ff4aee17671ccf97d10147866f9d3d60ea4d1b84e926929559a7510d9",
+        "residual_risk": "Abstention distributions require real cohort baselines and human review.",
+        "review_checklist": [
+          "inspect raw fixture evidence",
+          "compare policy and prior decisions",
+          "record independent human disposition"
+        ]
+      },
+      "outcome": "MANUAL_REVIEW",
+      "severity": "MEDIUM"
+    },
+    {
+      "attack": "scorer_failure",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "expected_invariants": [
+          "raw_preserved",
+          "rescore_possible"
+        ],
+        "fault_outcome": "RECOVERED",
+        "observations": {
+          "deterministic_rescore": true,
+          "raw_preserved": true,
+          "scorer_crashed": true
+        },
+        "receipt": "8bf85809c71f40356c9969db2b8bdc4953d60ce48c6b43424f6bd27327c66ba2"
+      },
+      "outcome": "CONTAINED",
+      "severity": "HIGH"
+    },
+    {
+      "attack": "score_oracle_request",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "findings": [
+          {
+            "kind": "score_oracle",
+            "severity": "DISQUALIFY"
+          }
+        ],
+        "output_bytes": 18
+      },
+      "outcome": "DETECTED",
+      "severity": "CRITICAL"
+    },
+    {
+      "attack": "correction_history_abuse",
+      "automatically_mitigated": true,
+      "error": null,
+      "evidence": {
+        "correction_count": 1,
+        "record_count": 2
+      },
+      "outcome": "PREVENTED",
+      "severity": "CRITICAL"
+    }
+  ],
+  "created_at": "2026-07-29T10:19:05.160724Z",
+  "critical_unresolved_count": 0,
+  "evidence_class": "FIXTURE_ONLY",
+  "executed_cases": 22,
+  "manual_policy_count": 1,
+  "outcomes": {
+    "ACCEPTED_RISK": 0,
+    "CONTAINED": 5,
+    "DETECTED": 7,
+    "MANUAL_REVIEW": 1,
+    "NOT_EXECUTED": 0,
+    "NOT_MITIGATED": 0,
+    "PREVENTED": 9
+  },
+  "passed": true,
+  "report_hash": "435d7a3c5f959dc81e420a93ca206e3db180b87048180fb8576ae63e0e05185b",
+  "schema_version": "1.0"
+}

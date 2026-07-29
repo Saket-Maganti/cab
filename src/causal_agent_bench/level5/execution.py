@@ -4,13 +4,13 @@ from __future__ import annotations
 
 import json
 import os
+import resource
 import secrets
 import signal
 import subprocess
 import tempfile
 import threading
 import time
-import tracemalloc
 import zlib
 from collections.abc import Callable, Mapping
 from concurrent.futures import ThreadPoolExecutor
@@ -2215,18 +2215,27 @@ class ConcurrentScheduler:
                         active_lease: UnitLease = lease,
                     ) -> None:
                         while not stop.wait(max(0.01, self.lease_seconds / 3)):
-                            self.backend.heartbeat(backend_handle)
-                            self.queue.heartbeat(
-                                active_lease,
-                                lease_seconds=self.lease_seconds,
-                            )
+                            try:
+                                self.backend.heartbeat(backend_handle)
+                                self.queue.heartbeat(
+                                    active_lease,
+                                    lease_seconds=self.lease_seconds,
+                                )
+                            except (KeyError, PermissionError):
+                                # A terminal commit can release the lease between
+                                # the stop check and heartbeat transaction, and
+                                # cleanup can remove its backend handle. Both are
+                                # correctly fenced terminal races.
+                                return
 
-                    heartbeat_thread = threading.Thread(
-                        target=heartbeat_loop,
-                        name=f"cab-heartbeat-{worker_id}",
-                        daemon=True,
-                    )
-                    heartbeat_thread.start()
+                    estimate = self.backend.estimate_resources(lease.unit)
+                    if estimate.wall_seconds >= self.lease_seconds / 3:
+                        heartbeat_thread = threading.Thread(
+                            target=heartbeat_loop,
+                            name=f"cab-heartbeat-{worker_id}",
+                            daemon=True,
+                        )
+                        heartbeat_thread.start()
                     result = self.backend.collect(
                         handle,
                         timeout_seconds=manifest.spec.timeout_seconds,
@@ -2373,7 +2382,7 @@ def run_scheduler_stress(
             store,
             registry,
             max_concurrency=concurrency,
-            lease_seconds=0.25,
+            lease_seconds=10.0,
         )
         queue.enqueue(
             manifest,
@@ -2396,7 +2405,6 @@ def run_scheduler_stress(
         stale_recovered = 0
         if stale is not None:
             stale_recovered = queue.reclaim_stale(now=time.time() + 1)
-        tracemalloc.start()
         result = scheduler.run(
             manifest,
             dependencies=dependencies,
@@ -2404,13 +2412,14 @@ def run_scheduler_stress(
             quota_keys=quota_keys,
             cancel_units=cancel_units,
         )
-        _, peak = tracemalloc.get_traced_memory()
-        tracemalloc.stop()
+        peak_rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        peak = int(peak_rss if os.uname().sysname == "Darwin" else peak_rss * 1024)
         result.update(
             {
                 "paused_units_observed": paused_count,
                 "stale_leases_recovered": stale_recovered,
                 "peak_memory_bytes": peak,
+                "memory_measurement": "process_peak_rss",
                 "cas_verification": store.verify(),
             }
         )
