@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "acceptance_state": "CAB_LEVEL5_CORE_REGISTRY_READY",
+  "sqlite_integrity": true,
+  "foreign_keys": true,
+  "append_only_events": true,
+  "immutable_provenance": true,
+  "idempotency": true,
+  "freeze": true,
+  "rollback": true,
+  "concurrent_writers": 20,
+  "public_safe_export": true,
+  "private_field_rejection": true,
+  "backup_restore_equivalence": true,
+  "in_place_downgrade_refused": true,
+  "evidence_class": "ENGINEERING_ONLY"
+}

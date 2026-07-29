@@ -39,6 +39,11 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
     repo_root = Path.cwd()
 
+    from causal_agent_bench.level5.cli import handle_level5_command
+
+    if handle_level5_command(args):
+        return
+
     if args.command == "validate":
         _validate(args.tasks_path, args.schema)
     elif args.command == "generate":

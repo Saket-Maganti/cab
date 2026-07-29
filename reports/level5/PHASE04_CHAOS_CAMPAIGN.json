@@ -1,0 +1,216 @@
+{
+  "campaign_id": "chaos.fc4980111c4a530d6de23148",
+  "case_count": 18,
+  "cases": [
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "clock_skew",
+      "invariants": [
+        "sequence_monotonic"
+      ],
+      "passed": true,
+      "receipt": "b365bf690aed87ce78d52ccf4d083927872111e3e98ab3923043ebb8248198fd"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "corrupt_artifact",
+      "invariants": [
+        "corruption_detected",
+        "not_promoted"
+      ],
+      "passed": true,
+      "receipt": "fa41cc3c0b5ba72b499f3c784bccc95d0248079d658df6c9dc713624aa13c6a8"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "corrupt_checkpoint",
+      "invariants": [
+        "corruption_detected",
+        "failed_closed"
+      ],
+      "passed": true,
+      "receipt": "1da84893f06a570809919dd606a6a126bb668d52efb413ecaf1c47a0a80c2e28"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "disk_full",
+      "invariants": [
+        "atomic_write_preserved",
+        "failed_closed"
+      ],
+      "passed": true,
+      "receipt": "ee60699ac8e40abe287bad5dbc50bc9b28e935b75dba9ed6b75e7a2aab3e5a10"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "duplicate_shard",
+      "invariants": [
+        "duplicate_rejected"
+      ],
+      "passed": true,
+      "receipt": "160a23c30b96cb6f76aad6a1cefb7260ae0bab46a38e4b730888b6c3ba8d6cb5"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "invalid_schema",
+      "invariants": [
+        "schema_rejected"
+      ],
+      "passed": true,
+      "receipt": "5f28eae8aaee31b511d1695bfcc1ad63bae9caaf6835a92f67040b8f5a09f0bc"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "malformed_model_output",
+      "invariants": [
+        "schema_rejected"
+      ],
+      "passed": true,
+      "receipt": "bde844b5e7a42afed170cc0e59af7a431406be3b1a5d78613f992c49c18c8404"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "model_oom",
+      "invariants": [
+        "bounded_retry",
+        "failure_recorded"
+      ],
+      "passed": true,
+      "receipt": "994b764acf47dceff671a088f01add96e243a20a6edabb05f08602e23339030d"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "network_disconnect",
+      "invariants": [
+        "bounded_retry",
+        "unit_recovered"
+      ],
+      "passed": true,
+      "receipt": "e0aa62a6e7898ca4ded2a0310ed7eef5e5c046d240a6965aab46035118cd411d"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "partial_upload",
+      "invariants": [
+        "partial_not_visible"
+      ],
+      "passed": true,
+      "receipt": "d1b967e0f4434eca0fdc065ccb1159a417949d20579784aaa0da2fb517aea05a"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "permission_failure",
+      "invariants": [
+        "failed_closed"
+      ],
+      "passed": true,
+      "receipt": "b2cf0f2457f2c1ed52d5694fc1584d8f08ddbbb0a40dc829dfbf927efa8df67f"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "quota_exhaustion",
+      "invariants": [
+        "quota_enforced",
+        "work_deferred"
+      ],
+      "passed": true,
+      "receipt": "3164526c1c9a2dec49cac5f3d4c179327fe6fa6ce11ef83dc361762a4d967d66"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "reboot_marker",
+      "invariants": [
+        "resume_required",
+        "completed_not_rerun"
+      ],
+      "passed": true,
+      "receipt": "f7ebf31c8d53f9a7b85f8a7094a514504b5ac45c6a77fc69ada39ab5b36c025c"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "registry_contention",
+      "invariants": [
+        "transaction_preserved"
+      ],
+      "passed": true,
+      "receipt": "67a5fe22943253921f8922e2732ed5246d7c6cfb0a68735f504b0fa176e3ca2f"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "scorer_crash",
+      "invariants": [
+        "raw_preserved",
+        "rescore_possible"
+      ],
+      "passed": true,
+      "receipt": "b52e92829a21e4ea0776090accd2e3b69cead651d623b350262702751afda0c5"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "stale_heartbeat",
+      "invariants": [
+        "stale_detected"
+      ],
+      "passed": true,
+      "receipt": "48f2666eebbe56b787882a99b8c7d1b689426a8d662de8c515b7bced8d5383ff"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "timeout",
+      "invariants": [
+        "bounded_retry",
+        "unit_recovered"
+      ],
+      "passed": true,
+      "receipt": "45805fd57a5a750a528f099721cae113cfaae3658d6cddce71aa30c2fb892090"
+    },
+    {
+      "evidence_class": "FIXTURE_ONLY",
+      "fault": "worker_kill",
+      "invariants": [
+        "retry_linked",
+        "unit_recovered"
+      ],
+      "passed": true,
+      "receipt": "3779946e42f25303e65ed41c9f2ac14f6d2510b77b62e6e80a42dea775da6fb3"
+    }
+  ],
+  "design_slos": {
+    "artifact_integrity_rate": {
+      "measured_real_execution": false,
+      "target": 1.0
+    },
+    "bounded_retry_rate": {
+      "measured_real_execution": false,
+      "target": 1.0
+    },
+    "checkpoint_recovery_rate": {
+      "measured_real_execution": false,
+      "target": 1.0
+    },
+    "deterministic_merge_rate": {
+      "measured_real_execution": false,
+      "target": 1.0
+    },
+    "duplicate_execution": {
+      "measured_real_execution": false,
+      "target": 0
+    },
+    "fail_closed_security_rate": {
+      "measured_real_execution": false,
+      "target": 1.0
+    },
+    "provenance_completeness": {
+      "measured_real_execution": false,
+      "target": 1.0
+    },
+    "silent_data_loss": {
+      "measured_real_execution": false,
+      "target": 0
+    }
+  },
+  "evidence_class": "FIXTURE_ONLY",
+  "passed": true,
+  "passed_count": 18,
+  "real_execution_slos_measured": false
+}

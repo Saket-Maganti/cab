@@ -1,0 +1,28 @@
+name: Public security report
+description: Report a non-sensitive security concern. Use private disclosure for exploitable details.
+title: "[security] "
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include secrets, private tasks, answers or live exploit payloads here.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [evaluator, artifact_store, registry, plugin, review_service, release, other]
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Public-safe summary
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Proposed severity
+      options: [low, medium, high, critical]
+    validations:
+      required: true

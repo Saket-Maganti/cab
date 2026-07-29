@@ -1,0 +1,170 @@
+{
+  "campaign_id": "redteam.2495a4044aad2f549cc963ee",
+  "case_count": 15,
+  "cases": [
+    {
+      "attack": "abstention_gaming",
+      "detected": false,
+      "expected_automatic_detection": false,
+      "findings": [],
+      "manual_policy_required": true,
+      "passed": true
+    },
+    {
+      "attack": "answer_format_gaming",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "prompt_echo",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    },
+    {
+      "attack": "artifact_tampering",
+      "detected": false,
+      "expected_automatic_detection": false,
+      "findings": [],
+      "manual_policy_required": true,
+      "passed": true
+    },
+    {
+      "attack": "benchmark_leakage",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "prompt_echo",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    },
+    {
+      "attack": "budget_loophole",
+      "detected": false,
+      "expected_automatic_detection": false,
+      "findings": [],
+      "manual_policy_required": true,
+      "passed": true
+    },
+    {
+      "attack": "collusive_submission",
+      "detected": false,
+      "expected_automatic_detection": false,
+      "findings": [],
+      "manual_policy_required": true,
+      "passed": true
+    },
+    {
+      "attack": "evaluator_escape",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "filesystem_enumeration",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    },
+    {
+      "attack": "hidden_label_access",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "prompt_echo",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    },
+    {
+      "attack": "prompt_tool_injection",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "encoded_dump",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    },
+    {
+      "attack": "raac_over_triggering",
+      "detected": false,
+      "expected_automatic_detection": false,
+      "findings": [],
+      "manual_policy_required": true,
+      "passed": true
+    },
+    {
+      "attack": "retry_amplification",
+      "detected": false,
+      "expected_automatic_detection": false,
+      "findings": [],
+      "manual_policy_required": true,
+      "passed": true
+    },
+    {
+      "attack": "scorer_exploitation",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "score_oracle",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    },
+    {
+      "attack": "suspicious_performance_jump",
+      "detected": false,
+      "expected_automatic_detection": false,
+      "findings": [],
+      "manual_policy_required": true,
+      "passed": true
+    },
+    {
+      "attack": "task_id_leakage",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "task_hardcoding",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    },
+    {
+      "attack": "task_memorisation",
+      "detected": true,
+      "expected_automatic_detection": true,
+      "findings": [
+        {
+          "kind": "task_hardcoding",
+          "severity": "DISQUALIFY"
+        }
+      ],
+      "manual_policy_required": false,
+      "passed": true
+    }
+  ],
+  "detected_count": 8,
+  "evidence_class": "FIXTURE_ONLY",
+  "manual_policy_count": 7,
+  "passed": true
+}

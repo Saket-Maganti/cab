@@ -3066,6 +3066,69 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "reports/CAB_CPU_ENVIRONMENT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_CPU_EXECUTION_LEDGER.jsonl",
+      "records_or_cells_checked": 53,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_CPU_M4_RESOURCE_PREFLIGHT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_CPU_PAPER_BUILD.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_CPU_PRIVATE_CANDIDATE_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_CPU_SECURITY_AND_LEAKAGE_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_CPU_STRUCTURED_DATA_VALIDATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "reports/CAB_CURRENT_STATE_VERIFIED.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -3175,6 +3238,24 @@
       "fix_applied": false,
       "passed": true,
       "path": "reports/god_tier_status/god_tier_status.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/iclr_preexecution_readiness.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/iclr_preexecution_readiness_final.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -3351,9 +3432,9 @@
     }
   ],
   "files_failed": 0,
-  "files_passed": 372,
-  "files_scanned": 372,
-  "generated_at": "2026-07-29T05:17:37.996298+00:00",
+  "files_passed": 381,
+  "files_scanned": 381,
+  "generated_at": "2026-07-29T07:28:07.816570+00:00",
   "passed": true,
   "schema_version": "cab_cpu_structured_data_validation_v1",
   "scope": "Tracked JSON, JSONL, YAML, YML, and Jupyter notebook files."

@@ -886,4 +886,171 @@ def build_parser() -> argparse.ArgumentParser:
     all_no_run_parser.add_argument("--fixtures-dir", default="tests/fixtures/synthetic_trajectories")
     all_no_run_parser.add_argument("--taxonomy", default="configs/intervention_taxonomy.yaml")
 
+    _add_level5_parsers(subparsers)
+
     return parser
+
+
+def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
+    """Add the CAB Research OS public CLI without replacing legacy commands."""
+
+    registry = subparsers.add_parser("registry", help="Manage the Level-5 experiment registry.")
+    registry_sub = registry.add_subparsers(dest="registry_command", required=True)
+    for name, help_text in (
+        ("init", "Initialize or migrate a SQLite registry."),
+        ("doctor", "Check registry schema, integrity, hashes, and privacy."),
+        ("export", "Export a deterministic public-safe registry snapshot."),
+        ("verify", "Verify registry integrity without mutation."),
+        ("backup", "Create a consistent SQLite registry backup."),
+        ("restore", "Restore and verify a SQLite registry backup."),
+        ("results", "Inspect the public-safe evaluation result registry."),
+    ):
+        child = registry_sub.add_parser(name, help=help_text)
+        child.add_argument("--path", default=".cab/registry.sqlite3")
+        if name == "export":
+            child.add_argument("--output", default=".cab/registry.public.json")
+        if name == "backup":
+            child.add_argument("--output", default=".cab/backups/registry.sqlite3")
+        if name == "restore":
+            child.add_argument("--backup", required=True)
+        if name == "results":
+            child.add_argument("--results-path", default="reports/level5/evaluation_registry.json")
+
+    environment = subparsers.add_parser("env", help="Inspect the hermetic environment contract.")
+    environment_sub = environment.add_subparsers(dest="env_command", required=True)
+    environment_doctor = environment_sub.add_parser("doctor", help="Verify environment metadata.")
+    environment_doctor.add_argument("--repo-root", default=".")
+
+    benchmark = subparsers.add_parser("benchmark", help="Author governed intervention benchmarks.")
+    benchmark_sub = benchmark.add_subparsers(dest="benchmark_command", required=True)
+    for name in (
+        "init",
+        "compile",
+        "validate",
+        "diversity",
+        "review-packet",
+        "freeze",
+        "retire",
+        "contamination-audit",
+    ):
+        child = benchmark_sub.add_parser(name)
+        child.add_argument("--spec", default="examples/level5/public_fixture/authoring.yaml")
+        child.add_argument("--output-dir", default=".cab/benchmark")
+        if name == "init":
+            child.add_argument("--force", action="store_true")
+        if name == "compile":
+            child.add_argument("--allow-private-output", action="store_true")
+
+    plan = subparsers.add_parser("plan", help="Compile an immutable Level-5 fixture run plan.")
+    plan.add_argument("--spec", default=None)
+    plan.add_argument("--output", default=".cab/run_manifest.json")
+    plan.add_argument("--shards", type=int, default=2)
+
+    # Extend the legacy run command with a provider-free Level-5 dry-run surface.
+    run_parser = subparsers.choices["run"]
+    run_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Compile the Level-5 fixture plan only; no model execution.",
+    )
+    run_parser.add_argument(
+        "--level5-fixture-dir",
+        default=None,
+        help="Execute the 20-unit Level-5 fixture vertical slice under this directory.",
+    )
+
+    status = subparsers.add_parser("status", help="Inspect a Level-5 fixture run.")
+    status.add_argument("--run-dir", default=".cab/fixture_run")
+    cancel = subparsers.add_parser("cancel", help="Write a fixture cancellation receipt.")
+    cancel.add_argument("--run-dir", default=".cab/fixture_run")
+    cancel.add_argument("--unit-id", required=True)
+    resume = subparsers.add_parser("resume", help="Resume an interrupted Level-5 fixture run.")
+    resume.add_argument("--run-dir", default=".cab/fixture_run")
+    merge = subparsers.add_parser("merge", help="Inspect the deterministic Level-5 merge.")
+    merge.add_argument("--run-dir", default=".cab/fixture_run")
+
+    artifacts = subparsers.add_parser("artifacts", help="Manage the Level-5 content-addressed store.")
+    artifacts_sub = artifacts.add_subparsers(dest="artifacts_command", required=True)
+    for name in ("verify", "export", "gc"):
+        child = artifacts_sub.add_parser(name)
+        child.add_argument("--store", default=".cab/artifacts")
+        if name == "verify":
+            child.add_argument("--digest", default=None)
+        elif name == "export":
+            child.add_argument("--digest", action="append", required=True)
+            child.add_argument("--output", default=".cab/artifact_bundle")
+        else:
+            child.add_argument("--referenced", action="append", default=[])
+            child.add_argument("--dry-run", action="store_true", default=True)
+
+    reliability = subparsers.add_parser("reliability", help="Run fixture reliability campaigns.")
+    reliability_sub = reliability.add_subparsers(dest="reliability_command", required=True)
+    for name in ("inject", "campaign", "report"):
+        child = reliability_sub.add_parser(name)
+        child.add_argument("--fault", action="append", default=[])
+        child.add_argument("--output", default="reports/level5/PHASE04_CHAOS_CAMPAIGN.json")
+
+    review = subparsers.add_parser("review", help="Operate the human review control plane.")
+    review_sub = review.add_subparsers(dest="review_command", required=True)
+    for name in ("serve", "qualify", "assign", "status", "export", "adjudicate", "validate"):
+        child = review_sub.add_parser(name)
+        child.add_argument("--input", default=None)
+        child.add_argument("--output", default=None)
+        if name == "serve":
+            child.add_argument("--host", default="127.0.0.1")
+            child.add_argument("--port", type=int, default=8765)
+            child.add_argument("--data-dir", default=".cab/review")
+            child.add_argument(
+                "--check",
+                action="store_true",
+                help="Validate local binding and print readiness without starting the server.",
+            )
+
+    evaluator = subparsers.add_parser("evaluator", help="Run protected-evaluator fixtures.")
+    evaluator_sub = evaluator.add_subparsers(dest="evaluator_command", required=True)
+    for name in ("validate-submission", "dry-run", "run-fixture", "audit", "receipt"):
+        child = evaluator_sub.add_parser(name)
+        child.add_argument("--submission", default=None)
+        child.add_argument("--output", default=".cab/evaluator_receipt.json")
+        if name == "audit":
+            child.add_argument("--text", default="")
+
+    evidence = subparsers.add_parser("evidence", help="Inspect evidence lineage.")
+    evidence_sub = evidence.add_subparsers(dest="evidence_command", required=True)
+    for name in ("trace", "verify"):
+        child = evidence_sub.add_parser(name)
+        child.add_argument("--graph", default="reports/level5/evidence_graph.fixture.json")
+        child.add_argument("--node-id", default=None)
+
+    certify = subparsers.add_parser("certify", help="Issue a fixture-only integrity certificate.")
+    certify.add_argument("--output", default=".cab/fixture_certificate.json")
+    model_card = subparsers.add_parser("model-card", help="Create a blocked model-card template.")
+    model_card.add_argument("--model-id", required=True)
+    model_card.add_argument("--revision", required=True)
+    model_card.add_argument("--output", default=None)
+
+    claims = subparsers.add_parser("claims", help="Validate Level-5 claim evidence.")
+    claims_sub = claims.add_subparsers(dest="claims_command", required=True)
+    claims_validate = claims_sub.add_parser("validate")
+    claims_validate.add_argument("--state", default="reports/level5/CAB_LEVEL5_BUILD_STATE.json")
+
+    plugins = subparsers.add_parser("plugins", help="Discover and inspect CAB plugins.")
+    plugins_sub = plugins.add_subparsers(dest="plugins_command", required=True)
+    plugins_sub.add_parser("list")
+
+    reproduce = subparsers.add_parser("reproduce", help="Run internal fixture reproduction.")
+    reproduce.add_argument("--workdir", default=".cab/reproduction")
+
+    redteam = subparsers.add_parser("redteam", help="Run the malicious fixture campaign.")
+    redteam.add_argument("--output", default="reports/level5/PHASE09_REDTEAM_FIXTURE_CAMPAIGN.json")
+
+    level5 = subparsers.add_parser("level5", help="Evaluate the honest CAB Level-5 gate.")
+    level5_sub = level5.add_subparsers(dest="level5_command", required=True)
+    level5_check = level5_sub.add_parser("check")
+    level5_check.add_argument("--state", default="reports/level5/CAB_LEVEL5_BUILD_STATE.json")
+
+    release_check = subparsers.add_parser(
+        "release-check",
+        help="Run legacy release validation plus the Level-5 gate.",
+    )
+    release_check.add_argument("--state", default="reports/level5/CAB_LEVEL5_BUILD_STATE.json")

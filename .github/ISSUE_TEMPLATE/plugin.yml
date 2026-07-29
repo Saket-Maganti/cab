@@ -1,0 +1,32 @@
+name: CAB plugin
+description: Propose an agent, tool, backend, scorer, analysis or evaluator plugin.
+title: "[plugin] "
+labels: ["plugin"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Plugin type
+      options: [agent, tool, backend, scorer, intervention_family, analysis, exporter, evaluator_runtime]
+    validations:
+      required: true
+  - type: input
+    id: api
+    attributes:
+      label: CAB API version
+      value: "1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: Capabilities, dependencies and failure modes
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: The plugin does not override canonical safety or evidence gates.
+          required: true

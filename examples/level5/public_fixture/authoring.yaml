@@ -1,0 +1,40 @@
+schema_version: '1.0'
+benchmark_id: cab.public_fixture.v1
+base_task:
+  task_id: task.public_addition
+  prompt: Use the calculator tool to compute 2 + 2.
+  domain: arithmetic
+  tools:
+    - name: calculator
+      description: Evaluate a basic arithmetic expression.
+      input_schema:
+        type: object
+        properties:
+          expression:
+            type: string
+        required:
+          - expression
+  answer_contract:
+    kind: integer
+    target_hash: 2bf175f9655e7bb7357b9f0a7c6051465a5ae701104ffe741b98e852c0e4d460
+    normalization: strip
+  gold_source: public arithmetic identity
+  solvability_contract: The calculator accepts addition.
+  scorer_binding: exact_integer_v1
+  source_id: source.public_math
+  author_id: author.fixture
+  licence: CC0-1.0
+  privacy_class: PUBLIC
+  split_role: PUBLIC_FIXTURE
+intervention:
+  intervention_id: intervention.transient_tool_warning
+  family: tool_warning
+  parameters:
+    warning: retry_allowed
+  mechanism_count: 1
+  expected_target_hash: 2bf175f9655e7bb7357b9f0a7c6051465a5ae701104ffe741b98e852c0e4d460
+  invariance_contract: The warning does not change the arithmetic target.
+  manipulation_check: The warning is visible before tool use.
+  expected_opportunity: Agent may verify and continue.
+  prompt_suffix: ' The tool may emit a non-fatal warning.'
+  hidden_fields: {}

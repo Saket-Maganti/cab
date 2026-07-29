@@ -8,6 +8,7 @@ __pycache__/
 !.env.example
 .DS_Store
 .cache/
+.cab/
 results/cache/
 results/dry_runs/
 *.pem
