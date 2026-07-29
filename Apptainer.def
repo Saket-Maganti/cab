@@ -1,0 +1,24 @@
+Bootstrap: docker
+From: python:3.11.9-slim
+
+%files
+    pyproject.toml /opt/cab/pyproject.toml
+    constraints.txt /opt/cab/constraints.txt
+    README.md /opt/cab/README.md
+    LICENSE /opt/cab/LICENSE
+    src /opt/cab/src
+
+%post
+    cd /opt/cab
+    python -m pip install --no-cache-dir --constraint constraints.txt .
+
+%environment
+    export PYTHONDONTWRITEBYTECODE=1
+    export PYTHONUNBUFFERED=1
+
+%runscript
+    exec cab "$@"
+
+%labels
+    org.opencontainers.image.title CAB-Research-OS
+    org.opencontainers.image.description "Provider-free CAB Level-5 foundation runtime"

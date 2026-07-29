@@ -1,0 +1,33 @@
+name: Benchmark pack
+description: Propose a public-safe benchmark pack or intervention family.
+title: "[benchmark] "
+labels: ["benchmark"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Proposed version
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance, licence and privacy class
+      description: Do not paste protected tasks, answers or reviewer identities.
+    validations:
+      required: true
+  - type: textarea
+    id: validity
+    attributes:
+      label: Invariance, solvability and manipulation checks
+    validations:
+      required: true
+  - type: checkboxes
+    id: attest
+    attributes:
+      label: Attestations
+      options:
+        - label: I have not included protected payloads.
+          required: true
+        - label: I understand that human review and C10 cannot be bypassed.
+          required: true

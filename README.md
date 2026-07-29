@@ -26,6 +26,29 @@ This repository is an initial research scaffold and deterministic prototype. It 
 | **Safety reports** | `all-safety-reports` → [reports/INDEX.md](reports/INDEX.md) · full bundle: `all-no-run-reports` |
 | **Project status** | `make status` → [PROJECT_STATUS.md](PROJECT_STATUS.md) |
 
+## CAB Research OS
+
+The Level-5 foundation adds a transactional experiment registry, governed
+benchmark factory, resumable execution OS, content-addressed artifacts,
+reliability laboratory, human-review service, protected-evaluator contracts,
+public SDK/plugins, evidence graph, certification and an honest maturity gate.
+
+```bash
+cab env doctor
+cab registry init
+cab benchmark validate --spec examples/level5/public_fixture/authoring.yaml
+cab run --dry-run
+cab reproduce --workdir /tmp/cab_level5_reproduction
+cab level5 check
+```
+
+See the [Research OS architecture](docs/level5/CAB_RESEARCH_OS_ARCHITECTURE.md),
+[capability matrix](docs/level5/CAB_LEVEL5_CAPABILITY_MATRIX.md) and
+[Level-5 quickstart](docs/level5/QUICKSTART.md). Fixture demonstrations are
+engineering validation only. Genuine human review, live model evidence,
+independent reproduction and external evaluator/community pilots remain
+mandatory for `CAB_LEVEL5_COMPLETE`.
+
 ## Quick safe demo
 
 No model runs — planning and audits only:

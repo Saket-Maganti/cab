@@ -1,0 +1,46 @@
+name: Level-5 foundation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.11", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: python -m pip install --constraint constraints.txt -e ".[dev]"
+      - run: python -m pytest -q -n2 tests/test_level5_*.py
+      - run: cab registry init --path /tmp/cab-registry.sqlite3
+      - run: cab registry doctor --path /tmp/cab-registry.sqlite3
+      - run: cab reproduce --workdir /tmp/cab-reproduction
+      - run: cab level5 check
+
+  supply-chain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --constraint constraints.txt -e .
+      - run: python scripts/generate_level5_sbom.py --output /tmp/sbom.json
+      - run: python scripts/generate_dependency_licenses.py --output /tmp/licenses.json
+      - run: test -s /tmp/sbom.json
+      - run: test -s /tmp/licenses.json
+      - run: |
+          if grep -R -nE 'private_data|protected.*payload' Dockerfile .dockerignore Apptainer.def | grep -v '.dockerignore'; then
+            exit 1
+          fi

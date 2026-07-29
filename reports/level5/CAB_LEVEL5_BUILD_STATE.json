@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "starting_commit": "bcd8bc49074c67ff1a9858d87143170e3428e228",
+  "foundation_capabilities": {
+    "architecture": true,
+    "experiment_registry": true,
+    "benchmark_factory": true,
+    "execution_os": true,
+    "artifact_store": true,
+    "observability": true,
+    "reliability_lab": true,
+    "human_review_os": true,
+    "protected_evaluator_fixture": true,
+    "public_sdk_cli": true,
+    "plugin_system": true,
+    "evidence_graph": true,
+    "certification": true,
+    "reproduction_harness": true,
+    "red_team_harness": true,
+    "governance": true,
+    "release_engineering": true
+  },
+  "validation_passed": true,
+  "genuine_evidence": {
+    "human_judgment_rows": 0,
+    "real_model_trajectories": 0,
+    "audited_real_runs": 0,
+    "paper_eligible_empirical_assets": 0,
+    "supported_empirical_claims": 0,
+    "independent_external_reproductions": 0,
+    "protected_evaluator_pilots": 0,
+    "community_external_pilots": 0
+  },
+  "critical_red_team_issues": 0,
+  "protected_payloads_committed": 0,
+  "generated_at": "2026-07-29T07:40:00Z"
+}

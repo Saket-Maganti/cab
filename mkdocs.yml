@@ -48,6 +48,18 @@ nav:
   - Metrics: METRICS.md
   - Reproducibility: REPRODUCIBILITY.md
   - CLI reference: CLI_REFERENCE.md
+  - Research OS Level-5:
+      - Quickstart: level5/QUICKSTART.md
+      - Architecture: level5/CAB_RESEARCH_OS_ARCHITECTURE.md
+      - Capability matrix: level5/CAB_LEVEL5_CAPABILITY_MATRIX.md
+      - Benchmark factory: level5/BENCHMARK_FACTORY_SPEC.md
+      - Execution OS: level5/EXECUTION_OS_ARCHITECTURE.md
+      - Human review: level5/HUMAN_REVIEW_OS.md
+      - Protected evaluator: level5/PROTECTED_EVALUATOR_ARCHITECTURE.md
+      - Evidence graph: level5/EVIDENCE_GRAPH_SPEC.md
+      - Governance: level5/GOVERNANCE_CHARTER.md
+      - CLI: level5/CLI_REFERENCE.md
+      - Troubleshooting: level5/TROUBLESHOOTING.md
   - Policy:
       - Evidence levels: EVIDENCE_LEVEL_POLICY.md
       - Ethics & limitations: ETHICS_AND_LIMITATIONS.md
