@@ -8,6 +8,7 @@ from causal_agent_bench.safety.max_ceiling_gate import (
     CANONICAL_EVIDENCE_CLASSES,
     REQUIRED_FINAL_ARTIFACTS,
     REQUIRED_NOTEBOOKS,
+    _large_file_inventory,
     derive_current_state,
     evaluate_max_ceiling_gate,
 )
@@ -87,3 +88,21 @@ def test_required_inventory_is_exact() -> None:
     assert len(REQUIRED_FINAL_ARTIFACTS) == 15
     assert len(set(REQUIRED_NOTEBOOKS)) == 9
     assert len(set(REQUIRED_FINAL_ARTIFACTS)) == 15
+
+
+def test_large_file_inventory_tolerates_disappearing_temp_files(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    stable = tmp_path / "stable.bin"
+    stable.write_bytes(b"stable")
+    disappeared = tmp_path / ".coverage.transient"
+
+    monkeypatch.setattr(
+        "causal_agent_bench.safety.max_ceiling_gate._iter_files",
+        lambda _root: iter([disappeared, stable]),
+    )
+
+    assert _large_file_inventory(tmp_path, threshold_bytes=1) == [
+        {"path": "stable.bin", "bytes": 6}
+    ]

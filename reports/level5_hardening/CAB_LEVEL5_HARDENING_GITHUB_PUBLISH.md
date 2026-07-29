@@ -45,6 +45,14 @@ The first implementation run exposed one macOS timeout-fixture failure. Its
 50 ms scheduling margin was widened while preserving the production 100 ms
 timeout contract; the corrected six-platform matrix passed.
 
+The first report-bearing run later exposed a separate xdist race: the maximum
+ceiling file inventory enumerated a temporary coverage shard after coverage
+had removed it. The inventory now stats each path once and omits only paths
+that disappear during the snapshot; a deterministic regression test covers
+that lifecycle. The final fix commit and its remote checks are recorded by Git
+history and the final handoff response because a committed report cannot embed
+its own SHA.
+
 ## GitHub Pages boundary
 
 The strict documentation build and Docs Check are green. The separate `Docs`

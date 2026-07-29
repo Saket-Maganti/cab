@@ -135,7 +135,7 @@ also `NOT_EXECUTED`.
   inventory, release dry-run, security check, and evidence-safety checks
   passed.
 - Release inventory: 720 files; bundle hash
-  `10296676ed6fbc3fec0247ec90cf3991922fff48183485d3e46fc0300bc3c85c`.
+  `54d30e9c358f5f776b43e65ff14f0ee58b8f91025f5afa677377ced49ff742d3`.
 
 The first post-change full-suite run had three failures, all caused by a stale
 release inventory. After deterministic regeneration, the affected tests and

@@ -448,7 +448,7 @@
     "scripts/check_experiment_state.py": "df30fa34582426def5e1205b2eb0e52540ff2bff0b1a03ad8421c44c44a73c78",
     "scripts/check_iclr_preexecution_readiness.py": "86a27f21ee29ed8a176e1d9d8d9352a3459357d0b331440cf51bc7937af06784"
   },
-  "generated_at": "2026-07-29T10:27:59.762549+00:00",
+  "generated_at": "2026-07-29T11:12:19.774589+00:00",
   "inventory_file_count": 720,
   "inventory_policy": {
     "categories": {
@@ -558,11 +558,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "10296676ed6fbc3fec0247ec90cf3991922fff48183485d3e46fc0300bc3c85c",
+  "release_bundle_hash": "54d30e9c358f5f776b43e65ff14f0ee58b8f91025f5afa677377ced49ff742d3",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "d1819b0b213c696c4fa0c4982ae0dc5fbae894b7",
+    "git_commit": "65aff4658c029c092e2d6cb3a7871b485af14452",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
