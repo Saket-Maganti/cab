@@ -1,0 +1,163 @@
+{
+  "architecture": "arm64",
+  "commands": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "build",
+        "--outdir",
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/dist",
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/source"
+      ],
+      "cwd_class": "CLEAN_SOURCE",
+      "exit_code": 0,
+      "finished_at": "2026-07-29T10:45:12.817315Z",
+      "started_at": "2026-07-29T10:45:10.755107Z",
+      "state": "PASSED",
+      "stderr_hash": "f5f38551ff9adafedc878ace8992b082b652643696d296ff26db465a21c98f74",
+      "stderr_tail": "* Creating isolated environment: venv+pip...\n* Installing packages in isolated environment:\n  - setuptools>=68\n* Getting build dependencies for sdist...\n* Building sdist...\n* Building wheel from sdist\n* Creating isolated environment: venv+pip...\n* Installing packages in isolated environment:\n  - setuptools>=68\n* Getting build dependencies for wheel...\n* Building wheel...\n",
+      "stdout_hash": "3b0f075cb1cf6ade08bdbb7389a8dd8a6fbd5d1e835db67889d56854c4277d48",
+      "stdout_tail": "y'\nadding 'causal_agent_bench/safety/provider_pilot_preflight.py'\nadding 'causal_agent_bench/safety/publication_readiness.py'\nadding 'causal_agent_bench/safety/readiness_war_room.py'\nadding 'causal_agent_bench/safety/release_blocker_analyzer.py'\nadding 'causal_agent_bench/safety/release_readiness.py'\nadding 'causal_agent_bench/safety/repair_plan.py'\nadding 'causal_agent_bench/safety/report_quality_check.py'\nadding 'causal_agent_bench/safety/reproducibility_manifest.py'\nadding 'causal_agent_bench/safety/reproducibility_report.py'\nadding 'causal_agent_bench/safety/run_cost_estimator.py'\nadding 'causal_agent_bench/safety/run_health.py'\nadding 'causal_agent_bench/safety/split_metadata_repair.py'\nadding 'causal_agent_bench/safety/split_registry.py'\nadding 'causal_agent_bench/safety/static_leakage.py'\nadding 'causal_agent_bench/safety/synthetic_fixtures.py'\nadding 'causal_agent_bench/safety/task_intervention_lint.py'\nadding 'causal_agent_bench/safety/tiny_provider_pilot.py'\nadding 'causal_agent_bench/safety/tool_schema_validation.py'\nadding 'causal_agent_bench/safety/validity_scorecard.py'\nadding 'causal_agent_bench/safety/workflow_state.py'\nadding 'causal_agent_bench/tools/__init__.py'\nadding 'causal_agent_bench/tools/base.py'\nadding 'causal_agent_bench/tools/mock_tools.py'\nadding 'causal_agent_bench/tools/registry.py'\nadding 'causal_agent_bench/tools/simulated.py'\nadding 'causal_agent_bench/tools/web_snapshot.py'\nadding 'causal_agent_bench/utils/__init__.py'\nadding 'causal_agent_bench/utils/io.py'\nadding 'causal_agent_bench-0.1.0.dist-info/licenses/LICENSE'\nadding 'causal_agent_bench-0.1.0.dist-info/METADATA'\nadding 'causal_agent_bench-0.1.0.dist-info/WHEEL'\nadding 'causal_agent_bench-0.1.0.dist-info/entry_points.txt'\nadding 'causal_agent_bench-0.1.0.dist-info/top_level.txt'\nadding 'causal_agent_bench-0.1.0.dist-info/RECORD'\nremoving build/bdist.macosx-10.9-universal2/wheel\nSuccessfully built causal_agent_bench-0.1.0.tar.gz and causal_agent_bench-0.1.0-py3-none-any.whl\n"
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "venv",
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/venv"
+      ],
+      "cwd_class": "CLEAN_SOURCE",
+      "exit_code": 0,
+      "finished_at": "2026-07-29T10:45:14.182273Z",
+      "started_at": "2026-07-29T10:45:12.818631Z",
+      "state": "PASSED",
+      "stderr_hash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stderr_tail": "",
+      "stdout_hash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_tail": ""
+    },
+    {
+      "command": [
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--constraint",
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/source/constraints.txt",
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/dist/causal_agent_bench-0.1.0-py3-none-any.whl"
+      ],
+      "cwd_class": "CLEAN_SOURCE",
+      "exit_code": 0,
+      "finished_at": "2026-07-29T10:45:20.945796Z",
+      "started_at": "2026-07-29T10:45:14.182405Z",
+      "state": "PASSED",
+      "stderr_hash": "90aa2100a7f4421d5a6650f472fbc597d69489282f801d6145d49eb16d156158",
+      "stderr_tail": "\n[notice] A new release of pip is available: 24.0 -> 26.1.2\n[notice] To update, run: /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/venv/bin/python -m pip install --upgrade pip\n",
+      "stdout_hash": "67139b70f2bac75508ee0fa42a5a26738e44aea62053d8e597d6c8c8647db749",
+      "stdout_tail": ">pandas>=2.0->causal-agent-bench==0.1.0)\n  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)\nUsing cached jinja2-3.1.6-py3-none-any.whl (134 kB)\nUsing cached numpy-2.4.6-cp311-cp311-macosx_14_0_arm64.whl (5.5 MB)\nUsing cached pandas-3.0.3-cp311-cp311-macosx_11_0_arm64.whl (9.9 MB)\nUsing cached pydantic-2.13.4-py3-none-any.whl (472 kB)\nUsing cached pydantic_core-2.46.4-cp311-cp311-macosx_11_0_arm64.whl (1.9 MB)\nUsing cached pyyaml-6.0.3-cp311-cp311-macosx_11_0_arm64.whl (175 kB)\nUsing cached rich-15.0.0-py3-none-any.whl (310 kB)\nUsing cached scipy-1.17.1-cp311-cp311-macosx_14_0_arm64.whl (20.3 MB)\nUsing cached typer-0.26.4-py3-none-any.whl (122 kB)\nUsing cached annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)\nUsing cached annotated_types-0.7.0-py3-none-any.whl (13 kB)\nUsing cached markdown_it_py-4.2.0-py3-none-any.whl (91 kB)\nUsing cached markupsafe-3.0.3-cp311-cp311-macosx_11_0_arm64.whl (12 kB)\nUsing cached pygments-2.20.0-py3-none-any.whl (1.2 MB)\nUsing cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)\nUsing cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)\nUsing cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)\nUsing cached typing_inspection-0.4.2-py3-none-any.whl (14 kB)\nUsing cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)\nUsing cached six-1.17.0-py2.py3-none-any.whl (11 kB)\nInstalling collected packages: typing-extensions, six, shellingham, PyYAML, pygments, numpy, mdurl, MarkupSafe, annotated-types, annotated-doc, typing-inspection, scipy, python-dateutil, pydantic-core, markdown-it-py, jinja2, rich, pydantic, pandas, typer, causal-agent-bench\nSuccessfully installed MarkupSafe-3.0.3 PyYAML-6.0.3 annotated-doc-0.0.4 annotated-types-0.7.0 causal-agent-bench-0.1.0 jinja2-3.1.6 markdown-it-py-4.2.0 mdurl-0.1.2 numpy-2.4.6 pandas-3.0.3 pydantic-2.13.4 pydantic-core-2.46.4 pygments-2.20.0 python-dateutil-2.9.0.post0 rich-15.0.0 scipy-1.17.1 shellingham-1.5.4 six-1.17.0 typer-0.26.4 typing-extensions-4.15.0 typing-inspection-0.4.2\n"
+    },
+    {
+      "command": [
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/venv/bin/python",
+        "-m",
+        "causal_agent_bench",
+        "reproduce",
+        "--workdir",
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/clean_run"
+      ],
+      "cwd_class": "CLEAN_SOURCE",
+      "exit_code": 0,
+      "finished_at": "2026-07-29T10:45:22.062019Z",
+      "started_at": "2026-07-29T10:45:20.945923Z",
+      "state": "PASSED",
+      "stderr_hash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stderr_tail": "",
+      "stdout_hash": "6bb3b2f0a770cd733340e702c029cd5ea54ec19e5f9eedcf5e13e6f1763ad567",
+      "stdout_tail": "{\n  \"checks\": {\n    \"artifact_store\": {\n      \"errors\": [],\n      \"passed\": true,\n      \"verified\": 22\n    },\n    \"certificate\": true,\n    \"chaos\": true,\n    \"evaluator_receipt\": true,\n    \"evidence_graph\": {\n      \"edge_count\": 1,\n      \"errors\": [],\n      \"graph_hash\": \"2855eadfe9e6369fb97ed8d3d8a89c814d52e15f13700c6bd9df304b93c991c2\",\n      \"node_count\": 2,\n      \"passed\": true\n    },\n    \"interrupted_at_7\": true,\n    \"registry\": {\n      \"entities\": 22,\n      \"errors\": [],\n      \"migration_runtime\": {\n        \"backup_hash\": \"5fae8ac08cd63c691802473a7e2a1bee3ed40288d52b8be8837741b4964f143d\",\n        \"backup_path\": \"/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/clean_run/registry.sqlite3.pre-v2-to-v3.backup\",\n        \"failure_record\": null,\n        \"migration_id\": \"registry-v3-review-evidence-evaluator\",\n        \"singleton\": 1,\n        \"source_version\": 2,\n        \"started_at\": \"2026-07-29T10:45:21.880804Z\",\n        \"status\": \"IDLE\",\n        \"target_version\": 3\n      },\n      \"passed\": true,\n      \"schema_version\": 3\n    },\n    \"resumed_to_20\": true\n  },\n  \"created_at\": \"2026-07-29T10:45:22.034443Z\",\n  \"graph_hash\": \"2855eadfe9e6369fb97ed8d3d8a89c814d52e15f13700c6bd9df304b93c991c2\",\n  \"independent_reproduction\": false,\n  \"manifest_hash\": \"b92acb55375da001ff76dbc3d8eb864565618dc9c8480b40cd6b50372ad69d42\",\n  \"merge_digest\": \"db0dbb3ff7bfb10f238bcf0c561ea943d2bcf6ba49dafc869f413354e581e84b\",\n  \"passed\": true,\n  \"receipt_hash\": \"3ec9df2afad1b1e2907b550b8b725c43439829a06014ceaf8b49288bf8a82091\",\n  \"reproduction_class\": \"INTERNAL_FIXTURE_ONLY\",\n  \"schema_version\": \"1.0\"\n}\n"
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "-m",
+        "causal_agent_bench",
+        "reproduce",
+        "--workdir",
+        "/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/checkout_run"
+      ],
+      "cwd_class": "CLEAN_SOURCE",
+      "exit_code": 0,
+      "finished_at": "2026-07-29T10:45:22.609918Z",
+      "started_at": "2026-07-29T10:45:22.062268Z",
+      "state": "PASSED",
+      "stderr_hash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stderr_tail": "",
+      "stdout_hash": "9a24ae03b44bdb9db2457eada3c86c14ce94bdbe79042eaece2a4aead1c44863",
+      "stdout_tail": "{\n  \"checks\": {\n    \"artifact_store\": {\n      \"errors\": [],\n      \"passed\": true,\n      \"verified\": 22\n    },\n    \"certificate\": true,\n    \"chaos\": true,\n    \"evaluator_receipt\": true,\n    \"evidence_graph\": {\n      \"edge_count\": 1,\n      \"errors\": [],\n      \"graph_hash\": \"2855eadfe9e6369fb97ed8d3d8a89c814d52e15f13700c6bd9df304b93c991c2\",\n      \"node_count\": 2,\n      \"passed\": true\n    },\n    \"interrupted_at_7\": true,\n    \"registry\": {\n      \"entities\": 22,\n      \"errors\": [],\n      \"migration_runtime\": {\n        \"backup_hash\": \"f2a61f0ecd6c2457df3911db670600f50d5b831a001a019bc851d3118822d018\",\n        \"backup_path\": \"/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-cleanroom-90hq58mj/checkout_run/registry.sqlite3.pre-v2-to-v3.backup\",\n        \"failure_record\": null,\n        \"migration_id\": \"registry-v3-review-evidence-evaluator\",\n        \"singleton\": 1,\n        \"source_version\": 2,\n        \"started_at\": \"2026-07-29T10:45:22.408503Z\",\n        \"status\": \"IDLE\",\n        \"target_version\": 3\n      },\n      \"passed\": true,\n      \"schema_version\": 3\n    },\n    \"resumed_to_20\": true\n  },\n  \"created_at\": \"2026-07-29T10:45:22.579618Z\",\n  \"graph_hash\": \"2855eadfe9e6369fb97ed8d3d8a89c814d52e15f13700c6bd9df304b93c991c2\",\n  \"independent_reproduction\": false,\n  \"manifest_hash\": \"b92acb55375da001ff76dbc3d8eb864565618dc9c8480b40cd6b50372ad69d42\",\n  \"merge_digest\": \"db0dbb3ff7bfb10f238bcf0c561ea943d2bcf6ba49dafc869f413354e581e84b\",\n  \"passed\": true,\n  \"receipt_hash\": \"b947e0faaaaefe9c8d3978845d3cb88d2f7fc0a89644f1896153da8f67e220fd\",\n  \"reproduction_class\": \"INTERNAL_FIXTURE_ONLY\",\n  \"schema_version\": \"1.0\"\n}\n"
+    },
+    {
+      "command": [
+        "/usr/local/bin/docker",
+        "build",
+        "--tag",
+        "cab-cleanroom:1a810a0f059d",
+        "."
+      ],
+      "cwd_class": "CLEAN_SOURCE",
+      "exit_code": 1,
+      "finished_at": "2026-07-29T10:45:22.920810Z",
+      "started_at": "2026-07-29T10:45:22.610262Z",
+      "state": "FAILED",
+      "stderr_hash": "843a362ca760d772cf00723b5822a75ee7b5eba52574c52b06256520060b7f7c",
+      "stderr_tail": "ERROR: Cannot connect to the Docker daemon at unix:///Users/saketmaganti/.docker/run/docker.sock. Is the docker daemon running?\n",
+      "stdout_hash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_tail": ""
+    }
+  ],
+  "container_digest": "683796fc2012e381d24cd5a04aee68342223937bc8c74a9fcd872a7395b735d2",
+  "created_at": "2026-07-29T10:45:22.930722Z",
+  "discrepancies": [],
+  "expected_artifacts": [
+    "manifest_hash",
+    "merge_digest",
+    "graph_hash"
+  ],
+  "external_independent_reproduction": "NOT_EXECUTED",
+  "lockfile_hash": "c62e5db97793eef52827b3517939e83c327ccc3ef4c6cbf359b17f4ed8c0c481",
+  "modes": {
+    "clean_checkout": "INTERNAL_CLEAN_CHECKOUT",
+    "clean_environment": "INTERNAL_CLEAN_ENVIRONMENT",
+    "container": {
+      "class": "INTERNAL_CONTAINER",
+      "reason": "container image build failed",
+      "state": "NOT_EXECUTED"
+    }
+  },
+  "observed_artifacts": {
+    "clean_checkout": {
+      "graph_hash": "2855eadfe9e6369fb97ed8d3d8a89c814d52e15f13700c6bd9df304b93c991c2",
+      "manifest_hash": "b92acb55375da001ff76dbc3d8eb864565618dc9c8480b40cd6b50372ad69d42",
+      "merge_digest": "db0dbb3ff7bfb10f238bcf0c561ea943d2bcf6ba49dafc869f413354e581e84b",
+      "passed": true,
+      "present": true,
+      "receipt_hash": "b947e0faaaaefe9c8d3978845d3cb88d2f7fc0a89644f1896153da8f67e220fd"
+    },
+    "clean_environment": {
+      "graph_hash": "2855eadfe9e6369fb97ed8d3d8a89c814d52e15f13700c6bd9df304b93c991c2",
+      "manifest_hash": "b92acb55375da001ff76dbc3d8eb864565618dc9c8480b40cd6b50372ad69d42",
+      "merge_digest": "db0dbb3ff7bfb10f238bcf0c561ea943d2bcf6ba49dafc869f413354e581e84b",
+      "passed": true,
+      "present": true,
+      "receipt_hash": "3ec9df2afad1b1e2907b550b8b725c43439829a06014ceaf8b49288bf8a82091"
+    }
+  },
+  "os": "macOS-26.5.2-arm64-arm-64bit",
+  "passed": true,
+  "python": "3.11.9",
+  "receipt_hash": "9f2abe803d6cbb37de51d58ee35efc63bcc44a1995f69099c162cd1d4d3d529c",
+  "schema_version": "1.0",
+  "sdist_hash": "ea150fa6ef1fa710a53031958ad73d53a7d15b83eeb1e820092ee2c83f530f9c",
+  "source_archive_hash": "9e50dddf16acf9f025bcf775facd8f7eb3c8e23267f3d98866ffdc81846e4d4d",
+  "source_commit": "1a810a0f059d18e65d4dae2ee3c2fabda7e08fe1",
+  "wheel_hash": "c3af559abb90bd716a1e2fe9d9dc96a6c8939d4458b5608259c1e6e421bc3b47"
+}
