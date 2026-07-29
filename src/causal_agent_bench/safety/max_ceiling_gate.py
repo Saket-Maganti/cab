@@ -783,14 +783,7 @@ def _file_inventory(root: Path) -> dict[str, Any]:
     ]
     notebooks = list(root.rglob("*.ipynb"))
     results = index_runs(root / "results")
-    large_files: list[dict[str, Any]] = [
-        {
-            "path": path.relative_to(root).as_posix(),
-            "bytes": path.stat().st_size,
-        }
-        for path in _iter_files(root)
-        if path.stat().st_size >= 10 * 1024 * 1024
-    ]
+    large_files = _large_file_inventory(root)
     environments = [
         path.relative_to(root).as_posix()
         for name in (".venv", "venv", "env")
@@ -1129,6 +1122,32 @@ def _claim_state(root: Path) -> dict[str, Any]:
             if status.lower() in {"engineering_only", "fixture_only"}
         ],
     }
+
+
+def _large_file_inventory(
+    root: Path,
+    *,
+    threshold_bytes: int = 10 * 1024 * 1024,
+) -> list[dict[str, Any]]:
+    """Snapshot large files while tolerating concurrently removed temp files."""
+
+    large_files: list[dict[str, Any]] = []
+    for path in _iter_files(root):
+        try:
+            size = path.stat().st_size
+        except FileNotFoundError:
+            # Coverage and other atomic writers may remove a temporary shard
+            # between directory enumeration and stat. It is absent from the
+            # resulting snapshot and therefore safe to omit.
+            continue
+        if size >= threshold_bytes:
+            large_files.append(
+                {
+                    "path": path.relative_to(root).as_posix(),
+                    "bytes": size,
+                }
+            )
+    return large_files
 
 
 def _evidence_state(
