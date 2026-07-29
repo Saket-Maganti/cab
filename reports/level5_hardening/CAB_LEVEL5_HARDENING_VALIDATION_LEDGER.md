@@ -19,6 +19,15 @@ excluded. No protected payload or production signing secret was used.
 | Clean archive/venv/checkout preliminary | passed; three hashes agree |
 | Real evaluator containers | 0 executed, 12 honestly `NOT_EXECUTED` |
 | Full provider-free suite, first post-change run | 1,167 passed, 1 skipped, 3 release-inventory failures |
+| Release-inventory regression slice after regeneration | 3 passed |
+| Final full provider-free suite in isolated clean clone | 1,167 passed, 4 skipped in 165.74 s |
+| Package build and Twine metadata | wheel and sdist passed |
+| Release check and dry-run | passed; 720 files |
+| Final clean archive/venv/checkout | passed from `1a810a0`; zero discrepancies |
+| Unified Level-5 hardening gate | `CAB_LEVEL5_HARDENED_FOUNDATION_READY` |
+| Remote Level-5 matrix | 8/8 jobs passed |
+| Remote standard CI | 5/5 jobs passed |
+| Remote supporting workflows | Claim Safety, Docs Check, Max Ceiling and Fast Check passed |
 
 The three full-suite failures were deterministic and shared one cause: the
 release manifest had not yet inventoried the new docs, scripts and source
@@ -26,6 +35,9 @@ modules. No runtime or scientific test failed. The manifest is regenerated
 only after source stabilisation, followed by the affected checks and complete
 suite.
 
-Final packaging, release checks, clean-room container availability, unified
-gate, push/SHA equality and remote CI are appended after the final committed
-source and reports exist.
+The corrected implementation commit
+`1a810a0f059d18e65d4dae2ee3c2fabda7e08fe1` matched `origin/main` when these
+remote checks ran. The separate GitHub Pages build succeeded, but deployment
+returned HTTP 404 because Pages is not enabled for this repository. Container
+clean-room and malicious-evaluator execution remain honestly `NOT_EXECUTED`
+because a usable local daemon/image was unavailable.
