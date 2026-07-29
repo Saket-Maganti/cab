@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-07-29T05:09:38Z",
+  "classification": "MEASURED_ON_LOCAL_M4",
+  "machine_model": "Mac16,13",
+  "cpu": "Apple M4",
+  "logical_cpus": 10,
+  "memory_bytes": 17179869184,
+  "operating_system": {
+    "name": "macOS",
+    "version": "26.5.2",
+    "build": "25F84",
+    "architecture": "arm64"
+  },
+  "python": "3.11.9",
+  "pip": "26.0.1",
+  "git": "2.52.0",
+  "github_cli": "2.96.0",
+  "pytest": "9.0.2",
+  "ruff": "0.15.8",
+  "mypy": "2.1.0",
+  "codespell": "2.4.2",
+  "filesystem": {
+    "free_bytes": 87887091712,
+    "repository_bytes": 2134999040
+  },
+  "redaction": "Usernames, tokens, secrets, and paths outside the repository omitted."
+}

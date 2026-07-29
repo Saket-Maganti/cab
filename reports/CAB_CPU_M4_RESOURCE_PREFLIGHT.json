@@ -1,0 +1,242 @@
+{
+  "bootstrap": {
+    "clustering_unit": "base_task_id",
+    "evidence_class": "ENGINEERING_ONLY",
+    "family_stratification": true,
+    "merge_requires_disjoint_complete_ranges": true,
+    "mode": "pilot",
+    "replicates": 1000,
+    "resumable": true,
+    "seed": 20260728,
+    "shards": [
+      {
+        "replicate_start": 0,
+        "replicate_stop": 250
+      },
+      {
+        "replicate_start": 250,
+        "replicate_stop": 500
+      },
+      {
+        "replicate_start": 500,
+        "replicate_stop": 750
+      },
+      {
+        "replicate_start": 750,
+        "replicate_stop": 1000
+      }
+    ]
+  },
+  "disk": {
+    "category_bytes": {
+      ".DS_Store": 24580,
+      ".coverage": 1404928,
+      ".devcontainer": 601,
+      ".editorconfig": 557,
+      ".env.example": 1142,
+      ".github": 23229,
+      ".gitignore": 894,
+      ".hypothesis": 418467,
+      ".mypy_cache": 21166308,
+      ".pre-commit-config.yaml": 1842,
+      ".pytest_cache": 103471,
+      ".python-version": 7,
+      ".ruff_cache": 378467,
+      "ARTIFACT_EVALUATION_CHECKLIST.md": 151,
+      "AUTORUN_BLOCKERS.md": 339,
+      "AUTORUN_BLOCKERS_V2.md": 260,
+      "AUTORUN_LEDGER.jsonl": 14055,
+      "AUTORUN_LEDGER_V2.jsonl": 25032,
+      "AUTORUN_STATUS.md": 366,
+      "AUTORUN_STATUS_V2.md": 721,
+      "BLOCKED_ITEMS.md": 4780,
+      "CAB_COMPLETE_EXECUTION_AND_RUN_HANDBOOK.md": 24690,
+      "CAB_ICLR_COMPLETE_EXECUTION_AND_EXPERIMENT_HANDBOOK.md": 20979,
+      "CAB_ICLR_PAPER_CLAIM_LEDGER.md": 5908,
+      "CAB_ICLR_ULTIMATE_ONESHOT_BUILD_REPORT.md": 9872,
+      "CHANGELOG.md": 7103,
+      "CITATION.cff": 1221,
+      "CONTRIBUTING.md": 2406,
+      "DATA_CARD_CAB.md": 123,
+      "DATA_LICENSE.md": 1213,
+      "GOD_TIER_MANIFEST.md": 3337,
+      "LICENSE": 1086,
+      "MASTER_STATUS.json": 6450,
+      "MASTER_STATUS.md": 5306,
+      "MILESTONES.md": 2331,
+      "MODEL_CARD_EVALUATION_SUBJECTS.md": 109,
+      "Makefile": 8045,
+      "NEXT_DECISION.md": 3539,
+      "NEXT_STEPS.md": 1336,
+      "PROJECT_DOSSIER.md": 31554,
+      "PROJECT_FULL_CURRENT_AUDIT_FOR_OPUS.md": 57548,
+      "PROJECT_HEALTH.md": 2156,
+      "PROJECT_STATUS.json": 3184,
+      "PROJECT_STATUS.md": 2607,
+      "PROVIDER_PILOT_PREPARATION_STATUS.md": 5269,
+      "README.md": 30899,
+      "REPO_AUDIT_CAUSAL_AGENT_BENCH_FOR_CHATGPT.md": 29616,
+      "REPRODUCIBILITY.md": 118,
+      "SECURITY.md": 1677,
+      "analysis": 302,
+      "artifact": 9282,
+      "audits": 1316789306,
+      "benchmark_specs": 36780,
+      "build": 1949022,
+      "cab_iclr_handoff.md": 2476,
+      "cab_vision": 69098,
+      "cabv2.md": 4778,
+      "causal-agent-bench_report.md": 18404,
+      "causal-agent-bench_report_v2.md": 30710,
+      "configs": 131199,
+      "constraints.txt": 1223,
+      "data": 227826003,
+      "demo": 10910,
+      "docs": 810071,
+      "environment": 9696,
+      "experiments": 83084,
+      "figures": 1489561,
+      "handoff": 27805,
+      "mkdocs.yml": 1521,
+      "notebooks": 297751,
+      "paper": 529383,
+      "private_data": 1264659,
+      "promptpacks": 373817,
+      "prompts": 24325,
+      "pyproject.toml": 7643,
+      "release": 66927,
+      "reports": 1150622,
+      "results": 421216968,
+      "reviews": 88585,
+      "runs": 11577,
+      "scripts": 1010435,
+      "src": 9765097,
+      "tables": 90939,
+      "tests": 6149504
+    },
+    "evidence_class": "ENGINEERING_ONLY",
+    "file_count": 8194,
+    "largest_files": [
+      {
+        "bytes": 920666181,
+        "path": "audits/max_ceiling/main500_confirmatory_v1_candidate/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 291193041,
+        "path": "audits/max_ceiling/compact20_source/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 87267061,
+        "path": "results/20260609T161733Z_pilot_20_multi_agent_stub/trajectories.jsonl"
+      },
+      {
+        "bytes": 87266777,
+        "path": "results/20260519T053609Z_pilot_20_multi_agent_stub/trajectories.jsonl"
+      },
+      {
+        "bytes": 46957913,
+        "path": "audits/max_ceiling/scale100_confirmatory_v1_candidate/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 43655356,
+        "path": "results/20260609T161837Z_main_200/trajectories.jsonl"
+      },
+      {
+        "bytes": 34493006,
+        "path": "audits/max_ceiling/naturalistic_transfer_v1_candidate/leakage/static_leakage_report.json"
+      },
+      {
+        "bytes": 30169753,
+        "path": "results/20260520T030034Z_pilot_free_local_20/trajectories.jsonl"
+      },
+      {
+        "bytes": 29455173,
+        "path": "data/processed/main500_confirmatory_v1_candidate/instances.jsonl"
+      },
+      {
+        "bytes": 26784643,
+        "path": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl"
+      },
+      {
+        "bytes": 24513871,
+        "path": "results/20260609T161733Z_pilot_20_multi_agent_stub/scores.jsonl"
+      },
+      {
+        "bytes": 24513610,
+        "path": "results/20260519T053609Z_pilot_20_multi_agent_stub/scores.jsonl"
+      },
+      {
+        "bytes": 23426965,
+        "path": "results/20260511T162146Z_pilot_20_multi_agent_stub/trajectories.jsonl"
+      },
+      {
+        "bytes": 14086358,
+        "path": "results/20260609T163336Z_pilot_free_local_fast_10/trajectories.jsonl"
+      },
+      {
+        "bytes": 12966983,
+        "path": "data/processed/pilot_v0_1/instances.jsonl"
+      },
+      {
+        "bytes": 12416487,
+        "path": "data/processed/main500_confirmatory_v1_candidate/interventions.jsonl"
+      },
+      {
+        "bytes": 11779983,
+        "path": "data/processed/main_v0_1_500/pilot_instances.jsonl"
+      },
+      {
+        "bytes": 11779983,
+        "path": "data/processed/main_v0_1_500/instances.jsonl"
+      },
+      {
+        "bytes": 10353034,
+        "path": "data/processed/pilot_v0_1/pilot_instances.jsonl"
+      },
+      {
+        "bytes": 8595940,
+        "path": "results/20260609T161837Z_main_200/scores.jsonl"
+      }
+    ],
+    "read_only": true,
+    "root": ".",
+    "total_bytes": 2015189342
+  },
+  "schema_version": "cab_resource_preflight_v1",
+  "scientific_execution_performed": false,
+  "scope": "READ_ONLY_ESTIMATE_NOT_MEASURED",
+  "trajectory_estimate": {
+    "assumptions": {
+      "conditions_per_task": 6,
+      "mean_kib_per_trajectory": 64.0,
+      "mean_seconds_per_trajectory": 45.0,
+      "models": 4,
+      "policies": 2,
+      "repeats": 1,
+      "tasks": 20,
+      "workers": 2
+    },
+    "disk_bytes": {
+      "base": 62914560,
+      "high": 113246208,
+      "low": 37748736
+    },
+    "evidence_class": "DESIGN_ONLY",
+    "label": "ESTIMATE_NOT_MEASURED",
+    "runtime_seconds": {
+      "base": 21600.0,
+      "high": 38880.0,
+      "low": 12960.0
+    },
+    "scientific_evidence": false,
+    "trajectory_count": 960
+  },
+  "worker_policy": {
+    "bounded": true,
+    "cpu_count": 10,
+    "evidence_class": "ENGINEERING_ONLY",
+    "memory_gib": 16.0,
+    "mode": "low_memory",
+    "workers": 2
+  }
+}

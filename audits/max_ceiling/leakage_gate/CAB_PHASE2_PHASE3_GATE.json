@@ -6,7 +6,7 @@
     "Do not publish protected held-out payloads before post-study release approval.",
     "Do not convert this engineering pass into empirical or paper evidence."
   ],
-  "generated_at": "2026-07-23T17:09:11.687582+00:00",
+  "generated_at": "2026-07-29T05:18:39.006502+00:00",
   "heldout_release_policy": {
     "current_state": "PRE_EXECUTION_HIDDEN",
     "evidence_class": "ENGINEERING_ONLY",
@@ -15,12 +15,35 @@
     "passed": true,
     "policy_path": "configs/cab_heldout_release_policy.json",
     "post_study_full_release_allowed": false,
-    "protected_role_count": 4,
+    "protected_architecture": {
+      "contamination_registry_path": "data/manifests/CAB_PUBLIC_CONTAMINATION_REGISTRY.json",
+      "embedded_notebook_or_archive_count": 0,
+      "evidence_class": "ENGINEERING_ONLY",
+      "exposed_identifier_count": 1484,
+      "exposed_namespace_count": 3,
+      "issues": [],
+      "passed": true,
+      "permanently_contaminated_record_count": 8,
+      "private_identifier_count": 350,
+      "private_payload_materialized": false,
+      "private_root": "private_data/heldout_challenge_v2",
+      "private_root_ignored": true,
+      "public_manifest_path": "data/manifests/heldout_challenge_v2_public_manifest.json",
+      "public_private_overlap_count": 0,
+      "reused_identifier_count": 0,
+      "schema_version": "cab_protected_heldout_architecture_audit_v1",
+      "scope": "Static contamination, public-manifest, private-path, identifier, overlap, notebook, and archive checks. No model execution.",
+      "tracked_private_file_count": 0
+    },
+    "protected_role_count": 3,
+    "registered_public_contaminated_payload_count": 16,
     "registry_path": "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json",
+    "release_manifest_private_payload_count": 0,
     "release_manifest_protected_payload_count": 0,
     "required_release_tiers_present": true,
     "scope": "Static public-release inventory and policy validation only. No release is created and no protected data is moved.",
-    "tracked_protected_payload_count": 0
+    "tracked_protected_payload_count": 0,
+    "unregistered_public_contaminated_payload_count": 0
   },
   "internal_blocker_count": 0,
   "internal_blockers": [],
@@ -135,6 +158,66 @@
     {
       "agent_payload": {
         "blocker_count": 0,
+        "passed": true,
+        "scope": "No agent-visible payload is present in public Git."
+      },
+      "contract_lint": {
+        "counts": {
+          "blockers": 0,
+          "warnings": 0
+        },
+        "passed": true,
+        "scope": "No public payload exists; manifest safety is validated by heldout_release_policy."
+      },
+      "materialized": false,
+      "pair_link": {
+        "blockers": 0,
+        "passed": true,
+        "scope": "Private membership is represented by HMAC commitments and is not execution-ready."
+      },
+      "passed": true,
+      "role": "scale100_confirmatory_v2_protected",
+      "scientific_execution_allowed": false,
+      "source": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "passed": true,
+        "scope": "Payload-free public commitment; private overlap checks run only when private payload is materialized."
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "passed": true,
+        "scope": "No agent-visible payload is present in public Git."
+      },
+      "contract_lint": {
+        "counts": {
+          "blockers": 0,
+          "warnings": 0
+        },
+        "passed": true,
+        "scope": "No public payload exists; manifest safety is validated by heldout_release_policy."
+      },
+      "materialized": false,
+      "pair_link": {
+        "blockers": 0,
+        "passed": true,
+        "scope": "Private membership is represented by HMAC commitments and is not execution-ready."
+      },
+      "passed": true,
+      "role": "naturalistic_transfer_v2_protected",
+      "scientific_execution_allowed": false,
+      "source": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "passed": true,
+        "scope": "Payload-free public commitment; private overlap checks run only when private payload is materialized."
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
         "by_leakage_class": {},
         "by_severity": {},
         "evidence_class": "ENGINEERING_ONLY",
@@ -178,7 +261,7 @@
         "warnings": 0
       },
       "passed": true,
-      "role": "scale100_confirmatory",
+      "role": "scale100_public_development_v1",
       "selected_instance_count": 600,
       "source": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
       "static_leakage": {
@@ -241,7 +324,7 @@
         "warnings": 0
       },
       "passed": true,
-      "role": "naturalistic_transfer",
+      "role": "naturalistic_public_development_v1",
       "selected_instance_count": 432,
       "source": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
       "static_leakage": {
@@ -305,7 +388,7 @@
         "warnings": 0
       },
       "passed": true,
-      "role": "main500_confirmatory",
+      "role": "main500_public_development_v1",
       "selected_instance_count": 3000,
       "source": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
       "static_leakage": {
@@ -369,7 +452,7 @@
         "warnings": 0
       },
       "passed": true,
-      "role": "heldout_challenge",
+      "role": "heldout_challenge_v1_contaminated",
       "selected_instance_count": 300,
       "source": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
       "static_leakage": {
@@ -385,6 +468,36 @@
         "passed": true,
         "top_true_leakage_clusters": [],
         "warning_cluster_count": 58
+      }
+    },
+    {
+      "agent_payload": {
+        "blocker_count": 0,
+        "passed": true,
+        "scope": "No agent-visible payload is present in public Git."
+      },
+      "contract_lint": {
+        "counts": {
+          "blockers": 0,
+          "warnings": 0
+        },
+        "passed": true,
+        "scope": "No public payload exists; manifest safety is validated by heldout_release_policy."
+      },
+      "materialized": false,
+      "pair_link": {
+        "blockers": 0,
+        "passed": true,
+        "scope": "Private membership is represented by HMAC commitments and is not execution-ready."
+      },
+      "passed": true,
+      "role": "heldout_challenge_v2_protected",
+      "scientific_execution_allowed": false,
+      "source": "data/manifests/heldout_challenge_v2_public_manifest.json",
+      "static_leakage": {
+        "blocker_cluster_count": 0,
+        "passed": true,
+        "scope": "Payload-free public commitment; private overlap checks run only when private payload is materialized."
       }
     }
   ],

@@ -406,8 +406,8 @@
     "scripts/check_experiment_state.py": "df30fa34582426def5e1205b2eb0e52540ff2bff0b1a03ad8421c44c44a73c78",
     "scripts/check_iclr_preexecution_readiness.py": "86a27f21ee29ed8a176e1d9d8d9352a3459357d0b331440cf51bc7937af06784"
   },
-  "generated_at": "2026-07-28T05:00:52.500639+00:00",
-  "inventory_file_count": 652,
+  "generated_at": "2026-07-29T05:33:45.187267+00:00",
+  "inventory_file_count": 654,
   "inventory_policy": {
     "categories": {
       "configs": [
@@ -516,11 +516,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "0c8c1b990eb0890065d7cfccfd487df4fd9c651315e46f45bd5fcf990cb3ac64",
+  "release_bundle_hash": "42d1fa2275910f56d92f8df6f58fa40cb44bf6cd3994a753b50909fd2869045e",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "8058bd75218d04f2f719d39581b4aa13c97dc46e",
+    "git_commit": "9d12d1017bf6e728632fb1200ca7bf4403e78738",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
@@ -612,6 +612,7 @@
     "scripts/repair_webshadow_docs_hub_leakage.py",
     "scripts/reproduce_artifact.py",
     "scripts/run_ablation_matrix.py",
+    "scripts/run_and_record_cpu_stage.py",
     "scripts/run_cab_max_ceiling_validation.py",
     "scripts/run_fast_checks.py",
     "scripts/sample_human_validation.py",
@@ -620,7 +621,8 @@
     "scripts/validate_human_audit_sample.py",
     "scripts/validate_iclr_private_candidates.py",
     "scripts/validate_kaggle_notebooks.py",
-    "scripts/validate_paper_assets.py"
+    "scripts/validate_paper_assets.py",
+    "scripts/validate_tracked_structured_data.py"
   ],
   "section_validated_cards": [
     "docs/BENCHMARK_CARD.md",
