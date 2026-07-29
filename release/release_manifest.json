@@ -145,7 +145,7 @@
   "default_frozen_dataset": "data/frozen/pilot_v0.1",
   "default_frozen_manifest": "data/frozen/pilot_v0.1/freeze_manifest.json",
   "dependency_hashes": {
-    "pyproject.toml": "5a9a9b042458b5c9c97b7c075ad12ee0587edca52ec5e783a6baff8591897d34"
+    "pyproject.toml": "f0bb10ed2f88c492676a906d5bf80d0d219ae231ca7562f75baf13e5f3754b90"
   },
   "docs": [
     "docs/ABLATIONS.md",
@@ -356,6 +356,7 @@
     "docs/level5/EXTERNAL_PILOT_GUIDE.md",
     "docs/level5/FIXTURE_TUTORIAL.md",
     "docs/level5/GOVERNANCE_CHARTER.md",
+    "docs/level5/HARDENING_TUTORIALS.md",
     "docs/level5/HUMAN_REVIEW_GOVERNANCE.md",
     "docs/level5/HUMAN_REVIEW_OS.md",
     "docs/level5/INDEPENDENT_REPRODUCTION_PROTOCOL.md",
@@ -367,8 +368,11 @@
     "docs/level5/PUBLIC_API_POLICY.md",
     "docs/level5/QUICKSTART.md",
     "docs/level5/RED_TEAM_PROGRAMME.md",
+    "docs/level5/REGISTRY_AND_MIGRATIONS.md",
     "docs/level5/RELEASE_ENGINEERING.md",
     "docs/level5/RELIABILITY_MODEL.md",
+    "docs/level5/RELIABILITY_OPERATIONS.md",
+    "docs/level5/REPRODUCTION_MANUAL.md",
     "docs/level5/TASK_LIFECYCLE_AND_RETIREMENT.md",
     "docs/level5/TROUBLESHOOTING.md",
     "docs/submission_checklist.md",
@@ -444,8 +448,8 @@
     "scripts/check_experiment_state.py": "df30fa34582426def5e1205b2eb0e52540ff2bff0b1a03ad8421c44c44a73c78",
     "scripts/check_iclr_preexecution_readiness.py": "86a27f21ee29ed8a176e1d9d8d9352a3459357d0b331440cf51bc7937af06784"
   },
-  "generated_at": "2026-07-29T07:32:48.372623+00:00",
-  "inventory_file_count": 710,
+  "generated_at": "2026-07-29T10:27:59.762549+00:00",
+  "inventory_file_count": 720,
   "inventory_policy": {
     "categories": {
       "configs": [
@@ -554,11 +558,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "85862b21e94bdb32bb95027f56e6c17f841d28f20b35806f2d4c6b8c052ffdc8",
+  "release_bundle_hash": "10296676ed6fbc3fec0247ec90cf3991922fff48183485d3e46fc0300bc3c85c",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "bcd8bc49074c67ff1a9858d87143170e3428e228",
+    "git_commit": "d1819b0b213c696c4fa0c4982ae0dc5fbae894b7",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
@@ -611,6 +615,7 @@
     "scripts/check_evidence_safety.py",
     "scripts/check_experiment_state.py",
     "scripts/check_iclr_preexecution_readiness.py",
+    "scripts/check_level5_coverage.py",
     "scripts/check_package_import.py",
     "scripts/check_paper_assets.py",
     "scripts/check_paper_claims.py",
@@ -656,6 +661,7 @@
     "scripts/run_and_record_cpu_stage.py",
     "scripts/run_cab_max_ceiling_validation.py",
     "scripts/run_fast_checks.py",
+    "scripts/run_level5_hardening_campaigns.py",
     "scripts/sample_human_validation.py",
     "scripts/security_check.py",
     "scripts/validate_cab_human_reviews.py",
@@ -742,18 +748,22 @@
     "src/causal_agent_bench/kaggle_fixture.py",
     "src/causal_agent_bench/level5/__init__.py",
     "src/causal_agent_bench/level5/benchmark.py",
+    "src/causal_agent_bench/level5/cleanroom.py",
     "src/causal_agent_bench/level5/cli.py",
     "src/causal_agent_bench/level5/core.py",
     "src/causal_agent_bench/level5/evaluator.py",
     "src/causal_agent_bench/level5/evidence.py",
     "src/causal_agent_bench/level5/execution.py",
     "src/causal_agent_bench/level5/governance.py",
+    "src/causal_agent_bench/level5/migrations.py",
     "src/causal_agent_bench/level5/plugins.py",
+    "src/causal_agent_bench/level5/redteam.py",
     "src/causal_agent_bench/level5/registry.py",
     "src/causal_agent_bench/level5/reliability.py",
     "src/causal_agent_bench/level5/reproduction.py",
     "src/causal_agent_bench/level5/review.py",
     "src/causal_agent_bench/level5/review_server.py",
+    "src/causal_agent_bench/level5/signing.py",
     "src/causal_agent_bench/logging_utils.py",
     "src/causal_agent_bench/metrics/__init__.py",
     "src/causal_agent_bench/metrics/acrs_v2.py",

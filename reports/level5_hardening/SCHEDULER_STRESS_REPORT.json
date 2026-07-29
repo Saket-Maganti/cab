@@ -1,0 +1,195 @@
+{
+  "concurrencies": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "crash_consistency": {
+    "crash_points": [
+      {
+        "committed_digest": "6a20d5ebb086d55643a8eb01f0a83d4f7195b070061fb26b4c6bebd9f18b269c",
+        "crash_point": "after_lease",
+        "duplicate_committed_results": 0,
+        "expected_digest": "6a20d5ebb086d55643a8eb01f0a83d4f7195b070061fb26b4c6bebd9f18b269c",
+        "journaled_results_recovered": 0,
+        "passed": true,
+        "restart_model": "coordinator_state_discard_and_durable_reopen",
+        "stale_leases_recovered": 1,
+        "terminal_state": "SUCCEEDED"
+      },
+      {
+        "committed_digest": "e865c136b54b8449d3be469832adb5941a540f2ab43935ba21ff0e07aa9d2b8b",
+        "crash_point": "after_artifact_write",
+        "duplicate_committed_results": 0,
+        "expected_digest": "e865c136b54b8449d3be469832adb5941a540f2ab43935ba21ff0e07aa9d2b8b",
+        "journaled_results_recovered": 0,
+        "passed": true,
+        "restart_model": "coordinator_state_discard_and_durable_reopen",
+        "stale_leases_recovered": 1,
+        "terminal_state": "SUCCEEDED"
+      },
+      {
+        "committed_digest": "77efa0a2eae8759974efe4425b109f3f4ca1438b6856d9771ac2867ecd1b2a88",
+        "crash_point": "before_registry_commit",
+        "duplicate_committed_results": 0,
+        "expected_digest": "77efa0a2eae8759974efe4425b109f3f4ca1438b6856d9771ac2867ecd1b2a88",
+        "journaled_results_recovered": 1,
+        "passed": true,
+        "restart_model": "coordinator_state_discard_and_durable_reopen",
+        "stale_leases_recovered": 0,
+        "terminal_state": "SUCCEEDED"
+      },
+      {
+        "committed_digest": "ea6d7b26effa07f52594d56be98de10c8b15d12378223ee8e793fe4ac8b4c534",
+        "crash_point": "after_artifact_registration",
+        "duplicate_committed_results": 0,
+        "expected_digest": "ea6d7b26effa07f52594d56be98de10c8b15d12378223ee8e793fe4ac8b4c534",
+        "journaled_results_recovered": 0,
+        "passed": true,
+        "restart_model": "coordinator_state_discard_and_durable_reopen",
+        "stale_leases_recovered": 1,
+        "terminal_state": "SUCCEEDED"
+      },
+      {
+        "committed_digest": "6d9ccb75cfce1f382f89e2caf3de90865f4e99b0f9d5bb549f9df0da4f59bc5d",
+        "crash_point": "before_terminal_scheduler_state",
+        "duplicate_committed_results": 0,
+        "expected_digest": "6d9ccb75cfce1f382f89e2caf3de90865f4e99b0f9d5bb549f9df0da4f59bc5d",
+        "journaled_results_recovered": 1,
+        "passed": true,
+        "restart_model": "coordinator_state_discard_and_durable_reopen",
+        "stale_leases_recovered": 0,
+        "terminal_state": "SUCCEEDED"
+      }
+    ],
+    "duplicate_committed_results": 0,
+    "evidence_class": "FIXTURE_ONLY",
+    "passed": true
+  },
+  "deterministic_hash_agreement": true,
+  "deterministic_merged_hash": "aa6b63acbef06efb6f68fb100ae808dfd2d7ca83c602ab568ea022bdf7d41e9e",
+  "duplicate_committed_results": 0,
+  "evidence_class": "FIXTURE_ONLY",
+  "missing_terminal_states": 0,
+  "passed": true,
+  "reports": [
+    {
+      "attempt_count": 1010,
+      "cas_verification": {
+        "errors": [],
+        "passed": true,
+        "verified": 990
+      },
+      "deterministic_merged_hash": "aa6b63acbef06efb6f68fb100ae808dfd2d7ca83c602ab568ea022bdf7d41e9e",
+      "duplicate_committed_results": 0,
+      "evidence_class": "FIXTURE_ONLY",
+      "manifest_hash": "4e770afd22773f06af7bff7d8ac56b3fc9a37e91afc438f22db50108fc883fb1",
+      "max_concurrency": 1,
+      "memory_measurement": "process_peak_rss",
+      "missing_terminal_states": 0,
+      "paused_units_observed": 1000,
+      "peak_memory_bytes": 137347072,
+      "per_backend_limit": 1,
+      "per_model_limit": 1,
+      "registry_contention_errors": 0,
+      "stale_leases_recovered": 1,
+      "state_counts": {
+        "CANCELLED": 5,
+        "QUOTA_DEFERRED": 5,
+        "SUCCEEDED": 990
+      },
+      "throughput_units_per_second": 17.015942701016915,
+      "unit_count": 1000,
+      "wall_seconds": 58.76841604198853
+    },
+    {
+      "attempt_count": 1010,
+      "cas_verification": {
+        "errors": [],
+        "passed": true,
+        "verified": 990
+      },
+      "deterministic_merged_hash": "aa6b63acbef06efb6f68fb100ae808dfd2d7ca83c602ab568ea022bdf7d41e9e",
+      "duplicate_committed_results": 0,
+      "evidence_class": "FIXTURE_ONLY",
+      "manifest_hash": "4e770afd22773f06af7bff7d8ac56b3fc9a37e91afc438f22db50108fc883fb1",
+      "max_concurrency": 2,
+      "memory_measurement": "process_peak_rss",
+      "missing_terminal_states": 0,
+      "paused_units_observed": 1000,
+      "peak_memory_bytes": 147783680,
+      "per_backend_limit": 2,
+      "per_model_limit": 2,
+      "registry_contention_errors": 0,
+      "stale_leases_recovered": 1,
+      "state_counts": {
+        "CANCELLED": 5,
+        "QUOTA_DEFERRED": 5,
+        "SUCCEEDED": 990
+      },
+      "throughput_units_per_second": 17.037352921031786,
+      "unit_count": 1000,
+      "wall_seconds": 58.69456391700078
+    },
+    {
+      "attempt_count": 1010,
+      "cas_verification": {
+        "errors": [],
+        "passed": true,
+        "verified": 990
+      },
+      "deterministic_merged_hash": "aa6b63acbef06efb6f68fb100ae808dfd2d7ca83c602ab568ea022bdf7d41e9e",
+      "duplicate_committed_results": 0,
+      "evidence_class": "FIXTURE_ONLY",
+      "manifest_hash": "4e770afd22773f06af7bff7d8ac56b3fc9a37e91afc438f22db50108fc883fb1",
+      "max_concurrency": 4,
+      "memory_measurement": "process_peak_rss",
+      "missing_terminal_states": 0,
+      "paused_units_observed": 1000,
+      "peak_memory_bytes": 147783680,
+      "per_backend_limit": 4,
+      "per_model_limit": 4,
+      "registry_contention_errors": 0,
+      "stale_leases_recovered": 1,
+      "state_counts": {
+        "CANCELLED": 5,
+        "QUOTA_DEFERRED": 5,
+        "SUCCEEDED": 990
+      },
+      "throughput_units_per_second": 17.16661621791718,
+      "unit_count": 1000,
+      "wall_seconds": 58.252598374994704
+    },
+    {
+      "attempt_count": 1010,
+      "cas_verification": {
+        "errors": [],
+        "passed": true,
+        "verified": 990
+      },
+      "deterministic_merged_hash": "aa6b63acbef06efb6f68fb100ae808dfd2d7ca83c602ab568ea022bdf7d41e9e",
+      "duplicate_committed_results": 0,
+      "evidence_class": "FIXTURE_ONLY",
+      "manifest_hash": "4e770afd22773f06af7bff7d8ac56b3fc9a37e91afc438f22db50108fc883fb1",
+      "max_concurrency": 8,
+      "memory_measurement": "process_peak_rss",
+      "missing_terminal_states": 0,
+      "paused_units_observed": 1000,
+      "peak_memory_bytes": 147783680,
+      "per_backend_limit": 8,
+      "per_model_limit": 8,
+      "registry_contention_errors": 0,
+      "stale_leases_recovered": 1,
+      "state_counts": {
+        "CANCELLED": 5,
+        "QUOTA_DEFERRED": 5,
+        "SUCCEEDED": 990
+      },
+      "throughput_units_per_second": 17.144303754717026,
+      "unit_count": 1000,
+      "wall_seconds": 58.32841124999686
+    }
+  ],
+  "unit_count": 1000
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "baseline_commit": "4bac229be426108ee0b44f3c816e3b7950e35cfb",
+  "primary_state": "CAB_LEVEL5_HARDENED_FOUNDATION_READY",
+  "hardening_capabilities": {
+    "ordered_registry_migrations": true,
+    "concurrent_scheduler": true,
+    "operational_backends": true,
+    "physical_fault_injection": true,
+    "durable_review_application": true,
+    "hardened_evaluator_pilot_contract": true,
+    "persistent_evidence_graph": true,
+    "certificate_revocation_and_transparency": true,
+    "benchmark_and_plugin_hardening": true,
+    "cleanroom_internal_reproduction": true,
+    "level5_coverage_gate": true,
+    "strict_documentation": true,
+    "redteam_hardening": true,
+    "provider_free_suite": true,
+    "packaging_and_release": true
+  },
+  "genuine_evidence": {
+    "human_judgment_rows": 0,
+    "real_model_trajectories": 0,
+    "audited_real_runs": 0,
+    "paper_eligible_empirical_assets": 0,
+    "supported_empirical_claims": 0,
+    "independent_external_reproductions": 0,
+    "protected_evaluator_pilots": 0,
+    "community_external_pilots": 0
+  },
+  "critical_unresolved_issues": 0,
+  "protected_payloads_committed": 0,
+  "production_secrets_committed": 0,
+  "generated_at": "2026-07-29T10:25:43Z"
+}

@@ -1,0 +1,111 @@
+{
+  "case_count": 12,
+  "cases": [
+    {
+      "attack": "filesystem_enumeration",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "network_access",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "fork_attempt",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "memory_pressure",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "timeout",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "output_flooding",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "prompt_echo",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "path_traversal",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "signal_handling",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "orphan_child_process",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "environment_scraping",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    },
+    {
+      "attack": "writable_root_assumption",
+      "contract_tested": true,
+      "critical": false,
+      "outcome": "NOT_EXECUTED",
+      "passed": false,
+      "reason": "local fixture image unavailable"
+    }
+  ],
+  "critical_unresolved_count": 0,
+  "docker_available": true,
+  "evidence_class": "FIXTURE_ONLY",
+  "executed_count": 0,
+  "image": "cab/evaluator-fixture:local",
+  "image_available": false,
+  "image_pull_performed": false,
+  "not_executed_count": 12,
+  "passed": true,
+  "requested_image": "cab/evaluator-fixture:local"
+}
