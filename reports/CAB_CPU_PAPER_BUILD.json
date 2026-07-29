@@ -1,0 +1,26 @@
+{
+  "schema_version": "cab_cpu_paper_build_v1",
+  "generated_at": "2026-07-29T05:23:24Z",
+  "classification": "ENGINEERING_ONLY",
+  "passed": true,
+  "command": "make paper",
+  "elapsed_seconds": 2.191467,
+  "pdf": "paper/latexpaper/main.pdf",
+  "page_count": 14,
+  "file_size_bytes": 260886,
+  "empirical_placeholder_count": 7,
+  "placeholder_policy": "Visible and allowed in draft mode; forbidden in submission mode.",
+  "claim_ledger_passed": true,
+  "bibliography_check_passed": true,
+  "raac_section_present": true,
+  "paper_assets_passed": true,
+  "paper_assets_warning_count": 7,
+  "intentional_unresolved_result_references": [
+    "tab:main-performance",
+    "fig:family-breakdown",
+    "fig:ranking-instability"
+  ],
+  "fabricated_tables": 0,
+  "unsupported_claims_promoted": 0,
+  "paper_eligible_empirical_assets": 0
+}

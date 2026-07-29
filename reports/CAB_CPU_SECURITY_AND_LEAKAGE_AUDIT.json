@@ -1,0 +1,42 @@
+{
+  "schema_version": "cab_cpu_security_and_leakage_audit_v1",
+  "generated_at": "2026-07-29T05:19:08Z",
+  "classification": "ENGINEERING_ONLY",
+  "passed": true,
+  "security": {
+    "command": "python3 scripts/security_check.py",
+    "errors": 0,
+    "warnings": 0,
+    "passed": true
+  },
+  "leakage_gate": {
+    "command": "PYTHONPATH=src python3 scripts/cab_leakage_gate.py",
+    "status": "LEAKAGE_GATE_PASS",
+    "internal_blockers": 0,
+    "run_eligible_under_phase2_phase3": true
+  },
+  "release": {
+    "command": "python3 scripts/release_check.py",
+    "passed": true,
+    "errors": 0,
+    "inventory_file_count": 654,
+    "release_bundle_hash": "42d1fa2275910f56d92f8df6f58fa40cb44bf6cd3994a753b50909fd2869045e"
+  },
+  "protected_payloads": {
+    "tracked_private_data_paths": 0,
+    "private_data_ignored": true,
+    "protected_answers_in_git": 0,
+    "public_v2_manifests_are_aggregate_commitments": true,
+    "release_excludes_private_payloads": true
+  },
+  "large_files": {
+    "tracked_files_over_100_mib": 0,
+    "largest_tracked_file_bytes": 29455173,
+    "largest_tracked_file_path": "data/processed/main500_confirmatory_v1_candidate/instances.jsonl"
+  },
+  "focused_tests": {
+    "passed": 27,
+    "failed": 0
+  },
+  "payload_disclosure": "No private payload contents or reviewer identities are included."
+}

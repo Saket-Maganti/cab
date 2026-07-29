@@ -1,0 +1,3360 @@
+{
+  "classification": "ENGINEERING_ONLY",
+  "files": [
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".devcontainer/devcontainer.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/dependabot.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/batch_smoke.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/ci.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/claim-safety.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/docs-check.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/docs.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/fast-check.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/max-ceiling-provider-free.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/security-audit.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".pre-commit-config.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "AUTORUN_LEDGER.jsonl",
+      "records_or_cells_checked": 23,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "AUTORUN_LEDGER_V2.jsonl",
+      "records_or_cells_checked": 23,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "MASTER_STATUS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/dataset_quality/pilot_v0_1/pilot_20_instances_dataset_audit.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/final_build_phase/final_build_phase_audit.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/dry_runs/20260519T053218Z_pilot_multi_provider_20/dry_run_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/frozen_contamination_audit/contamination_audit_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/base_tasks.jsonl",
+      "records_or_cells_checked": 250,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/dev_instances.jsonl",
+      "records_or_cells_checked": 120,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/heldout_base_tasks.jsonl",
+      "records_or_cells_checked": 50,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/heldout_instances.jsonl",
+      "records_or_cells_checked": 300,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/human_audit_sample.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/instances.jsonl",
+      "records_or_cells_checked": 1500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/interventions.jsonl",
+      "records_or_cells_checked": 1250,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/pilot_100_base_tasks.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/pilot_100_instances.jsonl",
+      "records_or_cells_checked": 600,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/pilot_20_base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/pilot_20_instances.jsonl",
+      "records_or_cells_checked": 120,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 200,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/pilot_instances.jsonl",
+      "records_or_cells_checked": 1200,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/generation_repro/pilot_v0_1_rerun/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/full_verification/20260519_105705/pilot_intervention_audit/intervention_audit_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/intervention_isolation/pilot_v0_1/intervention_isolation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/intervention_isolation/pilot_v0_1_test/intervention_isolation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/max_ceiling/leakage_gate/CAB_PHASE2_PHASE3_GATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/max_ceiling/main500_confirmatory_v1_candidate/intervention_isolation/intervention_isolation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/max_ceiling/main500_confirmatory_v1_candidate/quality/benchmark_quality_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/max_ceiling/naturalistic_transfer_v1_candidate/intervention_isolation/intervention_isolation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/max_ceiling/naturalistic_transfer_v1_candidate/quality/benchmark_quality_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/max_ceiling/scale100_confirmatory_v1_candidate/intervention_isolation/intervention_isolation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "audits/max_ceiling/scale100_confirmatory_v1_candidate/quality/benchmark_quality_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "benchmark_specs/intervention_families.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "benchmark_specs/task_domains.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "benchmark_specs/task_template_registry.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/5model_100task_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablation_interventions.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablation_matrix_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/abstention_aware_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/action_protocol_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/contradiction_resolution_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/direct_answer_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/direct_vs_react_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/explicit_plan_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/function_calling_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/memory_verification_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/oracle_stub_engineering_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/react_tool_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/recovery_aware_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/self_check_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/self_check_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/step_budget_reminder_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/tool_description_detail_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/tool_failure_recovery_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/ablations/uncertainty_abstention_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/baseline_suite_local_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/cab_heldout_release_policy.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/commercial_api_ablation_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/commercial_api_main_500.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/commercial_api_pilot_medium_100.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/commercial_api_pilot_small_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/compact20_3model_APPROVAL_REQUIRED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/compact20_3model_LOCAL_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/compact20_3model_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/dev_20_run.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/dev_20_tasks.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_argument_sloppy.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_contradiction_blind.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_final_answer_hallucinator.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_memory_blind.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_premature_stopper.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_recovery_weak.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_retry_loop_agent.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/diagnostics/mock_tool_overuser.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_main500_confirmatory_v1.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_main_v0_1_500.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_mini_study_naturalistic_40.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_mini_study_template_40.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_naturalistic_transfer_v1.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_pilot_v0_1.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_scale100_confirmatory_v1.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/generate_web_shadow_25.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/human_validation/c10_contract_v1.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/human_validation_sample.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/iclr/model_compatibility_t4x2.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/iclr/resource_profiles.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/intervention_taxonomy.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/judge_fake_smoke.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/main_200_run.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/main_200_tasks.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/main_500_multi_provider.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/main_500_multi_provider_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/main_local_openai_compatible_100.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/mini_study_naturalistic_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/mini_study_template_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/model_pricing.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/naturalistic_ministudy_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_100_multi_agent.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_200_multi_agent.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_20_multi_agent.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_anthropic_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_budget_limited.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_free_local_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_free_local_fast_10.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_free_local_fast_5.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_free_local_micro_3.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_gemini_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_gemini_free_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_local_openai_compatible_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_mock_agents_10.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_mock_agents_failure_modes.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_mock_diagnostic_10.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_mock_diagnostic_micro.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_multi_provider_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_openai_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_openrouter_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_openrouter_free_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_stub_fast_10.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_stub_micro_3.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_zero_cost_debug_matrix.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pilot_zero_cost_matrix_20.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/provider_pilot_oracle_sanity_check_template.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/provider_pilot_tiny_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/provider_pilot_tiny_template.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/providers.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/ablations.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/analysis_TEMPLATE.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/baselines.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/equal_budget.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/kaggle_t4x2_matrix.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/kaggle_t4x2_raac_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/raac_full.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/raac/raac_light.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/run_manifest_v2_TEMPLATE_NOT_RUNNABLE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/sample_tasks.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/smoke.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/static_leakage_suppressions.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/validate_pilot_v0_1.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/web_shadow_api_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/web_shadow_web_stub.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/cab_vision/examples/sample_tasks.jsonl",
+      "records_or_cells_checked": 10,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/compact20_candidate_quality_schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/compact20_readiness.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/compact20_reviewed_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/compact20_validated_or_blocked_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/base_tasks.jsonl",
+      "records_or_cells_checked": 250,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/contamination_audit_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/dev_instances.jsonl",
+      "records_or_cells_checked": 120,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/freeze_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/heldout_templates_base_tasks.jsonl",
+      "records_or_cells_checked": 50,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/heldout_templates_instances.jsonl",
+      "records_or_cells_checked": 300,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/human_audit_sample.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/instances.jsonl",
+      "records_or_cells_checked": 1500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/intervention_audit_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/interventions.jsonl",
+      "records_or_cells_checked": 1250,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 130,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/pilot_instances.jsonl",
+      "records_or_cells_checked": 780,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/test_base_tasks.jsonl",
+      "records_or_cells_checked": 25,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/test_instances.jsonl",
+      "records_or_cells_checked": 150,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/validation_base_tasks.jsonl",
+      "records_or_cells_checked": 25,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/frozen/pilot_v0.1/validation_instances.jsonl",
+      "records_or_cells_checked": 150,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_real_review/c10_prerequisites.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_real_review/manipulation_checks.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_real_review/packet_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_real_review/review_items.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_real_review/review_session.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/no_api_task_review/compact20_ai_proxy_clean_candidate_subset.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/no_api_task_review/compact20_candidate_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/templates/annotation_schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/templates/trajectory_packet_schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/CAB_PUBLIC_CONTAMINATION_REGISTRY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/heldout_challenge_v2_public_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/naturalistic_ministudy/task_template.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/dev_20/base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/dev_20/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/dev_20/instances.jsonl",
+      "records_or_cells_checked": 80,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/dev_20/interventions.jsonl",
+      "records_or_cells_checked": 60,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/base_tasks.jsonl",
+      "records_or_cells_checked": 550,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/dev_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/heldout_base_tasks.jsonl",
+      "records_or_cells_checked": 50,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/heldout_instances.jsonl",
+      "records_or_cells_checked": 300,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/human_audit_sample.jsonl",
+      "records_or_cells_checked": 200,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/instances.jsonl",
+      "records_or_cells_checked": 3300,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/interventions.jsonl",
+      "records_or_cells_checked": 2750,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/pilot_100_base_tasks.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/pilot_100_instances.jsonl",
+      "records_or_cells_checked": 600,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/pilot_20_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/pilot_20_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/pilot_instances.jsonl",
+      "records_or_cells_checked": 3000,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main500_confirmatory_v1_candidate/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_200/base_tasks.jsonl",
+      "records_or_cells_checked": 200,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_200/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_200/instances.jsonl",
+      "records_or_cells_checked": 1200,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_200/interventions.jsonl",
+      "records_or_cells_checked": 1000,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/base_tasks.jsonl",
+      "records_or_cells_checked": 500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/dev_instances.jsonl",
+      "records_or_cells_checked": 120,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/heldout_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/heldout_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/human_audit_sample.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/instances.jsonl",
+      "records_or_cells_checked": 3000,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/intervention_audit_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/interventions.jsonl",
+      "records_or_cells_checked": 2500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/pilot_100_base_tasks.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/pilot_100_instances.jsonl",
+      "records_or_cells_checked": 600,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/pilot_20_base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/pilot_20_instances.jsonl",
+      "records_or_cells_checked": 120,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/pilot_instances.jsonl",
+      "records_or_cells_checked": 3000,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/main_v0_1_500/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/base_tasks.jsonl",
+      "records_or_cells_checked": 80,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/dev_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/heldout_base_tasks.jsonl",
+      "records_or_cells_checked": 8,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/heldout_instances.jsonl",
+      "records_or_cells_checked": 48,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/human_audit_sample.jsonl",
+      "records_or_cells_checked": 80,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/instances.jsonl",
+      "records_or_cells_checked": 480,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/interventions.jsonl",
+      "records_or_cells_checked": 400,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/pilot_100_base_tasks.jsonl",
+      "records_or_cells_checked": 72,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/pilot_100_instances.jsonl",
+      "records_or_cells_checked": 432,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/pilot_20_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/pilot_20_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 72,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/pilot_instances.jsonl",
+      "records_or_cells_checked": 432,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/naturalistic_transfer_v1_candidate/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/base_tasks.jsonl",
+      "records_or_cells_checked": 250,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/dev_instances.jsonl",
+      "records_or_cells_checked": 120,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/heldout_base_tasks.jsonl",
+      "records_or_cells_checked": 50,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/heldout_instances.jsonl",
+      "records_or_cells_checked": 300,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/human_audit_sample.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/instances.jsonl",
+      "records_or_cells_checked": 1500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/intervention_audit_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/interventions.jsonl",
+      "records_or_cells_checked": 1250,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/pilot_100_base_tasks.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/pilot_100_instances.jsonl",
+      "records_or_cells_checked": 600,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/pilot_20_base_tasks.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/pilot_20_instances.jsonl",
+      "records_or_cells_checked": 120,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 200,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/pilot_instances.jsonl",
+      "records_or_cells_checked": 1200,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/pilot_v0_1/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/base_tasks.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/dev_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/heldout_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/heldout_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/human_audit_sample.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/instances.jsonl",
+      "records_or_cells_checked": 600,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/interventions.jsonl",
+      "records_or_cells_checked": 500,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/pilot_100_base_tasks.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/pilot_100_instances.jsonl",
+      "records_or_cells_checked": 600,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/pilot_20_base_tasks.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/pilot_20_instances.jsonl",
+      "records_or_cells_checked": 0,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 100,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/pilot_instances.jsonl",
+      "records_or_cells_checked": 600,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/scale100_confirmatory_v1_candidate/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/base_tasks.jsonl",
+      "records_or_cells_checked": 50,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/dev_base_tasks.jsonl",
+      "records_or_cells_checked": 10,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/dev_instances.jsonl",
+      "records_or_cells_checked": 60,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/generation_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/heldout_base_tasks.jsonl",
+      "records_or_cells_checked": 10,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/heldout_instances.jsonl",
+      "records_or_cells_checked": 60,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/human_audit_sample.jsonl",
+      "records_or_cells_checked": 8,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/instances.jsonl",
+      "records_or_cells_checked": 300,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/interventions.jsonl",
+      "records_or_cells_checked": 250,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/pilot_100_base_tasks.jsonl",
+      "records_or_cells_checked": 30,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/pilot_100_instances.jsonl",
+      "records_or_cells_checked": 180,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/pilot_20_base_tasks.jsonl",
+      "records_or_cells_checked": 10,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/pilot_20_instances.jsonl",
+      "records_or_cells_checked": 60,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/pilot_base_tasks.jsonl",
+      "records_or_cells_checked": 30,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/pilot_instances.jsonl",
+      "records_or_cells_checked": 180,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/processed/web_shadow_25/splits.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/sample/base_tasks.jsonl",
+      "records_or_cells_checked": 3,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/sample/instances.jsonl",
+      "records_or_cells_checked": 9,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/sample/interventions.jsonl",
+      "records_or_cells_checked": 6,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/sample/mock_knowledge_base.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/sample/tasks.jsonl",
+      "records_or_cells_checked": 12,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/schemas/iclr_private_candidate_authoring_schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/web_shadow/acme_site.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "demo/engineering_demo_bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "docs/PAPER_EVIDENCE_MAPPING.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "docs/approvals/provider_pilot_approval_schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "docs/claim_ledger.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "docs/claim_ledger_schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "docs/leaderboard_schema_v1.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "environment/env_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "experiments/command_plans.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "mkdocs.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_00_ENVIRONMENT_PREFLIGHT.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_01_OFFLINE_FIXTURE_SMOKE.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_02_COMPACT20_OPEN_MODEL_RUNNER.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_03_SCALE100_OPEN_MODEL_RUNNER.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_04_MAIN500_OPEN_MODEL_RUNNER.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_05_BASELINES_AND_ABLATIONS.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_06_MERGE_AUDIT_AND_RESCORE.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_07_FAILURE_RECOVERY.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle/CAB_T4X2_08_NATURALISTIC_TRANSFER_RUNNER.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/provider_pilot/5model_100task_provider_runbook.ipynb",
+      "records_or_cells_checked": 7,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/provider_pilot/cab_v2_compact20_3model_provider_runbook.ipynb",
+      "records_or_cells_checked": 9,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/provider_pilot/compact20_3model_provider_pilot_runbook.ipynb",
+      "records_or_cells_checked": 7,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/provider_pilot/main_500_provider_runbook.ipynb",
+      "records_or_cells_checked": 7,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/provider_pilot/naturalistic_ministudy_runbook.ipynb",
+      "records_or_cells_checked": 7,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "paper/latexpaper/figures/figure1_benchmark_overview_placeholder.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "paper/latexpaper/figures/figure2_intervention_pairing_placeholder.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "paper/latexpaper/figures/figure3_acrs_concept_placeholder.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "paper/latexpaper/figures/figure4_run_lifecycle_placeholder.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "paper/paper_section_contract.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "promptpacks/CAB_Execution_God_Tier_Prompt_Pack_V2/manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "promptpacks/CAB_Insane_Uplift_Prompt_Pack/manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "release/MANIFEST.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "release/benchmark_artifact_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "release/release_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "release/repro_bundle_plan.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_AUTORUN_MASTER_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_CURRENT_STATE_VERIFIED.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_EXECUTION_ENTRY_GATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_HUMAN_REVIEW_AND_C10_GATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_MAX_CEILING_ARTIFACT_MANIFEST.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/CAB_VALIDATION_LEDGER.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/COMPACT20_3MODEL_COST_ESTIMATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/COMPACT20_3MODEL_DRY_RUN_PREFLIGHT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/ICLR_ONESHOT_CURRENT_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/ICLR_PREEXECUTION_GATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/ICLR_PRIVATE_CANDIDATE_VALIDATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/PROTECTED_HELDOUT_EXPOSURE_INVENTORY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/claim_evidence_matrix.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/god_tier_status/god_tier_status.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/paper_asset_eligibility.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/paper_todo_inventory.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reproducibility_environment_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/run_health_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reviews/repo_audit_upgrade_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tables/table1_benchmark_statistics.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tables/table2_main_agent_performance.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tables/table2_oracle_sanity_check.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tables/table3_intervention_family_performance.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tables/table4_ablation_results.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tables/table5_human_validation_agreement.meta.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/argument_sloppy.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/contradiction_blind.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/final_answer_hallucinator.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/memory_blind.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/premature_stopper.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/recovery_weak.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/retry_loop_agent.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "tests/fixtures/synthetic_trajectories/tool_overuse.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    }
+  ],
+  "files_failed": 0,
+  "files_passed": 372,
+  "files_scanned": 372,
+  "generated_at": "2026-07-29T05:17:37.996298+00:00",
+  "passed": true,
+  "schema_version": "cab_cpu_structured_data_validation_v1",
+  "scope": "Tracked JSON, JSONL, YAML, YML, and Jupyter notebook files."
+}

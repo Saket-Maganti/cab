@@ -1,0 +1,363 @@
+{
+  "confirmatory_ready": false,
+  "cross_candidate_overlap": {
+    "answer_hash_overlap": 0,
+    "content_hash_overlap": 0,
+    "exact_instruction_overlap": 0,
+    "lexical_near_duplicate_pair_count": 0,
+    "normalized_instruction_overlap": 0,
+    "task_id_overlap": 0
+  },
+  "datasets": {
+    "naturalistic": {
+      "dataset_id": "naturalistic_transfer_v2",
+      "diversity": {
+        "answer_contract_counts": {
+          "ORIGINAL_ANSWER_REQUIRED": 12,
+          "ORIGINAL_ANSWER_WITH_VERIFICATION_REQUIRED": 12,
+          "QUALIFIED_UNCERTAINTY_ACCEPTED": 24,
+          "RECOVERY_ROUTE_REQUIRED": 12
+        },
+        "answer_overlap_group_count": 0,
+        "canonical_answer_contract_count": 4,
+        "coarse_structural_archetype_count": 40,
+        "coarse_structural_duplicate_group_count": 16,
+        "coarse_structural_duplicate_task_count": 36,
+        "difficulty_counts": {
+          "easy": 15,
+          "hard": 15,
+          "medium": 15,
+          "stress": 15
+        },
+        "domain_counts": {
+          "calendar_bundle": 6,
+          "data_pipeline": 6,
+          "email_casework": 6,
+          "incident_response": 6,
+          "policy_packet": 6,
+          "repository_debug": 6,
+          "service_config_logs": 6,
+          "spreadsheet_export": 6,
+          "support_tickets": 6,
+          "travel_records": 6
+        },
+        "exact_duplicate_group_count": 0,
+        "genuinely_distinct_lower_bound": 60,
+        "intervention_family_counts": {
+          "ambiguous_instruction": 30,
+          "distractor_evidence": 30,
+          "irrelevant_tools": 30,
+          "long_horizon_dependency": 30,
+          "memory_corruption": 30,
+          "observation_conflict": 30,
+          "premature_success_signal": 30,
+          "tool_corruption": 30,
+          "tool_failure": 30,
+          "tool_removal": 30
+        },
+        "lexical_similarity_summary": {
+          "maximum_similarity": 0.711111,
+          "median_similarity": 0.557692,
+          "p95_similarity": 0.62,
+          "pair_count": 1770,
+          "primary_threshold": 0.82,
+          "primary_threshold_pair_count": 0,
+          "threshold_pair_counts": {
+            "0.70": 1,
+            "0.75": 0,
+            "0.82": 0,
+            "0.90": 0
+          }
+        },
+        "manipulation_check_count": 300,
+        "missing_manipulation_check_count": 0,
+        "noncanonical_answer_contract_task_count": 0,
+        "normalized_duplicate_group_count": 0,
+        "normalized_instruction_pattern_count": 60,
+        "raw_task_count": 60,
+        "role_overlap": {
+          "compact20_pilot": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "contaminated_main500_v1": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "contaminated_naturalistic_v1": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "contaminated_scale100_v1": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "public_development": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          }
+        },
+        "role_overlap_signal_count": 0,
+        "structural_duplicate_group_count": 0,
+        "template_variant_risk": "low",
+        "tool_combination_count": 10,
+        "unique_scenario_id_count": 60,
+        "unique_task_id_count": 60,
+        "unique_template_id_count": 60,
+        "unique_workflow_class_count": 60
+      },
+      "issue_codes": [],
+      "manifest": {
+        "candidate_materialized": true,
+        "confirmatory_eligible": false,
+        "human_validation_state": "HUMAN_INPUT_REQUIRED",
+        "paper_eligible": false,
+        "payload_denials_passed": true,
+        "review_packet_materialized": true,
+        "schema_version": "cab_public_safe_candidate_manifest_v1",
+        "scientific_execution_allowed": false
+      },
+      "review": {
+        "adjudication_required": true,
+        "blank_judgment_row_count": 660,
+        "completed_human_judgment_row_count": 0,
+        "required_independent_reviewers_per_task": 2,
+        "review_dimension_count": 11,
+        "review_item_count": 60,
+        "state": "HUMAN_INPUT_REQUIRED"
+      },
+      "safety": {
+        "artifact_type_count": 60,
+        "blocker_counts": {
+          "absolute_path_match_count": 0,
+          "label_revealing_task_id_count": 0,
+          "missing_answer_isolation_attestation": 0,
+          "missing_injection_scan_requirement": 0,
+          "missing_licence": 0,
+          "missing_privacy_policy": 0,
+          "missing_provenance": 0,
+          "non_example_email_match_count": 0,
+          "nonopaque_task_id_count": 0,
+          "prompt_injection_match_count": 0,
+          "secret_pattern_match_count": 0,
+          "visible_hidden_field_declaration_count": 0
+        },
+        "licence_class_count": 1,
+        "provenance_source_class_count": 1,
+        "static_passed": true
+      },
+      "static_passed": true,
+      "task_count": 60
+    },
+    "scale100": {
+      "dataset_id": "scale100_confirmatory_v2",
+      "diversity": {
+        "answer_contract_counts": {
+          "ORIGINAL_ANSWER_REQUIRED": 20,
+          "ORIGINAL_ANSWER_WITH_VERIFICATION_REQUIRED": 20,
+          "QUALIFIED_UNCERTAINTY_ACCEPTED": 40,
+          "RECOVERY_ROUTE_REQUIRED": 20
+        },
+        "answer_overlap_group_count": 0,
+        "canonical_answer_contract_count": 4,
+        "coarse_structural_archetype_count": 40,
+        "coarse_structural_duplicate_group_count": 40,
+        "coarse_structural_duplicate_task_count": 100,
+        "difficulty_counts": {
+          "easy": 25,
+          "hard": 25,
+          "medium": 25,
+          "stress": 25
+        },
+        "domain_counts": {
+          "code_debugging": 10,
+          "configuration_diagnosis": 10,
+          "data_cleaning": 10,
+          "document_retrieval": 10,
+          "file_operations": 10,
+          "policy_interpretation": 10,
+          "scheduling_coordination": 10,
+          "source_reconciliation": 10,
+          "spreadsheet_analysis": 10,
+          "travel_planning": 10
+        },
+        "exact_duplicate_group_count": 0,
+        "genuinely_distinct_lower_bound": 100,
+        "intervention_family_counts": {
+          "ambiguous_instruction": 50,
+          "distractor_evidence": 50,
+          "irrelevant_tools": 50,
+          "long_horizon_dependency": 50,
+          "memory_corruption": 50,
+          "observation_conflict": 50,
+          "premature_success_signal": 50,
+          "tool_corruption": 50,
+          "tool_failure": 50,
+          "tool_removal": 50
+        },
+        "lexical_similarity_summary": {
+          "maximum_similarity": 0.6875,
+          "median_similarity": 0.54717,
+          "p95_similarity": 0.607843,
+          "pair_count": 4950,
+          "primary_threshold": 0.82,
+          "primary_threshold_pair_count": 0,
+          "threshold_pair_counts": {
+            "0.70": 0,
+            "0.75": 0,
+            "0.82": 0,
+            "0.90": 0
+          }
+        },
+        "manipulation_check_count": 500,
+        "missing_manipulation_check_count": 0,
+        "noncanonical_answer_contract_task_count": 0,
+        "normalized_duplicate_group_count": 0,
+        "normalized_instruction_pattern_count": 100,
+        "raw_task_count": 100,
+        "role_overlap": {
+          "compact20_pilot": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "contaminated_main500_v1": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "contaminated_naturalistic_v1": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "contaminated_scale100_v1": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          },
+          "public_development": {
+            "answer_hash_overlap": 0,
+            "content_hash_overlap": 0,
+            "exact_instruction_overlap": 0,
+            "lexical_near_duplicate_pair_count": 0,
+            "normalized_instruction_overlap": 0,
+            "task_id_overlap": 0
+          }
+        },
+        "role_overlap_signal_count": 0,
+        "structural_duplicate_group_count": 0,
+        "template_variant_risk": "low",
+        "tool_combination_count": 10,
+        "unique_scenario_id_count": 100,
+        "unique_task_id_count": 100,
+        "unique_template_id_count": 100,
+        "unique_workflow_class_count": 100
+      },
+      "issue_codes": [],
+      "manifest": {
+        "candidate_materialized": true,
+        "confirmatory_eligible": false,
+        "human_validation_state": "HUMAN_INPUT_REQUIRED",
+        "paper_eligible": false,
+        "payload_denials_passed": true,
+        "review_packet_materialized": true,
+        "schema_version": "cab_public_safe_candidate_manifest_v1",
+        "scientific_execution_allowed": false
+      },
+      "review": {
+        "adjudication_required": true,
+        "blank_judgment_row_count": 1100,
+        "completed_human_judgment_row_count": 0,
+        "required_independent_reviewers_per_task": 2,
+        "review_dimension_count": 11,
+        "review_item_count": 100,
+        "state": "HUMAN_INPUT_REQUIRED"
+      },
+      "safety": {
+        "artifact_type_count": 100,
+        "blocker_counts": {
+          "absolute_path_match_count": 0,
+          "label_revealing_task_id_count": 0,
+          "missing_answer_isolation_attestation": 0,
+          "missing_injection_scan_requirement": 0,
+          "missing_licence": 0,
+          "missing_privacy_policy": 0,
+          "missing_provenance": 0,
+          "non_example_email_match_count": 0,
+          "nonopaque_task_id_count": 0,
+          "prompt_injection_match_count": 0,
+          "secret_pattern_match_count": 0,
+          "visible_hidden_field_declaration_count": 0
+        },
+        "licence_class_count": 1,
+        "provenance_source_class_count": 1,
+        "static_passed": true
+      },
+      "static_passed": true,
+      "task_count": 100
+    }
+  },
+  "evidence_class": "HUMAN_INPUT_REQUIRED",
+  "human_blockers": [
+    "two independent qualified human reviews per task remain incomplete",
+    "disagreements have not been adjudicated",
+    "answer-contract/scorer compatibility needs task-level human confirmation",
+    "privacy, PII, prompt-injection, realism, and manipulation checks need human confirmation",
+    "the candidate split is not frozen or confirmatory-ready"
+  ],
+  "human_validation_complete": false,
+  "issue_codes": [],
+  "paper_eligible": false,
+  "public_v1_contamination_policy": {
+    "contaminated_not_confirmatory_record_count": 3,
+    "deletion_does_not_restore_eligibility": true,
+    "naturalistic_v1_permanently_invalidated": true,
+    "record_count": 8,
+    "registry_present": true,
+    "scale100_v1_permanently_invalidated": true
+  },
+  "repository_safety": {
+    "expected_ignored_candidate_root_count": 2,
+    "ignored_candidate_root_count": 2,
+    "private_payload_fragment_match_count": 0,
+    "public_surface_file_count_scanned": 1608,
+    "tracked_private_file_count": 0
+  },
+  "schema_version": "cab_iclr_private_candidate_validation_v1",
+  "scientific_execution_performed": false,
+  "static_passed": true,
+  "status": "STATIC_PREVALIDATION_PASS_HUMAN_REVIEW_REQUIRED"
+}
