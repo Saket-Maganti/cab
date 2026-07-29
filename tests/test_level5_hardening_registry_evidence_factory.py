@@ -305,7 +305,9 @@ def test_plugin_repository_permissions_compatibility_timeout_and_failures(tmp_pa
         )
 
         def validate(self):
-            time.sleep(0.15)
+            # Keep a wide margin over the 100 ms deadline so overloaded CI
+            # runners cannot turn the timeout contract into a clock-edge test.
+            time.sleep(1.0)
             return []
 
     with pytest.raises(ValueError, match="timeout"):
