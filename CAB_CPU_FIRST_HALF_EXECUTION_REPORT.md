@@ -108,7 +108,12 @@ and no genuine graph was inferred.
 
 ## GitHub
 
-Publication details are recorded in
+The report bundle was fast-forward pushed to `origin/main` in commit
+`8bb560d8662ef50aad67287e4e2ce93da2adc4d1`; local and remote SHAs matched.
+At the bounded CI cutoff, Docs Check, Claim Safety, Level-5 Foundation, and Max
+Ceiling Provider-Free Gates were green. Fast Check and CI remained in progress,
+with no failures. The publication metadata update follows as a second
+reports-only commit. Full details are in
 `reports/cpu_first_half/CAB_CPU_FIRST_HALF_GITHUB_PUBLISH.md`.
 
 ## Exact next action
