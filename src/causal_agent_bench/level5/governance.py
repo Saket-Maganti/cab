@@ -43,6 +43,32 @@ FOUNDATION_CAPABILITIES = (
     "release_engineering",
 )
 
+HARDENING_CAPABILITIES = (
+    "ordered_registry_migrations",
+    "concurrent_scheduler",
+    "operational_backends",
+    "physical_fault_injection",
+    "durable_review_application",
+    "hardened_evaluator_pilot_contract",
+    "persistent_evidence_graph",
+    "certificate_revocation_and_transparency",
+    "benchmark_and_plugin_hardening",
+    "cleanroom_internal_reproduction",
+    "level5_coverage_gate",
+    "strict_documentation",
+    "redteam_hardening",
+    "provider_free_suite",
+    "packaging_and_release",
+)
+
+HARDENING_BLOCKERS = (
+    Level5State.HUMAN_VALIDATION_REQUIRED,
+    Level5State.LIVE_EVIDENCE_REQUIRED,
+    Level5State.EXTERNAL_REPLICATION_REQUIRED,
+    Level5State.PROTECTED_EVALUATOR_PILOT_REQUIRED,
+    Level5State.COMMUNITY_PILOT_REQUIRED,
+)
+
 
 class GenuineEvidenceCounts(BaseModel):
     human_judgment_rows: int = Field(default=0, ge=0)
@@ -69,6 +95,26 @@ class Level5BuildState(BaseModel):
 
     @classmethod
     def from_path(cls, path: str | Path) -> Level5BuildState:
+        return cls.model_validate_json(Path(path).read_text(encoding="utf-8"))
+
+
+class HardeningBuildState(BaseModel):
+    """Machine-readable foundation status; it cannot promote scientific evidence."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    schema_version: str = "1.0"
+    baseline_commit: str
+    primary_state: str
+    hardening_capabilities: dict[str, bool]
+    genuine_evidence: GenuineEvidenceCounts = Field(default_factory=GenuineEvidenceCounts)
+    critical_unresolved_issues: int = Field(default=0, ge=0)
+    protected_payloads_committed: int = Field(default=0, ge=0)
+    production_secrets_committed: int = Field(default=0, ge=0)
+    generated_at: str = Field(default_factory=utc_now)
+
+    @classmethod
+    def from_path(cls, path: str | Path) -> HardeningBuildState:
         return cls.model_validate_json(Path(path).read_text(encoding="utf-8"))
 
 
@@ -121,6 +167,41 @@ def level5_check(state: Level5BuildState) -> dict[str, Any]:
     }
 
 
+def hardening_check(state: HardeningBuildState) -> dict[str, Any]:
+    missing = [
+        capability
+        for capability in HARDENING_CAPABILITIES
+        if not state.hardening_capabilities.get(capability, False)
+    ]
+    evidence = state.genuine_evidence
+    counter_values = evidence.model_dump(mode="json")
+    boundaries_preserved = all(value == 0 for value in counter_values.values())
+    ready = (
+        not missing
+        and not state.critical_unresolved_issues
+        and not state.protected_payloads_committed
+        and not state.production_secrets_committed
+        and boundaries_preserved
+    )
+    return {
+        "primary_state": (
+            "CAB_LEVEL5_HARDENED_FOUNDATION_READY"
+            if ready
+            else "PARTIAL_SUCCESS_HARDENING_REMAINS"
+        ),
+        "hardening_ready": ready,
+        "missing_hardening_capabilities": missing,
+        "blocked_states": [value.value for value in HARDENING_BLOCKERS],
+        "genuine_evidence": counter_values,
+        "scientific_boundaries_preserved": boundaries_preserved,
+        "critical_unresolved_issues": state.critical_unresolved_issues,
+        "protected_payloads_committed": state.protected_payloads_committed,
+        "production_secrets_committed": state.production_secrets_committed,
+        "level5_complete": False,
+        "evaluator_state": "PROTECTED_EVALUATOR_HARDENED_PILOT_READY",
+    }
+
+
 def write_build_state(state: Level5BuildState, path: str | Path) -> Path:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -167,9 +248,13 @@ def validate_governance_templates(root: str | Path) -> dict[str, Any]:
 
 __all__ = [
     "FOUNDATION_CAPABILITIES",
+    "HARDENING_BLOCKERS",
+    "HARDENING_CAPABILITIES",
     "GenuineEvidenceCounts",
+    "HardeningBuildState",
     "Level5BuildState",
     "Level5State",
+    "hardening_check",
     "level5_check",
     "signed_checksum_manifest",
     "validate_governance_templates",

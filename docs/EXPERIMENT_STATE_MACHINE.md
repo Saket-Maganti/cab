@@ -29,5 +29,5 @@ python3 scripts/check_experiment_state.py --run-dir results/<run_dir>
 ## Related
 
 - [docs/EVIDENCE_LEVEL_POLICY.md](EVIDENCE_LEVEL_POLICY.md)
-- [experiments/MAIN_EXPERIMENT_GATE.md](../experiments/MAIN_EXPERIMENT_GATE.md)
-- [experiments/COMMAND_PLANS.md](../experiments/COMMAND_PLANS.md)
+- [experiments/MAIN_EXPERIMENT_GATE.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/experiments/MAIN_EXPERIMENT_GATE.md)
+- [experiments/COMMAND_PLANS.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/experiments/COMMAND_PLANS.md)

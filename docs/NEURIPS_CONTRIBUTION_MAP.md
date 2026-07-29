@@ -126,4 +126,4 @@ Promotion rules (all must pass):
 4. Human validation complete for C3/C10 before intervention-validity language.
 5. Signed approval docs before any `*_APPROVED.yaml` or `allow_paid_calls: true`.
 
-Cross-reference: [paper/CONTRIBUTION_MAP.md](../paper/CONTRIBUTION_MAP.md), [docs/claim_ledger.json](claim_ledger.json), [docs/DO_NOT_OVERCLAIM.md](DO_NOT_OVERCLAIM.md).
+Cross-reference: [paper/CONTRIBUTION_MAP.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/paper/CONTRIBUTION_MAP.md), [docs/claim_ledger.json](claim_ledger.json), [docs/DO_NOT_OVERCLAIM.md](DO_NOT_OVERCLAIM.md).

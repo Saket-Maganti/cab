@@ -22,6 +22,10 @@ from causal_agent_bench.level5.core import (
     utc_now,
     validate_typed_id,
 )
+from causal_agent_bench.level5.migrations import (
+    SCHEMA_VERSION,
+    MigrationManager,
+)
 
 ENTITY_KINDS = frozenset(
     {
@@ -48,9 +52,6 @@ ENTITY_KINDS = frozenset(
         "review_session",
     }
 )
-SCHEMA_VERSION = 1
-
-
 @dataclass(frozen=True)
 class RegistryRecord:
     kind: str
@@ -121,104 +122,44 @@ class SQLiteRegistry:
                 connection.execute("COMMIT")
 
     def initialize(self) -> None:
-        # sqlite3.executescript manages its own transaction boundaries, so it
-        # must not run inside ``transaction()`` (which uses BEGIN IMMEDIATE).
-        with self._lock, self._connect() as connection:
-            connection.executescript(
-                """
-                CREATE TABLE IF NOT EXISTS schema_migrations (
-                    version INTEGER PRIMARY KEY,
-                    applied_at TEXT NOT NULL
-                );
-                CREATE TABLE IF NOT EXISTS entities (
-                    kind TEXT NOT NULL,
-                    entity_id TEXT NOT NULL,
-                    payload_json TEXT NOT NULL,
-                    content_hash TEXT NOT NULL,
-                    frozen INTEGER NOT NULL DEFAULT 0 CHECK (frozen IN (0, 1)),
-                    created_at TEXT NOT NULL,
-                    updated_at TEXT NOT NULL,
-                    PRIMARY KEY (kind, entity_id)
-                );
-                CREATE TABLE IF NOT EXISTS entity_dependencies (
-                    child_kind TEXT NOT NULL,
-                    child_id TEXT NOT NULL,
-                    parent_kind TEXT NOT NULL,
-                    parent_id TEXT NOT NULL,
-                    relation TEXT NOT NULL,
-                    created_at TEXT NOT NULL,
-                    PRIMARY KEY (child_kind, child_id, parent_kind, parent_id, relation),
-                    FOREIGN KEY (child_kind, child_id)
-                        REFERENCES entities(kind, entity_id) ON DELETE RESTRICT,
-                    FOREIGN KEY (parent_kind, parent_id)
-                        REFERENCES entities(kind, entity_id) ON DELETE RESTRICT
-                );
-                CREATE TABLE IF NOT EXISTS events (
-                    seq INTEGER PRIMARY KEY AUTOINCREMENT,
-                    event_id TEXT NOT NULL UNIQUE,
-                    entity_kind TEXT NOT NULL,
-                    entity_id TEXT NOT NULL,
-                    event_type TEXT NOT NULL,
-                    payload_json TEXT NOT NULL,
-                    created_at TEXT NOT NULL,
-                    FOREIGN KEY (entity_kind, entity_id)
-                        REFERENCES entities(kind, entity_id) ON DELETE RESTRICT
-                );
-                CREATE TABLE IF NOT EXISTS provenance_edges (
-                    edge_id TEXT PRIMARY KEY,
-                    output_hash TEXT NOT NULL,
-                    parent_hashes_json TEXT NOT NULL,
-                    transformation_command TEXT NOT NULL,
-                    code_revision TEXT NOT NULL,
-                    environment_id TEXT NOT NULL,
-                    actor_class TEXT NOT NULL,
-                    evidence_class TEXT NOT NULL,
-                    created_at TEXT NOT NULL
-                );
-                CREATE TRIGGER IF NOT EXISTS events_no_update
-                    BEFORE UPDATE ON events BEGIN
-                        SELECT RAISE(ABORT, 'events are append-only');
-                    END;
-                CREATE TRIGGER IF NOT EXISTS events_no_delete
-                    BEFORE DELETE ON events BEGIN
-                        SELECT RAISE(ABORT, 'events are append-only');
-                    END;
-                CREATE TRIGGER IF NOT EXISTS provenance_no_update
-                    BEFORE UPDATE ON provenance_edges BEGIN
-                        SELECT RAISE(ABORT, 'provenance is immutable');
-                    END;
-                CREATE TRIGGER IF NOT EXISTS provenance_no_delete
-                    BEFORE DELETE ON provenance_edges BEGIN
-                        SELECT RAISE(ABORT, 'provenance is immutable');
-                    END;
-                """
-            )
-            connection.execute(
-                "INSERT OR IGNORE INTO schema_migrations(version, applied_at) VALUES (?, ?)",
-                (SCHEMA_VERSION, utc_now()),
-            )
+        """Create a new v1 registry and apply every ordered migration to v3."""
+
+        with self._lock:
+            manager = MigrationManager(self.path)
+            manager.ensure_v1()
+            manager.migrate(SCHEMA_VERSION)
 
     def schema_version(self) -> int:
-        if not self.path.exists():
-            return 0
-        with self._connect() as connection:
-            row = connection.execute("SELECT MAX(version) AS version FROM schema_migrations").fetchone()
-        return int(row["version"] or 0) if row else 0
+        return MigrationManager(self.path).current_version()
 
-    def migrate(self, target_version: int = SCHEMA_VERSION) -> int:
-        """Apply supported migrations; refuse destructive downgrade in place."""
+    def migration_plan(self, target_version: int = SCHEMA_VERSION) -> dict[str, Any]:
+        return MigrationManager(self.path).plan(target_version)
 
-        current = self.schema_version()
-        if current == 0:
-            self.initialize()
-            current = self.schema_version()
-        if target_version < current:
-            raise ValueError(
-                "in-place registry downgrade is forbidden; restore a versioned backup"
+    def migrate(
+        self,
+        target_version: int = SCHEMA_VERSION,
+        *,
+        interrupt_after_statement: int | None = None,
+        export_before_upgrade: str | Path | None = None,
+    ) -> int:
+        """Apply checksum-pinned migrations with backup and crash recovery."""
+
+        with self._lock:
+            return MigrationManager(self.path).migrate(
+                target_version,
+                interrupt_after_statement=interrupt_after_statement,
+                export_before_upgrade=export_before_upgrade,
             )
-        if target_version > SCHEMA_VERSION:
-            raise ValueError(f"unsupported registry schema version: {target_version}")
-        return current
+
+    def recover_migration(self) -> int:
+        with self._lock:
+            return MigrationManager(self.path).recover()
+
+    def migration_history(self) -> list[dict[str, Any]]:
+        return MigrationManager(self.path).history()
+
+    def migration_runtime(self) -> dict[str, Any]:
+        return MigrationManager(self.path).runtime_state()
 
     def register(
         self,
@@ -305,6 +246,15 @@ class SQLiteRegistry:
         _validate_kind(parent_kind)
         validate_typed_id(relation, label="relation")
         with self.transaction() as connection:
+            for kind, entity_id, label in (
+                (child_kind, child_id, "child"),
+                (parent_kind, parent_id, "parent"),
+            ):
+                if connection.execute(
+                    "SELECT 1 FROM entities WHERE kind=? AND entity_id=?",
+                    (kind, entity_id),
+                ).fetchone() is None:
+                    raise ValueError(f"missing {label} entity: {kind}/{entity_id}")
             connection.execute(
                 """
                 INSERT OR IGNORE INTO entity_dependencies(
@@ -430,11 +380,16 @@ class SQLiteRegistry:
                 reject_private_fields(payload)
             except ValueError as exc:
                 errors.append(str(exc))
+        errors.extend(MigrationManager(self.path).verify_applied_checksums())
+        runtime = MigrationManager(self.path).runtime_state()
+        if runtime.get("status") not in {"IDLE", None}:
+            errors.append(f"migration runtime is {runtime.get('status')}")
         return {
             "passed": not errors,
             "errors": errors,
             "entities": len(rows),
             "schema_version": self.schema_version(),
+            "migration_runtime": runtime,
         }
 
     def backup(self, destination: str | Path) -> Path:

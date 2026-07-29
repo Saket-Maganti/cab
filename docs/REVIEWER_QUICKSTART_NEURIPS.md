@@ -19,7 +19,7 @@ CAB is an **interventional benchmark scaffold** for tool-using agents: paired cl
 **Goal:** Verify scope, honesty, and evidence boundaries without executing code.
 
 1. Read [NEURIPS_CONTRIBUTION_MAP.md](NEURIPS_CONTRIBUTION_MAP.md) — separates ready vs blocked contributions.
-2. Skim [reports/claim_evidence_matrix.md](../reports/claim_evidence_matrix.md) — confirm 0 eligible runs, C1–C8/C10 planned.
+2. Skim [reports/claim_evidence_matrix.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/reports/claim_evidence_matrix.md) — confirm 0 eligible runs, C1–C8/C10 planned.
 3. Read [DO_NOT_OVERCLAIM.md](DO_NOT_OVERCLAIM.md) — forbidden phrases and safer alternatives.
 4. Check abstract guard in `paper/latexpaper/generated/00_abstract.tex` — must state results not yet reported.
 
@@ -149,5 +149,5 @@ python3 -m causal_agent_bench benchmark-manifest --output-dir /tmp/cab_neurips_r
 
 - [NEURIPS_ARTIFACT_READINESS_CHECKLIST.md](NEURIPS_ARTIFACT_READINESS_CHECKLIST.md)
 - [REPRODUCIBILITY_TIERS.md](REPRODUCIBILITY_TIERS.md)
-- [reviews/reviewer_attack_response_matrix.md](../reviews/reviewer_attack_response_matrix.md)
-- [GOD_TIER_MANIFEST.md](../GOD_TIER_MANIFEST.md)
+- [reviews/reviewer_attack_response_matrix.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/reviews/reviewer_attack_response_matrix.md)
+- [GOD_TIER_MANIFEST.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/GOD_TIER_MANIFEST.md)

@@ -4,8 +4,8 @@ Last checked: 2026-05-20 (Build Mode Phase 7). Regenerate audits with `make audi
 
 | Doc | Purpose | Status | Last Checked | Needs Update? | Notes |
 |---|---|---|---|---|---|
-| [README.md](../README.md) | Repo home, quick demo | current | 2026-05-20 | no | Phase 6–7 polish |
-| [docs/README.md](README.md) | Docs navigation hub | current | 2026-05-20 | no | Links to Phase 7 docs |
+| [README.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/README.md) | Repo home, quick demo | current | 2026-05-20 | no | Phase 6–7 polish |
+| [docs/index.md](index.md) | Docs navigation hub | current | 2026-05-20 | no | Links to Phase 7 docs |
 | [ROADMAP_TO_NEURIPS_2027.md](ROADMAP_TO_NEURIPS_2027.md) | Long-term roadmap | current | 2026-05-19 | maybe | After pilot gate |
 | [BENCHMARK_TAXONOMY.md](BENCHMARK_TAXONOMY.md) | Skills/domains/interventions | current | 2026-05-19 | no | Phase 3 |
 | [FAILURE_TAXONOMY.md](FAILURE_TAXONOMY.md) | Failure mode IDs | current | 2026-05-19 | no | Phase 3 |
@@ -17,13 +17,13 @@ Last checked: 2026-05-20 (Build Mode Phase 7). Regenerate audits with `make audi
 | [GLOSSARY.md](GLOSSARY.md) | Term definitions | current | 2026-05-20 | no | Phase 6 |
 | [CLI_REFERENCE.md](CLI_REFERENCE.md) | Command taxonomy | current | 2026-05-20 | no | Phase 7 |
 | [GENERATED_FILES_POLICY.md](GENERATED_FILES_POLICY.md) | Artifact commit policy | current | 2026-05-20 | no | Phase 7 |
-| [../paper/REVIEWER_PACKET.md](../paper/REVIEWER_PACKET.md) | Reviewer summary | current | 2026-05-19 | maybe | After pilot |
-| [../paper/PAPER_SYNC_MAP.md](../paper/PAPER_SYNC_MAP.md) | Paper ↔ code sync | current | 2026-05-19 | yes | Placeholders unfilled |
+| [paper/REVIEWER_PACKET.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/paper/REVIEWER_PACKET.md) | Reviewer summary | current | 2026-05-19 | maybe | After pilot |
+| [paper/PAPER_SYNC_MAP.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/paper/PAPER_SYNC_MAP.md) | Paper ↔ code sync | current | 2026-05-19 | yes | Placeholders unfilled |
 | [RISK_REGISTER.md](RISK_REGISTER.md) | Project risks | current | 2026-05-19 | no | Phase 4 |
 | [NEURIPS_ARTIFACT_CHECKLIST.md](NEURIPS_ARTIFACT_CHECKLIST.md) | Artifact requirements | draft | 2026-05-19 | yes | Pre-submission |
-| [../handoff/ADVISOR_HANDOFF_PACKET.md](../handoff/ADVISOR_HANDOFF_PACKET.md) | Advisor packet | current | 2026-05-19 | no | Phase 5 |
-| [../handoff/ONE_PAGE_PROJECT_BRIEF.md](../handoff/ONE_PAGE_PROJECT_BRIEF.md) | One-page brief | current | 2026-05-19 | no | Phase 5 |
-| [../handoff/PROFESSOR_READY_CHECKLIST.md](../handoff/PROFESSOR_READY_CHECKLIST.md) | Show-to-advisor gate | current | 2026-05-20 | no | Phase 7 |
+| [handoff/ADVISOR_HANDOFF_PACKET.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/handoff/ADVISOR_HANDOFF_PACKET.md) | Advisor packet | current | 2026-05-19 | no | Phase 5 |
+| [handoff/ONE_PAGE_PROJECT_BRIEF.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/handoff/ONE_PAGE_PROJECT_BRIEF.md) | One-page brief | current | 2026-05-19 | no | Phase 5 |
+| [handoff/PROFESSOR_READY_CHECKLIST.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/handoff/PROFESSOR_READY_CHECKLIST.md) | Show-to-advisor gate | current | 2026-05-20 | no | Phase 7 |
 | [TECH_DEBT_REGISTER.md](TECH_DEBT_REGISTER.md) | Tech debt tracker | current | 2026-05-20 | ongoing | Phase 7 |
 | [DOC_STATUS_BOARD.md](DOC_STATUS_BOARD.md) | This board | current | 2026-05-20 | yes | Update after major doc changes |
 

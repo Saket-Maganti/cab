@@ -43,4 +43,4 @@ python3 -m causal_agent_bench export-paper-assets --run-dir results/<complete_ru
 - **Placeholder** — "not yet run" in CSV/TeX
 - **Ready** — linked in claim ledger with run dir
 
-See also [docs/FIGURES_AND_TABLES.md](../docs/FIGURES_AND_TABLES.md), [PAPER_SYNC_MAP.md](PAPER_SYNC_MAP.md).
+See also [FIGURES_AND_TABLES.md](FIGURES_AND_TABLES.md), [paper/PAPER_SYNC_MAP.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/paper/PAPER_SYNC_MAP.md).

@@ -32,7 +32,7 @@ This document defines the skill dimensions, task domains, and intervention famil
 | **Coding/debugging** | Synthetic code/issue evidence and bug identification. | read_file, search_database |
 | **Multi-hop operational planning** | Cross-tool dependencies and long-horizon plans. | check_calendar, lookup_policy, query_spreadsheet, compare_options |
 
-See [benchmark_specs/TASK_TEMPLATE_REGISTRY.md](../benchmark_specs/TASK_TEMPLATE_REGISTRY.md) for template-level coverage.
+See [benchmark_specs/TASK_TEMPLATE_REGISTRY.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/benchmark_specs/TASK_TEMPLATE_REGISTRY.md) for template-level coverage.
 
 ## Intervention families
 

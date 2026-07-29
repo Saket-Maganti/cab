@@ -24,4 +24,4 @@ Mermaid source files for CausalAgentBench. **Schematic only — no empirical res
 - Do not add performance numbers or model rankings to diagrams.
 - Update diagrams when architecture changes; they are source-controlled docs.
 
-See also [../README.md](../README.md) (docs hub).
+See also [../index.md](../index.md) (docs hub).

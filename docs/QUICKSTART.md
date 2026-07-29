@@ -1,6 +1,6 @@
 # Quickstart
 
-Minimal reviewer path for CausalAgentBench. Full detail: [artifact/README.md](../artifact/README.md).
+Minimal reviewer path for CausalAgentBench. Full detail: [artifact/README.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/artifact/README.md).
 
 ## 1. Install
 
@@ -61,7 +61,7 @@ RUN_API_PILOT=1 bash artifact/scripts/reproduce_api_optional.sh
 
 ## Troubleshooting
 
-See [artifact/TROUBLESHOOTING.md](../artifact/TROUBLESHOOTING.md).
+See [artifact/TROUBLESHOOTING.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/artifact/TROUBLESHOOTING.md).
 
 ## What this does *not* prove
 

@@ -33,7 +33,7 @@ Do **not** promote placeholder PNGs to submission without replacing with empiric
 
 ## Specs
 
-See [figure_specs.md](figure_specs.md).
+See [FIGURE_SPECS.md](FIGURE_SPECS.md).
 
 ## Validation
 

@@ -12,3 +12,17 @@ bypass C10, evidence transitions, protected-data boundaries or release gates.
 CAB publishes supported versions, release cadence, migration notes and
 end-of-life dates. Security reports use private disclosure where necessary.
 Privacy, attribution and consent obligations survive task retirement.
+
+A release requires the provider-free suite, line-coverage gate, strict docs,
+package checks, security scans, red-team campaign and hardened foundation gate.
+A plugin or benchmark contribution cannot override these checks.
+
+Credible contamination moves the affected task version to `CONTAMINATED`,
+blocks dependent claims and triggers a versioned replacement. Retirement never
+deletes evidence or correction history. Authors and reviewers may appeal with
+new evidence; a conflicted decision-maker cannot decide the appeal.
+
+Do not file protected payloads, credentials, reviewer identities or evaluator
+escape details in a public issue. Use private disclosure, preserve artifacts by
+hash, revoke affected keys and receipts, and publish a redacted correction
+after containment.

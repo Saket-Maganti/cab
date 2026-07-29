@@ -4,6 +4,8 @@ site_description: >-
   tasks, ACRS metrics, and a reproducible evaluation scaffold.
 repo_url: https://github.com/Saket-Maganti/causal-agent-bench
 docs_dir: docs
+exclude_docs: |
+  README.md
 
 theme:
   name: material
@@ -26,6 +28,7 @@ theme:
 
 markdown_extensions:
   - admonition
+  - attr_list
   - tables
   - toc:
       permalink: true
@@ -60,6 +63,11 @@ nav:
       - Governance: level5/GOVERNANCE_CHARTER.md
       - CLI: level5/CLI_REFERENCE.md
       - Troubleshooting: level5/TROUBLESHOOTING.md
+      - Registry and migrations: level5/REGISTRY_AND_MIGRATIONS.md
+      - Reliability operations: level5/RELIABILITY_OPERATIONS.md
+      - Reproduction manual: level5/REPRODUCTION_MANUAL.md
+      - Hardened operations tutorials: level5/HARDENING_TUTORIALS.md
+      - Corrections, appeals, and retirement: level5/CORRECTIONS_APPEALS_AND_RETIREMENT.md
   - Policy:
       - Evidence levels: EVIDENCE_LEVEL_POLICY.md
       - Ethics & limitations: ETHICS_AND_LIMITATIONS.md

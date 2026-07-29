@@ -51,3 +51,49 @@ All cross-context hand-offs use immutable hashes. Missing parents, changed manif
 corrupt artifacts, invalid evidence transitions and private registry fields fail
 closed. SQLite is the local default; the contracts allow future adapters without
 changing scientific semantics.
+
+## Trust and deployment boundaries
+
+```text
+public CLI / SDK
+        |
+        v
+coordinator ---- SQLite registry ---- public export
+     |                  |
+     |                  +---- private review and evaluator tables
+     v
+backend worker ---- content-addressed artifact store
+     |
+     +---- protected task broker (separate trusted deployment boundary)
+```
+
+The CLI, compiler, fixture scheduler and public exports are untrusted-input
+boundaries. SQLite is the canonical local transaction boundary. The review
+database is stored in a private directory and exposes redacted aggregates.
+Protected task bodies and production signing keys are not repository assets;
+their interfaces are deployment seams. A production evaluator requires a
+rootless container runtime, a pinned image, seccomp, an LSM policy, a private
+task broker and an external key service.
+
+Public records contain typed IDs, hashes, aggregate measurements, evidence
+classes and redacted metadata. Private records may contain blinded assignments,
+review identity references or encrypted fixture task bodies. Public
+serialization rejects fields whose names imply answers, secrets, protected
+payloads or reviewer identities.
+
+## State and recovery
+
+```text
+PLANNED -> QUEUED -> LEASED -> STARTING -> RUNNING
+                                      |       |
+                                      |       +-> RETRY_WAIT -> LEASED
+                                      +----------> SUCCEEDED
+
+terminal alternatives: FAILED, CANCELLED, TIMED_OUT,
+                       QUOTA_DEFERRED, AUDIT_REQUIRED
+```
+
+Every successful unit crosses three durable boundaries: verified CAS write,
+artifact registration with provenance, and exactly-once queue commit. Restart
+recovery reconciles a staged digest against the CAS before completing the
+terminal transition. Stale lease tokens cannot commit.

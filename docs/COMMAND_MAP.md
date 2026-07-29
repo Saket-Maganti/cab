@@ -40,9 +40,9 @@ Status key: **safe** = no model calls · **heavy** = may run models locally · *
 | `run --config configs/pilot_stub_micro_3.yaml` | heavy | ~5m | Stub only | $0 |
 | `run --config configs/pilot_free_local_micro_3.yaml` | heavy | 30–60m+ | Local LLM | $0* |
 
-\*Uses local compute. Not default build-mode path. See [SAFE_NEXT_RUN_DECISION_TREE.md](../experiments/SAFE_NEXT_RUN_DECISION_TREE.md).
+\*Uses local compute. Not default build-mode path. See [SAFE_NEXT_RUN_DECISION_TREE.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/experiments/SAFE_NEXT_RUN_DECISION_TREE.md).
 
-**Before any run:** [PRE_EXPERIMENT_FREEZE_CHECKLIST.md](../experiments/PRE_EXPERIMENT_FREEZE_CHECKLIST.md)
+**Before any run:** [PRE_EXPERIMENT_FREEZE_CHECKLIST.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/experiments/PRE_EXPERIMENT_FREEZE_CHECKLIST.md)
 
 ---
 
@@ -123,7 +123,7 @@ Status key: **safe** = no model calls · **heavy** = may run models locally · *
 | `python3 scripts/check_evidence_safety.py` | safe | ~5s | No | $0 |
 | `make no-run-reports` | safe | ~1–2m | No | $0 |
 
-See [NO_RUN_REPORTS_GUIDE.md](NO_RUN_REPORTS_GUIDE.md), [GOD_TIER_MANIFEST.md](../GOD_TIER_MANIFEST.md), [reports/INDEX.md](../reports/INDEX.md).
+See [NO_RUN_REPORTS_GUIDE.md](NO_RUN_REPORTS_GUIDE.md), [GOD_TIER_MANIFEST.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/GOD_TIER_MANIFEST.md), [reports/INDEX.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/reports/INDEX.md).
 
 ---
 
@@ -144,4 +144,4 @@ See [NO_RUN_REPORTS_GUIDE.md](NO_RUN_REPORTS_GUIDE.md), [GOD_TIER_MANIFEST.md](.
 - `fill-paper-from-run` without verified pilot
 - `export-paper-assets` without `--allow-engineering-only` on stub/mock runs
 
-See [MASTER_STATUS.md](../MASTER_STATUS.md).
+See [MASTER_STATUS.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/MASTER_STATUS.md).

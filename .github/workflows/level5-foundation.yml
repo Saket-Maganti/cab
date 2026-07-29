@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.11", "3.12", "3.13"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +27,27 @@ jobs:
       - run: cab registry doctor --path /tmp/cab-registry.sqlite3
       - run: cab reproduce --workdir /tmp/cab-reproduction
       - run: cab level5 check
+      - run: cab level5 hardening-check
+
+  hardening-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install --constraint constraints.txt -e ".[dev,docs]"
+      - run: |
+          python -m pytest -n0 -q tests/test_level5_*.py \
+            --cov=causal_agent_bench.level5 \
+            --cov-report=json:/tmp/cab-level5-coverage.json \
+            --cov-fail-under=0
+      - run: python scripts/check_level5_coverage.py /tmp/cab-level5-coverage.json
+      - run: python -m mkdocs build --strict
+      - run: python -m build
+      - run: python -m twine check dist/*
+      - run: python -m pip check
 
   supply-chain:
     runs-on: ubuntu-latest

@@ -3,7 +3,7 @@
 **Benchmark ID:** `causal-agent-bench`  
 **Version:** `0.1.0-dev`  
 **Status:** `research_scaffold` / `infrastructure_artifact_candidate`  
-**Machine-readable:** [release/benchmark_artifact_manifest.json](../release/benchmark_artifact_manifest.json)
+**Machine-readable:** [release/benchmark_artifact_manifest.json](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/release/benchmark_artifact_manifest.json)
 
 ---
 
@@ -144,4 +144,4 @@ Also forbidden:
 
 ---
 
-See also: [GOD_TIER_MANIFEST.md](../GOD_TIER_MANIFEST.md), [docs/REPRODUCIBILITY_TIERS.md](REPRODUCIBILITY_TIERS.md), [docs/REVIEWER_QUICKSTART_NEURIPS.md](REVIEWER_QUICKSTART_NEURIPS.md).
+See also: [GOD_TIER_MANIFEST.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/GOD_TIER_MANIFEST.md), [docs/REPRODUCIBILITY_TIERS.md](REPRODUCIBILITY_TIERS.md), [docs/REVIEWER_QUICKSTART_NEURIPS.md](REVIEWER_QUICKSTART_NEURIPS.md).

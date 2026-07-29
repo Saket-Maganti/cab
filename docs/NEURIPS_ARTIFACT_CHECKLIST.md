@@ -12,7 +12,7 @@ Use before claiming artifact or benchmark badges. Aligns with common NeurIPS rep
 ## Dataset card
 
 - [ ] [docs/DATASET_CARD.md](DATASET_CARD.md) current
-- [ ] [DATA_LICENSE.md](../DATA_LICENSE.md) for synthetic data
+- [ ] [DATA_LICENSE.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/DATA_LICENSE.md) for synthetic data
 - [ ] Generation config + seed documented
 - [ ] Held-out / dev / test splits in `splits.json`
 
@@ -65,7 +65,7 @@ Use before claiming artifact or benchmark badges. Aligns with common NeurIPS rep
 
 ## Reproducibility commands
 
-- [ ] README quickstart + [artifact/README.md](../artifact/README.md)
+- [ ] README quickstart + [artifact/README.md](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/artifact/README.md)
 - [ ] One-shot: `python3 scripts/reproduce_artifact.py --all-deterministic`
 - [ ] Table/figure regeneration from complete runs only
 
@@ -96,7 +96,7 @@ Use before claiming artifact or benchmark badges. Aligns with common NeurIPS rep
 
 - [ ] `release/release_manifest.json` updated
 - [ ] Zenodo/Hugging Face dataset stub (if applicable)
-- [ ] [CITATION.cff](../CITATION.cff) version bumped on release
+- [ ] [CITATION.cff](https://github.com/Saket-Maganti/causal-agent-bench/blob/main/CITATION.cff) version bumped on release
 
 ## Pre-submission verification
 

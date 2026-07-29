@@ -12,7 +12,7 @@ CAB_MAX_CEILING_TESTS := \
 	tests/test_claim_ledger.py \
 	tests/test_release_check.py
 
-.PHONY: install test test-serial coverage lock audit spell mutate lint typecheck smoke fast-check precommit pre-commit-install build-check security-check artifact-check artifact-smoke artifact-deterministic release-check release-dry-run paper-fill export-leaderboard export-failure-gallery ablation-matrix batch-smoke audit-contamination paper paper-draft paper-check paper-submission-check submission-precheck submission-check help doctor plan-micro audit-configs audit-repo check-claims check-paper check-readiness index-runs check-run-index god-tier-status no-run-reports governance-reports clean-pycache status master-status final-audit max-ceiling-tests max-ceiling-tests-serial split-registry-check kaggle-fixture-check iclr-resource-check max-ceiling-static-gates max-ceiling-ci max-ceiling-ci-serial level5-test level5-reproduce level5-check level5-sbom
+.PHONY: install test test-serial coverage lock audit spell mutate lint typecheck smoke fast-check precommit pre-commit-install build-check security-check artifact-check artifact-smoke artifact-deterministic release-check release-dry-run paper-fill export-leaderboard export-failure-gallery ablation-matrix batch-smoke audit-contamination paper paper-draft paper-check paper-submission-check submission-precheck submission-check help doctor plan-micro audit-configs audit-repo check-claims check-paper check-readiness index-runs check-run-index god-tier-status no-run-reports governance-reports clean-pycache status master-status final-audit max-ceiling-tests max-ceiling-tests-serial split-registry-check kaggle-fixture-check iclr-resource-check max-ceiling-static-gates max-ceiling-ci max-ceiling-ci-serial level5-test level5-hardening-test level5-coverage level5-reproduce level5-check level5-hardening-check level5-sbom
 
 help:
 	@echo "Safe targets: install, test, coverage, lint, typecheck, fast-check, precommit,"
@@ -61,11 +61,23 @@ max-ceiling-ci-serial: max-ceiling-tests-serial max-ceiling-static-gates
 level5-test:
 	$(PYTHON) -m pytest -q -n4 tests/test_level5_*.py
 
+level5-hardening-test:
+	$(PYTHON) -m pytest -q -n2 tests/test_level5_hardening_*.py
+
+level5-coverage:
+	$(PYTHON) -m pytest -n0 -q tests/test_level5_*.py \
+		--cov=causal_agent_bench.level5 --cov-report=json:/tmp/cab-level5-coverage.json \
+		--cov-fail-under=0
+	$(PYTHON) scripts/check_level5_coverage.py /tmp/cab-level5-coverage.json
+
 level5-reproduce:
 	$(PYTHON) -m causal_agent_bench reproduce --workdir /tmp/cab_level5_reproduction
 
 level5-check:
 	$(PYTHON) -m causal_agent_bench level5 check
+
+level5-hardening-check:
+	$(PYTHON) -m causal_agent_bench level5 hardening-check
 
 level5-sbom:
 	$(PYTHON) scripts/generate_level5_sbom.py
