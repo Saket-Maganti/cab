@@ -1,0 +1,34 @@
+{
+  "schema_version": "cab_cpu_h2_public_human_input_audit_v1",
+  "generated_at": "2026-07-29T16:43:10Z",
+  "state": "HUMAN_VALIDATION_REQUIRED",
+  "approved_locations_only": true,
+  "identity_fields_emitted": 0,
+  "compact20": {
+    "candidate_count": 20,
+    "required_independent_reviewers_per_candidate": 2,
+    "genuine_human_rows": 0,
+    "complete_review_groups": 0,
+    "adjudication_rows": 0,
+    "human_review_state": "HUMAN_REVIEW_INCOMPLETE",
+    "contract_evaluation_state": "INPUT_PENDING",
+    "c10_state": "C10_PENDING"
+  },
+  "protected_candidate_packets": {
+    "dataset_count": 2,
+    "review_item_count": 160,
+    "blank_dimension_rows": 1760,
+    "completed_human_judgment_rows": 0,
+    "static_prevalidation": "PASS",
+    "scientific_execution_allowed": false
+  },
+  "c10_blockers": [
+    "AGREEMENT_THRESHOLD_NOT_MET",
+    "ANSWER_CONTRACT_MISSING_OR_INVALID",
+    "FINAL_VALIDITY_NOT_SATISFIED",
+    "FULL_CANDIDATE_COVERAGE_MISSING",
+    "LEAKAGE_GATE_MISSING_OR_INVALID"
+  ],
+  "fixture_rows_promoted": 0,
+  "private_machine_audit_created": true
+}

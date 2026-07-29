@@ -1,0 +1,60 @@
+{
+  "schema_version": "cab_cpu_first_half_state_v1",
+  "generated_at": "2026-07-29T16:43:10Z",
+  "starting_sha": "c5dba2d20402c993fd92365232fabefc7b4d8268",
+  "branch": "main",
+  "starting_divergence": {
+    "behind_origin_main": 0,
+    "ahead_of_origin_main": 0
+  },
+  "final_states": [
+    "CAB_CPU_FIRST_HALF_PARTIAL_GENUINE_INPUTS_MISSING",
+    "HUMAN_VALIDATION_REQUIRED"
+  ],
+  "stage_status": {
+    "CPU-H1": "CPU_H1_READY",
+    "CPU-H2": "AUDIT_COMPLETE_HUMAN_VALIDATION_REQUIRED",
+    "CPU-H3": "BLOCKED_GENUINE_REVIEW_AND_ADJUDICATION_MISSING",
+    "CPU-H4": "BLOCKED_C10_NOT_PASSED",
+    "CPU-H5": "BLOCKED_SLICE_NOT_LOCKED_AND_GPU_RESULTS_MISSING",
+    "CPU-H6": "BLOCKED_NO_VALID_IMPORTED_RAW_EVIDENCE",
+    "CPU-H7": "BLOCKED_NO_VALID_TRAJECTORIES",
+    "CPU-H8": "BLOCKED_NO_VALID_COMMON_SUPPORT_EVIDENCE",
+    "CPU-H9": "BLOCKED_NO_COMPACT_ANALYSIS",
+    "CPU-H10": "BLOCKED_NO_COMPACT_DECISION"
+  },
+  "genuine_evidence": {
+    "human_judgment_rows": 0,
+    "adjudication_rows": 0,
+    "real_model_trajectories": 0,
+    "audited_real_runs": 0,
+    "paper_eligible_empirical_assets": 0,
+    "supported_empirical_claims": 0,
+    "independent_external_reproductions": 0,
+    "protected_evaluator_pilots": 0,
+    "community_external_pilots": 0
+  },
+  "compact20": {
+    "candidate_count": 20,
+    "complete_review_groups": 0,
+    "c10_state": "C10_PENDING",
+    "slice_lock_allowed": false
+  },
+  "validation": {
+    "focused_tests_passed": 131,
+    "full_provider_free_tests_passed": 1171,
+    "full_provider_free_tests_skipped": 1,
+    "ruff": "PASS",
+    "mypy": "PASS",
+    "codespell": "PASS",
+    "structured_data": "PASS_399_OF_399",
+    "security": "PASS",
+    "docs_strict": "PASS",
+    "package_build": "PASS",
+    "release_checks": "PASS",
+    "hardening_gate": "CAB_LEVEL5_HARDENED_FOUNDATION_READY"
+  },
+  "scientific_boundaries_preserved": true,
+  "private_inputs_committed": false,
+  "raw_trajectories_committed": false
+}

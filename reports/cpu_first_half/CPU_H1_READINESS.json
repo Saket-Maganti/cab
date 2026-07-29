@@ -1,0 +1,38 @@
+{
+  "schema_version": "cab_cpu_h1_readiness_v1",
+  "generated_at": "2026-07-29T16:43:10Z",
+  "state": "CPU_H1_READY",
+  "checks": {
+    "cab_doctor": "PASS_WITH_STALE_RUN_INDEX_NOTE",
+    "registry_initial_state": "ABSENT_LOCAL_RUNTIME_STATE",
+    "registry_initialized_locally": true,
+    "registry_schema_version": 3,
+    "registry_supported_schema_version": 3,
+    "registry_verify": "PASS",
+    "registry_doctor": "PASS",
+    "registry_migration_dry_run": "PASS_NO_PENDING_MIGRATIONS",
+    "level5_hardening_check": "PASS",
+    "review_service_readiness": "PASS_LOCAL_ONLY",
+    "artifact_store_verify": "PASS_ZERO_OBJECTS",
+    "standalone_fixture_evidence_graph": "NOT_PRESENT",
+    "persistent_evidence_graph_tests": "PASS",
+    "scheduler_and_lease_tests": "PASS",
+    "mkdocs_strict": "PASS",
+    "full_provider_free_suite": "PASS_1171_SKIPPED_1",
+    "focused_gate_suite": "PASS_131",
+    "ruff": "PASS",
+    "mypy": "PASS",
+    "codespell": "PASS",
+    "structured_data": "PASS_399_OF_399",
+    "protected_payload_scan": "PASS",
+    "production_secret_scan": "PASS",
+    "package_import": "PASS_7_MODULES",
+    "package_build": "PASS",
+    "release_integrity": "PASS"
+  },
+  "warnings": [
+    "The persisted run index was stale, but the live evidence-safety scan covered all run directories and found no paper-eligible unindexed run.",
+    "The standalone fixture evidence-graph JSON was absent; persistent registry evidence-graph behavior passed the focused and full test suites."
+  ],
+  "genuine_evidence_unchanged": true
+}
