@@ -36,7 +36,8 @@ def test_confirmatory_role_counts_are_explicit() -> None:
         row["role"]: row for row in build_canonical_split_registry(root)["roles"]
     }
     assert roles["compact20_pilot"]["candidate_count"] == 20
-    assert roles["compact20_pilot"]["instance_count"] == 30
+    assert roles["compact20_pilot"]["unique_base_task_count"] == 16
+    assert roles["compact20_pilot"]["instance_count"] == 36
     assert roles["scale100_public_development_v1"]["unique_base_task_count"] == 100
     assert roles["main500_public_development_v1"]["unique_base_task_count"] == 500
     assert roles["heldout_challenge_v1_contaminated"]["unique_base_task_count"] == 50

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal
@@ -58,6 +59,11 @@ class CanonicalRunManifest(BaseModel):
     model_revision: str = Field(min_length=1)
     provider: str = Field(min_length=1)
     adapter_version: str = Field(min_length=1)
+    adapter_lane: Literal[
+        "cab_json_tool_protocol_v3",
+        "native_tool_calling_secondary_ablation_v1",
+    ] | None = None
+    system_identity_hash: str | None = None
     quantization: str
     device: str = Field(min_length=1)
     gpu_count: int = Field(ge=0)
@@ -95,6 +101,19 @@ class CanonicalRunManifest(BaseModel):
         }
         if self.scientific_evidence and self.evidence_class not in real_evidence:
             raise ValueError("scientific_evidence requires a real-evidence class")
+        if self.scientific_evidence:
+            if self.scorer_version != "3.0.0":
+                raise ValueError(
+                    "scientific evidence requires scorer semantics version 3.0.0"
+                )
+            if self.system_identity_hash is None or not re.fullmatch(
+                r"[0-9a-f]{64}", self.system_identity_hash
+            ):
+                raise ValueError(
+                    "scientific evidence requires a bound system_identity_hash"
+                )
+            if self.adapter_lane is None:
+                raise ValueError("scientific evidence requires an explicit adapter_lane")
         if self.paper_eligible:
             if self.evidence_class != "PAPER_ELIGIBLE_EVIDENCE":
                 raise ValueError("paper_eligible requires PAPER_ELIGIBLE_EVIDENCE")
@@ -211,6 +230,8 @@ def validate_merge_manifests(
         "scorer_policy_hash",
         "model_id",
         "model_revision",
+        "adapter_lane",
+        "system_identity_hash",
         "prompt_hash",
         "raac_policy",
         "raac_comparison_mode",
@@ -268,6 +289,8 @@ def write_manifest_template(path: str | Path) -> Path:
         "model_revision": "PIN_BEFORE_EXECUTION",
         "provider": "PIN_BEFORE_EXECUTION",
         "adapter_version": "PIN_BEFORE_EXECUTION",
+        "adapter_lane": None,
+        "system_identity_hash": None,
         "quantization": "none",
         "device": "PIN_BEFORE_EXECUTION",
         "gpu_count": 0,

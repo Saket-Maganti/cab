@@ -148,11 +148,543 @@
     "static_passed": true,
     "task_count": 100
   },
+  "artifact_materialization": {
+    "all_gold_derivations_match": true,
+    "artifact_class": "not_applicable",
+    "artifact_file_count": 0,
+    "bundle_count": 0,
+    "format_counts": {},
+    "human_review_state": "HUMAN_INPUT_REQUIRED",
+    "real_world_origin_claimed": false,
+    "schema_version": "cab_transfer_artifact_inventory_v1",
+    "study_name": "scale100_confirmatory_v2"
+  },
+  "assignment_design": {
+    "association_threshold": 0.2,
+    "block_summary": {
+      "block_count": 100,
+      "block_size": 5,
+      "repeated_interventions_explicit": true,
+      "rotation_stride": 3,
+      "task_cluster_key": "domain"
+    },
+    "checks": {
+      "each_domain_receives_multiple_families": true,
+      "each_family_spans_every_difficulty": true,
+      "each_family_spans_multiple_domains": true,
+      "family_difficulty_cramers_v_below_threshold": true,
+      "family_domain_cramers_v_below_threshold": true,
+      "family_repetition_explicit": true,
+      "no_empty_family_difficulty_cell": true,
+      "task_blocks_have_fixed_size": true
+    },
+    "design_version": "cab_constrained_rotation_bibd_v1",
+    "deterministic_receipt": "9134eb2b3dd49984cad26f28e0bdafccde979889f43cd325e809ac2d57e7c868",
+    "difficulty_by_domain": {
+      "chi_squared": 20.0,
+      "column_variable": "domain",
+      "cramers_v": 0.11547,
+      "mutual_information_nats": 0.020136,
+      "row_variable": "difficulty",
+      "standardized_residuals": {
+        "easy": {
+          "code_debugging": 0.860663,
+          "configuration_diagnosis": -0.860663,
+          "data_cleaning": -0.860663,
+          "document_retrieval": 0.860663,
+          "file_operations": 0.860663,
+          "policy_interpretation": -0.860663,
+          "scheduling_coordination": -0.860663,
+          "source_reconciliation": -0.860663,
+          "spreadsheet_analysis": 0.860663,
+          "travel_planning": 0.860663
+        },
+        "hard": {
+          "code_debugging": -0.860663,
+          "configuration_diagnosis": 0.860663,
+          "data_cleaning": 0.860663,
+          "document_retrieval": -0.860663,
+          "file_operations": -0.860663,
+          "policy_interpretation": 0.860663,
+          "scheduling_coordination": 0.860663,
+          "source_reconciliation": 0.860663,
+          "spreadsheet_analysis": -0.860663,
+          "travel_planning": -0.860663
+        },
+        "medium": {
+          "code_debugging": 0.860663,
+          "configuration_diagnosis": -0.860663,
+          "data_cleaning": -0.860663,
+          "document_retrieval": 0.860663,
+          "file_operations": 0.860663,
+          "policy_interpretation": -0.860663,
+          "scheduling_coordination": -0.860663,
+          "source_reconciliation": -0.860663,
+          "spreadsheet_analysis": 0.860663,
+          "travel_planning": 0.860663
+        },
+        "stress": {
+          "code_debugging": -0.860663,
+          "configuration_diagnosis": 0.860663,
+          "data_cleaning": 0.860663,
+          "document_retrieval": -0.860663,
+          "file_operations": -0.860663,
+          "policy_interpretation": 0.860663,
+          "scheduling_coordination": 0.860663,
+          "source_reconciliation": 0.860663,
+          "spreadsheet_analysis": -0.860663,
+          "travel_planning": -0.860663
+        }
+      },
+      "table": {
+        "easy": {
+          "code_debugging": 15,
+          "configuration_diagnosis": 10,
+          "data_cleaning": 10,
+          "document_retrieval": 15,
+          "file_operations": 15,
+          "policy_interpretation": 10,
+          "scheduling_coordination": 10,
+          "source_reconciliation": 10,
+          "spreadsheet_analysis": 15,
+          "travel_planning": 15
+        },
+        "hard": {
+          "code_debugging": 10,
+          "configuration_diagnosis": 15,
+          "data_cleaning": 15,
+          "document_retrieval": 10,
+          "file_operations": 10,
+          "policy_interpretation": 15,
+          "scheduling_coordination": 15,
+          "source_reconciliation": 15,
+          "spreadsheet_analysis": 10,
+          "travel_planning": 10
+        },
+        "medium": {
+          "code_debugging": 15,
+          "configuration_diagnosis": 10,
+          "data_cleaning": 10,
+          "document_retrieval": 15,
+          "file_operations": 15,
+          "policy_interpretation": 10,
+          "scheduling_coordination": 10,
+          "source_reconciliation": 10,
+          "spreadsheet_analysis": 15,
+          "travel_planning": 15
+        },
+        "stress": {
+          "code_debugging": 10,
+          "configuration_diagnosis": 15,
+          "data_cleaning": 15,
+          "document_retrieval": 10,
+          "file_operations": 10,
+          "policy_interpretation": 15,
+          "scheduling_coordination": 15,
+          "source_reconciliation": 15,
+          "spreadsheet_analysis": 10,
+          "travel_planning": 10
+        }
+      }
+    },
+    "difficulty_count": 4,
+    "domain_count": 10,
+    "family_by_difficulty": {
+      "chi_squared": 2.08,
+      "column_variable": "difficulty",
+      "cramers_v": 0.037238,
+      "mutual_information_nats": 0.002084,
+      "row_variable": "family",
+      "standardized_residuals": {
+        "ambiguous_instruction": {
+          "easy": 0.172133,
+          "hard": -0.516398,
+          "medium": 0.172133,
+          "stress": 0.172133
+        },
+        "distractor_evidence": {
+          "easy": -0.172133,
+          "hard": 0.172133,
+          "medium": 0.172133,
+          "stress": -0.172133
+        },
+        "irrelevant_tools": {
+          "easy": 0.172133,
+          "hard": 0.172133,
+          "medium": -0.516398,
+          "stress": 0.172133
+        },
+        "long_horizon_dependency": {
+          "easy": -0.172133,
+          "hard": -0.172133,
+          "medium": 0.516398,
+          "stress": -0.172133
+        },
+        "memory_corruption": {
+          "easy": 0.172133,
+          "hard": -0.172133,
+          "medium": -0.172133,
+          "stress": 0.172133
+        },
+        "observation_conflict": {
+          "easy": 0.172133,
+          "hard": -0.516398,
+          "medium": 0.172133,
+          "stress": 0.172133
+        },
+        "premature_success_signal": {
+          "easy": -0.172133,
+          "hard": -0.172133,
+          "medium": 0.516398,
+          "stress": -0.172133
+        },
+        "tool_corruption": {
+          "easy": 0.172133,
+          "hard": 0.172133,
+          "medium": -0.516398,
+          "stress": 0.172133
+        },
+        "tool_failure": {
+          "easy": -0.172133,
+          "hard": 0.516398,
+          "medium": -0.172133,
+          "stress": -0.172133
+        },
+        "tool_removal": {
+          "easy": -0.172133,
+          "hard": 0.516398,
+          "medium": -0.172133,
+          "stress": -0.172133
+        }
+      },
+      "table": {
+        "ambiguous_instruction": {
+          "easy": 13,
+          "hard": 11,
+          "medium": 13,
+          "stress": 13
+        },
+        "distractor_evidence": {
+          "easy": 12,
+          "hard": 13,
+          "medium": 13,
+          "stress": 12
+        },
+        "irrelevant_tools": {
+          "easy": 13,
+          "hard": 13,
+          "medium": 11,
+          "stress": 13
+        },
+        "long_horizon_dependency": {
+          "easy": 12,
+          "hard": 12,
+          "medium": 14,
+          "stress": 12
+        },
+        "memory_corruption": {
+          "easy": 13,
+          "hard": 12,
+          "medium": 12,
+          "stress": 13
+        },
+        "observation_conflict": {
+          "easy": 13,
+          "hard": 11,
+          "medium": 13,
+          "stress": 13
+        },
+        "premature_success_signal": {
+          "easy": 12,
+          "hard": 12,
+          "medium": 14,
+          "stress": 12
+        },
+        "tool_corruption": {
+          "easy": 13,
+          "hard": 13,
+          "medium": 11,
+          "stress": 13
+        },
+        "tool_failure": {
+          "easy": 12,
+          "hard": 14,
+          "medium": 12,
+          "stress": 12
+        },
+        "tool_removal": {
+          "easy": 12,
+          "hard": 14,
+          "medium": 12,
+          "stress": 12
+        }
+      }
+    },
+    "family_by_domain": {
+      "chi_squared": 0.0,
+      "column_variable": "domain",
+      "cramers_v": 0.0,
+      "mutual_information_nats": -0.0,
+      "row_variable": "family",
+      "standardized_residuals": {
+        "ambiguous_instruction": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "distractor_evidence": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "irrelevant_tools": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "long_horizon_dependency": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "memory_corruption": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "observation_conflict": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "premature_success_signal": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "tool_corruption": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "tool_failure": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        },
+        "tool_removal": {
+          "code_debugging": 0.0,
+          "configuration_diagnosis": 0.0,
+          "data_cleaning": 0.0,
+          "document_retrieval": 0.0,
+          "file_operations": 0.0,
+          "policy_interpretation": 0.0,
+          "scheduling_coordination": 0.0,
+          "source_reconciliation": 0.0,
+          "spreadsheet_analysis": 0.0,
+          "travel_planning": 0.0
+        }
+      },
+      "table": {
+        "ambiguous_instruction": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "distractor_evidence": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "irrelevant_tools": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "long_horizon_dependency": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "memory_corruption": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "observation_conflict": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "premature_success_signal": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "tool_corruption": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "tool_failure": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        },
+        "tool_removal": {
+          "code_debugging": 5,
+          "configuration_diagnosis": 5,
+          "data_cleaning": 5,
+          "document_retrieval": 5,
+          "file_operations": 5,
+          "policy_interpretation": 5,
+          "scheduling_coordination": 5,
+          "source_reconciliation": 5,
+          "spreadsheet_analysis": 5,
+          "travel_planning": 5
+        }
+      }
+    },
+    "family_count": 10,
+    "intervention_assignment_count": 500,
+    "passed": true,
+    "schema_version": "cab_assignment_balance_diagnostics_v1",
+    "task_count": 100
+  },
+  "assignment_regeneration_reason": "Removed family-by-difficulty confounding with a preregistered domain-clustered constrained rotation.",
   "candidate_materialized": true,
+  "canonical_study_name": "scale100_confirmatory_v2",
+  "claim_scope": "controlled synthetic confirmatory candidate",
   "commitments": {
     "algorithm": "SHA-256",
-    "base_task_payload_commitment_sha256": "404975dd9b1eba7b05b8247aa12ca184f291b25fa6a9b97ca7070753f0d997d3",
-    "private_payload_commitment_sha256": "3fa86d8cd836ff8091badc8aace816df725a557d3e4d5d1f2a865a45ac22f077"
+    "base_task_payload_commitment_sha256": "a45bfcc36c5a8f23d180dfebbc1c2cff8881de3ca4fb15726868d253fdecc404",
+    "private_payload_commitment_sha256": "95a01a7fcede27eecf51345f01084ca2bdf2da2d72247a5b4e796bc45cd65f59"
   },
   "confirmatory_eligible": false,
   "contains_answers": false,
@@ -198,24 +730,34 @@
   },
   "private_file_commitments": [
     {
-      "bytes": 420285,
+      "bytes": 512385,
       "role": "candidate_tasks.jsonl",
-      "sha256": "404975dd9b1eba7b05b8247aa12ca184f291b25fa6a9b97ca7070753f0d997d3"
+      "sha256": "a45bfcc36c5a8f23d180dfebbc1c2cff8881de3ca4fb15726868d253fdecc404"
     },
     {
       "bytes": 54900,
       "role": "human_review_items.jsonl",
-      "sha256": "fc59e7261941954300e9f7fb44b5db94b5d57fd8e75709e2ff37e08982c2cd3e"
+      "sha256": "d139aaad859178340a0aabf02964357ae8081b75bf01d687908c42b350c9d9aa"
     },
     {
       "bytes": 137110,
       "role": "human_review_judgments.csv",
-      "sha256": "2c0dc934318476f4aba9ac2b4c02fab5061c51725553729858ccedc5e0d60a12"
+      "sha256": "a3849862bc7c51f2d829c45bc351258af15b77db9020c0fd19bf70605997bd11"
     },
     {
-      "bytes": 775,
+      "bytes": 15226,
+      "role": "assignment_balance.json",
+      "sha256": "b70aeaa11815ac7f883465f50a44f7caf6f2286c042705f345d6f28e26a05a67"
+    },
+    {
+      "bytes": 379,
+      "role": "artifact_inventory.json",
+      "sha256": "f4389b78cad5a1808efa412939577e3d489d46fb2b476f7c08d92b384af3a84e"
+    },
+    {
+      "bytes": 1162,
       "role": "private_manifest.json",
-      "sha256": "8f53cfaf80fd9baf68ac3d182291c92bdfe14de22b5c3d5e6ee31ee236ea5336"
+      "sha256": "24ac9a40872e39563f5c36d837121d22f69e9a30017544d8af2a2aa005e0aff1"
     }
   ],
   "private_payload_root": "private_data/scale100_confirmatory_v2",
@@ -243,5 +785,6 @@
   "schema_version": "cab_public_safe_candidate_manifest_v1",
   "scientific_disposition": "HUMAN_INPUT_REQUIRED",
   "scientific_execution_allowed": false,
-  "split_role": "scale100_confirmatory_v2_protected"
+  "split_role": "scale100_confirmatory_v2_protected",
+  "superseded_public_manifest_sha256": "58419ef66881ffeccbfd15b59961b91dc562d3cdc460f02e3248db2293a95e91"
 }

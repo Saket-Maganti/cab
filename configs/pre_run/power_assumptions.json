@@ -1,0 +1,46 @@
+{
+  "schema_version": "cab_power_assumptions_v1",
+  "bootstrap_repetitions": 10000,
+  "scenarios": {
+    "compact20": {
+      "base_task_count": 16,
+      "clean_success": 0.72,
+      "equivalence_margin": 0.05,
+      "family_count": 4,
+      "family_heterogeneity": 0.07,
+      "human_exclusion_rate": 0.1,
+      "intervention_success": 0.55,
+      "interventions_per_task": 1.25,
+      "intraclass_correlation": 0.12,
+      "missing_run_rate": 0.05,
+      "models": 3,
+      "paired_discordance": 0.3,
+      "policies": 1,
+      "raac_improvement": 0.06,
+      "repeats": 2,
+      "scorer_error": 0.03,
+      "seed": 2026080101,
+      "sesoi": 0.08
+    },
+    "scale100": {
+      "base_task_count": 100,
+      "clean_success": 0.72,
+      "equivalence_margin": 0.05,
+      "family_count": 10,
+      "family_heterogeneity": 0.05,
+      "human_exclusion_rate": 0.08,
+      "intervention_success": 0.55,
+      "interventions_per_task": 5.0,
+      "intraclass_correlation": 0.08,
+      "missing_run_rate": 0.03,
+      "models": 5,
+      "paired_discordance": 0.3,
+      "policies": 1,
+      "raac_improvement": 0.06,
+      "repeats": 3,
+      "scorer_error": 0.03,
+      "seed": 2026080102,
+      "sesoi": 0.08
+    }
+  }
+}

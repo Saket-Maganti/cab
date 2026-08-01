@@ -1,6 +1,6 @@
 # ICLR Human Validation and C10 Protocol
 
-**Protocol version:** 1.0
+**Protocol version:** 2.0 (scorer-v3, Compact-20 packet v2)
 **Canonical contract:** `configs/human_validation/c10_contract_v1.json`
 **Canonical validator:** `scripts/validate_cab_human_reviews.py`
 **Current evidence:** `HUMAN_INPUT_REQUIRED`
@@ -20,6 +20,12 @@ task, clean gold and scorer policies, intervention specification, and
 deterministic manipulation-check linkage. They do not see model outputs,
 provider/model identities, aggregate results, rankings, or another reviewer's
 judgments.
+
+The canonical packet has 20 candidates selected prospectively across the four
+Compact families: 16 unique base tasks and four documented cross-family
+anchors. Reviewer A, reviewer B, and the separate adjudicator receive distinct
+deterministic blinded order files. Prior packet hashes are explicitly
+invalidated in the v2 public commitment.
 
 Each reviewer records every dimension below:
 
@@ -107,17 +113,20 @@ session data. The canonical directory is
 `data/human_validation/compact20_real_review/`.
 
 1. Confirm `review_items.jsonl` matches the candidate-manifest hash.
-2. Keep both model-blinding flags true in `review_session.json`.
-3. Register qualified reviewers in `reviewer_registry.csv`.
-4. Assign the pre-created reviewer slots out of band.
-5. Each reviewer independently completes only their rows in
+2. Assign the corresponding `blinded_order_reviewer_a.json`,
+   `blinded_order_reviewer_b.json`, and `blinded_order_adjudicator.json` out of
+   band; do not exchange order files.
+3. Keep both model-blinding flags true in `review_session.json`.
+4. Register qualified reviewers in `reviewer_registry.csv`.
+5. Assign the pre-created reviewer slots out of band.
+6. Each reviewer independently completes only their rows in
    `review_judgments.csv`.
-6. Lock initial sheets before computing agreement.
-7. Populate `adjudication.csv` only for observed disagreements.
-8. Update prerequisite report paths/hashes in `c10_prerequisites.json`.
-9. Change the session to `real_human` and attest human-only completion only
+7. Lock initial sheets before computing agreement.
+8. Populate `adjudication.csv` only for observed disagreements.
+9. Update prerequisite report paths/hashes in `c10_prerequisites.json`.
+10. Change the session to `real_human` and attest human-only completion only
    after the statements are true.
-10. Run the validator. Do not edit output state by hand.
+11. Run the validator. Do not edit output state by hand.
 
 Legacy split sheets (`task_clarity_review.csv`, `gold_policy_review.csv`,
 `intervention_isolation_review.csv`, and `adjudication_template.csv`) are

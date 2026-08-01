@@ -1,0 +1,67 @@
+{
+  "adapter_accounting": {
+    "equal_budget_fields": [
+      "model_call_limit",
+      "tool_call_limit",
+      "token_limit",
+      "wall_time_limit"
+    ],
+    "native_tool_calling_lane": "secondary_ablation_only",
+    "primary_lane": "cab_json_tool_protocol_v3"
+  },
+  "binding_state": "MODEL_REVISION_AND_TOKENIZER_HASH_REQUIRED_AT_PREFLIGHT",
+  "chat_template": {
+    "content": "<|system|>{system_prompt}<|user|>{user_message}<|assistant|>",
+    "id": "cab_unified_chat_template_v1",
+    "version": "1.0.0"
+  },
+  "context_limit": 4096,
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 1024,
+    "seed": 20260801,
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "evidence_binding": {
+    "every_scientific_run_requires_system_identity_hash": true,
+    "merge_requires_identical_system_identity_hash": true,
+    "scorer_version": "3.0.0"
+  },
+  "model_slots": [
+    "strong_open_instruct",
+    "second_open_family",
+    "smaller_efficient_open",
+    "optional_reasoning_open"
+  ],
+  "parser": {
+    "id": "parse_tool_action",
+    "source": "src/causal_agent_bench/agents/tool_protocol.py",
+    "version": "3.0.0"
+  },
+  "quantization_policy": "PIN_EXACT_BACKEND_AND_BITS_AT_PREFLIGHT",
+  "schema_version": "cab_evaluated_system_manifest_v1",
+  "scientific_execution_allowed_before_binding": false,
+  "stop_conditions": [
+    "valid_final_answer",
+    "valid_clarification",
+    "max_steps",
+    "timeout",
+    "invalid_protocol_budget_exhausted"
+  ],
+  "system_prompt": {
+    "content": "Use the frozen JSON action protocol. Gather required evidence before a substantive answer. If and only if a typed opportunity applies, clarify, refuse, or abstain with the verified blocker. Never claim an unexecuted recovery.",
+    "id": "cab_scientific_system_prompt_v3",
+    "version": "3.0.0"
+  },
+  "tool_adapter": {
+    "id": "cab_unified_json_tool_adapter",
+    "source": "src/causal_agent_bench/agents/tool_protocol.py",
+    "version": "3.0.0"
+  },
+  "tool_protocol": {
+    "id": "cab_json_tool_protocol_v3",
+    "single_action_per_turn": true,
+    "version": "3.0.0"
+  }
+}

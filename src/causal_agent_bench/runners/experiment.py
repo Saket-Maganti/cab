@@ -75,6 +75,11 @@ def run_experiment(
     enforce_paid_call_policy(config)
     cost_estimate = enforce_budget_preflight(config)
     benchmark_path = config.resolved_benchmark_path()
+    from causal_agent_bench.safety.scientific_execution_path import (
+        assert_canonical_scientific_execution_path,
+    )
+
+    assert_canonical_scientific_execution_path(config, benchmark_path)
     instances = read_jsonl(benchmark_path, BenchmarkInstance)
     if config.max_instances is not None:
         instances = instances[: config.max_instances]

@@ -135,7 +135,10 @@ def test_report_links_every_compact20_candidate_deterministically() -> None:
         REPO
         / "data/compact20_reviewed/compact20_reviewed_manifest.json"
     )
-    instances = REPO / "data/processed/pilot_v0_1/instances.jsonl"
+    instances = (
+        REPO
+        / "data/compact20_reviewed/compact20_v2_instances.jsonl"
+    )
     first = build_manipulation_check_report(manifest, instances)
     second = build_manipulation_check_report(manifest, instances)
     assert first == second

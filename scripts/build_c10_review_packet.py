@@ -28,7 +28,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--instances",
-        default="data/processed/pilot_v0_1/instances.jsonl",
+        default="data/compact20_reviewed/compact20_v2_instances.jsonl",
     )
     parser.add_argument("--reviewers-per-candidate", type=int, default=2)
     args = parser.parse_args(argv)

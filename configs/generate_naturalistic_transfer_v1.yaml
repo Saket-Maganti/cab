@@ -39,3 +39,5 @@ heldout_split_size: 8
 human_audit_sample_size: 80
 output_dir: data/processed/naturalistic_transfer_v1_candidate
 allow_paid_calls: false
+# SUPERSEDED: public v1 material is permanently ineligible for scientific execution.
+# Canonical study: artifact_rich_synthetic_transfer from protected v2 artifacts.

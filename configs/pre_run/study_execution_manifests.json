@@ -1,0 +1,63 @@
+{
+  "schema_version": "cab_study_execution_planner_v1",
+  "assumptions": {
+    "bootstrap_repetitions": 10000,
+    "cpu_seconds_per_trajectory": 0.04,
+    "expected_files_per_shard": 8,
+    "gpu_seconds_per_model_call": 1.8,
+    "mean_model_calls_per_trajectory": 4.0,
+    "storage_kib_per_trajectory": 96.0,
+    "target_trajectories_per_shard": 2500
+  },
+  "studies": {
+    "compact20": {
+      "manifest": "data/manifests/compact20_v2_public_manifest.json",
+      "count_source": "compact20",
+      "planned_models": 3,
+      "planned_policies": 1,
+      "planned_repeats": 2
+    },
+    "compact20_raac_light": {
+      "manifest": "data/manifests/compact20_v2_public_manifest.json",
+      "count_source": "compact20",
+      "planned_models": 3,
+      "planned_policies": 2,
+      "planned_repeats": 2
+    },
+    "raac_ablations": {
+      "manifest": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+      "count_source": "aggregate_counts",
+      "planned_models": 5,
+      "planned_policies": 9,
+      "planned_repeats": 3
+    },
+    "raac_equal_budget": {
+      "manifest": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+      "count_source": "aggregate_counts",
+      "planned_models": 5,
+      "planned_policies": 2,
+      "planned_repeats": 3
+    },
+    "scale100": {
+      "manifest": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+      "count_source": "aggregate_counts",
+      "planned_models": 5,
+      "planned_policies": 1,
+      "planned_repeats": 3
+    },
+    "scale100_raac_light": {
+      "manifest": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+      "count_source": "aggregate_counts",
+      "planned_models": 5,
+      "planned_policies": 2,
+      "planned_repeats": 3
+    },
+    "transfer": {
+      "manifest": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+      "count_source": "aggregate_counts",
+      "planned_models": 5,
+      "planned_policies": 1,
+      "planned_repeats": 3
+    }
+  }
+}

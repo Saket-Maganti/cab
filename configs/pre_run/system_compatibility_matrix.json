@@ -1,0 +1,37 @@
+{
+  "rows": [
+    {
+      "model_category": "strong_open_instruct",
+      "native_ablation_supported": true,
+      "notes": "Primary unified JSON lane required; native tools are separately labelled.",
+      "primary_adapter": "cab_json_tool_protocol_v3",
+      "primary_lane_supported": true,
+      "unsupported_behavior": "fail_closed"
+    },
+    {
+      "model_category": "second_open_family",
+      "native_ablation_supported": true,
+      "notes": "Primary unified JSON lane required; native tools are separately labelled.",
+      "primary_adapter": "cab_json_tool_protocol_v3",
+      "primary_lane_supported": true,
+      "unsupported_behavior": "fail_closed"
+    },
+    {
+      "model_category": "smaller_efficient_open",
+      "native_ablation_supported": false,
+      "notes": "Unified prompt adapter only; requesting native tools fails closed.",
+      "primary_adapter": "cab_json_tool_protocol_v3",
+      "primary_lane_supported": true,
+      "unsupported_behavior": "fail_closed"
+    },
+    {
+      "model_category": "optional_reasoning_open",
+      "native_ablation_supported": false,
+      "notes": "Must pass unified-protocol compatibility smoke before inclusion.",
+      "primary_adapter": "cab_json_tool_protocol_v3",
+      "primary_lane_supported": true,
+      "unsupported_behavior": "fail_closed"
+    }
+  ],
+  "schema_version": "cab_system_compatibility_matrix_v1"
+}

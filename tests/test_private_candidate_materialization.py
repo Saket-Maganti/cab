@@ -9,17 +9,17 @@ from causal_agent_bench.answer_contracts import AnswerContract
 from scripts.materialize_iclr_private_candidates import materialize
 
 
-def _packet(count: int = 3) -> dict:
+def _packet(count: int = 30) -> dict:
     tasks = []
-    distinctions = ["ownership", "retention", "escalation", "scheduling"]
     for index in range(count):
-        distinction = distinctions[index]
+        suffix = f"{chr(97 + index // 26)}{chr(97 + index % 26)}"
+        distinction = f"dimension-{suffix}"
         tasks.append(
             {
                 "scenario_key": f"scenario-{index}",
-                "domain": f"domain-{index}",
+                "domain": f"domain-{index % 2}",
                 "workflow_class": f"workflow-{index}",
-                "difficulty": "medium",
+                "difficulty": ("easy", "medium", "hard", "stress")[index % 4],
                 "instruction": (
                     f"Inspect the private synthetic {distinction} artifact; "
                     f"reconcile the {distinction} evidence trail and return its "

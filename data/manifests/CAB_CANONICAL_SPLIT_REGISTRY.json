@@ -1,7 +1,7 @@
 {
   "cross_role_overlap_count": 0,
   "cross_role_overlaps": [],
-  "generated_at": "2026-07-28T04:23:11.174706+00:00",
+  "generated_at": "2026-08-01T09:32:36.195186+00:00",
   "immutability": "Membership and source hashes must be regenerated and reviewed before any result-affecting task change. A changed hash creates a new benchmark version.",
   "paper_eligible": false,
   "passed": true,
@@ -64,15 +64,15 @@
       "unique_base_task_count": 3
     },
     {
-      "base_task_membership_sha256": "3f9b14acd738542c3876cb16d0baebca7b379ab68adedb0804e58278b2132a7c",
+      "base_task_membership_sha256": "6fc735e4e58572805f177935a399a656eecc9203feebb4b6807dbdbc4ec027c4",
       "candidate_count": 20,
       "confirmatory_eligible": false,
       "dataset_profile": {},
       "evidence_class": "HUMAN_INPUT_REQUIRED",
       "human_validation_required": true,
-      "instance_count": 30,
+      "instance_count": 36,
       "intervention_count": null,
-      "membership_sha256": "ba9a6a0048ba56e8f24f6f17481c9f5e46f37d591856f3cd62d8b250d0afebf2",
+      "membership_sha256": "183fef486c758d3ca71bc2c08be11bc99e5dd5feb860fc7a23b9acde06cd3c70",
       "membership_visibility": "PUBLIC_EXACT_MEMBERSHIP",
       "paper_eligible": false,
       "public_payload": true,
@@ -82,12 +82,12 @@
       "scientific_execution_allowed": false,
       "source": "data/compact20_reviewed/compact20_reviewed_manifest.json",
       "source_exists": true,
-      "source_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+      "source_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
       "status": "PILOT_ONLY",
-      "unique_base_task_count": 10
+      "unique_base_task_count": 16
     },
     {
-      "base_task_membership_sha256": "404975dd9b1eba7b05b8247aa12ca184f291b25fa6a9b97ca7070753f0d997d3",
+      "base_task_membership_sha256": "a45bfcc36c5a8f23d180dfebbc1c2cff8881de3ca4fb15726868d253fdecc404",
       "candidate_count": null,
       "confirmatory_eligible": false,
       "dataset_profile": {
@@ -219,7 +219,7 @@
       "human_validation_required": true,
       "instance_count": 600,
       "intervention_count": 500,
-      "membership_sha256": "3fa86d8cd836ff8091badc8aace816df725a557d3e4d5d1f2a865a45ac22f077",
+      "membership_sha256": "95a01a7fcede27eecf51345f01084ca2bdf2da2d72247a5b4e796bc45cd65f59",
       "membership_visibility": "PRIVATE_COMMITMENT_ONLY",
       "paper_eligible": false,
       "public_payload": false,
@@ -230,12 +230,12 @@
       "source": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
       "source_exists": true,
       "source_kind": "public_commitment_manifest",
-      "source_sha256": "58419ef66881ffeccbfd15b59961b91dc562d3cdc460f02e3248db2293a95e91",
+      "source_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
       "status": "HUMAN_INPUT_REQUIRED",
       "unique_base_task_count": 100
     },
     {
-      "base_task_membership_sha256": "3cd059ff79a380e76983544d82cf60366e36f745a9d3baa2643f1ee6b0cd7c5e",
+      "base_task_membership_sha256": "da862b15d23856395ef77d5b3d83d7d7dc7090cac4476dcde8f65ede726b1927",
       "candidate_count": null,
       "confirmatory_eligible": false,
       "dataset_profile": {
@@ -352,7 +352,7 @@
         },
         "structural_duplicate_group_count": 0,
         "task_style_counts": {
-          "naturalistic": 60
+          "artifact_rich_synthetic": 60
         },
         "template_id_missing_count": 0,
         "template_variant_risk": "low",
@@ -367,7 +367,7 @@
       "human_validation_required": true,
       "instance_count": 360,
       "intervention_count": 300,
-      "membership_sha256": "e3d365e6541136c268df43a2f4e2793c87b9cc41eb86b147b76fe2941bbbc290",
+      "membership_sha256": "a0cd864c62da02633ab57b89ac9e4caae486a8c3d80ab5d9f0d6d46e732c1fa2",
       "membership_visibility": "PRIVATE_COMMITMENT_ONLY",
       "paper_eligible": false,
       "public_payload": false,
@@ -378,7 +378,7 @@
       "source": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
       "source_exists": true,
       "source_kind": "public_commitment_manifest",
-      "source_sha256": "09d42c22c516eb7a8fa1ef248f3fa7c072de8589c7847b7181018b956fbfa569",
+      "source_sha256": "b5cc363d22b34c80cd0af6722cea8f19ce408f6a78bc354d59894a1d19042990",
       "status": "HUMAN_INPUT_REQUIRED",
       "unique_base_task_count": 60
     },

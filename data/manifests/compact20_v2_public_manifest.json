@@ -1,0 +1,20 @@
+{
+  "balance_report_sha256": "08a35fd2248575a04ed6b4df18ec95d9b9e74a835ea77dc01423ba90e6a6cd97",
+  "candidate_count": 20,
+  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+  "constraint_satisfaction_receipt": "6712054b51b5f9efed9b12a953ceba61af53a3db4ae87f44e37d09c678c40bdc",
+  "deterministic_seed": 20260801,
+  "generator_version": "cab_compact20_selector_v2.0.0",
+  "human_validation_state": "HUMAN_INPUT_REQUIRED",
+  "instances_sha256": "eeb74b0c49a2ca0719d1fa38a52dd2a748afc734488f146a79f2c4124aebe691",
+  "prior_commitments_invalidated": [
+    "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+    "0c02bfe5083c9fc34be59826c8c01896c105da5e6c86752faa35b21db8062bce",
+    "8c7ae2b0987e8eff9b6e827b188b3acbacd7ee2a3b92e2189c662f888e52cfd8"
+  ],
+  "rejected_candidates_sha256": "82905d48878859cd2b4eae3f9ad0d72db5730ef0bd42a922e0a30930f0bdc645",
+  "schema_version": "cab_compact20_v2_public_commitment_v1",
+  "scientific_evidence": false,
+  "study_id": "compact20_v2",
+  "unique_base_task_count": 16
+}

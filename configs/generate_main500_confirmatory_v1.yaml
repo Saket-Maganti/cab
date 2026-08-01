@@ -42,3 +42,4 @@ heldout_split_size: 50
 human_audit_sample_size: 200
 output_dir: data/processed/main500_confirmatory_v1_candidate
 allow_paid_calls: false
+# SUPERSEDED: Main-500 v1 is historical/contaminated and cannot be executed scientifically.

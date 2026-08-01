@@ -1,0 +1,26 @@
+{
+  "candidate_count": 20,
+  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+  "candidate_slice_hash": "98ea5ddcab12e71db683a9e27011498199e6dae3c918d91c008ae46952096381",
+  "file_hashes": {
+    "REVIEWER_QUALIFICATION_EXAMPLES.md": "63bff4e84db36aef36025942b86acb5f2ec9069bfeff97005e7508a55bc511c5",
+    "adjudication.csv": "2221d166ad3823a38347fd415ba64b0fca8a54f49fa9e3c6b7bf24a6e6c63bb3",
+    "blinded_order_adjudicator.json": "e58e142a7fb5c8f3a3c7797a1a817d39dd712dd990fd95833b9d95f0209b51e6",
+    "blinded_order_reviewer_a.json": "5a0601d9c3cb806681ea7c5bb6d386d4f01be02d46ff259fa1dc9a05dec1d29c",
+    "blinded_order_reviewer_b.json": "37b59487be8fa2c3c9cee4fb155f3a7cf0d7fb590280f5e0586ba8835133d56c",
+    "c10_prerequisites.json": "dab629090b02d7a7dc3ec829fdab48cef782661d96a5385ab1c4eedcfaec4110",
+    "manipulation_checks.json": "860c526298b1eac9d872aa93f003c6d030b2073f03998f9b462fed1433f4ea9d",
+    "review_items.jsonl": "088ae2cd7a578d542fe4f8143dbf7059bfcb529ed9ca049ee3c4a7c6f1c36811",
+    "review_judgments.csv": "ff3a0730e758a0c5dc6706d19269ba94e19051cccfa1cb2d234e13a28f287f79",
+    "review_session.json": "563f2edf0e8e6273b694e6437d85fbd85a959aa8a335e74c0ba4dbb7fd5bf132",
+    "reviewer_instructions.md": "7268ccd0cfbbb8d324aaeeda6edafaaa92bc12d49505f379a06bc28cfcba73d0",
+    "reviewer_registry.csv": "28f02c170332086b7a571e06e26c5c5a0ff380aa8b6a49544269dd258a922279"
+  },
+  "genuine_human_review_rows": 0,
+  "human_validation_state": "HUMAN_INPUT_REQUIRED",
+  "packet_manifest_sha256": "8a1d28dbb273813c62695aed6a85941f2bd236614c5a72de4fa50b4c630a9f7a",
+  "prior_packet_invalidated": true,
+  "prior_packet_manifest_sha256": "0c02bfe5083c9fc34be59826c8c01896c105da5e6c86752faa35b21db8062bce",
+  "schema_version": "cab_c10_packet_public_commitment_v2",
+  "scientific_evidence": false
+}

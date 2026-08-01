@@ -42,3 +42,5 @@ heldout_split_size: 0
 human_audit_sample_size: 100
 output_dir: data/processed/scale100_confirmatory_v1_candidate
 allow_paid_calls: false
+# SUPERSEDED: public v1 material is permanently ineligible for scientific execution.
+# Canonical path: protected Scale-100 v2 -> genuine review/C10 -> approved bundle.

@@ -71,7 +71,8 @@ SPECS = (
         live_config="configs/compact20_3model_LOCAL_TEMPLATE_NOT_APPROVED.yaml",
         exact_inputs=(
             "configs/compact20_3model_LOCAL_TEMPLATE_NOT_APPROVED.yaml",
-            "data/compact20_reviewed/compact20_validated_or_blocked_manifest.json",
+            "data/manifests/compact20_v2_public_manifest.json",
+            "data/manifests/compact20_review_packet_v2_public_commitment.json",
             "CAB_LOCAL_MODEL_SNAPSHOT (environment-only directory setting)",
         ),
         exact_live_outputs=(
@@ -90,10 +91,11 @@ SPECS = (
             "gates, with deterministic shards, checkpointing, and a single-GPU fallback."
         ),
         live_kind="runner",
-        live_config="configs/5model_100task_TEMPLATE_NOT_APPROVED.yaml",
+        live_config="configs/iclr/scale100_v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml",
         exact_inputs=(
-            "configs/5model_100task_TEMPLATE_NOT_APPROVED.yaml",
-            "data/processed/main_v0_1_500/pilot_100_instances.jsonl",
+            "configs/iclr/scale100_v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml",
+            "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+            "CAB_APPROVED_SCALE100_BUNDLE (environment-only approved materialization)",
             "CAB_LOCAL_MODEL_SNAPSHOT (environment-only directory setting)",
         ),
         exact_live_outputs=(
@@ -106,25 +108,19 @@ SPECS = (
     ),
     NotebookSpec(
         stem="CAB_T4X2_04_MAIN500_OPEN_MODEL_RUNNER",
-        title="CAB T4x2 04 - Main-500 Open-Model Runner",
+        title="CAB T4x2 04 - Main-500 Historical Placeholder (Superseded)",
         purpose=(
-            "Prepare a gated Main-500 open-model chunk with a resumable multi-session layout, "
-            "strict per-worker isolation, and merge-before-score discipline."
+            "Preserve notebook numbering while explicitly disabling the obsolete Main-500 "
+            "scientific path. No live runner or result artifact is available here."
         ),
-        live_kind="runner",
-        live_config="configs/main_500_multi_provider_TEMPLATE_NOT_APPROVED.yaml",
+        live_kind="none",
+        live_config=None,
         exact_inputs=(
-            "configs/main_500_multi_provider_TEMPLATE_NOT_APPROVED.yaml",
-            "data/processed/main_v0_1_500/instances.jsonl",
-            "CAB_LOCAL_MODEL_SNAPSHOT (environment-only directory setting)",
+            "CURRENT_PROJECT_STATE.md",
         ),
-        exact_live_outputs=(
-            "live_batch/batch_manifest.json",
-            "live_batch/shards/worker-specific run directories",
-            "live_batch/merged/run (unscored; audit required)",
-            "live_batch/live_integrity_manifest.json",
-        ),
-        requires_model_snapshot=True,
+        exact_live_outputs=(),
+        requires_model_snapshot=False,
+        supports_real_artifacts=False,
     ),
     NotebookSpec(
         stem="CAB_T4X2_05_BASELINES_AND_ABLATIONS",
@@ -199,16 +195,17 @@ SPECS = (
     ),
     NotebookSpec(
         stem="CAB_T4X2_08_NATURALISTIC_TRANSFER_RUNNER",
-        title="CAB T4x2 08 - Naturalistic Transfer Runner",
+        title="CAB T4x2 08 - Artifact-Rich Synthetic Transfer Runner",
         purpose=(
-            "Prepare a gated naturalistic-transfer open-model batch only after the authored "
-            "slice, provenance, licenses, human review, and execution approval are complete."
+            "Prepare the artifact-rich synthetic transfer batch only after materialized-file "
+            "hashes, exact gold derivation, human review, and execution approval pass."
         ),
         live_kind="runner",
-        live_config="configs/naturalistic_ministudy_TEMPLATE_NOT_APPROVED.yaml",
+        live_config="configs/iclr/artifact_rich_transfer_v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml",
         exact_inputs=(
-            "configs/naturalistic_ministudy_TEMPLATE_NOT_APPROVED.yaml",
-            "data/naturalistic_ministudy/license_and_source_log.md",
+            "configs/iclr/artifact_rich_transfer_v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml",
+            "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+            "CAB_APPROVED_TRANSFER_BUNDLE (environment-only approved materialization)",
             "CAB_LOCAL_MODEL_SNAPSHOT (environment-only directory setting)",
         ),
         exact_live_outputs=(

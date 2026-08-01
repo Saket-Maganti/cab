@@ -21,7 +21,19 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
+from causal_agent_bench.analysis.assignment_balance import (
+    ASSIGNMENT_DESIGN_VERSION,
+    assignment_balance_diagnostics,
+    constrained_rotation_assignments,
+)
 from causal_agent_bench.answer_contracts import AnswerContract
+from causal_agent_bench.generation.transfer_artifacts import (
+    STUDY_NAME as TRANSFER_STUDY_NAME,
+)
+from causal_agent_bench.generation.transfer_artifacts import (
+    aggregate_artifact_inventory,
+    materialize_transfer_bundle,
+)
 from causal_agent_bench.safety.iclr_dataset_audit import (
     INTERVENTION_FAMILIES,
     diversity_audit,
@@ -57,6 +69,11 @@ MANIPULATION_CHECKS = {
     "distractor_evidence": "a plausible irrelevant artifact is present beside decisive evidence",
 }
 
+PRIOR_PUBLIC_MANIFEST_SHA256 = {
+    "scale100_confirmatory_v2": "58419ef66881ffeccbfd15b59961b91dc562d3cdc460f02e3248db2293a95e91",
+    "naturalistic_transfer_v2": "09d42c22c516eb7a8fa1ef248f3fa7c072de8589c7847b7181018b956fbfa569",
+}
+
 
 def initialize_private_seed(path: Path) -> Path:
     """Create a private seed once; refuse overwrite."""
@@ -87,10 +104,31 @@ def materialize(
         raise ValueError("private seed must contain at least 32 characters")
     tasks = packet["tasks"]
     _validate_authoring(packet)
+    family_order = list(MANIPULATION_CHECKS)
+    assignments = constrained_rotation_assignments(
+        tasks,
+        family_order,
+        block_size=5,
+    )
+    assignment_balance = assignment_balance_diagnostics(
+        tasks,
+        assignments,
+        families=family_order,
+    )
+    if not assignment_balance["passed"]:
+        failed = sorted(
+            key
+            for key, value in assignment_balance["checks"].items()
+            if not value
+        )
+        raise ValueError(f"confirmatory assignment balance failed: {failed}")
 
     private_output.mkdir(parents=True, exist_ok=True)
     materialized: list[dict[str, Any]] = []
-    for index, authored in enumerate(tasks):
+    artifact_bundles: list[dict[str, Any]] = []
+    for index, (authored, assigned_families) in enumerate(
+        zip(tasks, assignments, strict=True)
+    ):
         private_id = _private_id(
             seed,
             str(packet["split_role"]),
@@ -102,7 +140,47 @@ def materialize(
             task_id=private_id,
             split_role=str(packet["split_role"]),
             dataset_id=str(packet["dataset_id"]),
+            families=assigned_families,
+            block_index=index,
         )
+        if str(packet["dataset_id"]) == "naturalistic_transfer_v2":
+            bundle_relative = Path("artifacts") / private_id
+            bundle = materialize_transfer_bundle(
+                task,
+                private_output / bundle_relative,
+            )
+            task["artifact_spec"].update(
+                {
+                    "artifact_class": "artifact_rich_synthetic",
+                    "files": [
+                        (bundle_relative / relative).as_posix()
+                        for relative in bundle["clean_relative_files"]
+                    ],
+                    "artifact_manifest": (
+                        bundle_relative / "artifact_manifest.json"
+                    ).as_posix(),
+                    "artifact_manifest_sha256": bundle["manifest_sha256"],
+                    "bundle_root_sha256": bundle["bundle_root_sha256"],
+                    "gold_derivation_parser": "parse_transfer_bundle",
+                }
+            )
+            task["metadata"].update(
+                {
+                    "study_name": TRANSFER_STUDY_NAME,
+                    "task_style": "artifact_rich_synthetic",
+                    "real_world_origin_claimed": False,
+                    "human_review_state": (
+                        "HUMAN_INPUT_REQUIRED_AFTER_MATERIALIZATION"
+                    ),
+                }
+            )
+            artifact_bundles.append(
+                {
+                    **bundle,
+                    "task_id": private_id,
+                    "bundle_path": bundle_relative.as_posix(),
+                }
+            )
         task["metadata"]["content_hash"] = _content_hash(task)
         materialized.append(task)
 
@@ -112,6 +190,45 @@ def materialize(
     _write_review_items(review_items_path, materialized)
     review_csv_path = private_output / "human_review_judgments.csv"
     _write_blank_review_csv(review_csv_path, materialized)
+    assignment_balance_path = private_output / "assignment_balance.json"
+    assignment_balance_path.write_text(
+        json.dumps(assignment_balance, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    artifact_inventory_public = (
+        aggregate_artifact_inventory(artifact_bundles)
+        if str(packet["dataset_id"]) == "naturalistic_transfer_v2"
+        else {
+            "schema_version": "cab_transfer_artifact_inventory_v1",
+            "study_name": str(packet["dataset_id"]),
+            "artifact_class": "not_applicable",
+            "bundle_count": 0,
+            "artifact_file_count": 0,
+            "format_counts": {},
+            "all_gold_derivations_match": True,
+            "real_world_origin_claimed": False,
+            "human_review_state": "HUMAN_INPUT_REQUIRED",
+        }
+    )
+    artifact_inventory = {
+        **artifact_inventory_public,
+        "applicable": str(packet["dataset_id"]) == "naturalistic_transfer_v2",
+        "bundles": [
+            {
+                "task_id": bundle["task_id"],
+                "bundle_path": bundle["bundle_path"],
+                "manifest_sha256": bundle["manifest_sha256"],
+                "bundle_root_sha256": bundle["bundle_root_sha256"],
+                "clean_relative_files": bundle["clean_relative_files"],
+            }
+            for bundle in artifact_bundles
+        ],
+    }
+    artifact_inventory_path = private_output / "artifact_inventory.json"
+    artifact_inventory_path.write_text(
+        json.dumps(artifact_inventory, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     diversity = diversity_audit(
         materialized,
@@ -134,7 +251,7 @@ def materialize(
         )
 
     private_manifest = {
-        "schema_version": "cab_private_candidate_manifest_v1",
+        "schema_version": "cab_private_candidate_manifest_v2",
         "dataset_id": packet["dataset_id"],
         "split_role": packet["split_role"],
         "task_count": len(materialized),
@@ -143,6 +260,11 @@ def materialize(
         "candidate_sha256": _sha256_file(candidate_path),
         "review_items_sha256": _sha256_file(review_items_path),
         "review_csv_sha256": _sha256_file(review_csv_path),
+        "assignment_balance_sha256": _sha256_file(assignment_balance_path),
+        "assignment_design_version": ASSIGNMENT_DESIGN_VERSION,
+        "assignment_receipt": assignment_balance["deterministic_receipt"],
+        "artifact_inventory_sha256": _sha256_file(artifact_inventory_path),
+        "artifact_bundle_count": artifact_inventory_public["bundle_count"],
         "human_validation_state": "HUMAN_INPUT_REQUIRED",
         "scientific_execution_allowed": False,
         "paper_eligible": False,
@@ -160,6 +282,8 @@ def materialize(
             candidate_path,
             review_items_path,
             review_csv_path,
+            assignment_balance_path,
+            artifact_inventory_path,
             private_manifest_path,
         ],
         diversity=diversity,
@@ -170,6 +294,26 @@ def materialize(
     public_manifest["split_role"] = packet["split_role"]
     public_manifest["candidate_materialized"] = True
     public_manifest["review_packet_materialized"] = True
+    public_manifest["assignment_design"] = assignment_balance
+    public_manifest["superseded_public_manifest_sha256"] = (
+        PRIOR_PUBLIC_MANIFEST_SHA256.get(str(packet["dataset_id"]))
+    )
+    public_manifest["assignment_regeneration_reason"] = (
+        "Removed family-by-difficulty confounding with a preregistered "
+        "domain-clustered constrained rotation."
+    )
+    public_manifest["canonical_study_name"] = (
+        TRANSFER_STUDY_NAME
+        if str(packet["dataset_id"]) == "naturalistic_transfer_v2"
+        else str(packet["dataset_id"])
+    )
+    public_manifest["artifact_materialization"] = artifact_inventory_public
+    public_manifest["claim_scope"] = (
+        "artifact-rich synthetic transfer only; no real-world-origin or "
+        "unqualified naturalistic claim"
+        if str(packet["dataset_id"]) == "naturalistic_transfer_v2"
+        else "controlled synthetic confirmatory candidate"
+    )
     intervention_count = sum(
         len(task["intervention_mapping"]) for task in materialized
     )
@@ -335,11 +479,19 @@ def _materialized_task(
     task_id: str,
     split_role: str,
     dataset_id: str,
+    families: list[str],
+    block_index: int,
 ) -> dict[str, Any]:
-    families = [str(value) for value in authored["intervention_families"]]
     interventions = [
         {
             "family": family,
+            "assignment": {
+                "design_version": ASSIGNMENT_DESIGN_VERSION,
+                "block_index": block_index,
+                "within_block_position": position,
+                "task_cluster": str(authored["domain"]),
+                "repeated_intervention_explicit": True,
+            },
             "manipulation_check": {
                 "check_id": f"{family}.deterministic.v1",
                 "criterion": MANIPULATION_CHECKS[family],
@@ -347,7 +499,7 @@ def _materialized_task(
             },
             "expected_robust_behavior": _expected_behavior(family),
         }
-        for family in families
+        for position, family in enumerate(families)
     ]
     tools = [str(value) for value in authored["tools"]]
     return {

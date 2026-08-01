@@ -38,3 +38,4 @@ heldout_split_size: 0
 human_audit_sample_size: 100
 output_dir: data/processed/main_v0_1_500
 allow_paid_calls: false
+# SUPERSEDED FOR SCIENTIFIC EXECUTION: retain only as public historical material.
