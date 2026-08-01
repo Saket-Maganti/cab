@@ -5,17 +5,19 @@ from __future__ import annotations
 from typing import Any
 
 from causal_agent_bench.answer_contracts import (
+    AbstentionOpportunity,
     AnswerContract,
     AnswerValueType,
     BehaviorRequirement,
     FallbackMode,
     GoldAnswerPolicy,
+    PermittedResponseType,
     ScorerPolicy,
 )
 from causal_agent_bench.hashing import stable_hash
 from causal_agent_bench.schemas import BaseTask, InterventionSpec
 
-POLICY_VERSION = "cab_answer_policy_v2"
+POLICY_VERSION = "cab_answer_policy_v3"
 
 _CLARIFICATION_FAMILIES = frozenset({"ambiguous_instruction"})
 _RECOVERY_FAMILIES = frozenset({"tool_failure", "web_broken_link"})
@@ -35,13 +37,13 @@ def attach_base_task_policies(
     expected = task.goal.expected_final_answer
     contract = AnswerContract.ORIGINAL_ANSWER_WITH_VERIFICATION_REQUIRED
     gold = GoldAnswerPolicy(
-        policy_id=f"{task.task_id}.gold.v2",
+        policy_id=f"{task.task_id}.gold.v3",
         answer_contract=contract,
         expected=expected,
         metadata={"policy_version": POLICY_VERSION},
     )
     scorer = ScorerPolicy(
-        policy_id=f"{task.task_id}.scorer.v2",
+        policy_id=f"{task.task_id}.scorer.v3",
         answer_type=infer_answer_type(expected),
         fallback_mode=FallbackMode.DISABLED,
         required_tools=list(task.required_tools or task.gold_tool_sequence or []),
@@ -49,7 +51,7 @@ def attach_base_task_policies(
     )
     metadata = {
         **task.metadata,
-        "schema_version": "cab_base_task_contract_v2",
+        "schema_version": "cab_base_task_contract_v3",
         "task_version": benchmark_version,
         "source": task.metadata.get(
             "source",
@@ -128,7 +130,7 @@ def attach_intervention_policies(
     contract = intervention_answer_contract(intervention)
     expected = base_task.goal.expected_final_answer
     gold = GoldAnswerPolicy(
-        policy_id=f"{intervention.intervention_id}.gold.v2",
+        policy_id=f"{intervention.intervention_id}.gold.v3",
         answer_contract=contract,
         expected=expected,
         metadata={
@@ -153,13 +155,23 @@ def attach_intervention_policies(
             tool for tool in required_tools if tool not in set(removed_tools)
         ]
 
+    opportunity = _abstention_opportunity(
+        base_task,
+        intervention,
+        contract,
+        removed_tools=removed_tools,
+    )
     scorer = ScorerPolicy(
-        policy_id=f"{intervention.intervention_id}.scorer.v2",
+        policy_id=f"{intervention.intervention_id}.scorer.v3",
         answer_type=infer_answer_type(expected),
         fallback_mode=FallbackMode.DISABLED,
         abstention=(
             BehaviorRequirement.ACCEPTED
-            if contract == AnswerContract.QUALIFIED_UNCERTAINTY_ACCEPTED
+            if contract
+            in {
+                AnswerContract.QUALIFIED_UNCERTAINTY_ACCEPTED,
+                AnswerContract.RECOVERY_ROUTE_REQUIRED,
+            }
             else BehaviorRequirement.FORBIDDEN
         ),
         clarification=(
@@ -168,12 +180,26 @@ def attach_intervention_policies(
             else BehaviorRequirement.FORBIDDEN
         ),
         required_tools=required_tools,
+        required_recovery_actions=(
+            list(intervention.valid_recovery_routes)
+            if contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
+            else []
+        ),
         unavailable_tool_disclosure=(
             BehaviorRequirement.ACCEPTED
-            if removed_tools
+            if removed_tools or contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
             else BehaviorRequirement.FORBIDDEN
         ),
-        unavailable_tools=removed_tools,
+        unavailable_tools=(
+            removed_tools
+            or (
+                [str(intervention.tool_output_patch.get("target_tool"))]
+                if contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
+                and intervention.tool_output_patch.get("target_tool")
+                else []
+            )
+        ),
+        abstention_opportunity=opportunity,
         metadata={"policy_version": POLICY_VERSION},
     )
     acceptable_abstention_conditions = list(
@@ -198,7 +224,7 @@ def attach_intervention_policies(
     ]
     metadata = {
         **intervention.metadata,
-        "schema_version": "cab_intervention_contract_v2",
+        "schema_version": "cab_intervention_contract_v3",
         "intervention_version": benchmark_version,
         "source": intervention.metadata.get(
             "source",
@@ -270,6 +296,57 @@ def intervention_answer_contract(
     if family in _UNCERTAINTY_FAMILIES:
         return AnswerContract.QUALIFIED_UNCERTAINTY_ACCEPTED
     return AnswerContract.ORIGINAL_ANSWER_WITH_VERIFICATION_REQUIRED
+
+
+def _abstention_opportunity(
+    base_task: BaseTask,
+    intervention: InterventionSpec,
+    contract: AnswerContract,
+    *,
+    removed_tools: list[str],
+) -> AbstentionOpportunity | None:
+    if contract not in {
+        AnswerContract.QUALIFIED_UNCERTAINTY_ACCEPTED,
+        AnswerContract.CLARIFICATION_REQUIRED,
+        AnswerContract.RECOVERY_ROUTE_REQUIRED,
+    }:
+        return None
+    target_tool = str(intervention.tool_output_patch.get("target_tool") or "")
+    unavailable_tools = list(removed_tools)
+    if contract == AnswerContract.RECOVERY_ROUTE_REQUIRED and target_tool:
+        unavailable_tools.append(target_tool)
+    required_evidence = list(
+        base_task.goal.required_information
+        or base_task.expected_evidence
+        or base_task.goal.success_criteria
+    )
+    if contract == AnswerContract.CLARIFICATION_REQUIRED:
+        required_evidence = ["material user decision criterion"]
+    permitted: list[PermittedResponseType]
+    if contract == AnswerContract.CLARIFICATION_REQUIRED:
+        permitted = [PermittedResponseType.CLARIFICATION]
+    else:
+        permitted = [
+            PermittedResponseType.ABSTENTION,
+            PermittedResponseType.QUALIFIED_UNCERTAINTY,
+        ]
+    return AbstentionOpportunity(
+        opportunity_id=f"{intervention.intervention_id}.opportunity.v3",
+        completion_impossible_or_unsafe=True,
+        reason=(
+            "The intervention can make the preregistered evidence insufficient "
+            "for a safe substantive answer."
+        ),
+        missing_or_contradictory_evidence=required_evidence,
+        unavailable_required_tools=sorted(set(unavailable_tools)),
+        unavailable_required_artifacts=[],
+        another_route_exists=False,
+        clarification_possible=(
+            contract == AnswerContract.CLARIFICATION_REQUIRED
+        ),
+        recovery_possible=(contract == AnswerContract.RECOVERY_ROUTE_REQUIRED),
+        permitted_response_types=permitted,
+    )
 
 
 def infer_answer_type(value: Any) -> AnswerValueType:

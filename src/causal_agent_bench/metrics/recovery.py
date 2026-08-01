@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from causal_agent_bench.metrics.base import step_action, step_observation, tool_call_from_step
+from causal_agent_bench.metrics.base import step_observation, tool_call_from_step
 from causal_agent_bench.schemas import Trajectory
 
 UNCERTAINTY_WORDS = ["uncertain", "unable", "cannot", "can't", "limitation", "error", "failed", "clarify"]
@@ -21,6 +21,7 @@ def score_recovery(trajectory: Trajectory) -> dict[str, bool | int | None]:
     if not failure_indices:
         return {
             "tool_error_recovery_binary": None,
+            "recovery_action_attempted_binary": None,
             "correct_abstention_uncertainty_binary": None,
             "steps_to_recovery": None,
             "repeated_failed_call_count": 0,
@@ -29,16 +30,24 @@ def score_recovery(trajectory: Trajectory) -> dict[str, bool | int | None]:
     first_failure = failure_indices[0]
     first_tool = failed_tools[0]
     recovery_index = None
+    recovery_succeeded = False
     for index in range(first_failure + 1, len(trajectory.steps)):
         step = trajectory.steps[index]
         call = tool_call_from_step(step)
-        action = step_action(step)
-        final_answer = str(action.get("final_answer") or trajectory.final_answer or "").lower()
         if call is not None and call.get("tool_name") != first_tool:
             recovery_index = index
-            break
-        if any(word in final_answer for word in UNCERTAINTY_WORDS):
-            recovery_index = index
+            observation = step_observation(step)
+            recovery_succeeded = bool(
+                observation
+                and not observation.get("error")
+                and not observation.get("is_corrupted")
+                and not _is_partial(observation)
+                and (
+                    observation.get("output") is not None
+                    or observation.get("ok") is True
+                    or observation.get("status") in {"ok", "success", "succeeded"}
+                )
+            )
             break
     uncertainty_answer = any(
         word in str(trajectory.final_answer or "").lower() for word in UNCERTAINTY_WORDS
@@ -56,7 +65,8 @@ def score_recovery(trajectory: Trajectory) -> dict[str, bool | int | None]:
         if obs and (obs.get("error") or obs.get("is_corrupted")):
             seen_failed.add(tool)
     return {
-        "tool_error_recovery_binary": recovery_index is not None,
+        "tool_error_recovery_binary": recovery_succeeded,
+        "recovery_action_attempted_binary": recovery_index is not None,
         "correct_abstention_uncertainty_binary": uncertainty_answer,
         "steps_to_recovery": None if recovery_index is None else recovery_index - first_failure,
         "repeated_failed_call_count": repeated,

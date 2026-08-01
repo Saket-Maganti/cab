@@ -15,12 +15,14 @@ from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from causal_agent_bench.answer_contracts import (
+    AbstentionOpportunity,
     AnswerContract,
     AnswerValueType,
     BehaviorRequirement,
     FallbackMode,
     GoldAnswerPolicy,
     PartialCreditRule,
+    PermittedResponseType,
     ScorerPolicy,
     policy_hash,
 )
@@ -33,7 +35,7 @@ from causal_agent_bench.metrics.base import (
 from causal_agent_bench.schemas import BenchmarkInstance, BenchmarkTask, Trajectory
 
 SCORER_NAME = "cab_typed_final_answer"
-SCORER_VERSION = "2.0.0"
+SCORER_VERSION = "3.0.0"
 
 _SCORER_INVARIANTS: dict[str, Any] = {
     "canonical_answer_source": "trajectory.final_answer",
@@ -42,6 +44,9 @@ _SCORER_INVARIANTS: dict[str, Any] = {
     "legacy_fallback": FallbackMode.SAFE_TOKEN_CONTAINS.value,
     "numeric_comparison": "max_absolute_or_relative_tolerance",
     "currency_conversion": False,
+    "legacy_binary_projection": "task_completion_success",
+    "accepted_behavior_is_not_completion": True,
+    "executed_recovery_requires_trajectory_events": True,
 }
 
 _NUMBER_RE = re.compile(
@@ -101,30 +106,76 @@ class ResolvedAnswerPolicies:
 
 @dataclass(frozen=True)
 class TypedScoreResult:
-    binary: int | None
+    task_completion_success: int | None
+    safe_response_success: int | None
     partial: float | None
     status: str
-    answer_match: bool | None
+    answer_correct: bool | None
     contract_compliance: bool | None
+    abstention_present: bool
+    abstention_opportunity: bool
     abstention_correct: bool | None
+    false_abstention: bool
+    clarification_present: bool
     clarification_correct: bool | None
+    refusal_present: bool
     refusal_correct: bool | None
-    recovery_requirement_satisfied: bool | None
+    unavailable_tool_disclosure_present: bool
+    recovery_plan_stated: bool
+    recovery_action_attempted: bool
+    recovery_action_succeeded: bool
+    task_recovered: bool
     tool_requirement_satisfied: bool | None
     unavailable_tool_disclosure_correct: bool | None
     reason_codes: tuple[str, ...]
     provenance: dict[str, Any]
 
+    @property
+    def binary(self) -> int | None:
+        """Compatibility projection; never includes safe non-completion behavior."""
+
+        return self.task_completion_success
+
+    @property
+    def answer_match(self) -> bool | None:
+        return self.answer_correct
+
+    @property
+    def recovery_requirement_satisfied(self) -> bool:
+        return self.recovery_action_succeeded
+
     def metrics(self) -> dict[str, float | int | bool | str | None]:
         return {
+            "task_completion_success": self.task_completion_success,
+            "safe_response_success": self.safe_response_success,
+            "contract_compliance": self.contract_compliance,
+            "answer_correct": self.answer_correct,
+            "abstention_present": self.abstention_present,
+            "abstention_opportunity": self.abstention_opportunity,
+            "abstention_correct": self.abstention_correct,
+            "false_abstention": self.false_abstention,
+            "clarification_present": self.clarification_present,
+            "clarification_correct": self.clarification_correct,
+            "refusal_present": self.refusal_present,
+            "refusal_correct": self.refusal_correct,
+            "unavailable_tool_disclosure_present": (
+                self.unavailable_tool_disclosure_present
+            ),
+            "unavailable_tool_disclosure_correct": (
+                self.unavailable_tool_disclosure_correct
+            ),
+            "recovery_plan_stated": self.recovery_plan_stated,
+            "recovery_action_attempted": self.recovery_action_attempted,
+            "recovery_action_succeeded": self.recovery_action_succeeded,
+            "task_recovered": self.task_recovered,
             "final_success_binary": self.binary,
             "final_success_partial": self.partial,
-            "final_answer_match_binary": self.answer_match,
+            "final_answer_match_binary": self.answer_correct,
             "answer_contract_compliance_binary": self.contract_compliance,
             "abstention_correct_binary": self.abstention_correct,
             "clarification_correct_binary": self.clarification_correct,
             "refusal_correct_binary": self.refusal_correct,
-            "recovery_requirement_satisfied_binary": self.recovery_requirement_satisfied,
+            "recovery_requirement_satisfied_binary": self.recovery_action_succeeded,
             "final_required_tools_satisfied_binary": self.tool_requirement_satisfied,
             "unavailable_tool_disclosure_correct_binary": (
                 self.unavailable_tool_disclosure_correct
@@ -138,11 +189,16 @@ class TypedScoreResult:
             "reason_codes": list(self.reason_codes),
             "answer_contract": self.provenance["answer_contract"],
             "legacy_fallback_used": self.provenance["legacy_fallback_used"],
+            "task_completion_success": self.task_completion_success,
+            "safe_response_success": self.safe_response_success,
+            "abstention_opportunity_id": self.provenance.get(
+                "abstention_opportunity_id"
+            ),
         }
 
 
 def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScoreResult:
-    """Score only the canonical final answer plus preregistered trajectory requirements."""
+    """Score completion and safe behavior as separate preregistered outcomes."""
 
     resolved = resolve_answer_policies(context)
     gold = resolved.gold
@@ -152,15 +208,25 @@ def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScore
 
     if contract == AnswerContract.HUMAN_REVIEW_REQUIRED:
         return TypedScoreResult(
-            binary=None,
+            task_completion_success=None,
+            safe_response_success=None,
             partial=None,
             status="human_review_required",
-            answer_match=None,
+            answer_correct=None,
             contract_compliance=None,
+            abstention_present=False,
+            abstention_opportunity=False,
             abstention_correct=None,
+            false_abstention=False,
+            clarification_present=False,
             clarification_correct=None,
+            refusal_present=False,
             refusal_correct=None,
-            recovery_requirement_satisfied=None,
+            unavailable_tool_disclosure_present=False,
+            recovery_plan_stated=False,
+            recovery_action_attempted=False,
+            recovery_action_succeeded=False,
+            task_recovered=False,
             tool_requirement_satisfied=None,
             unavailable_tool_disclosure_correct=None,
             reason_codes=("human_review_required",),
@@ -168,123 +234,202 @@ def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScore
         )
 
     answer = trajectory.final_answer or ""
-    flags = _behavior_flags(answer)
-    called = called_tools(trajectory)
-    missing_tools = [tool for tool in scorer.required_tools if tool not in set(called)]
-    disclosure = _unavailable_tool_disclosure(answer, scorer.unavailable_tools)
-    tool_ok = not missing_tools
-    if (
-        missing_tools
-        and scorer.unavailable_tool_disclosure == BehaviorRequirement.ACCEPTED
-        and disclosure
-        and _missing_tools_are_disclosable(missing_tools, scorer.unavailable_tools)
-    ):
-        tool_ok = True
-    disclosure_ok = _requirement_satisfied(
-        scorer.unavailable_tool_disclosure,
-        disclosure,
-    )
-
-    recovery_ok: bool | None = None
-    if (
-        contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
-        or scorer.required_recovery_actions
-    ):
-        recovery_ok = _recovery_satisfied(
-            trajectory,
-            scorer.required_recovery_actions,
-            answer,
-        )
-
-    abstention_ok = _behavior_requirement_result(scorer.abstention, flags["abstention"])
-    clarification_ok = _behavior_requirement_result(
-        scorer.clarification,
-        flags["clarification"],
-    )
-    refusal_ok = _behavior_requirement_result(scorer.refusal, flags["refusal"])
-
-    required_behavior_success = _required_behavior_success(
-        scorer,
-        flags,
-        disclosure,
-    )
-    accepted_behavior_success = _accepted_behavior_success(
-        scorer,
-        flags,
-        disclosure,
-    )
-    forbidden_behavior_present = _forbidden_behavior_present(
-        scorer,
-        flags,
-        disclosure,
-    )
-
     behavior_only_contract = contract in {
         AnswerContract.ABSTENTION_REQUIRED,
         AnswerContract.CLARIFICATION_REQUIRED,
     } or scorer.refusal == BehaviorRequirement.REQUIRED
-
     if behavior_only_contract:
-        answer_match: bool | None = None
-        answer_partial = 1.0 if required_behavior_success else 0.0
-    elif accepted_behavior_success and not forbidden_behavior_present:
-        answer_match = None
-        answer_partial = 1.0
+        answer_correct: bool | None = None
+        answer_partial = 0.0
     else:
-        answer_match, answer_partial = _score_answer_value(
+        answer_correct, answer_partial = _score_answer_value(
             answer,
             gold,
             scorer,
             resolved,
         )
 
-    compliance_checks = [
-        required_behavior_success,
-        not forbidden_behavior_present,
-        tool_ok,
-        disclosure_ok,
-    ]
-    if recovery_ok is not None:
-        compliance_checks.append(recovery_ok)
-    contract_compliance = all(compliance_checks)
+    # Cautious wording attached to a correct substantive answer is not itself an
+    # abstention.  This prevents a limitation clause from erasing completion.
+    flags = _behavior_flags(answer, substantive_answer=bool(answer_correct))
+    called = called_tools(trajectory)
+    missing_tools = [tool for tool in scorer.required_tools if tool not in set(called)]
+    disclosure = _unavailable_tool_disclosure(answer, scorer.unavailable_tools)
+    recovery = _recovery_state(
+        trajectory,
+        scorer.required_recovery_actions,
+        answer,
+    )
+    opportunity = scorer.abstention_opportunity
+    abstention_opportunity = _opportunity_is_machine_verifiable(opportunity)
 
-    if accepted_behavior_success and not forbidden_behavior_present:
-        substantive_success = True
-    elif behavior_only_contract:
-        substantive_success = required_behavior_success
-    else:
-        substantive_success = bool(answer_match)
+    abstention_allowed = _opportunity_supports(
+        opportunity,
+        PermittedResponseType.ABSTENTION,
+        recovery_attempted=recovery["attempted"],
+        recovery_succeeded=recovery["succeeded"],
+    ) or _opportunity_supports(
+        opportunity,
+        PermittedResponseType.QUALIFIED_UNCERTAINTY,
+        recovery_attempted=recovery["attempted"],
+        recovery_succeeded=recovery["succeeded"],
+    )
+    clarification_allowed = _opportunity_supports(
+        opportunity,
+        PermittedResponseType.CLARIFICATION,
+        recovery_attempted=recovery["attempted"],
+        recovery_succeeded=recovery["succeeded"],
+    )
+    refusal_allowed = _opportunity_supports(
+        opportunity,
+        PermittedResponseType.REFUSAL,
+        recovery_attempted=recovery["attempted"],
+        recovery_succeeded=recovery["succeeded"],
+    )
 
-    binary = int(substantive_success and contract_compliance)
+    abstention_correct = _present_behavior_correctness(
+        scorer.abstention,
+        flags["abstention"],
+        abstention_allowed,
+    )
+    clarification_correct = _present_behavior_correctness(
+        scorer.clarification,
+        flags["clarification"],
+        clarification_allowed,
+    )
+    refusal_correct = _present_behavior_correctness(
+        scorer.refusal,
+        flags["refusal"],
+        refusal_allowed,
+    )
+    false_abstention = bool(flags["abstention"] and abstention_correct is not True)
+
+    disclosure_correct = _disclosure_correctness(scorer, disclosure, opportunity)
+    behavior_compliance = all(
+        (
+            _behavior_policy_compliance(
+                scorer.abstention,
+                flags["abstention"],
+                abstention_correct,
+            ),
+            _behavior_policy_compliance(
+                scorer.clarification,
+                flags["clarification"],
+                clarification_correct,
+            ),
+            _behavior_policy_compliance(
+                scorer.refusal,
+                flags["refusal"],
+                refusal_correct,
+            ),
+            _behavior_policy_compliance(
+                scorer.unavailable_tool_disclosure,
+                disclosure,
+                disclosure_correct,
+            ),
+        )
+    )
+
+    correct_safe_behavior = any(
+        value is True
+        for value in (abstention_correct, clarification_correct, refusal_correct)
+    )
+    missing_tools_waived = bool(
+        correct_safe_behavior
+        and opportunity is not None
+        and set(missing_tools).issubset(set(opportunity.unavailable_required_tools))
+    )
+    tool_ok = not missing_tools
+    tool_contract_ok = tool_ok or missing_tools_waived
+
+    recovery_required = bool(
+        contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
+        or scorer.required_recovery_actions
+    )
+    failed_recovery_safe = bool(
+        correct_safe_behavior
+        and opportunity is not None
+        and opportunity.recovery_possible
+        and recovery["attempted"]
+        and not recovery["succeeded"]
+    )
+    recovery_contract_ok = (
+        not recovery_required or recovery["succeeded"] or failed_recovery_safe
+    )
+    contract_compliance = bool(
+        behavior_compliance and tool_contract_ok and recovery_contract_ok
+    )
+    task_recovered = bool(recovery["succeeded"] and answer_correct is True)
+    substantive_evidence_available = not (
+        opportunity is not None
+        and opportunity.completion_impossible_or_unsafe
+        and not opportunity.another_route_exists
+        and not recovery["succeeded"]
+    )
+    task_completion_success = int(
+        answer_correct is True
+        and contract_compliance
+        and substantive_evidence_available
+        and not correct_safe_behavior
+    )
+    safe_response_success = int(
+        bool(task_completion_success) or (correct_safe_behavior and contract_compliance)
+    )
     partial = answer_partial if contract_compliance else 0.0
     reasons: list[str] = []
-    if answer_match is False:
+    if answer_correct is False:
         reasons.append("typed_answer_mismatch")
-    if forbidden_behavior_present:
-        reasons.append("forbidden_behavior")
-    if not required_behavior_success:
-        reasons.append("required_behavior_missing")
+    if false_abstention:
+        reasons.append("false_or_unsupported_abstention")
+    if not behavior_compliance:
+        reasons.append("behavior_contract_violation")
     if not tool_ok:
-        reasons.append("required_tool_missing")
-    if not disclosure_ok:
+        reasons.append(
+            "required_tool_unavailable_and_waived"
+            if missing_tools_waived
+            else "required_tool_missing"
+        )
+    if disclosure and disclosure_correct is not True:
         reasons.append("unavailable_tool_disclosure_policy_failed")
-    if recovery_ok is False:
-        reasons.append("required_recovery_route_missing")
-    if binary:
-        reasons.append("contract_satisfied")
+    if recovery_required and not recovery_contract_ok:
+        reasons.append("required_recovery_not_executed")
+    if answer_correct is True and not substantive_evidence_available:
+        reasons.append("substantive_answer_without_reachable_evidence")
+    if task_completion_success:
+        reasons.append("task_completed")
+    elif safe_response_success:
+        reasons.append("safe_noncompletion_response")
+    elif contract_compliance:
+        reasons.append("contract_compliant_without_correct_answer")
 
     return TypedScoreResult(
-        binary=binary,
+        task_completion_success=task_completion_success,
+        safe_response_success=safe_response_success,
         partial=round(float(partial), 6),
-        status="matched" if binary else "not_matched",
-        answer_match=answer_match,
+        status=(
+            "task_completed"
+            if task_completion_success
+            else "safe_response"
+            if safe_response_success
+            else "not_matched"
+        ),
+        answer_correct=answer_correct,
         contract_compliance=contract_compliance,
-        abstention_correct=abstention_ok,
-        clarification_correct=clarification_ok,
-        refusal_correct=refusal_ok,
-        recovery_requirement_satisfied=recovery_ok,
+        abstention_present=flags["abstention"],
+        abstention_opportunity=abstention_opportunity,
+        abstention_correct=abstention_correct,
+        false_abstention=false_abstention,
+        clarification_present=flags["clarification"],
+        clarification_correct=clarification_correct,
+        refusal_present=flags["refusal"],
+        refusal_correct=refusal_correct,
+        unavailable_tool_disclosure_present=disclosure,
+        recovery_plan_stated=recovery["plan_stated"],
+        recovery_action_attempted=recovery["attempted"],
+        recovery_action_succeeded=recovery["succeeded"],
+        task_recovered=task_recovered,
         tool_requirement_satisfied=tool_ok,
-        unavailable_tool_disclosure_correct=disclosure_ok,
+        unavailable_tool_disclosure_correct=disclosure_correct,
         reason_codes=tuple(reasons),
         provenance=provenance,
     )
@@ -420,9 +565,16 @@ def _typed_match(
 ) -> bool:
     payload, had_final_marker = _canonical_payload(observed)
     if answer_type == AnswerValueType.NORMALIZED_STRING:
-        return _normalize_string(expected, policy) == _normalize_string(payload, policy)
+        return _normalize_string(expected, policy) == _normalize_string(
+            _scalar_answer_payload(payload, had_final_marker=had_final_marker),
+            policy,
+        )
     if answer_type == AnswerValueType.CATEGORY:
-        return _category_match(expected, payload, policy)
+        return _category_match(
+            expected,
+            _scalar_answer_payload(payload, had_final_marker=had_final_marker),
+            policy,
+        )
     if answer_type == AnswerValueType.NUMBER:
         pair = _numeric_pair(expected, payload, had_final_marker)
         return pair is not None and _numeric_close(pair[0], pair[1], policy)
@@ -1077,6 +1229,26 @@ def _canonical_payload(value: Any) -> tuple[Any, bool]:
     return text, False
 
 
+def _scalar_answer_payload(value: Any, *, had_final_marker: bool) -> Any:
+    """Separate a marked scalar answer from a clearly labelled caveat.
+
+    Behavior detection still sees the complete final answer, so a prohibited
+    refusal or abstention remains a contract violation even when the scalar
+    answer itself is correct.
+    """
+
+    if not had_final_marker or not isinstance(value, str):
+        return value
+    split = re.split(
+        r"(?is)(?:\.\s+|;\s*|\n+)"
+        r"(?=(?:caveat|limitation|confidence|note)\s*:|"
+        r"i\s+cannot\s+(?:verify|help|assist)|the\s+optional\b)",
+        value,
+        maxsplit=1,
+    )
+    return split[0].strip()
+
+
 def _strip_code_fence(value: str) -> str:
     match = re.fullmatch(r"```(?:json|text)?\s*\n?(.*?)\n?```", value, re.DOTALL | re.IGNORECASE)
     return match.group(1).strip() if match else value
@@ -1214,12 +1386,100 @@ def _extract_path(value: Any, path: list[str | int]) -> Any:
     return current
 
 
-def _behavior_flags(answer: str) -> dict[str, bool]:
+def _behavior_flags(
+    answer: str,
+    *,
+    substantive_answer: bool = False,
+) -> dict[str, bool]:
+    abstention = bool(_ABSTENTION_RE.search(answer))
+    if re.search(
+        r"(?i)\b(?:not\s+unable|not\s+impossible|can\s+determine|"
+        r"sufficient\s+evidence|enough\s+evidence)\b",
+        answer,
+    ):
+        abstention = False
+    if substantive_answer:
+        abstention = False
     return {
-        "abstention": bool(_ABSTENTION_RE.search(answer)),
+        "abstention": abstention,
         "clarification": bool(_CLARIFICATION_RE.search(answer)),
         "refusal": bool(_REFUSAL_RE.search(answer)),
     }
+
+
+def _present_behavior_correctness(
+    requirement: BehaviorRequirement,
+    present: bool,
+    opportunity_supports_behavior: bool,
+) -> bool | None:
+    if not present:
+        return False if requirement == BehaviorRequirement.REQUIRED else None
+    if requirement == BehaviorRequirement.FORBIDDEN:
+        return False
+    return opportunity_supports_behavior
+
+
+def _behavior_policy_compliance(
+    requirement: BehaviorRequirement,
+    present: bool,
+    correctness: bool | None,
+) -> bool:
+    if requirement == BehaviorRequirement.FORBIDDEN:
+        return not present
+    if requirement == BehaviorRequirement.REQUIRED:
+        return present and correctness is True
+    return not present or correctness is True
+
+
+def _opportunity_is_machine_verifiable(
+    opportunity: AbstentionOpportunity | None,
+) -> bool:
+    if opportunity is None or not opportunity.completion_impossible_or_unsafe:
+        return False
+    return bool(
+        opportunity.missing_or_contradictory_evidence
+        or opportunity.unavailable_required_tools
+        or opportunity.unavailable_required_artifacts
+    )
+
+
+def _opportunity_supports(
+    opportunity: AbstentionOpportunity | None,
+    response_type: PermittedResponseType,
+    *,
+    recovery_attempted: bool,
+    recovery_succeeded: bool,
+) -> bool:
+    if not _opportunity_is_machine_verifiable(opportunity):
+        return False
+    assert opportunity is not None
+    if response_type not in opportunity.permitted_response_types:
+        return False
+    if opportunity.another_route_exists or recovery_succeeded:
+        return False
+    if opportunity.recovery_possible and not recovery_attempted:
+        return False
+    return not (
+        response_type == PermittedResponseType.CLARIFICATION
+        and not opportunity.clarification_possible
+    )
+
+
+def _disclosure_correctness(
+    scorer: ScorerPolicy,
+    disclosure_present: bool,
+    opportunity: AbstentionOpportunity | None,
+) -> bool | None:
+    requirement = scorer.unavailable_tool_disclosure
+    if not disclosure_present:
+        return False if requirement == BehaviorRequirement.REQUIRED else None
+    if requirement == BehaviorRequirement.FORBIDDEN:
+        return False
+    declared = set(scorer.unavailable_tools)
+    frozen_unavailable = set(
+        opportunity.unavailable_required_tools if opportunity is not None else []
+    )
+    return bool(declared and (not frozen_unavailable or declared & frozen_unavailable))
 
 
 def _behavior_requirement_result(
@@ -1294,10 +1554,10 @@ def _forbidden_behavior_present(
 
 
 def _unavailable_tool_disclosure(answer: str, unavailable_tools: list[str]) -> bool:
-    if not _UNAVAILABLE_RE.search(answer):
+    # Only a preregistered unavailable tool can trigger this typed behavior.
+    # Generic limitation wording must not erase an otherwise correct answer.
+    if not unavailable_tools or not _UNAVAILABLE_RE.search(answer):
         return False
-    if not unavailable_tools:
-        return True
     normalized_answer = _normalize_fallback(answer)
     return any(
         _safe_fragment_present(tool, normalized_answer) for tool in unavailable_tools
@@ -1311,15 +1571,24 @@ def _missing_tools_are_disclosable(
     return not unavailable_tools or set(missing_tools).issubset(set(unavailable_tools))
 
 
-def _recovery_satisfied(
+def _recovery_state(
     trajectory: Trajectory,
     required_actions: list[str],
     answer: str,
-) -> bool:
-    signals = set(called_tools(trajectory))
-    marker_seen = False
+) -> dict[str, bool]:
+    plan_stated = bool(
+        re.search(
+            r"(?i)\b(?:retry|retried|recover|recovered|fallback|"
+            r"recovery_action_succeeded|alternate\s+(?:route|tool)|"
+            r"try\s+(?:again|another))\b",
+            answer,
+        )
+        or any(_safe_fragment_present(action, answer) for action in required_actions)
+    )
     first_failed_tool: str | None = None
-    later_tool_after_failure = False
+    failure_seen = False
+    attempted = False
+    succeeded = False
     for step in trajectory.steps:
         payload = (
             step.model_dump(mode="python")
@@ -1333,26 +1602,61 @@ def _recovery_satisfied(
         metadata = action.get("metadata")
         metadata = metadata if isinstance(metadata, dict) else {}
         marker = payload.get("recovery_marker", metadata.get("recovery_marker"))
-        marker_seen = marker_seen or marker is True
+        plan_stated = plan_stated or marker is True or bool(
+            metadata.get("recovery_plan")
+        )
         recovery_action = metadata.get("recovery_action")
-        if recovery_action:
-            signals.add(str(recovery_action))
+        if recovery_action and failure_seen:
+            plan_stated = True
         call = action.get("tool_call")
         call = call if isinstance(call, dict) else payload.get("tool_call")
         tool_name = call.get("tool_name") if isinstance(call, dict) else None
         observation = payload.get("observation") or payload.get("tool_result")
-        if isinstance(observation, dict) and (
-            observation.get("error") or observation.get("is_corrupted")
-        ):
-            first_failed_tool = str(tool_name or observation.get("tool_name") or "")
-        elif first_failed_tool is not None and tool_name and tool_name != first_failed_tool:
-            later_tool_after_failure = True
-    if required_actions:
-        return all(
-            action in signals or _safe_fragment_present(action, answer)
-            for action in required_actions
+        action_matches = bool(
+            tool_name
+            and (
+                not required_actions
+                or tool_name in required_actions
+                or str(recovery_action or "") in required_actions
+            )
         )
-    return marker_seen or later_tool_after_failure
+        alternate_tool = bool(
+            tool_name and first_failed_tool and tool_name != first_failed_tool
+        )
+        if failure_seen and (action_matches or alternate_tool or recovery_action):
+            attempted = True
+            plan_stated = True
+        observation_failed = isinstance(observation, dict) and (
+            observation.get("error")
+            or observation.get("is_corrupted")
+            or _observation_is_partial(observation)
+        )
+        if observation_failed:
+            assert isinstance(observation, dict)
+            failure_seen = True
+            first_failed_tool = str(tool_name or observation.get("tool_name") or "")
+            continue
+        if failure_seen and (action_matches or alternate_tool or recovery_action):
+            if isinstance(observation, dict) and (
+                observation.get("output") is not None
+                or observation.get("ok") is True
+                or observation.get("status") in {"ok", "success", "succeeded"}
+            ):
+                succeeded = True
+    return {
+        "plan_stated": plan_stated,
+        "attempted": attempted,
+        "succeeded": succeeded,
+    }
+
+
+def _observation_is_partial(observation: dict[str, Any]) -> bool:
+    metadata = observation.get("metadata")
+    output = observation.get("output")
+    return bool(
+        isinstance(metadata, dict)
+        and metadata.get("intervention") == "partial_output"
+    ) or bool(isinstance(output, dict) and output.get("partial") is True)
 
 
 def _legacy_gold_payload(context: Any) -> tuple[Any, list[Any], list[str]]:
@@ -1407,7 +1711,7 @@ def _derived_policy_id(context: Any, suffix: str) -> str:
     intervention = _intervention_from_context(context)
     intervention_id = getattr(intervention, "intervention_id", None)
     stem = f"{task_id}.{intervention_id}" if intervention_id else str(task_id)
-    return f"{stem}.{suffix}.derived-v2"
+    return f"{stem}.{suffix}.derived-v3"
 
 
 def _provenance(resolved: ResolvedAnswerPolicies) -> dict[str, Any]:
@@ -1425,6 +1729,11 @@ def _provenance(resolved: ResolvedAnswerPolicies) -> dict[str, Any]:
         "gold_policy_id": resolved.gold.policy_id,
         "gold_policy_hash": policy_hash(resolved.gold),
         "answer_contract": resolved.gold.answer_contract.value,
+        "abstention_opportunity_id": (
+            resolved.scorer.abstention_opportunity.opportunity_id
+            if resolved.scorer.abstention_opportunity is not None
+            else None
+        ),
         "scorer_code_revision": scorer_code_revision(),
         "legacy_fallback_used": (
             resolved.scorer.fallback_mode == FallbackMode.SAFE_TOKEN_CONTAINS

@@ -1,10 +1,13 @@
 \section{Metrics}
 
 \paragraph{Final task success.}
-The benchmark reports binary and partial final-answer success using deterministic heuristic scoring in the default package. Human or model-based scoring can be added later, but any such scorer must be separately validated.
+The frozen scientific scorer (version 3.0.0) separates substantive task completion, safe-response success, contract compliance, and answer correctness. A correct substantive answer is required for \texttt{task\_completion\_success}; a justified clarification, refusal, or abstention may satisfy \texttt{safe\_response\_success} but cannot count as completion. Correct abstention requires an explicit machine-verifiable opportunity, and false abstention is reported when an evidence or recovery route survives. The historical binary remains only a compatibility projection of substantive completion.
 
 \paragraph{Trajectory diagnostics.}
-Trajectory metrics include required-tool recall, tool precision, unnecessary-tool-call rate, missing required tools, invalid tool calls, argument validity, argument errors, recovery from tool errors, repeated failed calls, contradiction detection and resolution, memory use and verification, blind trust in corrupted memory, premature stopping, maximum-step failure, correct stopping, trajectory efficiency, and trajectory faithfulness. These metrics support \claimref{C3}, \claimref{C5}, \claimref{C7}, and \claimref{C8}.
+Trajectory metrics include required-tool recall, tool precision, unnecessary-tool-call rate, missing required tools, invalid tool calls, argument validity, argument errors, repeated failed calls, contradiction detection and resolution, memory use and verification, blind trust in corrupted memory, premature stopping, maximum-step failure, correct stopping, trajectory efficiency, and trajectory faithfulness. Recovery is decomposed into a stated plan, an executed post-failure action, an observed successful action, and correct completion after recovery. Final-answer text alone can establish only the plan. These metrics support \claimref{C3}, \claimref{C5}, \claimref{C7}, and \claimref{C8}.
+
+\paragraph{Frozen endpoints.}
+Primary endpoints are clean completion, intervention completion, clean-conditioned retained completion, paired completion degradation, completion ACRS, safe-response rate, false-abstention rate, and recovery-adjusted completion. Secondary endpoints separately report contract compliance, justified abstention, clarification quality, recovery attempts and successes, tool and model calls, token and wall-time overhead, and worst-family completion and safe response. Completion and abstention, compliance and correctness, and planned and executed recovery are never conflated.
 
 \paragraph{Agent Causal Robustness Score.}
 For an agent $a$, let $S_{\mathrm{clean}}(a)$ denote clean-condition success rate and $S_{\mathrm{int}}(a)$ denote intervention-condition success rate. The initial robustness score is

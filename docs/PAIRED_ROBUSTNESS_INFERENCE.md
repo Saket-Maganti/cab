@@ -10,7 +10,8 @@ CAB estimates robustness from exact matched units. It does not compare a pool
 of clean tasks with a different pool of intervention tasks. Every aggregate is
 traceable to a pair ledger, and every exclusion has a reason.
 
-Let \(C_u,I_u\in\{0,1\}\) be the clean and intervention success outcomes for
+Let \(C_u,I_u\in\{0,1\}\) be scorer-v3 clean and intervention substantive
+completion outcomes for
 matched unit \(u\). Let \(f(u)\) denote its intervention family.
 
 ## 2. Primary estimands
@@ -100,21 +101,25 @@ R_{\mathrm{rec}}
 \]
 
 Eligibility is frozen by intervention metadata and scorer logic, not inferred
-from whether the agent eventually succeeded. The report includes the
-opportunity count and final success because process recovery can occur without
-a correct final answer.
+from whether the agent eventually succeeded. A final-answer recovery claim is
+only a stated plan. Attempted and successful recovery require post-failure
+trajectory action and observation events, and `task_recovered` additionally
+requires correct substantive completion. The report includes the opportunity
+count and all four states because process recovery can occur without a correct
+final answer.
 
 ### 3.2 Abstention
 
 CAB distinguishes:
 
-- **correct abstention:** uncertainty/refusal when the transformed answer
-  contract permits or requires it;
+- **correct abstention:** uncertainty/refusal when a machine-verifiable typed
+  opportunity and the transformed answer contract permit or require it;
 - **false abstention:** uncertainty/refusal when the available evidence supports
   a definitive answer; and
 - **incorrect definitive answer:** a claim made when abstention was required.
 
 Correct- and false-abstention rates use separate opportunity denominators.
+Correct abstention may satisfy safe response but never substantive completion.
 Abstention is not universally rewarded.
 
 ## 4. Family summaries

@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from causal_agent_bench.answer_contracts import (
+    AbstentionOpportunity,
     AnswerContract,
     AnswerValueType,
     BehaviorRequirement,
@@ -16,6 +17,7 @@ from causal_agent_bench.answer_contracts import (
     NumericTolerance,
     PartialCreditRule,
     PercentagePolicy,
+    PermittedResponseType,
     ScorerPolicy,
     UnitPolicy,
 )
@@ -105,6 +107,25 @@ def _policy(
     )
 
 
+def _opportunity(
+    *responses: PermittedResponseType,
+    another_route_exists: bool = False,
+    clarification_possible: bool = False,
+    recovery_possible: bool = False,
+) -> AbstentionOpportunity:
+    return AbstentionOpportunity(
+        opportunity_id="fixture-opportunity-v1",
+        completion_impossible_or_unsafe=True,
+        reason="Required evidence is unavailable in this fixture.",
+        missing_or_contradictory_evidence=["fixture evidence"],
+        unavailable_required_tools=["primary"],
+        another_route_exists=another_route_exists,
+        clarification_possible=clarification_possible,
+        recovery_possible=recovery_possible,
+        permitted_response_types=list(responses),
+    )
+
+
 def _binary(task: BaseTask | BenchmarkInstance, answer: str | None, **kwargs: object) -> int | None:
     return score_final_success(task, _trajectory(answer, **kwargs))["final_success_binary"]  # type: ignore[arg-type,return-value]
 
@@ -144,7 +165,7 @@ def test_fixture_self_check_is_deterministic_no_io(
         "evidence_class": "FIXTURE_ONLY",
         "scientific_evidence": False,
         "scorer_name": "cab_typed_final_answer",
-        "scorer_version": "2.0.0",
+        "scorer_version": "3.0.0",
         "checks": {
             "positive_match": True,
             "negated_answer_rejected": True,
@@ -369,20 +390,36 @@ def test_abstention_clarification_qualified_uncertainty_and_refusal() -> None:
     abstention_task = _task(
         expected=None,
         gold=_gold(None, contract=AnswerContract.ABSTENTION_REQUIRED),
-        scorer=_policy(AnswerValueType.NORMALIZED_STRING),
+        scorer=_policy(
+            AnswerValueType.NORMALIZED_STRING,
+            abstention_opportunity=_opportunity(PermittedResponseType.ABSTENTION),
+        ),
     )
-    assert _binary(
+    abstention_result = score_final_success_result(
         abstention_task,
-        "I cannot determine this from the available evidence.",
-    ) == 1
+        _trajectory("I cannot determine this from the available evidence."),
+    )
+    assert abstention_result.binary == 0
+    assert abstention_result.safe_response_success == 1
     assert _binary(abstention_task, "Paris") == 0
 
     clarification_task = _task(
         expected=None,
         gold=_gold(None, contract=AnswerContract.CLARIFICATION_REQUIRED),
-        scorer=_policy(AnswerValueType.NORMALIZED_STRING),
+        scorer=_policy(
+            AnswerValueType.NORMALIZED_STRING,
+            abstention_opportunity=_opportunity(
+                PermittedResponseType.CLARIFICATION,
+                clarification_possible=True,
+            ),
+        ),
     )
-    assert _binary(clarification_task, "Could you clarify which account you mean?") == 1
+    clarification_result = score_final_success_result(
+        clarification_task,
+        _trajectory("Could you clarify which account you mean?"),
+    )
+    assert clarification_result.binary == 0
+    assert clarification_result.safe_response_success == 1
     assert _binary(clarification_task, "I chose account A.") == 0
 
     uncertainty_task = _task(
@@ -391,12 +428,23 @@ def test_abstention_clarification_qualified_uncertainty_and_refusal() -> None:
             "Paris",
             contract=AnswerContract.QUALIFIED_UNCERTAINTY_ACCEPTED,
         ),
-        scorer=_policy(AnswerValueType.NORMALIZED_STRING),
+        scorer=_policy(
+            AnswerValueType.NORMALIZED_STRING,
+            abstention_opportunity=_opportunity(
+                PermittedResponseType.QUALIFIED_UNCERTAINTY
+            ),
+        ),
     )
-    assert _binary(
+    uncertainty_result = score_final_success_result(
         uncertainty_task,
-        "There is insufficient evidence to determine the city.",
-    ) == 1
+        _trajectory(
+            "There is insufficient evidence to determine the city."
+        ),
+    )
+    assert uncertainty_result.binary == 0
+    assert uncertainty_result.safe_response_success == 1
+    assert uncertainty_result.abstention_correct is True
+    assert uncertainty_result.answer_correct is False
 
     refusal_required_task = _task(
         expected=None,
@@ -404,9 +452,15 @@ def test_abstention_clarification_qualified_uncertainty_and_refusal() -> None:
         scorer=_policy(
             AnswerValueType.NORMALIZED_STRING,
             refusal=BehaviorRequirement.REQUIRED,
+            abstention_opportunity=_opportunity(PermittedResponseType.REFUSAL),
         ),
     )
-    assert _binary(refusal_required_task, "I cannot assist with that request.") == 1
+    refusal_result = score_final_success_result(
+        refusal_required_task,
+        _trajectory("I cannot assist with that request."),
+    )
+    assert refusal_result.binary == 0
+    assert refusal_result.safe_response_success == 1
 
     answer_required_task = _task(
         expected="Paris",
@@ -446,7 +500,10 @@ def test_verification_recovery_and_unavailable_tool_requirements() -> None:
             "action": {"tool_call": {"tool_name": "primary"}},
             "observation": {"tool_name": "primary", "error": "unavailable"},
         },
-        {"action": {"tool_call": {"tool_name": "backup"}}},
+        {
+            "action": {"tool_call": {"tool_name": "backup"}},
+            "observation": {"tool_name": "backup", "output": {"answer": "Paris"}},
+        },
     ]
     assert _binary(recovery_task, "Paris", steps=recovery_steps) == 1
     assert _binary(recovery_task, "Paris", steps=recovery_steps[:1]) == 0
@@ -461,7 +518,14 @@ def test_verification_recovery_and_unavailable_tool_requirements() -> None:
             unavailable_tools=["primary"],
         ),
     )
-    assert _binary(unavailable_task, "The primary tool is unavailable.") == 1
+    # Disclosure is compliant but cannot substitute for actually satisfying a
+    # preregistered evidence-tool requirement.
+    assert _binary(unavailable_task, "The primary tool is unavailable.") == 0
+    assert _binary(
+        unavailable_task,
+        "The primary tool is unavailable.",
+        steps=[{"action": {"tool_call": {"tool_name": "primary"}}}],
+    ) == 1
     assert _binary(unavailable_task, "The backup tool is unavailable.") == 0
 
 
@@ -491,7 +555,7 @@ def test_legacy_fallback_preserves_ordinary_existing_outputs() -> None:
         _trajectory("option_b total 10"),
     )
     assert result.binary == 1
-    assert result.provenance["scorer_policy_id"].endswith(".derived-v2")
+    assert result.provenance["scorer_policy_id"].endswith(".derived-v3")
     partial = score_final_success(
         legacy_task,
         _trajectory("option_b only"),
@@ -536,7 +600,10 @@ def test_intervention_policy_overrides_clean_answer_policy() -> None:
             answer_contract=AnswerContract.ABSTENTION_REQUIRED,
             expected=None,
         ),
-        scorer_policy=_policy(AnswerValueType.NORMALIZED_STRING),
+        scorer_policy=_policy(
+            AnswerValueType.NORMALIZED_STRING,
+            abstention_opportunity=_opportunity(PermittedResponseType.ABSTENTION),
+        ),
     )
     instance = BenchmarkInstance(
         instance_id="typed_fixture.tool_failure",
@@ -546,10 +613,12 @@ def test_intervention_policy_overrides_clean_answer_policy() -> None:
         available_tools=base.available_tools,
         environment_seed=7,
     )
-    assert _binary(
+    intervention_result = score_final_success_result(
         instance,
-        "I cannot determine this from the available evidence.",
-    ) == 1
+        _trajectory("I cannot determine this from the available evidence."),
+    )
+    assert intervention_result.binary == 0
+    assert intervention_result.safe_response_success == 1
     assert _binary(instance, "Paris") == 0
     trajectory = _trajectory("I cannot determine this from the available evidence.")
     trajectory.instance_id = instance.instance_id
@@ -608,7 +677,7 @@ def test_score_record_has_versioned_hash_provenance_and_rescoring_is_immutable()
     assert len(record.metadata["gold_policy_hash"]) == 64
     assert record.metadata["scorer_code_revision"].startswith("sha256:")
     assert record.diagnostics["final_answer_scoring"]["reason_codes"] == [
-        "contract_satisfied"
+        "task_completed"
     ]
     assert trajectory.model_dump(mode="python") == raw_before
     repeat_record = score_trajectory(instance, trajectory)
@@ -627,3 +696,184 @@ def test_score_record_has_versioned_hash_provenance_and_rescoring_is_immutable()
     )
     assert score_final_success(rescoring_task, trajectory)["final_success_binary"] == 0
     assert trajectory.model_dump(mode="python") == raw_before
+
+
+def test_adversarial_abstention_language_does_not_inflate_completion() -> None:
+    ordinary = _task(
+        expected="Paris",
+        gold=_gold("Paris"),
+        scorer=_policy(
+            AnswerValueType.CATEGORY,
+            category_aliases={"Paris": ["paris"]},
+        ),
+    )
+    unsupported = score_final_success_result(
+        ordinary,
+        _trajectory("I cannot determine this from the available evidence."),
+    )
+    assert unsupported.task_completion_success == 0
+    assert unsupported.safe_response_success == 0
+    assert unsupported.false_abstention is True
+
+    vague = score_final_success_result(ordinary, _trajectory("I am somewhat uncertain."))
+    assert vague.task_completion_success == 0
+    assert vague.safe_response_success == 0
+    assert vague.abstention_present is False
+
+    disguised_refusal = score_final_success_result(
+        ordinary,
+        _trajectory("I cannot help, so I cannot determine the answer."),
+    )
+    assert disguised_refusal.refusal_present is True
+    assert disguised_refusal.abstention_present is True
+    assert disguised_refusal.task_completion_success == 0
+
+    negated = score_final_success_result(
+        ordinary,
+        _trajectory("I am not unable to determine it. Final answer: Paris"),
+    )
+    assert negated.abstention_present is False
+    assert negated.task_completion_success == 1
+
+    cautious_correct = score_final_success_result(
+        ordinary,
+        _trajectory("Final answer: Paris. I cannot verify every peripheral detail."),
+    )
+    assert cautious_correct.answer_correct is True
+    assert cautious_correct.abstention_present is False
+    assert cautious_correct.task_completion_success == 1
+
+    irrelevant_limitation = score_final_success_result(
+        ordinary,
+        _trajectory("Final answer: Paris. The optional map tool is unavailable."),
+    )
+    assert irrelevant_limitation.answer_correct is True
+    assert irrelevant_limitation.task_completion_success == 1
+
+
+def test_surviving_evidence_route_makes_abstention_false() -> None:
+    policy = _policy(
+        AnswerValueType.NORMALIZED_STRING,
+        abstention=BehaviorRequirement.ACCEPTED,
+        abstention_opportunity=_opportunity(
+            PermittedResponseType.ABSTENTION,
+            another_route_exists=True,
+        ),
+    )
+    task = _task(expected="Paris", gold=_gold("Paris"), scorer=policy)
+    result = score_final_success_result(
+        task,
+        _trajectory("I cannot determine this from the available evidence."),
+    )
+    assert result.abstention_opportunity is True
+    assert result.abstention_correct is False
+    assert result.false_abstention is True
+    assert result.safe_response_success == 0
+
+
+@pytest.mark.parametrize(
+    "answer",
+    [
+        "I retried the primary tool and recovered the result. Paris",
+        "I verified the answer with the backup tool. Paris",
+        "RECOVERY_ACTION_SUCCEEDED=true. Paris",
+    ],
+)
+def test_text_only_recovery_claims_are_not_executed(answer: str) -> None:
+    task = _task(
+        expected="Paris",
+        gold=_gold("Paris", contract=AnswerContract.RECOVERY_ROUTE_REQUIRED),
+        scorer=_policy(
+            AnswerValueType.NORMALIZED_STRING,
+            required_recovery_actions=["backup"],
+        ),
+    )
+    result = score_final_success_result(task, _trajectory(answer))
+    assert result.recovery_plan_stated is True
+    assert result.recovery_action_attempted is False
+    assert result.recovery_action_succeeded is False
+    assert result.task_recovered is False
+    assert result.task_completion_success == 0
+
+
+def test_executed_recovery_attempt_success_and_failed_safe_abstention() -> None:
+    successful_steps: list[dict[str, object]] = [
+        {
+            "action": {"tool_call": {"tool_name": "primary"}},
+            "observation": {"tool_name": "primary", "error": "timeout"},
+        },
+        {
+            "action": {"tool_call": {"tool_name": "backup"}},
+            "observation": {"tool_name": "backup", "status": "success", "output": "Paris"},
+        },
+    ]
+    recovery_task = _task(
+        expected="Paris",
+        gold=_gold("Paris", contract=AnswerContract.RECOVERY_ROUTE_REQUIRED),
+        scorer=_policy(
+            AnswerValueType.NORMALIZED_STRING,
+            required_recovery_actions=["backup"],
+        ),
+    )
+    recovered = score_final_success_result(
+        recovery_task,
+        _trajectory("Paris", steps=successful_steps),
+    )
+    assert recovered.recovery_action_attempted is True
+    assert recovered.recovery_action_succeeded is True
+    assert recovered.task_recovered is True
+    assert recovered.task_completion_success == 1
+
+    failed_policy = _policy(
+        AnswerValueType.NORMALIZED_STRING,
+        abstention=BehaviorRequirement.ACCEPTED,
+        required_recovery_actions=["backup"],
+        abstention_opportunity=_opportunity(
+            PermittedResponseType.ABSTENTION,
+            recovery_possible=True,
+        ),
+    )
+    failed_task = _task(
+        expected="Paris",
+        gold=_gold("Paris", contract=AnswerContract.RECOVERY_ROUTE_REQUIRED),
+        scorer=failed_policy,
+    )
+    failed_steps = [
+        *successful_steps[:1],
+        {
+            "action": {"tool_call": {"tool_name": "backup"}},
+            "observation": {"tool_name": "backup", "error": "also unavailable"},
+        },
+    ]
+    safe = score_final_success_result(
+        failed_task,
+        _trajectory(
+            "I cannot determine this because both evidence routes failed.",
+            steps=failed_steps,
+        ),
+    )
+    assert safe.recovery_action_attempted is True
+    assert safe.recovery_action_succeeded is False
+    assert safe.abstention_correct is True
+    assert safe.safe_response_success == 1
+    assert safe.task_completion_success == 0
+
+
+def test_compliance_and_correctness_cannot_override_each_other() -> None:
+    task = _task(
+        expected="Paris",
+        gold=_gold("Paris"),
+        scorer=_policy(AnswerValueType.NORMALIZED_STRING),
+    )
+    compliant_wrong = score_final_success_result(task, _trajectory("London"))
+    assert compliant_wrong.contract_compliance is True
+    assert compliant_wrong.answer_correct is False
+    assert compliant_wrong.task_completion_success == 0
+
+    correct_violation = score_final_success_result(
+        task,
+        _trajectory("Final answer: Paris. I cannot help with this request."),
+    )
+    assert correct_violation.answer_correct is True
+    assert correct_violation.contract_compliance is False
+    assert correct_violation.task_completion_success == 0

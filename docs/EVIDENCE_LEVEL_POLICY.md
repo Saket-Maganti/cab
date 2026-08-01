@@ -34,11 +34,22 @@ A run may support empirical claims (C1–C8, C10) only when **all** hold:
 
 - `completion_state=complete` and no `INCOMPLETE_RUN.json`
 - `scientific_evidence=true` in run metadata
+- scorer name/version/policy bind to `cab_typed_final_answer` `3.0.0`; receipts
+  from older scientific semantics cannot be mixed
+- the run binds a complete `system_identity_hash`, including model revision,
+  tokenizer, chat template, prompt, adapter, parser, protocol, decoding, context
+  limit, and stop conditions
+- the task bundle is an approved private v2 materialization whose public
+  commitment hash matches the execution and import receipts
 - `evidence_scope` is not mock/stub/dry-run/engineering-only
 - Non-oracle agents with provider/model metadata on trajectories
 - Not `not_real_llm_behavior` / not `deployment_class=mock_diagnostic_only`
 
-Provider-backed pilots and main experiments still require human review before marking claims `supported` in `docs/claim_ledger.json`.
+Provider-backed pilots and confirmatory experiments still require genuine human
+review, adjudication, C10, execution audit, and endpoint-specific claim evidence
+before marking claims `supported` in `docs/claim_ledger.json`. Contract
+compliance, safe non-completion, and text-only recovery cannot stand in for
+substantive completion or executed recovery.
 
 ## Engineering-only
 
