@@ -462,7 +462,7 @@
     "scripts/camera_ready_precheck.py": "9ad46eee7971e815a9acd22391da40609f91342c12ad433c2cca8405c1b69b41",
     "scripts/check_bibliography.py": "96a5a32eee5f46781bb6b4434cdfee35286490d1c9199d1d242c46c8caa21d3c"
   },
-  "generated_at": "2026-08-01T15:51:19.096079+00:00",
+  "generated_at": "2026-08-01T15:51:48.107865+00:00",
   "inventory_file_count": 758,
   "inventory_policy": {
     "categories": {
@@ -576,7 +576,7 @@
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "3ea9ab481c558cf0fda29239cddc1dd5c57ca1ba",
+    "git_commit": "82150dea538080c213cba548aee9c62d78315fbd",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
