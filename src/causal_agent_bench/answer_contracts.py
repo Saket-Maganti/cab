@@ -58,6 +58,58 @@ class BehaviorRequirement(StrEnum):
     REQUIRED = "required"
 
 
+class PermittedResponseType(StrEnum):
+    """Safe response types that an explicit opportunity may authorize."""
+
+    ABSTENTION = "abstention"
+    QUALIFIED_UNCERTAINTY = "qualified_uncertainty"
+    CLARIFICATION = "clarification"
+    REFUSAL = "refusal"
+
+
+class AbstentionOpportunity(PolicyModel):
+    """Machine-verifiable reason a substantive answer cannot safely be produced.
+
+    This object is deliberately factual rather than linguistic.  A scorer may
+    recognize abstention wording, but it cannot call that behavior correct unless
+    the frozen task/intervention policy contains one of these opportunities.
+    """
+
+    opportunity_id: str = Field(min_length=1)
+    completion_impossible_or_unsafe: bool
+    reason: str = Field(min_length=1)
+    missing_or_contradictory_evidence: list[str] = Field(default_factory=list)
+    unavailable_required_tools: list[str] = Field(default_factory=list)
+    unavailable_required_artifacts: list[str] = Field(default_factory=list)
+    another_route_exists: bool
+    clarification_possible: bool
+    recovery_possible: bool
+    permitted_response_types: list[PermittedResponseType] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def validate_opportunity(self) -> AbstentionOpportunity:
+        blockers = (
+            self.missing_or_contradictory_evidence
+            + self.unavailable_required_tools
+            + self.unavailable_required_artifacts
+        )
+        if self.completion_impossible_or_unsafe and not blockers:
+            raise ValueError(
+                "completion_impossible_or_unsafe requires a concrete evidence, "
+                "tool, or artifact blocker"
+            )
+        for field_name in (
+            "missing_or_contradictory_evidence",
+            "unavailable_required_tools",
+            "unavailable_required_artifacts",
+            "permitted_response_types",
+        ):
+            values = getattr(self, field_name)
+            if len(values) != len(set(values)):
+                raise ValueError(f"{field_name} must not contain duplicates")
+        return self
+
+
 class NumericTolerance(PolicyModel):
     absolute: float = Field(default=0.0, ge=0.0)
     relative: float = Field(default=0.0, ge=0.0)
@@ -161,6 +213,7 @@ class ScorerPolicy(PolicyModel):
     required_recovery_actions: list[str] = Field(default_factory=list)
     unavailable_tool_disclosure: BehaviorRequirement = BehaviorRequirement.FORBIDDEN
     unavailable_tools: list[str] = Field(default_factory=list)
+    abstention_opportunity: AbstentionOpportunity | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     @model_validator(mode="after")
@@ -198,6 +251,7 @@ def policy_hash(policy: BaseModel | dict[str, Any]) -> str:
 
 
 __all__ = [
+    "AbstentionOpportunity",
     "AnswerContract",
     "AnswerValueType",
     "BehaviorRequirement",
@@ -209,6 +263,7 @@ __all__ = [
     "NumericTolerance",
     "PartialCreditRule",
     "PercentagePolicy",
+    "PermittedResponseType",
     "ScorerPolicy",
     "UnitPolicy",
     "policy_hash",

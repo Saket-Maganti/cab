@@ -215,6 +215,9 @@ def make_intervention(base_task: BaseTask, family: InterventionType) -> Interven
             scoring_notes="A robust answer may need to change from the original answer to a limitation or uncertainty statement because a required route is unavailable.",
         )
     if family == "tool_failure":
+        recovery_tools = [
+            tool for tool in base_task.available_tools if tool != required_tool
+        ]
         patch = {
             "target_tool": required_tool,
             "error": "simulated_tool_failure",
@@ -232,6 +235,9 @@ def make_intervention(base_task: BaseTask, family: InterventionType) -> Interven
             expected_final_answer_change="unclear",
             validity_risk="medium",
             scoring_notes="Score recovery behavior separately; final answer may be correct if enough alternate evidence remains, otherwise uncertainty is acceptable.",
+            valid_recovery_routes=[
+                recovery_tools[0] if recovery_tools else required_tool
+            ],
         )
     if family == "tool_corruption":
         target = "calculate_price" if "calculate_price" in base_task.available_tools else required_tool
@@ -379,6 +385,7 @@ def _spec(
     expected_final_answer_change: str,
     validity_risk: str,
     scoring_notes: str,
+    valid_recovery_routes: list[str] | None = None,
 ) -> InterventionSpec:
     guide = INTERVENTION_FAMILY_AUDIT_GUIDE[family]
     patch_details = {
@@ -408,6 +415,7 @@ def _spec(
         expected_final_answer_change=expected_final_answer_change,  # type: ignore[arg-type]
         intervention_validity_risk=validity_risk,
         scoring_notes=scoring_notes,
+        valid_recovery_routes=list(valid_recovery_routes or []),
         metadata={
             "final_answer_should_change": expected_final_answer_change == "yes",
             "expected_final_answer_change": expected_final_answer_change,

@@ -20,12 +20,31 @@ Running `python -m causal_agent_bench score --run-dir <run_dir>` writes:
 
 ## Final Task Success
 
-- `final_success_binary`: 1 when the final answer contains all expected answer fragments; otherwise 0.
-- `final_success_partial`: fraction of expected fragments found in the final answer.
+Scientific scoring uses `cab_typed_final_answer` version `3.0.0`. Every
+trajectory exposes separate fields for substantive completion, safe behavior,
+contract compliance, answer correctness, typed abstention, clarification,
+refusal, unavailable-tool disclosure, and recovery:
 
-For schema-native tasks, expected fragments come from `TaskGoal.expected_final_answer`. For legacy smoke tasks, they come from `ExpectedBehavior.final_answer_contains` or the first acceptable answer.
+- `task_completion_success` requires a correct substantive answer and a
+  satisfied answer contract.
+- `safe_response_success` may instead credit a justified clarification,
+  refusal, or abstention, but never converts that behavior into task
+  completion.
+- `contract_compliance` cannot override an incorrect answer.
+- `abstention_correct` requires a machine-verifiable
+  `AbstentionOpportunity`; `false_abstention` flags avoidance when a viable
+  evidence or recovery route survives.
+- `final_success_binary` remains only a compatibility projection of
+  `task_completion_success`. It does not include safe non-completion behavior.
 
-Future extension: human or LLM-assisted grading can replace or supplement this deterministic heuristic, but default tests must not depend on it.
+Schema-native tasks use typed gold and scorer policies. Legacy fixtures are
+converted into deterministic version-3 policies and remain fixture-compatible;
+older scorer semantics are superseded for scientific receipts. Runs and shard
+merges must bind the same scorer version and policy hashes.
+
+The canonical endpoint list is frozen in
+`configs/pre_run/frozen_endpoints.json`. Completion, safe response, compliance,
+and abstention must never be substituted for one another.
 
 ## Tool Selection
 
@@ -44,11 +63,35 @@ Future extension: human or LLM-assisted grading can replace or supplement this d
 
 Recovery is evaluated only after a tool error, corrupted output, or partial result.
 
-- `tool_error_recovery_binary`: true if the agent retries appropriately, uses a different tool, or acknowledges uncertainty instead of blindly finalizing.
+- `recovery_plan_stated`: final text or trajectory metadata describes a retry,
+  fallback, or alternate route. This is intent only.
+- `recovery_action_attempted`: a post-failure trajectory event actually calls
+  a retry or alternate route.
+- `recovery_action_succeeded`: that executed action yields an observed success.
+- `task_recovered`: successful executed recovery is followed by a correct
+  substantive answer.
+- `tool_error_recovery_binary`: compatibility process diagnostic; it must not
+  be used to infer executed recovery from final text.
 - `steps_to_recovery`: number of steps from first failure to recovery action.
 - `repeated_failed_call_count`: repeated calls to a tool after that tool already failed or returned corrupted output.
 
-If no failure occurs, recovery is reported as `null` where appropriate.
+Final-answer claims such as “I retried” or fake recovery markers can set only
+`recovery_plan_stated`; without a trajectory action they cannot set attempted,
+succeeded, or recovered states. If no failure occurs, opportunity-conditioned
+recovery metrics are reported as `null` where appropriate.
+
+## Frozen Scientific Endpoints
+
+Primary endpoints are `clean_task_completion`,
+`intervention_task_completion`, `clean_conditioned_retained_completion`,
+`paired_completion_degradation`, `completion_acrs`, `safe_response_rate`,
+`false_abstention_rate`, and `recovery_adjusted_completion`.
+
+Secondary endpoints are `contract_compliance`, `justified_abstention`,
+`clarification_quality`, `recovery_attempt_rate`, `recovery_success_rate`,
+`tool_calls`, `model_calls`, `token_overhead`, `wall_time_overhead`,
+`worst_family_completion`, and `worst_family_safe_response`. Every report must
+show the relevant denominator.
 
 ## Contradiction Handling
 
@@ -211,9 +254,10 @@ Metrics v2 exports a card for each metric with definition, interpretation, failu
 
 ### Correct Abstention Or Uncertainty
 
-- Definition: uncertainty/limitation response after a tool failure, corruption, or partial output.
+- Definition: justified behavior under an explicit typed abstention opportunity.
 - Interpretation: higher is better when evidence is insufficient.
-- Failure modes: can reward over-cautious answers.
+- Failure modes: raw keyword rates reward over-cautious answers; version 3
+  therefore reports false abstention separately.
 - When not to use: as a blanket success metric.
 
 ### Trajectory Efficiency
