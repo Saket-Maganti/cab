@@ -1,14 +1,15 @@
 {
   "clean_gold_passed_count": 20,
+  "execution_gate_kind": "EXECUTABLE_SEMANTIC_REACHABILITY",
   "failed_count": 0,
   "fixture_only": true,
-  "gate_kind": "executable_intervention_reachability",
+  "gate_kind": "CAUSAL_ROUTE_REACHABILITY",
   "instance_count": 20,
   "model_calls_performed": 0,
   "passed": true,
   "passed_count": 20,
   "provider_calls_performed": 0,
-  "report_hash": "351c17caf9ccda562c12283749354f2bad656a4c588dde5877e05e50205fa694",
+  "report_hash": "e33eb44b05d5a6180eea03338f57300f0b427c774ff321772045a6cf1d493bf1",
   "rows": [
     {
       "candidate_id": "compact20_v2_cand_01",
@@ -18,19 +19,47 @@
         "total": 176.0
       },
       "environment_hash": "b200db2994f206a222473f5740af04f535544f306f27f0d6e8d98a499546ab41",
-      "execution_hash": "8b87b70caa94ff17367b7f4c949c0510a9f48472d2f3aa2f6f5682878e8e3e64",
+      "execution_hash": "70608a068ebf46cb62dffddfcbc27ecfb71c8584a554db858d557d70b5bbca2e",
       "family": "tool_removal",
-      "fixture_artifact_hash": "27f64a7f22e45dcb80c5c838bfd4f921969ffa98271be9397c064c546eb41310",
+      "fixture_artifact_hash": "5888d0bd0dd4a3090a8ed6b4d2be995c952c2c815437d1fb0984e8dea7cc91a1",
       "instance_id": "travel_planning_medium_004.tool_removal",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 3,
+      "required_fact_count": 5,
       "route": {
-        "fact_observation_count": 3,
+        "argument_schemas": [],
+        "artifact_ids": [
+          "travel_planning_medium_004.controlled_evidence"
+        ],
+        "fact_observation_count": 5,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "travel_planning_medium_004.tool_removal.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "hotel refundability",
+          "hotel price",
+          "tax rate"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -40,22 +69,49 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": {
         "launch": "Beta",
-        "q2_revenue": 4200
+        "q2_revenue": 4200.0
       },
       "environment_hash": "87004cb8a01333c1ae7c34a383641cc60f38d9c113a94661c12fa751be2a3a77",
-      "execution_hash": "1a6865fc3a6852e48eea72fbc92f33bee9614457f3317ebe834b372b82f87a25",
+      "execution_hash": "00dfbb6566b892fa050b29f4d87e1bd809b7598b0e61e44d65a7844d35250eb1",
       "family": "tool_removal",
-      "fixture_artifact_hash": "45ed00a69a96db55d3480d4f475a3ed2998e82b7ccda99c5399d0be859889ea4",
+      "fixture_artifact_hash": "aa75e6b3d0ae45572acf062d713300a9552bdde0380ffa6040ef9667a0e50013",
       "instance_id": "file_spreadsheet_qa_hard_025.tool_removal",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 2,
       "route": {
+        "argument_schemas": [],
+        "artifact_ids": [
+          "file_spreadsheet_qa_hard_025.controlled_evidence"
+        ],
         "fact_observation_count": 2,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "file_spreadsheet_qa_hard_025.tool_removal.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "launch note content",
+          "Q2 spreadsheet row"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -65,19 +121,46 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "The claim is not supported; the report says 118 ms, not below 100 ms.",
       "environment_hash": "93b6862469abc63c3e58d484a3d29ce46a75d7327bd65d8f3062bf73312a51d2",
-      "execution_hash": "11a99420fa266f8277a6011899e1fc4ce9ecdbece513f8a0c7fdad95536b8f31",
+      "execution_hash": "d5eadd8be7bb10c9763ed192ad3d9d6896fe423420a3e5ce15ba12a6d7c0e280",
       "family": "tool_removal",
-      "fixture_artifact_hash": "9d36f0a8a9b35665efed5c1e1c71e165afef4e0e0a839e190d58622d956c6373",
+      "fixture_artifact_hash": "9d58b32f048909a221eba264bf716c55462f1d2907a8b7cd216d369d5cff85f0",
       "instance_id": "research_assistant_easy_010.tool_removal",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 2,
+      "required_fact_count": 3,
       "route": {
-        "fact_observation_count": 2,
+        "argument_schemas": [],
+        "artifact_ids": [
+          "research_assistant_easy_010.controlled_evidence"
+        ],
+        "fact_observation_count": 3,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "research_assistant_easy_010.tool_removal.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "Apex report evidence",
+          "claim verification"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -87,19 +170,46 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "The bug is an off-by-one retry loop using max_retries + 1.",
       "environment_hash": "8ddee49ed1caf567f434544249d83edca3520395b960bbf1d6db856936aa9a4c",
-      "execution_hash": "54f19e253e82ffb973050a54c7a7344f1302195df964d663316c107fdff2d52e",
+      "execution_hash": "7301d4cc4683107c509a58fcb5e5d96b8af8cc65a1c270788b4a4734e7b694c8",
       "family": "tool_removal",
-      "fixture_artifact_hash": "67e687c0db2d164a28a86b84da9ba84ffb692835cfc34cc59328bbae93a0ae51",
+      "fixture_artifact_hash": "875b310f29fa7497c27fa7a688354f3119fc4b0fe9d620bb197190c49c10b8f3",
       "instance_id": "coding_debugging_stress_002.tool_removal",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 2,
       "route": {
+        "argument_schemas": [],
+        "artifact_ids": [
+          "coding_debugging_stress_002.controlled_evidence"
+        ],
         "fact_observation_count": 2,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "coding_debugging_stress_002.tool_removal.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "retry helper code",
+          "issue note"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -109,19 +219,46 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars.",
       "environment_hash": "07337130b96e5fbbedac0e48f6ca4e6f8bb1e2ca392c1260eab1a05a504c8b3e",
-      "execution_hash": "04bd565c2bca564d276794d02ece5cc611a6efedf81a12b85e12acd6ce094009",
+      "execution_hash": "cb8b3a97e0adde8978f0003759fdbe6da3afa69e2919569643590db680f737e6",
       "family": "tool_removal",
-      "fixture_artifact_hash": "29a03657112d404b072cebcb6b37c3b077ec33fdcc3a5103694ddea1cb145893",
+      "fixture_artifact_hash": "b1f9b3a8d58e442afba3d187a85f4770090f98f922da0848a11e31e425d90684",
       "instance_id": "policy_compliance_medium_012.tool_removal",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 2,
+      "required_fact_count": 3,
       "route": {
-        "fact_observation_count": 2,
+        "argument_schemas": [],
+        "artifact_ids": [
+          "policy_compliance_medium_012.controlled_evidence"
+        ],
+        "fact_observation_count": 3,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "policy_compliance_medium_012.tool_removal.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "refund threshold",
+          "refund amount"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -134,20 +271,115 @@
         "total": 176.0
       },
       "environment_hash": "7bef6502b493b9cb69965566c97a0a6de65d9d62f4bb776718f5c801cff23eb1",
-      "execution_hash": "3986dba64330f56c1976de86a8bdf51495d89e0f1ef06735a194f0ac11f3aafe",
+      "execution_hash": "688e46c57a8dbba83968babed91429cf20de67a8930c6f3da953a3ec318d7700",
       "family": "tool_failure",
-      "fixture_artifact_hash": "0c58aceab1c759bf76c159b652414c6ec103738d09fa112fda4cebf7d47e960b",
+      "fixture_artifact_hash": "8b231f38a64e7a09611b72a7d5aa0d273e646d3475d74d258e84f6014fe809ac",
       "instance_id": "travel_planning_medium_004.tool_failure",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 3,
+      "required_fact_count": 5,
       "route": {
         "actual_failure_observed": true,
+        "argument_schemas": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "constraints": {
+                "type": "object"
+              },
+              "items": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "type": "object"
+          }
+        ],
+        "artifact_ids": [
+          "travel_planning_medium_004.controlled_evidence"
+        ],
         "authorization_id": "travel_planning_medium_004.tool_failure.recovery.01",
+        "authorization_v5": {
+          "attempted": true,
+          "attempts": [
+            {
+              "attempt_id": "44793bbba8d687bca2538cb0865fdb31",
+              "attempt_number": 1,
+              "authorized": true,
+              "authorized_action_id": "travel_planning_medium_004.tool_failure.recovery.01",
+              "budget_remaining": 0,
+              "end_step": 1,
+              "failure_event_id": "35c220a840154b0f0d4c26bfe46e76b4",
+              "observation_hash": "785412e444fbde7a11bc6480f7cd6cc629e3f174b1db6072fad27e269e60e30a",
+              "returned_fact_ids": [
+                "travel_planning_medium_004.hotel_refundability",
+                "travel_planning_medium_004.hotel_base_price",
+                "travel_planning_medium_004.hotel_tax_rate",
+                "travel_planning_medium_004.hotel_total_price",
+                "travel_planning_medium_004.selected_hotel"
+              ],
+              "start_step": 1,
+              "succeeded": true,
+              "success_predicate_results": {
+                "action_id_exact": true,
+                "arguments_valid": true,
+                "attempt_budget_valid": true,
+                "attempt_not_replayed": true,
+                "failed_tool_matches_precondition": true,
+                "failure_class_permitted": true,
+                "failure_id_current": true,
+                "failure_occurred": true,
+                "observation_error_free": true,
+                "observation_owned_by_attempt": true,
+                "returned_facts_exact": true,
+                "success_predicate_satisfied": true,
+                "temporal_order_valid": true,
+                "tool_exact": true
+              },
+              "tool_name": "calculate_price",
+              "validated_arguments": {
+                "constraints": {
+                  "tax_rate": 0.1
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "authorized": true,
+          "causal_attempt_id": "44793bbba8d687bca2538cb0865fdb31",
+          "failure_events": [
+            {
+              "failure_class": "simulated_tool_failure",
+              "failure_event_id": "35c220a840154b0f0d4c26bfe46e76b4",
+              "step": 0,
+              "tool_name": "search_database"
+            }
+          ],
+          "schema_version": "cab_recovery_authorization_v5_result_v1",
+          "status": "CAB_RECOVERY_AUTHORIZATION_V5_READY",
+          "succeeded": true,
+          "task_recovered": true
+        },
         "causal_fact_ids": [
-          "travel_planning_medium_004.fact.01",
-          "travel_planning_medium_004.fact.02",
-          "travel_planning_medium_004.fact.03"
+          "travel_planning_medium_004.hotel_refundability",
+          "travel_planning_medium_004.hotel_base_price",
+          "travel_planning_medium_004.hotel_tax_rate",
+          "travel_planning_medium_004.hotel_total_price",
+          "travel_planning_medium_004.selected_hotel"
+        ],
+        "failure_conditions": [
+          "simulated_tool_failure",
+          "tool_failure",
+          "timeout",
+          "tool_unavailable"
         ],
         "failure_step": {
           "action": {
@@ -171,6 +403,7 @@
           "observation": {
             "call_id": "travel_planning_medium_004.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "35c220a840154b0f0d4c26bfe46e76b4",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -219,6 +452,7 @@
           "tool_result": {
             "call_id": "travel_planning_medium_004.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "35c220a840154b0f0d4c26bfe46e76b4",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -239,6 +473,13 @@
         },
         "kind": "recovery",
         "passed": true,
+        "permitted_fallbacks": [
+          "travel_planning_medium_004.tool_failure.recovery.01"
+        ],
+        "preconditions": [
+          "prior_tool_failure_observed",
+          "failed_tool:search_database"
+        ],
         "recovery_arguments": {
           "constraints": {
             "tax_rate": 0.1
@@ -255,6 +496,8 @@
           "action": {
             "final_answer": null,
             "metadata": {
+              "attempt_id": "44793bbba8d687bca2538cb0865fdb31",
+              "failure_event_id": "35c220a840154b0f0d4c26bfe46e76b4",
               "recovery_action": "travel_planning_medium_004.tool_failure.recovery.01",
               "recovery_marker": true
             },
@@ -283,6 +526,7 @@
           "index": 1,
           "memory_use_marker": null,
           "observation": {
+            "attempt_id": "44793bbba8d687bca2538cb0865fdb31",
             "call_id": "travel_planning_medium_004.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -313,6 +557,13 @@
               "currency": "USD",
               "total": 220.0
             },
+            "returned_fact_ids": [
+              "travel_planning_medium_004.hotel_refundability",
+              "travel_planning_medium_004.hotel_base_price",
+              "travel_planning_medium_004.hotel_tax_rate",
+              "travel_planning_medium_004.hotel_total_price",
+              "travel_planning_medium_004.selected_hotel"
+            ],
             "tool_name": "calculate_price"
           },
           "parsed_action": null,
@@ -362,6 +613,7 @@
           },
           "tool_error_status": "none",
           "tool_result": {
+            "attempt_id": "44793bbba8d687bca2538cb0865fdb31",
             "call_id": "travel_planning_medium_004.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -392,11 +644,48 @@
               "currency": "USD",
               "total": 220.0
             },
+            "returned_fact_ids": [
+              "travel_planning_medium_004.hotel_refundability",
+              "travel_planning_medium_004.hotel_base_price",
+              "travel_planning_medium_004.hotel_tax_rate",
+              "travel_planning_medium_004.hotel_total_price",
+              "travel_planning_medium_004.selected_hotel"
+            ],
             "tool_name": "calculate_price"
           }
         },
         "recovery_tool": "calculate_price",
+        "required_fact_ids": [
+          "travel_planning_medium_004.hotel_refundability",
+          "travel_planning_medium_004.hotel_base_price",
+          "travel_planning_medium_004.hotel_tax_rate",
+          "travel_planning_medium_004.hotel_total_price",
+          "travel_planning_medium_004.selected_hotel"
+        ],
+        "route_type": "recovery",
+        "success_predicates": [
+          {
+            "causal_fact_ids_required": [
+              "travel_planning_medium_004.hotel_refundability",
+              "travel_planning_medium_004.hotel_base_price",
+              "travel_planning_medium_004.hotel_tax_rate",
+              "travel_planning_medium_004.hotel_total_price",
+              "travel_planning_medium_004.selected_hotel"
+            ],
+            "kind": "nonempty_error_free_observation",
+            "required_output_keys": [
+              "total",
+              "currency",
+              "breakdown"
+            ]
+          }
+        ],
         "target_tool": "search_database",
+        "terminal_response_type": "typed_substantive_answer",
+        "tool_sequence": [
+          "search_database",
+          "calculate_price"
+        ],
         "useful_observation": true,
         "valid_final_response": {
           "option_id": "saver_hotel",
@@ -414,20 +703,108 @@
         "status": "draft_created"
       },
       "environment_hash": "e2a5f35a0de66b5b9f3728dcff8844edb33f6e807c7d478d682e7f9906790117",
-      "execution_hash": "b0bbe6c3df9b7a2df31694bae5095bdf270847b8643688c1623ac561f4914647",
+      "execution_hash": "5d83931a5aa4fa4315d03b59f66938207437b1f1dd871464846b7e6adb8b9492",
       "family": "tool_failure",
-      "fixture_artifact_hash": "7afcc4c149154570a0bcfe2c4d0e5127ea40af7a6c6b8540dd32dc9be5d7e113",
+      "fixture_artifact_hash": "4f402df6f14c95830551f2a70cc9c522163b61220a12a9aa3deb4b72a369c376",
       "instance_id": "calendar_email_workflow_hard_022.tool_failure",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 3,
+      "required_fact_count": 4,
       "route": {
         "actual_failure_observed": true,
+        "argument_schemas": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "claim": {
+                "type": "string"
+              },
+              "evidence_ids": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "claim",
+              "evidence_ids"
+            ],
+            "type": "object"
+          }
+        ],
+        "artifact_ids": [
+          "calendar_email_workflow_hard_022.controlled_evidence"
+        ],
         "authorization_id": "calendar_email_workflow_hard_022.tool_failure.recovery.01",
+        "authorization_v5": {
+          "attempted": true,
+          "attempts": [
+            {
+              "attempt_id": "e5380e5528163e3faeab2c1d7effc780",
+              "attempt_number": 1,
+              "authorized": true,
+              "authorized_action_id": "calendar_email_workflow_hard_022.tool_failure.recovery.01",
+              "budget_remaining": 0,
+              "end_step": 1,
+              "failure_event_id": "c8d6c02e2048c656ad9902adbb4d505a",
+              "observation_hash": "a5bde306462b6313bae08db279993d8b85fda40899df4b034972488d0fc8abf8",
+              "returned_fact_ids": [
+                "calendar_email_workflow_hard_022.meeting_date",
+                "calendar_email_workflow_hard_022.first_open_slot",
+                "calendar_email_workflow_hard_022.recipient_email",
+                "calendar_email_workflow_hard_022.draft_status"
+              ],
+              "start_step": 1,
+              "succeeded": true,
+              "success_predicate_results": {
+                "action_id_exact": true,
+                "arguments_valid": true,
+                "attempt_budget_valid": true,
+                "attempt_not_replayed": true,
+                "failed_tool_matches_precondition": true,
+                "failure_class_permitted": true,
+                "failure_id_current": true,
+                "failure_occurred": true,
+                "observation_error_free": true,
+                "observation_owned_by_attempt": true,
+                "returned_facts_exact": true,
+                "success_predicate_satisfied": true,
+                "temporal_order_valid": true,
+                "tool_exact": true
+              },
+              "tool_name": "verify_fact",
+              "validated_arguments": {
+                "claim": "Mina is free at 15:00 on 2026-06-03",
+                "evidence_ids": [
+                  "calendar_1500"
+                ]
+              }
+            }
+          ],
+          "authorized": true,
+          "causal_attempt_id": "e5380e5528163e3faeab2c1d7effc780",
+          "failure_events": [
+            {
+              "failure_class": "simulated_tool_failure",
+              "failure_event_id": "c8d6c02e2048c656ad9902adbb4d505a",
+              "step": 0,
+              "tool_name": "check_calendar"
+            }
+          ],
+          "schema_version": "cab_recovery_authorization_v5_result_v1",
+          "status": "CAB_RECOVERY_AUTHORIZATION_V5_READY",
+          "succeeded": true,
+          "task_recovered": true
+        },
         "causal_fact_ids": [
-          "calendar_email_workflow_hard_022.fact.01",
-          "calendar_email_workflow_hard_022.fact.02",
-          "calendar_email_workflow_hard_022.fact.03"
+          "calendar_email_workflow_hard_022.meeting_date",
+          "calendar_email_workflow_hard_022.first_open_slot",
+          "calendar_email_workflow_hard_022.recipient_email",
+          "calendar_email_workflow_hard_022.draft_status"
+        ],
+        "failure_conditions": [
+          "simulated_tool_failure",
+          "tool_failure",
+          "timeout",
+          "tool_unavailable"
         ],
         "failure_step": {
           "action": {
@@ -452,6 +829,7 @@
           "observation": {
             "call_id": "calendar_email_workflow_hard_022.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "c8d6c02e2048c656ad9902adbb4d505a",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -504,6 +882,7 @@
           "tool_result": {
             "call_id": "calendar_email_workflow_hard_022.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "c8d6c02e2048c656ad9902adbb4d505a",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -524,6 +903,13 @@
         },
         "kind": "recovery",
         "passed": true,
+        "permitted_fallbacks": [
+          "calendar_email_workflow_hard_022.tool_failure.recovery.01"
+        ],
+        "preconditions": [
+          "prior_tool_failure_observed",
+          "failed_tool:check_calendar"
+        ],
         "recovery_arguments": {
           "claim": "Mina is free at 15:00 on 2026-06-03",
           "evidence_ids": [
@@ -534,6 +920,8 @@
           "action": {
             "final_answer": null,
             "metadata": {
+              "attempt_id": "e5380e5528163e3faeab2c1d7effc780",
+              "failure_event_id": "c8d6c02e2048c656ad9902adbb4d505a",
               "recovery_action": "calendar_email_workflow_hard_022.tool_failure.recovery.01",
               "recovery_marker": true
             },
@@ -556,6 +944,7 @@
           "index": 1,
           "memory_use_marker": null,
           "observation": {
+            "attempt_id": "e5380e5528163e3faeab2c1d7effc780",
             "call_id": "calendar_email_workflow_hard_022.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -575,6 +964,12 @@
               ],
               "verdict": "supported"
             },
+            "returned_fact_ids": [
+              "calendar_email_workflow_hard_022.meeting_date",
+              "calendar_email_workflow_hard_022.first_open_slot",
+              "calendar_email_workflow_hard_022.recipient_email",
+              "calendar_email_workflow_hard_022.draft_status"
+            ],
             "tool_name": "verify_fact"
           },
           "parsed_action": null,
@@ -614,6 +1009,7 @@
           },
           "tool_error_status": "none",
           "tool_result": {
+            "attempt_id": "e5380e5528163e3faeab2c1d7effc780",
             "call_id": "calendar_email_workflow_hard_022.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -633,11 +1029,44 @@
               ],
               "verdict": "supported"
             },
+            "returned_fact_ids": [
+              "calendar_email_workflow_hard_022.meeting_date",
+              "calendar_email_workflow_hard_022.first_open_slot",
+              "calendar_email_workflow_hard_022.recipient_email",
+              "calendar_email_workflow_hard_022.draft_status"
+            ],
             "tool_name": "verify_fact"
           }
         },
         "recovery_tool": "verify_fact",
+        "required_fact_ids": [
+          "calendar_email_workflow_hard_022.meeting_date",
+          "calendar_email_workflow_hard_022.first_open_slot",
+          "calendar_email_workflow_hard_022.recipient_email",
+          "calendar_email_workflow_hard_022.draft_status"
+        ],
+        "route_type": "recovery",
+        "success_predicates": [
+          {
+            "causal_fact_ids_required": [
+              "calendar_email_workflow_hard_022.meeting_date",
+              "calendar_email_workflow_hard_022.first_open_slot",
+              "calendar_email_workflow_hard_022.recipient_email",
+              "calendar_email_workflow_hard_022.draft_status"
+            ],
+            "kind": "nonempty_error_free_observation",
+            "required_output_keys": [
+              "verdict",
+              "supporting_evidence"
+            ]
+          }
+        ],
         "target_tool": "check_calendar",
+        "terminal_response_type": "typed_substantive_answer",
+        "tool_sequence": [
+          "check_calendar",
+          "verify_fact"
+        ],
         "useful_observation": true,
         "valid_final_response": {
           "date": "2026-06-03",
@@ -655,19 +1084,113 @@
         "total": 216.0
       },
       "environment_hash": "ad05b184dc6909162f66741b0abf5c438d5f95fd8230556a3c6c3d21454fb18a",
-      "execution_hash": "49391cf981d0197fe436135bf51a09ef2089cbbeb7fcc777b947fcc6987a3735",
+      "execution_hash": "ad8aa50f4130e05c95c2d438868d5a3549257f14c257dfed10b4b87d60762cbe",
       "family": "tool_failure",
-      "fixture_artifact_hash": "0657ae5c68f434458d73817dc037080c8e71746d9f315d89eed038a3ccc35991",
+      "fixture_artifact_hash": "678b0118e7f93d27fc959d9c35ac6b07d60c5f5d0e0e47aacb6d8731d6d91447",
       "instance_id": "shopping_comparison_easy_012.tool_failure",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 2,
+      "required_fact_count": 4,
       "route": {
         "actual_failure_observed": true,
+        "argument_schemas": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "constraints": {
+                "type": "object"
+              },
+              "items": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "type": "object"
+          }
+        ],
+        "artifact_ids": [
+          "shopping_comparison_easy_012.controlled_evidence"
+        ],
         "authorization_id": "shopping_comparison_easy_012.tool_failure.recovery.01",
+        "authorization_v5": {
+          "attempted": true,
+          "attempts": [
+            {
+              "attempt_id": "c865fe6cafd9afa9f669a1111c7a0003",
+              "attempt_number": 1,
+              "authorized": true,
+              "authorized_action_id": "shopping_comparison_easy_012.tool_failure.recovery.01",
+              "budget_remaining": 0,
+              "end_step": 1,
+              "failure_event_id": "23853b4ec54b6833495d5f6192b61b3d",
+              "observation_hash": "4b609b9900ea081877513d6dfed0bc4b07f6bf533413d1b4827b8d5422a6f885",
+              "returned_fact_ids": [
+                "shopping_comparison_easy_012.bundle_b_base_price",
+                "shopping_comparison_easy_012.bundle_tax_rate",
+                "shopping_comparison_easy_012.bundle_total_price",
+                "shopping_comparison_easy_012.selected_bundle"
+              ],
+              "start_step": 1,
+              "succeeded": true,
+              "success_predicate_results": {
+                "action_id_exact": true,
+                "arguments_valid": true,
+                "attempt_budget_valid": true,
+                "attempt_not_replayed": true,
+                "failed_tool_matches_precondition": true,
+                "failure_class_permitted": true,
+                "failure_id_current": true,
+                "failure_occurred": true,
+                "observation_error_free": true,
+                "observation_owned_by_attempt": true,
+                "returned_facts_exact": true,
+                "success_predicate_satisfied": true,
+                "temporal_order_valid": true,
+                "tool_exact": true
+              },
+              "tool_name": "calculate_price",
+              "validated_arguments": {
+                "constraints": {
+                  "tax_rate": 0.08
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "authorized": true,
+          "causal_attempt_id": "c865fe6cafd9afa9f669a1111c7a0003",
+          "failure_events": [
+            {
+              "failure_class": "simulated_tool_failure",
+              "failure_event_id": "23853b4ec54b6833495d5f6192b61b3d",
+              "step": 0,
+              "tool_name": "compare_options"
+            }
+          ],
+          "schema_version": "cab_recovery_authorization_v5_result_v1",
+          "status": "CAB_RECOVERY_AUTHORIZATION_V5_READY",
+          "succeeded": true,
+          "task_recovered": true
+        },
         "causal_fact_ids": [
-          "shopping_comparison_easy_012.fact.01",
-          "shopping_comparison_easy_012.fact.02"
+          "shopping_comparison_easy_012.bundle_b_base_price",
+          "shopping_comparison_easy_012.bundle_tax_rate",
+          "shopping_comparison_easy_012.bundle_total_price",
+          "shopping_comparison_easy_012.selected_bundle"
+        ],
+        "failure_conditions": [
+          "simulated_tool_failure",
+          "tool_failure",
+          "timeout",
+          "tool_unavailable"
         ],
         "failure_step": {
           "action": {
@@ -703,6 +1226,7 @@
           "observation": {
             "call_id": "shopping_comparison_easy_012.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "23853b4ec54b6833495d5f6192b61b3d",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -774,6 +1298,7 @@
           "tool_result": {
             "call_id": "shopping_comparison_easy_012.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "23853b4ec54b6833495d5f6192b61b3d",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -794,6 +1319,13 @@
         },
         "kind": "recovery",
         "passed": true,
+        "permitted_fallbacks": [
+          "shopping_comparison_easy_012.tool_failure.recovery.01"
+        ],
+        "preconditions": [
+          "prior_tool_failure_observed",
+          "failed_tool:compare_options"
+        ],
         "recovery_arguments": {
           "constraints": {
             "tax_rate": 0.08
@@ -810,6 +1342,8 @@
           "action": {
             "final_answer": null,
             "metadata": {
+              "attempt_id": "c865fe6cafd9afa9f669a1111c7a0003",
+              "failure_event_id": "23853b4ec54b6833495d5f6192b61b3d",
               "recovery_action": "shopping_comparison_easy_012.tool_failure.recovery.01",
               "recovery_marker": true
             },
@@ -838,6 +1372,7 @@
           "index": 1,
           "memory_use_marker": null,
           "observation": {
+            "attempt_id": "c865fe6cafd9afa9f669a1111c7a0003",
             "call_id": "shopping_comparison_easy_012.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -868,6 +1403,12 @@
               "currency": "USD",
               "total": 216.0
             },
+            "returned_fact_ids": [
+              "shopping_comparison_easy_012.bundle_b_base_price",
+              "shopping_comparison_easy_012.bundle_tax_rate",
+              "shopping_comparison_easy_012.bundle_total_price",
+              "shopping_comparison_easy_012.selected_bundle"
+            ],
             "tool_name": "calculate_price"
           },
           "parsed_action": null,
@@ -916,6 +1457,7 @@
           },
           "tool_error_status": "none",
           "tool_result": {
+            "attempt_id": "c865fe6cafd9afa9f669a1111c7a0003",
             "call_id": "shopping_comparison_easy_012.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -946,11 +1488,45 @@
               "currency": "USD",
               "total": 216.0
             },
+            "returned_fact_ids": [
+              "shopping_comparison_easy_012.bundle_b_base_price",
+              "shopping_comparison_easy_012.bundle_tax_rate",
+              "shopping_comparison_easy_012.bundle_total_price",
+              "shopping_comparison_easy_012.selected_bundle"
+            ],
             "tool_name": "calculate_price"
           }
         },
         "recovery_tool": "calculate_price",
+        "required_fact_ids": [
+          "shopping_comparison_easy_012.bundle_b_base_price",
+          "shopping_comparison_easy_012.bundle_tax_rate",
+          "shopping_comparison_easy_012.bundle_total_price",
+          "shopping_comparison_easy_012.selected_bundle"
+        ],
+        "route_type": "recovery",
+        "success_predicates": [
+          {
+            "causal_fact_ids_required": [
+              "shopping_comparison_easy_012.bundle_b_base_price",
+              "shopping_comparison_easy_012.bundle_tax_rate",
+              "shopping_comparison_easy_012.bundle_total_price",
+              "shopping_comparison_easy_012.selected_bundle"
+            ],
+            "kind": "nonempty_error_free_observation",
+            "required_output_keys": [
+              "total",
+              "currency",
+              "breakdown"
+            ]
+          }
+        ],
         "target_tool": "compare_options",
+        "terminal_response_type": "typed_substantive_answer",
+        "tool_sequence": [
+          "compare_options",
+          "calculate_price"
+        ],
         "useful_observation": true,
         "valid_final_response": {
           "option_id": "camera_b",
@@ -968,21 +1544,106 @@
         "vendor": "vendor_beta"
       },
       "environment_hash": "c8a3f13c242011f3b69250f65db976a3b763d90398f39657d0b205f9c509794b",
-      "execution_hash": "6bba66f1b1677827f94863b6cdea7187d12a36cb167acb3c85e4a191a59fd740",
+      "execution_hash": "16e8678fec67555b7a4226ef570b31b4a3a8687ee5ac84dc97f2713a6d2c3eea",
       "family": "tool_failure",
-      "fixture_artifact_hash": "0b258885d015271e38e2dd8730bf0c68643b2e0f406b9041e2182da951d54959",
+      "fixture_artifact_hash": "935fffa33adf147e8883289984fb96028afc8c91739ffe4443f2f9e7c0350319",
       "instance_id": "operations_planning_stress_015.tool_failure",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 4,
       "route": {
         "actual_failure_observed": true,
+        "argument_schemas": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "policy_name": {
+                "type": "string"
+              },
+              "question": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "policy_name",
+              "question"
+            ],
+            "type": "object"
+          }
+        ],
+        "artifact_ids": [
+          "operations_planning_stress_015.controlled_evidence"
+        ],
         "authorization_id": "operations_planning_stress_015.tool_failure.recovery.01",
+        "authorization_v5": {
+          "attempted": true,
+          "attempts": [
+            {
+              "attempt_id": "86785a7c90bc26983787c6ca3613afba",
+              "attempt_number": 1,
+              "authorized": true,
+              "authorized_action_id": "operations_planning_stress_015.tool_failure.recovery.01",
+              "budget_remaining": 0,
+              "end_step": 1,
+              "failure_event_id": "d9e7f894cdd4de694a6d9135c5948afa",
+              "observation_hash": "ca3c2284e4f1a439924a219433a9cfe55051629a430cf2f7156dd9179c245db4",
+              "returned_fact_ids": [
+                "operations_planning_stress_015.meeting_time",
+                "operations_planning_stress_015.vendor_policy",
+                "operations_planning_stress_015.selected_vendor",
+                "operations_planning_stress_015.vendor_email_recipient"
+              ],
+              "start_step": 1,
+              "succeeded": true,
+              "success_predicate_results": {
+                "action_id_exact": true,
+                "arguments_valid": true,
+                "attempt_budget_valid": true,
+                "attempt_not_replayed": true,
+                "failed_tool_matches_precondition": true,
+                "failure_class_permitted": true,
+                "failure_id_current": true,
+                "failure_occurred": true,
+                "observation_error_free": true,
+                "observation_owned_by_attempt": true,
+                "returned_facts_exact": true,
+                "success_predicate_satisfied": true,
+                "temporal_order_valid": true,
+                "tool_exact": true
+              },
+              "tool_name": "lookup_policy",
+              "validated_arguments": {
+                "policy_name": "vendor",
+                "question": "security addendum policy"
+              }
+            }
+          ],
+          "authorized": true,
+          "causal_attempt_id": "86785a7c90bc26983787c6ca3613afba",
+          "failure_events": [
+            {
+              "failure_class": "simulated_tool_failure",
+              "failure_event_id": "d9e7f894cdd4de694a6d9135c5948afa",
+              "step": 0,
+              "tool_name": "check_calendar"
+            }
+          ],
+          "schema_version": "cab_recovery_authorization_v5_result_v1",
+          "status": "CAB_RECOVERY_AUTHORIZATION_V5_READY",
+          "succeeded": true,
+          "task_recovered": true
+        },
         "causal_fact_ids": [
-          "operations_planning_stress_015.fact.01",
-          "operations_planning_stress_015.fact.02",
-          "operations_planning_stress_015.fact.03",
-          "operations_planning_stress_015.fact.04"
+          "operations_planning_stress_015.meeting_time",
+          "operations_planning_stress_015.vendor_policy",
+          "operations_planning_stress_015.selected_vendor",
+          "operations_planning_stress_015.vendor_email_recipient"
+        ],
+        "failure_conditions": [
+          "simulated_tool_failure",
+          "tool_failure",
+          "timeout",
+          "tool_unavailable"
         ],
         "failure_step": {
           "action": {
@@ -1007,6 +1668,7 @@
           "observation": {
             "call_id": "operations_planning_stress_015.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "d9e7f894cdd4de694a6d9135c5948afa",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -1060,6 +1722,7 @@
           "tool_result": {
             "call_id": "operations_planning_stress_015.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "d9e7f894cdd4de694a6d9135c5948afa",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -1080,6 +1743,13 @@
         },
         "kind": "recovery",
         "passed": true,
+        "permitted_fallbacks": [
+          "operations_planning_stress_015.tool_failure.recovery.01"
+        ],
+        "preconditions": [
+          "prior_tool_failure_observed",
+          "failed_tool:check_calendar"
+        ],
         "recovery_arguments": {
           "policy_name": "vendor",
           "question": "security addendum policy"
@@ -1088,6 +1758,8 @@
           "action": {
             "final_answer": null,
             "metadata": {
+              "attempt_id": "86785a7c90bc26983787c6ca3613afba",
+              "failure_event_id": "d9e7f894cdd4de694a6d9135c5948afa",
               "recovery_action": "operations_planning_stress_015.tool_failure.recovery.01",
               "recovery_marker": true
             },
@@ -1108,6 +1780,7 @@
           "index": 1,
           "memory_use_marker": null,
           "observation": {
+            "attempt_id": "86785a7c90bc26983787c6ca3613afba",
             "call_id": "operations_planning_stress_015.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -1125,6 +1798,12 @@
                 "vendor-security-addendum"
               ]
             },
+            "returned_fact_ids": [
+              "operations_planning_stress_015.meeting_time",
+              "operations_planning_stress_015.vendor_policy",
+              "operations_planning_stress_015.selected_vendor",
+              "operations_planning_stress_015.vendor_email_recipient"
+            ],
             "tool_name": "lookup_policy"
           },
           "parsed_action": null,
@@ -1161,6 +1840,7 @@
           },
           "tool_error_status": "none",
           "tool_result": {
+            "attempt_id": "86785a7c90bc26983787c6ca3613afba",
             "call_id": "operations_planning_stress_015.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -1178,11 +1858,44 @@
                 "vendor-security-addendum"
               ]
             },
+            "returned_fact_ids": [
+              "operations_planning_stress_015.meeting_time",
+              "operations_planning_stress_015.vendor_policy",
+              "operations_planning_stress_015.selected_vendor",
+              "operations_planning_stress_015.vendor_email_recipient"
+            ],
             "tool_name": "lookup_policy"
           }
         },
         "recovery_tool": "lookup_policy",
+        "required_fact_ids": [
+          "operations_planning_stress_015.meeting_time",
+          "operations_planning_stress_015.vendor_policy",
+          "operations_planning_stress_015.selected_vendor",
+          "operations_planning_stress_015.vendor_email_recipient"
+        ],
+        "route_type": "recovery",
+        "success_predicates": [
+          {
+            "causal_fact_ids_required": [
+              "operations_planning_stress_015.meeting_time",
+              "operations_planning_stress_015.vendor_policy",
+              "operations_planning_stress_015.selected_vendor",
+              "operations_planning_stress_015.vendor_email_recipient"
+            ],
+            "kind": "nonempty_error_free_observation",
+            "required_output_keys": [
+              "policy_text",
+              "relevant_clause_ids"
+            ]
+          }
+        ],
         "target_tool": "check_calendar",
+        "terminal_response_type": "typed_substantive_answer",
+        "tool_sequence": [
+          "check_calendar",
+          "lookup_policy"
+        ],
         "useful_observation": true,
         "valid_final_response": {
           "must_mention": "security addendum",
@@ -1197,22 +1910,105 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": {
         "launch": "Beta",
-        "q2_revenue": 4200
+        "q2_revenue": 4200.0
       },
       "environment_hash": "b03337487ad42717aa2557b085cb62c41338cd5a7bf7d3fe8a991e883aa911fc",
-      "execution_hash": "3fa68413d3abddf248545a4c42529add3ddfe24e12ea2d0d175826936d271818",
+      "execution_hash": "3d5d2df95701c71a985ad70a4b0994e78f4694ab267396f5d3d14a770933876b",
       "family": "tool_failure",
-      "fixture_artifact_hash": "e618f373f4a73917daa9c1c66da51dec56d42b181e5bcbfbdab8dcf943acada3",
+      "fixture_artifact_hash": "3fa6bb02d7791d2f99b9cb913334532c4fc158c68f3f1c3b9e24ea3899e1d429",
       "instance_id": "file_spreadsheet_qa_medium_019.tool_failure",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 2,
       "route": {
         "actual_failure_observed": true,
+        "argument_schemas": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "query": {
+                "type": "string"
+              },
+              "sheet_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "sheet_id",
+              "query"
+            ],
+            "type": "object"
+          }
+        ],
+        "artifact_ids": [
+          "file_spreadsheet_qa_medium_019.controlled_evidence"
+        ],
         "authorization_id": "file_spreadsheet_qa_medium_019.tool_failure.recovery.01",
+        "authorization_v5": {
+          "attempted": true,
+          "attempts": [
+            {
+              "attempt_id": "03b35541211234db38359c9593ecd622",
+              "attempt_number": 1,
+              "authorized": true,
+              "authorized_action_id": "file_spreadsheet_qa_medium_019.tool_failure.recovery.01",
+              "budget_remaining": 0,
+              "end_step": 1,
+              "failure_event_id": "2b80ef1ca9c26eb279a7d83720321728",
+              "observation_hash": "0dfce8893722ce741974140acce4b503f5a77576c7357d9c0d4246ffa2cf1204",
+              "returned_fact_ids": [
+                "file_spreadsheet_qa_medium_019.launch_name",
+                "file_spreadsheet_qa_medium_019.q2_revenue"
+              ],
+              "start_step": 1,
+              "succeeded": true,
+              "success_predicate_results": {
+                "action_id_exact": true,
+                "arguments_valid": true,
+                "attempt_budget_valid": true,
+                "attempt_not_replayed": true,
+                "failed_tool_matches_precondition": true,
+                "failure_class_permitted": true,
+                "failure_id_current": true,
+                "failure_occurred": true,
+                "observation_error_free": true,
+                "observation_owned_by_attempt": true,
+                "returned_facts_exact": true,
+                "success_predicate_satisfied": true,
+                "temporal_order_valid": true,
+                "tool_exact": true
+              },
+              "tool_name": "query_spreadsheet",
+              "validated_arguments": {
+                "query": "Q2",
+                "sheet_id": "revenue"
+              }
+            }
+          ],
+          "authorized": true,
+          "causal_attempt_id": "03b35541211234db38359c9593ecd622",
+          "failure_events": [
+            {
+              "failure_class": "simulated_tool_failure",
+              "failure_event_id": "2b80ef1ca9c26eb279a7d83720321728",
+              "step": 0,
+              "tool_name": "read_file"
+            }
+          ],
+          "schema_version": "cab_recovery_authorization_v5_result_v1",
+          "status": "CAB_RECOVERY_AUTHORIZATION_V5_READY",
+          "succeeded": true,
+          "task_recovered": true
+        },
         "causal_fact_ids": [
-          "file_spreadsheet_qa_medium_019.fact.01",
-          "file_spreadsheet_qa_medium_019.fact.02"
+          "file_spreadsheet_qa_medium_019.launch_name",
+          "file_spreadsheet_qa_medium_019.q2_revenue"
+        ],
+        "failure_conditions": [
+          "simulated_tool_failure",
+          "tool_failure",
+          "timeout",
+          "tool_unavailable"
         ],
         "failure_step": {
           "action": {
@@ -1237,6 +2033,7 @@
           "observation": {
             "call_id": "file_spreadsheet_qa_medium_019.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "2b80ef1ca9c26eb279a7d83720321728",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -1287,6 +2084,7 @@
           "tool_result": {
             "call_id": "file_spreadsheet_qa_medium_019.tool_failure:0",
             "error": "simulated_tool_failure",
+            "failure_event_id": "2b80ef1ca9c26eb279a7d83720321728",
             "is_corrupted": false,
             "metadata": {
               "intervention": "tool_failure",
@@ -1307,6 +2105,13 @@
         },
         "kind": "recovery",
         "passed": true,
+        "permitted_fallbacks": [
+          "file_spreadsheet_qa_medium_019.tool_failure.recovery.01"
+        ],
+        "preconditions": [
+          "prior_tool_failure_observed",
+          "failed_tool:read_file"
+        ],
         "recovery_arguments": {
           "query": "Q2",
           "sheet_id": "revenue"
@@ -1315,6 +2120,8 @@
           "action": {
             "final_answer": null,
             "metadata": {
+              "attempt_id": "03b35541211234db38359c9593ecd622",
+              "failure_event_id": "2b80ef1ca9c26eb279a7d83720321728",
               "recovery_action": "file_spreadsheet_qa_medium_019.tool_failure.recovery.01",
               "recovery_marker": true
             },
@@ -1335,6 +2142,7 @@
           "index": 1,
           "memory_use_marker": null,
           "observation": {
+            "attempt_id": "03b35541211234db38359c9593ecd622",
             "call_id": "file_spreadsheet_qa_medium_019.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -1355,6 +2163,10 @@
               ],
               "summary": "1 rows matched query 'q2'."
             },
+            "returned_fact_ids": [
+              "file_spreadsheet_qa_medium_019.launch_name",
+              "file_spreadsheet_qa_medium_019.q2_revenue"
+            ],
             "tool_name": "query_spreadsheet"
           },
           "parsed_action": null,
@@ -1388,6 +2200,7 @@
           },
           "tool_error_status": "none",
           "tool_result": {
+            "attempt_id": "03b35541211234db38359c9593ecd622",
             "call_id": "file_spreadsheet_qa_medium_019.tool_failure:1",
             "error": null,
             "is_corrupted": false,
@@ -1408,11 +2221,38 @@
               ],
               "summary": "1 rows matched query 'q2'."
             },
+            "returned_fact_ids": [
+              "file_spreadsheet_qa_medium_019.launch_name",
+              "file_spreadsheet_qa_medium_019.q2_revenue"
+            ],
             "tool_name": "query_spreadsheet"
           }
         },
         "recovery_tool": "query_spreadsheet",
+        "required_fact_ids": [
+          "file_spreadsheet_qa_medium_019.launch_name",
+          "file_spreadsheet_qa_medium_019.q2_revenue"
+        ],
+        "route_type": "recovery",
+        "success_predicates": [
+          {
+            "causal_fact_ids_required": [
+              "file_spreadsheet_qa_medium_019.launch_name",
+              "file_spreadsheet_qa_medium_019.q2_revenue"
+            ],
+            "kind": "nonempty_error_free_observation",
+            "required_output_keys": [
+              "rows",
+              "summary"
+            ]
+          }
+        ],
         "target_tool": "read_file",
+        "terminal_response_type": "typed_substantive_answer",
+        "tool_sequence": [
+          "read_file",
+          "query_spreadsheet"
+        ],
         "useful_observation": true,
         "valid_final_response": {
           "launch": "Beta",
@@ -1426,53 +2266,103 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "The claim is not supported; the report says 118 ms, not below 100 ms.",
       "environment_hash": "f0cb810e23c0b5dea0ebd66e3fd68e596da415de13cf650507db10de1db1396c",
-      "execution_hash": "060951485cc8cac24bbd5ffb3ca0e3526f05b919270ddfd6b9fcdd5c74a0086e",
+      "execution_hash": "86d1ad3e63ab6e4a5760a37ba724ba14794655570bbf54ccfa35b5cd64e46571",
       "family": "memory_corruption",
-      "fixture_artifact_hash": "50a7e80daace1e9a110d5011d95b3ea861986bef952de6e2afc013b09cc89f9b",
+      "fixture_artifact_hash": "881af9e3df705321d8038c603851331c2ab60430e3cfecbbc55fcf9e57371c6a",
       "instance_id": "research_assistant_easy_010.memory_corruption",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 2,
+      "required_fact_count": 3,
       "route": {
+        "artifact_ids": [
+          "research_assistant_easy_010.controlled_evidence"
+        ],
+        "failure_conditions": [
+          "missing_or_semantically_invalid_fact"
+        ],
         "kind": "substantive_answer",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "reviewer_visible_evidence_hash_verified"
+        ],
+        "required_fact_ids": [
+          "research_assistant_easy_010.claim_supported",
+          "research_assistant_easy_010.reported_latency",
+          "research_assistant_easy_010.claim_threshold"
+        ],
+        "route_type": "substantive_completion",
+        "success_predicates": [
+          "all_required_facts_fully_supported",
+          "gold_equal"
+        ],
+        "terminal_response_type": "typed_substantive_answer",
         "tool_invocations": [
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_11",
-              "fact_id": "research_assistant_easy_010.fact.01"
+              "fact_id": "research_assistant_easy_010.claim_supported"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "research_assistant_easy_010.fact.01",
-              "label": "Apex report evidence",
-              "source_key": "claim_supported",
+              "canonical_label": "claim verification",
+              "fact_hash": "864674996710bdc1b9e4b12bd7b04da0ab5c392fc5fed2301c891da54b12ab56",
+              "fact_id": "research_assistant_easy_010.claim_supported",
+              "source_artifact_hash": "a85d2d4c0f893abfd74ffa9b3c35bfb9bdc575997db33181b8e530cd20d52f3e",
+              "source_locator": "source_records.claim_supported",
               "value": false
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "95292fdfdec9d5c7620104a4e3659bcf"
+            "transcript_id": "6f8bbf91078dda93bcb27da12128e96a"
           },
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_11",
-              "fact_id": "research_assistant_easy_010.fact.02"
+              "fact_id": "research_assistant_easy_010.reported_latency"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "research_assistant_easy_010.fact.02",
-              "label": "claim verification",
-              "source_key": "reported_latency_ms",
+              "canonical_label": "Apex report evidence",
+              "fact_hash": "34f3db484273b50423c5a711d73bc1d628e734a96f964f6f5bb813b4bc84d246",
+              "fact_id": "research_assistant_easy_010.reported_latency",
+              "source_artifact_hash": "a85d2d4c0f893abfd74ffa9b3c35bfb9bdc575997db33181b8e530cd20d52f3e",
+              "source_locator": "source_records.reported_latency_ms",
               "value": 118
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "3a0e0dc903719985ce9f49732d070c11"
+            "transcript_id": "786303dc7cdd0b12f1a688d7aef1398b"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_11",
+              "fact_id": "research_assistant_easy_010.claim_threshold"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "canonical_label": "claim latency threshold",
+              "fact_hash": "14eac85f0a332cc442ab7f403b18dafe8c027306fbdabe0ee519841f4a915a93",
+              "fact_id": "research_assistant_easy_010.claim_threshold",
+              "source_artifact_hash": "a85d2d4c0f893abfd74ffa9b3c35bfb9bdc575997db33181b8e530cd20d52f3e",
+              "source_locator": "source_records.claim_threshold_ms",
+              "value": 100
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "100fc9e1ce7abd0024f35736147b83de"
           }
+        ],
+        "tool_sequence": [
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact"
         ],
         "valid_final_response": "The claim is not supported; the report says 118 ms, not below 100 ms."
       },
@@ -1483,53 +2373,81 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "The bug is an off-by-one retry loop using max_retries + 1.",
       "environment_hash": "015b17dae5fbfb7e90ae560dc33d4886170df403feb54eb09a5e1f0f561b9cdb",
-      "execution_hash": "6cae3e65450acd77b12a5f18d2b56875efe3c681afd2f1357c6db9eedf4278d8",
+      "execution_hash": "f1561090d0cc3b7d2cd938bdcac4bc706604584f643a3fcefbbff35f06d8fb40",
       "family": "memory_corruption",
-      "fixture_artifact_hash": "e127975760f761c1982720ce3e2b861a0c54899d76d9dde4b10f6065cbc7cb65",
+      "fixture_artifact_hash": "ea0add067953993b1cf71b650354247b00d8d70e915a5d32c03ab709ab087ba4",
       "instance_id": "coding_debugging_stress_006.memory_corruption",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 2,
       "route": {
+        "artifact_ids": [
+          "coding_debugging_stress_006.controlled_evidence"
+        ],
+        "failure_conditions": [
+          "missing_or_semantically_invalid_fact"
+        ],
         "kind": "substantive_answer",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "reviewer_visible_evidence_hash_verified"
+        ],
+        "required_fact_ids": [
+          "coding_debugging_stress_006.bug_type",
+          "coding_debugging_stress_006.bad_expression"
+        ],
+        "route_type": "substantive_completion",
+        "success_predicates": [
+          "all_required_facts_fully_supported",
+          "gold_equal"
+        ],
+        "terminal_response_type": "typed_substantive_answer",
         "tool_invocations": [
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_12",
-              "fact_id": "coding_debugging_stress_006.fact.01"
+              "fact_id": "coding_debugging_stress_006.bug_type"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "coding_debugging_stress_006.fact.01",
-              "label": "retry helper code",
-              "source_key": "bad_expression",
-              "value": "max_retries + 1"
-            },
-            "schema_version": "cab_fixture_tool_transcript_v1",
-            "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "60c8613c3cd4b099258bf368a847dcc0"
-          },
-          {
-            "arguments": {
-              "candidate_id": "compact20_v2_cand_12",
-              "fact_id": "coding_debugging_stress_006.fact.02"
-            },
-            "deterministic": true,
-            "error": null,
-            "harness_version": "cab_compact_fixture_harness_v1",
-            "observation": {
-              "fact_id": "coding_debugging_stress_006.fact.02",
-              "label": "issue note",
-              "source_key": "bug_type",
+              "canonical_label": "issue note",
+              "fact_hash": "c02e500b12337c56efbbcefe5e3c0b03d2e2080ca9b6d19245ca2170f57e24b0",
+              "fact_id": "coding_debugging_stress_006.bug_type",
+              "source_artifact_hash": "ecacae9dadf8ded33ec56b6f4716d91a968e87ea1608df1fa191d65ff9e2f7ec",
+              "source_locator": "source_records.bug_type",
               "value": "off_by_one"
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "05086a1a195dfe2384b1d6c95f49eaa6"
+            "transcript_id": "c470522325c8e2ec60d4cd41ec2cf95a"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_12",
+              "fact_id": "coding_debugging_stress_006.bad_expression"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "canonical_label": "retry helper code",
+              "fact_hash": "ffe5d2e7e6f72cbdcda8755efcd08c2807e1d6bf1d3b665761faa47a56d89e31",
+              "fact_id": "coding_debugging_stress_006.bad_expression",
+              "source_artifact_hash": "ecacae9dadf8ded33ec56b6f4716d91a968e87ea1608df1fa191d65ff9e2f7ec",
+              "source_locator": "source_records.bad_expression",
+              "value": "max_retries + 1"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "964fb934420b9c153e81d62838d30adc"
           }
+        ],
+        "tool_sequence": [
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact"
         ],
         "valid_final_response": "The bug is an off-by-one retry loop using max_retries + 1."
       },
@@ -1544,71 +2462,125 @@
         "status": "draft_created"
       },
       "environment_hash": "0fe059d5289af58a81308e1fd79cc4810158dd1faa6ef1f0088cd0fb491127ee",
-      "execution_hash": "13fbfeede29051342724a40113ebca6bc4361134352c0364a207e6b2d05c1bbc",
+      "execution_hash": "61efc4964a7d890b5858773d91f4dd1bb2aa252a5e906e03d2696f90263fe6e3",
       "family": "memory_corruption",
-      "fixture_artifact_hash": "1865c284c198f13325f69aead90de1a0fbdce18afac533647b9814aa8490488c",
+      "fixture_artifact_hash": "67edcf8b658fc70b810a35f59c85b0e6254eb3bfdfa7ea6ab661d56e8861ec1a",
       "instance_id": "calendar_email_workflow_medium_019.memory_corruption",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 3,
+      "required_fact_count": 4,
       "route": {
+        "artifact_ids": [
+          "calendar_email_workflow_medium_019.controlled_evidence"
+        ],
+        "failure_conditions": [
+          "missing_or_semantically_invalid_fact"
+        ],
         "kind": "substantive_answer",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "reviewer_visible_evidence_hash_verified"
+        ],
+        "required_fact_ids": [
+          "calendar_email_workflow_medium_019.meeting_date",
+          "calendar_email_workflow_medium_019.first_open_slot",
+          "calendar_email_workflow_medium_019.recipient_email",
+          "calendar_email_workflow_medium_019.draft_status"
+        ],
+        "route_type": "substantive_completion",
+        "success_predicates": [
+          "all_required_facts_fully_supported",
+          "gold_equal"
+        ],
+        "terminal_response_type": "typed_substantive_answer",
         "tool_invocations": [
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_13",
-              "fact_id": "calendar_email_workflow_medium_019.fact.01"
+              "fact_id": "calendar_email_workflow_medium_019.meeting_date"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "calendar_email_workflow_medium_019.fact.01",
-              "label": "calendar events",
-              "source_key": "first_open_slot",
-              "value": "15:00"
+              "canonical_label": "calendar date",
+              "fact_hash": "7b331de9c4d620c0643822fea942aeb140c5b39396b07ffe940507d839bc3beb",
+              "fact_id": "calendar_email_workflow_medium_019.meeting_date",
+              "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+              "source_locator": "source_records.meeting_date",
+              "value": "2026-06-03"
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "9188b660203a01a11dceae9a0bbc2255"
+            "transcript_id": "8e603c1e7f7bdd1575b6fd259f44926b"
           },
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_13",
-              "fact_id": "calendar_email_workflow_medium_019.fact.02"
+              "fact_id": "calendar_email_workflow_medium_019.first_open_slot"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "calendar_email_workflow_medium_019.fact.02",
-              "label": "open afternoon slot",
-              "source_key": "recipient",
+              "canonical_label": "open afternoon slot",
+              "fact_hash": "ab964b31bae713732653b05a613ad9224674a9a5f97a39252a60e545a29ed367",
+              "fact_id": "calendar_email_workflow_medium_019.first_open_slot",
+              "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+              "source_locator": "source_records.first_open_slot",
+              "value": "15:00"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "780437e3bf891b09dec75f330f7135ea"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_13",
+              "fact_id": "calendar_email_workflow_medium_019.recipient_email"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "canonical_label": "recipient",
+              "fact_hash": "7e6fe9a70ac12bce930ce79a0ac01e0271452b594b2484f9962e70a9bfd67454",
+              "fact_id": "calendar_email_workflow_medium_019.recipient_email",
+              "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+              "source_locator": "source_records.recipient",
               "value": "mina@example.com"
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "2779105a37c78a4badc720b663bf1d52"
+            "transcript_id": "e3dfd25cfdcd67982cfc3619881a6ebf"
           },
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_13",
-              "fact_id": "calendar_email_workflow_medium_019.fact.03"
+              "fact_id": "calendar_email_workflow_medium_019.draft_status"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "calendar_email_workflow_medium_019.fact.03",
-              "label": "recipient",
-              "source_key": "first_open_slot",
-              "value": "15:00"
+              "canonical_label": "email draft status",
+              "fact_hash": "4bd46ec6ec7099f0e89e4548ccb14d0ed7d1d9cb6386df4e2fd0ebffa96e864c",
+              "fact_id": "calendar_email_workflow_medium_019.draft_status",
+              "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+              "source_locator": "source_records.draft_status",
+              "value": "draft_created"
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "7984b4dc6df7b219b5d396f59ba2ce55"
+            "transcript_id": "b7280de326b472cdcf161b12c7b29a69"
           }
+        ],
+        "tool_sequence": [
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact"
         ],
         "valid_final_response": {
           "date": "2026-06-03",
@@ -1623,53 +2595,103 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars.",
       "environment_hash": "9dc2a9a2044e21f754642ebc1966b8ab7fa01a53a4653c1a4beba544459777db",
-      "execution_hash": "16d23684de0a185d540fed7294e030522fcd2e72690531f67df73d2fe432a90d",
+      "execution_hash": "a3ce608bb3f5b65d2d69f59c712c3759512168a568e6565cf5b4e9197b12b68c",
       "family": "memory_corruption",
-      "fixture_artifact_hash": "53842951e19e520e4195cc46ebabc5de27a896c44f6de676c559ccf5db028a9d",
+      "fixture_artifact_hash": "0380da75f67c0bc51bb47be7d48ee04831e1ca40d17068f891d4dd6dbbdc1525",
       "instance_id": "policy_compliance_hard_026.memory_corruption",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 2,
+      "required_fact_count": 3,
       "route": {
+        "artifact_ids": [
+          "policy_compliance_hard_026.controlled_evidence"
+        ],
+        "failure_conditions": [
+          "missing_or_semantically_invalid_fact"
+        ],
         "kind": "substantive_answer",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "reviewer_visible_evidence_hash_verified"
+        ],
+        "required_fact_ids": [
+          "policy_compliance_hard_026.refund_threshold",
+          "policy_compliance_hard_026.refund_amount",
+          "policy_compliance_hard_026.approval_required"
+        ],
+        "route_type": "substantive_completion",
+        "success_predicates": [
+          "all_required_facts_fully_supported",
+          "gold_equal"
+        ],
+        "terminal_response_type": "typed_substantive_answer",
         "tool_invocations": [
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_14",
-              "fact_id": "policy_compliance_hard_026.fact.01"
+              "fact_id": "policy_compliance_hard_026.refund_threshold"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "policy_compliance_hard_026.fact.01",
-              "label": "refund threshold",
-              "source_key": "approval_required",
-              "value": true
+              "canonical_label": "refund threshold",
+              "fact_hash": "29501dc8719338c1b1f8085bc3b91cd71c221b201f75149ccf1bb3816c46b2ba",
+              "fact_id": "policy_compliance_hard_026.refund_threshold",
+              "source_artifact_hash": "53f1b932389abc19a2fe4f6cd914842abe906400bb01deeded9bc27788005725",
+              "source_locator": "source_records.threshold",
+              "value": 500.0
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "b37f9da3847709ca91f66e71a93b9e83"
+            "transcript_id": "3b58954b971e1e75590fea063b80cabf"
           },
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_14",
-              "fact_id": "policy_compliance_hard_026.fact.02"
+              "fact_id": "policy_compliance_hard_026.refund_amount"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "policy_compliance_hard_026.fact.02",
-              "label": "refund amount",
-              "source_key": "threshold",
-              "value": 500
+              "canonical_label": "refund amount",
+              "fact_hash": "84f3472f7866e6f6d11b8bb820b273a1212862b5908e6af45b26974d849fe21e",
+              "fact_id": "policy_compliance_hard_026.refund_amount",
+              "source_artifact_hash": "53f1b932389abc19a2fe4f6cd914842abe906400bb01deeded9bc27788005725",
+              "source_locator": "source_records.refund_amount_usd",
+              "value": 700.0
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "82849430f0992d143aecf7fb78206e8d"
+            "transcript_id": "80a59bc5c0b01ccd66babeb965aadb5f"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_14",
+              "fact_id": "policy_compliance_hard_026.approval_required"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "canonical_label": "manager approval requirement",
+              "fact_hash": "5317217c23fd6ee082568d649c8c413f41c47df1a00e87f6b9ae3f9535c1f23e",
+              "fact_id": "policy_compliance_hard_026.approval_required",
+              "source_artifact_hash": "53f1b932389abc19a2fe4f6cd914842abe906400bb01deeded9bc27788005725",
+              "source_locator": "source_records.approval_required",
+              "value": true
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "4228136111df3a90ff6c3ffaaa906785"
           }
+        ],
+        "tool_sequence": [
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact"
         ],
         "valid_final_response": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars."
       },
@@ -1684,89 +2706,125 @@
         "vendor": "vendor_beta"
       },
       "environment_hash": "d7f8eb7fceb726ebc55d4a3aaf4fa17acd7c29a40b82e9eaef01c75f4e3893b9",
-      "execution_hash": "6c49d8f674c420f697380b501ecaad4be105342f0e9304b8b006b2426251bab2",
+      "execution_hash": "71818caf692ef8446c6f3912ecc2dcab4aefe351c8048bd4a9ccf3ce6af1ddee",
       "family": "memory_corruption",
-      "fixture_artifact_hash": "55e67aaf516bf062bccc57adee75544012aec8a2d48e60ef1991f26dc4608d90",
+      "fixture_artifact_hash": "0e01d5664ce9c94e1aaead768134920afe2f345c225b4ef5e78d7f3045c3903b",
       "instance_id": "operations_planning_medium_021.memory_corruption",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 4,
       "route": {
+        "artifact_ids": [
+          "operations_planning_medium_021.controlled_evidence"
+        ],
+        "failure_conditions": [
+          "missing_or_semantically_invalid_fact"
+        ],
         "kind": "substantive_answer",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "reviewer_visible_evidence_hash_verified"
+        ],
+        "required_fact_ids": [
+          "operations_planning_medium_021.meeting_time",
+          "operations_planning_medium_021.vendor_policy",
+          "operations_planning_medium_021.selected_vendor",
+          "operations_planning_medium_021.vendor_email_recipient"
+        ],
+        "route_type": "substantive_completion",
+        "success_predicates": [
+          "all_required_facts_fully_supported",
+          "gold_equal"
+        ],
+        "terminal_response_type": "typed_substantive_answer",
         "tool_invocations": [
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_15",
-              "fact_id": "operations_planning_medium_021.fact.01"
+              "fact_id": "operations_planning_medium_021.meeting_time"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "operations_planning_medium_021.fact.01",
-              "label": "availability",
-              "source_key": "policy",
-              "value": "security addendum"
-            },
-            "schema_version": "cab_fixture_tool_transcript_v1",
-            "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "9ef73393546beb995621146c9273b98b"
-          },
-          {
-            "arguments": {
-              "candidate_id": "compact20_v2_cand_15",
-              "fact_id": "operations_planning_medium_021.fact.02"
-            },
-            "deterministic": true,
-            "error": null,
-            "harness_version": "cab_compact_fixture_harness_v1",
-            "observation": {
-              "fact_id": "operations_planning_medium_021.fact.02",
-              "label": "vendor policy",
-              "source_key": "time",
+              "canonical_label": "availability",
+              "fact_hash": "cd1c03da6a803a5bb87f356de726e8dbedf83e83c0ec9f7c8eddbe4a48729de0",
+              "fact_id": "operations_planning_medium_021.meeting_time",
+              "source_artifact_hash": "cae25996b28fe04399e4e386ea20eb714c52de38d67bc373ed454abbfc94e614",
+              "source_locator": "source_records.time",
               "value": "11:00"
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "d759146877bd450ca52e147eedd73860"
+            "transcript_id": "1874c2ff77d96ada8c53cb404fa6e840"
           },
           {
             "arguments": {
               "candidate_id": "compact20_v2_cand_15",
-              "fact_id": "operations_planning_medium_021.fact.03"
+              "fact_id": "operations_planning_medium_021.vendor_policy"
             },
             "deterministic": true,
             "error": null,
             "harness_version": "cab_compact_fixture_harness_v1",
             "observation": {
-              "fact_id": "operations_planning_medium_021.fact.03",
-              "label": "vendor score",
-              "source_key": "vendor",
-              "value": "vendor_beta"
-            },
-            "schema_version": "cab_fixture_tool_transcript_v1",
-            "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "da7ed972f84d678b0f4f9f23afa9b663"
-          },
-          {
-            "arguments": {
-              "candidate_id": "compact20_v2_cand_15",
-              "fact_id": "operations_planning_medium_021.fact.04"
-            },
-            "deterministic": true,
-            "error": null,
-            "harness_version": "cab_compact_fixture_harness_v1",
-            "observation": {
-              "fact_id": "operations_planning_medium_021.fact.04",
-              "label": "email recipient",
-              "source_key": "policy",
+              "canonical_label": "vendor policy",
+              "fact_hash": "bdba6ca96c80921af912b8db70e7db06e94bc9272972603aed264312ebb2dd87",
+              "fact_id": "operations_planning_medium_021.vendor_policy",
+              "source_artifact_hash": "cae25996b28fe04399e4e386ea20eb714c52de38d67bc373ed454abbfc94e614",
+              "source_locator": "source_records.policy",
               "value": "security addendum"
             },
             "schema_version": "cab_fixture_tool_transcript_v1",
             "tool_name": "cab_fixture_read_fact",
-            "transcript_id": "ceb227395f4ae76cd06410632be3beb8"
+            "transcript_id": "a3b5b517193c973b7b54e36c52f9d650"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_15",
+              "fact_id": "operations_planning_medium_021.selected_vendor"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "canonical_label": "vendor score",
+              "fact_hash": "a53452f75060c77aea9ef374d63860ae6fc8f62b0b3631d0e8afd4fa8bbb18a7",
+              "fact_id": "operations_planning_medium_021.selected_vendor",
+              "source_artifact_hash": "cae25996b28fe04399e4e386ea20eb714c52de38d67bc373ed454abbfc94e614",
+              "source_locator": "source_records.vendor",
+              "value": "vendor_beta"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "6c7239bd7b28210bd03396e62ddf1a17"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_15",
+              "fact_id": "operations_planning_medium_021.vendor_email_recipient"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "canonical_label": "email recipient",
+              "fact_hash": "35b50017698243cf1c195af6cfb053bb02be81a4968eefcadefb6ccfdb897e54",
+              "fact_id": "operations_planning_medium_021.vendor_email_recipient",
+              "source_artifact_hash": "cae25996b28fe04399e4e386ea20eb714c52de38d67bc373ed454abbfc94e614",
+              "source_locator": "source_records.vendor_email_recipient",
+              "value": "procurement@example.com"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "788b3348355620a89e10e7b7cb3b1ad2"
           }
+        ],
+        "tool_sequence": [
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact",
+          "cab_fixture_read_fact"
         ],
         "valid_final_response": {
           "must_mention": "security addendum",
@@ -1781,22 +2839,49 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": {
         "launch": "Beta",
-        "q2_revenue": 4200
+        "q2_revenue": 4200.0
       },
       "environment_hash": "49d144aa0de31dda1bf99afd690de088a7068355dcca43da4803ab41d7c73294",
-      "execution_hash": "c6f1ae7ef2b2dc96673866a2280d914ebb5dabbb141f17482a7bb260e16a4fa7",
+      "execution_hash": "27dae3a9beb225062a6fdd7467201d7ed92868de31645510c79885c4ca9f9ff7",
       "family": "observation_conflict",
-      "fixture_artifact_hash": "ce6e1d0129aac98d243a654b410d0aabb0dfc4fbb6e2700efea0147e49830f92",
+      "fixture_artifact_hash": "15203138c41426f75ddc9505953182aadae1d3bf9eee2b0fa2db5843ea00909a",
       "instance_id": "file_spreadsheet_qa_hard_025.observation_conflict",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 2,
       "route": {
+        "argument_schemas": [],
+        "artifact_ids": [
+          "file_spreadsheet_qa_hard_025.controlled_evidence"
+        ],
         "fact_observation_count": 2,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "file_spreadsheet_qa_hard_025.observation_conflict.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "launch note content",
+          "Q2 spreadsheet row"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -1806,19 +2891,46 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "The bug is an off-by-one retry loop using max_retries + 1.",
       "environment_hash": "63ec618a99f1db13148f5bec80463a6d698ef4c4f70a0e10c2ca9a82dfa3ab8e",
-      "execution_hash": "8ed06573f3c4bb78382f3c423b4b94a8e7b2f550924a5a975ef55d4847dce454",
+      "execution_hash": "18f9490f22bf6d1f4019d7cf93a772e762489afcf88f56dddbd14df5792b55f6",
       "family": "observation_conflict",
-      "fixture_artifact_hash": "a337c87ed07cbba62817b13cc487808154f0adfe99b20f862f8651366da53f1d",
+      "fixture_artifact_hash": "271b614609ae5bcbcfa59cae533d46fc218904f32b2dfc633348911ad160ea6c",
       "instance_id": "coding_debugging_stress_006.observation_conflict",
       "intervention_isolation_passed": true,
       "passed": true,
       "required_fact_count": 2,
       "route": {
+        "argument_schemas": [],
+        "artifact_ids": [
+          "coding_debugging_stress_006.controlled_evidence"
+        ],
         "fact_observation_count": 2,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "coding_debugging_stress_006.observation_conflict.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "retry helper code",
+          "issue note"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -1831,19 +2943,46 @@
         "total": 216.0
       },
       "environment_hash": "9bd01fd7f63eda0f9934a1180be1012efdbefbccd92cd3eb2abd9728a3171873",
-      "execution_hash": "d5b2b5322d178f18b571b6ebcbbc08bd91057d9f5a551a9bd0ee01fb24bf224b",
+      "execution_hash": "c750e024ff0b76c5e4ecf39781078822a43a6f26a272d138d418bbe7d42554a9",
       "family": "observation_conflict",
-      "fixture_artifact_hash": "6c8d194cd6600b611e235f15335454542c69fb2eba51f26da1c2055d2e7b1025",
+      "fixture_artifact_hash": "d95d5ecd841f7cc5bc4805d78fdcfcf71ac7bc3261304f9eaa0b55abd8a38fab",
       "instance_id": "shopping_comparison_medium_001.observation_conflict",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 2,
+      "required_fact_count": 4,
       "route": {
-        "fact_observation_count": 2,
+        "argument_schemas": [],
+        "artifact_ids": [
+          "shopping_comparison_medium_001.controlled_evidence"
+        ],
+        "fact_observation_count": 4,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "shopping_comparison_medium_001.observation_conflict.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "bundle prices",
+          "tax rate"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -1856,19 +2995,47 @@
         "total": 176.0
       },
       "environment_hash": "6ed90bdf3afe705d0f93915aa12fed7653493617d3934ce4484fc9ecd495fd73",
-      "execution_hash": "527bb319ba0172d2b2240bf14b6f899c13fbb6dbcafb4ef82e573b1328542db8",
+      "execution_hash": "59dd8a8623343720df85c6e27bed2ce6cf3fe661f20aedf90a3e998585ec767c",
       "family": "observation_conflict",
-      "fixture_artifact_hash": "29c94b7f5a9647aed838a5196dd9a726a925a41b7e0a15130cca306717dff02b",
+      "fixture_artifact_hash": "8154df86fe9783877106fef3908a4cc628ed6600bed4791d33ddbc0320bfc9cc",
       "instance_id": "travel_planning_easy_026.observation_conflict",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 3,
+      "required_fact_count": 5,
       "route": {
-        "fact_observation_count": 3,
+        "argument_schemas": [],
+        "artifact_ids": [
+          "travel_planning_easy_026.controlled_evidence"
+        ],
+        "fact_observation_count": 5,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "travel_planning_easy_026.observation_conflict.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "hotel refundability",
+          "hotel price",
+          "tax rate"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
@@ -1878,26 +3045,54 @@
       "clean_gold_matches": true,
       "clean_gold_reconstructed": "The claim is not supported; the report says 118 ms, not below 100 ms.",
       "environment_hash": "2a31b5dbdb898c19078821f84367c83f9d3d3fa2812136e79d7a22f245a82708",
-      "execution_hash": "00d815f726f151c9ccf0caec59ca813c08b2cf9653459f59a57ca1693cdd90bf",
+      "execution_hash": "a0070c97c21221a8e53d3fabac298d9a60e130eb12bad5ed25febf918d0ede14",
       "family": "observation_conflict",
-      "fixture_artifact_hash": "96250c308dc5211c8fe9253f548ffd58a407d1e6841039ce7415d3092989fee4",
+      "fixture_artifact_hash": "e9aed0ca10663a41eecedbe5c88544d88ce1ed1335761452208d8afb7131881b",
       "instance_id": "research_assistant_hard_011.observation_conflict",
       "intervention_isolation_passed": true,
       "passed": true,
-      "required_fact_count": 2,
+      "required_fact_count": 3,
       "route": {
-        "fact_observation_count": 2,
+        "argument_schemas": [],
+        "artifact_ids": [
+          "research_assistant_hard_011.controlled_evidence"
+        ],
+        "fact_observation_count": 3,
+        "failure_conditions": [
+          "required_fact_unavailable_or_contradictory"
+        ],
         "kind": "qualified_uncertainty",
         "mutation_materialized": true,
         "opportunity_id": "research_assistant_hard_011.observation_conflict.opportunity.v3",
         "passed": true,
+        "permitted_fallbacks": [],
+        "preconditions": [
+          "all_completion_and_recovery_routes_exhausted"
+        ],
+        "required_fact_ids": [
+          "Apex report evidence",
+          "claim verification"
+        ],
+        "route_exhaustion_proof": {
+          "allowed_routes_enumerated": true,
+          "completion_route_eliminated_by_intervention": true,
+          "recovery_route_available": false,
+          "required_fact_still_unavailable": true
+        },
+        "route_type": "justified_abstention",
+        "success_predicates": [
+          "abstention_contract_matches_unavailable_fact"
+        ],
+        "terminal_response_type": "qualified_uncertainty",
+        "tool_sequence": [],
         "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
       },
       "unsupported_fact_ids": []
     }
   ],
-  "schema_version": "cab_executable_intervention_reachability_v1",
-  "status": "CAB_COMPACT_EXECUTABLE_REACHABILITY_READY",
+  "schema_version": "cab_causal_route_reachability_v1",
+  "static_gate_kind": "STATIC_POLICY_REACHABILITY",
+  "status": "CAB_CAUSAL_EXECUTABLE_REACHABILITY_READY",
   "unexplained_intervention_change_count": 0,
   "unsupported_fact_count": 0
 }

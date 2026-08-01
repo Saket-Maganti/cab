@@ -1,41 +1,85 @@
 {
+  "artifact_hash": "cae25996b28fe04399e4e386ea20eb714c52de38d67bc373ed454abbfc94e614",
   "base_task_id": "operations_planning_medium_021",
   "candidate_id": "compact20_v2_cand_15",
   "empirical_evidence": false,
   "facts": [
     {
-      "fact_id": "operations_planning_medium_021.fact.01",
-      "label": "availability",
-      "source_key": "policy",
-      "value": "security addendum"
+      "canonical_label": "availability",
+      "derivation_role": "input",
+      "fact_id": "operations_planning_medium_021.meeting_time",
+      "hash": "cd1c03da6a803a5bb87f356de726e8dbedf83e83c0ec9f7c8eddbe4a48729de0",
+      "normalized_value": "11:00",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "datetime",
+      "sensitive": false,
+      "source_artifact_id": "operations_planning_medium_021.controlled_evidence",
+      "source_field_or_locator": "source_records.time",
+      "source_path": "controlled_evidence.json",
+      "source_value": "11:00",
+      "unit": "HH:MM"
     },
     {
-      "fact_id": "operations_planning_medium_021.fact.02",
-      "label": "vendor policy",
-      "source_key": "time",
-      "value": "11:00"
+      "canonical_label": "vendor policy",
+      "derivation_role": "constraint",
+      "fact_id": "operations_planning_medium_021.vendor_policy",
+      "hash": "bdba6ca96c80921af912b8db70e7db06e94bc9272972603aed264312ebb2dd87",
+      "normalized_value": "security addendum",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "string",
+      "sensitive": false,
+      "source_artifact_id": "operations_planning_medium_021.controlled_evidence",
+      "source_field_or_locator": "source_records.policy",
+      "source_path": "controlled_evidence.json",
+      "source_value": "security addendum",
+      "unit": "text"
     },
     {
-      "fact_id": "operations_planning_medium_021.fact.03",
-      "label": "vendor score",
-      "source_key": "vendor",
-      "value": "vendor_beta"
+      "canonical_label": "vendor score",
+      "derivation_role": "selection",
+      "fact_id": "operations_planning_medium_021.selected_vendor",
+      "hash": "a53452f75060c77aea9ef374d63860ae6fc8f62b0b3631d0e8afd4fa8bbb18a7",
+      "normalized_value": "vendor_beta",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "identifier",
+      "sensitive": false,
+      "source_artifact_id": "operations_planning_medium_021.controlled_evidence",
+      "source_field_or_locator": "source_records.vendor",
+      "source_path": "controlled_evidence.json",
+      "source_value": "vendor_beta",
+      "unit": "identifier"
     },
     {
-      "fact_id": "operations_planning_medium_021.fact.04",
-      "label": "email recipient",
-      "source_key": "policy",
-      "value": "security addendum"
+      "canonical_label": "email recipient",
+      "derivation_role": "input",
+      "fact_id": "operations_planning_medium_021.vendor_email_recipient",
+      "hash": "35b50017698243cf1c195af6cfb053bb02be81a4968eefcadefb6ccfdb897e54",
+      "normalized_value": "procurement@example.com",
+      "required_for_clean_answer": false,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "string",
+      "sensitive": false,
+      "source_artifact_id": "operations_planning_medium_021.controlled_evidence",
+      "source_field_or_locator": "source_records.vendor_email_recipient",
+      "source_path": "controlled_evidence.json",
+      "source_value": "procurement@example.com",
+      "unit": "email"
     }
   ],
-  "gold_derivation_inputs": {
+  "reviewer_visible": true,
+  "schema_version": "cab_controlled_evidence_artifact_v2",
+  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE",
+  "source_records": {
     "policy": "security addendum",
-    "public_domain": "operations_planning",
-    "template_domain": "multi_hop_operations",
     "time": "11:00",
-    "variant": 21,
-    "vendor": "vendor_beta"
-  },
-  "schema_version": "cab_controlled_evidence_artifact_v1",
-  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE"
+    "vendor": "vendor_beta",
+    "vendor_email_recipient": "procurement@example.com"
+  }
 }

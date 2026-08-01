@@ -3,7 +3,7 @@
   "failed_count": 0,
   "passed": true,
   "passed_count": 20,
-  "report_hash": "91b0f0efac23671c186c37167cd4c460ac471bee858e7b7ebde5a133abb1ff20",
+  "report_hash": "3e93d5aa32b73cade91bec9bd51d9ea10ebf2cc43e31db90ecfa409e7f0c7ef1",
   "rows": [
     {
       "candidate_id": "compact20_v2_cand_01",
@@ -20,7 +20,7 @@
       "matches": true,
       "reconstructed": {
         "launch": "Beta",
-        "q2_revenue": 4200
+        "q2_revenue": 4200.0
       }
     },
     {
@@ -85,7 +85,7 @@
       "matches": true,
       "reconstructed": {
         "launch": "Beta",
-        "q2_revenue": 4200
+        "q2_revenue": 4200.0
       }
     },
     {
@@ -132,7 +132,7 @@
       "matches": true,
       "reconstructed": {
         "launch": "Beta",
-        "q2_revenue": 4200
+        "q2_revenue": 4200.0
       }
     },
     {

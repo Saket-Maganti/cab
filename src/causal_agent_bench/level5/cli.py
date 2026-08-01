@@ -88,6 +88,13 @@ LEVEL5_COMMANDS = {
     "approval",
     "power",
     "final-pre-review",
+    "recovery",
+    "measurement",
+    "antigaming",
+    "governance",
+    "portability",
+    "release",
+    "level6",
 }
 
 
@@ -181,6 +188,80 @@ def _env_doctor(args: Any) -> None:
 
 def _benchmark(args: Any) -> None:
     command = args.benchmark_command
+    if command in {"semantic-fact-check", "evidence-gold-check"}:
+        from causal_agent_bench.level6.gold import (
+            compact_derivation_spec,
+            reconstruct_in_isolated_directory,
+        )
+        from causal_agent_bench.level6.semantic import (
+            build_compact_semantic_facts,
+            build_controlled_evidence_artifact,
+        )
+        from causal_agent_bench.schemas import BenchmarkInstance
+        from causal_agent_bench.utils.io import read_jsonl
+
+        instances = read_jsonl(args.instances, BenchmarkInstance)
+        clean = [row for row in instances if row.condition == "clean"]
+        rows = []
+        for instance in clean:
+            facts = build_compact_semantic_facts(instance)
+            artifact = build_controlled_evidence_artifact(
+                instance,
+                candidate_id=f"cli.{instance.instance_id}",
+            )
+            reconstructed = reconstruct_in_isolated_directory(
+                artifact,
+                compact_derivation_spec(instance.base_task.domain),
+            )["output"]
+            rows.append(
+                {
+                    "instance_id": instance.instance_id,
+                    "fact_count": len(facts),
+                    "gold_matches": reconstructed
+                    == instance.base_task.goal.expected_final_answer,
+                }
+            )
+        report = {
+            "command": command,
+            "passed": bool(rows) and all(row["gold_matches"] for row in rows),
+            "rows": rows,
+            "status": (
+                "CAB_SEMANTIC_FACT_ONTOLOGY_READY"
+                if command == "semantic-fact-check"
+                else "CAB_EVIDENCE_ONLY_GOLD_RECONSTRUCTION_READY"
+            ),
+        }
+        _print(report)
+        if not report["passed"]:
+            raise SystemExit(1)
+        return
+    if command == "stage1-blinding-check":
+        import tempfile
+
+        from causal_agent_bench.level6.blinding import (
+            build_physically_separated_review_archives,
+        )
+
+        with tempfile.TemporaryDirectory(prefix="cab-stage1-check-") as temporary:
+            report = build_physically_separated_review_archives(
+                Path.cwd(),
+                output_root=temporary,
+                fixture_only=True,
+            )
+        _print(report)
+        if not report["stage1_leakage_scan"]["passed"]:
+            raise SystemExit(1)
+        return
+    if command == "causal-reachability-check":
+        from causal_agent_bench.safety.executable_reachability import (
+            run_executable_reachability_check,
+        )
+
+        report = run_executable_reachability_check(Path.cwd())
+        _print(report)
+        if not report["passed"]:
+            raise SystemExit(1)
+        return
     if command in {"reachability-check", "static-reachability-check", "intervention-audit"}:
         from causal_agent_bench.safety.intervention_reachability import (
             audit_intervention_collection,
@@ -716,10 +797,29 @@ def handle_level5_command(args: Any) -> bool:
             validate_hierarchical_power_design,
         )
 
-        result = validate_hierarchical_power_design(
-            args.repo_root,
-            design_path=args.design,
-        )
+        if args.power_command == "analytic-validate":
+            path = Path(args.repo_root) / "reports/level6_foundation/HIERARCHICAL_POWER_ANALYTIC_V2.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            serialized = json.dumps(payload, sort_keys=True)
+            result = {
+                "passed": "simulation_repetitions" not in serialized
+                and "monte_carlo_standard_error" not in serialized,
+                "method_class": "ANALYTIC_PLANNING_APPROXIMATIONS",
+            }
+        elif args.power_command == "simulate-validate":
+            path = Path(args.repo_root) / "reports/level6_foundation/HIERARCHICAL_POWER_MONTE_CARLO_V2.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            result = {
+                "passed": payload.get("simulations_completed", 0) >= 20_000
+                and payload.get("method_class")
+                == "TRUE_MONTE_CARLO_HIERARCHICAL_SIMULATION",
+                "simulations_completed": payload.get("simulations_completed", 0),
+            }
+        else:
+            result = validate_hierarchical_power_design(
+                args.repo_root,
+                design_path=args.design,
+            )
         _print(result)
         if not result["passed"]:
             raise SystemExit(1)
@@ -736,6 +836,58 @@ def handle_level5_command(args: Any) -> bool:
                 json.dumps(result, indent=2, sort_keys=True) + "\n",
                 encoding="utf-8",
             )
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "recovery":
+        from causal_agent_bench.safety.final_pre_review_adversarial import (
+            run_final_pre_review_adversarial_audit,
+        )
+
+        audit = run_final_pre_review_adversarial_audit(args.repo_root)
+        cases = [row for row in audit["cases"] if row["surface"] == "recovery"]
+        result = {
+            "status": "CAB_RECOVERY_AUTHORIZATION_V5_READY",
+            "passed": bool(cases) and all(row["passed"] for row in cases),
+            "cases": cases,
+        }
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "measurement":
+        from causal_agent_bench.level6.measurement import measurement_foundation_check
+
+        result = measurement_foundation_check()
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command in {"antigaming", "governance"}:
+        from causal_agent_bench.level6.governance import governance_foundation_check
+
+        result = governance_foundation_check()
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "portability":
+        from causal_agent_bench.level6.portability import (
+            run_cross_implementation_conformance,
+        )
+
+        result = run_cross_implementation_conformance(args.repo_root)
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "release":
+        from causal_agent_bench.level6.release import exact_final_tip_path_check
+
+        result = exact_final_tip_path_check(args.repo_root)
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "level6":
+        from causal_agent_bench.level6.gate import level6_foundation_check
+
+        result = level6_foundation_check(args.repo_root)
         _print(result)
         if not result["passed"]:
             raise SystemExit(1)

@@ -15,7 +15,34 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": ".github/ISSUE_TEMPLATE/benchmark_pack.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/ISSUE_TEMPLATE/plugin.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/ISSUE_TEMPLATE/security_report.yml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
     },
@@ -87,7 +114,34 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": ".github/workflows/final-pre-review-hardening.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/level5-foundation.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": ".github/workflows/max-ceiling-provider-free.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/pre-run-scientific-hardening.yml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
     },
@@ -618,6 +672,24 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "configs/approval/revocations.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/approval/trusted_issuers.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "configs/baseline_suite_local_stub.yaml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
@@ -879,6 +951,15 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "configs/iclr/artifact_rich_transfer_v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "configs/iclr/model_compatibility_t4x2.yaml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
@@ -889,6 +970,15 @@
       "fix_applied": false,
       "passed": true,
       "path": "configs/iclr/resource_profiles.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/iclr/scale100_v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
     },
@@ -1212,6 +1302,69 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "configs/pre_run/adapter_ablation_plan.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pre_run/evaluated_system_identity.schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pre_run/evaluated_system_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pre_run/frozen_endpoints.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pre_run/power_assumptions.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pre_run/study_execution_manifests.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/pre_run/system_compatibility_matrix.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "configs/provider_pilot_oracle_sanity_check_template.yaml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
@@ -1419,7 +1572,1663 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "data/compact20_reviewed/compact20_v2_balance_report.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/compact20_v2_instances.jsonl",
+      "records_or_cells_checked": 36,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/compact20_v2_rejected_candidates.jsonl",
+      "records_or_cells_checked": 980,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "data/compact20_reviewed/compact20_validated_or_blocked_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/bundle_index.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/tool_transcripts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/bundle.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/clean_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/controlled_evidence.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/fact_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/gold_derivation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/intervention_fixture.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/intervention_isolation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/tool_contracts.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/tool_transcripts.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -1599,6 +3408,33 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "data/human_validation/compact20_real_review/blinded_order_adjudicator.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_real_review/blinded_order_reviewer_a.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_real_review/blinded_order_reviewer_b.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "data/human_validation/compact20_real_review/c10_prerequisites.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -1636,6 +3472,105 @@
       "fix_applied": false,
       "passed": true,
       "path": "data/human_validation/compact20_real_review/review_session.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/packet_manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage1_commitment.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage1_order_adjudicator.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage1_order_reviewer_a.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage1_order_reviewer_b.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage1_review_items.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage2_locked_items.jsonl",
+      "records_or_cells_checked": 20,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage2_order_adjudicator.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage2_order_reviewer_a.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage2_order_reviewer_b.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/human_validation/compact20_two_stage_review/stage2_unlock_state.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -1690,6 +3625,33 @@
       "fix_applied": false,
       "passed": true,
       "path": "data/manifests/CAB_PUBLIC_CONTAMINATION_REGISTRY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/compact20_review_packet_v2_public_commitment.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/compact20_two_stage_review_commitment.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/compact20_v2_public_manifest.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -2814,6 +4776,24 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "environment/kaggle_environment.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "examples/level5/public_fixture/authoring.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "experiments/command_plans.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -3039,6 +5019,24 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "release/dependency_licenses.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "release/level5_sbom.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "release/release_manifest.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -3237,6 +5235,141 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "reports/cpu_first_half/CAB_CPU_FIRST_HALF_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/cpu_first_half/CPU_H1_READINESS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/cpu_first_half/CPU_H2_HUMAN_INPUT_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/ADVERSARIAL_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/CAB_FINAL_PRE_REVIEW_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/CLEAN_RELEASE_RECEIPT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/EXECUTABLE_REACHABILITY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/GOLD_RECONSTRUCTION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/HIERARCHICAL_POWER_DESIGN.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/INTERVENTION_ISOLATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/SMOKE_CALIBRATION_READINESS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/SMOKE_MEASUREMENT_SCHEMA.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/STAGED_RAAC_PLAN.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/STATIC_REACHABILITY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_pre_review/fixture_dry_run/two_stage_fixture_dry_run.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "reports/god_tier_status/god_tier_status.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -3264,6 +5397,96 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "reports/level5/CAB_LEVEL5_BUILD_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5/PHASE01_REGISTRY_VALIDATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5/PHASE04_CHAOS_CAMPAIGN.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5/PHASE09_REDTEAM_FIXTURE_CAMPAIGN.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5_hardening/CAB_LEVEL5_HARDENING_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5_hardening/CLEANROOM_REPRODUCTION_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5_hardening/EVALUATOR_MALICIOUS_FIXTURE_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5_hardening/REAL_FAULT_INJECTION_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5_hardening/REDTEAM_HARDENING_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level5_hardening/SCHEDULER_STRESS_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "reports/paper_asset_eligibility.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -3274,6 +5497,132 @@
       "fix_applied": false,
       "passed": true,
       "path": "reports/paper_todo_inventory.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/CAB_PRE_RUN_HARDENING_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/COMPACT20_POWER_PRECISION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/ENDPOINT_FREEZE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/POWER_PRECISION_RECOMMENDATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/PRE_RUN_SCIENTIFIC_CHECK.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/RESOURCE_PLAN_MATRIX.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/SCALE100_POWER_PRECISION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_hardening/SCORER_AUDIT_PACKET.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_scientific_hardening/compact20_reachability.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_scientific_hardening/compact20_volume_plan.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_scientific_hardening/confirmatory_candidate_validation.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_scientific_hardening/evaluated_system_identity_frozen.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_scientific_hardening/raac_ablation_shard_plan.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/pre_run_scientific_hardening/scale100_resource_plan.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -3363,6 +5712,15 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "tests/fixtures/approval/fixture_approval_receipt.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "tests/fixtures/synthetic_trajectories/argument_sloppy.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -3432,9 +5790,9 @@
     }
   ],
   "files_failed": 0,
-  "files_passed": 381,
-  "files_scanned": 381,
-  "generated_at": "2026-07-29T07:28:07.816570+00:00",
+  "files_passed": 643,
+  "files_scanned": 643,
+  "generated_at": "2026-08-01T18:40:03.574230+00:00",
   "passed": true,
   "schema_version": "cab_cpu_structured_data_validation_v1",
   "scope": "Tracked JSON, JSONL, YAML, YML, and Jupyter notebook files."

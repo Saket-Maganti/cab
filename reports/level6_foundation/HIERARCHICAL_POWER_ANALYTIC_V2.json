@@ -1,0 +1,74 @@
+{
+  "compact20": {
+    "analysis_unit": "paired_base_task_within_model",
+    "approximate_ci_width": 0.374348,
+    "approximate_mde_80pct": 0.237455,
+    "approximate_power": 0.275014,
+    "assumptions": {
+      "alpha": 0.05,
+      "confidence_level": 0.95,
+      "directionality": "one_sided_degradation",
+      "effect": 0.1,
+      "equivalence_margin": null,
+      "multiplicity": "single_primary_planning_contrast",
+      "paired_discordance": 0.24,
+      "sesoi": 0.1
+    },
+    "estimand": "FIXED_MODEL_PANEL_ESTIMAND",
+    "evidence_class": "DESIGN_ONLY",
+    "method_class": "ANALYTIC_PLANNING_APPROXIMATION",
+    "schema_version": "cab_hierarchical_power_analytic_v2",
+    "standard_error": 0.095499,
+    "task_count": 20
+  },
+  "scale100": {
+    "analysis_unit": "paired_base_task_within_model",
+    "approximate_ci_width": 0.167414,
+    "approximate_mde_80pct": 0.106193,
+    "approximate_power": 0.756977,
+    "assumptions": {
+      "alpha": 0.05,
+      "confidence_level": 0.95,
+      "directionality": "one_sided_degradation",
+      "effect": 0.1,
+      "equivalence_margin": null,
+      "multiplicity": "single_primary_planning_contrast",
+      "paired_discordance": 0.24,
+      "sesoi": 0.1
+    },
+    "estimand": "FIXED_MODEL_PANEL_ESTIMAND",
+    "evidence_class": "DESIGN_ONLY",
+    "method_class": "ANALYTIC_PLANNING_APPROXIMATION",
+    "schema_version": "cab_hierarchical_power_analytic_v2",
+    "standard_error": 0.042708,
+    "task_count": 100
+  },
+  "value_of_information": {
+    "more_families": "improves family and interaction estimands",
+    "more_models": "required only for MODEL_SUPERPOPULATION_ESTIMAND",
+    "more_repeats": "secondary after unique tasks because within-task correlation limits gain",
+    "more_tasks": {
+      "analysis_unit": "paired_base_task_within_model",
+      "approximate_ci_width": 0.136693,
+      "approximate_mde_80pct": 0.086706,
+      "approximate_power": 0.889306,
+      "assumptions": {
+        "alpha": 0.05,
+        "confidence_level": 0.95,
+        "directionality": "one_sided_degradation",
+        "effect": 0.1,
+        "equivalence_margin": null,
+        "multiplicity": "single_primary_planning_contrast",
+        "paired_discordance": 0.24,
+        "sesoi": 0.1
+      },
+      "estimand": "FIXED_MODEL_PANEL_ESTIMAND",
+      "evidence_class": "DESIGN_ONLY",
+      "method_class": "ANALYTIC_PLANNING_APPROXIMATION",
+      "schema_version": "cab_hierarchical_power_analytic_v2",
+      "standard_error": 0.034871,
+      "task_count": 150
+    },
+    "reduced_scorer_error": "improves precision without changing task count"
+  }
+}

@@ -4,7 +4,7 @@
 |---|---|
 | Reviewer evidence bundles | `20/20`, `CAB_COMPACT_REVIEW_EVIDENCE_BUNDLES_READY` |
 | Immutable two-stage review | `CAB_TWO_STAGE_HUMAN_REVIEW_READY`; Stage 2 locked |
-| Recovery authorization | `CAB_RECOVERY_AUTHORIZATION_V4_READY` |
+| Recovery authorization | `CAB_RECOVERY_AUTHORIZATION_V5_READY` |
 | Executable reachability | `20/20`, zero unsupported facts |
 | Gold reconstruction | `20/20` |
 | Intervention isolation | `20/20`, zero unexplained changes |

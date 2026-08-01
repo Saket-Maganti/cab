@@ -1,0 +1,41 @@
+{
+  "alternate_implementation_is_external": false,
+  "checks": {
+    "abstention-001": true,
+    "approval-001": true,
+    "certificate-001": true,
+    "graph-001": true,
+    "hash-001": true,
+    "recovery-001": true,
+    "resources-001": true,
+    "route-001": true,
+    "scoring-001": true
+  },
+  "fixture_only": true,
+  "main_results": {
+    "abstention-001": true,
+    "approval-001": true,
+    "certificate-001": true,
+    "graph-001": true,
+    "hash-001": "271763ad81f07c8166c4418e0bb5896612f4863879d7ff03f6ddb67041bdc1f4",
+    "recovery-001": true,
+    "resources-001": true,
+    "route-001": true,
+    "scoring-001": true
+  },
+  "passed": true,
+  "reference_results": {
+    "abstention-001": true,
+    "approval-001": true,
+    "certificate-001": true,
+    "graph-001": true,
+    "hash-001": "271763ad81f07c8166c4418e0bb5896612f4863879d7ff03f6ddb67041bdc1f4",
+    "recovery-001": true,
+    "resources-001": true,
+    "route-001": true,
+    "scoring-001": true
+  },
+  "schema_version": "cab_cross_implementation_conformance_v1",
+  "status": "CAB_PORTABILITY_FOUNDATION_READY",
+  "vector_count": 9
+}

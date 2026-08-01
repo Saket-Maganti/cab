@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cab.example/spec/level6/semantic-fact-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fact_id", "canonical_label", "semantic_type", "source_artifact_id", "source_path", "source_field_or_locator", "source_value", "normalized_value", "unit", "derivation_role", "required_for_clean_answer", "required_for_intervention_answer", "reviewer_visible", "sensitive", "hash"],
+  "properties": {
+    "fact_id": {"type": "string", "minLength": 1},
+    "canonical_label": {"type": "string", "minLength": 1},
+    "semantic_type": {"enum": ["boolean", "category", "currency", "datetime", "identifier", "integer", "number", "percentage", "string"]},
+    "source_artifact_id": {"type": "string"},
+    "source_path": {"type": "string"},
+    "source_field_or_locator": {"type": "string"},
+    "source_value": {},
+    "normalized_value": {},
+    "unit": {"type": "string", "minLength": 1},
+    "derivation_role": {"enum": ["input", "constraint", "selection", "derived_input"]},
+    "required_for_clean_answer": {"type": "boolean"},
+    "required_for_intervention_answer": {"type": "boolean"},
+    "reviewer_visible": {"type": "boolean"},
+    "sensitive": {"type": "boolean"},
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

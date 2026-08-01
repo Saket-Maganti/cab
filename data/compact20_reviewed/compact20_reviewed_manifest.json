@@ -161,7 +161,7 @@
       "reachability_hash": "f23127806a79c0bbc246a3db91631df2982d7bfa787a4e56950ed9ecd2d953ba",
       "reachability_status": "PASS",
       "reviewer_instruction_fingerprint": "424b15c36f99494ad69b43421d7e12c40d5e2b9e31f5ca4ffa1b08a0f23702db",
-      "scorer_policy_hash": "0df97ec79dd2b3a378c0a396f693fce51f4ab1c5f9e8deaf51267adf0a0fecda",
+      "scorer_policy_hash": "6f617c64a0e6e16cbf7be05bc4503bf5f27fc938b28444a4da6ae4f85ea12313",
       "scorer_policy_version": "cab_answer_policy_v3",
       "status": "no_run_genuine_human_review_pending"
     },
@@ -182,7 +182,7 @@
       "reachability_hash": "b6a65f1f1a2d72a835ec33d18a9effdac05f69fdfa439bdb864587b2ed65b99a",
       "reachability_status": "PASS",
       "reviewer_instruction_fingerprint": "5df413cb29ed458ee365f3c34a2aeda955e4969a72abacae3f23920aae5cddf7",
-      "scorer_policy_hash": "a41d1d9369983bac6d5b9e9ffca683a9903a96db92947b9a839df1e06b15fd66",
+      "scorer_policy_hash": "ca7740a4e99d802bf50e1a56e89fb156d2b54eb420c31e7a646064c338b03ec1",
       "scorer_policy_version": "cab_answer_policy_v3",
       "status": "no_run_genuine_human_review_pending"
     },
@@ -203,7 +203,7 @@
       "reachability_hash": "1482df8e25253cd1a7bcc55c5bc1c8d3025db9f61812a8cf858c19bbd258dcd5",
       "reachability_status": "PASS",
       "reviewer_instruction_fingerprint": "945e06a281c72249ea28b68cec2282771f8a829ee8dd7db9b84edcd5d641f022",
-      "scorer_policy_hash": "fa7258193a9a4fcd3b616de35c51ffd6ddba01f7e0f054117ee835075e06477b",
+      "scorer_policy_hash": "a23e7ec2c7d49fa9d2d3f2341efa9a3f7232a170018f802422cb4f8774e9c285",
       "scorer_policy_version": "cab_answer_policy_v3",
       "status": "no_run_genuine_human_review_pending"
     },
@@ -224,7 +224,7 @@
       "reachability_hash": "06eb28ef8f9ec3e26411873282a4deb1723950ea4f2b6b9471ebb2bde1afb8e5",
       "reachability_status": "PASS",
       "reviewer_instruction_fingerprint": "f50c2f3780e943781b8a9a060a1bb498b258cb2694f1723f491901d92db034a5",
-      "scorer_policy_hash": "a1bd04cf27501ba29556a6a2105f87fe4d34c56540334f828a0694df26114a38",
+      "scorer_policy_hash": "bbb06670e0bc02543f74176adbc222f371b9d8bd07e9cb4c83feae55619c27fc",
       "scorer_policy_version": "cab_answer_policy_v3",
       "status": "no_run_genuine_human_review_pending"
     },
@@ -245,7 +245,7 @@
       "reachability_hash": "5961bad0add4efc01b5dab2c9bc0f31db01181b25dc27ca8287ac2de3608d989",
       "reachability_status": "PASS",
       "reviewer_instruction_fingerprint": "6eee9b97017d13b6e42cb71575614f833f0de6a432d29fa36878bd60b79a4fd3",
-      "scorer_policy_hash": "ccd355aebd14e9222de3e256c4c38a3e429ff95ee95fd0cc59d62a32c1b8e6cd",
+      "scorer_policy_hash": "cdb52aefc116795f56e71460931a1c977fe4b0b96942088853f7da6a319d8a8e",
       "scorer_policy_version": "cab_answer_policy_v3",
       "status": "no_run_genuine_human_review_pending"
     },

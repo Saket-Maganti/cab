@@ -49,12 +49,15 @@ def main() -> int:
     current_commit = _git("rev-parse", "HEAD")
 
     state = {
-        "schema_version": "cab_final_pre_review_state_v1",
-        "state": "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE",
+        "schema_version": "cab_final_pre_review_state_v2",
+        "state": "CAB_FINAL_PRE_REVIEW_SEMANTIC_AUDIT_PASSED",
+        "legacy_engineering_state": "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE",
         "review_packet_state": "COMPACT20_REVIEW_PACKET_EVIDENCE_VERIFIABLE",
         "human_validation_state": "HUMAN_VALIDATION_REQUIRED",
         "live_evidence_state": "LIVE_EVIDENCE_REQUIRED",
+        "external_validation_state": "EXTERNAL_LEVEL6_VALIDATION_REQUIRED",
         "CAB_LEVEL5_COMPLETE": False,
+        "CAB_LEVEL6_COMPLETE": False,
         "baseline_commit": BASELINE_COMMIT,
         "implementation_commit": current_commit,
         "genuine_evidence": {
@@ -71,7 +74,7 @@ def main() -> int:
         "engineering_gates": {
             "reviewer_evidence_bundles": evidence["status"],
             "two_stage_review": packet["status"],
-            "recovery_authorization": "CAB_RECOVERY_AUTHORIZATION_V4_READY",
+            "recovery_authorization": "CAB_RECOVERY_AUTHORIZATION_V5_READY",
             "executable_reachability": "CAB_COMPACT_EXECUTABLE_REACHABILITY_READY",
             "cryptographic_approval": "CAB_CRYPTOGRAPHIC_APPROVAL_GATE_READY",
             "hierarchical_power": power["status"],
@@ -146,7 +149,7 @@ def _ledger(evidence: dict[str, Any], packet: dict[str, Any], adversarial: dict[
 |---|---|
 | Reviewer evidence bundles | `{evidence["candidate_count"]}/20`, `{evidence["status"]}` |
 | Immutable two-stage review | `{packet["status"]}`; Stage 2 locked |
-| Recovery authorization | `CAB_RECOVERY_AUTHORIZATION_V4_READY` |
+| Recovery authorization | `CAB_RECOVERY_AUTHORIZATION_V5_READY` |
 | Executable reachability | `20/20`, zero unsupported facts |
 | Gold reconstruction | `20/20` |
 | Intervention isolation | `20/20`, zero unexplained changes |
@@ -208,14 +211,16 @@ orders are deterministic but independent. Human rows and adjudications: 0.
 def _recovery_report() -> str:
     return """# Recovery Authorization Report
 
-Status: `CAB_RECOVERY_AUTHORIZATION_V4_READY`.
+Status: `CAB_RECOVERY_AUTHORIZATION_V5_READY`.
 
 Each tool-failure item binds an exact action ID, action type, permitted tools,
 closed argument schema, preconditions, triggering failure types, useful-output
 predicate, causal fact IDs, attempt budget, cost, and terminal flag. Scoring
 requires a prior actual failure, the exact authorized post-failure action,
 valid arguments, a nonempty predicate-matching observation, and causal binding.
-Text-only recovery claims and alternate-tool heuristics cannot pass v4.
+V5 evaluates each recovery attempt independently and also binds its failure
+event, temporal order, attempt identity, remaining budget, observation, and
+returned fact IDs. Text-only recovery claims and alternate-tool heuristics fail.
 """
 
 

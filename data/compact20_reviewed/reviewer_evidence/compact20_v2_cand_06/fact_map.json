@@ -3,30 +3,61 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "travel_planning_medium_004.fact.01",
-      "output_sha256": "2099be7f436afd75abe4bb1d1d48daa672c3552a2c0af8f65d217c18ffc398e3",
+      "artifact_sha256": "3f7a1a0b6f4289122502a7c17618545e7e8341ec5fd2c44d01a832471b1cfa24",
+      "canonical_label": "hotel refundability",
+      "fact_id": "travel_planning_medium_004.hotel_refundability",
+      "output_sha256": "81a2159778da3f3a075097e2b62f7928435dfbc5d697587d6a7284278d286fd2",
+      "source_locator": "source_records.hotel_refundable",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "0caa7097ca64ea6ebeb55406657edfa0"
+      "transcript_id": "197e4e839c1e8449ff743bbaea7deb1f"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "travel_planning_medium_004.fact.02",
-      "output_sha256": "eb32f00feaf5c15bdf65c1b26669823a606f1ed2f26b971b3b1eb93883a398b6",
+      "artifact_sha256": "3f7a1a0b6f4289122502a7c17618545e7e8341ec5fd2c44d01a832471b1cfa24",
+      "canonical_label": "hotel base price",
+      "fact_id": "travel_planning_medium_004.hotel_base_price",
+      "output_sha256": "bb6f67eaa757a5fc5d656c1bc9b4a52b368a387ec0ffa8756fc3423131e184b7",
+      "source_locator": "source_records.hotel_base_price_usd",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "7af9a50f2b57cd66d6b4dab3eb872fbb"
+      "transcript_id": "1ce5774f64bddf46a7ffa3d9620ddf7a"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "travel_planning_medium_004.fact.03",
-      "output_sha256": "383c0f6157b3ec326dba4c3b7b296f89279f5e65602cdf325cd02f70410f13f2",
+      "artifact_sha256": "3f7a1a0b6f4289122502a7c17618545e7e8341ec5fd2c44d01a832471b1cfa24",
+      "canonical_label": "hotel tax rate",
+      "fact_id": "travel_planning_medium_004.hotel_tax_rate",
+      "output_sha256": "94397624427033abc61c337c87756149cfefb38177918d862b84d9b254a09846",
+      "source_locator": "source_records.tax_rate",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "c74b53de68226e567cd9b74e9ca656bb"
+      "transcript_id": "f5220c03179d9b5d8b2fe3dcd016d60f"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "3f7a1a0b6f4289122502a7c17618545e7e8341ec5fd2c44d01a832471b1cfa24",
+      "canonical_label": "hotel total price",
+      "fact_id": "travel_planning_medium_004.hotel_total_price",
+      "output_sha256": "daf38fdcdb3697126fb4827fa94846314ce06f279ce9ff950fd3aa94baa42511",
+      "source_locator": "source_records.total",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "4406ce2ef3cd790f8f11816f91daddd0"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "3f7a1a0b6f4289122502a7c17618545e7e8341ec5fd2c44d01a832471b1cfa24",
+      "canonical_label": "selected hotel option",
+      "fact_id": "travel_planning_medium_004.selected_hotel",
+      "output_sha256": "eb360bbcd17eb69eafe325e6f418a5b2a56272be681ad8ae4745cff7025b3be7",
+      "source_locator": "source_records.best_option_id",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "a78437e4069c94f98343e099fc1e9632"
     }
   ],
   "required_fact_ids": [
-    "travel_planning_medium_004.fact.01",
-    "travel_planning_medium_004.fact.02",
-    "travel_planning_medium_004.fact.03"
+    "travel_planning_medium_004.hotel_refundability",
+    "travel_planning_medium_004.hotel_base_price",
+    "travel_planning_medium_004.hotel_tax_rate",
+    "travel_planning_medium_004.hotel_total_price",
+    "travel_planning_medium_004.selected_hotel"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

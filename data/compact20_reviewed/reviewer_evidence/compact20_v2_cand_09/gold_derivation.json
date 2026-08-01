@@ -1,21 +1,153 @@
 {
   "candidate_id": "compact20_v2_cand_09",
-  "derivation_name": "reconstruct_operations_planning_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "1df7745cc8c1fd96c1d88224c10a7aa458aea4ef20df8e16485addafe3992544",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:meeting_time"
+      },
+      {
+        "hash": "a37905119088938cebcc3b9848f3754a3b1840fdd50bd1ae9b55cbdb2048bd47",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:selected_vendor"
+      },
+      {
+        "hash": "dee24cb42b4492ee893756d28ed1ccf4ac4bf334cbd39c327cba5d462386e1fc",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:vendor_policy"
+      },
+      {
+        "hash": "a6662e1123e59d24f7994fc14b859e7fbcb2a62f66218d6f66cf073a26f2c187",
+        "kind": "normalization_and_derivation",
+        "source": "fact:meeting_time",
+        "target": "derivation"
+      },
+      {
+        "hash": "07945475f9630ba9c5dc180f275eb4bce02aad2500f5fa53dc135a9acda1daea",
+        "kind": "normalization_and_derivation",
+        "source": "fact:selected_vendor",
+        "target": "derivation"
+      },
+      {
+        "hash": "23dfd2f0308d495528a9dba55f480a55000310db77cba24a3ea361aca195d318",
+        "kind": "normalization_and_derivation",
+        "source": "fact:vendor_policy",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "08cc9b9f77e050d823bd5d258382c87ef5790c2f446370a5867f451b10de1666",
+    "nodes": [
+      {
+        "hash": "c7f5d43bb98c47f58987c35ea48dbde46b377363f211b14be15269116ba2fcc1",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "1b45a821fd9d706efaf21787d728a6e25687c7bff41dc15fcffd546ea0eaba5a",
+        "kind": "semantic_fact",
+        "node_id": "fact:meeting_time"
+      },
+      {
+        "hash": "18d5c5fad03b26aaf100ddac9d26283dbee2840fd727ac91ec06386afd1956d0",
+        "kind": "semantic_fact",
+        "node_id": "fact:selected_vendor"
+      },
+      {
+        "hash": "08e52cda800cab66725f95591733e3bb1fe9ba015c21df9478d95d4f5ce561c6",
+        "kind": "semantic_fact",
+        "node_id": "fact:vendor_policy"
+      },
+      {
+        "hash": "c311e81f9bf73458ddd7b4562ec259089dc97b820879eaa1cbf0b920e27c0416",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "cc8fd10aaa293ab6d86bb361f2e581febea9637bfbf04158e31c70e8c572de14",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.operations_planning.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.operations_planning.evidence_only.v1",
+    "domain": "operations_planning",
+    "expression": {
+      "args": [],
+      "fact": null,
+      "fields": {
+        "must_mention": {
+          "args": [],
+          "fact": "vendor_policy",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        "time": {
+          "args": [],
+          "fact": "meeting_time",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        "vendor": {
+          "args": [],
+          "fact": "selected_vendor",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      },
+      "key": null,
+      "op": "object",
+      "operator": null,
+      "reverse": false,
+      "template": null,
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "meeting_time",
+      "vendor_policy",
+      "selected_vendor"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "e6aba898960581d8ff6bd0e1f4f7f3642a8ed3d0f607a0b7810a87d8ab5ebac5",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "policy",
-    "public_domain",
-    "template_domain",
-    "time",
-    "variant",
-    "vendor"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": {
     "must_mention": "security addendum",
     "time": "11:00",
     "vendor": "vendor_beta"
   },
+  "required_fact_suffixes": [
+    "meeting_time",
+    "vendor_policy",
+    "selected_vendor"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

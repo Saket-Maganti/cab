@@ -3,22 +3,28 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "coding_debugging_stress_006.fact.01",
-      "output_sha256": "c992528601d2737541b87dd16deff6d3635fba79dfb6c4f78d083983e65b29b6",
+      "artifact_sha256": "96e5f720db45739c4a664c0c4ee118b0946d470fb6eef9f79cb44f915c48a818",
+      "canonical_label": "issue note",
+      "fact_id": "coding_debugging_stress_006.bug_type",
+      "output_sha256": "e13e0e9bde8ea7080d06b5f3731d677b3d58f19f6881cf9b6075b38675e8e98f",
+      "source_locator": "source_records.bug_type",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "924afb4c479aef1ecf21e3dc20a99eb0"
+      "transcript_id": "cdb14cfd48e0d2a641c5f958b19938fd"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "coding_debugging_stress_006.fact.02",
-      "output_sha256": "33c1d254c8b3a4d06435d64347cd6ef2d3e04081ce21e14fa11cacf3ffd5cd7e",
+      "artifact_sha256": "96e5f720db45739c4a664c0c4ee118b0946d470fb6eef9f79cb44f915c48a818",
+      "canonical_label": "retry helper code",
+      "fact_id": "coding_debugging_stress_006.bad_expression",
+      "output_sha256": "5e330c8379fc46b4ede46026a139ca2eab8c2b9e149f3857c8fee8451c2f3152",
+      "source_locator": "source_records.bad_expression",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "7164ef43443071e2acf508269b48effc"
+      "transcript_id": "ff1b982d2eda7cf6f89eda594c1c7ea2"
     }
   ],
   "required_fact_ids": [
-    "coding_debugging_stress_006.fact.01",
-    "coding_debugging_stress_006.fact.02"
+    "coding_debugging_stress_006.bug_type",
+    "coding_debugging_stress_006.bad_expression"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

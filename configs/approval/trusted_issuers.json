@@ -1,11 +1,11 @@
 {
   "issuers": {
-    "cab_fixture_issuer_v1": {
+    "cab_level6_fixture_issuer_v1": {
       "allowed_scopes": [
         "fixture"
       ],
-      "public_key_hex": "f60403d7aaf217ebd0f28d8a3330e64719822532a23798e788ec60ff462a8ad5",
-      "public_key_id": "cab_fixture_ed25519_20260801"
+      "public_key_hex": "d335da5c6428fc4c8e242a35285e48b5b64e5a1f610d95b82b7a201a41ceac9f",
+      "public_key_id": "cab_level6_ephemeral_fixture_ed25519"
     }
   },
   "schema_version": "cab_trusted_approval_issuers_v1"

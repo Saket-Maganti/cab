@@ -1,16 +1,91 @@
 {
   "candidate_id": "compact20_v2_cand_17",
-  "derivation_name": "reconstruct_coding_debugging_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "a63100b631e6b1f9d309cdedb8f7f5ff1efa772b66809f300650853d91489245",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:bad_expression"
+      },
+      {
+        "hash": "864fa6a41397ee6fbcbac2207314bbb75bcf7cdc5e8dcf27ef33dff0365ee436",
+        "kind": "normalization_and_derivation",
+        "source": "fact:bad_expression",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "74d9d41cd7fdac3d80993dde6c1ec6fd1ccc8c81cfe961a1dfb29acef9620424",
+    "nodes": [
+      {
+        "hash": "fa219844629adcb9e0c0859346009ddf9c1dc79db4aeaa42adfac37755d31639",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "ffe5d2e7e6f72cbdcda8755efcd08c2807e1d6bf1d3b665761faa47a56d89e31",
+        "kind": "semantic_fact",
+        "node_id": "fact:bad_expression"
+      },
+      {
+        "hash": "9a6b7e8ac5e0c0312cce8757a1650936be04470e7d4305035268761ef0da852f",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "fa36913c4bf4f0b2a5070b8a8b9b6d91bd4963edbd8a7f51ad4358642daa871a",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.coding_debugging.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.coding_debugging.evidence_only.v1",
+    "domain": "coding_debugging",
+    "expression": {
+      "args": [
+        {
+          "args": [],
+          "fact": "bad_expression",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      ],
+      "fact": null,
+      "fields": {},
+      "key": null,
+      "op": "format",
+      "operator": null,
+      "reverse": false,
+      "template": "The bug is an off-by-one retry loop using {0}.",
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "bug_type",
+      "bad_expression"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "cad93481313b59fe59cfc4bf6c32da917289cd3015fc5f3b03714e54f74a55e5",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "bad_expression",
-    "bug_type",
-    "public_domain",
-    "template_domain",
-    "variant"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": "The bug is an off-by-one retry loop using max_retries + 1.",
+  "required_fact_suffixes": [
+    "bug_type",
+    "bad_expression"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

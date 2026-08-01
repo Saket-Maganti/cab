@@ -3,38 +3,50 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "operations_planning_stress_015.fact.01",
-      "output_sha256": "295bb4c5c5cd58235c76158719e68ee1ee6b262956da46acd9f09ebdf6ecf331",
+      "artifact_sha256": "c9e3d696355c72278004e46cfc4b272e816bfef3571190eecf1abf3b5314f939",
+      "canonical_label": "availability",
+      "fact_id": "operations_planning_stress_015.meeting_time",
+      "output_sha256": "a3a5fa4463a228057e328326f1c35adc58a3c66b4829ed5f27cb8a436ee3d620",
+      "source_locator": "source_records.time",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "dd9e960dc930907aac889b14e1b63a91"
+      "transcript_id": "7c225a77595970af665aa2159936df11"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "operations_planning_stress_015.fact.02",
-      "output_sha256": "b9c30ac67687561b3a8c5b499ca6d679f648e708dde6a3309d3c143125953eaa",
+      "artifact_sha256": "c9e3d696355c72278004e46cfc4b272e816bfef3571190eecf1abf3b5314f939",
+      "canonical_label": "vendor policy",
+      "fact_id": "operations_planning_stress_015.vendor_policy",
+      "output_sha256": "3af1227e0a8c27a2dc4c40bb4718afae3b26481676952d60a26ed897e9833704",
+      "source_locator": "source_records.policy",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "664e03358795e8d89e709a0c4f4fd940"
+      "transcript_id": "74848fd77f4b0bc427e6187c79bceb34"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "operations_planning_stress_015.fact.03",
-      "output_sha256": "cede6b269cbe0d946871b2cc7b8609e730a5d6b6af67f972a7fcdbe5826120fb",
+      "artifact_sha256": "c9e3d696355c72278004e46cfc4b272e816bfef3571190eecf1abf3b5314f939",
+      "canonical_label": "vendor score",
+      "fact_id": "operations_planning_stress_015.selected_vendor",
+      "output_sha256": "b1c55f2c2b72959920e897d93fbd9e1a953fd3ac9c9aa7793dbf926d2e6db432",
+      "source_locator": "source_records.vendor",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "75744752b0e698b927e2052a8f520f7f"
+      "transcript_id": "08c258d58ed9a62ce72c2bbd45fc0520"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "operations_planning_stress_015.fact.04",
-      "output_sha256": "329128ff0f1363192d737d3fd3b253c1fd8e77f3f70d68c0598ae1ae42ae8999",
+      "artifact_sha256": "c9e3d696355c72278004e46cfc4b272e816bfef3571190eecf1abf3b5314f939",
+      "canonical_label": "email recipient",
+      "fact_id": "operations_planning_stress_015.vendor_email_recipient",
+      "output_sha256": "37f85d8fa06e3f6b6276f9271996a00386c77159c8c86a64d66a030d51dfdb06",
+      "source_locator": "source_records.vendor_email_recipient",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "dfc2ee7ec910f80d9e90c6f75737702e"
+      "transcript_id": "65d78273d761ad989cb45130c1e1c62c"
     }
   ],
   "required_fact_ids": [
-    "operations_planning_stress_015.fact.01",
-    "operations_planning_stress_015.fact.02",
-    "operations_planning_stress_015.fact.03",
-    "operations_planning_stress_015.fact.04"
+    "operations_planning_stress_015.meeting_time",
+    "operations_planning_stress_015.vendor_policy",
+    "operations_planning_stress_015.selected_vendor",
+    "operations_planning_stress_015.vendor_email_recipient"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": "cab_compact20_level6_review_supersession_v1",
+  "superseded_public_fixture_root": "data/human_validation/compact20_two_stage_review",
+  "superseded_fixture_only": true,
+  "current_private_roots": {
+    "stage1": "private_data/review_packages/stage1",
+    "stage2": "private_data/review_packages/stage2",
+    "adjudication": "private_data/review_packages/adjudication"
+  },
+  "private_roots_git_ignored": true,
+  "real_stage2_unlock_required": true,
+  "human_validation_state": "HUMAN_VALIDATION_REQUIRED",
+  "scientific_evidence": false
+}

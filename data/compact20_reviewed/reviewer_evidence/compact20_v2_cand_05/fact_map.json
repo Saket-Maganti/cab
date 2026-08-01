@@ -3,22 +3,39 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "policy_compliance_medium_012.fact.01",
-      "output_sha256": "ebfcd50b9029e27803782ff1f356accfe45a66cb34cf2977de9b10ce964db886",
+      "artifact_sha256": "5f1dc3c509acbb7e66aed9b500a6760e931329326391319119a6e9e2e6f11f95",
+      "canonical_label": "refund threshold",
+      "fact_id": "policy_compliance_medium_012.refund_threshold",
+      "output_sha256": "904c2f82fffe305e1f4f2f56e0987f0eeb4822575ae1cfedf3f798a8fb3b1198",
+      "source_locator": "source_records.threshold",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "875aaac3d6bb3f689a098f63806ad94f"
+      "transcript_id": "20d4b0b0737a480d69785b3a71aa0bc8"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "policy_compliance_medium_012.fact.02",
-      "output_sha256": "2e695b67955d0b4fb2ad8a6fd7067d6830b3c2fe8ce03ecb119da644b26001ce",
+      "artifact_sha256": "5f1dc3c509acbb7e66aed9b500a6760e931329326391319119a6e9e2e6f11f95",
+      "canonical_label": "refund amount",
+      "fact_id": "policy_compliance_medium_012.refund_amount",
+      "output_sha256": "e96c01978ad3272673bd87c379a793d8fee24db3937de44abb058ea196e8343c",
+      "source_locator": "source_records.refund_amount_usd",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "a1d680bf95a818589a214f623d75bd11"
+      "transcript_id": "cc6d12ecb4e3a66d1001a8ae2e053bb6"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "5f1dc3c509acbb7e66aed9b500a6760e931329326391319119a6e9e2e6f11f95",
+      "canonical_label": "manager approval requirement",
+      "fact_id": "policy_compliance_medium_012.approval_required",
+      "output_sha256": "1abfeeaaeed0574cd7c930df715ac4b2d933e7ead5d71c158493edd8265577c7",
+      "source_locator": "source_records.approval_required",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "da0378b41eb75615824bf04a58c451da"
     }
   ],
   "required_fact_ids": [
-    "policy_compliance_medium_012.fact.01",
-    "policy_compliance_medium_012.fact.02"
+    "policy_compliance_medium_012.refund_threshold",
+    "policy_compliance_medium_012.refund_amount",
+    "policy_compliance_medium_012.approval_required"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info:
+  title: CAB Level-6 public contracts
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    SemanticFact:
+      $ref: ./schemas/semantic_fact.schema.json
+    RecoveryAttempt:
+      $ref: ./schemas/recovery_attempt.schema.json
+    GovernanceDecision:
+      $ref: ./schemas/governance_decision.schema.json
+    Level6EvidenceCounters:
+      $ref: ./schemas/level6_evidence_counters.schema.json

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from causal_agent_bench.answer_contracts import (
@@ -294,12 +295,27 @@ def _recovery_authorizations(
     routes = list(intervention.valid_recovery_routes)
     if not routes:
         return []
-    facts = list(
-        base_task.goal.required_information
-        or base_task.expected_evidence
-        or base_task.goal.success_criteria
-    )
-    fact_ids = [f"{base_task.task_id}.fact.{index:02d}" for index, _ in enumerate(facts, 1)]
+    # Recovery facts use the same explicit semantic registry as reviewer
+    # evidence.  They are never assigned by required-label position.
+    from causal_agent_bench.level6.semantic import COMPACT_FACT_TEMPLATES
+
+    templates = COMPACT_FACT_TEMPLATES.get(base_task.domain)
+    if templates is not None:
+        fact_ids = [
+            f"{base_task.task_id}.{row.semantic_id}"
+            for row in templates
+            if row.required_intervention
+        ]
+    else:
+        labels = list(
+            base_task.goal.required_information
+            or base_task.expected_evidence
+            or base_task.goal.success_criteria
+        )
+        fact_ids = [
+            f"{base_task.task_id}.{_semantic_label_id(label)}"
+            for label in labels
+        ]
     target_tool = str(intervention.tool_output_patch.get("target_tool") or "")
     contracts: list[RecoveryActionContract] = []
     for index, tool_name in enumerate(routes, 1):
@@ -350,6 +366,13 @@ def _tool_argument_schema(tool_name: str) -> dict[str, Any]:
             "additionalProperties": False,
         },
     )
+
+
+def _semantic_label_id(label: str) -> str:
+    """Create a stable semantic label ID without relying on list position."""
+
+    normalized = re.sub(r"[^a-z0-9]+", "_", label.casefold()).strip("_")
+    return normalized or f"fact_{stable_hash(label, length=12)}"
 
 
 def _tool_output_keys(tool_name: str) -> list[str]:

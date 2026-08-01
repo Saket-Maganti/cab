@@ -5,38 +5,62 @@
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_11",
-        "fact_id": "research_assistant_easy_010.fact.01"
+        "fact_id": "research_assistant_easy_010.claim_supported"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "research_assistant_easy_010.fact.01",
-        "label": "Apex report evidence",
-        "source_key": "claim_supported",
+        "canonical_label": "claim verification",
+        "fact_hash": "864674996710bdc1b9e4b12bd7b04da0ab5c392fc5fed2301c891da54b12ab56",
+        "fact_id": "research_assistant_easy_010.claim_supported",
+        "source_artifact_hash": "a85d2d4c0f893abfd74ffa9b3c35bfb9bdc575997db33181b8e530cd20d52f3e",
+        "source_locator": "source_records.claim_supported",
         "value": false
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "95292fdfdec9d5c7620104a4e3659bcf"
+      "transcript_id": "6f8bbf91078dda93bcb27da12128e96a"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_11",
-        "fact_id": "research_assistant_easy_010.fact.02"
+        "fact_id": "research_assistant_easy_010.reported_latency"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "research_assistant_easy_010.fact.02",
-        "label": "claim verification",
-        "source_key": "reported_latency_ms",
+        "canonical_label": "Apex report evidence",
+        "fact_hash": "34f3db484273b50423c5a711d73bc1d628e734a96f964f6f5bb813b4bc84d246",
+        "fact_id": "research_assistant_easy_010.reported_latency",
+        "source_artifact_hash": "a85d2d4c0f893abfd74ffa9b3c35bfb9bdc575997db33181b8e530cd20d52f3e",
+        "source_locator": "source_records.reported_latency_ms",
         "value": 118
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "3a0e0dc903719985ce9f49732d070c11"
+      "transcript_id": "786303dc7cdd0b12f1a688d7aef1398b"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_11",
+        "fact_id": "research_assistant_easy_010.claim_threshold"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "claim latency threshold",
+        "fact_hash": "14eac85f0a332cc442ab7f403b18dafe8c027306fbdabe0ee519841f4a915a93",
+        "fact_id": "research_assistant_easy_010.claim_threshold",
+        "source_artifact_hash": "a85d2d4c0f893abfd74ffa9b3c35bfb9bdc575997db33181b8e530cd20d52f3e",
+        "source_locator": "source_records.claim_threshold_ms",
+        "value": 100
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "100fc9e1ce7abd0024f35736147b83de"
     }
   ]
 }

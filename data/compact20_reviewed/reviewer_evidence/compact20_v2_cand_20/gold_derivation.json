@@ -1,16 +1,121 @@
 {
   "candidate_id": "compact20_v2_cand_20",
-  "derivation_name": "reconstruct_research_assistant_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "9472ec6a0a9723f8f4f036d369c05f455dc162d50b1ab53ae5258d003bcca223",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:claim_threshold"
+      },
+      {
+        "hash": "45ba51836941aff540afc7d12933be1248345a3d5173568002116fac381322b7",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:reported_latency"
+      },
+      {
+        "hash": "251468f578dbfc94fe61b8df94c5f8a630bd96838c7d317d11ef447710536902",
+        "kind": "normalization_and_derivation",
+        "source": "fact:claim_threshold",
+        "target": "derivation"
+      },
+      {
+        "hash": "628f10b75021c6356393bcc8755fcf18765706a379998139181d5db621e9ad4c",
+        "kind": "normalization_and_derivation",
+        "source": "fact:reported_latency",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "aae96b821ee1c6de09d45ffcf5155ef1d5d18f1704f5ef3b01dc371e6188c67e",
+    "nodes": [
+      {
+        "hash": "0ecaebea86cd8f875f522a535b30c9187dd11375940c4858b822b73dc5e7b76a",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "d702d16cfc6b6e96ba0180186c1c63ed253abb185d2553d14395fa8a78ea16e3",
+        "kind": "semantic_fact",
+        "node_id": "fact:claim_threshold"
+      },
+      {
+        "hash": "1e23c55f10eb62daab061644be2d5118aff72804d3eaa456d7f5cbe1c92434b0",
+        "kind": "semantic_fact",
+        "node_id": "fact:reported_latency"
+      },
+      {
+        "hash": "76ae211981598766e5de6deda9f6db9aba6c8d7bffb744b3f3347eb4133b3319",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "5e9a668a9437bcdb8e286e1017798701e0512f1acbe990270de5b7b92cebe025",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.research_assistant.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.research_assistant.evidence_only.v1",
+    "domain": "research_assistant",
+    "expression": {
+      "args": [
+        {
+          "args": [],
+          "fact": "reported_latency",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        {
+          "args": [],
+          "fact": "claim_threshold",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      ],
+      "fact": null,
+      "fields": {},
+      "key": null,
+      "op": "format",
+      "operator": null,
+      "reverse": false,
+      "template": "The claim is not supported; the report says {0} ms, not below {1} ms.",
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "claim_supported",
+      "reported_latency",
+      "claim_threshold"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "8ad0fa29b807ed8bc5a6191c84f9dd517f15d98b3679c29ea122176e21aae772",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "claim_supported",
-    "public_domain",
-    "reported_latency_ms",
-    "template_domain",
-    "variant"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": "The claim is not supported; the report says 118 ms, not below 100 ms.",
+  "required_fact_suffixes": [
+    "claim_supported",
+    "reported_latency",
+    "claim_threshold"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

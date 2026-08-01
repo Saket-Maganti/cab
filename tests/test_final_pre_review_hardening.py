@@ -69,7 +69,7 @@ def test_static_and_executable_reachability_are_distinct_and_pass_20_of_20() -> 
     isolation = run_intervention_isolation_check(REPO_ROOT)
     assert static["gate_kind"] == "static_intervention_policy_reachability"
     assert static["passed_count"] == 20
-    assert executable["gate_kind"] == "executable_intervention_reachability"
+    assert executable["gate_kind"] == "CAUSAL_ROUTE_REACHABILITY"
     assert executable["passed_count"] == 20
     assert executable["unsupported_fact_count"] == 0
     assert gold["passed_count"] == 20
@@ -131,7 +131,10 @@ def test_adversarial_campaign_and_final_gate_pass_without_evidence() -> None:
     assert adversarial["case_count"] >= 16
     gate = final_pre_review_check(REPO_ROOT)
     assert gate["passed"] is True
-    assert gate["state"] == "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE"
+    assert gate["state"] == "CAB_FINAL_PRE_REVIEW_SEMANTIC_AUDIT_PASSED"
+    assert gate["legacy_engineering_state"] == "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE"
     assert gate["review_packet_state"] == ("COMPACT20_REVIEW_PACKET_EVIDENCE_VERIFIABLE")
     assert gate["CAB_LEVEL5_COMPLETE"] is False
+    assert gate["CAB_LEVEL6_COMPLETE"] is False
+    assert gate["external_validation_state"] == "EXTERNAL_LEVEL6_VALIDATION_REQUIRED"
     assert all(value == 0 for value in gate["genuine_evidence"].values())

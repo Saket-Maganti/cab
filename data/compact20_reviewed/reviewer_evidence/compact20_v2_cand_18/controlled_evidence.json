@@ -1,29 +1,85 @@
 {
+  "artifact_hash": "7049e5761972ad3c8b9bb9ceeebde615eae118cfc6708441557ed959d0f18a22",
   "base_task_id": "shopping_comparison_medium_001",
   "candidate_id": "compact20_v2_cand_18",
   "empirical_evidence": false,
   "facts": [
     {
-      "fact_id": "shopping_comparison_medium_001.fact.01",
-      "label": "bundle prices",
-      "source_key": "best_option_id",
-      "value": "camera_b"
+      "canonical_label": "bundle B base price",
+      "derivation_role": "input",
+      "fact_id": "shopping_comparison_medium_001.bundle_b_base_price",
+      "hash": "0125990a6e74e96d27b48e771faaf6e5d0efa4c393fe4442310a39027b8df381",
+      "normalized_value": 200.0,
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "currency",
+      "sensitive": false,
+      "source_artifact_id": "shopping_comparison_medium_001.controlled_evidence",
+      "source_field_or_locator": "source_records.bundle_b_base_price_usd",
+      "source_path": "controlled_evidence.json",
+      "source_value": 200.0,
+      "unit": "USD"
     },
     {
-      "fact_id": "shopping_comparison_medium_001.fact.02",
-      "label": "tax rate",
-      "source_key": "tax_rate",
-      "value": 0.08
+      "canonical_label": "bundle tax rate",
+      "derivation_role": "input",
+      "fact_id": "shopping_comparison_medium_001.bundle_tax_rate",
+      "hash": "809a0e39d3fe66379732eb9a868678eb445e7fca908b04281eb8d7d3d25a7186",
+      "normalized_value": 0.08,
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "percentage",
+      "sensitive": false,
+      "source_artifact_id": "shopping_comparison_medium_001.controlled_evidence",
+      "source_field_or_locator": "source_records.tax_rate",
+      "source_path": "controlled_evidence.json",
+      "source_value": 0.08,
+      "unit": "ratio"
+    },
+    {
+      "canonical_label": "selected bundle total price",
+      "derivation_role": "derived_input",
+      "fact_id": "shopping_comparison_medium_001.bundle_total_price",
+      "hash": "a8f9c76b0e166ad5da9ae1e9124173e1f010a26c95c173542c7fb1dccb0f8905",
+      "normalized_value": 216.0,
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "currency",
+      "sensitive": false,
+      "source_artifact_id": "shopping_comparison_medium_001.controlled_evidence",
+      "source_field_or_locator": "source_records.total",
+      "source_path": "controlled_evidence.json",
+      "source_value": 216.0,
+      "unit": "USD"
+    },
+    {
+      "canonical_label": "selected bundle option",
+      "derivation_role": "selection",
+      "fact_id": "shopping_comparison_medium_001.selected_bundle",
+      "hash": "0a623e56af4fc1d436990b6666cdeba7b86ba37eadd3ee842688e452fd45dcd9",
+      "normalized_value": "camera_b",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "identifier",
+      "sensitive": false,
+      "source_artifact_id": "shopping_comparison_medium_001.controlled_evidence",
+      "source_field_or_locator": "source_records.best_option_id",
+      "source_path": "controlled_evidence.json",
+      "source_value": "camera_b",
+      "unit": "identifier"
     }
   ],
-  "gold_derivation_inputs": {
+  "reviewer_visible": true,
+  "schema_version": "cab_controlled_evidence_artifact_v2",
+  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE",
+  "source_records": {
     "best_option_id": "camera_b",
-    "public_domain": "shopping_comparison",
+    "bundle_b_base_price_usd": 200.0,
     "tax_rate": 0.08,
-    "template_domain": "shopping_comparison",
-    "total": 216.0,
-    "variant": 1
-  },
-  "schema_version": "cab_controlled_evidence_artifact_v1",
-  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE"
+    "total": 216.0
+  }
 }

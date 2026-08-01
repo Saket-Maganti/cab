@@ -1,20 +1,126 @@
 {
   "candidate_id": "compact20_v2_cand_08",
-  "derivation_name": "reconstruct_shopping_comparison_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "66789142a8b8c7819146c1d64f951670ff9cd6598c49163a3f0e101b2137eb6b",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:bundle_total_price"
+      },
+      {
+        "hash": "4aa14665e0e6d564be48735df2894e4742df0a8bddcd2fc64dd6ca34889fde1c",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:selected_bundle"
+      },
+      {
+        "hash": "990cf12b2a67f958d7a39290b9ded25b0074f2d0b17a3dbc298708c5017bf0c3",
+        "kind": "normalization_and_derivation",
+        "source": "fact:bundle_total_price",
+        "target": "derivation"
+      },
+      {
+        "hash": "3c008e168b3ab1bede8a0d5b3064dd4b04cfd5d04ab4b31449645d439f347b36",
+        "kind": "normalization_and_derivation",
+        "source": "fact:selected_bundle",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "9e80be8545fff804b269dc3f8438bdb7e9354f11333a18805580101d5e2324a2",
+    "nodes": [
+      {
+        "hash": "7ac5d110815ab0fcd6918de447ec5174a1dd28250336022df2bacc3cdae84a45",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "638b26a7b7143482cd01dbeed02ba7099dd48ea0158dd336774dc113bf6fc58c",
+        "kind": "semantic_fact",
+        "node_id": "fact:bundle_total_price"
+      },
+      {
+        "hash": "4d3e570f07333abffb397d997eb914e07c38eb69543eb60f833ebccac0bd4c2a",
+        "kind": "semantic_fact",
+        "node_id": "fact:selected_bundle"
+      },
+      {
+        "hash": "f069751727314dc60acbcd93082846a3b4e3c968ffbac050b2df115349a5b5be",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "7481aa31a0615520e0918fd168bfdcf99637f482392fe3071d65a08e05608841",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.shopping_comparison.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.shopping_comparison.evidence_only.v1",
+    "domain": "shopping_comparison",
+    "expression": {
+      "args": [],
+      "fact": null,
+      "fields": {
+        "option_id": {
+          "args": [],
+          "fact": "selected_bundle",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        "total": {
+          "args": [],
+          "fact": "bundle_total_price",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      },
+      "key": null,
+      "op": "object",
+      "operator": null,
+      "reverse": false,
+      "template": null,
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "bundle_b_base_price",
+      "bundle_tax_rate",
+      "bundle_total_price",
+      "selected_bundle"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "70296e04d8169cd1a3fc2642ba5871f915b638022a0c2fa5d464e04093fdb1ff",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "best_option_id",
-    "public_domain",
-    "tax_rate",
-    "template_domain",
-    "total",
-    "variant"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": {
     "option_id": "camera_b",
     "total": 216.0
   },
+  "required_fact_suffixes": [
+    "bundle_b_base_price",
+    "bundle_tax_rate",
+    "bundle_total_price",
+    "selected_bundle"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

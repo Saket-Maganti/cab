@@ -1,0 +1,52 @@
+{
+  "fixture_only": true,
+  "genuine_human_review_rows": 0,
+  "private_contents_committed": false,
+  "schema_version": "cab_level6_private_review_archive_commitments_v1",
+  "stage1_archives": {
+    "stage1_adjudicator.zip": {
+      "bytes": 25260,
+      "sha256": "ed844506c6e966f5410f1b50fcabbf9f72764849fb986d91ddabbc424d6f18ca"
+    },
+    "stage1_reviewer_a.zip": {
+      "bytes": 25257,
+      "sha256": "f40744c0d8d651245d63af05e6444fa8d0f85fff561dab28fb8a031bdfe11220"
+    },
+    "stage1_reviewer_b.zip": {
+      "bytes": 25258,
+      "sha256": "8fdfe97e0c7f25db98b0daeca8acfc3e6bf3c0489c8674fbcb6b1c2ee94013ad"
+    }
+  },
+  "stage1_leakage_scan": {
+    "findings": [],
+    "passed": true,
+    "scanned_for": [
+      "accepted_answers",
+      "answer_contract",
+      "clean_gold_derivation",
+      "derivation_graph",
+      "gold_answer_policy",
+      "gold_derivation",
+      "intended_recovery_route",
+      "recovery_authorizations",
+      "required_recovery_actions",
+      "scorer_policy",
+      "stage2_locked_items"
+    ]
+  },
+  "stage2_archives": {
+    "stage2_adjudicator.zip": {
+      "bytes": 19047,
+      "sha256": "f419959aeabd3fac291ad7279ae1ee45bb2f222c49654fefb224d1ca3a084d67"
+    },
+    "stage2_reviewer_a.zip": {
+      "bytes": 19047,
+      "sha256": "dc12aa1d45a3564f91d836f159defc5ba68c35951ce90da554b480fdc6e0ed29"
+    },
+    "stage2_reviewer_b.zip": {
+      "bytes": 19048,
+      "sha256": "f5b559ad6c8eaef5192081880a9fc7c9dbb00b9dfa2b474092a244a4b7f61d3b"
+    }
+  },
+  "status": "CAB_TRUE_TWO_STAGE_BLINDING_READY"
+}

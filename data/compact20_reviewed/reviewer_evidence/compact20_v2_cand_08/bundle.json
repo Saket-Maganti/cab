@@ -7,28 +7,28 @@
       "sha256": "47f238a65f1bb7abd8e68600923f91ac4a486fe7b4db0edfbf7194e93a8b2797"
     },
     {
-      "bytes": 806,
+      "bytes": 3372,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "0657ae5c68f434458d73817dc037080c8e71746d9f315d89eed038a3ccc35991"
+      "sha256": "678b0118e7f93d27fc959d9c35ac6b07d60c5f5d0e0e47aacb6d8731d6d91447"
     },
     {
-      "bytes": 838,
+      "bytes": 2405,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "41a8ceed08abf7e84668d57715f47871e27a5344afd5a61f8e61e6dbbe3f2215"
+      "sha256": "d590b1698b1dd18caa1e983cc6f1e09b1f67b7137d29a60e50d493f3d0d66ddb"
     },
     {
-      "bytes": 548,
+      "bytes": 3751,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "f644227d9a33ccda07a278eaf5b03072e6ae657b2d9e330d687d82d309e0b9c6"
+      "sha256": "e0d40f4c922dd1ec86caef4d5fe53557c690ddd43784209fae424268bbed975e"
     },
     {
       "bytes": 1353,
       "mime_type": "application/json",
       "path": "intervention_fixture.json",
-      "sha256": "04481a0965d86837ba4c28e551464176895ca729dc4db2be17df2adf09398e67"
+      "sha256": "0f13e96c862664e4f0e1c557f7112de5183a5ba92470766d8cb830026ce8e83d"
     },
     {
       "bytes": 539,
@@ -37,20 +37,20 @@
       "sha256": "8b1a86b8f997dbb4cc82f299c275bbc080c1651ff64804752523493f4b345613"
     },
     {
-      "bytes": 2733,
+      "bytes": 2774,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "5bd3afbbb83c7caa085e4873bb5f7d8dbb567af961835d48952a0ef0b70eaa06"
+      "sha256": "b8cdc885efb1c6a2dbb693342ef8343bd911e3326f377371974a2f0b4fea6a6d"
     },
     {
-      "bytes": 1329,
+      "bytes": 3527,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "9878996c5c66a0a30f0f349817d09ab7356aeb7a5b7b7f32314fc060348da413"
+      "sha256": "359b54ad05c6104d32b8992b64ccdd25e70152bafa1ec0b9273d5d248ffa3611"
     }
   ],
   "base_task_id": "shopping_comparison_easy_012",
-  "bundle_hash": "ad1592798d1a8491d2adea1c043aeb840b3f548cc3d00703ada74937fb61c97b",
+  "bundle_hash": "3282a72e421a67c3186821992b97be76162429371142f7ae692b1434b42e83cd",
   "candidate_id": "compact20_v2_cand_08",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "shopping_comparison_easy_012.clean",
@@ -116,8 +116,10 @@
       ],
       "success_predicate": {
         "causal_fact_ids_required": [
-          "shopping_comparison_easy_012.fact.01",
-          "shopping_comparison_easy_012.fact.02"
+          "shopping_comparison_easy_012.bundle_b_base_price",
+          "shopping_comparison_easy_012.bundle_tax_rate",
+          "shopping_comparison_easy_012.bundle_total_price",
+          "shopping_comparison_easy_012.selected_bundle"
         ],
         "kind": "nonempty_error_free_observation",
         "required_output_keys": [
@@ -127,8 +129,10 @@
         ]
       },
       "supported_fact_ids": [
-        "shopping_comparison_easy_012.fact.01",
-        "shopping_comparison_easy_012.fact.02"
+        "shopping_comparison_easy_012.bundle_b_base_price",
+        "shopping_comparison_easy_012.bundle_tax_rate",
+        "shopping_comparison_easy_012.bundle_total_price",
+        "shopping_comparison_easy_012.selected_bundle"
       ],
       "terminal": false
     }
@@ -140,8 +144,10 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "shopping_comparison_easy_012.fact.01",
-    "shopping_comparison_easy_012.fact.02"
+    "shopping_comparison_easy_012.bundle_b_base_price",
+    "shopping_comparison_easy_012.bundle_tax_rate",
+    "shopping_comparison_easy_012.bundle_total_price",
+    "shopping_comparison_easy_012.selected_bundle"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

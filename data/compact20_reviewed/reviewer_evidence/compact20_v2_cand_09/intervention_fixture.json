@@ -40,7 +40,7 @@
     "email recipient"
   ],
   "schema_version": "cab_review_fixture_snapshot_v1",
-  "snapshot_hash": "4a379bdeb3054a92c49b37750a83ba19c87651dabffaa441f7ddf37c4500c0f2",
+  "snapshot_hash": "261e4ae5cf76d04cfb0f227683c70623e7500d3c4e4aedcf5f35b97569bd6495",
   "success_criteria": [
     "Uses availability information.",
     "Applies vendor policy constraints.",

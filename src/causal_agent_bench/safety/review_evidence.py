@@ -10,6 +10,15 @@ from typing import Any
 
 from causal_agent_bench.answer_contracts import AnswerContract
 from causal_agent_bench.hashing import stable_hash
+from causal_agent_bench.level6.gold import (
+    compact_derivation_spec,
+    reconstruct_in_isolated_directory,
+)
+from causal_agent_bench.level6.semantic import (
+    build_compact_semantic_facts,
+    build_controlled_evidence_artifact,
+    compute_fact_support,
+)
 from causal_agent_bench.schemas import BenchmarkInstance
 from causal_agent_bench.tools import ToolRegistry
 from causal_agent_bench.utils.io import read_jsonl
@@ -44,23 +53,19 @@ def build_review_evidence_bundles(
         intervention = by_id[str(candidate["intervention_instance_id"])]
         candidate_dir = out / candidate_id
         candidate_dir.mkdir(parents=True, exist_ok=True)
-        facts = _fact_rows(intervention)
+        controlled_evidence = build_controlled_evidence_artifact(
+            clean,
+            candidate_id=candidate_id,
+        )
+        facts = controlled_evidence["facts"]
         clean_snapshot = _instance_snapshot(clean)
         intervention_snapshot = _instance_snapshot(intervention)
-        gold_inputs: dict[str, Any] = dict(sorted(clean.base_task.hidden_ground_truth.items()))
-        controlled_evidence: dict[str, Any] = {
-            "schema_version": "cab_controlled_evidence_artifact_v1",
-            "candidate_id": candidate_id,
-            "base_task_id": clean.base_task.task_id,
-            "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE",
-            "empirical_evidence": False,
-            "facts": facts,
-            "gold_derivation_inputs": gold_inputs,
-        }
-        reconstructed = reconstruct_clean_gold(
-            clean.base_task.domain,
-            gold_inputs,
+        derivation_spec = compact_derivation_spec(clean.base_task.domain)
+        reconstruction = reconstruct_in_isolated_directory(
+            controlled_evidence,
+            derivation_spec,
         )
+        reconstructed = reconstruction["output"]
         expected = clean.base_task.goal.expected_final_answer
         if reconstructed != expected:
             raise ValueError(
@@ -93,7 +98,13 @@ def build_review_evidence_bundles(
                 },
                 "output_schema": {
                     "type": "object",
-                    "required": ["fact_id", "label", "value", "source_key"],
+                    "required": [
+                        "fact_id",
+                        "canonical_label",
+                        "value",
+                        "fact_hash",
+                        "source_artifact_hash",
+                    ],
                 },
                 "deterministic": True,
                 "provider_calls": 0,
@@ -114,7 +125,10 @@ def build_review_evidence_bundles(
             "mappings": [
                 {
                     "fact_id": fact["fact_id"],
+                    "canonical_label": fact["canonical_label"],
                     "artifact": "controlled_evidence.json",
+                    "artifact_sha256": stable_hash(controlled_evidence, length=64),
+                    "source_locator": fact["source_field_or_locator"],
                     "tool": "cab_fixture_read_fact",
                     "transcript_id": transcript["transcript_id"],
                     "output_sha256": stable_hash(transcript["observation"], length=64),
@@ -125,10 +139,13 @@ def build_review_evidence_bundles(
         gold_derivation = {
             "schema_version": "cab_clean_gold_derivation_v1",
             "candidate_id": candidate_id,
-            "derivation_name": f"reconstruct_{clean.base_task.domain}_gold_v1",
+            "derivation_name": derivation_spec.derivation_id,
             "input_artifact": "controlled_evidence.json",
-            "input_keys": sorted(gold_inputs),
+            "derivation_spec": derivation_spec.model_dump(mode="json"),
+            "required_fact_suffixes": derivation_spec.required_fact_suffixes,
             "reconstructed_gold": reconstructed,
+            "derivation_graph": reconstruction["derivation_graph"],
+            "hidden_ground_truth_available": False,
             "frozen_gold_policy_hash": stable_hash(
                 clean.base_task.gold_answer_policy.model_dump(mode="json"),
                 length=64,
@@ -213,6 +230,19 @@ def build_review_evidence_bundles(
             }
         )
 
+    all_support = []
+    for row in bundle_rows:
+        directory = (root / row["path"]).parent
+        evidence = _read_json(directory / "controlled_evidence.json")
+        transcripts = _read_json(directory / "tool_transcripts.json")["transcripts"]
+        bundle = _read_json(directory / "bundle.json")
+        all_support.append(
+            compute_fact_support(
+                evidence["facts"],
+                transcripts,
+                required_fact_ids=bundle["required_fact_ids"],
+            )
+        )
     index: dict[str, Any] = {
         "schema_version": "cab_reviewer_evidence_bundle_index_v1",
         "status": "CAB_COMPACT_REVIEW_EVIDENCE_BUNDLES_READY",
@@ -223,7 +253,16 @@ def build_review_evidence_bundles(
             row["gold_reconstruction_passed"] for row in bundle_rows
         ),
         "intervention_isolation_passed_count": sum(row["isolation_passed"] for row in bundle_rows),
-        "unsupported_fact_count": 0,
+        "unsupported_fact_count": sum(row["unsupported_fact_count"] for row in all_support),
+        "unsupported_fact_ids": [
+            fact_id for row in all_support for fact_id in row["unsupported_fact_ids"]
+        ],
+        "partially_supported_fact_ids": [
+            fact_id for row in all_support for fact_id in row["partially_supported_fact_ids"]
+        ],
+        "fully_supported_fact_ids": [
+            fact_id for row in all_support for fact_id in row["fully_supported_fact_ids"]
+        ],
         "bundles": bundle_rows,
         "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
     }
@@ -247,7 +286,15 @@ def invoke_fixture_fact_tool(
     ]
     if len(matches) != 1:
         raise ValueError(f"fact_id is not uniquely available: {fact_id}")
-    observation = {key: matches[0][key] for key in ("fact_id", "label", "value", "source_key")}
+    fact = matches[0]
+    observation = {
+        "fact_id": fact["fact_id"],
+        "canonical_label": fact["canonical_label"],
+        "value": fact["normalized_value"],
+        "source_locator": fact["source_field_or_locator"],
+        "fact_hash": fact["hash"],
+        "source_artifact_hash": controlled_evidence["artifact_hash"],
+    }
     call = {"candidate_id": candidate_id, "fact_id": fact_id}
     return {
         "schema_version": "cab_fixture_tool_transcript_v1",
@@ -261,52 +308,13 @@ def invoke_fixture_fact_tool(
     }
 
 
-def reconstruct_clean_gold(domain: str, hidden: dict[str, Any]) -> Any:
-    """Reconstruct Compact-20 gold solely from controlled source facts."""
+def reconstruct_clean_gold(domain: str, visible_evidence: dict[str, Any]) -> Any:
+    """Compatibility wrapper for the evidence-only, isolated reconstructor."""
 
-    if domain == "travel_planning":
-        return {
-            "option_id": hidden["best_option_id"],
-            "total": hidden["total"],
-        }
-    if domain == "shopping_comparison":
-        return {
-            "option_id": hidden["best_option_id"],
-            "total": hidden["total"],
-        }
-    if domain == "file_spreadsheet_qa":
-        return {
-            "launch": hidden["launch"],
-            "q2_revenue": hidden["q2_revenue"],
-        }
-    if domain == "research_assistant":
-        supported = bool(hidden["claim_supported"])
-        latency = hidden["reported_latency_ms"]
-        if supported:
-            return f"The claim is supported; the report says {latency} ms."
-        return f"The claim is not supported; the report says {latency} ms, not below 100 ms."
-    if domain == "coding_debugging":
-        expression = hidden["bad_expression"]
-        return f"The bug is an off-by-one retry loop using {expression}."
-    if domain == "policy_compliance":
-        threshold = hidden["threshold"]
-        return (
-            "Yes. A 700 dollar refund requires manager approval because the "
-            f"threshold is {threshold} dollars."
-        )
-    if domain == "calendar_email_workflow":
-        return {
-            "date": "2026-06-03",
-            "slot": hidden["first_open_slot"],
-            "status": "draft_created",
-        }
-    if domain == "operations_planning":
-        return {
-            "must_mention": hidden["policy"],
-            "time": hidden["time"],
-            "vendor": hidden["vendor"],
-        }
-    raise ValueError(f"no frozen Compact-20 gold derivation for domain {domain!r}")
+    return reconstruct_in_isolated_directory(
+        visible_evidence,
+        compact_derivation_spec(domain),
+    )["output"]
 
 
 def intervention_isolation_result(
@@ -348,26 +356,9 @@ def intervention_isolation_result(
 
 
 def _fact_rows(instance: BenchmarkInstance) -> list[dict[str, Any]]:
-    required = list(
-        instance.base_task.goal.required_information
-        or instance.base_task.expected_evidence
-        or instance.base_task.goal.success_criteria
-    )
-    hidden = dict(sorted(instance.base_task.hidden_ground_truth.items()))
-    source_keys = [
-        key for key in hidden if key not in {"public_domain", "template_domain", "variant"}
-    ]
-    if not source_keys:
-        raise ValueError(f"no controlled facts for {instance.instance_id}")
-    return [
-        {
-            "fact_id": f"{instance.base_task.task_id}.fact.{index:02d}",
-            "label": label,
-            "source_key": source_keys[(index - 1) % len(source_keys)],
-            "value": hidden[source_keys[(index - 1) % len(source_keys)]],
-        }
-        for index, label in enumerate(required, 1)
-    ]
+    """Return typed facts from the explicit registry (never positional mapping)."""
+
+    return [row.model_dump(mode="json") for row in build_compact_semantic_facts(instance)]
 
 
 def _instance_snapshot(instance: BenchmarkInstance) -> dict[str, Any]:

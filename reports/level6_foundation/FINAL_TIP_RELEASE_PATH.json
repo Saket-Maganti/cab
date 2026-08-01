@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "build_metadata_present": true,
+    "dependency_lock_with_hashes_present": true,
+    "git_archive_supported": true,
+    "head_resolves": true,
+    "private_keys_untracked_by_policy": true,
+    "provenance_contract_present": true,
+    "sbom_generator_present": true,
+    "tree_resolves": true
+  },
+  "current_source_commit": "5aa10c9c1ed7dc0efb35d7041c19f4d8fc79a4b8",
+  "current_source_tree_hash": "157dc6ffdd634e95f358a52d910a4eaf616f18c8",
+  "development_tag_policy": "cab-level6-foundation-v1",
+  "final_scientific_tag_published": false,
+  "passed": true,
+  "receipt_sealing_rule": "Generate the receipt outside the source tree from the exact tagged commit; a receipt committed afterward cannot honestly call itself the final source tip.",
+  "schema_version": "cab_exact_final_tip_path_check_v1",
+  "status": "CAB_EXACT_FINAL_TIP_RELEASE_PATH_READY"
+}

@@ -3,16 +3,11 @@
 from __future__ import annotations
 
 import json
-import math
 from pathlib import Path
-from statistics import NormalDist
 from typing import Any
 
 from causal_agent_bench.hashing import stable_hash
-
-NORMAL = NormalDist()
-Z_ALPHA = NORMAL.inv_cdf(0.95)
-Z_80 = NORMAL.inv_cdf(0.80)
+from causal_agent_bench.level6.power import analytic_power_report
 
 
 def build_hierarchical_power_design(
@@ -63,7 +58,8 @@ def build_hierarchical_power_design(
     )
     payload: dict[str, Any] = {
         "schema_version": "cab_hierarchical_power_design_v1",
-        "status": "CAB_HIERARCHICAL_POWER_PLAN_READY",
+        "status": "CAB_HIERARCHICAL_POWER_V2_READY",
+        "method_class": "ANALYTIC_PLANNING_APPROXIMATIONS",
         "analysis_unit": "paired_base_task_within_model",
         "models_are_independent_task_replicates": False,
         "automatic_model_count_ess_multiplier": False,
@@ -148,7 +144,7 @@ def validate_hierarchical_power_design(
     }
     serialized = json.dumps(payload, sort_keys=True)
     checks = {
-        "status": payload.get("status") == "CAB_HIERARCHICAL_POWER_PLAN_READY",
+        "status": payload.get("status") == "CAB_HIERARCHICAL_POWER_V2_READY",
         "models_not_ess_multiplier": (
             payload.get("models_are_independent_task_replicates") is False
             and payload.get("automatic_model_count_ess_multiplier") is False
@@ -187,18 +183,16 @@ def _scenario(
     missing: float = 0.0,
     family_count: int = 10,
 ) -> dict[str, Any]:
-    retained_tasks = max(2.0, tasks * (1 - exclusion) * (1 - missing))
+    retained_tasks = max(2, round(tasks * (1 - exclusion) * (1 - missing)))
     discordance = 0.24
-    within_variance = discordance * (1 - discordance) + scorer_error * (1 - scorer_error)
     repeat_gain = repeats / (1 + 0.55 * (repeats - 1))
-    task_se = math.sqrt(within_variance / (retained_tasks * repeat_gain))
+    effective_tasks = max(2, round(retained_tasks * repeat_gain))
     between_model_sd = 0.06
-    pooled_se = math.sqrt(task_se**2 + between_model_sd**2 / max(models, 1))
-    if "family" in estimand:
-        pooled_se = math.sqrt(pooled_se**2 * family_count + 0.04**2)
-    power = NORMAL.cdf(effect / pooled_se - Z_ALPHA)
-    mc_repetitions = 20_000
-    mc_error = math.sqrt(max(power * (1 - power), 0.0) / mc_repetitions)
+    analytic = analytic_power_report(
+        tasks=effective_tasks,
+        effect=effect,
+        discordance=min(0.49, discordance + scorer_error),
+    )
     return {
         "name": name,
         "estimand": estimand,
@@ -216,13 +210,11 @@ def _scenario(
             "exclusion_rate": exclusion,
             "missing_run_rate": missing,
         },
-        "method": "normal approximation to clustered paired binary contrast",
-        "simulation_repetitions": mc_repetitions,
-        "monte_carlo_standard_error": round(mc_error, 6),
-        "seed": 20260801,
-        "power": round(power, 6),
-        "standard_error": round(pooled_se, 6),
-        "minimum_detectable_effect_80pct": round((Z_ALPHA + Z_80) * pooled_se, 6),
+        "method": "ANALYTIC_PLANNING_APPROXIMATION",
+        "approximate_power": analytic["approximate_power"],
+        "standard_error": analytic["standard_error"],
+        "approximate_ci_width": analytic["approximate_ci_width"],
+        "minimum_detectable_effect_80pct": analytic["approximate_mde_80pct"],
         "exclusion_policy": f"fixed sensitivity={exclusion:.2f}",
         "missingness_policy": f"fixed sensitivity={missing:.2f}",
         "evidence_class": "DESIGN_ONLY",
@@ -237,9 +229,8 @@ def _scenario_is_labeled(row: dict[str, Any]) -> bool:
             "analysis_unit",
             "assumptions",
             "method",
-            "simulation_repetitions",
-            "monte_carlo_standard_error",
-            "seed",
+            "approximate_power",
+            "approximate_ci_width",
             "exclusion_policy",
             "missingness_policy",
         )

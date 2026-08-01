@@ -1,34 +1,85 @@
 {
+  "artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
   "base_task_id": "calendar_email_workflow_medium_019",
   "candidate_id": "compact20_v2_cand_13",
   "empirical_evidence": false,
   "facts": [
     {
-      "fact_id": "calendar_email_workflow_medium_019.fact.01",
-      "label": "calendar events",
-      "source_key": "first_open_slot",
-      "value": "15:00"
+      "canonical_label": "calendar date",
+      "derivation_role": "constraint",
+      "fact_id": "calendar_email_workflow_medium_019.meeting_date",
+      "hash": "7b331de9c4d620c0643822fea942aeb140c5b39396b07ffe940507d839bc3beb",
+      "normalized_value": "2026-06-03",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "datetime",
+      "sensitive": false,
+      "source_artifact_id": "calendar_email_workflow_medium_019.controlled_evidence",
+      "source_field_or_locator": "source_records.meeting_date",
+      "source_path": "controlled_evidence.json",
+      "source_value": "2026-06-03",
+      "unit": "ISO-8601 date"
     },
     {
-      "fact_id": "calendar_email_workflow_medium_019.fact.02",
-      "label": "open afternoon slot",
-      "source_key": "recipient",
-      "value": "mina@example.com"
+      "canonical_label": "open afternoon slot",
+      "derivation_role": "selection",
+      "fact_id": "calendar_email_workflow_medium_019.first_open_slot",
+      "hash": "ab964b31bae713732653b05a613ad9224674a9a5f97a39252a60e545a29ed367",
+      "normalized_value": "15:00",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "datetime",
+      "sensitive": false,
+      "source_artifact_id": "calendar_email_workflow_medium_019.controlled_evidence",
+      "source_field_or_locator": "source_records.first_open_slot",
+      "source_path": "controlled_evidence.json",
+      "source_value": "15:00",
+      "unit": "HH:MM"
     },
     {
-      "fact_id": "calendar_email_workflow_medium_019.fact.03",
-      "label": "recipient",
-      "source_key": "first_open_slot",
-      "value": "15:00"
+      "canonical_label": "recipient",
+      "derivation_role": "input",
+      "fact_id": "calendar_email_workflow_medium_019.recipient_email",
+      "hash": "7e6fe9a70ac12bce930ce79a0ac01e0271452b594b2484f9962e70a9bfd67454",
+      "normalized_value": "mina@example.com",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "string",
+      "sensitive": false,
+      "source_artifact_id": "calendar_email_workflow_medium_019.controlled_evidence",
+      "source_field_or_locator": "source_records.recipient",
+      "source_path": "controlled_evidence.json",
+      "source_value": "mina@example.com",
+      "unit": "email"
+    },
+    {
+      "canonical_label": "email draft status",
+      "derivation_role": "derived_input",
+      "fact_id": "calendar_email_workflow_medium_019.draft_status",
+      "hash": "4bd46ec6ec7099f0e89e4548ccb14d0ed7d1d9cb6386df4e2fd0ebffa96e864c",
+      "normalized_value": "draft_created",
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "category",
+      "sensitive": false,
+      "source_artifact_id": "calendar_email_workflow_medium_019.controlled_evidence",
+      "source_field_or_locator": "source_records.draft_status",
+      "source_path": "controlled_evidence.json",
+      "source_value": "draft_created",
+      "unit": "text"
     }
   ],
-  "gold_derivation_inputs": {
+  "reviewer_visible": true,
+  "schema_version": "cab_controlled_evidence_artifact_v2",
+  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE",
+  "source_records": {
+    "draft_status": "draft_created",
     "first_open_slot": "15:00",
-    "public_domain": "calendar_email_workflow",
-    "recipient": "mina@example.com",
-    "template_domain": "calendar_email",
-    "variant": 19
-  },
-  "schema_version": "cab_controlled_evidence_artifact_v1",
-  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE"
+    "meeting_date": "2026-06-03",
+    "recipient": "mina@example.com"
+  }
 }

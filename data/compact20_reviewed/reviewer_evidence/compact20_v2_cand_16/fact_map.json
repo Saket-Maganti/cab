@@ -3,22 +3,28 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "file_spreadsheet_qa_hard_025.fact.01",
-      "output_sha256": "360362974d0a0837837f896a549afec13bf297207951c0494fef96c893b772db",
+      "artifact_sha256": "aa9388f9886ab2937c045e53ff72aa1c247942ee0251b21921e70e9c7f724da4",
+      "canonical_label": "launch note content",
+      "fact_id": "file_spreadsheet_qa_hard_025.launch_name",
+      "output_sha256": "eb7ec0e6dd927725d18f3aa395e1fd79c388c3597b961ca6d02736d9da3fdc9e",
+      "source_locator": "source_records.launch",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "56333d253e18cea7464678b7f6241f3d"
+      "transcript_id": "852ab63d81f9d7a66ceb6533fdba7dbf"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "file_spreadsheet_qa_hard_025.fact.02",
-      "output_sha256": "46a294e3007b9f57698a4225336b235823ddbf15394e722a5c8563b9e47489df",
+      "artifact_sha256": "aa9388f9886ab2937c045e53ff72aa1c247942ee0251b21921e70e9c7f724da4",
+      "canonical_label": "Q2 spreadsheet row",
+      "fact_id": "file_spreadsheet_qa_hard_025.q2_revenue",
+      "output_sha256": "cdc85d2b3b7d8419b7e73337bb02e6ce9ee5493c71ecba97f9b8b1d60181477d",
+      "source_locator": "source_records.q2_revenue",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "51a61a443bae8ded1f3baadf89344575"
+      "transcript_id": "d5a013e5d67eefa3810e1a10b9d6d65d"
     }
   ],
   "required_fact_ids": [
-    "file_spreadsheet_qa_hard_025.fact.01",
-    "file_spreadsheet_qa_hard_025.fact.02"
+    "file_spreadsheet_qa_hard_025.launch_name",
+    "file_spreadsheet_qa_hard_025.q2_revenue"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

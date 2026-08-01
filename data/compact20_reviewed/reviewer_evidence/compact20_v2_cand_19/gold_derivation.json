@@ -1,20 +1,128 @@
 {
   "candidate_id": "compact20_v2_cand_19",
-  "derivation_name": "reconstruct_travel_planning_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "3df5ae48d6afc103fefad9ba7065d702a256adf93c2ddf418f0cbba2218a7a66",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:hotel_total_price"
+      },
+      {
+        "hash": "446525f046d9fdd96240505c4882e863da889279aa43db25707c60e954dfbe71",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:selected_hotel"
+      },
+      {
+        "hash": "42a6e97d9882377dc4b5f07e9abad383838d88fdc5b6fbe524074335d74c1aca",
+        "kind": "normalization_and_derivation",
+        "source": "fact:hotel_total_price",
+        "target": "derivation"
+      },
+      {
+        "hash": "f87abf41dc5eb6799c062c3961a518f53833712d6c296040bc36286d51942217",
+        "kind": "normalization_and_derivation",
+        "source": "fact:selected_hotel",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "247290e5b4864f90ee779a5f1595caacd9dc48b1d4ed1acbfe4f925fedf7e8fe",
+    "nodes": [
+      {
+        "hash": "88c11a17b0e6a7e63aab1b67db4e8d70852118e6d37a49575dbb3ef1396917ea",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "c60ab237f97b4e73677781ea23e58a52da39848bd0c11941b0201913bab193d4",
+        "kind": "semantic_fact",
+        "node_id": "fact:hotel_total_price"
+      },
+      {
+        "hash": "f6bb6b0a8b648575d73511f3b0cef54553c135c9be3e74b8b5036e10f2f84492",
+        "kind": "semantic_fact",
+        "node_id": "fact:selected_hotel"
+      },
+      {
+        "hash": "49454e2c129301847686db14e9e4c5fcca9abb5eb1673ef78cabb162a3a7401c",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "5665a23cf09dacd9eec28e58a2347f4750559f8eb91d4d76940014873fca98aa",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.travel_planning.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.travel_planning.evidence_only.v1",
+    "domain": "travel_planning",
+    "expression": {
+      "args": [],
+      "fact": null,
+      "fields": {
+        "option_id": {
+          "args": [],
+          "fact": "selected_hotel",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        "total": {
+          "args": [],
+          "fact": "hotel_total_price",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      },
+      "key": null,
+      "op": "object",
+      "operator": null,
+      "reverse": false,
+      "template": null,
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "hotel_refundability",
+      "hotel_base_price",
+      "hotel_tax_rate",
+      "hotel_total_price",
+      "selected_hotel"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "cd7fd695c31c366ba396033ef0a0f1bc382422f52ff666a73d971c097340a21d",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "best_option_id",
-    "public_domain",
-    "tax_rate",
-    "template_domain",
-    "total",
-    "variant"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": {
     "option_id": "saver_hotel",
     "total": 176.0
   },
+  "required_fact_suffixes": [
+    "hotel_refundability",
+    "hotel_base_price",
+    "hotel_tax_rate",
+    "hotel_total_price",
+    "selected_hotel"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

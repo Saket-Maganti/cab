@@ -7,28 +7,28 @@
       "sha256": "f5b7dd36db239b32077dcdb069988dd4f441a12914442086510400e45dff29e2"
     },
     {
-      "bytes": 1000,
+      "bytes": 3456,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "7afcc4c149154570a0bcfe2c4d0e5127ea40af7a6c6b8540dd32dc9be5d7e113"
+      "sha256": "4f402df6f14c95830551f2a70cc9c522163b61220a12a9aa3deb4b72a369c376"
     },
     {
-      "bytes": 1210,
+      "bytes": 2385,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "b982d1843d86c352e639b0552f0818772e3e45f8b7462e0ab153dec1e59a4860"
+      "sha256": "337a33cf8e8f7d5b0b451c8247b79bdf1807754d003bfd0b2016c089ace7a91c"
     },
     {
-      "bytes": 570,
+      "bytes": 4595,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "ac22d06755b15ce69917f61cb51ac1bca03d3e7c31297b3e24d7a55e3cc28303"
+      "sha256": "c6fdb9dd3100a009572ff60bc9ef39f4e29035db9c2d4b58511ee83fce2d1459"
     },
     {
       "bytes": 1508,
       "mime_type": "application/json",
       "path": "intervention_fixture.json",
-      "sha256": "d60a064229a3616bf69f0486afdb3432b98ac82f8d17c22b20cf526e34d682ab"
+      "sha256": "67dc47376dce7f4a19cd7d32980153b881993e32a3ebf153819d8ece20a7a88b"
     },
     {
       "bytes": 547,
@@ -37,20 +37,20 @@
       "sha256": "c06a11c62f2864851d3f799718c13d09dae557c3c522c775a36cf40f5f35b09c"
     },
     {
-      "bytes": 5547,
+      "bytes": 5588,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "3fdb9dab20af418341cf390ea08cbc667b0c0ef0271ec5c2e1034d3e53956b5e"
+      "sha256": "5aa6cb1cda133fa7b18b07e9c1200279adbfa23045f75199234a31a1c5663b20"
     },
     {
-      "bytes": 1984,
+      "bytes": 3535,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "2512fb4a2226f740c3eb34eb8d6b898372acd03d9f793160b71ae7af446d6234"
+      "sha256": "6158cd732713094dbdcd0146327f644ddeca288b8ba411066d703aa972439d8b"
     }
   ],
   "base_task_id": "calendar_email_workflow_hard_022",
-  "bundle_hash": "8cb3632b3952c239862742296c2cf7c0d88e907d9ffa5326696574bcdd690c05",
+  "bundle_hash": "235f6d1acd5c5bae15e5ee528242cea8a26a7671e9e071bad1b8a31cfdac7162",
   "candidate_id": "compact20_v2_cand_07",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "calendar_email_workflow_hard_022.clean",
@@ -117,9 +117,10 @@
       ],
       "success_predicate": {
         "causal_fact_ids_required": [
-          "calendar_email_workflow_hard_022.fact.01",
-          "calendar_email_workflow_hard_022.fact.02",
-          "calendar_email_workflow_hard_022.fact.03"
+          "calendar_email_workflow_hard_022.meeting_date",
+          "calendar_email_workflow_hard_022.first_open_slot",
+          "calendar_email_workflow_hard_022.recipient_email",
+          "calendar_email_workflow_hard_022.draft_status"
         ],
         "kind": "nonempty_error_free_observation",
         "required_output_keys": [
@@ -128,9 +129,10 @@
         ]
       },
       "supported_fact_ids": [
-        "calendar_email_workflow_hard_022.fact.01",
-        "calendar_email_workflow_hard_022.fact.02",
-        "calendar_email_workflow_hard_022.fact.03"
+        "calendar_email_workflow_hard_022.meeting_date",
+        "calendar_email_workflow_hard_022.first_open_slot",
+        "calendar_email_workflow_hard_022.recipient_email",
+        "calendar_email_workflow_hard_022.draft_status"
       ],
       "terminal": false
     }
@@ -142,9 +144,10 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "calendar_email_workflow_hard_022.fact.01",
-    "calendar_email_workflow_hard_022.fact.02",
-    "calendar_email_workflow_hard_022.fact.03"
+    "calendar_email_workflow_hard_022.meeting_date",
+    "calendar_email_workflow_hard_022.first_open_slot",
+    "calendar_email_workflow_hard_022.recipient_email",
+    "calendar_email_workflow_hard_022.draft_status"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

@@ -5,38 +5,62 @@
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_05",
-        "fact_id": "policy_compliance_medium_012.fact.01"
+        "fact_id": "policy_compliance_medium_012.refund_threshold"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "policy_compliance_medium_012.fact.01",
-        "label": "refund threshold",
-        "source_key": "approval_required",
-        "value": true
+        "canonical_label": "refund threshold",
+        "fact_hash": "d35060cc6d72d17632260778ed703cac71ed2e13b8d00fbeb5e9e8f69449e900",
+        "fact_id": "policy_compliance_medium_012.refund_threshold",
+        "source_artifact_hash": "601b8671aaf89431c3384be82239e9c4ea8ee198fb2450472af3dc6565b06e15",
+        "source_locator": "source_records.threshold",
+        "value": 500.0
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "875aaac3d6bb3f689a098f63806ad94f"
+      "transcript_id": "20d4b0b0737a480d69785b3a71aa0bc8"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_05",
-        "fact_id": "policy_compliance_medium_012.fact.02"
+        "fact_id": "policy_compliance_medium_012.refund_amount"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "policy_compliance_medium_012.fact.02",
-        "label": "refund amount",
-        "source_key": "threshold",
-        "value": 500
+        "canonical_label": "refund amount",
+        "fact_hash": "bdf1d2cd04abb055bed16d7e345c0b8e7f08e0568ab195a77656816c29523215",
+        "fact_id": "policy_compliance_medium_012.refund_amount",
+        "source_artifact_hash": "601b8671aaf89431c3384be82239e9c4ea8ee198fb2450472af3dc6565b06e15",
+        "source_locator": "source_records.refund_amount_usd",
+        "value": 700.0
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "a1d680bf95a818589a214f623d75bd11"
+      "transcript_id": "cc6d12ecb4e3a66d1001a8ae2e053bb6"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_05",
+        "fact_id": "policy_compliance_medium_012.approval_required"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "manager approval requirement",
+        "fact_hash": "86950304ef6fa3fa8b00d65a7baffb0ff997f498f35b2bbaa5483ca908cc1a6d",
+        "fact_id": "policy_compliance_medium_012.approval_required",
+        "source_artifact_hash": "601b8671aaf89431c3384be82239e9c4ea8ee198fb2450472af3dc6565b06e15",
+        "source_locator": "source_records.approval_required",
+        "value": true
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "da0378b41eb75615824bf04a58c451da"
     }
   ]
 }

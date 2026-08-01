@@ -1,0 +1,119 @@
+{
+  "configuration": {
+    "alpha": 0.05,
+    "base_task_sd": 0.65,
+    "degradation_logit": 0.5,
+    "family_count": 10,
+    "family_sd": 0.25,
+    "human_exclusion": 0.1,
+    "interaction_sd": 0.18,
+    "missingness": 0.05,
+    "model_count": 5,
+    "model_sd": 0.35,
+    "noninferiority_margin": 0.05,
+    "policy_sd": 0.08,
+    "raac_improvement_probability": 0.06,
+    "repeat_sd": 0.12,
+    "repeats": 1,
+    "scorer_error": 0.02,
+    "seed": 20260801,
+    "shard_size": 250,
+    "simulations": 20000,
+    "task_count": 100
+  },
+  "deterministic_seed": 20260801,
+  "empirical_simulation_results": {
+    "clean_noninferiority": {
+      "monte_carlo_standard_error": 0.002743,
+      "probability": 0.81545
+    },
+    "family_effect_detected": {
+      "monte_carlo_standard_error": 0.00291,
+      "probability": 0.216
+    },
+    "fixed_panel_paired_degradation": {
+      "monte_carlo_standard_error": 0.003318,
+      "probability": 0.3272
+    },
+    "model_family_interaction_detected": {
+      "monte_carlo_standard_error": 0.0,
+      "probability": 1.0
+    },
+    "model_superpopulation_degradation": {
+      "monte_carlo_standard_error": 0.00323,
+      "probability": 0.29655
+    },
+    "per_model_paired_degradation": {
+      "monte_carlo_standard_error": 0.000112,
+      "probability": 0.00025
+    },
+    "raac_within_model_improvement": {
+      "monte_carlo_standard_error": 0.001777,
+      "probability": 0.06775
+    },
+    "rank_instability": {
+      "monte_carlo_standard_error": 0.002483,
+      "probability": 0.856
+    },
+    "unresolved_ranking": {
+      "monte_carlo_standard_error": 0.002423,
+      "probability": 0.8641
+    }
+  },
+  "estimands": {
+    "FIXED_MODEL_PANEL_ESTIMAND": [
+      "per_model_paired_degradation",
+      "fixed_panel_paired_degradation",
+      "family_effect_detected",
+      "model_family_interaction_detected",
+      "raac_within_model_improvement",
+      "clean_noninferiority",
+      "rank_instability",
+      "unresolved_ranking"
+    ],
+    "MODEL_SUPERPOPULATION_ESTIMAND": [
+      "model_superpopulation_degradation"
+    ]
+  },
+  "estimate_summary": {
+    "fixed_panel_effect": {
+      "mean": 0.025114,
+      "p025": -0.028171,
+      "p975": 0.082671,
+      "sd": 0.028445
+    },
+    "model_superpopulation_effect": {
+      "mean": 0.025128,
+      "p025": -0.027673,
+      "p975": 0.0823,
+      "sd": 0.028155
+    },
+    "raac_effect": {
+      "mean": -0.008363,
+      "p025": -0.097557,
+      "p975": 0.079133,
+      "sd": 0.045129
+    }
+  },
+  "evidence_class": "SYNTHETIC_DESIGN_SIMULATION_NOT_EMPIRICAL_MODEL_EVIDENCE",
+  "method_class": "TRUE_MONTE_CARLO_HIERARCHICAL_SIMULATION",
+  "schema_version": "cab_true_hierarchical_monte_carlo_v2",
+  "shard_size": 250,
+  "sharded_resumable_contract": true,
+  "simulation_hash": "837f5a7f586212980312f7b9ed19d91e6454c5e49b820df549ee40622788b50d",
+  "simulations_completed": 20000,
+  "status": "CAB_HIERARCHICAL_POWER_V2_READY",
+  "synthetic_components": [
+    "base_task_random_effects",
+    "model_random_effects",
+    "intervention_family_effects",
+    "model_by_family_interaction",
+    "policy_effects",
+    "repeat_noise",
+    "scorer_error",
+    "missingness",
+    "human_exclusions",
+    "task_clustering",
+    "paired_clean_intervention_outcomes"
+  ]
+}

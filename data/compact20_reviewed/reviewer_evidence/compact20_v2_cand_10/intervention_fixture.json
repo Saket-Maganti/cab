@@ -35,7 +35,7 @@
     "Q2 spreadsheet row"
   ],
   "schema_version": "cab_review_fixture_snapshot_v1",
-  "snapshot_hash": "ec7e590bdd9ba4c4e3f769e31cc754803febbae4a1840709e001acbdda821255",
+  "snapshot_hash": "da0aeb769dc7b8548eeeb3798b5cf58074ba557a9c170480764fa67d589355b1",
   "success_criteria": [
     "Names the launch from the file.",
     "Reports Q2 revenue from the spreadsheet."

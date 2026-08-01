@@ -62,6 +62,10 @@ def run_final_pre_review_adversarial_audit(
         "recovery_before_failure": lambda steps, contract: steps.reverse(),
         "text_only_substring": lambda steps, contract: steps.clear(),
         "attempt_budget_exceeded": _append_excess_attempt,
+        "stale_failure_id": lambda steps, contract: steps[1]["action"]["metadata"].update(
+            {"failure_event_id": "stale-failure-event"}
+        ),
+        "replayed_attempt": lambda steps, contract: steps.append(deepcopy(steps[1])),
     }
     valid_steps, contract = _valid_recovery_steps(recovery_instance)
     valid_result = _score_recovery(recovery_instance, valid_steps)
@@ -265,7 +269,11 @@ def _valid_recovery_steps(
     steps = [
         {
             "action": {"tool_call": {"tool_name": target, "arguments": {}}},
-            "observation": {"tool_name": target, "error": "simulated_tool_failure"},
+            "observation": {
+                "tool_name": target,
+                "error": "simulated_tool_failure",
+                "failure_event_id": "failure-fixture-01",
+            },
         },
         {
             "action": {
@@ -276,12 +284,16 @@ def _valid_recovery_steps(
                 "metadata": {
                     "recovery_action": contract.action_id,
                     "recovery_marker": True,
+                    "attempt_id": "attempt-fixture-01",
+                    "failure_event_id": "failure-fixture-01",
                 },
             },
             "observation": {
                 "tool_name": contract.allowed_tool_names[0],
                 "output": output,
                 "error": None,
+                "attempt_id": "attempt-fixture-01",
+                "returned_fact_ids": contract.supported_fact_ids,
             },
         },
     ]

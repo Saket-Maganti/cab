@@ -3,22 +3,39 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "research_assistant_hard_011.fact.01",
-      "output_sha256": "07b880e50bf13d38b339924f2429ad51b36cedf0a62dbcab5da3b0f908af168f",
+      "artifact_sha256": "db268626af04c42927e30087e374fa8b410ae36d95c8305d197e50ed9c90175c",
+      "canonical_label": "claim verification",
+      "fact_id": "research_assistant_hard_011.claim_supported",
+      "output_sha256": "75537faf2b45e315c50c6beb2b6a0297384404502f6c102d66ccf7688e888167",
+      "source_locator": "source_records.claim_supported",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "636130bf10da2eacd949cbab209fbda8"
+      "transcript_id": "a59378a7b5354b7a26303f9d9c2a4099"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "research_assistant_hard_011.fact.02",
-      "output_sha256": "cbcbba86d380af21a1beba582a6338b4854e714f2a6dfa25600c181efa8fb92f",
+      "artifact_sha256": "db268626af04c42927e30087e374fa8b410ae36d95c8305d197e50ed9c90175c",
+      "canonical_label": "Apex report evidence",
+      "fact_id": "research_assistant_hard_011.reported_latency",
+      "output_sha256": "3579ae29028d077838d1ca9bba32e281c135edeb599c8ced148209ff461cc38e",
+      "source_locator": "source_records.reported_latency_ms",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "4a67cf0ee6cb83b895a28eb9096415e5"
+      "transcript_id": "a2c6fd7a42c629c455bd1d74209efe71"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "db268626af04c42927e30087e374fa8b410ae36d95c8305d197e50ed9c90175c",
+      "canonical_label": "claim latency threshold",
+      "fact_id": "research_assistant_hard_011.claim_threshold",
+      "output_sha256": "e808af09b725fd1427f8b553a1a98a404f76c374dd5e4d065b501d059736da1c",
+      "source_locator": "source_records.claim_threshold_ms",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "129898364307946b83740fd6058826f1"
     }
   ],
   "required_fact_ids": [
-    "research_assistant_hard_011.fact.01",
-    "research_assistant_hard_011.fact.02"
+    "research_assistant_hard_011.claim_supported",
+    "research_assistant_hard_011.reported_latency",
+    "research_assistant_hard_011.claim_threshold"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

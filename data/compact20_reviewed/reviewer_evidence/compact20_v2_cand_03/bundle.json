@@ -7,22 +7,22 @@
       "sha256": "58aadf04e5d6daa239597f5840b2c56f964785b7e01329b784036a4bf0210e96"
     },
     {
-      "bytes": 810,
+      "bytes": 2621,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "9d36f0a8a9b35665efed5c1e1c71e165afef4e0e0a839e190d58622d956c6373"
+      "sha256": "9d58b32f048909a221eba264bf716c55462f1d2907a8b7cd216d369d5cff85f0"
     },
     {
-      "bytes": 834,
+      "bytes": 1838,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "a49c4aeda05e624fc1a52a49834fb3ce44f3978dfcf0e84c9670274563667633"
+      "sha256": "dcfda01c75091a4ce0740cba2da0768f2f046ccd24e6fd8a4bd63690d7191b75"
     },
     {
-      "bytes": 564,
+      "bytes": 3743,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "b14d22cfae7ea6f1af1675494783e925aefdd6a18104d3334bda88fa08db850a"
+      "sha256": "f8debed67e877f9e24dea15d5e120a0294d5fe1c3631441950ec563c91dd843d"
     },
     {
       "bytes": 1293,
@@ -37,20 +37,20 @@
       "sha256": "1d1e836ff9f79736560ae545fbf2ed75bdb45f8efdb02c7ceea5b9e7ee34b5a6"
     },
     {
-      "bytes": 2581,
+      "bytes": 2622,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "11ee7e12e397ff462edd89ed01178e3ca47fd68fdea8f11eed32cbb749893050"
+      "sha256": "a73ec8168685803dde9d1ed01d36483701ea5b2a574e4ecae2f4d1e24e8e5ca9"
     },
     {
-      "bytes": 1348,
+      "bytes": 2668,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "343561e9129cd9215f23718c8ee7521778009b2600583b32f0f1493550d54ebe"
+      "sha256": "0e9832066db27097cff26f03323842672f08e58ce4bc2f5fecaee9c08016b2fc"
     }
   ],
   "base_task_id": "research_assistant_easy_010",
-  "bundle_hash": "5d0e2501ac6a2803a0c4565b5ee614305598aa54953dfab02af86c65597b4d23",
+  "bundle_hash": "7d017a443270086ce88552a774c5f358f21fca8cf301f56fc96156a4531cf86a",
   "candidate_id": "compact20_v2_cand_03",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "research_assistant_easy_010.clean",
@@ -86,8 +86,9 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "research_assistant_easy_010.fact.01",
-    "research_assistant_easy_010.fact.02"
+    "research_assistant_easy_010.claim_supported",
+    "research_assistant_easy_010.reported_latency",
+    "research_assistant_easy_010.claim_threshold"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

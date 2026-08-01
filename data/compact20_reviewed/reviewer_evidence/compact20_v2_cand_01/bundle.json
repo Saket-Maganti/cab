@@ -7,22 +7,22 @@
       "sha256": "4641ecf643edd9b9da5ecbf107b7d0bc33e142b03703878c03ef74c8919bac1d"
     },
     {
-      "bytes": 940,
+      "bytes": 4072,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "27f64a7f22e45dcb80c5c838bfd4f921969ffa98271be9397c064c546eb41310"
+      "sha256": "5888d0bd0dd4a3090a8ed6b4d2be995c952c2c815437d1fb0984e8dea7cc91a1"
     },
     {
-      "bytes": 1174,
+      "bytes": 2927,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "4d604746bf54fb72f419736ad24e0f1d9b82eea5693d86615431fd8abcb24d07"
+      "sha256": "0495ad391d92668070bd15008dfcd8b1d7917bef297ee6b106f7e9f494092ae0"
     },
     {
-      "bytes": 547,
+      "bytes": 3778,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "a35ca29494364430473f13fb9411c8a6e057dd588d180c29fc48dca158ce53ec"
+      "sha256": "5b1bb100947c881a5ebdaf5c833dda0e5bea8b93f793cef50d36e0ab9b03bafb"
     },
     {
       "bytes": 1377,
@@ -37,20 +37,20 @@
       "sha256": "e61f4483d6ea5082f0db608b778ee5a465a89920db6cd669382c34681a506e1e"
     },
     {
-      "bytes": 3579,
+      "bytes": 3620,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "93353f226547d47c3f8baf1902a28502441fb1ca36a9e68728a241903b05649c"
+      "sha256": "5bb9890f109a5266534969de875538aab2e94a5acab07b098d1c1ae4c474f35a"
     },
     {
-      "bytes": 1920,
+      "bytes": 4334,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "24a8fc82f31612d10dd5f42b7c02dcb9025dd4751e50cdf2376dd08c23a6a257"
+      "sha256": "d2601cbbe75cb3b9f93d2e2da303cdbaba9bafe234219bcbb309fa5289f5158d"
     }
   ],
   "base_task_id": "travel_planning_medium_004",
-  "bundle_hash": "23ea3e48685bf5ffe5ef95b2272ca08cd10ace6c2a5e9b594375995d8b6347d3",
+  "bundle_hash": "3f58fbf5d7531632b6bf1947bda51f050a59aad4e2e93ca5433cdea5b1293db2",
   "candidate_id": "compact20_v2_cand_01",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "travel_planning_medium_004.clean",
@@ -86,9 +86,11 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "travel_planning_medium_004.fact.01",
-    "travel_planning_medium_004.fact.02",
-    "travel_planning_medium_004.fact.03"
+    "travel_planning_medium_004.hotel_refundability",
+    "travel_planning_medium_004.hotel_base_price",
+    "travel_planning_medium_004.hotel_tax_rate",
+    "travel_planning_medium_004.hotel_total_price",
+    "travel_planning_medium_004.selected_hotel"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

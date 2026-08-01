@@ -1,0 +1,45 @@
+{
+  "appeal": {
+    "appeal_id": "fixture-appeal",
+    "decision_signature": null,
+    "evidence_hashes": [
+      "26e65663ab695fee60ad698d1e2accfa0c8dfdb03b43f619e1cbf1f9d047a09e"
+    ],
+    "fixture_only": true,
+    "kind": "appeal",
+    "run_receipt_id": "fixture-run-receipt",
+    "status": "submitted"
+  },
+  "encrypted_transfer_required": true,
+  "fixture_only": true,
+  "genuine_external_pilot": false,
+  "protected_execution_required": true,
+  "run_receipt": {
+    "environment_hash": "e71de6385080ea7d14370ffdd8480908735ce5a7db76a5bdd0c3877ee8c02382",
+    "fixture_only": true,
+    "protected_task_commitment": "6cb1e9f7622f72728b52a4e63d9885eb2e665281f62d7a0bae12661675774273",
+    "rate_limit_bucket": "fixture-only",
+    "receipt_id": "fixture-run-receipt",
+    "replay_audit_hash": "f35e5aeec8ddde6ac79cac5ea53ecc3df307e2b8fbb9b324b1464e41bea4dbaa",
+    "result_attestation_hash": "26e65663ab695fee60ad698d1e2accfa0c8dfdb03b43f619e1cbf1f9d047a09e",
+    "revoked": false,
+    "submission_hash": "eb6d4afe381d26ee06104da97f345beab04940acef079e47c9bed5426b5b5e4f"
+  },
+  "schema_version": "cab_protected_evaluator_protocol_fixture_v1",
+  "status": "CAB_PROTECTED_EVALUATOR_PROTOCOL_READY",
+  "submission": {
+    "budget": {
+      "max_model_calls": 5,
+      "max_tokens": 4096,
+      "max_tool_calls": 10,
+      "max_wall_seconds": 120.0
+    },
+    "confidentiality_terms_hash": "955dfeb0fcf1e24b09071b8ab6c42098f6bb792acb43b4d8bc6bfddcb1bb2124",
+    "fixture_only": true,
+    "payload_ciphertext_hash": "7def4ce58e6cfca37a3f3bdf5408b77497c1c9fdee4b35971e48eff2cc8ee4f1",
+    "replay_nonce": "fixture-replay-nonce-0001",
+    "signature": "fixture-signature-not-production",
+    "submission_id": "fixture-submission",
+    "system_identity_hash": "d02d197ff841a73be0d6b93a059b0845e640ee9e25e0fadd801ff27d5b155080"
+  }
+}

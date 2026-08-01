@@ -5,38 +5,82 @@
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_08",
-        "fact_id": "shopping_comparison_easy_012.fact.01"
+        "fact_id": "shopping_comparison_easy_012.bundle_b_base_price"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "shopping_comparison_easy_012.fact.01",
-        "label": "bundle prices",
-        "source_key": "best_option_id",
-        "value": "camera_b"
+        "canonical_label": "bundle B base price",
+        "fact_hash": "5cc83a032ffa79b07319d30bd93dc7845669038bacbec0518170f090fd7ace16",
+        "fact_id": "shopping_comparison_easy_012.bundle_b_base_price",
+        "source_artifact_hash": "7ac5d110815ab0fcd6918de447ec5174a1dd28250336022df2bacc3cdae84a45",
+        "source_locator": "source_records.bundle_b_base_price_usd",
+        "value": 200.0
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "6908b090e7f1285b6e79bf4a1d868a4b"
+      "transcript_id": "ebd7a5a56688b46c4e67e47a0a26f0f8"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_08",
-        "fact_id": "shopping_comparison_easy_012.fact.02"
+        "fact_id": "shopping_comparison_easy_012.bundle_tax_rate"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "shopping_comparison_easy_012.fact.02",
-        "label": "tax rate",
-        "source_key": "tax_rate",
+        "canonical_label": "bundle tax rate",
+        "fact_hash": "71e24a59f3e8aba5e8a02e49035f82cdeea7c1adb85bec403770a9af34ca929c",
+        "fact_id": "shopping_comparison_easy_012.bundle_tax_rate",
+        "source_artifact_hash": "7ac5d110815ab0fcd6918de447ec5174a1dd28250336022df2bacc3cdae84a45",
+        "source_locator": "source_records.tax_rate",
         "value": 0.08
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "8f96d668fb53e75cd5a4c581d9c5eaf0"
+      "transcript_id": "9e1b3e8f17232b4eb49a6a84e9686e01"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_08",
+        "fact_id": "shopping_comparison_easy_012.bundle_total_price"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "selected bundle total price",
+        "fact_hash": "638b26a7b7143482cd01dbeed02ba7099dd48ea0158dd336774dc113bf6fc58c",
+        "fact_id": "shopping_comparison_easy_012.bundle_total_price",
+        "source_artifact_hash": "7ac5d110815ab0fcd6918de447ec5174a1dd28250336022df2bacc3cdae84a45",
+        "source_locator": "source_records.total",
+        "value": 216.0
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "0fecf5fb8139765a8d5ed04ae2644c10"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_08",
+        "fact_id": "shopping_comparison_easy_012.selected_bundle"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "selected bundle option",
+        "fact_hash": "4d3e570f07333abffb397d997eb914e07c38eb69543eb60f833ebccac0bd4c2a",
+        "fact_id": "shopping_comparison_easy_012.selected_bundle",
+        "source_artifact_hash": "7ac5d110815ab0fcd6918de447ec5174a1dd28250336022df2bacc3cdae84a45",
+        "source_locator": "source_records.best_option_id",
+        "value": "camera_b"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "de7d821b021f813da7c5524cc0a346ad"
     }
   ]
 }

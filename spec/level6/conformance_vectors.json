@@ -1,0 +1,11 @@
+[
+  {"vector_id":"scoring-001","kind":"scoring","input":{"expected":1.0,"observed":1.0001,"tolerance":0.001},"expected":true},
+  {"vector_id":"recovery-001","kind":"recovery","input":{"failure_step":1,"attempt_step":2,"action_id":"fallback","authorized_action_id":"fallback","tool":"verify_fact","allowed_tools":["verify_fact"],"returned_fact_ids":["fact.a"],"required_fact_ids":["fact.a"]},"expected":true},
+  {"vector_id":"abstention-001","kind":"abstention","input":{"routes_exhausted":true,"missing_fact_ids":["fact.a"],"recovery_available":false},"expected":true},
+  {"vector_id":"route-001","kind":"route_execution","input":{"step_predicates":[true,true],"final_answer_hash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","gold_hash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":true},
+  {"vector_id":"approval-001","kind":"approval_verification","input":{"signature_valid":true,"bindings_valid":true,"revoked":false},"expected":true},
+  {"vector_id":"resources-001","kind":"resource_planning","input":{"planned":20,"budget":25},"expected":true},
+  {"vector_id":"graph-001","kind":"evidence_graph","input":{"nodes":["artifact","fact","answer"],"edges":[["artifact","fact"],["fact","answer"]]},"expected":true},
+  {"vector_id":"certificate-001","kind":"certificate_verification","input":{"subject_hash":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","observed_hash":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","signature_valid":true},"expected":true},
+  {"vector_id":"hash-001","kind":"canonical_hash","input":{"z":-0.0,"a":[1,2,3]},"expected":"271763ad81f07c8166c4418e0bb5896612f4863879d7ff03f6ddb67041bdc1f4"}
+]

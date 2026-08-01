@@ -7,28 +7,28 @@
       "sha256": "949931d9540b8d92000a2aea5607864e5a38ace9cff284bfde6eb3eb369fceaf"
     },
     {
-      "bytes": 1159,
+      "bytes": 3445,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "0b258885d015271e38e2dd8730bf0c68643b2e0f406b9041e2182da951d54959"
+      "sha256": "935fffa33adf147e8883289984fb96028afc8c91739ffe4443f2f9e7c0350319"
     },
     {
-      "bytes": 1550,
+      "bytes": 2368,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "25012a48a0c3d3cdbbc834c0dfb2b807bbba357dba8cd134b6db6f86678b7311"
+      "sha256": "703f578c876ed6b30240c2a3b5fdb052345c8abde9294b10c489aacb2037139b"
     },
     {
-      "bytes": 579,
+      "bytes": 4562,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "45fa940b891b33eba3595a5c5605ebd18c77b00a457c6117880cda9696464b3c"
+      "sha256": "a29c1e17bbc1b8c454c6b84a40b6d90f65ef3f47eef01d022edc2b190a3a29ef"
     },
     {
       "bytes": 1646,
       "mime_type": "application/json",
       "path": "intervention_fixture.json",
-      "sha256": "e06b8d51f715fcdee2004ed837a39488d3107fd54ba749dd87b373a9b0dcbac4"
+      "sha256": "ca11c356ecf4032a35e58c0f1adf0f36b5266bda5077bfa985a6ef42bc7ef609"
     },
     {
       "bytes": 543,
@@ -37,20 +37,20 @@
       "sha256": "3ede0ad51ee4373a27401f861c7f0b4ac61dc16711e06bf744536415be78443a"
     },
     {
-      "bytes": 6553,
+      "bytes": 6594,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "79439b7c110f6f2c813050b9a7f8a53a6aa0b1f0c4217e455c19a1ceb35329d1"
+      "sha256": "3b07b03b07deaecf3aa2fec4c292ba1a615c462c29ea8983dd171aa49a60e053"
     },
     {
-      "bytes": 2568,
+      "bytes": 3530,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "4c250430ed596e0eb8e465a65b81c8432e66658cc7f8fc2473cea6d97a66c67e"
+      "sha256": "d21ff7777d010617ad509b89311db98f523322edd354609bef7cda1025b6720e"
     }
   ],
   "base_task_id": "operations_planning_stress_015",
-  "bundle_hash": "c817d183300d02c9786acc03a272e5125bf34cbbf0531021f9b251f0c55dd320",
+  "bundle_hash": "1acc18391922a2126a67a85c683880e38c6c79d575bcc77837de174de23b4540",
   "candidate_id": "compact20_v2_cand_09",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "operations_planning_stress_015.clean",
@@ -117,10 +117,10 @@
       ],
       "success_predicate": {
         "causal_fact_ids_required": [
-          "operations_planning_stress_015.fact.01",
-          "operations_planning_stress_015.fact.02",
-          "operations_planning_stress_015.fact.03",
-          "operations_planning_stress_015.fact.04"
+          "operations_planning_stress_015.meeting_time",
+          "operations_planning_stress_015.vendor_policy",
+          "operations_planning_stress_015.selected_vendor",
+          "operations_planning_stress_015.vendor_email_recipient"
         ],
         "kind": "nonempty_error_free_observation",
         "required_output_keys": [
@@ -129,10 +129,10 @@
         ]
       },
       "supported_fact_ids": [
-        "operations_planning_stress_015.fact.01",
-        "operations_planning_stress_015.fact.02",
-        "operations_planning_stress_015.fact.03",
-        "operations_planning_stress_015.fact.04"
+        "operations_planning_stress_015.meeting_time",
+        "operations_planning_stress_015.vendor_policy",
+        "operations_planning_stress_015.selected_vendor",
+        "operations_planning_stress_015.vendor_email_recipient"
       ],
       "terminal": false
     }
@@ -144,10 +144,10 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "operations_planning_stress_015.fact.01",
-    "operations_planning_stress_015.fact.02",
-    "operations_planning_stress_015.fact.03",
-    "operations_planning_stress_015.fact.04"
+    "operations_planning_stress_015.meeting_time",
+    "operations_planning_stress_015.vendor_policy",
+    "operations_planning_stress_015.selected_vendor",
+    "operations_planning_stress_015.vendor_email_recipient"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

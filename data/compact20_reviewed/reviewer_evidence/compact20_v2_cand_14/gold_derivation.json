@@ -1,16 +1,93 @@
 {
   "candidate_id": "compact20_v2_cand_14",
-  "derivation_name": "reconstruct_policy_compliance_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "364c33f232e2c7d3d5c57f68792157312d2a12f81d80627f49275107ff7e071b",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:refund_threshold"
+      },
+      {
+        "hash": "57cf99068f6058c97022790a950a1c91b31186d5a8c70d0c4a6f7f66f4c058ae",
+        "kind": "normalization_and_derivation",
+        "source": "fact:refund_threshold",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "1512c5fd198674c74e639e95afa3b67068eba2c10a2b31595bce0ca708f72eec",
+    "nodes": [
+      {
+        "hash": "53f1b932389abc19a2fe4f6cd914842abe906400bb01deeded9bc27788005725",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "29501dc8719338c1b1f8085bc3b91cd71c221b201f75149ccf1bb3816c46b2ba",
+        "kind": "semantic_fact",
+        "node_id": "fact:refund_threshold"
+      },
+      {
+        "hash": "34751bd8facc6a45b1606bfd0406e0edfff5a3560ac28265c1b449d6ed0deb6b",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "4c209622439c0ad75d81ba2339f71c9cd4e80218f538f6c1b3ecd01d4a1ceeb5",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.policy_compliance.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.policy_compliance.evidence_only.v1",
+    "domain": "policy_compliance",
+    "expression": {
+      "args": [
+        {
+          "args": [],
+          "fact": "refund_threshold",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      ],
+      "fact": null,
+      "fields": {},
+      "key": null,
+      "op": "format",
+      "operator": null,
+      "reverse": false,
+      "template": "Yes. A 700 dollar refund requires manager approval because the threshold is {0} dollars.",
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "refund_threshold",
+      "refund_amount",
+      "approval_required"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "ec032ac4b4647410396f492dc36af58276ab5b4853529cb5c9d79add7913ce52",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "approval_required",
-    "public_domain",
-    "template_domain",
-    "threshold",
-    "variant"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars.",
+  "required_fact_suffixes": [
+    "refund_threshold",
+    "refund_amount",
+    "approval_required"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

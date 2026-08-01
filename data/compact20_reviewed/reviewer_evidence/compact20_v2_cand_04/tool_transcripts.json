@@ -5,38 +5,42 @@
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_04",
-        "fact_id": "coding_debugging_stress_002.fact.01"
+        "fact_id": "coding_debugging_stress_002.bug_type"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "coding_debugging_stress_002.fact.01",
-        "label": "retry helper code",
-        "source_key": "bad_expression",
-        "value": "max_retries + 1"
-      },
-      "schema_version": "cab_fixture_tool_transcript_v1",
-      "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "c01ed8006bfc9ed62729af405f2c355c"
-    },
-    {
-      "arguments": {
-        "candidate_id": "compact20_v2_cand_04",
-        "fact_id": "coding_debugging_stress_002.fact.02"
-      },
-      "deterministic": true,
-      "error": null,
-      "harness_version": "cab_compact_fixture_harness_v1",
-      "observation": {
-        "fact_id": "coding_debugging_stress_002.fact.02",
-        "label": "issue note",
-        "source_key": "bug_type",
+        "canonical_label": "issue note",
+        "fact_hash": "0aa909bcfbd4a5c96bfcee2979a5d3003e4c516f14b95829b2859d33c0f5a173",
+        "fact_id": "coding_debugging_stress_002.bug_type",
+        "source_artifact_hash": "62382a82861a6c4504a74896a2da87a84da649c1b6ecee80b51543ce8f0273ed",
+        "source_locator": "source_records.bug_type",
         "value": "off_by_one"
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "751143e5accdc452157082c505932c9b"
+      "transcript_id": "d9422934212ed255722cc30c6b96d2e5"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_04",
+        "fact_id": "coding_debugging_stress_002.bad_expression"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "retry helper code",
+        "fact_hash": "b414dea3f7eeb6621783bd7ba79fc1d37dba4818022747dcfb59084fd291905f",
+        "fact_id": "coding_debugging_stress_002.bad_expression",
+        "source_artifact_hash": "62382a82861a6c4504a74896a2da87a84da649c1b6ecee80b51543ce8f0273ed",
+        "source_locator": "source_records.bad_expression",
+        "value": "max_retries + 1"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "3af33a22c89bf2e67491dcb2a8347358"
     }
   ]
 }

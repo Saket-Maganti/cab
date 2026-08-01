@@ -1,0 +1,62 @@
+name: Level-6 foundation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  provider-free-foundation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install validation dependencies
+        run: python -m pip install --constraint constraints.txt -e '.[dev,docs]'
+      - name: Semantic facts and evidence-only gold
+        run: |
+          cab benchmark semantic-fact-check
+          cab benchmark evidence-gold-check
+      - name: Two-stage blinding and causal reachability
+        run: |
+          cab benchmark stage1-blinding-check
+          cab benchmark causal-reachability-check
+      - name: Recovery and power modes
+        run: |
+          cab recovery authorization-check
+          cab power analytic-validate
+          cab power simulate-validate
+      - name: Measurement, anti-gaming, governance, and portability
+        run: |
+          cab measurement foundation-check
+          cab antigaming foundation-check
+          cab governance foundation-check
+          cab portability conformance-check
+      - name: Release path and honest Level-6 gate
+        run: |
+          cab release final-tip-check
+          cab level6 foundation-check
+      - name: Level-6 regression tests
+        run: python -m pytest -q -n2 tests/test_level6_foundation.py
+      - name: Structured contract validation
+        run: python scripts/validate_tracked_structured_data.py
+      - name: Static quality and docs
+        run: |
+          python -m ruff check .
+          python -m mypy src
+          codespell .
+          python -m mkdocs build --strict
+      - name: Distribution checks
+        run: |
+          python -m build
+          python -m twine check dist/*
+      - name: Evidence boundary
+        run: |
+          test ! -d private_data
+          ! git grep -nE 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY'
