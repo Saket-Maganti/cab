@@ -1,0 +1,102 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 831,
+      "mime_type": "application/json",
+      "path": "clean_fixture.json",
+      "sha256": "19d4202f3b14bed7adb7176e600cfa76ff0fd2cedf7827948a4d2ac51f009c7d"
+    },
+    {
+      "bytes": 778,
+      "mime_type": "application/json",
+      "path": "controlled_evidence.json",
+      "sha256": "53842951e19e520e4195cc46ebabc5de27a896c44f6de676c559ccf5db028a9d"
+    },
+    {
+      "bytes": 830,
+      "mime_type": "application/json",
+      "path": "fact_map.json",
+      "sha256": "cc737d70fac3d77e953a82842f90b04d728a66e55c2cc86179223f7636f5bcf1"
+    },
+    {
+      "bytes": 574,
+      "mime_type": "application/json",
+      "path": "gold_derivation.json",
+      "sha256": "b083d6d5c01e827a4ce2898e3874506532fa4cfb2922927162573cbdf2973cea"
+    },
+    {
+      "bytes": 1490,
+      "mime_type": "application/json",
+      "path": "intervention_fixture.json",
+      "sha256": "1f14c5bac400cb85fb6cc238ea600ce33e8f336326c959622825080a6e009977"
+    },
+    {
+      "bytes": 500,
+      "mime_type": "application/json",
+      "path": "intervention_isolation.json",
+      "sha256": "12727f690920e20034cf81c75750fbb8729dcfa63139609c09cf78fc6398c9d3"
+    },
+    {
+      "bytes": 5465,
+      "mime_type": "application/json",
+      "path": "tool_contracts.json",
+      "sha256": "ce0f90b525a641a011bc53023b1b5394189bc3bbdaeb2bf21eb5a57c8f00111a"
+    },
+    {
+      "bytes": 1326,
+      "mime_type": "application/json",
+      "path": "tool_transcripts.json",
+      "sha256": "7b2649df6571b3bc4c2399385db6b37d9c03dbc27545098521a339791695ac0d"
+    }
+  ],
+  "base_task_id": "policy_compliance_hard_026",
+  "bundle_hash": "cb1bb26b5a85f025afe03aec453327173b7ae075d0b3f3e08371c7f8db06620e",
+  "candidate_id": "compact20_v2_cand_14",
+  "clean_gold_derivation_file": "gold_derivation.json",
+  "clean_instance_id": "policy_compliance_hard_026.clean",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "fact_mapping_file": "fact_map.json",
+  "intervention_family": "memory_corruption",
+  "intervention_instance_id": "policy_compliance_hard_026.memory_corruption",
+  "intervention_routes": [
+    {
+      "kind": "substantive_answer",
+      "required_tools": [
+        "lookup_policy",
+        "verify_fact",
+        "search_database",
+        "read_file",
+        "query_spreadsheet"
+      ],
+      "valid_response": "typed answer matching the frozen policy"
+    }
+  ],
+  "invariants": [
+    "user goal",
+    "tool availability",
+    "hidden ground truth",
+    "success criteria"
+  ],
+  "manipulation": {
+    "changed_factor": "memory correctness",
+    "changed_fields": [
+      "memory"
+    ],
+    "target_factor": "memory correctness"
+  },
+  "recovery_authorizations": [],
+  "redactions": {
+    "model_identity_absent": true,
+    "model_output_absent": true,
+    "reviewer_identity_absent": true,
+    "secrets_absent": true
+  },
+  "required_fact_ids": [
+    "policy_compliance_hard_026.fact.01",
+    "policy_compliance_hard_026.fact.02"
+  ],
+  "schema_version": "cab_reviewer_evidence_bundle_v1",
+  "scientific_execution_performed": false,
+  "tool_contract_file": "tool_contracts.json",
+  "tool_transcript_file": "tool_transcripts.json"
+}

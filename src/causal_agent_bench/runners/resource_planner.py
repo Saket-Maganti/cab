@@ -165,6 +165,7 @@ def plan_study_resources(
                 6,
             ),
             "bootstrap_replicate_cells": bootstrap_workload,
+            "gpu_runtime_evidence_class": "ASSUMPTION_BASED_PRE_SMOKE_PROJECTION",
         },
         "assumptions": assumptions.model_dump(mode="json"),
         "manual_total_accepted": declared_total_trajectories,

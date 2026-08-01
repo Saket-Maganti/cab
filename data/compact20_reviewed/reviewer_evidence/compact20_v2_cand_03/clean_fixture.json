@@ -1,0 +1,22 @@
+{
+  "available_tools": [
+    "search_database",
+    "verify_fact"
+  ],
+  "base_task_id": "research_assistant_easy_010",
+  "condition": "clean",
+  "initial_memory": {},
+  "instance_id": "research_assistant_easy_010.clean",
+  "intervention": null,
+  "required_information": [
+    "Apex report evidence",
+    "claim verification"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "addd065b3598ec84594688bb4468fc9b33c8972ab2841364e3fd288164e9237d",
+  "success_criteria": [
+    "States whether the claim is supported.",
+    "Cites the controlled evidence."
+  ],
+  "user_instruction": "Find evidence about whether the Apex report supports the claim that latency dropped below 100 ms. Keep the answer concise. Synthetic variant 10."
+}

@@ -192,6 +192,7 @@ class ExperimentConfig(BaseModel):
     max_api_calls: int | None = Field(default=None, ge=1)
     budget: BudgetConfig | None = None
     approval: ApprovalConfig | None = None
+    approval_receipt_path: str | None = None
     pricing: dict[str, float] = Field(default_factory=dict)
     cost_models: CostModelConfig = Field(default_factory=dict)
     provider_registry_path: str | None = "configs/providers.yaml"

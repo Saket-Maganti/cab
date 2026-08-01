@@ -1,0 +1,42 @@
+{
+  "candidate_id": "compact20_v2_cand_03",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_03",
+        "fact_id": "research_assistant_easy_010.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "research_assistant_easy_010.fact.01",
+        "label": "Apex report evidence",
+        "source_key": "claim_supported",
+        "value": false
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "876084c56f3e6e3c231897123546bdc8"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_03",
+        "fact_id": "research_assistant_easy_010.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "research_assistant_easy_010.fact.02",
+        "label": "claim verification",
+        "source_key": "reported_latency_ms",
+        "value": 118
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "e5f75c06f6e206ecd8baf37b60ae5b74"
+    }
+  ]
+}

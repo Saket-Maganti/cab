@@ -1,0 +1,41 @@
+{
+  "available_tools": [
+    "verify_fact",
+    "search_database"
+  ],
+  "base_task_id": "policy_compliance_medium_012",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "policy_compliance_medium_012.tool_removal",
+  "intervention": {
+    "changed_factor": "tool availability",
+    "description": "Remove one useful tool from the available tool set.",
+    "family": "tool_removal",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "hidden ground truth unless explicitly overridden",
+      "available non-removed tools",
+      "success criteria"
+    ],
+    "target_factor": "tool availability",
+    "tool_availability_patch": {
+      "removed_tools": [
+        "lookup_policy"
+      ]
+    },
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "refund threshold",
+    "refund amount"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "ee601f2612ca8501fc54ddb956de31a5641f65b1b347f2ac82e36548d153d2a9",
+  "success_criteria": [
+    "States whether approval is required.",
+    "Cites the threshold."
+  ],
+  "user_instruction": "Check the refund policy and determine whether a 700 dollar refund requires manager approval. Use the available tools before answering. Synthetic variant 12."
+}

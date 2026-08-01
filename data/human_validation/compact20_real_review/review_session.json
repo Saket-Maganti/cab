@@ -1,7 +1,7 @@
 {
   "ai_or_proxy_review_permitted": false,
   "candidate_manifest": "data/compact20_reviewed/compact20_reviewed_manifest.json",
-  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+  "candidate_manifest_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
   "candidate_slice_hash": "98ea5ddcab12e71db683a9e27011498199e6dae3c918d91c008ae46952096381",
   "completed_at": null,
   "evidence_class": "HUMAN_INPUT_REQUIRED",

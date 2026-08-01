@@ -1,0 +1,25 @@
+{
+  "available_tools": [
+    "lookup_policy",
+    "verify_fact",
+    "search_database",
+    "read_file",
+    "query_spreadsheet"
+  ],
+  "base_task_id": "policy_compliance_hard_026",
+  "condition": "clean",
+  "initial_memory": {},
+  "instance_id": "policy_compliance_hard_026.clean",
+  "intervention": null,
+  "required_information": [
+    "refund threshold",
+    "refund amount"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "cfd427a77e81f0a3dd331b11802931bdd1b4e271ada187a9a9f3ff35dbc5f43b",
+  "success_criteria": [
+    "States whether approval is required.",
+    "Cites the threshold."
+  ],
+  "user_instruction": "Check the refund policy and determine whether a 700 dollar refund requires manager approval. Preserve intermediate evidence because later steps depend on it. Synthetic variant 26."
+}

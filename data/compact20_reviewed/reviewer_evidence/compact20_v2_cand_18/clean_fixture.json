@@ -1,0 +1,23 @@
+{
+  "available_tools": [
+    "compare_options",
+    "calculate_price",
+    "verify_fact"
+  ],
+  "base_task_id": "shopping_comparison_medium_001",
+  "condition": "clean",
+  "initial_memory": {},
+  "instance_id": "shopping_comparison_medium_001.clean",
+  "intervention": null,
+  "required_information": [
+    "bundle prices",
+    "tax rate"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "2c322dd1681d54b19847f0a3f72d9ef12b911f3fec953a2fac29adfd4b2a265c",
+  "success_criteria": [
+    "Chooses the cheaper bundle.",
+    "Reports total cost after tax."
+  ],
+  "user_instruction": "Compare camera bundles A and B by total cost after tax and recommend the cheaper bundle. Use the available tools before answering. Synthetic variant 1."
+}

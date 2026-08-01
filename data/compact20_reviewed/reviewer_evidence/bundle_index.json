@@ -1,0 +1,214 @@
+{
+  "bundles": [
+    {
+      "bundle_hash": "23ea3e48685bf5ffe5ef95b2272ca08cd10ace6c2a5e9b594375995d8b6347d3",
+      "candidate_id": "compact20_v2_cand_01",
+      "fact_count": 3,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_01/bundle.json",
+      "sha256": "ac112bca68ddc3aeda0b4006e0eeb45e8205313a792b8bfe9d92504a2dc39128",
+      "transcript_count": 3
+    },
+    {
+      "bundle_hash": "4a890c9ad9a66b4c3e83ddd8a44d1db32a2d4e6b3fc01bcc36d600b513112eb8",
+      "candidate_id": "compact20_v2_cand_02",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_02/bundle.json",
+      "sha256": "448b663f5af9fd637eb1d9029c6b036e4341eea1c451ba20432d535a5b39ba31",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "5d0e2501ac6a2803a0c4565b5ee614305598aa54953dfab02af86c65597b4d23",
+      "candidate_id": "compact20_v2_cand_03",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_03/bundle.json",
+      "sha256": "51a304c079121731d2a2663e91b4edd2f11fb85ef0fc3ea48b6e7004dbaf21f9",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "9888d62c28937df730341fd0e0a0ba622fde31393768f6cf9afc94b856e46123",
+      "candidate_id": "compact20_v2_cand_04",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_04/bundle.json",
+      "sha256": "9820bfe379c61db159f51dd645de95b0731033e1ef16157e91b030da63bc629c",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "e52d02ca372a56a8c2fff12e49e837ce9fdd75fb63d701d4eb2b67f3d351c28b",
+      "candidate_id": "compact20_v2_cand_05",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_05/bundle.json",
+      "sha256": "109b8efa3947825270678d05e048cc313d7218b87cc99a2a1efd91c60baaaba2",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "940057d5bcd79424231a6a1e318dbb1ed9564e0806712723e118e7d996f9ee97",
+      "candidate_id": "compact20_v2_cand_06",
+      "fact_count": 3,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_06/bundle.json",
+      "sha256": "f69461f22be6bae9ac7721c2314bd162ed29d944bfb9d8471d203c47a8986b59",
+      "transcript_count": 3
+    },
+    {
+      "bundle_hash": "8cb3632b3952c239862742296c2cf7c0d88e907d9ffa5326696574bcdd690c05",
+      "candidate_id": "compact20_v2_cand_07",
+      "fact_count": 3,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_07/bundle.json",
+      "sha256": "43e9098add48f372c0e0bf3bb750172aa19d29fd87de6495a3495a9b3ccca8c0",
+      "transcript_count": 3
+    },
+    {
+      "bundle_hash": "ad1592798d1a8491d2adea1c043aeb840b3f548cc3d00703ada74937fb61c97b",
+      "candidate_id": "compact20_v2_cand_08",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_08/bundle.json",
+      "sha256": "771dbe84c843f8926242c1813f45e16bbf2593d3a5513ca04c632603fb955eee",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "c817d183300d02c9786acc03a272e5125bf34cbbf0531021f9b251f0c55dd320",
+      "candidate_id": "compact20_v2_cand_09",
+      "fact_count": 4,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_09/bundle.json",
+      "sha256": "0a6139ec35e97e74a3bbd4178f1ae2878eee6508ece0ec3f323bb1868c059f51",
+      "transcript_count": 4
+    },
+    {
+      "bundle_hash": "5530c889d8a37498a7e2f380d33da88273519ff18bb99d04a80ccaba029d7af3",
+      "candidate_id": "compact20_v2_cand_10",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_10/bundle.json",
+      "sha256": "7b03b93a9011be180d2845f16bd8c629d4d145820d482a9e5250603e92e34a40",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "451dbdbdded1c9212813d3092224117cfd7e59960fa7eaf19ab584c34a07e67a",
+      "candidate_id": "compact20_v2_cand_11",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_11/bundle.json",
+      "sha256": "83f99cb4323e237d692c751dab469d6dbe1d111acc8cbc15b2508dd09960c07a",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "57ffa25f83dff7ea326fcdc6f27040114e184c58bae083518cf5e9d8a1962ba9",
+      "candidate_id": "compact20_v2_cand_12",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_12/bundle.json",
+      "sha256": "76f2306b4b293d07ad8ba052f107fd8ede284ec11490934e57f31b446b79dbe0",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "ff5a9b2cc1bb0338692944bdeeabe25932b9bd102e271d8e18d290fc28f181d1",
+      "candidate_id": "compact20_v2_cand_13",
+      "fact_count": 3,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_13/bundle.json",
+      "sha256": "dce87007c1f124e89bae8af521cc4383113bf780345a8bdcbd4c86c98a2d00fd",
+      "transcript_count": 3
+    },
+    {
+      "bundle_hash": "cb1bb26b5a85f025afe03aec453327173b7ae075d0b3f3e08371c7f8db06620e",
+      "candidate_id": "compact20_v2_cand_14",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_14/bundle.json",
+      "sha256": "9989ca656d011c87a22e647ca039bcd190c747aab376e402f1c875d494e7339c",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "7ebaedb9457da359a80d694b53a3a0792b633412180a577ee84e67d12278839e",
+      "candidate_id": "compact20_v2_cand_15",
+      "fact_count": 4,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_15/bundle.json",
+      "sha256": "01183fe6a41e23ae5b01a7b7fa9f36503b585002a183d98a61c4e7737f330482",
+      "transcript_count": 4
+    },
+    {
+      "bundle_hash": "eaa382cfaec8b81c90632a4aeb745cb9f62d52d567fd4c94a5f8a86978434199",
+      "candidate_id": "compact20_v2_cand_16",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_16/bundle.json",
+      "sha256": "7b1d338b9129f49244c3514f2bd312a4514bd3038e5654d4fd1cb18657a8c89e",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "55eb969a16f28a4470446bfaa3686887ba390b3fc6a8ef9218894ae7e6495aeb",
+      "candidate_id": "compact20_v2_cand_17",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_17/bundle.json",
+      "sha256": "6e7def916f6a5795a35395bbb5643e875f37d9af8337ac0b2114295f7d20b430",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "8a93bc9d752b0aaad301b39c96353fdab09983848f574d52f9f59533f3ec64f6",
+      "candidate_id": "compact20_v2_cand_18",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_18/bundle.json",
+      "sha256": "bcb9ae21441bea68a0a71d853e5189e1d1b646158c547503b0665e135ea8a1a3",
+      "transcript_count": 2
+    },
+    {
+      "bundle_hash": "3432e21b0a2158c7792da24ab0f08d5102d452e2b26c694780c4476fb4f84db2",
+      "candidate_id": "compact20_v2_cand_19",
+      "fact_count": 3,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_19/bundle.json",
+      "sha256": "181b970a5fd70765c5579cb9138fe9aa400d60f71a89c80a96034c359a9cdb7c",
+      "transcript_count": 3
+    },
+    {
+      "bundle_hash": "5e4ef2e32e9e1d2da8dba60157ca149df56f9a00abac37477aacc69f48ede637",
+      "candidate_id": "compact20_v2_cand_20",
+      "fact_count": 2,
+      "gold_reconstruction_passed": true,
+      "isolation_passed": true,
+      "path": "data/compact20_reviewed/reviewer_evidence/compact20_v2_cand_20/bundle.json",
+      "sha256": "5ecc8c6f88fea2f62c7b1e446c87ec1fb5eca64956f01906b0bd50e87e2405e3",
+      "transcript_count": 2
+    }
+  ],
+  "candidate_count": 20,
+  "candidate_manifest_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "gold_reconstruction_passed_count": 20,
+  "index_hash": "9763471c34b7cd5f68b6d07a3ed503d5d4824914e706072c41dd701a81aa5b7b",
+  "instances_sha256": "a0ab7847d3e33f4e89e2fa53bf04e71cae5db9cf1ca3288b64ae3c830e336809",
+  "intervention_isolation_passed_count": 20,
+  "schema_version": "cab_reviewer_evidence_bundle_index_v1",
+  "status": "CAB_COMPACT_REVIEW_EVIDENCE_BUNDLES_READY",
+  "unsupported_fact_count": 0
+}

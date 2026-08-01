@@ -1,0 +1,97 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 820,
+      "mime_type": "application/json",
+      "path": "clean_fixture.json",
+      "sha256": "9057f36e6945d9a16bba2c9cf6bd40c3ab25364b7e6e5689c49508277d1a55d3"
+    },
+    {
+      "bytes": 933,
+      "mime_type": "application/json",
+      "path": "controlled_evidence.json",
+      "sha256": "29c94b7f5a9647aed838a5196dd9a726a925a41b7e0a15130cca306717dff02b"
+    },
+    {
+      "bytes": 1162,
+      "mime_type": "application/json",
+      "path": "fact_map.json",
+      "sha256": "799b9d563001ed782e3efcf4bdc526380bd7a8aa52e279bca647ed14851cbe70"
+    },
+    {
+      "bytes": 547,
+      "mime_type": "application/json",
+      "path": "gold_derivation.json",
+      "sha256": "1138c7e37aa9bcbf082291031c8fac6d5c71f1790bd497aea0a72ac876f34deb"
+    },
+    {
+      "bytes": 1472,
+      "mime_type": "application/json",
+      "path": "intervention_fixture.json",
+      "sha256": "9760f9eae1d65ff805cddd2ccf0dabd8cd11fc6b67602fcca91e600cce5a74f8"
+    },
+    {
+      "bytes": 539,
+      "mime_type": "application/json",
+      "path": "intervention_isolation.json",
+      "sha256": "74a8e2f157a4b13a39b159d0519bed07f5931eced84cd2f3fa8d3ea6bfd7148e"
+    },
+    {
+      "bytes": 3602,
+      "mime_type": "application/json",
+      "path": "tool_contracts.json",
+      "sha256": "5c23c9022537729034341620644f3f8b5edbfed93d45304807f8b116d7fd3f32"
+    },
+    {
+      "bytes": 1908,
+      "mime_type": "application/json",
+      "path": "tool_transcripts.json",
+      "sha256": "1c4906042ee9ce7b8249d695a48387b5d61b61dcaa826ba5d1cd5dc7f3e80f97"
+    }
+  ],
+  "base_task_id": "travel_planning_easy_026",
+  "bundle_hash": "3432e21b0a2158c7792da24ab0f08d5102d452e2b26c694780c4476fb4f84db2",
+  "candidate_id": "compact20_v2_cand_19",
+  "clean_gold_derivation_file": "gold_derivation.json",
+  "clean_instance_id": "travel_planning_easy_026.clean",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "fact_mapping_file": "fact_map.json",
+  "intervention_family": "observation_conflict",
+  "intervention_instance_id": "travel_planning_easy_026.observation_conflict",
+  "intervention_routes": [
+    {
+      "kind": "qualified_uncertainty",
+      "opportunity_id": "travel_planning_easy_026.observation_conflict.opportunity.v3",
+      "valid_response": "specific evidence-bound uncertainty"
+    }
+  ],
+  "invariants": [
+    "user goal",
+    "tool availability",
+    "underlying ground truth",
+    "success criteria"
+  ],
+  "manipulation": {
+    "changed_factor": "observation consistency",
+    "changed_fields": [
+      "tool_output_or_observation"
+    ],
+    "target_factor": "observation consistency"
+  },
+  "recovery_authorizations": [],
+  "redactions": {
+    "model_identity_absent": true,
+    "model_output_absent": true,
+    "reviewer_identity_absent": true,
+    "secrets_absent": true
+  },
+  "required_fact_ids": [
+    "travel_planning_easy_026.fact.01",
+    "travel_planning_easy_026.fact.02",
+    "travel_planning_easy_026.fact.03"
+  ],
+  "schema_version": "cab_reviewer_evidence_bundle_v1",
+  "scientific_execution_performed": false,
+  "tool_contract_file": "tool_contracts.json",
+  "tool_transcript_file": "tool_transcripts.json"
+}

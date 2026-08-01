@@ -1,0 +1,11 @@
+{
+  "candidate_count": 20,
+  "finalized_at": null,
+  "finalized_human_judgments_sha256": null,
+  "locked": false,
+  "reviewer_assignment_count": 40,
+  "schema_version": "cab_stage1_immutable_commitment_v1",
+  "stage1_judgments_template_sha256": "3aeec6f050480f52b23eb8fce4f8d3dabc295e8e04d196f79bccf4f829593297",
+  "stage1_review_items_sha256": "98037e67de12f8cb13c3ceb3e8329c6d48d8395b7ebf06005dcf14a58ec08ca5",
+  "unlock_rule": "Stage 2 may be distributed only after all Stage-1 rows are complete and finalized_human_judgments_sha256 is recorded immutably."
+}

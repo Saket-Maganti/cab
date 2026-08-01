@@ -1,0 +1,43 @@
+{
+  "available_tools": [
+    "search_database",
+    "verify_fact"
+  ],
+  "base_task_id": "research_assistant_easy_010",
+  "condition": "intervention",
+  "initial_memory": {
+    "is_corrupted": true,
+    "stale_memory": "Previous run said the old answer was correct."
+  },
+  "instance_id": "research_assistant_easy_010.memory_corruption",
+  "intervention": {
+    "changed_factor": "memory correctness",
+    "description": "Inject stale or incorrect initial memory.",
+    "family": "memory_corruption",
+    "instruction_patch": null,
+    "memory_patch": {
+      "is_corrupted": true,
+      "stale_memory": "Previous run said the old answer was correct."
+    },
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "hidden ground truth",
+      "success criteria"
+    ],
+    "target_factor": "memory correctness",
+    "tool_availability_patch": {},
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "Apex report evidence",
+    "claim verification"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "b5561e987922bbc12ba1f2b7bac55990411dd71374bda2a6903ae22072c11393",
+  "success_criteria": [
+    "States whether the claim is supported.",
+    "Cites the controlled evidence."
+  ],
+  "user_instruction": "Find evidence about whether the Apex report supports the claim that latency dropped below 100 ms. Keep the answer concise. Synthetic variant 10."
+}

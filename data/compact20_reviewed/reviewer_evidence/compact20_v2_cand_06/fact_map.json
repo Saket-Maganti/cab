@@ -1,0 +1,32 @@
+{
+  "candidate_id": "compact20_v2_cand_06",
+  "mappings": [
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "travel_planning_medium_004.fact.01",
+      "output_sha256": "2099be7f436afd75abe4bb1d1d48daa672c3552a2c0af8f65d217c18ffc398e3",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "0caa7097ca64ea6ebeb55406657edfa0"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "travel_planning_medium_004.fact.02",
+      "output_sha256": "eb32f00feaf5c15bdf65c1b26669823a606f1ed2f26b971b3b1eb93883a398b6",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "7af9a50f2b57cd66d6b4dab3eb872fbb"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "travel_planning_medium_004.fact.03",
+      "output_sha256": "383c0f6157b3ec326dba4c3b7b296f89279f5e65602cdf325cd02f70410f13f2",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "c74b53de68226e567cd9b74e9ca656bb"
+    }
+  ],
+  "required_fact_ids": [
+    "travel_planning_medium_004.fact.01",
+    "travel_planning_medium_004.fact.02",
+    "travel_planning_medium_004.fact.03"
+  ],
+  "schema_version": "cab_fact_evidence_map_v1"
+}

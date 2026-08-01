@@ -1,0 +1,126 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "code_revision": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Code Revision",
+      "type": "string"
+    },
+    "completed_count": {
+      "minimum": 0,
+      "title": "Completed Count",
+      "type": "integer"
+    },
+    "cpu_merge_scoring_seconds": {
+      "minimum": 0,
+      "title": "Cpu Merge Scoring Seconds",
+      "type": "number"
+    },
+    "evidence_class": {
+      "enum": [
+        "FIXTURE_MEASUREMENT",
+        "LIVE_SMOKE_MEASUREMENT"
+      ],
+      "title": "Evidence Class",
+      "type": "string"
+    },
+    "failed_count": {
+      "minimum": 0,
+      "title": "Failed Count",
+      "type": "integer"
+    },
+    "failure_counts": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Failure Counts",
+      "type": "object"
+    },
+    "kaggle_runtime_seconds": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Kaggle Runtime Seconds"
+    },
+    "latency_seconds": {
+      "items": {
+        "type": "number"
+      },
+      "minItems": 1,
+      "title": "Latency Seconds",
+      "type": "array"
+    },
+    "measured_at": {
+      "minLength": 1,
+      "title": "Measured At",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "cab_smoke_measurement_v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "shard_count": {
+      "minimum": 1,
+      "title": "Shard Count",
+      "type": "integer"
+    },
+    "smoke_run_id": {
+      "minLength": 1,
+      "title": "Smoke Run Id",
+      "type": "string"
+    },
+    "storage_bytes": {
+      "minimum": 0,
+      "title": "Storage Bytes",
+      "type": "integer"
+    },
+    "system_identity_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "System Identity Hash",
+      "type": "string"
+    },
+    "task_pack_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Task Pack Sha256",
+      "type": "string"
+    },
+    "throughput_trajectories_per_hour": {
+      "exclusiveMinimum": 0,
+      "title": "Throughput Trajectories Per Hour",
+      "type": "number"
+    },
+    "trajectory_count": {
+      "minimum": 1,
+      "title": "Trajectory Count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "smoke_run_id",
+    "system_identity_hash",
+    "code_revision",
+    "task_pack_sha256",
+    "trajectory_count",
+    "completed_count",
+    "failed_count",
+    "latency_seconds",
+    "throughput_trajectories_per_hour",
+    "shard_count",
+    "storage_bytes",
+    "failure_counts",
+    "cpu_merge_scoring_seconds",
+    "measured_at",
+    "evidence_class"
+  ],
+  "title": "SmokeMeasurement",
+  "type": "object"
+}

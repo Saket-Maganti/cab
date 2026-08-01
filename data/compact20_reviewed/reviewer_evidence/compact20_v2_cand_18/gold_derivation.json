@@ -1,0 +1,20 @@
+{
+  "candidate_id": "compact20_v2_cand_18",
+  "derivation_name": "reconstruct_shopping_comparison_gold_v1",
+  "frozen_gold_policy_hash": "1dff7cd1916bd7f367ea06d579999b17733c7b27a4041d1d00e158a5ad2ebd4e",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "best_option_id",
+    "public_domain",
+    "tax_rate",
+    "template_domain",
+    "total",
+    "variant"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": {
+    "option_id": "camera_b",
+    "total": 216.0
+  },
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

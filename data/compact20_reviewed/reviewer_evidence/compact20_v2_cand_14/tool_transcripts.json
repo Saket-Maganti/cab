@@ -1,0 +1,42 @@
+{
+  "candidate_id": "compact20_v2_cand_14",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_14",
+        "fact_id": "policy_compliance_hard_026.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "policy_compliance_hard_026.fact.01",
+        "label": "refund threshold",
+        "source_key": "approval_required",
+        "value": true
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "b37f9da3847709ca91f66e71a93b9e83"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_14",
+        "fact_id": "policy_compliance_hard_026.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "policy_compliance_hard_026.fact.02",
+        "label": "refund amount",
+        "source_key": "threshold",
+        "value": 500
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "82849430f0992d143aecf7fb78206e8d"
+    }
+  ]
+}

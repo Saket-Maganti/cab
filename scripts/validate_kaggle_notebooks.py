@@ -69,7 +69,8 @@ REQUIRED_TEXT = (
     "cuda_version",
     "sanitized_subprocess_environment",
     "LIVE_EXECUTION_REFUSED",
-    "APPROVED_FOR_LIVE_RUN: YES",
+    "cryptographic approval receipt",
+    "verify_approval_receipt",
     "integrity_manifest.json",
     "live_integrity_manifest.json",
 )
@@ -168,13 +169,19 @@ def _assignment_values(tree: ast.AST, name: str) -> list[ast.expr]:
 
 def _sensitive_assignments(tree: ast.AST) -> list[str]:
     findings: list[str] = []
-    sensitive_name = re.compile(r"(?i)(?:api_?key|password|private_?key|access_?token|auth_?token|secret)")
+    sensitive_name = re.compile(
+        r"(?i)(?:api_?key|password|private_?key|access_?token|auth_?token|secret)"
+    )
     for node in ast.walk(tree):
         if not isinstance(node, (ast.Assign, ast.AnnAssign)):
             continue
         targets = node.targets if isinstance(node, ast.Assign) else [node.target]
         value = node.value
-        if not isinstance(value, ast.Constant) or not isinstance(value.value, str) or not value.value:
+        if (
+            not isinstance(value, ast.Constant)
+            or not isinstance(value.value, str)
+            or not value.value
+        ):
             continue
         for target in targets:
             if isinstance(target, ast.Name) and sensitive_name.search(target.id):
@@ -270,9 +277,7 @@ def validate_notebook_static(path: str | Path) -> tuple[NotebookValidation, dict
         add("cell_order", f"expected roles {EXPECTED_ROLES}, observed {tuple(roles)}")
     checks += 1
 
-    all_source = "\n".join(
-        _cell_source(cell) for cell in cells if isinstance(cell, Mapping)
-    )
+    all_source = "\n".join(_cell_source(cell) for cell in cells if isinstance(cell, Mapping))
     for required in REQUIRED_TEXT:
         if required not in all_source:
             add("required_content", f"missing required text: {required!r}")
@@ -337,13 +342,14 @@ def validate_notebook_static(path: str | Path) -> tuple[NotebookValidation, dict
                 f"LIVE_CONFIRMATION must be assigned once, found {len(confirmation_values)}",
             )
         elif not (
-            isinstance(confirmation_values[0], ast.Constant)
-            and confirmation_values[0].value == ""
+            isinstance(confirmation_values[0], ast.Constant) and confirmation_values[0].value == ""
         ):
             add("live_default", "LIVE_CONFIRMATION must default to the empty string")
     checks += 1
 
-    config_source = "\n".join(source for _, role, source, _ in code_cells if role == "configuration")
+    config_source = "\n".join(
+        source for _, role, source, _ in code_cells if role == "configuration"
+    )
     work_root_match = re.search(r'WORK_ROOT_SETTING\s*=\s*"([^"]+)"', config_source)
     if work_root_match is None:
         add("output_paths", "WORK_ROOT_SETTING is missing or not a literal string")
@@ -356,7 +362,11 @@ def validate_notebook_static(path: str | Path) -> tuple[NotebookValidation, dict
     checks += 1
 
     live_source = "\n".join(source for _, role, source, _ in code_cells if role == "live_plan")
-    index = EXPECTED_NOTEBOOKS.index(notebook_path.name) if notebook_path.name in EXPECTED_NOTEBOOKS else -1
+    index = (
+        EXPECTED_NOTEBOOKS.index(notebook_path.name)
+        if notebook_path.name in EXPECTED_NOTEBOOKS
+        else -1
+    )
     if index in {2, 3, 5, 8}:
         for required in ("CUDA_VISIBLE_DEVICES", "subprocess.Popen", "batch-plan", "--no-score"):
             if required not in live_source:
@@ -481,9 +491,7 @@ def execute_notebook_offline(path: str | Path, notebook: Mapping[str, Any]) -> i
             if row.get("evidence_class") != "FIXTURE_ONLY":
                 raise AssertionError("fixture receipt lost FIXTURE_ONLY classification")
 
-        status = json.loads(
-            (fixture_root / "notebook_status.json").read_text(encoding="utf-8")
-        )
+        status = json.loads((fixture_root / "notebook_status.json").read_text(encoding="utf-8"))
         if status.get("claim_promotion_allowed") is not False:
             raise AssertionError("fixture status permits claim promotion")
         if status.get("paper_asset_eligible") is not False:
@@ -534,7 +542,9 @@ def _resolve_paths(selected: list[str] | None) -> tuple[list[Path], list[Validat
                 paths.append(path)
         return paths, issues
 
-    observed = {path.name for path in NOTEBOOK_DIR.glob("*.ipynb")} if NOTEBOOK_DIR.is_dir() else set()
+    observed = (
+        {path.name for path in NOTEBOOK_DIR.glob("*.ipynb")} if NOTEBOOK_DIR.is_dir() else set()
+    )
     for missing in sorted(expected_set - observed):
         issues.append(ValidationIssue(missing, "inventory", "required notebook is missing"))
     for extra in sorted(observed - expected_set):
@@ -549,9 +559,7 @@ def validate_all(
 ) -> dict[str, Any]:
     paths, inventory_issues = _resolve_paths(selected)
     results = [
-        validate_notebook(path, execute_offline=execute_offline)
-        for path in paths
-        if path.is_file()
+        validate_notebook(path, execute_offline=execute_offline) for path in paths if path.is_file()
     ]
     issues = [*inventory_issues, *(issue for result in results for issue in result.issues)]
     return {

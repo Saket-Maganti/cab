@@ -1,0 +1,60 @@
+{
+  "candidate_id": "compact20_v2_cand_07",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_07",
+        "fact_id": "calendar_email_workflow_hard_022.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "calendar_email_workflow_hard_022.fact.01",
+        "label": "calendar events",
+        "source_key": "first_open_slot",
+        "value": "15:00"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "27d2a89bb3c0a352b47bbd3c3d6d2d0a"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_07",
+        "fact_id": "calendar_email_workflow_hard_022.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "calendar_email_workflow_hard_022.fact.02",
+        "label": "open afternoon slot",
+        "source_key": "recipient",
+        "value": "mina@example.com"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "2279daddd75b433cf1b19ec443a3871c"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_07",
+        "fact_id": "calendar_email_workflow_hard_022.fact.03"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "calendar_email_workflow_hard_022.fact.03",
+        "label": "recipient",
+        "source_key": "first_open_slot",
+        "value": "15:00"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "38f4d1423905b399a534a662593eea68"
+    }
+  ]
+}

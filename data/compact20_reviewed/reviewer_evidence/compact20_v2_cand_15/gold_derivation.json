@@ -1,0 +1,21 @@
+{
+  "candidate_id": "compact20_v2_cand_15",
+  "derivation_name": "reconstruct_operations_planning_gold_v1",
+  "frozen_gold_policy_hash": "03bd316947e02d3e016795994045a9c3a651fb38ce3a9414eb0775787e4cb868",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "policy",
+    "public_domain",
+    "template_domain",
+    "time",
+    "variant",
+    "vendor"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": {
+    "must_mention": "security addendum",
+    "time": "11:00",
+    "vendor": "vendor_beta"
+  },
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

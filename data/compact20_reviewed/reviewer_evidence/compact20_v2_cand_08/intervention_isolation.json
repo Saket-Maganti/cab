@@ -1,0 +1,17 @@
+{
+  "base_task_byte_equivalent": true,
+  "clean_instance_id": "shopping_comparison_easy_012.clean",
+  "declared_but_unmaterialized_fields": [],
+  "declared_changed_fields": [
+    "tool_output_or_observation"
+  ],
+  "goal_unchanged": true,
+  "hidden_ground_truth_unchanged": true,
+  "intervention_instance_id": "shopping_comparison_easy_012.tool_failure",
+  "observed_changed_fields": [
+    "tool_output_or_observation"
+  ],
+  "passed": true,
+  "schema_version": "cab_intervention_isolation_result_v1",
+  "unexplained_changed_fields": []
+}

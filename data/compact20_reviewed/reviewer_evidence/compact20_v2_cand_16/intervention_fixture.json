@@ -1,0 +1,46 @@
+{
+  "available_tools": [
+    "read_file",
+    "query_spreadsheet",
+    "verify_fact",
+    "search_database",
+    "lookup_policy"
+  ],
+  "base_task_id": "file_spreadsheet_qa_hard_025",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "file_spreadsheet_qa_hard_025.observation_conflict",
+  "intervention": {
+    "changed_factor": "observation consistency",
+    "description": "Insert a conflicting observation into a controlled tool response.",
+    "family": "observation_conflict",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "underlying ground truth",
+      "success criteria"
+    ],
+    "target_factor": "observation consistency",
+    "tool_availability_patch": {},
+    "tool_output_patch": {
+      "conflicting_observation": {
+        "source_a": "approved",
+        "source_b": "denied"
+      },
+      "target_tool": "read_file"
+    }
+  },
+  "required_information": [
+    "launch note content",
+    "Q2 spreadsheet row"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "4d29cbed0fc020679c3b09c1a981cad36912e0c5e82670ff2bef64ff8eab51a2",
+  "success_criteria": [
+    "Names the launch from the file.",
+    "Reports Q2 revenue from the spreadsheet."
+  ],
+  "user_instruction": "Use the launch note and revenue spreadsheet to answer which launch is discussed and what Q2 revenue was. Preserve intermediate evidence because later steps depend on it. Synthetic variant 25."
+}

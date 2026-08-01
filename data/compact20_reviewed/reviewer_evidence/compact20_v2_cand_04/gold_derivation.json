@@ -1,0 +1,16 @@
+{
+  "candidate_id": "compact20_v2_cand_04",
+  "derivation_name": "reconstruct_coding_debugging_gold_v1",
+  "frozen_gold_policy_hash": "dab3d6dd6bb0069ef8e214ff67cb9d4bc1fbaa3ce90562a19fcb62d88e270748",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "bad_expression",
+    "bug_type",
+    "public_domain",
+    "template_domain",
+    "variant"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": "The bug is an off-by-one retry loop using max_retries + 1.",
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

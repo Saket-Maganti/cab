@@ -65,7 +65,9 @@ def build_parser() -> argparse.ArgumentParser:
     run_parser.add_argument("--max-runtime-minutes", type=float, default=None)
     run_parser.add_argument("--stop-after-trajectories", type=int, default=None)
 
-    run_status_parser = subparsers.add_parser("run-status", help="Inspect run progress and evidence status.")
+    run_status_parser = subparsers.add_parser(
+        "run-status", help="Inspect run progress and evidence status."
+    )
     run_status_parser.add_argument("--run-dir", default=None)
     run_status_parser.add_argument("--latest", action="store_true")
 
@@ -88,10 +90,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Cap watch refreshes (default: refresh until the run reaches a terminal state).",
     )
 
-    plan_run_parser = subparsers.add_parser("plan-run", help="Estimate trajectories, cost, and runtime risk.")
+    plan_run_parser = subparsers.add_parser(
+        "plan-run", help="Estimate trajectories, cost, and runtime risk."
+    )
     plan_run_parser.add_argument("--config", required=True)
 
-    index_runs_parser = subparsers.add_parser("index-runs", help="Build results run index JSON/JSONL.")
+    index_runs_parser = subparsers.add_parser(
+        "index-runs", help="Build results run index JSON/JSONL."
+    )
     index_runs_parser.add_argument("--results-root", default="results")
     index_runs_parser.add_argument(
         "--verify",
@@ -137,9 +143,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     compare_runs_parser = subparsers.add_parser("compare-runs", help="Compare two experiment runs.")
     compare_runs_parser.add_argument("--run-dir", action="append", default=None)
-    compare_runs_parser.add_argument("--latest", action="store_true", help="Compare two most recent runs.")
-    compare_runs_parser.add_argument("--count", type=int, default=2, help="Number of latest runs (with --latest).")
-    compare_runs_parser.add_argument("--output", default=None, help="Output directory for run_comparison files.")
+    compare_runs_parser.add_argument(
+        "--latest", action="store_true", help="Compare two most recent runs."
+    )
+    compare_runs_parser.add_argument(
+        "--count", type=int, default=2, help="Number of latest runs (with --latest)."
+    )
+    compare_runs_parser.add_argument(
+        "--output", default=None, help="Output directory for run_comparison files."
+    )
 
     failure_gallery_parser = subparsers.add_parser(
         "failure-gallery",
@@ -315,7 +327,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     gallery_doc_parser.add_argument("--run-dir", default=None)
     gallery_doc_parser.add_argument("--doc-path", default="docs/FAILURE_GALLERY.md")
-    gallery_doc_parser.add_argument("--paper-path", default="paper/latexpaper/generated/failure_gallery_short.tex")
+    gallery_doc_parser.add_argument(
+        "--paper-path", default="paper/latexpaper/generated/failure_gallery_short.tex"
+    )
     gallery_doc_parser.add_argument("--max-per-family", type=int, default=1)
     gallery_doc_parser.add_argument("--allow-engineering-only", action="store_true")
     gallery_doc_parser.add_argument("--allow-incomplete", action="store_true")
@@ -332,12 +346,16 @@ def build_parser() -> argparse.ArgumentParser:
     mine_errors_parser.add_argument("--no-filters", action="store_true")
 
     subparsers.add_parser("doctor", help="Run repository health checks.")
-    subparsers.add_parser("list-providers", help="List LLM providers and local configuration status.")
+    subparsers.add_parser(
+        "list-providers", help="List LLM providers and local configuration status."
+    )
 
     estimate_parser = subparsers.add_parser("estimate-cost", help="Estimate pilot run cost bounds.")
     estimate_parser.add_argument("--config", default=DEFAULT_CONFIG)
 
-    validate_config_parser = subparsers.add_parser("validate-config", help="Validate a YAML config.")
+    validate_config_parser = subparsers.add_parser(
+        "validate-config", help="Validate a YAML config."
+    )
     validate_config_parser.add_argument("--config", required=True)
 
     dry_run_parser = subparsers.add_parser(
@@ -544,7 +562,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="Validate synthetic metric-diagnostic trajectory fixtures.",
     )
     synthetic_fixture_parser.add_argument("--repo-root", default=None)
-    synthetic_fixture_parser.add_argument("--fixtures-dir", default="tests/fixtures/synthetic_trajectories")
+    synthetic_fixture_parser.add_argument(
+        "--fixtures-dir", default="tests/fixtures/synthetic_trajectories"
+    )
     synthetic_fixture_parser.add_argument("--output-dir", default="reports/synthetic_fixtures")
 
     human_packet_parser = subparsers.add_parser(
@@ -559,7 +579,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="No-run provider pilot cost estimator and planner.",
     )
     estimate_run_cost_parser.add_argument("--repo-root", default=None)
-    estimate_run_cost_parser.add_argument("--config", default="configs/provider_pilot_tiny_template.yaml")
+    estimate_run_cost_parser.add_argument(
+        "--config", default="configs/provider_pilot_tiny_template.yaml"
+    )
     estimate_run_cost_parser.add_argument("--output-dir", default="reports/cost_estimates")
 
     method_figures_parser = subparsers.add_parser(
@@ -591,7 +613,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     provider_preflight_parser.add_argument("--repo-root", default=None)
     provider_preflight_parser.add_argument("--config", required=True)
-    provider_preflight_parser.add_argument("--output-dir", default="reports/provider_pilot_preflight")
+    provider_preflight_parser.add_argument(
+        "--output-dir", default="reports/provider_pilot_preflight"
+    )
 
     hv_sample_parser = subparsers.add_parser(
         "human-validation-dry-run-sample",
@@ -608,7 +632,9 @@ def build_parser() -> argparse.ArgumentParser:
     validity_scorecard_parser.add_argument("--repo-root", default=None)
     validity_scorecard_parser.add_argument("--benchmark-dir", default=None)
     validity_scorecard_parser.add_argument("--taxonomy", default=None)
-    validity_scorecard_parser.add_argument("--config", default="configs/provider_pilot_tiny_template.yaml")
+    validity_scorecard_parser.add_argument(
+        "--config", default="configs/provider_pilot_tiny_template.yaml"
+    )
     validity_scorecard_parser.add_argument("--output-dir", default="reports/validity_scorecard")
 
     high_risk_parser = subparsers.add_parser(
@@ -811,7 +837,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     reviewed_ops_template_parser.add_argument("--repo-root", default=None)
     reviewed_ops_template_parser.add_argument("--manifest", required=True)
-    reviewed_ops_template_parser.add_argument("--output-dir", default="reports/leakage_repair_apply")
+    reviewed_ops_template_parser.add_argument(
+        "--output-dir", default="reports/leakage_repair_apply"
+    )
     reviewed_ops_template_parser.add_argument(
         "--include",
         choices=["safe_to_auto_patch", "all"],
@@ -825,7 +853,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     manual_repair_preview_parser.add_argument("--repo-root", default=None)
     manual_repair_preview_parser.add_argument("--manifest", required=True)
-    manual_repair_preview_parser.add_argument("--output-dir", default="reports/manual_repair_preview")
+    manual_repair_preview_parser.add_argument(
+        "--output-dir", default="reports/manual_repair_preview"
+    )
 
     pair_link_parser = subparsers.add_parser(
         "validate-pair-links",
@@ -849,7 +879,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     config_hardening_parser.add_argument("--repo-root", default=None)
     config_hardening_parser.add_argument("--config", required=True)
-    config_hardening_parser.add_argument("--output-dir", default="reports/provider_pilot_config_hardening")
+    config_hardening_parser.add_argument(
+        "--output-dir", default="reports/provider_pilot_config_hardening"
+    )
 
     repro_manifest_parser = subparsers.add_parser(
         "reproducibility-manifest",
@@ -883,7 +915,9 @@ def build_parser() -> argparse.ArgumentParser:
     all_no_run_parser.add_argument("--results-root", default="results")
     all_no_run_parser.add_argument("--config", default="configs/provider_pilot_tiny_template.yaml")
     all_no_run_parser.add_argument("--benchmark-dir", default=None)
-    all_no_run_parser.add_argument("--fixtures-dir", default="tests/fixtures/synthetic_trajectories")
+    all_no_run_parser.add_argument(
+        "--fixtures-dir", default="tests/fixtures/synthetic_trajectories"
+    )
     all_no_run_parser.add_argument("--taxonomy", default="configs/intervention_taxonomy.yaml")
 
     _add_level5_parsers(subparsers)
@@ -940,6 +974,10 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
         "retire",
         "contamination-audit",
         "reachability-check",
+        "static-reachability-check",
+        "executable-reachability-check",
+        "gold-reconstruction-check",
+        "intervention-isolation-check",
         "intervention-audit",
     ):
         child = benchmark_sub.add_parser(name)
@@ -949,12 +987,58 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
             child.add_argument("--force", action="store_true")
         if name == "compile":
             child.add_argument("--allow-private-output", action="store_true")
-        if name in {"reachability-check", "intervention-audit"}:
+        if name in {
+            "reachability-check",
+            "static-reachability-check",
+            "executable-reachability-check",
+            "gold-reconstruction-check",
+            "intervention-isolation-check",
+            "intervention-audit",
+        }:
             child.add_argument(
                 "--instances",
                 default="data/compact20_reviewed/compact20_v2_instances.jsonl",
             )
             child.add_argument("--output", default=None)
+
+    approval = subparsers.add_parser(
+        "approval",
+        help="Verify content-bound CAB execution approvals.",
+    )
+    approval_sub = approval.add_subparsers(dest="approval_command", required=True)
+    approval_verify = approval_sub.add_parser("verify")
+    approval_verify.add_argument("--fixture", action="store_true")
+    approval_verify.add_argument("--receipt", default=None)
+    approval_verify.add_argument(
+        "--scope",
+        choices=["fixture", "scientific"],
+        default="scientific",
+    )
+    approval_verify.add_argument("--repo-root", default=".")
+
+    power = subparsers.add_parser(
+        "power",
+        help="Validate the prospective hierarchical power design.",
+    )
+    power_sub = power.add_subparsers(dest="power_command", required=True)
+    power_validate = power_sub.add_parser("validate")
+    power_validate.add_argument("--repo-root", default=".")
+    power_validate.add_argument(
+        "--design",
+        default="reports/final_pre_review/HIERARCHICAL_POWER_DESIGN.json",
+    )
+
+    final_pre_review = subparsers.add_parser(
+        "final-pre-review",
+        help="Validate final provider-free pre-review hardening.",
+    )
+    final_pre_review_sub = final_pre_review.add_subparsers(
+        dest="final_pre_review_command",
+        required=True,
+    )
+    final_pre_review_check = final_pre_review_sub.add_parser("check")
+    final_pre_review_check.add_argument("--repo-root", default=".")
+    final_pre_review_check.add_argument("--output", default=None)
 
     plan = subparsers.add_parser(
         "plan",
@@ -1015,7 +1099,9 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
     merge = subparsers.add_parser("merge", help="Inspect the deterministic Level-5 merge.")
     merge.add_argument("--run-dir", default=".cab/fixture_run")
 
-    artifacts = subparsers.add_parser("artifacts", help="Manage the Level-5 content-addressed store.")
+    artifacts = subparsers.add_parser(
+        "artifacts", help="Manage the Level-5 content-addressed store."
+    )
     artifacts_sub = artifacts.add_subparsers(dest="artifacts_command", required=True)
     for name in ("verify", "export", "gc"):
         child = artifacts_sub.add_parser(name)

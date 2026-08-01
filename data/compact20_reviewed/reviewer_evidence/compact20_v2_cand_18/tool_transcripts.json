@@ -1,0 +1,42 @@
+{
+  "candidate_id": "compact20_v2_cand_18",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_18",
+        "fact_id": "shopping_comparison_medium_001.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "shopping_comparison_medium_001.fact.01",
+        "label": "bundle prices",
+        "source_key": "best_option_id",
+        "value": "camera_b"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "8e935d213a174ee44c4fc47e04b6da47"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_18",
+        "fact_id": "shopping_comparison_medium_001.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "shopping_comparison_medium_001.fact.02",
+        "label": "tax rate",
+        "source_key": "tax_rate",
+        "value": 0.08
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "a69b42155243e1275980d2f7b2d98dea"
+    }
+  ]
+}

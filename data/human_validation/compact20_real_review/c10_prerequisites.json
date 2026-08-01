@@ -5,7 +5,7 @@
     "report_sha256": "",
     "status": "PENDING_VERIFIED_REPORT"
   },
-  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+  "candidate_manifest_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
   "evidence_class": "HUMAN_INPUT_REQUIRED",
   "leakage_gate": {
     "passed": false,
@@ -16,12 +16,12 @@
   "manipulation_checks": {
     "passed": true,
     "report_path": "manipulation_checks.json",
-    "report_sha256": "860c526298b1eac9d872aa93f003c6d030b2073f03998f9b462fed1433f4ea9d"
+    "report_sha256": "4486de62c5a1b3d4aff74190c0cd5037b504268cc8edd73bde494d1c78e83583"
   },
   "schema_version": "cab_c10_prerequisites_v2",
   "slice_freeze": {
     "candidate_count": 20,
-    "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+    "candidate_manifest_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
     "frozen": true,
     "scope": "C10 review slice; regenerate if candidate membership changes.",
     "slice_hash": "98ea5ddcab12e71db683a9e27011498199e6dae3c918d91c008ae46952096381"

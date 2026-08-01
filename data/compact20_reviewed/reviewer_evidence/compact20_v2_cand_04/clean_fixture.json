@@ -1,0 +1,26 @@
+{
+  "available_tools": [
+    "read_file",
+    "search_database",
+    "verify_fact",
+    "query_spreadsheet",
+    "lookup_policy",
+    "compare_options"
+  ],
+  "base_task_id": "coding_debugging_stress_002",
+  "condition": "clean",
+  "initial_memory": {},
+  "instance_id": "coding_debugging_stress_002.clean",
+  "intervention": null,
+  "required_information": [
+    "retry helper code",
+    "issue note"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "7f7a8cbad149725008cd03bdd5ef3781662544fd12e7ef2325b8ac34e7ad3d4d",
+  "success_criteria": [
+    "Identifies the off-by-one retry bug.",
+    "References max_retries + 1."
+  ],
+  "user_instruction": "Read the retry helper and issue note, then identify the bug. Handle multiple constraints and explicitly note any conflicting evidence. Synthetic variant 2."
+}

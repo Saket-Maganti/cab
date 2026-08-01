@@ -1,0 +1,78 @@
+{
+  "candidate_id": "compact20_v2_cand_09",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_09",
+        "fact_id": "operations_planning_stress_015.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "operations_planning_stress_015.fact.01",
+        "label": "availability",
+        "source_key": "policy",
+        "value": "security addendum"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "dd9e960dc930907aac889b14e1b63a91"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_09",
+        "fact_id": "operations_planning_stress_015.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "operations_planning_stress_015.fact.02",
+        "label": "vendor policy",
+        "source_key": "time",
+        "value": "11:00"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "664e03358795e8d89e709a0c4f4fd940"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_09",
+        "fact_id": "operations_planning_stress_015.fact.03"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "operations_planning_stress_015.fact.03",
+        "label": "vendor score",
+        "source_key": "vendor",
+        "value": "vendor_beta"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "75744752b0e698b927e2052a8f520f7f"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_09",
+        "fact_id": "operations_planning_stress_015.fact.04"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "operations_planning_stress_015.fact.04",
+        "label": "email recipient",
+        "source_key": "policy",
+        "value": "security addendum"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "dfc2ee7ec910f80d9e90c6f75737702e"
+    }
+  ]
+}

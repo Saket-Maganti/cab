@@ -1,0 +1,153 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 840,
+      "mime_type": "application/json",
+      "path": "clean_fixture.json",
+      "sha256": "4641ecf643edd9b9da5ecbf107b7d0bc33e142b03703878c03ef74c8919bac1d"
+    },
+    {
+      "bytes": 940,
+      "mime_type": "application/json",
+      "path": "controlled_evidence.json",
+      "sha256": "0c58aceab1c759bf76c159b652414c6ec103738d09fa112fda4cebf7d47e960b"
+    },
+    {
+      "bytes": 1174,
+      "mime_type": "application/json",
+      "path": "fact_map.json",
+      "sha256": "41f697f1bb057893d0b903a24dfa2dd1c09eaaa56b1f278010e0c78fe31101aa"
+    },
+    {
+      "bytes": 547,
+      "mime_type": "application/json",
+      "path": "gold_derivation.json",
+      "sha256": "dff545a68c4cd0e9a2b0475570b447da0282ef395061d6f290432dc2a3e3fed3"
+    },
+    {
+      "bytes": 1469,
+      "mime_type": "application/json",
+      "path": "intervention_fixture.json",
+      "sha256": "0f500a5a315221b5b7770b6a04d01975b882476ba78c431f3fb5ffe317d67e2a"
+    },
+    {
+      "bytes": 535,
+      "mime_type": "application/json",
+      "path": "intervention_isolation.json",
+      "sha256": "e2373033a6d6f50d5ba5e6f4f7dc0b5295626001a6cbb054a5495a6480e28668"
+    },
+    {
+      "bytes": 3602,
+      "mime_type": "application/json",
+      "path": "tool_contracts.json",
+      "sha256": "84521fc017d0eb06571e5597ae094bf4b3e5bf19af611833ea029cf1a7d59baa"
+    },
+    {
+      "bytes": 1920,
+      "mime_type": "application/json",
+      "path": "tool_transcripts.json",
+      "sha256": "dbd7efbab3c9294f153d8af072d31802f577089c0c45d62904e0624241021ca1"
+    }
+  ],
+  "base_task_id": "travel_planning_medium_004",
+  "bundle_hash": "940057d5bcd79424231a6a1e318dbb1ed9564e0806712723e118e7d996f9ee97",
+  "candidate_id": "compact20_v2_cand_06",
+  "clean_gold_derivation_file": "gold_derivation.json",
+  "clean_instance_id": "travel_planning_medium_004.clean",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "fact_mapping_file": "fact_map.json",
+  "intervention_family": "tool_failure",
+  "intervention_instance_id": "travel_planning_medium_004.tool_failure",
+  "intervention_routes": [
+    {
+      "action_ids": [
+        "travel_planning_medium_004.tool_failure.recovery.01"
+      ],
+      "kind": "recovery",
+      "valid_response": "substantive answer after useful authorized observation"
+    }
+  ],
+  "invariants": [
+    "user goal",
+    "tool availability",
+    "hidden ground truth",
+    "success criteria"
+  ],
+  "manipulation": {
+    "changed_factor": "tool reliability",
+    "changed_fields": [
+      "tool_output_or_observation"
+    ],
+    "target_factor": "tool reliability"
+  },
+  "recovery_authorizations": [
+    {
+      "action_id": "travel_planning_medium_004.tool_failure.recovery.01",
+      "action_type": "tool_call",
+      "allowed_tool_names": [
+        "calculate_price"
+      ],
+      "argument_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "constraints": {
+            "type": "object"
+          },
+          "items": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "type": "object"
+      },
+      "cost": 1.0,
+      "failure_types": [
+        "simulated_tool_failure",
+        "tool_failure",
+        "timeout",
+        "tool_unavailable"
+      ],
+      "max_attempts": 1,
+      "preconditions": [
+        "prior_tool_failure_observed",
+        "failed_tool:search_database"
+      ],
+      "success_predicate": {
+        "causal_fact_ids_required": [
+          "travel_planning_medium_004.fact.01",
+          "travel_planning_medium_004.fact.02",
+          "travel_planning_medium_004.fact.03"
+        ],
+        "kind": "nonempty_error_free_observation",
+        "required_output_keys": [
+          "total",
+          "currency",
+          "breakdown"
+        ]
+      },
+      "supported_fact_ids": [
+        "travel_planning_medium_004.fact.01",
+        "travel_planning_medium_004.fact.02",
+        "travel_planning_medium_004.fact.03"
+      ],
+      "terminal": false
+    }
+  ],
+  "redactions": {
+    "model_identity_absent": true,
+    "model_output_absent": true,
+    "reviewer_identity_absent": true,
+    "secrets_absent": true
+  },
+  "required_fact_ids": [
+    "travel_planning_medium_004.fact.01",
+    "travel_planning_medium_004.fact.02",
+    "travel_planning_medium_004.fact.03"
+  ],
+  "schema_version": "cab_reviewer_evidence_bundle_v1",
+  "scientific_execution_performed": false,
+  "tool_contract_file": "tool_contracts.json",
+  "tool_transcript_file": "tool_transcripts.json"
+}

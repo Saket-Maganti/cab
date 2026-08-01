@@ -5,7 +5,7 @@
     "blinded_order_adjudicator.json"
   ],
   "candidate_count": 20,
-  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+  "candidate_manifest_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
   "candidate_slice_hash": "98ea5ddcab12e71db683a9e27011498199e6dae3c918d91c008ae46952096381",
   "claim_boundary": "Blank packet and deterministic checks are not human evidence. C10 remains pending until the canonical validator passes genuine dual review, adjudication, leakage, answer-contract, and freeze gates.",
   "evidence_class": "HUMAN_INPUT_REQUIRED",
@@ -20,27 +20,27 @@
     },
     "blinded_order_adjudicator.json": {
       "path": "data/human_validation/compact20_real_review/blinded_order_adjudicator.json",
-      "sha256": "e58e142a7fb5c8f3a3c7797a1a817d39dd712dd990fd95833b9d95f0209b51e6"
+      "sha256": "b0aa666acc5d9374fafe290a2e818db1e0d447d539bb6732eef64d4d4bad8994"
     },
     "blinded_order_reviewer_a.json": {
       "path": "data/human_validation/compact20_real_review/blinded_order_reviewer_a.json",
-      "sha256": "5a0601d9c3cb806681ea7c5bb6d386d4f01be02d46ff259fa1dc9a05dec1d29c"
+      "sha256": "035761fa8b0628af24fb5a76e1549c38982984db4134d3f2b09bb284924efd31"
     },
     "blinded_order_reviewer_b.json": {
       "path": "data/human_validation/compact20_real_review/blinded_order_reviewer_b.json",
-      "sha256": "37b59487be8fa2c3c9cee4fb155f3a7cf0d7fb590280f5e0586ba8835133d56c"
+      "sha256": "4ebc54ff1011308ef401622f64b52dc491b8337be13f253c39a5e2ecfd3c00b1"
     },
     "c10_prerequisites.json": {
       "path": "data/human_validation/compact20_real_review/c10_prerequisites.json",
-      "sha256": "dab629090b02d7a7dc3ec829fdab48cef782661d96a5385ab1c4eedcfaec4110"
+      "sha256": "73608174c9e2b5d1c771a997d1130c12aa36d24fc4516376c00857a0af9d500f"
     },
     "manipulation_checks.json": {
       "path": "data/human_validation/compact20_real_review/manipulation_checks.json",
-      "sha256": "860c526298b1eac9d872aa93f003c6d030b2073f03998f9b462fed1433f4ea9d"
+      "sha256": "4486de62c5a1b3d4aff74190c0cd5037b504268cc8edd73bde494d1c78e83583"
     },
     "review_items.jsonl": {
       "path": "data/human_validation/compact20_real_review/review_items.jsonl",
-      "sha256": "088ae2cd7a578d542fe4f8143dbf7059bfcb529ed9ca049ee3c4a7c6f1c36811"
+      "sha256": "fc9aae6fb74797c0bfeb458f17a5165abe3b32f416a076c9bc9201599125b3d6"
     },
     "review_judgments.csv": {
       "path": "data/human_validation/compact20_real_review/review_judgments.csv",
@@ -48,7 +48,7 @@
     },
     "review_session.json": {
       "path": "data/human_validation/compact20_real_review/review_session.json",
-      "sha256": "563f2edf0e8e6273b694e6437d85fbd85a959aa8a335e74c0ba4dbb7fd5bf132"
+      "sha256": "c577c0cecbc40f7d824394eee40128382e8e82872fe51b805cf60dac1b6aca87"
     },
     "reviewer_instructions.md": {
       "path": "data/human_validation/compact20_real_review/reviewer_instructions.md",

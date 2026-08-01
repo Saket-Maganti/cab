@@ -1,0 +1,19 @@
+{
+  "candidate_id": "compact20_v2_cand_10",
+  "derivation_name": "reconstruct_file_spreadsheet_qa_gold_v1",
+  "frozen_gold_policy_hash": "05e541e866c9c01b2558247ef9752561a0721042dac901191d05cd3c97e6a8fe",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "launch",
+    "public_domain",
+    "q2_revenue",
+    "template_domain",
+    "variant"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": {
+    "launch": "Beta",
+    "q2_revenue": 4200
+  },
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

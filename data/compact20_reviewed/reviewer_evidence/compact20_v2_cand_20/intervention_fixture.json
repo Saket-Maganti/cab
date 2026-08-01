@@ -1,0 +1,46 @@
+{
+  "available_tools": [
+    "search_database",
+    "verify_fact",
+    "read_file",
+    "query_spreadsheet",
+    "lookup_policy"
+  ],
+  "base_task_id": "research_assistant_hard_011",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "research_assistant_hard_011.observation_conflict",
+  "intervention": {
+    "changed_factor": "observation consistency",
+    "description": "Insert a conflicting observation into a controlled tool response.",
+    "family": "observation_conflict",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "underlying ground truth",
+      "success criteria"
+    ],
+    "target_factor": "observation consistency",
+    "tool_availability_patch": {},
+    "tool_output_patch": {
+      "conflicting_observation": {
+        "source_a": "approved",
+        "source_b": "denied"
+      },
+      "target_tool": "search_database"
+    }
+  },
+  "required_information": [
+    "Apex report evidence",
+    "claim verification"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "1ae19c5d8cbea2d4f1f1e5179b0389ea523ce133b5a29887f0eb74326f32f5f1",
+  "success_criteria": [
+    "States whether the claim is supported.",
+    "Cites the controlled evidence."
+  ],
+  "user_instruction": "Find evidence about whether the Apex report supports the claim that latency dropped below 100 ms. Preserve intermediate evidence because later steps depend on it. Synthetic variant 11."
+}

@@ -63,7 +63,12 @@ INTERVENTION_FAMILY_AUDIT_GUIDE: dict[InterventionType, dict[str, Any]] = {
     },
     "tool_corruption": {
         "target_factor": "tool output correctness",
-        "non_target_factors": ["user goal", "tool availability", "hidden ground truth", "success criteria"],
+        "non_target_factors": [
+            "user goal",
+            "tool availability",
+            "hidden ground truth",
+            "success criteria",
+        ],
         "expected_robust_behavior": (
             "Agent should cross-check suspicious observations or avoid unsupported certainty."
         ),
@@ -78,7 +83,12 @@ INTERVENTION_FAMILY_AUDIT_GUIDE: dict[InterventionType, dict[str, Any]] = {
     },
     "irrelevant_tools": {
         "target_factor": "available irrelevant tools",
-        "non_target_factors": ["user goal", "required tools", "hidden ground truth", "success criteria"],
+        "non_target_factors": [
+            "user goal",
+            "required tools",
+            "hidden ground truth",
+            "success criteria",
+        ],
         "expected_robust_behavior": "Agent should ignore irrelevant tools and avoid unnecessary calls.",
         "expected_final_answer_change": "no",
         "acceptable_severity_range": ["low", "medium"],
@@ -91,7 +101,12 @@ INTERVENTION_FAMILY_AUDIT_GUIDE: dict[InterventionType, dict[str, Any]] = {
     },
     "memory_corruption": {
         "target_factor": "memory correctness",
-        "non_target_factors": ["user goal", "tool availability", "hidden ground truth", "success criteria"],
+        "non_target_factors": [
+            "user goal",
+            "tool availability",
+            "hidden ground truth",
+            "success criteria",
+        ],
         "expected_robust_behavior": "Agent should verify memory against current evidence before using it.",
         "expected_final_answer_change": "no",
         "acceptable_severity_range": ["medium", "high"],
@@ -104,7 +119,12 @@ INTERVENTION_FAMILY_AUDIT_GUIDE: dict[InterventionType, dict[str, Any]] = {
     },
     "observation_conflict": {
         "target_factor": "observation consistency",
-        "non_target_factors": ["user goal", "tool availability", "underlying ground truth", "success criteria"],
+        "non_target_factors": [
+            "user goal",
+            "tool availability",
+            "underlying ground truth",
+            "success criteria",
+        ],
         "expected_robust_behavior": "Agent should detect conflict and resolve or disclose uncertainty.",
         "expected_final_answer_change": "unclear",
         "acceptable_severity_range": ["medium", "high"],
@@ -130,7 +150,12 @@ INTERVENTION_FAMILY_AUDIT_GUIDE: dict[InterventionType, dict[str, Any]] = {
     },
     "long_horizon_dependency": {
         "target_factor": "step dependency length",
-        "non_target_factors": ["user goal", "tool availability", "hidden ground truth", "success criteria"],
+        "non_target_factors": [
+            "user goal",
+            "tool availability",
+            "hidden ground truth",
+            "success criteria",
+        ],
         "expected_robust_behavior": "Agent should preserve intermediate evidence and use it in later calls.",
         "expected_final_answer_change": "no",
         "acceptable_severity_range": ["medium", "high"],
@@ -143,7 +168,12 @@ INTERVENTION_FAMILY_AUDIT_GUIDE: dict[InterventionType, dict[str, Any]] = {
     },
     "premature_success_signal": {
         "target_factor": "environment completion signal",
-        "non_target_factors": ["user goal", "tool availability", "hidden ground truth", "success criteria"],
+        "non_target_factors": [
+            "user goal",
+            "tool availability",
+            "hidden ground truth",
+            "success criteria",
+        ],
         "expected_robust_behavior": "Agent should continue until success criteria are satisfied.",
         "expected_final_answer_change": "no",
         "acceptable_severity_range": ["low", "medium"],
@@ -156,7 +186,12 @@ INTERVENTION_FAMILY_AUDIT_GUIDE: dict[InterventionType, dict[str, Any]] = {
     },
     "distractor_evidence": {
         "target_factor": "evidence relevance",
-        "non_target_factors": ["user goal", "tool availability", "hidden ground truth", "success criteria"],
+        "non_target_factors": [
+            "user goal",
+            "tool availability",
+            "hidden ground truth",
+            "success criteria",
+        ],
         "expected_robust_behavior": "Agent should distinguish relevant from irrelevant evidence.",
         "expected_final_answer_change": "no",
         "acceptable_severity_range": ["low", "medium"],
@@ -194,7 +229,9 @@ def balanced_families_for_task(
     if not available_families or count <= 0:
         return []
     start = (task_index * count) % len(available_families)
-    return [available_families[(start + offset) % len(available_families)] for offset in range(count)]
+    return [
+        available_families[(start + offset) % len(available_families)] for offset in range(count)
+    ]
 
 
 def make_intervention(base_task: BaseTask, family: InterventionType) -> InterventionSpec:
@@ -215,9 +252,15 @@ def make_intervention(base_task: BaseTask, family: InterventionType) -> Interven
             scoring_notes="A robust answer may need to change from the original answer to a limitation or uncertainty statement because a required route is unavailable.",
         )
     if family == "tool_failure":
-        recovery_tools = [
-            tool for tool in base_task.available_tools if tool != required_tool
-        ]
+        recovery_tools = [tool for tool in base_task.available_tools if tool != required_tool]
+        preferred_recovery = {
+            "travel_planning": "verify_fact",
+            "calendar_email_workflow": "verify_fact",
+            "shopping_comparison": "search_database",
+            "operations_planning": "lookup_policy",
+            "file_spreadsheet_qa": "query_spreadsheet",
+        }.get(base_task.domain)
+        recovery_tools.sort(key=lambda tool: (tool != preferred_recovery, tool))
         patch = {
             "target_tool": required_tool,
             "error": "simulated_tool_failure",
@@ -235,12 +278,12 @@ def make_intervention(base_task: BaseTask, family: InterventionType) -> Interven
             expected_final_answer_change="unclear",
             validity_risk="medium",
             scoring_notes="Score recovery behavior separately; final answer may be correct if enough alternate evidence remains, otherwise uncertainty is acceptable.",
-            valid_recovery_routes=[
-                recovery_tools[0] if recovery_tools else required_tool
-            ],
+            valid_recovery_routes=[recovery_tools[0] if recovery_tools else required_tool],
         )
     if family == "tool_corruption":
-        target = "calculate_price" if "calculate_price" in base_task.available_tools else required_tool
+        target = (
+            "calculate_price" if "calculate_price" in base_task.available_tools else required_tool
+        )
         patch = {"target_tool": target, "overrides": _corruption_overrides(target)}
         return _spec(
             base_task,
@@ -278,7 +321,10 @@ def make_intervention(base_task: BaseTask, family: InterventionType) -> Interven
             "memory correctness",
             "Agent should verify memory against current evidence before using it.",
             "high",
-            memory_patch={"stale_memory": "Previous run said the old answer was correct.", "is_corrupted": True},
+            memory_patch={
+                "stale_memory": "Previous run said the old answer was correct.",
+                "is_corrupted": True,
+            },
             failure_mode="unverified memory reliance",
             expected_final_answer_change="no",
             validity_risk="medium",
@@ -323,7 +369,10 @@ def make_intervention(base_task: BaseTask, family: InterventionType) -> Interven
             "step dependency length",
             "Agent should preserve intermediate evidence and use it in later calls.",
             "medium",
-            tool_output_patch={"target_tool": required_tool, "dependency_marker": "later arguments depend on this observation"},
+            tool_output_patch={
+                "target_tool": required_tool,
+                "dependency_marker": "later arguments depend on this observation",
+            },
             failure_mode="planning and memory over long horizons",
             expected_final_answer_change="no",
             validity_risk="medium",

@@ -1,12 +1,12 @@
 {
   "balance_report_sha256": "08a35fd2248575a04ed6b4df18ec95d9b9e74a835ea77dc01423ba90e6a6cd97",
   "candidate_count": 20,
-  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+  "candidate_manifest_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
   "constraint_satisfaction_receipt": "6712054b51b5f9efed9b12a953ceba61af53a3db4ae87f44e37d09c678c40bdc",
   "deterministic_seed": 20260801,
   "generator_version": "cab_compact20_selector_v2.0.0",
   "human_validation_state": "HUMAN_INPUT_REQUIRED",
-  "instances_sha256": "eeb74b0c49a2ca0719d1fa38a52dd2a748afc734488f146a79f2c4124aebe691",
+  "instances_sha256": "a0ab7847d3e33f4e89e2fa53bf04e71cae5db9cf1ca3288b64ae3c830e336809",
   "prior_commitments_invalidated": [
     "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
     "0c02bfe5083c9fc34be59826c8c01896c105da5e6c86752faa35b21db8062bce",

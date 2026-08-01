@@ -1,0 +1,44 @@
+{
+  "available_tools": [
+    "compare_options",
+    "calculate_price",
+    "verify_fact"
+  ],
+  "base_task_id": "shopping_comparison_medium_001",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "shopping_comparison_medium_001.observation_conflict",
+  "intervention": {
+    "changed_factor": "observation consistency",
+    "description": "Insert a conflicting observation into a controlled tool response.",
+    "family": "observation_conflict",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "underlying ground truth",
+      "success criteria"
+    ],
+    "target_factor": "observation consistency",
+    "tool_availability_patch": {},
+    "tool_output_patch": {
+      "conflicting_observation": {
+        "source_a": "approved",
+        "source_b": "denied"
+      },
+      "target_tool": "compare_options"
+    }
+  },
+  "required_information": [
+    "bundle prices",
+    "tax rate"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "efd0388a09264b8014c398ebf1da8843b6558a8109c44f130b10e78d240aca9a",
+  "success_criteria": [
+    "Chooses the cheaper bundle.",
+    "Reports total cost after tax."
+  ],
+  "user_instruction": "Compare camera bundles A and B by total cost after tax and recommend the cheaper bundle. Use the available tools before answering. Synthetic variant 1."
+}

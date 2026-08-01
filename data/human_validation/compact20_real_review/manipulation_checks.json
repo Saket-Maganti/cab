@@ -4,11 +4,11 @@
   "blocked_count": 0,
   "candidate_count": 20,
   "candidate_manifest": "data/compact20_reviewed/compact20_reviewed_manifest.json",
-  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+  "candidate_manifest_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
   "evidence_class": "ENGINEERING_ONLY",
   "failed_count": 0,
   "instances_path": "data/compact20_reviewed/compact20_v2_instances.jsonl",
-  "instances_sha256": "eeb74b0c49a2ca0719d1fa38a52dd2a748afc734488f146a79f2c4124aebe691",
+  "instances_sha256": "a0ab7847d3e33f4e89e2fa53bf04e71cae5db9cf1ca3288b64ae3c830e336809",
   "linkage_registry": {
     "ambiguous_instruction": "instruction_ambiguity",
     "distractor_evidence": "distractor_presence",

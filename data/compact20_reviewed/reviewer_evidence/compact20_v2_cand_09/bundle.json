@@ -1,0 +1,156 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 1018,
+      "mime_type": "application/json",
+      "path": "clean_fixture.json",
+      "sha256": "949931d9540b8d92000a2aea5607864e5a38ace9cff284bfde6eb3eb369fceaf"
+    },
+    {
+      "bytes": 1159,
+      "mime_type": "application/json",
+      "path": "controlled_evidence.json",
+      "sha256": "0b258885d015271e38e2dd8730bf0c68643b2e0f406b9041e2182da951d54959"
+    },
+    {
+      "bytes": 1550,
+      "mime_type": "application/json",
+      "path": "fact_map.json",
+      "sha256": "25012a48a0c3d3cdbbc834c0dfb2b807bbba357dba8cd134b6db6f86678b7311"
+    },
+    {
+      "bytes": 579,
+      "mime_type": "application/json",
+      "path": "gold_derivation.json",
+      "sha256": "45fa940b891b33eba3595a5c5605ebd18c77b00a457c6117880cda9696464b3c"
+    },
+    {
+      "bytes": 1646,
+      "mime_type": "application/json",
+      "path": "intervention_fixture.json",
+      "sha256": "e06b8d51f715fcdee2004ed837a39488d3107fd54ba749dd87b373a9b0dcbac4"
+    },
+    {
+      "bytes": 543,
+      "mime_type": "application/json",
+      "path": "intervention_isolation.json",
+      "sha256": "3ede0ad51ee4373a27401f861c7f0b4ac61dc16711e06bf744536415be78443a"
+    },
+    {
+      "bytes": 6553,
+      "mime_type": "application/json",
+      "path": "tool_contracts.json",
+      "sha256": "79439b7c110f6f2c813050b9a7f8a53a6aa0b1f0c4217e455c19a1ceb35329d1"
+    },
+    {
+      "bytes": 2568,
+      "mime_type": "application/json",
+      "path": "tool_transcripts.json",
+      "sha256": "4c250430ed596e0eb8e465a65b81c8432e66658cc7f8fc2473cea6d97a66c67e"
+    }
+  ],
+  "base_task_id": "operations_planning_stress_015",
+  "bundle_hash": "c817d183300d02c9786acc03a272e5125bf34cbbf0531021f9b251f0c55dd320",
+  "candidate_id": "compact20_v2_cand_09",
+  "clean_gold_derivation_file": "gold_derivation.json",
+  "clean_instance_id": "operations_planning_stress_015.clean",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "fact_mapping_file": "fact_map.json",
+  "intervention_family": "tool_failure",
+  "intervention_instance_id": "operations_planning_stress_015.tool_failure",
+  "intervention_routes": [
+    {
+      "action_ids": [
+        "operations_planning_stress_015.tool_failure.recovery.01"
+      ],
+      "kind": "recovery",
+      "valid_response": "substantive answer after useful authorized observation"
+    }
+  ],
+  "invariants": [
+    "user goal",
+    "tool availability",
+    "hidden ground truth",
+    "success criteria"
+  ],
+  "manipulation": {
+    "changed_factor": "tool reliability",
+    "changed_fields": [
+      "tool_output_or_observation"
+    ],
+    "target_factor": "tool reliability"
+  },
+  "recovery_authorizations": [
+    {
+      "action_id": "operations_planning_stress_015.tool_failure.recovery.01",
+      "action_type": "tool_call",
+      "allowed_tool_names": [
+        "lookup_policy"
+      ],
+      "argument_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "policy_name": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "policy_name",
+          "question"
+        ],
+        "type": "object"
+      },
+      "cost": 1.0,
+      "failure_types": [
+        "simulated_tool_failure",
+        "tool_failure",
+        "timeout",
+        "tool_unavailable"
+      ],
+      "max_attempts": 1,
+      "preconditions": [
+        "prior_tool_failure_observed",
+        "failed_tool:check_calendar"
+      ],
+      "success_predicate": {
+        "causal_fact_ids_required": [
+          "operations_planning_stress_015.fact.01",
+          "operations_planning_stress_015.fact.02",
+          "operations_planning_stress_015.fact.03",
+          "operations_planning_stress_015.fact.04"
+        ],
+        "kind": "nonempty_error_free_observation",
+        "required_output_keys": [
+          "policy_text",
+          "relevant_clause_ids"
+        ]
+      },
+      "supported_fact_ids": [
+        "operations_planning_stress_015.fact.01",
+        "operations_planning_stress_015.fact.02",
+        "operations_planning_stress_015.fact.03",
+        "operations_planning_stress_015.fact.04"
+      ],
+      "terminal": false
+    }
+  ],
+  "redactions": {
+    "model_identity_absent": true,
+    "model_output_absent": true,
+    "reviewer_identity_absent": true,
+    "secrets_absent": true
+  },
+  "required_fact_ids": [
+    "operations_planning_stress_015.fact.01",
+    "operations_planning_stress_015.fact.02",
+    "operations_planning_stress_015.fact.03",
+    "operations_planning_stress_015.fact.04"
+  ],
+  "schema_version": "cab_reviewer_evidence_bundle_v1",
+  "scientific_execution_performed": false,
+  "tool_contract_file": "tool_contracts.json",
+  "tool_transcript_file": "tool_transcripts.json"
+}

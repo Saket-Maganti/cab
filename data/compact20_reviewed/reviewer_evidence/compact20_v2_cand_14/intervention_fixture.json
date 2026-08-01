@@ -1,0 +1,46 @@
+{
+  "available_tools": [
+    "lookup_policy",
+    "verify_fact",
+    "search_database",
+    "read_file",
+    "query_spreadsheet"
+  ],
+  "base_task_id": "policy_compliance_hard_026",
+  "condition": "intervention",
+  "initial_memory": {
+    "is_corrupted": true,
+    "stale_memory": "Previous run said the old answer was correct."
+  },
+  "instance_id": "policy_compliance_hard_026.memory_corruption",
+  "intervention": {
+    "changed_factor": "memory correctness",
+    "description": "Inject stale or incorrect initial memory.",
+    "family": "memory_corruption",
+    "instruction_patch": null,
+    "memory_patch": {
+      "is_corrupted": true,
+      "stale_memory": "Previous run said the old answer was correct."
+    },
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "hidden ground truth",
+      "success criteria"
+    ],
+    "target_factor": "memory correctness",
+    "tool_availability_patch": {},
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "refund threshold",
+    "refund amount"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "16a110ca0931b1c0852f7c61a85c86210bdab7271331baed54e3d38edfc48bdb",
+  "success_criteria": [
+    "States whether approval is required.",
+    "Cites the threshold."
+  ],
+  "user_instruction": "Check the refund policy and determine whether a 700 dollar refund requires manager approval. Preserve intermediate evidence because later steps depend on it. Synthetic variant 26."
+}

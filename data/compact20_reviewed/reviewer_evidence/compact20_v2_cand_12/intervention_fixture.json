@@ -1,0 +1,47 @@
+{
+  "available_tools": [
+    "read_file",
+    "search_database",
+    "verify_fact",
+    "query_spreadsheet",
+    "lookup_policy",
+    "compare_options"
+  ],
+  "base_task_id": "coding_debugging_stress_006",
+  "condition": "intervention",
+  "initial_memory": {
+    "is_corrupted": true,
+    "stale_memory": "Previous run said the old answer was correct."
+  },
+  "instance_id": "coding_debugging_stress_006.memory_corruption",
+  "intervention": {
+    "changed_factor": "memory correctness",
+    "description": "Inject stale or incorrect initial memory.",
+    "family": "memory_corruption",
+    "instruction_patch": null,
+    "memory_patch": {
+      "is_corrupted": true,
+      "stale_memory": "Previous run said the old answer was correct."
+    },
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "hidden ground truth",
+      "success criteria"
+    ],
+    "target_factor": "memory correctness",
+    "tool_availability_patch": {},
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "retry helper code",
+    "issue note"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "5d124399c8e731b21f0fe49f6a686ec18b4010a3035a4975b3ceed35d4e87e9c",
+  "success_criteria": [
+    "Identifies the off-by-one retry bug.",
+    "References max_retries + 1."
+  ],
+  "user_instruction": "Read the retry helper and issue note, then identify the bug. Handle multiple constraints and explicitly note any conflicting evidence. Synthetic variant 6."
+}

@@ -1,0 +1,44 @@
+{
+  "available_tools": [
+    "search_database",
+    "verify_fact",
+    "query_spreadsheet",
+    "lookup_policy",
+    "compare_options"
+  ],
+  "base_task_id": "coding_debugging_stress_002",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "coding_debugging_stress_002.tool_removal",
+  "intervention": {
+    "changed_factor": "tool availability",
+    "description": "Remove one useful tool from the available tool set.",
+    "family": "tool_removal",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "hidden ground truth unless explicitly overridden",
+      "available non-removed tools",
+      "success criteria"
+    ],
+    "target_factor": "tool availability",
+    "tool_availability_patch": {
+      "removed_tools": [
+        "read_file"
+      ]
+    },
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "retry helper code",
+    "issue note"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "8f18b2b4074772c00a2766d674a7a3b313714d12e331e4d3b9720976e2b571af",
+  "success_criteria": [
+    "Identifies the off-by-one retry bug.",
+    "References max_retries + 1."
+  ],
+  "user_instruction": "Read the retry helper and issue note, then identify the bug. Handle multiple constraints and explicitly note any conflicting evidence. Synthetic variant 2."
+}

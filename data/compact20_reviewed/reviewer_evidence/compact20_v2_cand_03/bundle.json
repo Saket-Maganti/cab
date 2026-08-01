@@ -1,0 +1,96 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 756,
+      "mime_type": "application/json",
+      "path": "clean_fixture.json",
+      "sha256": "58aadf04e5d6daa239597f5840b2c56f964785b7e01329b784036a4bf0210e96"
+    },
+    {
+      "bytes": 810,
+      "mime_type": "application/json",
+      "path": "controlled_evidence.json",
+      "sha256": "9d36f0a8a9b35665efed5c1e1c71e165afef4e0e0a839e190d58622d956c6373"
+    },
+    {
+      "bytes": 834,
+      "mime_type": "application/json",
+      "path": "fact_map.json",
+      "sha256": "a49c4aeda05e624fc1a52a49834fb3ce44f3978dfcf0e84c9670274563667633"
+    },
+    {
+      "bytes": 564,
+      "mime_type": "application/json",
+      "path": "gold_derivation.json",
+      "sha256": "b14d22cfae7ea6f1af1675494783e925aefdd6a18104d3334bda88fa08db850a"
+    },
+    {
+      "bytes": 1293,
+      "mime_type": "application/json",
+      "path": "intervention_fixture.json",
+      "sha256": "abe66bef5474eeb2358dc60fb7c65f3e21647d52131769d4b503a3bef15824cb"
+    },
+    {
+      "bytes": 519,
+      "mime_type": "application/json",
+      "path": "intervention_isolation.json",
+      "sha256": "1d1e836ff9f79736560ae545fbf2ed75bdb45f8efdb02c7ceea5b9e7ee34b5a6"
+    },
+    {
+      "bytes": 2581,
+      "mime_type": "application/json",
+      "path": "tool_contracts.json",
+      "sha256": "11ee7e12e397ff462edd89ed01178e3ca47fd68fdea8f11eed32cbb749893050"
+    },
+    {
+      "bytes": 1348,
+      "mime_type": "application/json",
+      "path": "tool_transcripts.json",
+      "sha256": "343561e9129cd9215f23718c8ee7521778009b2600583b32f0f1493550d54ebe"
+    }
+  ],
+  "base_task_id": "research_assistant_easy_010",
+  "bundle_hash": "5d0e2501ac6a2803a0c4565b5ee614305598aa54953dfab02af86c65597b4d23",
+  "candidate_id": "compact20_v2_cand_03",
+  "clean_gold_derivation_file": "gold_derivation.json",
+  "clean_instance_id": "research_assistant_easy_010.clean",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "fact_mapping_file": "fact_map.json",
+  "intervention_family": "tool_removal",
+  "intervention_instance_id": "research_assistant_easy_010.tool_removal",
+  "intervention_routes": [
+    {
+      "kind": "qualified_uncertainty",
+      "opportunity_id": "research_assistant_easy_010.tool_removal.opportunity.v3",
+      "valid_response": "specific evidence-bound uncertainty"
+    }
+  ],
+  "invariants": [
+    "user goal",
+    "hidden ground truth unless explicitly overridden",
+    "available non-removed tools",
+    "success criteria"
+  ],
+  "manipulation": {
+    "changed_factor": "tool availability",
+    "changed_fields": [
+      "tool_availability"
+    ],
+    "target_factor": "tool availability"
+  },
+  "recovery_authorizations": [],
+  "redactions": {
+    "model_identity_absent": true,
+    "model_output_absent": true,
+    "reviewer_identity_absent": true,
+    "secrets_absent": true
+  },
+  "required_fact_ids": [
+    "research_assistant_easy_010.fact.01",
+    "research_assistant_easy_010.fact.02"
+  ],
+  "schema_version": "cab_reviewer_evidence_bundle_v1",
+  "scientific_execution_performed": false,
+  "tool_contract_file": "tool_contracts.json",
+  "tool_transcript_file": "tool_transcripts.json"
+}

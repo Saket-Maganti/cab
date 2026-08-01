@@ -1,0 +1,32 @@
+{
+  "candidate_id": "compact20_v2_cand_07",
+  "mappings": [
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "calendar_email_workflow_hard_022.fact.01",
+      "output_sha256": "6d2a3765f9e20a929b20756176d940b1a54b48cb286eb55bab2ae1383803ebb4",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "27d2a89bb3c0a352b47bbd3c3d6d2d0a"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "calendar_email_workflow_hard_022.fact.02",
+      "output_sha256": "56c7dfc0fef7139e3c2bfc4f9edec346eb4df4299fc7f9d8bd30f8e4f2398178",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "2279daddd75b433cf1b19ec443a3871c"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "calendar_email_workflow_hard_022.fact.03",
+      "output_sha256": "bbe11fc88c6a28ca22d672ab710abfa2db7f1277194e9c123b177c20c1a4769e",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "38f4d1423905b399a534a662593eea68"
+    }
+  ],
+  "required_fact_ids": [
+    "calendar_email_workflow_hard_022.fact.01",
+    "calendar_email_workflow_hard_022.fact.02",
+    "calendar_email_workflow_hard_022.fact.03"
+  ],
+  "schema_version": "cab_fact_evidence_map_v1"
+}

@@ -16,13 +16,6 @@ OBSOLETE_EXECUTION_TOKENS = (
     "generate_main500_confirmatory_v1",
 )
 
-APPROVED_V2_PATH_MARKERS = (
-    "private_data/approved/",
-    "approved_materialized_bundle",
-    "approved_bundle/",
-)
-
-
 def assert_canonical_scientific_execution_path(
     config: Any,
     benchmark_path: str | Path,
@@ -53,17 +46,41 @@ def assert_canonical_scientific_execution_path(
             "compact20_v2",
         )
     )
-    if requests_scientific and v2_candidate and not any(
-        marker in normalized for marker in APPROVED_V2_PATH_MARKERS
-    ):
-        raise ValueError(
-            "UNAPPROVED_V2_SCIENTIFIC_PATH: genuine review, adjudication, C10, "
-            "approved materialization, and a bound execution manifest are required"
+    if requests_scientific and v2_candidate:
+        receipt_path = getattr(config, "approval_receipt_path", None)
+        if not receipt_path:
+            raise ValueError(
+                "CRYPTOGRAPHIC_APPROVAL_REQUIRED: an approved-looking path is "
+                "not execution authorization"
+            )
+        from causal_agent_bench.safety.approval_receipt import (
+            verify_approval_receipt,
         )
+
+        benchmark = Path(benchmark_path)
+        if not benchmark.is_absolute():
+            benchmark = Path.cwd() / benchmark
+        if not benchmark.is_file():
+            raise ValueError(
+                f"BOUND_BENCHMARK_MISSING: {benchmark}"
+            )
+        import hashlib
+
+        benchmark_hash = hashlib.sha256(benchmark.read_bytes()).hexdigest()
+        verification = verify_approval_receipt(
+            receipt_path,
+            repo_root=Path.cwd(),
+            allowed_scope="scientific",
+            expected_bindings={"task_pack": benchmark_hash},
+        )
+        if not verification["passed"]:
+            raise ValueError(
+                "CRYPTOGRAPHIC_APPROVAL_INVALID: "
+                + ",".join(verification["errors"])
+            )
 
 
 __all__ = [
-    "APPROVED_V2_PATH_MARKERS",
     "OBSOLETE_EXECUTION_TOKENS",
     "assert_canonical_scientific_execution_path",
 ]

@@ -1,0 +1,30 @@
+{
+  "available_tools": [
+    "check_calendar",
+    "lookup_policy",
+    "query_spreadsheet",
+    "compare_options",
+    "send_email_draft",
+    "verify_fact"
+  ],
+  "base_task_id": "operations_planning_stress_015",
+  "condition": "clean",
+  "initial_memory": {},
+  "instance_id": "operations_planning_stress_015.clean",
+  "intervention": null,
+  "required_information": [
+    "availability",
+    "vendor policy",
+    "vendor score",
+    "email recipient"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "b2efc813e43b066c0f4a20571555923a7a6810fd1916db2dbb52ded58e0cb2e6",
+  "success_criteria": [
+    "Uses availability information.",
+    "Applies vendor policy constraints.",
+    "Chooses the best vendor.",
+    "Drafts the follow-up email."
+  ],
+  "user_instruction": "Plan a compliant vendor follow-up: check availability, policy constraints, choose the best vendor, and draft the email. Handle multiple constraints and explicitly note any conflicting evidence. Synthetic variant 15."
+}

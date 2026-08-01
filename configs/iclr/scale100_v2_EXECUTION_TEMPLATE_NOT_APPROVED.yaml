@@ -25,5 +25,6 @@ approval:
   approved_for_dry_run: false
   approved_for_live_run: false
   notes: TEMPLATE_NOT_APPROVED; bind C10 receipt and system identity before copying.
+approval_receipt_path: null
 # Notebook activation guard requires this explicit marker and therefore refuses this file.
 # approved_for_live_run: false

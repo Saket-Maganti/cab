@@ -1,0 +1,167 @@
+{
+  "benchmark_tool_contracts": {
+    "calculate_price": {
+      "description": "Calculate deterministic totals for item dictionaries.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "constraints": {
+            "type": "object"
+          },
+          "items": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "calculate_price",
+      "output_schema": {
+        "properties": {
+          "breakdown": {
+            "type": "array"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "total",
+          "currency",
+          "breakdown"
+        ],
+        "type": "object"
+      }
+    },
+    "compare_options": {
+      "description": "Rank option dictionaries according to deterministic criteria.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "criteria": {
+            "type": "array"
+          },
+          "options": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "options",
+          "criteria"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "compare_options",
+      "output_schema": {
+        "properties": {
+          "best_option_id": {
+            "type": "string"
+          },
+          "ranking": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "ranking",
+          "best_option_id"
+        ],
+        "type": "object"
+      }
+    },
+    "search_database": {
+      "description": "Search local synthetic records by query and optional domain.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "search_database",
+      "output_schema": {
+        "properties": {
+          "results": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "results"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "candidate_id": "compact20_v2_cand_19",
+  "clean_available_tools": [
+    "search_database",
+    "compare_options",
+    "calculate_price"
+  ],
+  "intervention_available_tools": [
+    "search_database",
+    "compare_options",
+    "calculate_price"
+  ],
+  "review_harness_contract": {
+    "deterministic": true,
+    "input_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "fact_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "fact_id"
+      ],
+      "type": "object"
+    },
+    "name": "cab_fixture_read_fact",
+    "output_schema": {
+      "required": [
+        "fact_id",
+        "label",
+        "value",
+        "source_key"
+      ],
+      "type": "object"
+    },
+    "provider_calls": 0
+  },
+  "schema_version": "cab_reviewer_tool_contracts_v1"
+}

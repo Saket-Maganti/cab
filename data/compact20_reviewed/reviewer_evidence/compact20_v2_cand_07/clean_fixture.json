@@ -1,0 +1,26 @@
+{
+  "available_tools": [
+    "check_calendar",
+    "send_email_draft",
+    "verify_fact",
+    "search_database",
+    "read_file"
+  ],
+  "base_task_id": "calendar_email_workflow_hard_022",
+  "condition": "clean",
+  "initial_memory": {},
+  "instance_id": "calendar_email_workflow_hard_022.clean",
+  "intervention": null,
+  "required_information": [
+    "calendar events",
+    "open afternoon slot",
+    "recipient"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "de9e8fe6fc82edd580816d312de90b1399de17e9edc1311d5e4e3bb5bb939ba1",
+  "success_criteria": [
+    "Identifies the first open afternoon slot.",
+    "Creates only a draft email."
+  ],
+  "user_instruction": "Check Mina's calendar on 2026-06-03 and draft an email proposing the first open afternoon slot. Preserve intermediate evidence because later steps depend on it. Synthetic variant 22."
+}
