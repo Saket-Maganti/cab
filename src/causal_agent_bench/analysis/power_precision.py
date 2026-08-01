@@ -195,7 +195,10 @@ def _effective_task_count(a: PowerAssumptions) -> float:
 def _paired_standard_error(a: PowerAssumptions, effective_tasks: float) -> float:
     scorer_variance = a.scorer_error * (1 - a.scorer_error)
     numerator = a.paired_discordance * (1 - a.paired_discordance) + scorer_variance
-    return math.sqrt(numerator / max(effective_tasks * a.models * a.policies, 1.0))
+    # Models are repeated observational units with a shared task panel, not
+    # independent task replication.  The confirmatory unit is the paired base
+    # task; model/policy variation is handled by hierarchical estimands.
+    return math.sqrt(numerator / max(effective_tasks, 1.0))
 
 
 def _one_sided_power(effect: float, standard_error: float) -> float:

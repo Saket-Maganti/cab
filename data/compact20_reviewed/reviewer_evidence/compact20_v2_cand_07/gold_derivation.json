@@ -1,0 +1,20 @@
+{
+  "candidate_id": "compact20_v2_cand_07",
+  "derivation_name": "reconstruct_calendar_email_workflow_gold_v1",
+  "frozen_gold_policy_hash": "5ea57c47ad4648b8cee21e719a25207e17336e7874356187546533d5141ec859",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "first_open_slot",
+    "public_domain",
+    "recipient",
+    "template_domain",
+    "variant"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": {
+    "date": "2026-06-03",
+    "slot": "15:00",
+    "status": "draft_created"
+  },
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

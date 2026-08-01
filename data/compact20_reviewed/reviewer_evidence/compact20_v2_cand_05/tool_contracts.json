@@ -1,0 +1,163 @@
+{
+  "benchmark_tool_contracts": {
+    "lookup_policy": {
+      "description": "Lookup a synthetic policy document and return relevant clause ids.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "policy_name": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "policy_name",
+          "question"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "lookup_policy",
+      "output_schema": {
+        "properties": {
+          "policy_text": {
+            "type": "string"
+          },
+          "relevant_clause_ids": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "policy_text",
+          "relevant_clause_ids"
+        ],
+        "type": "object"
+      }
+    },
+    "search_database": {
+      "description": "Search local synthetic records by query and optional domain.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "search_database",
+      "output_schema": {
+        "properties": {
+          "results": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "results"
+        ],
+        "type": "object"
+      }
+    },
+    "verify_fact": {
+      "description": "Verify a synthetic claim against local evidence ids.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "claim",
+          "evidence_ids"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "verify_fact",
+      "output_schema": {
+        "properties": {
+          "supporting_evidence": {
+            "type": "array"
+          },
+          "verdict": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict",
+          "supporting_evidence"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "candidate_id": "compact20_v2_cand_05",
+  "clean_available_tools": [
+    "lookup_policy",
+    "verify_fact",
+    "search_database"
+  ],
+  "intervention_available_tools": [
+    "verify_fact",
+    "search_database"
+  ],
+  "review_harness_contract": {
+    "deterministic": true,
+    "input_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "fact_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "fact_id"
+      ],
+      "type": "object"
+    },
+    "name": "cab_fixture_read_fact",
+    "output_schema": {
+      "required": [
+        "fact_id",
+        "label",
+        "value",
+        "source_key"
+      ],
+      "type": "object"
+    },
+    "provider_calls": 0
+  },
+  "schema_version": "cab_reviewer_tool_contracts_v1"
+}

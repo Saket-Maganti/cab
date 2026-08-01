@@ -1,0 +1,172 @@
+{
+  "benchmark_tool_contracts": {
+    "check_calendar": {
+      "description": "Read synthetic calendar events for a date and optional time window.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "time_window": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "date"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "check_calendar",
+      "output_schema": {
+        "properties": {
+          "events": {
+            "type": "array"
+          },
+          "is_free": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "events",
+          "is_free"
+        ],
+        "type": "object"
+      }
+    },
+    "send_email_draft": {
+      "description": "Create a simulated email draft. This never sends real email.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "body": {
+            "type": "string"
+          },
+          "recipient": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient",
+          "subject",
+          "body"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "send_email_draft",
+      "output_schema": {
+        "properties": {
+          "draft_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "draft_id",
+          "status"
+        ],
+        "type": "object"
+      }
+    },
+    "verify_fact": {
+      "description": "Verify a synthetic claim against local evidence ids.",
+      "failure_modes": [
+        "invalid_arguments",
+        "tool_unavailable",
+        "tool_failure"
+      ],
+      "input_schema": {
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "claim",
+          "evidence_ids"
+        ],
+        "type": "object"
+      },
+      "is_available": true,
+      "name": "verify_fact",
+      "output_schema": {
+        "properties": {
+          "supporting_evidence": {
+            "type": "array"
+          },
+          "verdict": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict",
+          "supporting_evidence"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "candidate_id": "compact20_v2_cand_13",
+  "clean_available_tools": [
+    "check_calendar",
+    "send_email_draft",
+    "verify_fact"
+  ],
+  "intervention_available_tools": [
+    "check_calendar",
+    "send_email_draft",
+    "verify_fact"
+  ],
+  "review_harness_contract": {
+    "deterministic": true,
+    "input_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "fact_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "fact_id"
+      ],
+      "type": "object"
+    },
+    "name": "cab_fixture_read_fact",
+    "output_schema": {
+      "required": [
+        "fact_id",
+        "label",
+        "value",
+        "source_key"
+      ],
+      "type": "object"
+    },
+    "provider_calls": 0
+  },
+  "schema_version": "cab_reviewer_tool_contracts_v1"
+}

@@ -1,0 +1,20 @@
+{
+  "candidate_id": "compact20_v2_cand_01",
+  "derivation_name": "reconstruct_travel_planning_gold_v1",
+  "frozen_gold_policy_hash": "3894f94873c5250f1c612c6b9f2290aaef3aeb46c87245da0d0091050b038ccb",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "best_option_id",
+    "public_domain",
+    "tax_rate",
+    "template_domain",
+    "total",
+    "variant"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": {
+    "option_id": "saver_hotel",
+    "total": 176.0
+  },
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

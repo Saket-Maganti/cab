@@ -1,0 +1,42 @@
+{
+  "candidate_id": "compact20_v2_cand_17",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_17",
+        "fact_id": "coding_debugging_stress_006.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "coding_debugging_stress_006.fact.01",
+        "label": "retry helper code",
+        "source_key": "bad_expression",
+        "value": "max_retries + 1"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "924afb4c479aef1ecf21e3dc20a99eb0"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_17",
+        "fact_id": "coding_debugging_stress_006.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "coding_debugging_stress_006.fact.02",
+        "label": "issue note",
+        "source_key": "bug_type",
+        "value": "off_by_one"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "7164ef43443071e2acf508269b48effc"
+    }
+  ]
+}

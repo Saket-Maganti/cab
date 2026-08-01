@@ -85,6 +85,9 @@ LEVEL5_COMMANDS = {
     "redteam",
     "level5",
     "release-check",
+    "approval",
+    "power",
+    "final-pre-review",
 }
 
 
@@ -178,7 +181,7 @@ def _env_doctor(args: Any) -> None:
 
 def _benchmark(args: Any) -> None:
     command = args.benchmark_command
-    if command in {"reachability-check", "intervention-audit"}:
+    if command in {"reachability-check", "static-reachability-check", "intervention-audit"}:
         from causal_agent_bench.safety.intervention_reachability import (
             audit_intervention_collection,
         )
@@ -186,10 +189,38 @@ def _benchmark(args: Any) -> None:
         from causal_agent_bench.utils.io import read_jsonl
 
         instances = read_jsonl(args.instances, BenchmarkInstance)
-        interventions = [
-            instance for instance in instances if instance.condition == "intervention"
-        ]
+        interventions = [instance for instance in instances if instance.condition == "intervention"]
         report = audit_intervention_collection(interventions)
+        report["command"] = command
+        if args.output:
+            output = Path(args.output)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(
+                json.dumps(report, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            report["output"] = str(output)
+        _print(report)
+        if not report["passed"]:
+            raise SystemExit(1)
+        return
+    if command in {
+        "executable-reachability-check",
+        "gold-reconstruction-check",
+        "intervention-isolation-check",
+    }:
+        from causal_agent_bench.safety.executable_reachability import (
+            run_executable_reachability_check,
+            run_gold_reconstruction_check,
+            run_intervention_isolation_check,
+        )
+
+        functions = {
+            "executable-reachability-check": run_executable_reachability_check,
+            "gold-reconstruction-check": run_gold_reconstruction_check,
+            "intervention-isolation-check": run_intervention_isolation_check,
+        }
+        report = functions[command](Path.cwd())
         report["command"] = command
         if args.output:
             output = Path(args.output)
@@ -223,7 +254,13 @@ def _benchmark(args: Any) -> None:
         paths = write_compilation(
             compiled, args.output_dir, allow_private=args.allow_private_output
         )
-        _print({"compiled": True, "paths": [str(value) for value in paths], "receipt": compiled.receipt})
+        _print(
+            {
+                "compiled": True,
+                "paths": [str(value) for value in paths],
+                "receipt": compiled.receipt,
+            }
+        )
     elif command == "validate":
         _print(
             {
@@ -332,9 +369,7 @@ def _run_status(run_dir: str | Path) -> dict[str, Any]:
     return {
         "exists": run_dir.is_dir(),
         "report": (
-            json.loads(report_path.read_text(encoding="utf-8"))
-            if report_path.is_file()
-            else None
+            json.loads(report_path.read_text(encoding="utf-8")) if report_path.is_file() else None
         ),
         "checkpoint": (
             json.loads(checkpoint_path.read_text(encoding="utf-8"))
@@ -424,9 +459,7 @@ def _evaluator(args: Any) -> None:
         _print(audit_output(args.text, output_limit=1_000_000))
         return
     submission = (
-        SubmissionManifest.model_validate_json(
-            Path(args.submission).read_text(encoding="utf-8")
-        )
+        SubmissionManifest.model_validate_json(Path(args.submission).read_text(encoding="utf-8"))
         if args.submission
         else _fixture_submission()
     )
@@ -456,9 +489,7 @@ def _evidence(args: Any) -> None:
     edges = graph.get("edges", [])
     if args.evidence_command == "trace":
         node_id = args.node_id
-        related = [
-            edge for edge in edges if node_id in {edge.get("source"), edge.get("target")}
-        ]
+        related = [edge for edge in edges if node_id in {edge.get("source"), edge.get("target")}]
         _print({"node_id": node_id, "related_edges": related})
     else:
         node_ids = {node.get("node_id") for node in nodes}
@@ -658,6 +689,53 @@ def handle_level5_command(args: Any) -> bool:
             "legacy_release": legacy,
             "level5_gate": gate,
         }
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "approval":
+        from causal_agent_bench.safety.approval_receipt import (
+            verify_approval_receipt,
+            verify_fixture_approval,
+        )
+
+        if args.fixture:
+            result = verify_fixture_approval(args.repo_root)
+        elif args.receipt:
+            result = verify_approval_receipt(
+                args.receipt,
+                repo_root=args.repo_root,
+                allowed_scope=args.scope,
+            )
+        else:
+            raise SystemExit("approval verify requires --fixture or --receipt")
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "power":
+        from causal_agent_bench.analysis.hierarchical_power import (
+            validate_hierarchical_power_design,
+        )
+
+        result = validate_hierarchical_power_design(
+            args.repo_root,
+            design_path=args.design,
+        )
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "final-pre-review":
+        from causal_agent_bench.safety.final_pre_review import (
+            final_pre_review_check,
+        )
+
+        result = final_pre_review_check(args.repo_root)
+        if args.output:
+            output = Path(args.output)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(
+                json.dumps(result, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
         _print(result)
         if not result["passed"]:
             raise SystemExit(1)

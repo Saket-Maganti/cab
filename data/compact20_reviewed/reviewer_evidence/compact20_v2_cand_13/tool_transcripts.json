@@ -1,0 +1,60 @@
+{
+  "candidate_id": "compact20_v2_cand_13",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_13",
+        "fact_id": "calendar_email_workflow_medium_019.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "calendar_email_workflow_medium_019.fact.01",
+        "label": "calendar events",
+        "source_key": "first_open_slot",
+        "value": "15:00"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "9188b660203a01a11dceae9a0bbc2255"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_13",
+        "fact_id": "calendar_email_workflow_medium_019.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "calendar_email_workflow_medium_019.fact.02",
+        "label": "open afternoon slot",
+        "source_key": "recipient",
+        "value": "mina@example.com"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "2779105a37c78a4badc720b663bf1d52"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_13",
+        "fact_id": "calendar_email_workflow_medium_019.fact.03"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "calendar_email_workflow_medium_019.fact.03",
+        "label": "recipient",
+        "source_key": "first_open_slot",
+        "value": "15:00"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "7984b4dc6df7b219b5d396f59ba2ce55"
+    }
+  ]
+}

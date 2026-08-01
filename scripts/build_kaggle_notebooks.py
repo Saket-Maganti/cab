@@ -115,9 +115,7 @@ SPECS = (
         ),
         live_kind="none",
         live_config=None,
-        exact_inputs=(
-            "CURRENT_PROJECT_STATE.md",
-        ),
+        exact_inputs=("CURRENT_PROJECT_STATE.md",),
         exact_live_outputs=(),
         requires_model_snapshot=False,
         supports_real_artifacts=False,
@@ -242,9 +240,15 @@ def _code_cell(source: str, role: str) -> dict[str, object]:
 
 
 def _purpose_cell(spec: NotebookSpec) -> dict[str, object]:
-    input_rows = "\n".join(f"| `{value}` | Required as described; never synthesized as evidence. |" for value in spec.exact_inputs)
+    input_rows = "\n".join(
+        f"| `{value}` | Required as described; never synthesized as evidence. |"
+        for value in spec.exact_inputs
+    )
     live_rows = (
-        "\n".join(f"| `{value}` | Real-artifact output; never paper-eligible by existence alone. |" for value in spec.exact_live_outputs)
+        "\n".join(
+            f"| `{value}` | Real-artifact output; never paper-eligible by existence alone. |"
+            for value in spec.exact_live_outputs
+        )
         if spec.exact_live_outputs
         else "| None | This notebook never starts real inference or processes real results. |"
     )
@@ -303,9 +307,7 @@ def _purpose_cell(spec: NotebookSpec) -> dict[str, object]:
 def _configuration_cell(spec: NotebookSpec) -> dict[str, object]:
     live_config = f'Path("{spec.live_config}")' if spec.live_config else "None"
     exact_paths = [
-        value
-        for value in spec.exact_inputs
-        if not value.startswith("CAB_") and "*" not in value
+        value for value in spec.exact_inputs if not value.startswith("CAB_") and "*" not in value
     ]
     required_paths = "".join(f'    Path("{value}"),\n' for value in exact_paths)
     raac_matrix = "\n"
@@ -360,7 +362,7 @@ TWO_GPU_PLACEMENT_ADAPTER_AUDITED = False
 WORK_ROOT_SETTING = "artifacts/kaggle"
 LIVE_BATCH_DIR_SETTING = "artifacts/kaggle/live_batch"
 LIVE_CONFIG_PATH = {live_config}
-APPROVAL_RECORD = Path("docs/approvals/CAB_KAGGLE_T4X2_LIVE_APPROVAL.md")
+APPROVAL_RECEIPT = Path("private_data/approval/cryptographic_approval_receipt.json")
 REQUIRED_REPOSITORY_INPUTS = [
 {required_paths}]{raac_matrix}
 LIVE_KIND = "{spec.live_kind}"
@@ -752,7 +754,6 @@ def _activation_cell() -> dict[str, object]:
     return _code_cell(
         """
         # CAB_ROLE: activation_guard - fail closed before any real-artifact subprocess.
-        approval_marker = "APPROVED_FOR_LIVE_RUN: YES"
         activation_reasons = []
         if RUN_LIVE is not True:
             activation_reasons.append("RUN_LIVE is not the literal boolean True")
@@ -762,14 +763,24 @@ def _activation_cell() -> dict[str, object]:
             activation_reasons.append(f"{ACTIVATION_ENV} is not YES")
         if not SUPPORTS_REAL_ARTIFACTS:
             activation_reasons.append("this notebook never operates on real artifacts")
-        if not APPROVAL_RECORD.is_absolute():
-            approval_path = REPO_ROOT / APPROVAL_RECORD
+        if not APPROVAL_RECEIPT.is_absolute():
+            approval_path = REPO_ROOT / APPROVAL_RECEIPT
         else:
-            approval_path = APPROVAL_RECORD
+            approval_path = APPROVAL_RECEIPT
         if not approval_path.is_file():
-            activation_reasons.append("live approval record is missing")
-        elif approval_marker not in approval_path.read_text(encoding="utf-8"):
-            activation_reasons.append("live approval marker is absent")
+            activation_reasons.append("cryptographic approval receipt is missing")
+        else:
+            from causal_agent_bench.safety.approval_receipt import verify_approval_receipt
+            approval_verification = verify_approval_receipt(
+                approval_path,
+                repo_root=REPO_ROOT,
+                allowed_scope="scientific",
+            )
+            if not approval_verification["passed"]:
+                activation_reasons.append(
+                    "cryptographic approval receipt is invalid: "
+                    + ",".join(approval_verification["errors"])
+                )
 
         if LIVE_KIND == "runner":
             if LIVE_CONFIG_PATH is None:
@@ -782,10 +793,8 @@ def _activation_cell() -> dict[str, object]:
                     config_text = config_path.read_text(encoding="utf-8").lower()
                     if "template_only: true" in config_text:
                         activation_reasons.append("template-only config cannot run")
-                    if "approved_for_live_run: false" in config_text:
-                        activation_reasons.append("config explicitly refuses live execution")
-                    if "approved_for_live_run: true" not in config_text:
-                        activation_reasons.append("config lacks approved_for_live_run: true")
+                    if "approval_receipt_path:" not in config_text:
+                        activation_reasons.append("config lacks approval_receipt_path binding")
                     if "allow_paid_calls: false" not in config_text:
                         activation_reasons.append("open-model config must explicitly forbid paid calls")
                     if "api_key_env:" in config_text:

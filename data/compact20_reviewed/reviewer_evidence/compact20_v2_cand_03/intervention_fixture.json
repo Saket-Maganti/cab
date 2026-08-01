@@ -1,0 +1,40 @@
+{
+  "available_tools": [
+    "verify_fact"
+  ],
+  "base_task_id": "research_assistant_easy_010",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "research_assistant_easy_010.tool_removal",
+  "intervention": {
+    "changed_factor": "tool availability",
+    "description": "Remove one useful tool from the available tool set.",
+    "family": "tool_removal",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "hidden ground truth unless explicitly overridden",
+      "available non-removed tools",
+      "success criteria"
+    ],
+    "target_factor": "tool availability",
+    "tool_availability_patch": {
+      "removed_tools": [
+        "search_database"
+      ]
+    },
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "Apex report evidence",
+    "claim verification"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "fca0dd749be236f90e8114cca712ef8de38c375dd3b4f24ea42ffdc46d8c0a6f",
+  "success_criteria": [
+    "States whether the claim is supported.",
+    "Cites the controlled evidence."
+  ],
+  "user_instruction": "Find evidence about whether the Apex report supports the claim that latency dropped below 100 ms. Keep the answer concise. Synthetic variant 10."
+}

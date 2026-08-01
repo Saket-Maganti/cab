@@ -1,0 +1,42 @@
+{
+  "candidate_id": "compact20_v2_cand_20",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_20",
+        "fact_id": "research_assistant_hard_011.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "research_assistant_hard_011.fact.01",
+        "label": "Apex report evidence",
+        "source_key": "claim_supported",
+        "value": false
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "636130bf10da2eacd949cbab209fbda8"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_20",
+        "fact_id": "research_assistant_hard_011.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "research_assistant_hard_011.fact.02",
+        "label": "claim verification",
+        "source_key": "reported_latency_ms",
+        "value": 118
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "4a67cf0ee6cb83b895a28eb9096415e5"
+    }
+  ]
+}

@@ -36,8 +36,11 @@ class EvidenceRoute(BaseModel):
 class ReachabilityAudit(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    schema_version: Literal["cab_intervention_reachability_v1"] = (
-        "cab_intervention_reachability_v1"
+    schema_version: Literal["cab_static_intervention_policy_reachability_v2"] = (
+        "cab_static_intervention_policy_reachability_v2"
+    )
+    gate_kind: Literal["static_intervention_policy_reachability"] = (
+        "static_intervention_policy_reachability"
     )
     instance_id: str
     base_task_id: str
@@ -50,7 +53,7 @@ class ReachabilityAudit(BaseModel):
 
 
 def audit_intervention_reachability(instance: BenchmarkInstance) -> ReachabilityAudit:
-    """Return a stable, fail-closed reachability audit for one intervention."""
+    """Return the static policy-level reachability audit for one intervention."""
 
     if instance.condition != "intervention" or instance.intervention is None:
         raise ValueError("reachability audit requires an intervention instance")
@@ -67,16 +70,13 @@ def audit_intervention_reachability(instance: BenchmarkInstance) -> Reachability
         )
 
     facts = list(
-        task.goal.required_information
-        or task.expected_evidence
-        or task.goal.success_criteria
+        task.goal.required_information or task.expected_evidence or task.goal.success_criteria
     )
     artifacts = _source_artifacts(instance)
     available = set(instance.available_tools)
     required = set(scorer.required_tools)
     removed = {
-        str(value)
-        for value in intervention.tool_availability_patch.get("removed_tools", [])
+        str(value) for value in intervention.tool_availability_patch.get("removed_tools", [])
     }
     routes: list[EvidenceRoute] = []
     failures: list[str] = []
@@ -116,28 +116,42 @@ def audit_intervention_reachability(instance: BenchmarkInstance) -> Reachability
                 valid_final_response="typed substantive answer matching the frozen gold policy",
             )
         )
-    elif (
-        not behavior_only
-        and facts
-        and not required
-        and not completion_evidence_blocked
-    ):
+    elif not behavior_only and facts and not required and not completion_evidence_blocked:
         failures.append("COMPLETION_PERMITTED_WITHOUT_EVIDENCE_ROUTE")
 
     recovery_actions = list(scorer.required_recovery_actions)
     if gold.answer_contract == AnswerContract.RECOVERY_ROUTE_REQUIRED:
-        usable_recovery = [action for action in recovery_actions if action in available]
+        authorization_tools = {
+            contract.action_id: sorted(set(contract.allowed_tool_names) & available)
+            for contract in scorer.recovery_authorizations
+        }
+        usable_recovery = [
+            action
+            for action in recovery_actions
+            if authorization_tools.get(action)
+            or (not scorer.recovery_authorizations and action in available)
+        ]
         if not recovery_actions or not usable_recovery:
             failures.append("REQUIRED_RECOVERY_IMPOSSIBLE")
         else:
+            usable_tools = sorted(
+                {
+                    tool
+                    for action in usable_recovery
+                    for tool in (
+                        authorization_tools.get(action, [])
+                        or ([action] if action in available else [])
+                    )
+                }
+            )
             routes.append(
                 EvidenceRoute(
                     route_id=f"{instance.instance_id}.recovery",
                     kind="recovery",
                     required_facts=facts,
                     source_artifacts=artifacts,
-                    accessible_tools=sorted(usable_recovery),
-                    permitted_actions=[f"recover:{tool}" for tool in sorted(usable_recovery)],
+                    accessible_tools=usable_tools,
+                    permitted_actions=[f"recover:{action}" for action in usable_recovery],
                     intermediate_evidence=["post-failure successful recovery observation"],
                     valid_final_response="typed substantive answer after executed recovery",
                 )
@@ -147,8 +161,7 @@ def audit_intervention_reachability(instance: BenchmarkInstance) -> Reachability
         if (
             opportunity is not None
             and opportunity.clarification_possible
-            and PermittedResponseType.CLARIFICATION
-            in opportunity.permitted_response_types
+            and PermittedResponseType.CLARIFICATION in opportunity.permitted_response_types
         ):
             routes.append(
                 EvidenceRoute(
@@ -208,8 +221,7 @@ def audit_intervention_reachability(instance: BenchmarkInstance) -> Reachability
     if not intervention.non_target_factors:
         failures.append("NON_TARGET_FACTORS_UNDECLARED")
     if scorer.abstention == BehaviorRequirement.FORBIDDEN and not any(
-        route.kind in {"substantive_answer", "recovery", "clarification"}
-        for route in routes
+        route.kind in {"substantive_answer", "recovery", "clarification"} for route in routes
     ):
         failures.append("FACTS_UNREACHABLE_AND_ABSTENTION_FORBIDDEN")
     if opportunity is not None and opportunity.another_route_exists:
@@ -222,11 +234,10 @@ def audit_intervention_collection(
     instances: list[BenchmarkInstance],
 ) -> dict[str, Any]:
     audits = [audit_intervention_reachability(instance) for instance in instances]
-    failure_counts = Counter(
-        code for audit in audits for code in audit.failure_codes
-    )
+    failure_counts = Counter(code for audit in audits for code in audit.failure_codes)
     payload: dict[str, Any] = {
-        "schema_version": "cab_intervention_reachability_collection_v1",
+        "schema_version": "cab_static_intervention_policy_reachability_collection_v2",
+        "gate_kind": "static_intervention_policy_reachability",
         "instance_count": len(audits),
         "passed_count": sum(audit.passed for audit in audits),
         "failed_count": sum(not audit.passed for audit in audits),
@@ -255,7 +266,8 @@ def _finalize(
 ) -> ReachabilityAudit:
     assert instance.intervention is not None
     payload = {
-        "schema_version": "cab_intervention_reachability_v1",
+        "schema_version": "cab_static_intervention_policy_reachability_v2",
+        "gate_kind": "static_intervention_policy_reachability",
         "instance_id": instance.instance_id,
         "base_task_id": instance.base_task.task_id,
         "intervention_family": instance.intervention.family,

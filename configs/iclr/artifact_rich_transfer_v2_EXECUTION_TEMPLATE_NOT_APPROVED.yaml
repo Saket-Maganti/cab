@@ -25,4 +25,5 @@ approval:
   approved_for_dry_run: false
   approved_for_live_run: false
   notes: TEMPLATE_NOT_APPROVED; bind artifact, C10, and system identity receipts first.
+approval_receipt_path: null
 # approved_for_live_run: false

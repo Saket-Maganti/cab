@@ -1,0 +1,16 @@
+{
+  "candidate_id": "compact20_v2_cand_05",
+  "derivation_name": "reconstruct_policy_compliance_gold_v1",
+  "frozen_gold_policy_hash": "200d0698d37b53654ac934aa82a41cab36ec9646631452733eeaa51ce8934f06",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "approval_required",
+    "public_domain",
+    "template_domain",
+    "threshold",
+    "variant"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars.",
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

@@ -1,0 +1,42 @@
+{
+  "available_tools": [
+    "compare_options",
+    "calculate_price"
+  ],
+  "base_task_id": "travel_planning_medium_004",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "travel_planning_medium_004.tool_removal",
+  "intervention": {
+    "changed_factor": "tool availability",
+    "description": "Remove one useful tool from the available tool set.",
+    "family": "tool_removal",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "hidden ground truth unless explicitly overridden",
+      "available non-removed tools",
+      "success criteria"
+    ],
+    "target_factor": "tool availability",
+    "tool_availability_patch": {
+      "removed_tools": [
+        "search_database"
+      ]
+    },
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "hotel refundability",
+    "hotel price",
+    "tax rate"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "8d6810edf0d58d46ee5865ad11ae08ca789f0de01d92c2ed24e38df1254468b3",
+  "success_criteria": [
+    "Names the selected refundable hotel option.",
+    "Includes the correct total price with tax."
+  ],
+  "user_instruction": "Find the best refundable Boston hotel option under the stated constraints and report the option id and total price. Use the available tools before answering. Synthetic variant 4."
+}

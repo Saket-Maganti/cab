@@ -1,0 +1,96 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 837,
+      "mime_type": "application/json",
+      "path": "clean_fixture.json",
+      "sha256": "dfa52c7fe8db171ccace2f6a6c87d5ab9075b4063da5490965f461b9a46dae41"
+    },
+    {
+      "bytes": 812,
+      "mime_type": "application/json",
+      "path": "controlled_evidence.json",
+      "sha256": "a337c87ed07cbba62817b13cc487808154f0adfe99b20f862f8651366da53f1d"
+    },
+    {
+      "bytes": 834,
+      "mime_type": "application/json",
+      "path": "fact_map.json",
+      "sha256": "45ed56238cf2f5216dd11360ec5e96385caf629850b66d52dfca2ba8cd98020d"
+    },
+    {
+      "bytes": 539,
+      "mime_type": "application/json",
+      "path": "gold_derivation.json",
+      "sha256": "ec77205bf3c23ea94503116fc95c67e83989439d73e14efd7bbea805c1b0fbb1"
+    },
+    {
+      "bytes": 1483,
+      "mime_type": "application/json",
+      "path": "intervention_fixture.json",
+      "sha256": "652be885c73ef6c1fdcf6b3157b1bd6748eb0cc88a3d9187defd9156fbffbb0d"
+    },
+    {
+      "bytes": 545,
+      "mime_type": "application/json",
+      "path": "intervention_isolation.json",
+      "sha256": "ba18dbef267df10416681431a71d5d09cdc1f765bb14b8de742cda06512e78ad"
+    },
+    {
+      "bytes": 6409,
+      "mime_type": "application/json",
+      "path": "tool_contracts.json",
+      "sha256": "0bc0825d82418c1efc02386d4a9f42495096189337ccbdb02a269abb14b0ec8f"
+    },
+    {
+      "bytes": 1346,
+      "mime_type": "application/json",
+      "path": "tool_transcripts.json",
+      "sha256": "9cbc0b7443152b745b04da7a9d58d6829dfb84b51fd701e22e6a0743454b76a2"
+    }
+  ],
+  "base_task_id": "coding_debugging_stress_006",
+  "bundle_hash": "55eb969a16f28a4470446bfaa3686887ba390b3fc6a8ef9218894ae7e6495aeb",
+  "candidate_id": "compact20_v2_cand_17",
+  "clean_gold_derivation_file": "gold_derivation.json",
+  "clean_instance_id": "coding_debugging_stress_006.clean",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "fact_mapping_file": "fact_map.json",
+  "intervention_family": "observation_conflict",
+  "intervention_instance_id": "coding_debugging_stress_006.observation_conflict",
+  "intervention_routes": [
+    {
+      "kind": "qualified_uncertainty",
+      "opportunity_id": "coding_debugging_stress_006.observation_conflict.opportunity.v3",
+      "valid_response": "specific evidence-bound uncertainty"
+    }
+  ],
+  "invariants": [
+    "user goal",
+    "tool availability",
+    "underlying ground truth",
+    "success criteria"
+  ],
+  "manipulation": {
+    "changed_factor": "observation consistency",
+    "changed_fields": [
+      "tool_output_or_observation"
+    ],
+    "target_factor": "observation consistency"
+  },
+  "recovery_authorizations": [],
+  "redactions": {
+    "model_identity_absent": true,
+    "model_output_absent": true,
+    "reviewer_identity_absent": true,
+    "secrets_absent": true
+  },
+  "required_fact_ids": [
+    "coding_debugging_stress_006.fact.01",
+    "coding_debugging_stress_006.fact.02"
+  ],
+  "schema_version": "cab_reviewer_evidence_bundle_v1",
+  "scientific_execution_performed": false,
+  "tool_contract_file": "tool_contracts.json",
+  "tool_transcript_file": "tool_transcripts.json"
+}

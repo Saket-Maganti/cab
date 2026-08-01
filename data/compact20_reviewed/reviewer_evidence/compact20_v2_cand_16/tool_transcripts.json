@@ -1,0 +1,42 @@
+{
+  "candidate_id": "compact20_v2_cand_16",
+  "schema_version": "cab_reviewer_tool_transcripts_v1",
+  "transcripts": [
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_16",
+        "fact_id": "file_spreadsheet_qa_hard_025.fact.01"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "file_spreadsheet_qa_hard_025.fact.01",
+        "label": "launch note content",
+        "source_key": "launch",
+        "value": "Beta"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "56333d253e18cea7464678b7f6241f3d"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_16",
+        "fact_id": "file_spreadsheet_qa_hard_025.fact.02"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "fact_id": "file_spreadsheet_qa_hard_025.fact.02",
+        "label": "Q2 spreadsheet row",
+        "source_key": "q2_revenue",
+        "value": 4200
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "51a61a443bae8ded1f3baadf89344575"
+    }
+  ]
+}

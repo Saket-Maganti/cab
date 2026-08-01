@@ -1,0 +1,8 @@
+{
+  "human_judgments_created": 0,
+  "reason": "HUMAN_STAGE1_FINALIZATION_REQUIRED",
+  "schema_version": "cab_stage2_unlock_state_v1",
+  "stage1_commitment_sha256": "540133b624fbfa1da34c106166aa687f6425c75ca563d63cd4138e0f0dcbf0ff",
+  "stage2_items_sha256": "7b0d46f564f0f1c1e200121a9cda8058d4bca70e2f6649f95a083111145f55b8",
+  "unlocked": false
+}

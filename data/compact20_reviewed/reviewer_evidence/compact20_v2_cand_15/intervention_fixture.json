@@ -1,0 +1,50 @@
+{
+  "available_tools": [
+    "check_calendar",
+    "lookup_policy",
+    "query_spreadsheet",
+    "compare_options",
+    "send_email_draft"
+  ],
+  "base_task_id": "operations_planning_medium_021",
+  "condition": "intervention",
+  "initial_memory": {
+    "is_corrupted": true,
+    "stale_memory": "Previous run said the old answer was correct."
+  },
+  "instance_id": "operations_planning_medium_021.memory_corruption",
+  "intervention": {
+    "changed_factor": "memory correctness",
+    "description": "Inject stale or incorrect initial memory.",
+    "family": "memory_corruption",
+    "instruction_patch": null,
+    "memory_patch": {
+      "is_corrupted": true,
+      "stale_memory": "Previous run said the old answer was correct."
+    },
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "hidden ground truth",
+      "success criteria"
+    ],
+    "target_factor": "memory correctness",
+    "tool_availability_patch": {},
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "availability",
+    "vendor policy",
+    "vendor score",
+    "email recipient"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "1fdc0c6914e24f5040a61e802803c0f928ece1223f2dba86e985c7f3c7daf6bf",
+  "success_criteria": [
+    "Uses availability information.",
+    "Applies vendor policy constraints.",
+    "Chooses the best vendor.",
+    "Drafts the follow-up email."
+  ],
+  "user_instruction": "Plan a compliant vendor follow-up: check availability, policy constraints, choose the best vendor, and draft the email. Use the available tools before answering. Synthetic variant 21."
+}

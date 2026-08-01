@@ -1,0 +1,88 @@
+{
+  "identity_safe": true,
+  "items": [
+    {
+      "candidate_id": "compact20_v2_cand_16",
+      "order_index": 1
+    },
+    {
+      "candidate_id": "compact20_v2_cand_12",
+      "order_index": 2
+    },
+    {
+      "candidate_id": "compact20_v2_cand_01",
+      "order_index": 3
+    },
+    {
+      "candidate_id": "compact20_v2_cand_05",
+      "order_index": 4
+    },
+    {
+      "candidate_id": "compact20_v2_cand_03",
+      "order_index": 5
+    },
+    {
+      "candidate_id": "compact20_v2_cand_20",
+      "order_index": 6
+    },
+    {
+      "candidate_id": "compact20_v2_cand_02",
+      "order_index": 7
+    },
+    {
+      "candidate_id": "compact20_v2_cand_14",
+      "order_index": 8
+    },
+    {
+      "candidate_id": "compact20_v2_cand_09",
+      "order_index": 9
+    },
+    {
+      "candidate_id": "compact20_v2_cand_07",
+      "order_index": 10
+    },
+    {
+      "candidate_id": "compact20_v2_cand_11",
+      "order_index": 11
+    },
+    {
+      "candidate_id": "compact20_v2_cand_17",
+      "order_index": 12
+    },
+    {
+      "candidate_id": "compact20_v2_cand_06",
+      "order_index": 13
+    },
+    {
+      "candidate_id": "compact20_v2_cand_04",
+      "order_index": 14
+    },
+    {
+      "candidate_id": "compact20_v2_cand_18",
+      "order_index": 15
+    },
+    {
+      "candidate_id": "compact20_v2_cand_15",
+      "order_index": 16
+    },
+    {
+      "candidate_id": "compact20_v2_cand_10",
+      "order_index": 17
+    },
+    {
+      "candidate_id": "compact20_v2_cand_13",
+      "order_index": 18
+    },
+    {
+      "candidate_id": "compact20_v2_cand_08",
+      "order_index": 19
+    },
+    {
+      "candidate_id": "compact20_v2_cand_19",
+      "order_index": 20
+    }
+  ],
+  "role": "adjudicator",
+  "schema_version": "cab_two_stage_blinded_order_v1",
+  "stage": "stage2"
+}

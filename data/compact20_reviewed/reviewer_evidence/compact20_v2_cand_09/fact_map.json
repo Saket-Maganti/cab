@@ -1,0 +1,40 @@
+{
+  "candidate_id": "compact20_v2_cand_09",
+  "mappings": [
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "operations_planning_stress_015.fact.01",
+      "output_sha256": "295bb4c5c5cd58235c76158719e68ee1ee6b262956da46acd9f09ebdf6ecf331",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "dd9e960dc930907aac889b14e1b63a91"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "operations_planning_stress_015.fact.02",
+      "output_sha256": "b9c30ac67687561b3a8c5b499ca6d679f648e708dde6a3309d3c143125953eaa",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "664e03358795e8d89e709a0c4f4fd940"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "operations_planning_stress_015.fact.03",
+      "output_sha256": "cede6b269cbe0d946871b2cc7b8609e730a5d6b6af67f972a7fcdbe5826120fb",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "75744752b0e698b927e2052a8f520f7f"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "operations_planning_stress_015.fact.04",
+      "output_sha256": "329128ff0f1363192d737d3fd3b253c1fd8e77f3f70d68c0598ae1ae42ae8999",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "dfc2ee7ec910f80d9e90c6f75737702e"
+    }
+  ],
+  "required_fact_ids": [
+    "operations_planning_stress_015.fact.01",
+    "operations_planning_stress_015.fact.02",
+    "operations_planning_stress_015.fact.03",
+    "operations_planning_stress_015.fact.04"
+  ],
+  "schema_version": "cab_fact_evidence_map_v1"
+}

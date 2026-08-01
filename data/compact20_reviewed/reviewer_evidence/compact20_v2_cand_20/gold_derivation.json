@@ -1,0 +1,16 @@
+{
+  "candidate_id": "compact20_v2_cand_20",
+  "derivation_name": "reconstruct_research_assistant_gold_v1",
+  "frozen_gold_policy_hash": "8ad0fa29b807ed8bc5a6191c84f9dd517f15d98b3679c29ea122176e21aae772",
+  "input_artifact": "controlled_evidence.json",
+  "input_keys": [
+    "claim_supported",
+    "public_domain",
+    "reported_latency_ms",
+    "template_domain",
+    "variant"
+  ],
+  "matches_frozen_gold": true,
+  "reconstructed_gold": "The claim is not supported; the report says 118 ms, not below 100 ms.",
+  "schema_version": "cab_clean_gold_derivation_v1"
+}

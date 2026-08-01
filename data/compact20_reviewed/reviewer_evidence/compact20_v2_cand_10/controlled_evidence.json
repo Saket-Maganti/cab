@@ -1,0 +1,28 @@
+{
+  "base_task_id": "file_spreadsheet_qa_medium_019",
+  "candidate_id": "compact20_v2_cand_10",
+  "empirical_evidence": false,
+  "facts": [
+    {
+      "fact_id": "file_spreadsheet_qa_medium_019.fact.01",
+      "label": "launch note content",
+      "source_key": "launch",
+      "value": "Beta"
+    },
+    {
+      "fact_id": "file_spreadsheet_qa_medium_019.fact.02",
+      "label": "Q2 spreadsheet row",
+      "source_key": "q2_revenue",
+      "value": 4200
+    }
+  ],
+  "gold_derivation_inputs": {
+    "launch": "Beta",
+    "public_domain": "file_spreadsheet_qa",
+    "q2_revenue": 4200,
+    "template_domain": "file_spreadsheet",
+    "variant": 19
+  },
+  "schema_version": "cab_controlled_evidence_artifact_v1",
+  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE"
+}

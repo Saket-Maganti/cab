@@ -1,0 +1,92 @@
+{
+  "adjudicator_receives_both_stages_and_history": true,
+  "candidate_count": 20,
+  "claim_boundary": "The packet is blank workflow infrastructure. Stage 2 remains locked, and no human judgment or adjudication is represented.",
+  "evidence_bundle_index_sha256": "49a23eb7a7806fc5aa469858cb3914bcd6850f833e3951a34fc2a92334850f7e",
+  "files": {
+    "ADJUDICATION_GUIDE.md": {
+      "path": "data/human_validation/compact20_two_stage_review/ADJUDICATION_GUIDE.md",
+      "sha256": "e34781ca317195313b3ada0b963397d252e1c2ff2924e1d0082b0cd89c3d1cf5"
+    },
+    "REVIEWER_QUALIFICATION.md": {
+      "path": "data/human_validation/compact20_two_stage_review/REVIEWER_QUALIFICATION.md",
+      "sha256": "fb47a73755859cb52123b8e4951832512d4acd0868e1a7fd6f6ba60fedc15285"
+    },
+    "REVIEW_INSTRUCTIONS.md": {
+      "path": "data/human_validation/compact20_two_stage_review/REVIEW_INSTRUCTIONS.md",
+      "sha256": "2d72cbffcd28b175b088a26935f7adb2d5e86181d05a034b794f090e9e7afde2"
+    },
+    "adjudication.csv": {
+      "path": "data/human_validation/compact20_two_stage_review/adjudication.csv",
+      "sha256": "39725920cd33055d47e63f4f515ded881a240bbfe41a0e5ef71281d8c7defb0f"
+    },
+    "reviewer_registry.csv": {
+      "path": "data/human_validation/compact20_two_stage_review/reviewer_registry.csv",
+      "sha256": "32a79810a1e4ff40bf8dc476332f1e6aa87b988082148b6512fe8af6b480cdc1"
+    },
+    "stage1_commitment.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage1_commitment.json",
+      "sha256": "540133b624fbfa1da34c106166aa687f6425c75ca563d63cd4138e0f0dcbf0ff"
+    },
+    "stage1_judgments.csv": {
+      "path": "data/human_validation/compact20_two_stage_review/stage1_judgments.csv",
+      "sha256": "3aeec6f050480f52b23eb8fce4f8d3dabc295e8e04d196f79bccf4f829593297"
+    },
+    "stage1_order_adjudicator.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage1_order_adjudicator.json",
+      "sha256": "e91ce59a05a74412e9fb828203ae8d95cffacd2419307a3ea7d726f3fda718d6"
+    },
+    "stage1_order_reviewer_a.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage1_order_reviewer_a.json",
+      "sha256": "386a8177b281899cee82dc43b47f415b419cf537e0b3c8c2f004c25cbc8af355"
+    },
+    "stage1_order_reviewer_b.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage1_order_reviewer_b.json",
+      "sha256": "e43f91fefbe3dd62d393fd4c723088f9a52b9b8c3be1760826b6d4e0d5fb2cfa"
+    },
+    "stage1_review_items.jsonl": {
+      "path": "data/human_validation/compact20_two_stage_review/stage1_review_items.jsonl",
+      "sha256": "98037e67de12f8cb13c3ceb3e8329c6d48d8395b7ebf06005dcf14a58ec08ca5"
+    },
+    "stage2_judgments.csv": {
+      "path": "data/human_validation/compact20_two_stage_review/stage2_judgments.csv",
+      "sha256": "660bf161bc817b7627325b347cbed38c77f884419acb6cea38d1371291079e2d"
+    },
+    "stage2_locked_items.jsonl": {
+      "path": "data/human_validation/compact20_two_stage_review/stage2_locked_items.jsonl",
+      "sha256": "7b0d46f564f0f1c1e200121a9cda8058d4bca70e2f6649f95a083111145f55b8"
+    },
+    "stage2_order_adjudicator.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage2_order_adjudicator.json",
+      "sha256": "f5df0035254f5f780fb00ced19058147ec5db6d8a58fd44ade31f6474acd33f5"
+    },
+    "stage2_order_reviewer_a.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage2_order_reviewer_a.json",
+      "sha256": "09641eac68b2d1b81cf64279143c059dcfb364c926888fb095a0697770e641e8"
+    },
+    "stage2_order_reviewer_b.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage2_order_reviewer_b.json",
+      "sha256": "ea33b6c5713d20602323835de4a9cd9114166309c837e15e131f539e1e21c562"
+    },
+    "stage2_unlock_state.json": {
+      "path": "data/human_validation/compact20_two_stage_review/stage2_unlock_state.json",
+      "sha256": "ca47e2a9781c5db760c55fc648d26e35d151b04f94850913569cc70ad774c00e"
+    }
+  },
+  "genuine_human_adjudication_rows": 0,
+  "genuine_human_review_rows": 0,
+  "identity_safe": true,
+  "packet_hash": "a67da67df1af03fe6686f327734888e3672f8a6c41c59eb37488f7c46b1e0127",
+  "prior_packet_invalidation": {
+    "prior_packet_manifest_sha256": "fe84a4a1e06c9daf0b75312776578de2de8bb6575b380a18d8665cbceaf91457",
+    "status": "INVALIDATED_BY_TWO_STAGE_REGENERATION"
+  },
+  "reviewers_per_candidate": 2,
+  "schema_version": "cab_two_stage_review_packet_v1",
+  "stage1_and_stage2_orders_independent": true,
+  "stage1_gold_included": false,
+  "stage1_intended_route_included": false,
+  "stage1_scorer_included": false,
+  "stage2_locked": true,
+  "status": "CAB_TWO_STAGE_HUMAN_REVIEW_READY"
+}

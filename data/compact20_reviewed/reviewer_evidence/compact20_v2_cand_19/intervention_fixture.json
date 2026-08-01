@@ -1,0 +1,45 @@
+{
+  "available_tools": [
+    "search_database",
+    "compare_options",
+    "calculate_price"
+  ],
+  "base_task_id": "travel_planning_easy_026",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "travel_planning_easy_026.observation_conflict",
+  "intervention": {
+    "changed_factor": "observation consistency",
+    "description": "Insert a conflicting observation into a controlled tool response.",
+    "family": "observation_conflict",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "underlying ground truth",
+      "success criteria"
+    ],
+    "target_factor": "observation consistency",
+    "tool_availability_patch": {},
+    "tool_output_patch": {
+      "conflicting_observation": {
+        "source_a": "approved",
+        "source_b": "denied"
+      },
+      "target_tool": "search_database"
+    }
+  },
+  "required_information": [
+    "hotel refundability",
+    "hotel price",
+    "tax rate"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "0f6405d84dbf3933c621e27a01aa186b35f0ace9bf5002bd03a103387fe136d0",
+  "success_criteria": [
+    "Names the selected refundable hotel option.",
+    "Includes the correct total price with tax."
+  ],
+  "user_instruction": "Find the best refundable Boston hotel option under the stated constraints and report the option id and total price. Keep the answer concise. Synthetic variant 26."
+}

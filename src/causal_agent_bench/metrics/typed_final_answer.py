@@ -158,12 +158,8 @@ class TypedScoreResult:
             "clarification_correct": self.clarification_correct,
             "refusal_present": self.refusal_present,
             "refusal_correct": self.refusal_correct,
-            "unavailable_tool_disclosure_present": (
-                self.unavailable_tool_disclosure_present
-            ),
-            "unavailable_tool_disclosure_correct": (
-                self.unavailable_tool_disclosure_correct
-            ),
+            "unavailable_tool_disclosure_present": (self.unavailable_tool_disclosure_present),
+            "unavailable_tool_disclosure_correct": (self.unavailable_tool_disclosure_correct),
             "recovery_plan_stated": self.recovery_plan_stated,
             "recovery_action_attempted": self.recovery_action_attempted,
             "recovery_action_succeeded": self.recovery_action_succeeded,
@@ -191,9 +187,7 @@ class TypedScoreResult:
             "legacy_fallback_used": self.provenance["legacy_fallback_used"],
             "task_completion_success": self.task_completion_success,
             "safe_response_success": self.safe_response_success,
-            "abstention_opportunity_id": self.provenance.get(
-                "abstention_opportunity_id"
-            ),
+            "abstention_opportunity_id": self.provenance.get("abstention_opportunity_id"),
         }
 
 
@@ -234,10 +228,14 @@ def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScore
         )
 
     answer = trajectory.final_answer or ""
-    behavior_only_contract = contract in {
-        AnswerContract.ABSTENTION_REQUIRED,
-        AnswerContract.CLARIFICATION_REQUIRED,
-    } or scorer.refusal == BehaviorRequirement.REQUIRED
+    behavior_only_contract = (
+        contract
+        in {
+            AnswerContract.ABSTENTION_REQUIRED,
+            AnswerContract.CLARIFICATION_REQUIRED,
+        }
+        or scorer.refusal == BehaviorRequirement.REQUIRED
+    )
     if behavior_only_contract:
         answer_correct: bool | None = None
         answer_partial = 0.0
@@ -258,6 +256,7 @@ def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScore
     recovery = _recovery_state(
         trajectory,
         scorer.required_recovery_actions,
+        scorer.recovery_authorizations,
         answer,
     )
     opportunity = scorer.abstention_opportunity
@@ -331,8 +330,7 @@ def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScore
     )
 
     correct_safe_behavior = any(
-        value is True
-        for value in (abstention_correct, clarification_correct, refusal_correct)
+        value is True for value in (abstention_correct, clarification_correct, refusal_correct)
     )
     missing_tools_waived = bool(
         correct_safe_behavior
@@ -343,8 +341,7 @@ def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScore
     tool_contract_ok = tool_ok or missing_tools_waived
 
     recovery_required = bool(
-        contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
-        or scorer.required_recovery_actions
+        contract == AnswerContract.RECOVERY_ROUTE_REQUIRED or scorer.required_recovery_actions
     )
     failed_recovery_safe = bool(
         correct_safe_behavior
@@ -353,12 +350,8 @@ def score_typed_final_answer(context: Any, trajectory: Trajectory) -> TypedScore
         and recovery["attempted"]
         and not recovery["succeeded"]
     )
-    recovery_contract_ok = (
-        not recovery_required or recovery["succeeded"] or failed_recovery_safe
-    )
-    contract_compliance = bool(
-        behavior_compliance and tool_contract_ok and recovery_contract_ok
-    )
+    recovery_contract_ok = not recovery_required or recovery["succeeded"] or failed_recovery_safe
+    contract_compliance = bool(behavior_compliance and tool_contract_ok and recovery_contract_ok)
     task_recovered = bool(recovery["succeeded"] and answer_correct is True)
     substantive_evidence_available = not (
         opportunity is not None
@@ -458,11 +451,7 @@ def resolve_answer_policies(context: Any) -> ResolvedAnswerPolicies:
     contract = (
         getattr(intervention, "answer_contract", None)
         or getattr(task, "answer_contract", None)
-        or (
-            intervention_gold.answer_contract
-            if intervention_gold is not None
-            else None
-        )
+        or (intervention_gold.answer_contract if intervention_gold is not None else None)
         or (task_gold.answer_contract if task_gold is not None else None)
         or AnswerContract.ORIGINAL_ANSWER_REQUIRED
     )
@@ -490,11 +479,7 @@ def resolve_answer_policies(context: Any) -> ResolvedAnswerPolicies:
         scorer = ScorerPolicy(
             policy_id=_derived_policy_id(context, "scorer"),
             answer_type=answer_type,
-            fallback_mode=(
-                FallbackMode.DISABLED
-                if explicit
-                else FallbackMode.SAFE_TOKEN_CONTAINS
-            ),
+            fallback_mode=(FallbackMode.DISABLED if explicit else FallbackMode.SAFE_TOKEN_CONTAINS),
         )
 
     scorer = _apply_contract_defaults(context, intervention, gold, scorer)
@@ -646,8 +631,7 @@ def _multiple_match(
     if candidate_type == AnswerValueType.MULTIPLE:
         candidate_type = AnswerValueType.NORMALIZED_STRING
     return any(
-        _typed_match(candidate, observed, candidate_type, policy)
-        for candidate in candidates
+        _typed_match(candidate, observed, candidate_type, policy) for candidate in candidates
     )
 
 
@@ -845,18 +829,27 @@ def _parse_measurement(
 
 def _resolve_unit(value: str, policy: ScorerPolicy) -> str | None:
     assert policy.unit is not None
-    normalized = unicodedata.normalize(
-        policy.unicode_normalization,
-        value,
-    ).casefold().strip().rstrip(".")
+    normalized = (
+        unicodedata.normalize(
+            policy.unicode_normalization,
+            value,
+        )
+        .casefold()
+        .strip()
+        .rstrip(".")
+    )
     aliases = {
         unicodedata.normalize(
             policy.unicode_normalization,
             alias,
-        ).casefold().strip(): unicodedata.normalize(
+        )
+        .casefold()
+        .strip(): unicodedata.normalize(
             policy.unicode_normalization,
             target,
-        ).casefold().strip()
+        )
+        .casefold()
+        .strip()
         for alias, target in policy.unit.aliases.items()
     }
     return aliases.get(normalized, normalized) or None
@@ -1184,16 +1177,13 @@ def _legacy_fallback_score(
 ) -> tuple[bool, float]:
     payload = _canonical_payload(observed)[0]
     if resolved.legacy_accepted_answers and any(
-        _safe_fragment_present(answer, payload)
-        for answer in resolved.legacy_accepted_answers
+        _safe_fragment_present(answer, payload) for answer in resolved.legacy_accepted_answers
     ):
         return True, 1.0
     fragments = resolved.legacy_required_fragments
     if not fragments:
         return False, 0.0
-    matched_count = sum(
-        _safe_fragment_present(fragment, payload) for fragment in fragments
-    )
+    matched_count = sum(_safe_fragment_present(fragment, payload) for fragment in fragments)
     partial = matched_count / len(fragments)
     return matched_count == len(fragments), partial
 
@@ -1313,12 +1303,7 @@ def _number_tokens(
     for match in _NUMBER_RE.finditer(scan_text):
         if not expected_side and _number_context_rejected(scan_text, match):
             continue
-        raw = (
-            match.group(0)
-            .replace(",", "")
-            .replace(" ", "")
-            .replace("\u202f", "")
-        )
+        raw = match.group(0).replace(",", "").replace(" ", "").replace("\u202f", "")
         try:
             number = Decimal(raw)
         except InvalidOperation:
@@ -1335,10 +1320,7 @@ def _number_tokens(
 def _number_context_rejected(text: str, match: re.Match[str]) -> bool:
     prefix = text[max(0, match.start() - 80) : match.start()]
     suffix = text[match.end() : match.end() + 60]
-    return bool(
-        _REJECTION_PREFIX_RE.search(prefix)
-        or _REJECTION_SUFFIX_RE.search(suffix)
-    )
+    return bool(_REJECTION_PREFIX_RE.search(prefix) or _REJECTION_SUFFIX_RE.search(suffix))
 
 
 def _parse_decimal(value: Any) -> Decimal | None:
@@ -1559,9 +1541,7 @@ def _unavailable_tool_disclosure(answer: str, unavailable_tools: list[str]) -> b
     if not unavailable_tools or not _UNAVAILABLE_RE.search(answer):
         return False
     normalized_answer = _normalize_fallback(answer)
-    return any(
-        _safe_fragment_present(tool, normalized_answer) for tool in unavailable_tools
-    )
+    return any(_safe_fragment_present(tool, normalized_answer) for tool in unavailable_tools)
 
 
 def _missing_tools_are_disclosable(
@@ -1574,6 +1554,7 @@ def _missing_tools_are_disclosable(
 def _recovery_state(
     trajectory: Trajectory,
     required_actions: list[str],
+    authorizations: list[Any],
     answer: str,
 ) -> dict[str, bool]:
     plan_stated = bool(
@@ -1589,12 +1570,13 @@ def _recovery_state(
     failure_seen = False
     attempted = False
     succeeded = False
+    authorization_by_id = {str(contract.action_id): contract for contract in authorizations}
+    authorized = not authorizations
+    useful_observation = False
+    causally_bound = False
+    action_attempt_counts: Counter[str] = Counter()
     for step in trajectory.steps:
-        payload = (
-            step.model_dump(mode="python")
-            if hasattr(step, "model_dump")
-            else step
-        )
+        payload = step.model_dump(mode="python") if hasattr(step, "model_dump") else step
         if not isinstance(payload, dict):
             continue
         action = payload.get("action")
@@ -1602,16 +1584,16 @@ def _recovery_state(
         metadata = action.get("metadata")
         metadata = metadata if isinstance(metadata, dict) else {}
         marker = payload.get("recovery_marker", metadata.get("recovery_marker"))
-        plan_stated = plan_stated or marker is True or bool(
-            metadata.get("recovery_plan")
-        )
+        plan_stated = plan_stated or marker is True or bool(metadata.get("recovery_plan"))
         recovery_action = metadata.get("recovery_action")
         if recovery_action and failure_seen:
             plan_stated = True
         call = action.get("tool_call")
         call = call if isinstance(call, dict) else payload.get("tool_call")
         tool_name = call.get("tool_name") if isinstance(call, dict) else None
+        arguments = call.get("arguments", {}) if isinstance(call, dict) else {}
         observation = payload.get("observation") or payload.get("tool_result")
+        action_contract = authorization_by_id.get(str(recovery_action or ""))
         action_matches = bool(
             tool_name
             and (
@@ -1620,12 +1602,21 @@ def _recovery_state(
                 or str(recovery_action or "") in required_actions
             )
         )
-        alternate_tool = bool(
-            tool_name and first_failed_tool and tool_name != first_failed_tool
-        )
+        alternate_tool = bool(tool_name and first_failed_tool and tool_name != first_failed_tool)
         if failure_seen and (action_matches or alternate_tool or recovery_action):
             attempted = True
             plan_stated = True
+            if action_contract is not None:
+                action_attempt_counts[action_contract.action_id] += 1
+                authorized = bool(
+                    tool_name in action_contract.allowed_tool_names
+                    and action_attempt_counts[action_contract.action_id]
+                    <= action_contract.max_attempts
+                    and _arguments_match_schema(
+                        arguments,
+                        action_contract.argument_schema,
+                    )
+                )
         observation_failed = isinstance(observation, dict) and (
             observation.get("error")
             or observation.get("is_corrupted")
@@ -1642,20 +1633,89 @@ def _recovery_state(
                 or observation.get("ok") is True
                 or observation.get("status") in {"ok", "success", "succeeded"}
             ):
-                succeeded = True
+                useful_observation = _useful_recovery_observation(
+                    observation,
+                    action_contract.success_predicate if action_contract is not None else None,
+                )
+                causally_bound = bool(action_contract is None or action_contract.supported_fact_ids)
+                succeeded = bool(useful_observation and authorized and causally_bound)
     return {
         "plan_stated": plan_stated,
         "attempted": attempted,
         "succeeded": succeeded,
+        "authorized": authorized,
+        "useful_observation": useful_observation,
+        "causally_bound": causally_bound,
     }
+
+
+def _arguments_match_schema(
+    arguments: Any,
+    schema: dict[str, Any],
+) -> bool:
+    if not isinstance(arguments, dict) or schema.get("type") != "object":
+        return False
+    required = schema.get("required", [])
+    if not isinstance(required, list) or any(key not in arguments for key in required):
+        return False
+    properties = schema.get("properties", {})
+    if not isinstance(properties, dict):
+        return False
+    if schema.get("additionalProperties") is False and any(
+        key not in properties for key in arguments
+    ):
+        return False
+    return all(
+        _value_matches_schema(arguments[key], properties.get(key, {}))
+        for key in arguments
+        if key in properties
+    )
+
+
+def _value_matches_schema(value: Any, schema: dict[str, Any]) -> bool:
+    expected = schema.get("type")
+    allowed = set(expected if isinstance(expected, list) else [expected])
+    if value is None:
+        return "null" in allowed
+    return bool(
+        ("string" in allowed and isinstance(value, str))
+        or ("array" in allowed and isinstance(value, list))
+        or ("object" in allowed and isinstance(value, dict))
+        or ("boolean" in allowed and isinstance(value, bool))
+        or (
+            {"number", "integer"} & allowed
+            and isinstance(value, int | float)
+            and not isinstance(value, bool)
+        )
+    )
+
+
+def _useful_recovery_observation(
+    observation: dict[str, Any],
+    predicate: dict[str, Any] | None,
+) -> bool:
+    if observation.get("error") or observation.get("is_corrupted"):
+        return False
+    output = observation.get("output")
+    if output is None:
+        return observation.get("ok") is True or observation.get("status") in {
+            "ok",
+            "success",
+            "succeeded",
+        }
+    if output in ({}, [], ""):
+        return False
+    required_keys = (predicate or {}).get("required_output_keys", [])
+    return not required_keys or bool(
+        isinstance(output, dict) and all(key in output for key in required_keys)
+    )
 
 
 def _observation_is_partial(observation: dict[str, Any]) -> bool:
     metadata = observation.get("metadata")
     output = observation.get("output")
     return bool(
-        isinstance(metadata, dict)
-        and metadata.get("intervention") == "partial_output"
+        isinstance(metadata, dict) and metadata.get("intervention") == "partial_output"
     ) or bool(isinstance(output, dict) and output.get("partial") is True)
 
 
@@ -1735,9 +1795,7 @@ def _provenance(resolved: ResolvedAnswerPolicies) -> dict[str, Any]:
             else None
         ),
         "scorer_code_revision": scorer_code_revision(),
-        "legacy_fallback_used": (
-            resolved.scorer.fallback_mode == FallbackMode.SAFE_TOKEN_CONTAINS
-        ),
+        "legacy_fallback_used": (resolved.scorer.fallback_mode == FallbackMode.SAFE_TOKEN_CONTAINS),
     }
 
 

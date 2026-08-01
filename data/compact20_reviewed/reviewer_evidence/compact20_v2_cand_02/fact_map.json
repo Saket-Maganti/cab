@@ -1,0 +1,24 @@
+{
+  "candidate_id": "compact20_v2_cand_02",
+  "mappings": [
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "file_spreadsheet_qa_hard_025.fact.01",
+      "output_sha256": "360362974d0a0837837f896a549afec13bf297207951c0494fef96c893b772db",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "72a5a584197e5170a5b55fba87cc0c31"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "fact_id": "file_spreadsheet_qa_hard_025.fact.02",
+      "output_sha256": "46a294e3007b9f57698a4225336b235823ddbf15394e722a5c8563b9e47489df",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "eaad173fa85915302ea9e9862051a022"
+    }
+  ],
+  "required_fact_ids": [
+    "file_spreadsheet_qa_hard_025.fact.01",
+    "file_spreadsheet_qa_hard_025.fact.02"
+  ],
+  "schema_version": "cab_fact_evidence_map_v1"
+}

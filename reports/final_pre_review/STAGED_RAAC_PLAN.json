@@ -1,0 +1,77 @@
+{
+  "comparison_unit": "within_model_paired_base_task",
+  "full_81000_trajectory_run_is_immediate_default": false,
+  "full_run_requires_new_decision_and_receipt": true,
+  "plan_hash": "952276c9914f02c78d0eef71f8f7ee7b33efdf2d9e55bf7fe5ef47a913e51cec",
+  "schema_version": "cab_staged_raac_execution_plan_v1",
+  "scientific_execution_performed": false,
+  "status": "CAB_SMOKE_CALIBRATION_AND_STAGED_RAAC_PLAN_READY",
+  "waves": [
+    {
+      "continue_when": [
+        "zero integrity failures",
+        "zero merge mismatches"
+      ],
+      "maximum_trajectories": 36,
+      "requires": [
+        "all static and executable final-pre-review gates pass"
+      ],
+      "scope": "provider-free deterministic fixtures",
+      "stop_when": [
+        "any silent corruption",
+        "any manifest mismatch"
+      ],
+      "wave": "A"
+    },
+    {
+      "continue_when": [
+        "failure rate <= 5%",
+        "resource interval finite"
+      ],
+      "maximum_trajectories": 72,
+      "requires": [
+        "cryptographic scientific approval",
+        "Wave A pass"
+      ],
+      "scope": "approved live smoke, one model within model",
+      "stop_when": [
+        "approval invalid",
+        "p90 runtime exceeds budget"
+      ],
+      "wave": "B"
+    },
+    {
+      "continue_when": [
+        "no scorer drift",
+        "no safety regression"
+      ],
+      "maximum_trajectories": 432,
+      "requires": [
+        "Wave B calibrated",
+        "human C10 passed"
+      ],
+      "scope": "Compact-20 staged RAAC within model",
+      "stop_when": [
+        "false-abstention regression",
+        "ranking unstable beyond plan"
+      ],
+      "wave": "C"
+    },
+    {
+      "continue_when": [
+        "predeclared precision and integrity gates pass"
+      ],
+      "maximum_trajectories": 8100,
+      "requires": [
+        "Wave C pass",
+        "renewed content-bound approval"
+      ],
+      "scope": "Scale confirmatory staged expansion",
+      "stop_when": [
+        "missingness > 10%",
+        "budget or power assumptions invalidated"
+      ],
+      "wave": "D"
+    }
+  ]
+}

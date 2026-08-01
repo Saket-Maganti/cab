@@ -1,0 +1,28 @@
+{
+  "base_task_id": "coding_debugging_stress_006",
+  "candidate_id": "compact20_v2_cand_12",
+  "empirical_evidence": false,
+  "facts": [
+    {
+      "fact_id": "coding_debugging_stress_006.fact.01",
+      "label": "retry helper code",
+      "source_key": "bad_expression",
+      "value": "max_retries + 1"
+    },
+    {
+      "fact_id": "coding_debugging_stress_006.fact.02",
+      "label": "issue note",
+      "source_key": "bug_type",
+      "value": "off_by_one"
+    }
+  ],
+  "gold_derivation_inputs": {
+    "bad_expression": "max_retries + 1",
+    "bug_type": "off_by_one",
+    "public_domain": "coding_debugging",
+    "template_domain": "coding_debugging",
+    "variant": 6
+  },
+  "schema_version": "cab_controlled_evidence_artifact_v1",
+  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE"
+}

@@ -12,6 +12,7 @@ from causal_agent_bench.answer_contracts import (
     FallbackMode,
     GoldAnswerPolicy,
     PermittedResponseType,
+    RecoveryActionContract,
     ScorerPolicy,
 )
 from causal_agent_bench.hashing import stable_hash
@@ -21,9 +22,7 @@ POLICY_VERSION = "cab_answer_policy_v3"
 
 _CLARIFICATION_FAMILIES = frozenset({"ambiguous_instruction"})
 _RECOVERY_FAMILIES = frozenset({"tool_failure", "web_broken_link"})
-_UNCERTAINTY_FAMILIES = frozenset(
-    {"tool_removal", "observation_conflict", "web_conflicting_page"}
-)
+_UNCERTAINTY_FAMILIES = frozenset({"tool_removal", "observation_conflict", "web_conflicting_page"})
 
 
 def attach_base_task_policies(
@@ -139,8 +138,7 @@ def attach_intervention_policies(
         },
     )
     removed_tools = [
-        str(value)
-        for value in intervention.tool_availability_patch.get("removed_tools", [])
+        str(value) for value in intervention.tool_availability_patch.get("removed_tools", [])
     ]
     required_tools = list(
         (base_task.scorer_policy.required_tools if base_task.scorer_policy else None)
@@ -151,15 +149,18 @@ def attach_intervention_policies(
     if contract == AnswerContract.CLARIFICATION_REQUIRED:
         required_tools = []
     elif removed_tools:
-        required_tools = [
-            tool for tool in required_tools if tool not in set(removed_tools)
-        ]
+        required_tools = [tool for tool in required_tools if tool not in set(removed_tools)]
 
     opportunity = _abstention_opportunity(
         base_task,
         intervention,
         contract,
         removed_tools=removed_tools,
+    )
+    recovery_authorizations = _recovery_authorizations(
+        base_task,
+        intervention,
+        contract,
     )
     scorer = ScorerPolicy(
         policy_id=f"{intervention.intervention_id}.scorer.v3",
@@ -181,10 +182,11 @@ def attach_intervention_policies(
         ),
         required_tools=required_tools,
         required_recovery_actions=(
-            list(intervention.valid_recovery_routes)
+            [authorization.action_id for authorization in recovery_authorizations]
             if contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
             else []
         ),
+        recovery_authorizations=recovery_authorizations,
         unavailable_tool_disclosure=(
             BehaviorRequirement.ACCEPTED
             if removed_tools or contract == AnswerContract.RECOVERY_ROUTE_REQUIRED
@@ -202,9 +204,7 @@ def attach_intervention_policies(
         abstention_opportunity=opportunity,
         metadata={"policy_version": POLICY_VERSION},
     )
-    acceptable_abstention_conditions = list(
-        intervention.acceptable_abstention_conditions
-    )
+    acceptable_abstention_conditions = list(intervention.acceptable_abstention_conditions)
     if (
         contract == AnswerContract.QUALIFIED_UNCERTAINTY_ACCEPTED
         and not acceptable_abstention_conditions
@@ -253,8 +253,7 @@ def attach_intervention_policies(
             or intervention.instruction_patch
         ),
         "tool_mutation": bool(
-            intervention.tool_availability_patch
-            or intervention.tool_output_patch
+            intervention.tool_availability_patch or intervention.tool_output_patch
         ),
         "observation_mutation": bool(intervention.tool_output_patch),
         "memory_mutation": bool(intervention.memory_patch),
@@ -283,6 +282,82 @@ def attach_intervention_policies(
             }
         }
     )
+
+
+def _recovery_authorizations(
+    base_task: BaseTask,
+    intervention: InterventionSpec,
+    contract: AnswerContract,
+) -> list[RecoveryActionContract]:
+    if contract != AnswerContract.RECOVERY_ROUTE_REQUIRED:
+        return []
+    routes = list(intervention.valid_recovery_routes)
+    if not routes:
+        return []
+    facts = list(
+        base_task.goal.required_information
+        or base_task.expected_evidence
+        or base_task.goal.success_criteria
+    )
+    fact_ids = [f"{base_task.task_id}.fact.{index:02d}" for index, _ in enumerate(facts, 1)]
+    target_tool = str(intervention.tool_output_patch.get("target_tool") or "")
+    contracts: list[RecoveryActionContract] = []
+    for index, tool_name in enumerate(routes, 1):
+        contracts.append(
+            RecoveryActionContract(
+                action_id=(f"{intervention.intervention_id}.recovery.{index:02d}"),
+                action_type="tool_call",
+                allowed_tool_names=[tool_name],
+                argument_schema=_tool_argument_schema(tool_name),
+                preconditions=[
+                    "prior_tool_failure_observed",
+                    f"failed_tool:{target_tool}",
+                ],
+                failure_types=[
+                    "simulated_tool_failure",
+                    "tool_failure",
+                    "timeout",
+                    "tool_unavailable",
+                ],
+                success_predicate={
+                    "kind": "nonempty_error_free_observation",
+                    "causal_fact_ids_required": fact_ids,
+                    "required_output_keys": _tool_output_keys(tool_name),
+                },
+                supported_fact_ids=fact_ids,
+                max_attempts=1,
+                cost=1.0,
+                terminal=False,
+            )
+        )
+    return contracts
+
+
+def _tool_argument_schema(tool_name: str) -> dict[str, Any]:
+    """Return the canonical local-tool schema without constructing a registry."""
+
+    from causal_agent_bench.tools.simulated import build_simulated_tools
+
+    schemas = {
+        tool.name: {**tool.input_schema, "additionalProperties": False}
+        for tool in build_simulated_tools()
+    }
+    return schemas.get(
+        tool_name,
+        {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": False,
+        },
+    )
+
+
+def _tool_output_keys(tool_name: str) -> list[str]:
+    from causal_agent_bench.tools.simulated import build_simulated_tools
+
+    schemas = {tool.name: tool.output_schema for tool in build_simulated_tools()}
+    required = schemas.get(tool_name, {}).get("required", [])
+    return [str(value) for value in required]
 
 
 def intervention_answer_contract(
@@ -341,9 +416,7 @@ def _abstention_opportunity(
         unavailable_required_tools=sorted(set(unavailable_tools)),
         unavailable_required_artifacts=[],
         another_route_exists=False,
-        clarification_possible=(
-            contract == AnswerContract.CLARIFICATION_REQUIRED
-        ),
+        clarification_possible=(contract == AnswerContract.CLARIFICATION_REQUIRED),
         recovery_possible=(contract == AnswerContract.RECOVERY_ROUTE_REQUIRED),
         permitted_response_types=permitted,
     )
@@ -357,9 +430,7 @@ def infer_answer_type(value: Any) -> AnswerValueType:
     if isinstance(value, list):
         return AnswerValueType.ORDERED_COLLECTION
     if isinstance(value, dict):
-        if {"min", "max"}.issubset(value) or {"lower", "upper"}.issubset(
-            value
-        ):
+        if {"min", "max"}.issubset(value) or {"lower", "upper"}.issubset(value):
             return AnswerValueType.RANGE
         return AnswerValueType.JSON
     return AnswerValueType.NORMALIZED_STRING
@@ -378,9 +449,7 @@ def infer_output_schema(value: Any) -> dict[str, Any]:
         return {"type": "string"}
     if isinstance(value, list):
         item_schemas = [infer_output_schema(item) for item in value]
-        unique = {
-            stable_hash(schema, length=64): schema for schema in item_schemas
-        }
+        unique = {stable_hash(schema, length=64): schema for schema in item_schemas}
         items: dict[str, Any]
         if not unique:
             items = {}

@@ -1,0 +1,150 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 724,
+      "mime_type": "application/json",
+      "path": "clean_fixture.json",
+      "sha256": "47f238a65f1bb7abd8e68600923f91ac4a486fe7b4db0edfbf7194e93a8b2797"
+    },
+    {
+      "bytes": 806,
+      "mime_type": "application/json",
+      "path": "controlled_evidence.json",
+      "sha256": "0657ae5c68f434458d73817dc037080c8e71746d9f315d89eed038a3ccc35991"
+    },
+    {
+      "bytes": 838,
+      "mime_type": "application/json",
+      "path": "fact_map.json",
+      "sha256": "41a8ceed08abf7e84668d57715f47871e27a5344afd5a61f8e61e6dbbe3f2215"
+    },
+    {
+      "bytes": 548,
+      "mime_type": "application/json",
+      "path": "gold_derivation.json",
+      "sha256": "f644227d9a33ccda07a278eaf5b03072e6ae657b2d9e330d687d82d309e0b9c6"
+    },
+    {
+      "bytes": 1353,
+      "mime_type": "application/json",
+      "path": "intervention_fixture.json",
+      "sha256": "04481a0965d86837ba4c28e551464176895ca729dc4db2be17df2adf09398e67"
+    },
+    {
+      "bytes": 539,
+      "mime_type": "application/json",
+      "path": "intervention_isolation.json",
+      "sha256": "8b1a86b8f997dbb4cc82f299c275bbc080c1651ff64804752523493f4b345613"
+    },
+    {
+      "bytes": 2733,
+      "mime_type": "application/json",
+      "path": "tool_contracts.json",
+      "sha256": "5bd3afbbb83c7caa085e4873bb5f7d8dbb567af961835d48952a0ef0b70eaa06"
+    },
+    {
+      "bytes": 1329,
+      "mime_type": "application/json",
+      "path": "tool_transcripts.json",
+      "sha256": "9878996c5c66a0a30f0f349817d09ab7356aeb7a5b7b7f32314fc060348da413"
+    }
+  ],
+  "base_task_id": "shopping_comparison_easy_012",
+  "bundle_hash": "ad1592798d1a8491d2adea1c043aeb840b3f548cc3d00703ada74937fb61c97b",
+  "candidate_id": "compact20_v2_cand_08",
+  "clean_gold_derivation_file": "gold_derivation.json",
+  "clean_instance_id": "shopping_comparison_easy_012.clean",
+  "evidence_class": "CONTROLLED_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "fact_mapping_file": "fact_map.json",
+  "intervention_family": "tool_failure",
+  "intervention_instance_id": "shopping_comparison_easy_012.tool_failure",
+  "intervention_routes": [
+    {
+      "action_ids": [
+        "shopping_comparison_easy_012.tool_failure.recovery.01"
+      ],
+      "kind": "recovery",
+      "valid_response": "substantive answer after useful authorized observation"
+    }
+  ],
+  "invariants": [
+    "user goal",
+    "tool availability",
+    "hidden ground truth",
+    "success criteria"
+  ],
+  "manipulation": {
+    "changed_factor": "tool reliability",
+    "changed_fields": [
+      "tool_output_or_observation"
+    ],
+    "target_factor": "tool reliability"
+  },
+  "recovery_authorizations": [
+    {
+      "action_id": "shopping_comparison_easy_012.tool_failure.recovery.01",
+      "action_type": "tool_call",
+      "allowed_tool_names": [
+        "calculate_price"
+      ],
+      "argument_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "constraints": {
+            "type": "object"
+          },
+          "items": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "type": "object"
+      },
+      "cost": 1.0,
+      "failure_types": [
+        "simulated_tool_failure",
+        "tool_failure",
+        "timeout",
+        "tool_unavailable"
+      ],
+      "max_attempts": 1,
+      "preconditions": [
+        "prior_tool_failure_observed",
+        "failed_tool:compare_options"
+      ],
+      "success_predicate": {
+        "causal_fact_ids_required": [
+          "shopping_comparison_easy_012.fact.01",
+          "shopping_comparison_easy_012.fact.02"
+        ],
+        "kind": "nonempty_error_free_observation",
+        "required_output_keys": [
+          "total",
+          "currency",
+          "breakdown"
+        ]
+      },
+      "supported_fact_ids": [
+        "shopping_comparison_easy_012.fact.01",
+        "shopping_comparison_easy_012.fact.02"
+      ],
+      "terminal": false
+    }
+  ],
+  "redactions": {
+    "model_identity_absent": true,
+    "model_output_absent": true,
+    "reviewer_identity_absent": true,
+    "secrets_absent": true
+  },
+  "required_fact_ids": [
+    "shopping_comparison_easy_012.fact.01",
+    "shopping_comparison_easy_012.fact.02"
+  ],
+  "schema_version": "cab_reviewer_evidence_bundle_v1",
+  "scientific_execution_performed": false,
+  "tool_contract_file": "tool_contracts.json",
+  "tool_transcript_file": "tool_transcripts.json"
+}

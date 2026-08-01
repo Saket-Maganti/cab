@@ -1,0 +1,47 @@
+{
+  "available_tools": [
+    "read_file",
+    "search_database",
+    "verify_fact",
+    "query_spreadsheet",
+    "lookup_policy",
+    "compare_options"
+  ],
+  "base_task_id": "coding_debugging_stress_006",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "coding_debugging_stress_006.observation_conflict",
+  "intervention": {
+    "changed_factor": "observation consistency",
+    "description": "Insert a conflicting observation into a controlled tool response.",
+    "family": "observation_conflict",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "underlying ground truth",
+      "success criteria"
+    ],
+    "target_factor": "observation consistency",
+    "tool_availability_patch": {},
+    "tool_output_patch": {
+      "conflicting_observation": {
+        "source_a": "approved",
+        "source_b": "denied"
+      },
+      "target_tool": "read_file"
+    }
+  },
+  "required_information": [
+    "retry helper code",
+    "issue note"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "c2f93929a235978966fac64cd15ac449f8c94ca7b1127715b1c35eb40432349a",
+  "success_criteria": [
+    "Identifies the off-by-one retry bug.",
+    "References max_retries + 1."
+  ],
+  "user_instruction": "Read the retry helper and issue note, then identify the bug. Handle multiple constraints and explicitly note any conflicting evidence. Synthetic variant 6."
+}

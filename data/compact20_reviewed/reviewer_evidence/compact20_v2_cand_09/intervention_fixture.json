@@ -1,0 +1,51 @@
+{
+  "available_tools": [
+    "check_calendar",
+    "lookup_policy",
+    "query_spreadsheet",
+    "compare_options",
+    "send_email_draft",
+    "verify_fact"
+  ],
+  "base_task_id": "operations_planning_stress_015",
+  "condition": "intervention",
+  "initial_memory": {},
+  "instance_id": "operations_planning_stress_015.tool_failure",
+  "intervention": {
+    "changed_factor": "tool reliability",
+    "description": "Force a useful tool to return a deterministic error.",
+    "family": "tool_failure",
+    "instruction_patch": null,
+    "memory_patch": {},
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "hidden ground truth",
+      "success criteria"
+    ],
+    "target_factor": "tool reliability",
+    "tool_availability_patch": {},
+    "tool_output_patch": {
+      "error": "simulated_tool_failure",
+      "partial_output": {
+        "message": "deterministic simulated failure"
+      },
+      "target_tool": "check_calendar"
+    }
+  },
+  "required_information": [
+    "availability",
+    "vendor policy",
+    "vendor score",
+    "email recipient"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "4a379bdeb3054a92c49b37750a83ba19c87651dabffaa441f7ddf37c4500c0f2",
+  "success_criteria": [
+    "Uses availability information.",
+    "Applies vendor policy constraints.",
+    "Chooses the best vendor.",
+    "Drafts the follow-up email."
+  ],
+  "user_instruction": "Plan a compliant vendor follow-up: check availability, policy constraints, choose the best vendor, and draft the email. Handle multiple constraints and explicitly note any conflicting evidence. Synthetic variant 15."
+}

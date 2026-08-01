@@ -1,0 +1,45 @@
+{
+  "available_tools": [
+    "check_calendar",
+    "send_email_draft",
+    "verify_fact"
+  ],
+  "base_task_id": "calendar_email_workflow_medium_019",
+  "condition": "intervention",
+  "initial_memory": {
+    "is_corrupted": true,
+    "stale_memory": "Previous run said the old answer was correct."
+  },
+  "instance_id": "calendar_email_workflow_medium_019.memory_corruption",
+  "intervention": {
+    "changed_factor": "memory correctness",
+    "description": "Inject stale or incorrect initial memory.",
+    "family": "memory_corruption",
+    "instruction_patch": null,
+    "memory_patch": {
+      "is_corrupted": true,
+      "stale_memory": "Previous run said the old answer was correct."
+    },
+    "non_target_factors": [
+      "user goal",
+      "tool availability",
+      "hidden ground truth",
+      "success criteria"
+    ],
+    "target_factor": "memory correctness",
+    "tool_availability_patch": {},
+    "tool_output_patch": {}
+  },
+  "required_information": [
+    "calendar events",
+    "open afternoon slot",
+    "recipient"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "605eafffc7f9979b09c5beb70d0bef7ab69ece783ca6a8e834aa7b8195d69356",
+  "success_criteria": [
+    "Identifies the first open afternoon slot.",
+    "Creates only a draft email."
+  ],
+  "user_instruction": "Check Mina's calendar on 2026-06-03 and draft an email proposing the first open afternoon slot. Use the available tools before answering. Synthetic variant 19."
+}

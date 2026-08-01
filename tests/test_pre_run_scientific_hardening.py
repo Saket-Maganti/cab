@@ -137,9 +137,9 @@ def test_power_simulation_is_seeded_prospective_and_recommends_more_tasks() -> N
     assert "unique base tasks" in first["recommendation"]
     task_gain = first["value_of_more_tasks_vs_repeats"][2]
     repeat_gain = first["value_of_more_tasks_vs_repeats"][1]
-    assert task_gain["minimum_detectable_degradation"] < repeat_gain[
-        "minimum_detectable_degradation"
-    ]
+    assert (
+        task_gain["minimum_detectable_degradation"] < repeat_gain["minimum_detectable_degradation"]
+    )
 
 
 def test_system_identity_requires_hashes_and_labels_adapter_changes() -> None:
@@ -243,15 +243,16 @@ def test_obsolete_and_unapproved_scientific_paths_fail_closed() -> None:
         scientific_evidence=True,
         scientific_evidence_level="main_supported",
     )
-    with pytest.raises(ValueError, match="UNAPPROVED_V2_SCIENTIFIC_PATH"):
+    with pytest.raises(ValueError, match="CRYPTOGRAPHIC_APPROVAL_REQUIRED"):
         assert_canonical_scientific_execution_path(
             scientific,
             "private_data/scale100_confirmatory_v2/candidate_tasks.jsonl",
         )
-    assert_canonical_scientific_execution_path(
-        scientific,
-        "private_data/approved/scale100_confirmatory_v2/approved_materialized_bundle/instances.jsonl",
-    )
+    with pytest.raises(ValueError, match="CRYPTOGRAPHIC_APPROVAL_REQUIRED"):
+        assert_canonical_scientific_execution_path(
+            scientific,
+            "private_data/approved/scale100_confirmatory_v2/approved_materialized_bundle/instances.jsonl",
+        )
 
 
 def test_repository_pre_run_gate_passes_without_empirical_evidence() -> None:

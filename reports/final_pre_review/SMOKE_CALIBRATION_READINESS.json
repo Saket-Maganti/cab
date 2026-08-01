@@ -1,0 +1,139 @@
+{
+  "assumptions": {
+    "classification": "ASSUMPTION_BASED_PRE_SMOKE_PROJECTION",
+    "source": "configs/pre_run/study_execution_manifests.json"
+  },
+  "exact_manifest_counts": {
+    "compact20": {
+      "clean_instances": 16,
+      "family_count": 4,
+      "instance_count": 36,
+      "intervention_instances": 20,
+      "models": 3,
+      "policies": 1,
+      "repeats": 2,
+      "rerun_reserve_trajectories": 0,
+      "seeds": 2,
+      "tasks": 16,
+      "total_trajectories": 216,
+      "trajectories_without_reserve": 216
+    },
+    "compact20_raac_light": {
+      "clean_instances": 16,
+      "family_count": 4,
+      "instance_count": 36,
+      "intervention_instances": 20,
+      "models": 3,
+      "policies": 2,
+      "repeats": 2,
+      "rerun_reserve_trajectories": 0,
+      "seeds": 2,
+      "tasks": 16,
+      "total_trajectories": 432,
+      "trajectories_without_reserve": 432
+    },
+    "raac_ablations": {
+      "clean_instances": 100,
+      "family_count": 10,
+      "instance_count": 600,
+      "intervention_instances": 500,
+      "models": 5,
+      "policies": 9,
+      "repeats": 3,
+      "rerun_reserve_trajectories": 0,
+      "seeds": 3,
+      "tasks": 100,
+      "total_trajectories": 81000,
+      "trajectories_without_reserve": 81000
+    },
+    "raac_equal_budget": {
+      "clean_instances": 100,
+      "family_count": 10,
+      "instance_count": 600,
+      "intervention_instances": 500,
+      "models": 5,
+      "policies": 2,
+      "repeats": 3,
+      "rerun_reserve_trajectories": 0,
+      "seeds": 3,
+      "tasks": 100,
+      "total_trajectories": 18000,
+      "trajectories_without_reserve": 18000
+    },
+    "scale100": {
+      "clean_instances": 100,
+      "family_count": 10,
+      "instance_count": 600,
+      "intervention_instances": 500,
+      "models": 5,
+      "policies": 1,
+      "repeats": 3,
+      "rerun_reserve_trajectories": 0,
+      "seeds": 3,
+      "tasks": 100,
+      "total_trajectories": 9000,
+      "trajectories_without_reserve": 9000
+    },
+    "scale100_raac_light": {
+      "clean_instances": 100,
+      "family_count": 10,
+      "instance_count": 600,
+      "intervention_instances": 500,
+      "models": 5,
+      "policies": 2,
+      "repeats": 3,
+      "rerun_reserve_trajectories": 0,
+      "seeds": 3,
+      "tasks": 100,
+      "total_trajectories": 18000,
+      "trajectories_without_reserve": 18000
+    },
+    "transfer": {
+      "clean_instances": 60,
+      "family_count": 10,
+      "instance_count": 360,
+      "intervention_instances": 300,
+      "models": 5,
+      "policies": 1,
+      "repeats": 3,
+      "rerun_reserve_trajectories": 0,
+      "seeds": 3,
+      "tasks": 60,
+      "total_trajectories": 5400,
+      "trajectories_without_reserve": 5400
+    }
+  },
+  "fixture_measurements": {
+    "available": true,
+    "classification": "FIXTURE_MEASUREMENT_NOT_LIVE_PERFORMANCE"
+  },
+  "full_measurements": {
+    "available": false,
+    "classification": "LIVE_EVIDENCE_REQUIRED"
+  },
+  "future_summary_fields": [
+    "median_latency_seconds",
+    "p90_latency_seconds",
+    "latency_confidence_interval",
+    "system_throughput_trajectories_per_hour",
+    "shard_count",
+    "storage_bytes",
+    "failure_counts",
+    "kaggle_runtime_seconds",
+    "cpu_merge_scoring_seconds"
+  ],
+  "gpu_runtime_label": "ASSUMPTION_BASED_PRE_SMOKE_PROJECTION",
+  "live_smoke_measurements": {
+    "available": false,
+    "classification": "LIVE_SMOKE_REQUIRED",
+    "ingestion_schema": "reports/final_pre_review/SMOKE_MEASUREMENT_SCHEMA.json"
+  },
+  "projected_intervals": {
+    "allowed_before_smoke": false,
+    "method_after_smoke": "cluster bootstrap by base task and shard"
+  },
+  "readiness_hash": "a5c39ac122f6865a3ff1e9c21f1780d3393a021a273f1be8f3c4444e38d3b3b3",
+  "schema_version": "cab_smoke_calibration_readiness_v1",
+  "scientific_execution_performed": false,
+  "status": "CAB_SMOKE_CALIBRATION_AND_STAGED_RAAC_PLAN_READY"
+}

@@ -1,0 +1,41 @@
+{
+  "base_task_id": "operations_planning_medium_021",
+  "candidate_id": "compact20_v2_cand_15",
+  "empirical_evidence": false,
+  "facts": [
+    {
+      "fact_id": "operations_planning_medium_021.fact.01",
+      "label": "availability",
+      "source_key": "policy",
+      "value": "security addendum"
+    },
+    {
+      "fact_id": "operations_planning_medium_021.fact.02",
+      "label": "vendor policy",
+      "source_key": "time",
+      "value": "11:00"
+    },
+    {
+      "fact_id": "operations_planning_medium_021.fact.03",
+      "label": "vendor score",
+      "source_key": "vendor",
+      "value": "vendor_beta"
+    },
+    {
+      "fact_id": "operations_planning_medium_021.fact.04",
+      "label": "email recipient",
+      "source_key": "policy",
+      "value": "security addendum"
+    }
+  ],
+  "gold_derivation_inputs": {
+    "policy": "security addendum",
+    "public_domain": "operations_planning",
+    "template_domain": "multi_hop_operations",
+    "time": "11:00",
+    "variant": 21,
+    "vendor": "vendor_beta"
+  },
+  "schema_version": "cab_controlled_evidence_artifact_v1",
+  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE"
+}

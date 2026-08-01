@@ -1,0 +1,24 @@
+{
+  "available_tools": [
+    "search_database",
+    "compare_options",
+    "calculate_price"
+  ],
+  "base_task_id": "travel_planning_easy_026",
+  "condition": "clean",
+  "initial_memory": {},
+  "instance_id": "travel_planning_easy_026.clean",
+  "intervention": null,
+  "required_information": [
+    "hotel refundability",
+    "hotel price",
+    "tax rate"
+  ],
+  "schema_version": "cab_review_fixture_snapshot_v1",
+  "snapshot_hash": "35f3404903547568984a65047a3cd6d63446719b6336699f5b4b405810dfd1fc",
+  "success_criteria": [
+    "Names the selected refundable hotel option.",
+    "Includes the correct total price with tax."
+  ],
+  "user_instruction": "Find the best refundable Boston hotel option under the stated constraints and report the option id and total price. Keep the answer concise. Synthetic variant 26."
+}
