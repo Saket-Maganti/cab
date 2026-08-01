@@ -29,7 +29,7 @@ Provider/model calls performed: `0`
 | Clean import | fresh venv, wheel installed with `--no-deps` | PASS — package version 0.1.0 |
 | CLI smoke | `python3 -m causal_agent_bench --help` | PASS |
 | Release dry run | `python3 scripts/release_dry_run.py --skip-tests` | PASS — release and draft camera-ready precheck; full tests recorded separately above |
-| Release inventory | `python3 scripts/release_check.py` | PASS — 745 files; bundle hash `82604e560b4cdbff33b892718c0fc20bdccb43a7fef606af37ecb3f4ad117c2f` |
+| Release inventory | `python3 scripts/release_check.py` | PASS — 745 files; bundle hash `0a0fdc6eda105986eab68933fba1eb33ca405d29247b2295035b0f60e6ebd043` |
 
 The first full-suite attempt exposed seven stale integration references in the
 legacy split registry, release inventory, Compact manipulation fixture, and

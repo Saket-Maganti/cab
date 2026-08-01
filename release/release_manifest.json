@@ -448,7 +448,7 @@
     "scripts/build_compact20_v2.py": "37a9fc389dbcc182d39565afd0fcafcac55fc3885e0654ceff8a74977ad07e95",
     "scripts/build_kaggle_notebooks.py": "fe8e14d81f518b704ef05522b4d33277236584d64c72f9d7ef6c67bbfd8c6ec8",
     "scripts/build_power_precision_reports.py": "b3709d870e4189be6cfc920caef5b32b00eaf1f227eed58657e75d89237499aa",
-    "scripts/build_pre_run_hardening_reports.py": "40508210c32702af95cad13d456fabb25f86afbfb6782f2bb71c2cdc392b3847",
+    "scripts/build_pre_run_hardening_reports.py": "e2f0466f142588bf661161fc4229acdd7cd442558a15ba70e0b4349dd7bc8e70",
     "scripts/build_protected_heldout_exposure_inventory.py": "bf5277a3890f89931b4f8f7b9f2d12b90f5f94fe07523605b7994ccd9ce72530",
     "scripts/build_release_manifest.py": "d6226f9dd03db97f3bf54db3746d0ea3cfdd823ca5beee38a0bb8ed139c347b1",
     "scripts/build_system_identity_manifest.py": "351af888d56c9755bfbdb650ec42b9b6cb66ab3c9aee44794e913c560652c578",
@@ -459,7 +459,7 @@
     "scripts/check_bibliography.py": "96a5a32eee5f46781bb6b4434cdfee35286490d1c9199d1d242c46c8caa21d3c",
     "scripts/check_citation_todos.py": "6022a54b452591f44ef73754930dd2c928371536ef2cf1eae70237ce28d807ec"
   },
-  "generated_at": "2026-08-01T09:43:27.408043+00:00",
+  "generated_at": "2026-08-01T09:51:56.795772+00:00",
   "inventory_file_count": 745,
   "inventory_policy": {
     "categories": {
@@ -569,11 +569,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "82604e560b4cdbff33b892718c0fc20bdccb43a7fef606af37ecb3f4ad117c2f",
+  "release_bundle_hash": "0a0fdc6eda105986eab68933fba1eb33ca405d29247b2295035b0f60e6ebd043",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "c8b0d008a02f4bcc36a24635a1357d4210e073fd",
+    "git_commit": "9f773f36639fa0d584362a63be4a6e116cbef2b0",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
