@@ -1,24 +1,31 @@
 # CAB Current Project State
 
 **Authority:** this is the sole current top-level state and next-action guide.
-**State:** `CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE`
+**State:** `CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE`
+**Review packet:** `COMPACT20_REVIEW_PACKET_EVIDENCE_VERIFIABLE`
 **External gates:** `HUMAN_VALIDATION_REQUIRED`, `LIVE_EVIDENCE_REQUIRED`
 **Scientific execution during this pass:** none
-**Hardening baseline SHA:** `c8b0d008a02f4bcc36a24635a1357d4210e073fd`
+**Final pre-review baseline SHA:** `715d981cf68eb2741dd6e05b097b08445f87accf`
 **Publication SHA:** recorded after the direct-main push in
 `reports/pre_run_hardening/CAB_PRE_RUN_GITHUB_PUBLISH.md` and in the release
 handoff; a commit cannot truthfully contain its own future hash.
 
 ## Platform state
 
-The provider-free benchmark, validation, review-packet, deterministic planning,
+The provider-free benchmark, validation, two-stage review packet, deterministic planning,
 Kaggle fixture, packaging, and release surfaces are implemented. Scientific
 scoring is frozen at `cab_typed_final_answer` version `3.0.0`. Completion, safe
 response, compliance, typed abstention, clarification, refusal, disclosure,
-and the four recovery states are separate. The one-command static gate is:
+and the four recovery states are separate. Final pre-review gates are:
 
 ```bash
-cab pre-run scientific-check
+cab benchmark static-reachability-check
+cab benchmark executable-reachability-check
+cab benchmark gold-reconstruction-check
+cab benchmark intervention-isolation-check
+cab approval verify --fixture
+cab power validate
+cab final-pre-review check
 ```
 
 This state is readiness to begin genuine review, not empirical completion.
@@ -28,15 +35,27 @@ This state is readiness to begin genuine review, not empirical completion.
 - Endpoints are frozen in `configs/pre_run/frozen_endpoints.json`.
 - Compact-20 is a regenerated v2 pre-review packet with 20 items, four current
   families × five items, 16 unique base tasks, and four deliberate anchors.
-- All 20 Compact interventions pass deterministic evidence-route reachability.
+- All 20 Compact interventions have inspectable controlled evidence bundles and
+  pass both static policy reachability and executable environment reachability;
+  gold reconstructs 20/20 with zero unsupported facts or unexplained changes.
+- Human review is immutable and two-stage. Stage 1 excludes gold, intended
+  routes, and scorers; Stage 2 remains locked until a completed Stage-1 CSV hash
+  is frozen. The canonical packet contains zero human judgments.
+- Recovery authorization v4 binds exact post-failure actions, argument schemas,
+  success predicates, causal facts, attempt budgets, and costs.
 - Scale-100 v2 and transfer v2 use deterministic constrained family rotation;
   all family × difficulty cells are populated and both documented association
   thresholds pass.
 - V2 is the sole future scientific execution path. Private candidate → genuine
-  review → adjudication → C10 → approved materialization → public commitment →
-  bound execution manifest → run → import → audit is mandatory.
-- Power assumptions are prospective and frozen before outcomes. Compact-20 is
-  a validation/pilot tier; Scale-100 is the confirmatory tier after human gates.
+  two-stage review → adjudication → C10 → content-bound cryptographic receipt →
+  bound execution manifest → run → import → audit is mandatory. An
+  approved-looking directory or Boolean never authorizes execution.
+- Power assumptions are prospective and frozen before outcomes. Models are
+  hierarchical factors, not independent task replicates. Compact-20 is a
+  validation/pilot tier; Scale-100 is confirmatory only after human gates.
+- GPU/resource projections remain `ASSUMPTION_BASED_PRE_SMOKE_PROJECTION`.
+  RAAC is staged through Waves A–D; the full 81,000-trajectory design is not the
+  immediate default.
 - Every scientific run must bind the full evaluated system identity, including
   both model and adapter hashes. Native tool calling is a secondary ablation.
 - Transfer is named `artifact_rich_synthetic_transfer`. Its heterogeneous files
@@ -62,8 +81,9 @@ This state is readiness to begin genuine review, not empirical completion.
 | Surface | Canonical path | Current state |
 |---|---|---|
 | Compact instances | `data/compact20_reviewed/compact20_v2_instances.jsonl` | public pre-review |
-| Compact review packet | `data/human_validation/compact20_real_review/` | blank; human input required |
-| Compact public commitment | `data/manifests/compact20_review_packet_v2_public_commitment.json` | frozen v2 hashes |
+| Compact review evidence | `data/compact20_reviewed/reviewer_evidence/` | 20 inspectable controlled bundles |
+| Compact two-stage packet | `data/human_validation/compact20_two_stage_review/` | blank; Stage 2 locked; human input required |
+| Compact public commitment | `data/manifests/compact20_two_stage_review_commitment.json` | immutable two-stage hashes |
 | Scale design commitment | `data/manifests/scale100_confirmatory_v2_public_manifest.json` | protected candidate; execution forbidden |
 | Scale execution template | `configs/iclr/scale100_v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml` | template only |
 | Transfer design commitment | `data/manifests/naturalistic_transfer_v2_public_manifest.json` | artifact-rich synthetic; execution forbidden |
@@ -104,6 +124,9 @@ they are not current authorization.
 > Recruit and onboard two genuine qualified independent Compact-20 reviewers
 > using the regenerated packet, plus a separate adjudicator.
 
-After independent review and adjudication, run the unchanged C10 validator.
-Only an authentic passing result permits creation of an approved v2
-materialization; model execution remains a later, separately authorized step.
+After independent Stage-1 review, freeze the completed CSV hash and run the
+unchanged unlock validator. Then complete Stage 2 and separate adjudication and
+run the unchanged C10 validator. Only an authentic passing result plus a trusted
+scientific-scope cryptographic receipt permits model execution.
+
+`CAB_LEVEL5_COMPLETE=false`.

@@ -13,8 +13,8 @@ This policy governs confirmatory and challenge material registered in
 |---|---|---|
 | `dev_fixture` | Public fixture | Development release |
 | `compact20_v2_pilot` | Harness, blank packet, and public commitments only | After genuine dual review, adjudication, C10, and execution-entry gates |
-| `scale100_confirmatory_v2` | Aggregate public commitment; private task pack | After genuine review, approved materialization, execution, and confirmatory decisions are frozen |
-| `artifact_rich_synthetic_transfer_v2` | Aggregate artifact/assignment commitment; private task pack | After provenance, privacy, license, genuine review, and approved materialization |
+| `scale100_confirmatory_v2` | Aggregate public commitment; private task pack | After genuine two-stage review, C10, content-bound scientific approval, execution, and confirmatory decisions are frozen |
+| `artifact_rich_synthetic_transfer_v2` | Aggregate artifact/assignment commitment; private task pack | After provenance, privacy, license, genuine review, C10, and content-bound scientific approval |
 | `heldout_challenge` | Membership and answers withheld | Post-study full release or separately governed challenge release |
 
 Main-500 and all v1 scientific roles are superseded. They have no release tier
@@ -47,7 +47,10 @@ Release or live evaluation remains blocked until all applicable gates pass:
    the endpoint specification are frozen.
 7. Analysis decisions, exclusions, seeds, and the complete evaluated-system
    identity (model plus adapter components) are registered and hashed.
-8. Budget/provider authorization exists for any live execution.
+8. A trusted cryptographic scientific-scope receipt binds the exact reviewed
+   candidates, exclusions, C10, reachability, scorer, system identity, code,
+   budget, and revocation state. Directory names and approval Booleans do not
+   authorize execution.
 9. Run manifests and append-only ledgers pass integrity validation.
 10. Claim and release checks pass without converting fixture evidence into
     scientific evidence.

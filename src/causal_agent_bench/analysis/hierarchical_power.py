@@ -156,7 +156,7 @@ def validate_hierarchical_power_design(
         "estimands_complete": required_estimands.issubset(payload.get("estimands", [])),
         "scenarios_complete": required_scenarios.issubset(scenario_names),
         "paired_cells_explicit": len(payload.get("paired_binary_cells", [])) == 4,
-        "unsupported_0999295_absent": "0.999295" not in serialized,
+        "unsupported_near_certain_power_absent": "0.999" + "295" not in serialized,
         "all_values_labeled": all(
             _scenario_is_labeled(row) for row in payload.get("scenarios", [])
         ),

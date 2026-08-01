@@ -142,6 +142,7 @@ was authorized by this pass.
         "schema_version": "cab_pre_run_hardening_state_v1",
         "baseline_sha": BASELINE_SHA,
         "primary_state": "CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE",
+        "superseded_by": "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE",
         "external_states": ["HUMAN_VALIDATION_REQUIRED", "LIVE_EVIDENCE_REQUIRED"],
         "acceptance": {
             "scorer_semantics_v3": True,
@@ -512,7 +513,8 @@ recorded only after those operations occur.
         "CAB_PRE_RUN_SCIENTIFIC_HARDENING_REPORT.md",
         f"""# CAB Pre-Run Scientific Hardening Report
 
-Final design state: `CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE`.
+Historical design state: `CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE`.
+Superseded by: `CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE`.
 External gates: `HUMAN_VALIDATION_REQUIRED`, `LIVE_EVIDENCE_REQUIRED`.
 
 The bounded pre-run pass repaired scorer inflation and recovery ambiguity,
@@ -557,7 +559,8 @@ using the regenerated packet, plus a separate adjudicator.
         "cab_pre_run_scientific_hardening_handoff.md",
         f"""# CAB Pre-Run Scientific Hardening Handoff
 
-State: `CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE` with
+Historical state: `CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE`, superseded by
+`CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE`, with
 `HUMAN_VALIDATION_REQUIRED` and `LIVE_EVIDENCE_REQUIRED`.
 
 Read `CURRENT_PROJECT_STATE.md` first. The current Compact packet is

@@ -1,0 +1,1903 @@
+{
+  "clean_gold_passed_count": 20,
+  "failed_count": 0,
+  "fixture_only": true,
+  "gate_kind": "executable_intervention_reachability",
+  "instance_count": 20,
+  "model_calls_performed": 0,
+  "passed": true,
+  "passed_count": 20,
+  "provider_calls_performed": 0,
+  "report_hash": "351c17caf9ccda562c12283749354f2bad656a4c588dde5877e05e50205fa694",
+  "rows": [
+    {
+      "candidate_id": "compact20_v2_cand_01",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "option_id": "saver_hotel",
+        "total": 176.0
+      },
+      "environment_hash": "b200db2994f206a222473f5740af04f535544f306f27f0d6e8d98a499546ab41",
+      "execution_hash": "8b87b70caa94ff17367b7f4c949c0510a9f48472d2f3aa2f6f5682878e8e3e64",
+      "family": "tool_removal",
+      "fixture_artifact_hash": "27f64a7f22e45dcb80c5c838bfd4f921969ffa98271be9397c064c546eb41310",
+      "instance_id": "travel_planning_medium_004.tool_removal",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 3,
+      "route": {
+        "fact_observation_count": 3,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "travel_planning_medium_004.tool_removal.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_02",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "launch": "Beta",
+        "q2_revenue": 4200
+      },
+      "environment_hash": "87004cb8a01333c1ae7c34a383641cc60f38d9c113a94661c12fa751be2a3a77",
+      "execution_hash": "1a6865fc3a6852e48eea72fbc92f33bee9614457f3317ebe834b372b82f87a25",
+      "family": "tool_removal",
+      "fixture_artifact_hash": "45ed00a69a96db55d3480d4f475a3ed2998e82b7ccda99c5399d0be859889ea4",
+      "instance_id": "file_spreadsheet_qa_hard_025.tool_removal",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "file_spreadsheet_qa_hard_025.tool_removal.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_03",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "The claim is not supported; the report says 118 ms, not below 100 ms.",
+      "environment_hash": "93b6862469abc63c3e58d484a3d29ce46a75d7327bd65d8f3062bf73312a51d2",
+      "execution_hash": "11a99420fa266f8277a6011899e1fc4ce9ecdbece513f8a0c7fdad95536b8f31",
+      "family": "tool_removal",
+      "fixture_artifact_hash": "9d36f0a8a9b35665efed5c1e1c71e165afef4e0e0a839e190d58622d956c6373",
+      "instance_id": "research_assistant_easy_010.tool_removal",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "research_assistant_easy_010.tool_removal.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_04",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "The bug is an off-by-one retry loop using max_retries + 1.",
+      "environment_hash": "8ddee49ed1caf567f434544249d83edca3520395b960bbf1d6db856936aa9a4c",
+      "execution_hash": "54f19e253e82ffb973050a54c7a7344f1302195df964d663316c107fdff2d52e",
+      "family": "tool_removal",
+      "fixture_artifact_hash": "67e687c0db2d164a28a86b84da9ba84ffb692835cfc34cc59328bbae93a0ae51",
+      "instance_id": "coding_debugging_stress_002.tool_removal",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "coding_debugging_stress_002.tool_removal.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_05",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars.",
+      "environment_hash": "07337130b96e5fbbedac0e48f6ca4e6f8bb1e2ca392c1260eab1a05a504c8b3e",
+      "execution_hash": "04bd565c2bca564d276794d02ece5cc611a6efedf81a12b85e12acd6ce094009",
+      "family": "tool_removal",
+      "fixture_artifact_hash": "29a03657112d404b072cebcb6b37c3b077ec33fdcc3a5103694ddea1cb145893",
+      "instance_id": "policy_compliance_medium_012.tool_removal",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "policy_compliance_medium_012.tool_removal.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_06",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "option_id": "saver_hotel",
+        "total": 176.0
+      },
+      "environment_hash": "7bef6502b493b9cb69965566c97a0a6de65d9d62f4bb776718f5c801cff23eb1",
+      "execution_hash": "3986dba64330f56c1976de86a8bdf51495d89e0f1ef06735a194f0ac11f3aafe",
+      "family": "tool_failure",
+      "fixture_artifact_hash": "0c58aceab1c759bf76c159b652414c6ec103738d09fa112fda4cebf7d47e960b",
+      "instance_id": "travel_planning_medium_004.tool_failure",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 3,
+      "route": {
+        "actual_failure_observed": true,
+        "authorization_id": "travel_planning_medium_004.tool_failure.recovery.01",
+        "causal_fact_ids": [
+          "travel_planning_medium_004.fact.01",
+          "travel_planning_medium_004.fact.02",
+          "travel_planning_medium_004.fact.03"
+        ],
+        "failure_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {},
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "query": "saver_hotel"
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "search_database"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 0,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "travel_planning_medium_004.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "search_database"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "search_database"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": null,
+          "state": {
+            "available_tools": [
+              "search_database",
+              "compare_options",
+              "calculate_price"
+            ],
+            "done": false,
+            "step_index": 0
+          },
+          "step_index": 0,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "query": "saver_hotel"
+          },
+          "tool_call": {
+            "arguments": {
+              "query": "saver_hotel"
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "search_database"
+          },
+          "tool_error_status": "error",
+          "tool_result": {
+            "call_id": "travel_planning_medium_004.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "search_database"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "search_database"
+          }
+        },
+        "kind": "recovery",
+        "passed": true,
+        "recovery_arguments": {
+          "constraints": {
+            "tax_rate": 0.1
+          },
+          "items": [
+            {
+              "id": "camera_b",
+              "price": 200,
+              "quantity": 1
+            }
+          ]
+        },
+        "recovery_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {
+              "recovery_action": "travel_planning_medium_004.tool_failure.recovery.01",
+              "recovery_marker": true
+            },
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "constraints": {
+                  "tax_rate": 0.1
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "calculate_price"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 1,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "travel_planning_medium_004.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "constraints": {
+                  "tax_rate": 0.1
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "breakdown": [
+                {
+                  "item_id": "camera_b",
+                  "line_total": 200.0,
+                  "quantity": 1
+                }
+              ],
+              "currency": "USD",
+              "total": 220.0
+            },
+            "tool_name": "calculate_price"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": true,
+          "state": {
+            "available_tools": [
+              "search_database",
+              "compare_options",
+              "calculate_price"
+            ],
+            "done": false,
+            "step_index": 1
+          },
+          "step_index": 1,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "constraints": {
+              "tax_rate": 0.1
+            },
+            "items": [
+              {
+                "id": "camera_b",
+                "price": 200,
+                "quantity": 1
+              }
+            ]
+          },
+          "tool_call": {
+            "arguments": {
+              "constraints": {
+                "tax_rate": 0.1
+              },
+              "items": [
+                {
+                  "id": "camera_b",
+                  "price": 200,
+                  "quantity": 1
+                }
+              ]
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "calculate_price"
+          },
+          "tool_error_status": "none",
+          "tool_result": {
+            "call_id": "travel_planning_medium_004.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "constraints": {
+                  "tax_rate": 0.1
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "breakdown": [
+                {
+                  "item_id": "camera_b",
+                  "line_total": 200.0,
+                  "quantity": 1
+                }
+              ],
+              "currency": "USD",
+              "total": 220.0
+            },
+            "tool_name": "calculate_price"
+          }
+        },
+        "recovery_tool": "calculate_price",
+        "target_tool": "search_database",
+        "useful_observation": true,
+        "valid_final_response": {
+          "option_id": "saver_hotel",
+          "total": 176.0
+        }
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_07",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "date": "2026-06-03",
+        "slot": "15:00",
+        "status": "draft_created"
+      },
+      "environment_hash": "e2a5f35a0de66b5b9f3728dcff8844edb33f6e807c7d478d682e7f9906790117",
+      "execution_hash": "b0bbe6c3df9b7a2df31694bae5095bdf270847b8643688c1623ac561f4914647",
+      "family": "tool_failure",
+      "fixture_artifact_hash": "7afcc4c149154570a0bcfe2c4d0e5127ea40af7a6c6b8540dd32dc9be5d7e113",
+      "instance_id": "calendar_email_workflow_hard_022.tool_failure",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 3,
+      "route": {
+        "actual_failure_observed": true,
+        "authorization_id": "calendar_email_workflow_hard_022.tool_failure.recovery.01",
+        "causal_fact_ids": [
+          "calendar_email_workflow_hard_022.fact.01",
+          "calendar_email_workflow_hard_022.fact.02",
+          "calendar_email_workflow_hard_022.fact.03"
+        ],
+        "failure_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {},
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "date": "2026-06-03",
+                "time_window": "13:00-17:00"
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "check_calendar"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 0,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "calendar_email_workflow_hard_022.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "check_calendar"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "check_calendar"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": null,
+          "state": {
+            "available_tools": [
+              "check_calendar",
+              "send_email_draft",
+              "verify_fact",
+              "search_database",
+              "read_file"
+            ],
+            "done": false,
+            "step_index": 0
+          },
+          "step_index": 0,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "date": "2026-06-03",
+            "time_window": "13:00-17:00"
+          },
+          "tool_call": {
+            "arguments": {
+              "date": "2026-06-03",
+              "time_window": "13:00-17:00"
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "check_calendar"
+          },
+          "tool_error_status": "error",
+          "tool_result": {
+            "call_id": "calendar_email_workflow_hard_022.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "check_calendar"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "check_calendar"
+          }
+        },
+        "kind": "recovery",
+        "passed": true,
+        "recovery_arguments": {
+          "claim": "Mina is free at 15:00 on 2026-06-03",
+          "evidence_ids": [
+            "calendar_1500"
+          ]
+        },
+        "recovery_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {
+              "recovery_action": "calendar_email_workflow_hard_022.tool_failure.recovery.01",
+              "recovery_marker": true
+            },
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "claim": "Mina is free at 15:00 on 2026-06-03",
+                "evidence_ids": [
+                  "calendar_1500"
+                ]
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "verify_fact"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 1,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "calendar_email_workflow_hard_022.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "claim": "Mina is free at 15:00 on 2026-06-03",
+                "evidence_ids": [
+                  "calendar_1500"
+                ]
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "supporting_evidence": [
+                "calendar_1500"
+              ],
+              "verdict": "supported"
+            },
+            "tool_name": "verify_fact"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": true,
+          "state": {
+            "available_tools": [
+              "check_calendar",
+              "send_email_draft",
+              "verify_fact",
+              "search_database",
+              "read_file"
+            ],
+            "done": false,
+            "step_index": 1
+          },
+          "step_index": 1,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "claim": "Mina is free at 15:00 on 2026-06-03",
+            "evidence_ids": [
+              "calendar_1500"
+            ]
+          },
+          "tool_call": {
+            "arguments": {
+              "claim": "Mina is free at 15:00 on 2026-06-03",
+              "evidence_ids": [
+                "calendar_1500"
+              ]
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "verify_fact"
+          },
+          "tool_error_status": "none",
+          "tool_result": {
+            "call_id": "calendar_email_workflow_hard_022.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "claim": "Mina is free at 15:00 on 2026-06-03",
+                "evidence_ids": [
+                  "calendar_1500"
+                ]
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "supporting_evidence": [
+                "calendar_1500"
+              ],
+              "verdict": "supported"
+            },
+            "tool_name": "verify_fact"
+          }
+        },
+        "recovery_tool": "verify_fact",
+        "target_tool": "check_calendar",
+        "useful_observation": true,
+        "valid_final_response": {
+          "date": "2026-06-03",
+          "slot": "15:00",
+          "status": "draft_created"
+        }
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_08",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "option_id": "camera_b",
+        "total": 216.0
+      },
+      "environment_hash": "ad05b184dc6909162f66741b0abf5c438d5f95fd8230556a3c6c3d21454fb18a",
+      "execution_hash": "49391cf981d0197fe436135bf51a09ef2089cbbeb7fcc777b947fcc6987a3735",
+      "family": "tool_failure",
+      "fixture_artifact_hash": "0657ae5c68f434458d73817dc037080c8e71746d9f315d89eed038a3ccc35991",
+      "instance_id": "shopping_comparison_easy_012.tool_failure",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "actual_failure_observed": true,
+        "authorization_id": "shopping_comparison_easy_012.tool_failure.recovery.01",
+        "causal_fact_ids": [
+          "shopping_comparison_easy_012.fact.01",
+          "shopping_comparison_easy_012.fact.02"
+        ],
+        "failure_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {},
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "criteria": [
+                  "price"
+                ],
+                "options": [
+                  {
+                    "id": "saver_hotel",
+                    "price": 160
+                  },
+                  {
+                    "id": "flex_hotel",
+                    "price": 210
+                  }
+                ]
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "compare_options"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 0,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "shopping_comparison_easy_012.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "compare_options"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "compare_options"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": null,
+          "state": {
+            "available_tools": [
+              "compare_options",
+              "calculate_price"
+            ],
+            "done": false,
+            "step_index": 0
+          },
+          "step_index": 0,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "criteria": [
+              "price"
+            ],
+            "options": [
+              {
+                "id": "saver_hotel",
+                "price": 160
+              },
+              {
+                "id": "flex_hotel",
+                "price": 210
+              }
+            ]
+          },
+          "tool_call": {
+            "arguments": {
+              "criteria": [
+                "price"
+              ],
+              "options": [
+                {
+                  "id": "saver_hotel",
+                  "price": 160
+                },
+                {
+                  "id": "flex_hotel",
+                  "price": 210
+                }
+              ]
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "compare_options"
+          },
+          "tool_error_status": "error",
+          "tool_result": {
+            "call_id": "shopping_comparison_easy_012.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "compare_options"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "compare_options"
+          }
+        },
+        "kind": "recovery",
+        "passed": true,
+        "recovery_arguments": {
+          "constraints": {
+            "tax_rate": 0.08
+          },
+          "items": [
+            {
+              "id": "camera_b",
+              "price": 200,
+              "quantity": 1
+            }
+          ]
+        },
+        "recovery_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {
+              "recovery_action": "shopping_comparison_easy_012.tool_failure.recovery.01",
+              "recovery_marker": true
+            },
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "constraints": {
+                  "tax_rate": 0.08
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "calculate_price"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 1,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "shopping_comparison_easy_012.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "constraints": {
+                  "tax_rate": 0.08
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "breakdown": [
+                {
+                  "item_id": "camera_b",
+                  "line_total": 200.0,
+                  "quantity": 1
+                }
+              ],
+              "currency": "USD",
+              "total": 216.0
+            },
+            "tool_name": "calculate_price"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": true,
+          "state": {
+            "available_tools": [
+              "compare_options",
+              "calculate_price"
+            ],
+            "done": false,
+            "step_index": 1
+          },
+          "step_index": 1,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "constraints": {
+              "tax_rate": 0.08
+            },
+            "items": [
+              {
+                "id": "camera_b",
+                "price": 200,
+                "quantity": 1
+              }
+            ]
+          },
+          "tool_call": {
+            "arguments": {
+              "constraints": {
+                "tax_rate": 0.08
+              },
+              "items": [
+                {
+                  "id": "camera_b",
+                  "price": 200,
+                  "quantity": 1
+                }
+              ]
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "calculate_price"
+          },
+          "tool_error_status": "none",
+          "tool_result": {
+            "call_id": "shopping_comparison_easy_012.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "constraints": {
+                  "tax_rate": 0.08
+                },
+                "items": [
+                  {
+                    "id": "camera_b",
+                    "price": 200,
+                    "quantity": 1
+                  }
+                ]
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "breakdown": [
+                {
+                  "item_id": "camera_b",
+                  "line_total": 200.0,
+                  "quantity": 1
+                }
+              ],
+              "currency": "USD",
+              "total": 216.0
+            },
+            "tool_name": "calculate_price"
+          }
+        },
+        "recovery_tool": "calculate_price",
+        "target_tool": "compare_options",
+        "useful_observation": true,
+        "valid_final_response": {
+          "option_id": "camera_b",
+          "total": 216.0
+        }
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_09",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "must_mention": "security addendum",
+        "time": "11:00",
+        "vendor": "vendor_beta"
+      },
+      "environment_hash": "c8a3f13c242011f3b69250f65db976a3b763d90398f39657d0b205f9c509794b",
+      "execution_hash": "6bba66f1b1677827f94863b6cdea7187d12a36cb167acb3c85e4a191a59fd740",
+      "family": "tool_failure",
+      "fixture_artifact_hash": "0b258885d015271e38e2dd8730bf0c68643b2e0f406b9041e2182da951d54959",
+      "instance_id": "operations_planning_stress_015.tool_failure",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 4,
+      "route": {
+        "actual_failure_observed": true,
+        "authorization_id": "operations_planning_stress_015.tool_failure.recovery.01",
+        "causal_fact_ids": [
+          "operations_planning_stress_015.fact.01",
+          "operations_planning_stress_015.fact.02",
+          "operations_planning_stress_015.fact.03",
+          "operations_planning_stress_015.fact.04"
+        ],
+        "failure_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {},
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "date": "2026-06-03",
+                "time_window": "13:00-17:00"
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "check_calendar"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 0,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "operations_planning_stress_015.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "check_calendar"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "check_calendar"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": null,
+          "state": {
+            "available_tools": [
+              "check_calendar",
+              "lookup_policy",
+              "query_spreadsheet",
+              "compare_options",
+              "send_email_draft",
+              "verify_fact"
+            ],
+            "done": false,
+            "step_index": 0
+          },
+          "step_index": 0,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "date": "2026-06-03",
+            "time_window": "13:00-17:00"
+          },
+          "tool_call": {
+            "arguments": {
+              "date": "2026-06-03",
+              "time_window": "13:00-17:00"
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "check_calendar"
+          },
+          "tool_error_status": "error",
+          "tool_result": {
+            "call_id": "operations_planning_stress_015.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "check_calendar"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "check_calendar"
+          }
+        },
+        "kind": "recovery",
+        "passed": true,
+        "recovery_arguments": {
+          "policy_name": "vendor",
+          "question": "security addendum policy"
+        },
+        "recovery_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {
+              "recovery_action": "operations_planning_stress_015.tool_failure.recovery.01",
+              "recovery_marker": true
+            },
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "policy_name": "vendor",
+                "question": "security addendum policy"
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "lookup_policy"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 1,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "operations_planning_stress_015.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "policy_name": "vendor",
+                "question": "security addendum policy"
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "policy_text": "Vendor follow-ups must mention the security addendum when risk is above medium.",
+              "relevant_clause_ids": [
+                "vendor-security-addendum"
+              ]
+            },
+            "tool_name": "lookup_policy"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": true,
+          "state": {
+            "available_tools": [
+              "check_calendar",
+              "lookup_policy",
+              "query_spreadsheet",
+              "compare_options",
+              "send_email_draft",
+              "verify_fact"
+            ],
+            "done": false,
+            "step_index": 1
+          },
+          "step_index": 1,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "policy_name": "vendor",
+            "question": "security addendum policy"
+          },
+          "tool_call": {
+            "arguments": {
+              "policy_name": "vendor",
+              "question": "security addendum policy"
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "lookup_policy"
+          },
+          "tool_error_status": "none",
+          "tool_result": {
+            "call_id": "operations_planning_stress_015.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "policy_name": "vendor",
+                "question": "security addendum policy"
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "policy_text": "Vendor follow-ups must mention the security addendum when risk is above medium.",
+              "relevant_clause_ids": [
+                "vendor-security-addendum"
+              ]
+            },
+            "tool_name": "lookup_policy"
+          }
+        },
+        "recovery_tool": "lookup_policy",
+        "target_tool": "check_calendar",
+        "useful_observation": true,
+        "valid_final_response": {
+          "must_mention": "security addendum",
+          "time": "11:00",
+          "vendor": "vendor_beta"
+        }
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_10",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "launch": "Beta",
+        "q2_revenue": 4200
+      },
+      "environment_hash": "b03337487ad42717aa2557b085cb62c41338cd5a7bf7d3fe8a991e883aa911fc",
+      "execution_hash": "3fa68413d3abddf248545a4c42529add3ddfe24e12ea2d0d175826936d271818",
+      "family": "tool_failure",
+      "fixture_artifact_hash": "e618f373f4a73917daa9c1c66da51dec56d42b181e5bcbfbdab8dcf943acada3",
+      "instance_id": "file_spreadsheet_qa_medium_019.tool_failure",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "actual_failure_observed": true,
+        "authorization_id": "file_spreadsheet_qa_medium_019.tool_failure.recovery.01",
+        "causal_fact_ids": [
+          "file_spreadsheet_qa_medium_019.fact.01",
+          "file_spreadsheet_qa_medium_019.fact.02"
+        ],
+        "failure_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {},
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "file_id": "retry_helper",
+                "query": "max_retries"
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "read_file"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 0,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "file_spreadsheet_qa_medium_019.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "read_file"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "read_file"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": null,
+          "state": {
+            "available_tools": [
+              "read_file",
+              "query_spreadsheet",
+              "verify_fact"
+            ],
+            "done": false,
+            "step_index": 0
+          },
+          "step_index": 0,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "file_id": "retry_helper",
+            "query": "max_retries"
+          },
+          "tool_call": {
+            "arguments": {
+              "file_id": "retry_helper",
+              "query": "max_retries"
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "read_file"
+          },
+          "tool_error_status": "error",
+          "tool_result": {
+            "call_id": "file_spreadsheet_qa_medium_019.tool_failure:0",
+            "error": "simulated_tool_failure",
+            "is_corrupted": false,
+            "metadata": {
+              "intervention": "tool_failure",
+              "patch": {
+                "error": "simulated_tool_failure",
+                "partial_output": {
+                  "message": "deterministic simulated failure"
+                },
+                "target_tool": "read_file"
+              },
+              "step": 0
+            },
+            "output": {
+              "message": "deterministic simulated failure"
+            },
+            "tool_name": "read_file"
+          }
+        },
+        "kind": "recovery",
+        "passed": true,
+        "recovery_arguments": {
+          "query": "Q2",
+          "sheet_id": "revenue"
+        },
+        "recovery_step": {
+          "action": {
+            "final_answer": null,
+            "metadata": {
+              "recovery_action": "file_spreadsheet_qa_medium_019.tool_failure.recovery.01",
+              "recovery_marker": true
+            },
+            "stop": false,
+            "thought": null,
+            "tool_call": {
+              "arguments": {
+                "query": "Q2",
+                "sheet_id": "revenue"
+              },
+              "call_id": null,
+              "timestamp_step": null,
+              "tool_name": "query_spreadsheet"
+            }
+          },
+          "contradiction_marker": null,
+          "final_answer": null,
+          "index": 1,
+          "memory_use_marker": null,
+          "observation": {
+            "call_id": "file_spreadsheet_qa_medium_019.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "query": "Q2",
+                "sheet_id": "revenue"
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "rows": [
+                {
+                  "quarter": "Q2",
+                  "revenue": 4200
+                }
+              ],
+              "summary": "1 rows matched query 'q2'."
+            },
+            "tool_name": "query_spreadsheet"
+          },
+          "parsed_action": null,
+          "parser_status": "not_applicable",
+          "raw_model_output": null,
+          "recovery_marker": true,
+          "state": {
+            "available_tools": [
+              "read_file",
+              "query_spreadsheet",
+              "verify_fact"
+            ],
+            "done": false,
+            "step_index": 1
+          },
+          "step_index": 1,
+          "stop_reason": null,
+          "token_cost_metadata": {},
+          "tool_arguments": {
+            "query": "Q2",
+            "sheet_id": "revenue"
+          },
+          "tool_call": {
+            "arguments": {
+              "query": "Q2",
+              "sheet_id": "revenue"
+            },
+            "call_id": null,
+            "timestamp_step": null,
+            "tool_name": "query_spreadsheet"
+          },
+          "tool_error_status": "none",
+          "tool_result": {
+            "call_id": "file_spreadsheet_qa_medium_019.tool_failure:1",
+            "error": null,
+            "is_corrupted": false,
+            "metadata": {
+              "arguments": {
+                "query": "Q2",
+                "sheet_id": "revenue"
+              },
+              "deterministic": true,
+              "step": 1
+            },
+            "output": {
+              "rows": [
+                {
+                  "quarter": "Q2",
+                  "revenue": 4200
+                }
+              ],
+              "summary": "1 rows matched query 'q2'."
+            },
+            "tool_name": "query_spreadsheet"
+          }
+        },
+        "recovery_tool": "query_spreadsheet",
+        "target_tool": "read_file",
+        "useful_observation": true,
+        "valid_final_response": {
+          "launch": "Beta",
+          "q2_revenue": 4200
+        }
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_11",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "The claim is not supported; the report says 118 ms, not below 100 ms.",
+      "environment_hash": "f0cb810e23c0b5dea0ebd66e3fd68e596da415de13cf650507db10de1db1396c",
+      "execution_hash": "060951485cc8cac24bbd5ffb3ca0e3526f05b919270ddfd6b9fcdd5c74a0086e",
+      "family": "memory_corruption",
+      "fixture_artifact_hash": "50a7e80daace1e9a110d5011d95b3ea861986bef952de6e2afc013b09cc89f9b",
+      "instance_id": "research_assistant_easy_010.memory_corruption",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "kind": "substantive_answer",
+        "passed": true,
+        "tool_invocations": [
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_11",
+              "fact_id": "research_assistant_easy_010.fact.01"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "research_assistant_easy_010.fact.01",
+              "label": "Apex report evidence",
+              "source_key": "claim_supported",
+              "value": false
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "95292fdfdec9d5c7620104a4e3659bcf"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_11",
+              "fact_id": "research_assistant_easy_010.fact.02"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "research_assistant_easy_010.fact.02",
+              "label": "claim verification",
+              "source_key": "reported_latency_ms",
+              "value": 118
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "3a0e0dc903719985ce9f49732d070c11"
+          }
+        ],
+        "valid_final_response": "The claim is not supported; the report says 118 ms, not below 100 ms."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_12",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "The bug is an off-by-one retry loop using max_retries + 1.",
+      "environment_hash": "015b17dae5fbfb7e90ae560dc33d4886170df403feb54eb09a5e1f0f561b9cdb",
+      "execution_hash": "6cae3e65450acd77b12a5f18d2b56875efe3c681afd2f1357c6db9eedf4278d8",
+      "family": "memory_corruption",
+      "fixture_artifact_hash": "e127975760f761c1982720ce3e2b861a0c54899d76d9dde4b10f6065cbc7cb65",
+      "instance_id": "coding_debugging_stress_006.memory_corruption",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "kind": "substantive_answer",
+        "passed": true,
+        "tool_invocations": [
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_12",
+              "fact_id": "coding_debugging_stress_006.fact.01"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "coding_debugging_stress_006.fact.01",
+              "label": "retry helper code",
+              "source_key": "bad_expression",
+              "value": "max_retries + 1"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "60c8613c3cd4b099258bf368a847dcc0"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_12",
+              "fact_id": "coding_debugging_stress_006.fact.02"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "coding_debugging_stress_006.fact.02",
+              "label": "issue note",
+              "source_key": "bug_type",
+              "value": "off_by_one"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "05086a1a195dfe2384b1d6c95f49eaa6"
+          }
+        ],
+        "valid_final_response": "The bug is an off-by-one retry loop using max_retries + 1."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_13",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "date": "2026-06-03",
+        "slot": "15:00",
+        "status": "draft_created"
+      },
+      "environment_hash": "0fe059d5289af58a81308e1fd79cc4810158dd1faa6ef1f0088cd0fb491127ee",
+      "execution_hash": "13fbfeede29051342724a40113ebca6bc4361134352c0364a207e6b2d05c1bbc",
+      "family": "memory_corruption",
+      "fixture_artifact_hash": "1865c284c198f13325f69aead90de1a0fbdce18afac533647b9814aa8490488c",
+      "instance_id": "calendar_email_workflow_medium_019.memory_corruption",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 3,
+      "route": {
+        "kind": "substantive_answer",
+        "passed": true,
+        "tool_invocations": [
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_13",
+              "fact_id": "calendar_email_workflow_medium_019.fact.01"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "calendar_email_workflow_medium_019.fact.01",
+              "label": "calendar events",
+              "source_key": "first_open_slot",
+              "value": "15:00"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "9188b660203a01a11dceae9a0bbc2255"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_13",
+              "fact_id": "calendar_email_workflow_medium_019.fact.02"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "calendar_email_workflow_medium_019.fact.02",
+              "label": "open afternoon slot",
+              "source_key": "recipient",
+              "value": "mina@example.com"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "2779105a37c78a4badc720b663bf1d52"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_13",
+              "fact_id": "calendar_email_workflow_medium_019.fact.03"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "calendar_email_workflow_medium_019.fact.03",
+              "label": "recipient",
+              "source_key": "first_open_slot",
+              "value": "15:00"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "7984b4dc6df7b219b5d396f59ba2ce55"
+          }
+        ],
+        "valid_final_response": {
+          "date": "2026-06-03",
+          "slot": "15:00",
+          "status": "draft_created"
+        }
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_14",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars.",
+      "environment_hash": "9dc2a9a2044e21f754642ebc1966b8ab7fa01a53a4653c1a4beba544459777db",
+      "execution_hash": "16d23684de0a185d540fed7294e030522fcd2e72690531f67df73d2fe432a90d",
+      "family": "memory_corruption",
+      "fixture_artifact_hash": "53842951e19e520e4195cc46ebabc5de27a896c44f6de676c559ccf5db028a9d",
+      "instance_id": "policy_compliance_hard_026.memory_corruption",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "kind": "substantive_answer",
+        "passed": true,
+        "tool_invocations": [
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_14",
+              "fact_id": "policy_compliance_hard_026.fact.01"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "policy_compliance_hard_026.fact.01",
+              "label": "refund threshold",
+              "source_key": "approval_required",
+              "value": true
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "b37f9da3847709ca91f66e71a93b9e83"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_14",
+              "fact_id": "policy_compliance_hard_026.fact.02"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "policy_compliance_hard_026.fact.02",
+              "label": "refund amount",
+              "source_key": "threshold",
+              "value": 500
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "82849430f0992d143aecf7fb78206e8d"
+          }
+        ],
+        "valid_final_response": "Yes. A 700 dollar refund requires manager approval because the threshold is 500 dollars."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_15",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "must_mention": "security addendum",
+        "time": "11:00",
+        "vendor": "vendor_beta"
+      },
+      "environment_hash": "d7f8eb7fceb726ebc55d4a3aaf4fa17acd7c29a40b82e9eaef01c75f4e3893b9",
+      "execution_hash": "6c49d8f674c420f697380b501ecaad4be105342f0e9304b8b006b2426251bab2",
+      "family": "memory_corruption",
+      "fixture_artifact_hash": "55e67aaf516bf062bccc57adee75544012aec8a2d48e60ef1991f26dc4608d90",
+      "instance_id": "operations_planning_medium_021.memory_corruption",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 4,
+      "route": {
+        "kind": "substantive_answer",
+        "passed": true,
+        "tool_invocations": [
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_15",
+              "fact_id": "operations_planning_medium_021.fact.01"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "operations_planning_medium_021.fact.01",
+              "label": "availability",
+              "source_key": "policy",
+              "value": "security addendum"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "9ef73393546beb995621146c9273b98b"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_15",
+              "fact_id": "operations_planning_medium_021.fact.02"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "operations_planning_medium_021.fact.02",
+              "label": "vendor policy",
+              "source_key": "time",
+              "value": "11:00"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "d759146877bd450ca52e147eedd73860"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_15",
+              "fact_id": "operations_planning_medium_021.fact.03"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "operations_planning_medium_021.fact.03",
+              "label": "vendor score",
+              "source_key": "vendor",
+              "value": "vendor_beta"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "da7ed972f84d678b0f4f9f23afa9b663"
+          },
+          {
+            "arguments": {
+              "candidate_id": "compact20_v2_cand_15",
+              "fact_id": "operations_planning_medium_021.fact.04"
+            },
+            "deterministic": true,
+            "error": null,
+            "harness_version": "cab_compact_fixture_harness_v1",
+            "observation": {
+              "fact_id": "operations_planning_medium_021.fact.04",
+              "label": "email recipient",
+              "source_key": "policy",
+              "value": "security addendum"
+            },
+            "schema_version": "cab_fixture_tool_transcript_v1",
+            "tool_name": "cab_fixture_read_fact",
+            "transcript_id": "ceb227395f4ae76cd06410632be3beb8"
+          }
+        ],
+        "valid_final_response": {
+          "must_mention": "security addendum",
+          "time": "11:00",
+          "vendor": "vendor_beta"
+        }
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_16",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "launch": "Beta",
+        "q2_revenue": 4200
+      },
+      "environment_hash": "49d144aa0de31dda1bf99afd690de088a7068355dcca43da4803ab41d7c73294",
+      "execution_hash": "c6f1ae7ef2b2dc96673866a2280d914ebb5dabbb141f17482a7bb260e16a4fa7",
+      "family": "observation_conflict",
+      "fixture_artifact_hash": "ce6e1d0129aac98d243a654b410d0aabb0dfc4fbb6e2700efea0147e49830f92",
+      "instance_id": "file_spreadsheet_qa_hard_025.observation_conflict",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "file_spreadsheet_qa_hard_025.observation_conflict.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_17",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "The bug is an off-by-one retry loop using max_retries + 1.",
+      "environment_hash": "63ec618a99f1db13148f5bec80463a6d698ef4c4f70a0e10c2ca9a82dfa3ab8e",
+      "execution_hash": "8ed06573f3c4bb78382f3c423b4b94a8e7b2f550924a5a975ef55d4847dce454",
+      "family": "observation_conflict",
+      "fixture_artifact_hash": "a337c87ed07cbba62817b13cc487808154f0adfe99b20f862f8651366da53f1d",
+      "instance_id": "coding_debugging_stress_006.observation_conflict",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "coding_debugging_stress_006.observation_conflict.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_18",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "option_id": "camera_b",
+        "total": 216.0
+      },
+      "environment_hash": "9bd01fd7f63eda0f9934a1180be1012efdbefbccd92cd3eb2abd9728a3171873",
+      "execution_hash": "d5b2b5322d178f18b571b6ebcbbc08bd91057d9f5a551a9bd0ee01fb24bf224b",
+      "family": "observation_conflict",
+      "fixture_artifact_hash": "6c8d194cd6600b611e235f15335454542c69fb2eba51f26da1c2055d2e7b1025",
+      "instance_id": "shopping_comparison_medium_001.observation_conflict",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "shopping_comparison_medium_001.observation_conflict.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_19",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": {
+        "option_id": "saver_hotel",
+        "total": 176.0
+      },
+      "environment_hash": "6ed90bdf3afe705d0f93915aa12fed7653493617d3934ce4484fc9ecd495fd73",
+      "execution_hash": "527bb319ba0172d2b2240bf14b6f899c13fbb6dbcafb4ef82e573b1328542db8",
+      "family": "observation_conflict",
+      "fixture_artifact_hash": "29c94b7f5a9647aed838a5196dd9a726a925a41b7e0a15130cca306717dff02b",
+      "instance_id": "travel_planning_easy_026.observation_conflict",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 3,
+      "route": {
+        "fact_observation_count": 3,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "travel_planning_easy_026.observation_conflict.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    },
+    {
+      "candidate_id": "compact20_v2_cand_20",
+      "clean_gold_matches": true,
+      "clean_gold_reconstructed": "The claim is not supported; the report says 118 ms, not below 100 ms.",
+      "environment_hash": "2a31b5dbdb898c19078821f84367c83f9d3d3fa2812136e79d7a22f245a82708",
+      "execution_hash": "00d815f726f151c9ccf0caec59ca813c08b2cf9653459f59a57ca1693cdd90bf",
+      "family": "observation_conflict",
+      "fixture_artifact_hash": "96250c308dc5211c8fe9253f548ffd58a407d1e6841039ce7415d3092989fee4",
+      "instance_id": "research_assistant_hard_011.observation_conflict",
+      "intervention_isolation_passed": true,
+      "passed": true,
+      "required_fact_count": 2,
+      "route": {
+        "fact_observation_count": 2,
+        "kind": "qualified_uncertainty",
+        "mutation_materialized": true,
+        "opportunity_id": "research_assistant_hard_011.observation_conflict.opportunity.v3",
+        "passed": true,
+        "valid_final_response": "Cannot safely determine the unchanged clean answer because the declared evidence route is unavailable or contradictory."
+      },
+      "unsupported_fact_ids": []
+    }
+  ],
+  "schema_version": "cab_executable_intervention_reachability_v1",
+  "status": "CAB_COMPACT_EXECUTABLE_REACHABILITY_READY",
+  "unexplained_intervention_change_count": 0,
+  "unsupported_fact_count": 0
+}

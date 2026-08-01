@@ -1,0 +1,110 @@
+{
+  "candidate_count": 20,
+  "passed": true,
+  "passed_count": 20,
+  "report_hash": "2b153d18a1960016c1d8ffa7ba5917af2d1987dd1147e46823d5ec1ebc62c7d0",
+  "rows": [
+    {
+      "candidate_id": "compact20_v2_cand_01",
+      "instance_id": "travel_planning_medium_004.tool_removal",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_02",
+      "instance_id": "file_spreadsheet_qa_hard_025.tool_removal",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_03",
+      "instance_id": "research_assistant_easy_010.tool_removal",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_04",
+      "instance_id": "coding_debugging_stress_002.tool_removal",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_05",
+      "instance_id": "policy_compliance_medium_012.tool_removal",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_06",
+      "instance_id": "travel_planning_medium_004.tool_failure",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_07",
+      "instance_id": "calendar_email_workflow_hard_022.tool_failure",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_08",
+      "instance_id": "shopping_comparison_easy_012.tool_failure",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_09",
+      "instance_id": "operations_planning_stress_015.tool_failure",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_10",
+      "instance_id": "file_spreadsheet_qa_medium_019.tool_failure",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_11",
+      "instance_id": "research_assistant_easy_010.memory_corruption",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_12",
+      "instance_id": "coding_debugging_stress_006.memory_corruption",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_13",
+      "instance_id": "calendar_email_workflow_medium_019.memory_corruption",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_14",
+      "instance_id": "policy_compliance_hard_026.memory_corruption",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_15",
+      "instance_id": "operations_planning_medium_021.memory_corruption",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_16",
+      "instance_id": "file_spreadsheet_qa_hard_025.observation_conflict",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_17",
+      "instance_id": "coding_debugging_stress_006.observation_conflict",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_18",
+      "instance_id": "shopping_comparison_medium_001.observation_conflict",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_19",
+      "instance_id": "travel_planning_easy_026.observation_conflict",
+      "passed": true
+    },
+    {
+      "candidate_id": "compact20_v2_cand_20",
+      "instance_id": "research_assistant_hard_011.observation_conflict",
+      "passed": true
+    }
+  ],
+  "schema_version": "cab_intervention_isolation_gate_v1",
+  "unexplained_change_count": 0
+}

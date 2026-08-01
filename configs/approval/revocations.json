@@ -1,0 +1,6 @@
+{
+  "revoked_nonces": [],
+  "revoked_receipt_ids": [],
+  "schema_version": "cab_approval_revocation_registry_v1",
+  "updated_at": "2026-08-01T00:00:00+00:00"
+}

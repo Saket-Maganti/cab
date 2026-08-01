@@ -75,24 +75,15 @@ def scientific_hardening_check(repo_root: str | Path) -> dict[str, Any]:
     endpoint_spec = _read_json(root / "configs/pre_run/frozen_endpoints.json")
     compact = _read_json(root / "data/compact20_reviewed/compact20_v2_balance_report.json")
     compact_manifest = _read_json(root / "data/manifests/compact20_v2_public_manifest.json")
-    packet = _read_json(
-        root / "data/manifests/compact20_review_packet_v2_public_commitment.json"
-    )
+    packet = _read_json(root / "data/manifests/compact20_review_packet_v2_public_commitment.json")
     reachability = _read_json(
         root / "reports/pre_run_scientific_hardening/compact20_reachability.json"
     )
-    scale = _read_json(
-        root / "data/manifests/scale100_confirmatory_v2_public_manifest.json"
-    )
-    transfer = _read_json(
-        root / "data/manifests/naturalistic_transfer_v2_public_manifest.json"
-    )
-    power = _read_json(
-        root / "reports/pre_run_hardening/POWER_PRECISION_RECOMMENDATION.json"
-    )
+    scale = _read_json(root / "data/manifests/scale100_confirmatory_v2_public_manifest.json")
+    transfer = _read_json(root / "data/manifests/naturalistic_transfer_v2_public_manifest.json")
+    power = _read_json(root / "reports/pre_run_hardening/POWER_PRECISION_RECOMMENDATION.json")
     identity = _read_json(
-        root
-        / "reports/pre_run_scientific_hardening/evaluated_system_identity_frozen.json"
+        root / "reports/pre_run_scientific_hardening/evaluated_system_identity_frozen.json"
     )
     counters = _evidence_counters(root)
     score_fields = {field.name for field in fields(TypedScoreResult)}
@@ -160,8 +151,7 @@ def scientific_hardening_check(repo_root: str | Path) -> dict[str, Any]:
                 "transfer",
             }.issubset(planner_studies)
             and all(
-                set(rows)
-                == {"minimum", "planned", "conservative", "rerun_reserve"}
+                set(rows) == {"minimum", "planned", "conservative", "rerun_reserve"}
                 for rows in planner_studies.values()
             )
         ),
@@ -175,9 +165,7 @@ def scientific_hardening_check(repo_root: str | Path) -> dict[str, Any]:
             identity.get("primary_lane_is_uniform") is True
             and identity.get("scientific_execution_allowed_before_binding") is False
             and bool(identity.get("frozen_contract_hash"))
-            and identity.get("contract", {})
-            .get("evidence_binding", {})
-            .get("scorer_version")
+            and identity.get("contract", {}).get("evidence_binding", {}).get("scorer_version")
             == SCORER_VERSION
         ),
         "artifact_rich_synthetic_transfer": (
@@ -217,15 +205,11 @@ def _assignment_passes(payload: dict[str, Any]) -> bool:
     family_domain = payload.get("family_by_domain", {})
     difficulty_v = payload.get(
         "family_difficulty_cramers_v",
-        family_difficulty.get("cramers_v", 1.0)
-        if isinstance(family_difficulty, dict)
-        else 1.0,
+        family_difficulty.get("cramers_v", 1.0) if isinstance(family_difficulty, dict) else 1.0,
     )
     domain_v = payload.get(
         "family_domain_cramers_v",
-        family_domain.get("cramers_v", 1.0)
-        if isinstance(family_domain, dict)
-        else 1.0,
+        family_domain.get("cramers_v", 1.0) if isinstance(family_domain, dict) else 1.0,
     )
     return (
         payload.get("passed") is True
@@ -241,8 +225,7 @@ def _packet_hashes_match(packet_dir: Path, hashes: Any) -> bool:
     if not isinstance(hashes, dict) or not hashes:
         return False
     return all(
-        (packet_dir / name).is_file()
-        and _sha256_file(packet_dir / name) == expected
+        (packet_dir / name).is_file() and _sha256_file(packet_dir / name) == expected
         for name, expected in hashes.items()
     )
 
@@ -269,18 +252,21 @@ def _guidance_passes(root: Path) -> bool:
     if not current.is_file():
         return False
     body = current.read_text(encoding="utf-8")
-    if FINAL_STATE not in body or any(blocker not in body for blocker in EXTERNAL_BLOCKERS):
+    accepted_states = {
+        FINAL_STATE,
+        "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE",
+    }
+    if not any(state in body for state in accepted_states) or any(
+        blocker not in body for blocker in EXTERNAL_BLOCKERS
+    ):
         return False
     return all(
-        "SUPERSEDED_BY: CURRENT_PROJECT_STATE.md"
-        in (root / name).read_text(encoding="utf-8")
+        "SUPERSEDED_BY: CURRENT_PROJECT_STATE.md" in (root / name).read_text(encoding="utf-8")
         for name in ("MASTER_STATUS.md", "PROJECT_STATUS.md", "NEXT_STEPS.md")
     )
 
 
-def _public_private_boundary_passes(
-    scale: dict[str, Any], transfer: dict[str, Any]
-) -> bool:
+def _public_private_boundary_passes(scale: dict[str, Any], transfer: dict[str, Any]) -> bool:
     return all(
         payload.get("contains_task_text") is False
         and payload.get("contains_answers") is False
@@ -311,13 +297,9 @@ def _evidence_counters(root: Path) -> dict[str, int]:
         "genuine_adjudications": adjudications,
         "real_model_trajectories": int(evidence.get("real_model_trajectories", 0)),
         "audited_real_runs": int(evidence.get("audited_real_runs", 0)),
-        "paper_eligible_empirical_assets": int(
-            evidence.get("paper_eligible_empirical_assets", 0)
-        ),
+        "paper_eligible_empirical_assets": int(evidence.get("paper_eligible_empirical_assets", 0)),
         "supported_empirical_claims": int(evidence.get("supported_empirical_claims", 0)),
-        "external_reproductions": int(
-            evidence.get("independent_external_reproductions", 0)
-        ),
+        "external_reproductions": int(evidence.get("independent_external_reproductions", 0)),
         "protected_evaluator_pilots": int(evidence.get("protected_evaluator_pilots", 0)),
         "community_pilots": int(evidence.get("community_external_pilots", 0)),
     }

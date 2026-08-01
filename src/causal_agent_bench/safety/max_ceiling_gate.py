@@ -91,34 +91,22 @@ REQUIRED_FINAL_ARTIFACTS = (
 )
 
 LEAKAGE_REPORTS = {
-    "compact20_pilot": (
-        "audits/max_ceiling/compact20_source/leakage/"
-        "static_leakage_report.json"
-    ),
+    "compact20_pilot": ("audits/max_ceiling/compact20_source/leakage/static_leakage_report.json"),
     "scale100_confirmatory": (
-        "audits/max_ceiling/scale100_confirmatory_v1_candidate/leakage/"
-        "static_leakage_report.json"
+        "audits/max_ceiling/scale100_confirmatory_v1_candidate/leakage/static_leakage_report.json"
     ),
     "naturalistic_transfer": (
-        "audits/max_ceiling/naturalistic_transfer_v1_candidate/leakage/"
-        "static_leakage_report.json"
+        "audits/max_ceiling/naturalistic_transfer_v1_candidate/leakage/static_leakage_report.json"
     ),
     "main500_confirmatory": (
-        "audits/max_ceiling/main500_confirmatory_v1_candidate/leakage/"
-        "static_leakage_report.json"
+        "audits/max_ceiling/main500_confirmatory_v1_candidate/leakage/static_leakage_report.json"
     ),
 }
 
 DATASET_FILES = {
-    "scale100_confirmatory": (
-        "data/processed/scale100_confirmatory_v1_candidate"
-    ),
-    "naturalistic_transfer": (
-        "data/processed/naturalistic_transfer_v1_candidate"
-    ),
-    "main500_confirmatory": (
-        "data/processed/main500_confirmatory_v1_candidate"
-    ),
+    "scale100_confirmatory": ("data/processed/scale100_confirmatory_v1_candidate"),
+    "naturalistic_transfer": ("data/processed/naturalistic_transfer_v1_candidate"),
+    "main500_confirmatory": ("data/processed/main500_confirmatory_v1_candidate"),
 }
 
 STATUS_SOURCE_GLOBS = (
@@ -362,8 +350,7 @@ def evaluate_max_ceiling_gate(repo_root: str | Path) -> dict[str, Any]:
     )
     add(
         "slice_integrity",
-        bool(human["slice_lock_allowed"])
-        and not state["datasets"]["registry_recorded_issues"],
+        bool(human["slice_lock_allowed"]) and not state["datasets"]["registry_recorded_issues"],
         scope="external",
         detail=(
             f"slice_lock_allowed={human['slice_lock_allowed']}; "
@@ -388,26 +375,31 @@ def evaluate_max_ceiling_gate(repo_root: str | Path) -> dict[str, Any]:
         "secrets",
         security["error_count"] == 0,
         scope="build",
-        detail=(
-            f"errors={security['error_count']}; warnings={security['warning_count']}"
-        ),
+        detail=(f"errors={security['error_count']}; warnings={security['warning_count']}"),
     )
 
-    approval_path = root / "docs/approvals/CAB_KAGGLE_T4X2_LIVE_APPROVAL.md"
-    approval_ok = (
-        approval_path.exists()
-        and "APPROVED_FOR_LIVE_RUN: YES"
-        in approval_path.read_text(encoding="utf-8", errors="replace")
-    )
+    receipt_path = root / "private_data/approval/cryptographic_approval_receipt.json"
+    approval_ok = False
+    approval_detail = "no verified scientific-scope receipt; dry-run defaults remain active"
+    if receipt_path.is_file():
+        from causal_agent_bench.safety.approval_receipt import verify_approval_receipt
+
+        verification = verify_approval_receipt(
+            receipt_path,
+            repo_root=root,
+            allowed_scope="scientific",
+        )
+        approval_ok = verification["passed"]
+        approval_detail = (
+            "content-bound scientific approval receipt verified"
+            if approval_ok
+            else "scientific approval receipt rejected: " + ",".join(verification["errors"])
+        )
     add(
         "provider_approval",
         approval_ok,
         scope="external",
-        detail=(
-            "current maximum-ceiling live approval is present"
-            if approval_ok
-            else "no current maximum-ceiling live approval; dry-run defaults remain active"
-        ),
+        detail=approval_detail,
         evidence_class="EXECUTION_PENDING",
     )
 
@@ -497,8 +489,7 @@ def evaluate_max_ceiling_gate(repo_root: str | Path) -> dict[str, Any]:
         "build_complete": build_complete,
         "scientific_execution_allowed": (
             workflow_state_allows_live_execution(current_state)
-            and
-            build_complete
+            and build_complete
             and not external_blockers
             and all(gate["execution_ready"] for gate in study_gates.values())
         ),
@@ -577,8 +568,7 @@ def gate_markdown(payload: dict[str, Any]) -> str:
         f"- Build status: `{payload['status']}`",
         f"- Workflow state: `{payload['current_state']}`",
         f"- Pre-execution build complete: `{str(payload['build_complete']).lower()}`",
-        "- Scientific execution allowed: "
-        f"`{str(payload['scientific_execution_allowed']).lower()}`",
+        f"- Scientific execution allowed: `{str(payload['scientific_execution_allowed']).lower()}`",
         f"- Paper eligible: `{str(payload['paper_eligible']).lower()}`",
         "- Evidence class: `ENGINEERING_ONLY`",
         "",
@@ -617,17 +607,13 @@ def gate_markdown(payload: dict[str, Any]) -> str:
         ]
     )
     if payload["build_blockers"]:
-        lines.extend(
-            f"- `{row['check_id']}`: {row['detail']}"
-            for row in payload["build_blockers"]
-        )
+        lines.extend(f"- `{row['check_id']}`: {row['detail']}" for row in payload["build_blockers"])
     else:
         lines.append("- None.")
     lines.extend(["", "### Human, external, execution, and evidence blockers", ""])
     if payload["external_blockers"]:
         lines.extend(
-            f"- `{row['check_id']}`: {row['detail']}"
-            for row in payload["external_blockers"]
+            f"- `{row['check_id']}`: {row['detail']}" for row in payload["external_blockers"]
         )
     else:
         lines.append("- None.")
@@ -703,8 +689,7 @@ def current_state_markdown(state: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            f"Cross-role base-task overlaps: "
-            f"{state['datasets']['cross_role_overlap_count']}.",
+            f"Cross-role base-task overlaps: {state['datasets']['cross_role_overlap_count']}.",
             "",
             "## Evidence",
             "",
@@ -743,11 +728,7 @@ def _git_snapshot(root: Path) -> dict[str, Any]:
     commit = _run_text(root, ["git", "rev-parse", "HEAD"])
     status = _run_text(root, ["git", "status", "--short"], allow_failure=True)
     lines = [line for line in status.splitlines() if line.strip()]
-    tracked = [
-        line
-        for line in lines
-        if not line.startswith("??") and not line.startswith("!!")
-    ]
+    tracked = [line for line in lines if not line.startswith("??") and not line.startswith("!!")]
     untracked = [line for line in lines if line.startswith("??")]
     return {
         "branch": branch.strip(),
@@ -793,8 +774,7 @@ def _file_inventory(root: Path) -> dict[str, Any]:
         path.relative_to(root).as_posix()
         for path in root.rglob("*")
         if path.is_dir()
-        and path.name
-        in {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
+        and path.name in {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
     ]
     return {
         "source_files": len(source),
@@ -851,9 +831,7 @@ def _leakage_state(root: Path) -> dict[str, Any]:
         path = root / relative
         payload = _read_json(path) or {}
         summary_value = payload.get("summary")
-        summary: dict[str, Any] = (
-            summary_value if isinstance(summary_value, dict) else {}
-        )
+        summary: dict[str, Any] = summary_value if isinstance(summary_value, dict) else {}
         rows.append(
             {
                 "study": study,
@@ -873,9 +851,7 @@ def _leakage_state(root: Path) -> dict[str, Any]:
                     )
                     or 0
                 ),
-                "warning_cluster_count": int(
-                    summary.get("warning_cluster_count", 0) or 0
-                ),
+                "warning_cluster_count": int(summary.get("warning_cluster_count", 0) or 0),
                 "generated_at": payload.get("generated_at"),
                 "scope": "static_only",
             }
@@ -887,12 +863,8 @@ def _leakage_state(root: Path) -> dict[str, Any]:
         "needs_review_count": sum(row["needs_review_count"] for row in rows),
         "warning_cluster_count": sum(row["warning_cluster_count"] for row in rows),
         "reports": rows,
-        "phase2_phase3_gate_passed": bool(
-            phase23.get("run_eligible_under_phase2_phase3")
-        ),
-        "phase2_phase3_internal_blockers": int(
-            phase23.get("internal_blocker_count", 0)
-        ),
+        "phase2_phase3_gate_passed": bool(phase23.get("run_eligible_under_phase2_phase3")),
+        "phase2_phase3_internal_blockers": int(phase23.get("internal_blocker_count", 0)),
         "phase2_phase3_gate": phase23,
         "static_clean_does_not_equal_human_validated": True,
     }
@@ -1065,9 +1037,7 @@ def _provenance_state(root: Path) -> dict[str, Any]:
             template_error = f"{type(exc).__name__}: {exc}"
     registry_issues = validate_canonical_split_registry(root)
     manifest_module = root / "src/causal_agent_bench/runners/run_manifest_v2.py"
-    manifest_text = (
-        manifest_module.read_text(encoding="utf-8") if manifest_module.exists() else ""
-    )
+    manifest_text = manifest_module.read_text(encoding="utf-8") if manifest_module.exists() else ""
     return {
         "template_path": template_path.relative_to(root).as_posix(),
         "template_valid": template_valid,
@@ -1098,14 +1068,9 @@ def _release_state(root: Path) -> dict[str, Any]:
 def _claim_state(root: Path) -> dict[str, Any]:
     ledger = _read_json(root / "docs/claim_ledger.json") or {}
     rows = [
-        row
-        for row in ledger.get("claims", [])
-        if isinstance(row, dict) and row.get("claim_id")
+        row for row in ledger.get("claims", []) if isinstance(row, dict) and row.get("claim_id")
     ]
-    statuses = {
-        str(row["claim_id"]): str(row.get("status", "planned"))
-        for row in rows
-    }
+    statuses = {str(row["claim_id"]): str(row.get("status", "planned")) for row in rows}
     supported_empirical = [
         claim_id
         for claim_id, status in statuses.items()
@@ -1175,23 +1140,18 @@ def _evidence_state(
         if str(row.get("evidence_level", "")).lower()
         in {"audited_real_evidence", "paper_eligible_evidence", "human_validated"}
     ]
-    level_counts = Counter(
-        str(row.get("evidence_level") or "unknown")
-        for row in runs
-    )
+    level_counts = Counter(str(row.get("evidence_level") or "unknown") for row in runs)
     return {
         "indexed_run_count": len(runs),
         "indexed_run_evidence_levels": dict(sorted(level_counts.items())),
         "genuine_human_rows": int(human["genuine_human_row_count"]),
         "real_provider_runs": len(provider_runs),
         "real_provider_trajectories": sum(
-            int(row.get("completed_trajectories") or 0)
-            for row in provider_runs
+            int(row.get("completed_trajectories") or 0) for row in provider_runs
         ),
         "real_open_model_runs": len(open_runs),
         "real_open_model_trajectories": sum(
-            int(row.get("completed_trajectories") or 0)
-            for row in open_runs
+            int(row.get("completed_trajectories") or 0) for row in open_runs
         ),
         "audited_real_runs": len(audited),
         "paper_eligible_assets": int(
@@ -1201,9 +1161,7 @@ def _evidence_state(
             )
             or 0
         ),
-        "supported_empirical_claims": len(
-            claims["supported_empirical_claim_ids"]
-        ),
+        "supported_empirical_claims": len(claims["supported_empirical_claim_ids"]),
         "fixture_and_engineering_runs_are_not_scientific": True,
     }
 
@@ -1215,9 +1173,7 @@ def _study_gates(
     check = {row["check_id"]: row for row in checks}
     core_ids = ("leakage", "schemas", "scorer", "metrics", "configs", "secrets", "provenance")
     core_ready = all(check[name]["passed"] for name in core_ids)
-    human_ready = all(
-        check[name]["passed"] for name in ("human_review", "c10", "slice_integrity")
-    )
+    human_ready = all(check[name]["passed"] for name in ("human_review", "c10", "slice_integrity"))
     notebooks_ready = check["notebooks"]["passed"]
     approval_ready = check["provider_approval"]["passed"]
     evidence = state["evidence"]
@@ -1250,9 +1206,7 @@ def _study_gates(
         "scale100": gate(
             state_name=(
                 "SCALE100_READY"
-                if human_ready
-                and approval_ready
-                and evidence["audited_real_runs"] > 0
+                if human_ready and approval_ready and evidence["audited_real_runs"] > 0
                 else "EXECUTION_PENDING"
             ),
             build_ready=core_ready and notebooks_ready,
@@ -1280,9 +1234,7 @@ def _study_gates(
         "main500": gate(
             state_name=(
                 "MAIN500_READY"
-                if human_ready
-                and approval_ready
-                and evidence["audited_real_runs"] > 0
+                if human_ready and approval_ready and evidence["audited_real_runs"] > 0
                 else "EXECUTION_PENDING"
             ),
             build_ready=core_ready and notebooks_ready,
@@ -1355,8 +1307,7 @@ def _run_text(
     )
     if process.returncode != 0 and not allow_failure:
         raise RuntimeError(
-            f"{' '.join(command)} failed ({process.returncode}): "
-            f"{process.stderr.strip()}"
+            f"{' '.join(command)} failed ({process.returncode}): {process.stderr.strip()}"
         )
     return process.stdout
 

@@ -1,0 +1,65 @@
+{
+  "adjudicator_history_available": true,
+  "dry_run_hash": "f852b485a396f862b69803a1901aa8897799d87ef070d6d2f4fcfaf59549886d",
+  "fixture_only": true,
+  "not_human_evidence": true,
+  "real_packet_unchanged_and_blank": true,
+  "rows": [
+    {
+      "adjudication": {
+        "fixture_only": true,
+        "required": false
+      },
+      "candidate_id": "fixture_candidate_01",
+      "stage1": {
+        "fixture_only": true,
+        "isolation": "yes",
+        "manipulation_visible": "yes"
+      },
+      "stage2": {
+        "fixture_only": true,
+        "gold_correct": "yes",
+        "scorer_compatible": "yes"
+      }
+    },
+    {
+      "adjudication": {
+        "fixture_only": true,
+        "required": false
+      },
+      "candidate_id": "fixture_candidate_02",
+      "stage1": {
+        "fixture_only": true,
+        "isolation": "yes",
+        "manipulation_visible": "yes"
+      },
+      "stage2": {
+        "fixture_only": true,
+        "gold_correct": "yes",
+        "scorer_compatible": "yes"
+      }
+    },
+    {
+      "adjudication": {
+        "fixture_only": true,
+        "required": false
+      },
+      "candidate_id": "fixture_candidate_03",
+      "stage1": {
+        "fixture_only": true,
+        "isolation": "yes",
+        "manipulation_visible": "yes"
+      },
+      "stage2": {
+        "fixture_only": true,
+        "gold_correct": "yes",
+        "scorer_compatible": "yes"
+      }
+    }
+  ],
+  "schema_version": "cab_two_stage_review_fixture_dry_run_v1",
+  "source_packet_sha256": "c4555d38b804e616511f249004769e5889070f3b64cf2e7f8415ed3e4498305a",
+  "source_packet_status": "CAB_TWO_STAGE_HUMAN_REVIEW_READY",
+  "stage1_finalized_before_fixture_stage2": true,
+  "stage_orders_independent": true
+}

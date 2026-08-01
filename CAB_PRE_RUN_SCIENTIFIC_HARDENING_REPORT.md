@@ -22,8 +22,8 @@ anti-regression gate.
 - Transfer assignment Cramér's V: difficulty
   0.05164, domain
   0.157135.
-- Prospective SESOI power: Compact 0.395576; Scale
-  0.999295.
+- Prospective SESOI power under the corrected paired-task analysis: Compact
+  0.198194; Scale 0.69794. These values do not multiply task ESS by model count.
 - Transfer: 60 bundles / 600
   generated files, no real-world-origin claim.
 

@@ -32,97 +32,97 @@
   },
   "effective_task_count": 174.84326,
   "equivalence_margin": 0.05,
-  "equivalence_margin_resolved_at_expected_precision": true,
+  "equivalence_margin_resolved_at_expected_precision": false,
   "evidence_class": "DESIGN_ONLY",
   "exclusion_and_scorer_error_sensitivity": [
     {
-      "expected_ci_width": 0.058274,
+      "expected_ci_width": 0.130304,
       "human_exclusion_rate": 0.0,
       "scorer_error": 0.0,
-      "sesoi_power": 0.999907
+      "sesoi_power": 0.776906
     },
     {
-      "expected_ci_width": 0.06218,
+      "expected_ci_width": 0.139039,
       "human_exclusion_rate": 0.0,
       "scorer_error": 0.03,
-      "sesoi_power": 0.999661
+      "sesoi_power": 0.729262
     },
     {
-      "expected_ci_width": 0.06772,
+      "expected_ci_width": 0.151426,
       "human_exclusion_rate": 0.0,
       "scorer_error": 0.08,
-      "sesoi_power": 0.998586
+      "sesoi_power": 0.664977
     },
     {
-      "expected_ci_width": 0.060754,
+      "expected_ci_width": 0.135851,
       "human_exclusion_rate": 0.08,
       "scorer_error": 0.0,
-      "sesoi_power": 0.999782
+      "sesoi_power": 0.746499
     },
     {
-      "expected_ci_width": 0.064827,
+      "expected_ci_width": 0.144958,
       "human_exclusion_rate": 0.08,
       "scorer_error": 0.03,
-      "sesoi_power": 0.999295
+      "sesoi_power": 0.69794
     },
     {
-      "expected_ci_width": 0.070603,
+      "expected_ci_width": 0.157873,
       "human_exclusion_rate": 0.08,
       "scorer_error": 0.08,
-      "sesoi_power": 0.99742
+      "sesoi_power": 0.633645
     },
     {
-      "expected_ci_width": 0.065152,
+      "expected_ci_width": 0.145684,
       "human_exclusion_rate": 0.2,
       "scorer_error": 0.0,
-      "sesoi_power": 0.999234
+      "sesoi_power": 0.694171
     },
     {
-      "expected_ci_width": 0.06952,
+      "expected_ci_width": 0.155451,
       "human_exclusion_rate": 0.2,
       "scorer_error": 0.03,
-      "sesoi_power": 0.997922
+      "sesoi_power": 0.645229
     },
     {
-      "expected_ci_width": 0.075713,
+      "expected_ci_width": 0.169299,
       "human_exclusion_rate": 0.2,
       "scorer_error": 0.08,
-      "sesoi_power": 0.993738
+      "sesoi_power": 0.582171
     }
   ],
-  "expected_confidence_interval_width": 0.064827,
+  "expected_confidence_interval_width": 0.144958,
   "expected_degradation": 0.17,
-  "family_effect_precision_half_width": 0.14181,
-  "minimum_detectable_degradation_80pct_power": 0.041121,
-  "noninferiority_precision_half_width": 0.032414,
-  "power_for_expected_degradation": 1.0,
-  "power_for_preregistered_sesoi": 0.999295,
-  "raac_improvement_power": 0.821358,
-  "rank_change_probability": 0.0223,
-  "recommendation": "Planned unique-task count meets the prospective 80% SESOI-power target.",
+  "family_effect_precision_half_width": 0.249271,
+  "minimum_detectable_degradation_80pct_power": 0.09195,
+  "noninferiority_precision_half_width": 0.072479,
+  "power_for_expected_degradation": 0.998423,
+  "power_for_preregistered_sesoi": 0.69794,
+  "raac_improvement_power": 0.309394,
+  "rank_change_probability": 0.4484,
+  "recommendation": "Increase unique base tasks before increasing repeats.",
   "schema_version": "cab_prospective_power_precision_v1",
   "scientific_execution_performed": false,
-  "simulation_receipt": "f69262912f5fe590b37a220a3ee7d1fba6990ce5492ed73462a99d06275e4d88",
-  "underpowered_for_sesoi": false,
-  "unresolved_ranking_probability": 0.9988,
+  "simulation_receipt": "1355365a3783e896c847f657d4097bc72ca215723b351b61ecab7267babf03f9",
+  "underpowered_for_sesoi": true,
+  "unresolved_ranking_probability": 1.0,
   "value_of_more_tasks_vs_repeats": [
     {
       "base_task_count": 125,
-      "minimum_detectable_degradation": 0.03678,
+      "minimum_detectable_degradation": 0.082242,
       "repeats": 3,
-      "sesoi_power": 0.999916
+      "sesoi_power": 0.780485
     },
     {
       "base_task_count": 100,
-      "minimum_detectable_degradation": 0.036819,
+      "minimum_detectable_degradation": 0.082331,
       "repeats": 4,
-      "sesoi_power": 0.999914
+      "sesoi_power": 0.779715
     },
     {
       "base_task_count": 200,
-      "minimum_detectable_degradation": 0.029077,
+      "minimum_detectable_degradation": 0.065018,
       "repeats": 3,
-      "sesoi_power": 1.0
+      "sesoi_power": 0.921403
     }
   ]
 }

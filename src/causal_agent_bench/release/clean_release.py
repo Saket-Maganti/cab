@@ -43,7 +43,6 @@ def run_clean_release_check(
                     sys.executable,
                     "-m",
                     "build",
-                    "--no-isolation",
                     "--outdir",
                     str(dist),
                 ],

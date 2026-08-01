@@ -73,6 +73,13 @@ Recovery is evaluated only after a tool error, corrupted output, or partial resu
 - `tool_error_recovery_binary`: compatibility process diagnostic; it must not
   be used to infer executed recovery from final text.
 - `steps_to_recovery`: number of steps from first failure to recovery action.
+
+Recovery authorization v4 is stricter than tool-name matching. A successful
+recovery requires an observed prior failure, the exact preregistered action ID,
+an allowed tool, schema-valid arguments, an in-budget post-failure attempt, a
+useful predicate-matching observation, and a causal binding to required fact
+IDs. A recovery phrase in final text, an unrelated successful tool call, or an
+approved-looking path never counts as executed recovery.
 - `repeated_failed_call_count`: repeated calls to a tool after that tool already failed or returned corrupted output.
 
 Final-answer claims such as “I retried” or fake recovery markers can set only
