@@ -1,0 +1,49 @@
+{
+  "assumptions": {
+    "bootstrap_repetitions": 10000,
+    "cpu_seconds_per_trajectory": 0.04,
+    "expected_files_per_shard": 8,
+    "gpu_seconds_per_model_call": 1.8,
+    "mean_model_calls_per_trajectory": 4.0,
+    "storage_kib_per_trajectory": 96.0,
+    "target_trajectories_per_shard": 2500
+  },
+  "counts": {
+    "clean_instances": 16,
+    "family_count": 4,
+    "instance_count": 36,
+    "intervention_instances": 20,
+    "models": 3,
+    "policies": 1,
+    "repeats": 2,
+    "rerun_reserve_trajectories": 0,
+    "seeds": 2,
+    "tasks": 16,
+    "total_trajectories": 216,
+    "trajectories_without_reserve": 216
+  },
+  "evidence_class": "DESIGN_ONLY",
+  "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+  "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+  "manual_total_accepted": null,
+  "plan_receipt": "310b0e1a28abb6dd272af3f2d15f6c1824f9f816ca367776a6f2981cae4594a0",
+  "planner_config_sha256": "26501db36db918d966ca5b6f4c7d7c6e0e3bca1f5b6a167d999372477893a91a",
+  "requested_view": "volume",
+  "resources": {
+    "bootstrap_replicate_cells": 120000,
+    "cpu_merge_scoring_hours": 0.0024,
+    "gpu_hours": 0.432,
+    "model_calls": 864,
+    "storage_gib": 0.019775
+  },
+  "scenario": "planned",
+  "schema_version": "cab_manifest_driven_resource_plan_v1",
+  "scientific_execution_performed": false,
+  "shards": {
+    "expected_files": 14,
+    "maximum_trajectories_per_shard": 216,
+    "merge_requires_exact_manifest_hash": true,
+    "shard_count": 1
+  },
+  "study": "compact20"
+}

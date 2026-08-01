@@ -1,0 +1,37 @@
+{
+  "acceptance": {
+    "anti_regression_gate": true,
+    "canonical_guidance": true,
+    "compact20_packet_v2": true,
+    "confirmatory_assignment_design": true,
+    "endpoints_frozen": true,
+    "evaluated_system_identity_frozen": true,
+    "intervention_reachability": true,
+    "manifest_resource_planner": true,
+    "prospective_power_plan": true,
+    "scorer_semantics_v3": true,
+    "transfer_scope_aligned": true,
+    "v2_execution_canonical": true
+  },
+  "baseline_sha": "c8b0d008a02f4bcc36a24635a1357d4210e073fd",
+  "external_states": [
+    "HUMAN_VALIDATION_REQUIRED",
+    "LIVE_EVIDENCE_REQUIRED"
+  ],
+  "genuine_evidence": {
+    "audited_real_runs": 0,
+    "community_pilots": 0,
+    "external_reproductions": 0,
+    "genuine_adjudications": 0,
+    "genuine_human_judgments": 0,
+    "paper_eligible_empirical_assets": 0,
+    "protected_evaluator_pilots": 0,
+    "real_model_trajectories": 0,
+    "supported_empirical_claims": 0
+  },
+  "next_action": "Recruit and onboard two genuine qualified independent Compact-20 reviewers using the regenerated packet, plus a separate adjudicator.",
+  "primary_state": "CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE",
+  "provider_calls_performed": 0,
+  "schema_version": "cab_pre_run_hardening_state_v1",
+  "scientific_execution_performed": false
+}

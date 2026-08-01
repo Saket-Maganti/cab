@@ -212,6 +212,8 @@ def _markdown(status: dict) -> str:
     lines = [
         "# Master Status — CausalAgentBench",
         "",
+        "> `SUPERSEDED_BY: CURRENT_PROJECT_STATE.md` — use the canonical pre-run state instead of this historical generated snapshot.",
+        "",
         f"**Generated:** {status['generated_at']}",
         f"**Classification:** `{ex['classification']}`",
         f"**Readiness checker:** `{ex['readiness_checker_level']}` · submission_ready={ex['submission_ready']}",

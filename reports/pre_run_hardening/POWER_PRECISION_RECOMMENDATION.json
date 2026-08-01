@@ -1,0 +1,9 @@
+{
+  "assumptions_frozen_before_live_runs": true,
+  "compact20_sesoi_power": 0.395576,
+  "decision": "Use Compact-20 for validation/piloting only; use Scale-100 for confirmatory completion endpoints after human approval.",
+  "receipt": "db9ce08e676d834786f1c6bdc603f2de71cf4bf7897d77a3c8bacab8cf3b43aa",
+  "scale100_sesoi_power": 0.999295,
+  "schema_version": "cab_power_recommendation_receipt_v1",
+  "scientific_execution_performed": false
+}

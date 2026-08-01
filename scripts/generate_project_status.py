@@ -154,6 +154,8 @@ def _markdown(status: dict) -> str:
     lines = [
         "# Project Status",
         "",
+        "> `SUPERSEDED_BY: CURRENT_PROJECT_STATE.md` — use the canonical pre-run state instead of this historical generated snapshot.",
+        "",
         f"**Generated:** {status['generated_at']}",
         f"**Classification:** `{status['classification']}`",
         f"**Submission ready:** {status['submission_ready']}",

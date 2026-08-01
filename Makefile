@@ -11,15 +11,22 @@ CAB_MAX_CEILING_TESTS := \
 	tests/test_security_check.py \
 	tests/test_claim_ledger.py \
 	tests/test_release_check.py
+CAB_PRE_RUN_HARDENING_TESTS := \
+	tests/test_typed_final_scorer.py \
+	tests/test_pre_run_scientific_hardening.py \
+	tests/test_kaggle_notebooks.py \
+	tests/test_security_check.py \
+	tests/test_static_leakage.py
 
-.PHONY: install test test-serial coverage lock audit spell mutate lint typecheck smoke fast-check precommit pre-commit-install build-check security-check artifact-check artifact-smoke artifact-deterministic release-check release-dry-run paper-fill export-leaderboard export-failure-gallery ablation-matrix batch-smoke audit-contamination paper paper-draft paper-check paper-submission-check submission-precheck submission-check help doctor plan-micro audit-configs audit-repo check-claims check-paper check-readiness index-runs check-run-index god-tier-status no-run-reports governance-reports clean-pycache status master-status final-audit max-ceiling-tests max-ceiling-tests-serial split-registry-check kaggle-fixture-check iclr-resource-check max-ceiling-static-gates max-ceiling-ci max-ceiling-ci-serial level5-test level5-hardening-test level5-coverage level5-reproduce level5-check level5-hardening-check level5-sbom
+.PHONY: install test test-serial coverage lock audit spell mutate lint typecheck smoke fast-check precommit pre-commit-install build-check security-check artifact-check artifact-smoke artifact-deterministic release-check release-dry-run paper-fill export-leaderboard export-failure-gallery ablation-matrix batch-smoke audit-contamination paper paper-draft paper-check paper-submission-check submission-precheck submission-check help doctor plan-micro audit-configs audit-repo check-claims check-paper check-readiness index-runs check-run-index god-tier-status no-run-reports governance-reports clean-pycache status master-status final-audit max-ceiling-tests max-ceiling-tests-serial split-registry-check kaggle-fixture-check iclr-resource-check max-ceiling-static-gates max-ceiling-ci max-ceiling-ci-serial level5-test level5-hardening-test level5-coverage level5-reproduce level5-check level5-hardening-check level5-sbom pre-run-scientific-check
 
 help:
 	@echo "Safe targets: install, test, coverage, lint, typecheck, fast-check, precommit,"
 	@echo "  pre-commit-install, doctor, plan-micro, audit-repo, audit-configs, check-claims,"
 	@echo "  check-paper, check-readiness, index-runs, check-run-index, god-tier-status,"
 	@echo "  no-run-reports, governance-reports, status, master-status, final-audit,"
-	@echo "  clean-pycache, security-check, max-ceiling-ci, max-ceiling-ci-serial"
+	@echo "  clean-pycache, security-check, max-ceiling-ci, max-ceiling-ci-serial,"
+	@echo "  pre-run-scientific-check"
 	@echo "Unsafe (may run models): smoke, paper-fill, ablation-matrix --execute"
 
 install:
@@ -82,6 +89,15 @@ level5-hardening-check:
 level5-sbom:
 	$(PYTHON) scripts/generate_level5_sbom.py
 	$(PYTHON) scripts/generate_dependency_licenses.py
+
+pre-run-scientific-check:
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) -m pytest -q -n0 $(CAB_PRE_RUN_HARDENING_TESTS)
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) -m causal_agent_bench level5 hardening-check
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) -m causal_agent_bench benchmark reachability-check
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) -m causal_agent_bench pre-run scientific-check
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) scripts/validate_iclr_private_candidates.py --public-only
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) scripts/validate_kaggle_notebooks.py
+	PYTHONPATH=$(CAB_PYTHONPATH) $(PYTHON) scripts/security_check.py
 
 coverage:
 	$(PYTHON) -m pytest --cov=causal_agent_bench --cov-report=term-missing --cov-report=html --cov-report=xml

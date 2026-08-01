@@ -1,5 +1,7 @@
 # Project Status
 
+> `SUPERSEDED_BY: CURRENT_PROJECT_STATE.md` — use the canonical pre-run state instead of this historical generated snapshot.
+
 **Generated:** 2026-07-23T17:18:22.880115+00:00
 **Classification:** `local_preliminary`
 **Submission ready:** False

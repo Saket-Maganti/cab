@@ -10,16 +10,20 @@
 
 <!-- Badge repo path assumes github.com/Saket-Maganti/causal-agent-bench; update if the remote differs. -->
 
+> Current authoritative state: [CURRENT_PROJECT_STATE.md](CURRENT_PROJECT_STATE.md).
+> Pre-run scientific hardening is complete; genuine human validation and live
+> evidence are still required.
+
 CausalAgentBench is a Python research package for studying tool-using language agents under controlled interventions. The motivation is that final task success can hide why an agent succeeded or failed: planning, tool selection, tool arguments, observation interpretation, memory use, contradiction handling, recovery, stopping behavior, and final answer quality are different skills. The benchmark pairs clean task instances with targeted intervention variants so those skills can be measured more explicitly.
 
 This repository is an initial research scaffold and deterministic prototype. It is not a completed benchmark, and smoke/dev outputs are engineering checks rather than scientific results.
 
 | | |
 |---|---|
-| **Status** | `build_infrastructure_ready` — [GOD_TIER_MANIFEST.md](GOD_TIER_MANIFEST.md) · [MASTER_STATUS.md](MASTER_STATUS.md) |
+| **Status** | `CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE` — [CURRENT_PROJECT_STATE.md](CURRENT_PROJECT_STATE.md) |
 | **Health** | [PROJECT_HEALTH.md](PROJECT_HEALTH.md) |
 | **Python** | 3.11+ · pinned runtime: `constraints.txt` (`make lock`) |
-| **Fast check** | `make fast-check` (~40s, no model runs) |
+| **Pre-run gate** | `make pre-run-scientific-check` (provider-free, no model runs) |
 | **God-tier status** | `make god-tier-status` or `python3 scripts/god_tier_status.py` |
 | **Paid calls** | Disabled by default (`allow_paid_calls: false`) |
 | **Evidence** | [docs/EVIDENCE_LEVEL_POLICY.md](docs/EVIDENCE_LEVEL_POLICY.md) · [docs/DO_NOT_OVERCLAIM.md](docs/DO_NOT_OVERCLAIM.md) |

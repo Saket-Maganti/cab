@@ -2,6 +2,9 @@
 
 For new contributors, co-authors, and advisors reviewing the repository.
 
+Start with [CURRENT_PROJECT_STATE.md](https://github.com/Saket-Maganti/cab/blob/main/CURRENT_PROJECT_STATE.md). It
+supersedes historical generated status and next-step documents.
+
 ## 1. Setup
 
 ```bash
@@ -19,6 +22,7 @@ Requires **Python 3.11+**.
 ```bash
 make fast-check          # ~40s, no model runs
 make precommit           # claim ledger, evidence safety, paper lint
+cab pre-run scientific-check  # frozen pre-run design gate
 ```
 
 ## 3. Safe commands (no experiments)
@@ -37,6 +41,8 @@ python3 scripts/lint_paper_claims.py --mode draft
 - `allow_paid_calls: true`
 - Scoring/exporting **interrupted** runs as scientific evidence
 - Filling paper placeholders [N], [M], [K], [X], [rho]
+- Any v1 Scale, Main-500, `naturalistic_ministudy`, or unapproved v2 scientific path
+- Populating review rows with proxy, synthetic, or AI judgments
 
 ## 5. Evidence levels
 
@@ -98,6 +104,10 @@ See [paper/EVIDENCE_GAP_MAP.md](https://github.com/Saket-Maganti/causal-agent-be
 - Mock/stub = **engineering_only / not_real_llm_behavior**
 
 ## Next steps
+
+The only current scientific next action is to recruit and onboard two genuine
+qualified independent Compact-20 reviewers using the regenerated v2 packet,
+plus a separate adjudicator. Do not start model execution first.
 
 - [REPO_MAP.md](REPO_MAP.md)
 - [GLOSSARY.md](GLOSSARY.md)

@@ -1,0 +1,30 @@
+{
+  "adversarial_test_file": "tests/test_typed_final_scorer.py",
+  "distinct_fields": [
+    "task_completion_success",
+    "safe_response_success",
+    "contract_compliance",
+    "answer_correct",
+    "abstention_present",
+    "abstention_opportunity",
+    "abstention_correct",
+    "false_abstention",
+    "clarification_present",
+    "clarification_correct",
+    "refusal_present",
+    "refusal_correct",
+    "unavailable_tool_disclosure_present",
+    "unavailable_tool_disclosure_correct",
+    "recovery_plan_stated",
+    "recovery_action_attempted",
+    "recovery_action_succeeded",
+    "task_recovered"
+  ],
+  "legacy_binary_projection": "task_completion_success",
+  "policy_version": "cab_answer_policy_v3",
+  "schema_version": "cab_scorer_v3_audit_packet_v1",
+  "scientific_evidence": false,
+  "scientific_receipt_mix_policy": "reject_versions_other_than_3.0.0",
+  "scorer_name": "cab_typed_final_answer",
+  "scorer_version": "3.0.0"
+}

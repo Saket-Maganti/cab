@@ -1,5 +1,7 @@
 # Master Status — CausalAgentBench
 
+> `SUPERSEDED_BY: CURRENT_PROJECT_STATE.md` — use the canonical pre-run state instead of this historical generated snapshot.
+
 **Generated:** 2026-07-23T17:18:37.365106+00:00
 **Classification:** `build_infrastructure_ready`
 **Readiness checker:** `local_preliminary` · submission_ready=False

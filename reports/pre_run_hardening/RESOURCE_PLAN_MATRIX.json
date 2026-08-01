@@ -1,0 +1,1365 @@
+{
+  "matrix_receipt": "5935fdfb46e8ab99195c77aa4f3f8a8d75b6f24080365fdecfe6763f77844f05",
+  "schema_version": "cab_resource_plan_matrix_v1",
+  "scientific_execution_performed": false,
+  "studies": {
+    "compact20": {
+      "conservative": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 3,
+          "policies": 1,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 3,
+          "tasks": 16,
+          "total_trajectories": 324,
+          "trajectories_without_reserve": 324
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "3b80baef0b75ec164abbd152b52f0afa90b407ebddec057cdbeb784cad4a7642",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 120000,
+          "cpu_merge_scoring_hours": 0.0036,
+          "gpu_hours": 0.648,
+          "model_calls": 1296,
+          "storage_gib": 0.029663
+        },
+        "scenario": "conservative",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 324,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20"
+      },
+      "minimum": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 1,
+          "policies": 1,
+          "repeats": 1,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 1,
+          "tasks": 16,
+          "total_trajectories": 36,
+          "trajectories_without_reserve": 36
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "8281f83279171b83d601e24c2294224b315b6a7a8836317845d582eb924c7838",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 40000,
+          "cpu_merge_scoring_hours": 0.0004,
+          "gpu_hours": 0.072,
+          "model_calls": 144,
+          "storage_gib": 0.003296
+        },
+        "scenario": "minimum",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 36,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20"
+      },
+      "planned": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 3,
+          "policies": 1,
+          "repeats": 2,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 2,
+          "tasks": 16,
+          "total_trajectories": 216,
+          "trajectories_without_reserve": 216
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "5b372acb9971b933495244e56791fe56892469f4a12b15427e70e73f2c82d21c",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 120000,
+          "cpu_merge_scoring_hours": 0.0024,
+          "gpu_hours": 0.432,
+          "model_calls": 864,
+          "storage_gib": 0.019775
+        },
+        "scenario": "planned",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 216,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20"
+      },
+      "rerun_reserve": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 3,
+          "policies": 1,
+          "repeats": 2,
+          "rerun_reserve_trajectories": 44,
+          "seeds": 2,
+          "tasks": 16,
+          "total_trajectories": 260,
+          "trajectories_without_reserve": 216
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "dceb76b3ce9849d1788f97205af7a87963b549e2339a82cb4ae31782ca4609a7",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 120000,
+          "cpu_merge_scoring_hours": 0.002889,
+          "gpu_hours": 0.52,
+          "model_calls": 1040,
+          "storage_gib": 0.023804
+        },
+        "scenario": "rerun_reserve",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 260,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20"
+      }
+    },
+    "compact20_raac_light": {
+      "conservative": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 3,
+          "policies": 2,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 3,
+          "tasks": 16,
+          "total_trajectories": 648,
+          "trajectories_without_reserve": 648
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "c12f88ae890429275060bb5aff63924d6d47c367863466884821c6683cd25ed5",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 240000,
+          "cpu_merge_scoring_hours": 0.0072,
+          "gpu_hours": 1.296,
+          "model_calls": 2592,
+          "storage_gib": 0.059326
+        },
+        "scenario": "conservative",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 648,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20_raac_light"
+      },
+      "minimum": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 1,
+          "policies": 1,
+          "repeats": 1,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 1,
+          "tasks": 16,
+          "total_trajectories": 36,
+          "trajectories_without_reserve": 36
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "4ab8f20691baad373b10acab4031f9ff6b0187c8417f251a84fb15458beba7f0",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 40000,
+          "cpu_merge_scoring_hours": 0.0004,
+          "gpu_hours": 0.072,
+          "model_calls": 144,
+          "storage_gib": 0.003296
+        },
+        "scenario": "minimum",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 36,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20_raac_light"
+      },
+      "planned": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 3,
+          "policies": 2,
+          "repeats": 2,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 2,
+          "tasks": 16,
+          "total_trajectories": 432,
+          "trajectories_without_reserve": 432
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "6d852b5964d32c178c8f4c0125e4ed2a67868689aa722f322087bfc88b4000d1",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 240000,
+          "cpu_merge_scoring_hours": 0.0048,
+          "gpu_hours": 0.864,
+          "model_calls": 1728,
+          "storage_gib": 0.039551
+        },
+        "scenario": "planned",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 432,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20_raac_light"
+      },
+      "rerun_reserve": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 16,
+          "family_count": 4,
+          "instance_count": 36,
+          "intervention_instances": 20,
+          "models": 3,
+          "policies": 2,
+          "repeats": 2,
+          "rerun_reserve_trajectories": 87,
+          "seeds": 2,
+          "tasks": 16,
+          "total_trajectories": 519,
+          "trajectories_without_reserve": 432
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/compact20_v2_public_manifest.json",
+        "manifest_sha256": "bd71844530f0112cb7b71f5ee967798bee843a05041b318327fc797a70e2cfc9",
+        "manual_total_accepted": null,
+        "plan_receipt": "862fece363e335f75a0c0f4b27adfca6ca8e9194fd316d758391eda5294e706e",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 240000,
+          "cpu_merge_scoring_hours": 0.005767,
+          "gpu_hours": 1.038,
+          "model_calls": 2076,
+          "storage_gib": 0.047516
+        },
+        "scenario": "rerun_reserve",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 519,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "compact20_raac_light"
+      }
+    },
+    "raac_ablations": {
+      "conservative": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 9,
+          "repeats": 4,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 4,
+          "tasks": 100,
+          "total_trajectories": 108000,
+          "trajectories_without_reserve": 108000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "0e0e4f874fa40419c31e436bf81cdee1f19d6c456651dd68301f0dfc01cbfbc9",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 4500000,
+          "cpu_merge_scoring_hours": 1.2,
+          "gpu_hours": 216.0,
+          "model_calls": 432000,
+          "storage_gib": 9.887695
+        },
+        "scenario": "conservative",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 358,
+          "maximum_trajectories_per_shard": 2455,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 44
+        },
+        "study": "raac_ablations"
+      },
+      "minimum": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 1,
+          "policies": 1,
+          "repeats": 1,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 1,
+          "tasks": 100,
+          "total_trajectories": 600,
+          "trajectories_without_reserve": 600
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "f7d90652189e9d7ba7882d5a56935307d3ff99c15d0388df4ec8f3f7741d7be6",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 100000,
+          "cpu_merge_scoring_hours": 0.006667,
+          "gpu_hours": 1.2,
+          "model_calls": 2400,
+          "storage_gib": 0.054932
+        },
+        "scenario": "minimum",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 600,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "raac_ablations"
+      },
+      "planned": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 9,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 81000,
+          "trajectories_without_reserve": 81000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "dfa2097ee7dbbbe379293c0c223687e7690ae3d865401e65a44fd7d1048ebd93",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 4500000,
+          "cpu_merge_scoring_hours": 0.9,
+          "gpu_hours": 162.0,
+          "model_calls": 324000,
+          "storage_gib": 7.415771
+        },
+        "scenario": "planned",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 270,
+          "maximum_trajectories_per_shard": 2455,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 33
+        },
+        "study": "raac_ablations"
+      },
+      "rerun_reserve": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 9,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 16200,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 97200,
+          "trajectories_without_reserve": 81000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "769eef053835cdd8a4b6544bccd58842c03e6bd4c444c5871d296a43a3175c35",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 4500000,
+          "cpu_merge_scoring_hours": 1.08,
+          "gpu_hours": 194.4,
+          "model_calls": 388800,
+          "storage_gib": 8.898926
+        },
+        "scenario": "rerun_reserve",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 318,
+          "maximum_trajectories_per_shard": 2493,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 39
+        },
+        "study": "raac_ablations"
+      }
+    },
+    "raac_equal_budget": {
+      "conservative": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 2,
+          "repeats": 4,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 4,
+          "tasks": 100,
+          "total_trajectories": 24000,
+          "trajectories_without_reserve": 24000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "fd3fe3728aa8908f95434347377399c9a24dfdcc8e9a23e4f407097c74ab090f",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 1000000,
+          "cpu_merge_scoring_hours": 0.266667,
+          "gpu_hours": 48.0,
+          "model_calls": 96000,
+          "storage_gib": 2.197266
+        },
+        "scenario": "conservative",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 86,
+          "maximum_trajectories_per_shard": 2400,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 10
+        },
+        "study": "raac_equal_budget"
+      },
+      "minimum": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 1,
+          "policies": 1,
+          "repeats": 1,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 1,
+          "tasks": 100,
+          "total_trajectories": 600,
+          "trajectories_without_reserve": 600
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "c2738ccd8f72644f6a428da0b5dc0d4ab8ec111cbe492cac81385d4a3806e818",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 100000,
+          "cpu_merge_scoring_hours": 0.006667,
+          "gpu_hours": 1.2,
+          "model_calls": 2400,
+          "storage_gib": 0.054932
+        },
+        "scenario": "minimum",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 600,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "raac_equal_budget"
+      },
+      "planned": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 2,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 18000,
+          "trajectories_without_reserve": 18000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "3bcce7e37f0a3cb90862130a2c03e6bfab22ab0a092f0fdb6abe3b37d3ce3215",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 1000000,
+          "cpu_merge_scoring_hours": 0.2,
+          "gpu_hours": 36.0,
+          "model_calls": 72000,
+          "storage_gib": 1.647949
+        },
+        "scenario": "planned",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 70,
+          "maximum_trajectories_per_shard": 2250,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 8
+        },
+        "study": "raac_equal_budget"
+      },
+      "rerun_reserve": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 2,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 3600,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 21600,
+          "trajectories_without_reserve": 18000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "cac7d352a272f77436cfc95a07c725b581a003ba808460b91b92980a286aabd1",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 1000000,
+          "cpu_merge_scoring_hours": 0.24,
+          "gpu_hours": 43.2,
+          "model_calls": 86400,
+          "storage_gib": 1.977539
+        },
+        "scenario": "rerun_reserve",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 78,
+          "maximum_trajectories_per_shard": 2400,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 9
+        },
+        "study": "raac_equal_budget"
+      }
+    },
+    "scale100": {
+      "conservative": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 1,
+          "repeats": 4,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 4,
+          "tasks": 100,
+          "total_trajectories": 12000,
+          "trajectories_without_reserve": 12000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "8132b5db24d57556e04ea085db799981172e742a2c6677d39636100b4689308a",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 500000,
+          "cpu_merge_scoring_hours": 0.133333,
+          "gpu_hours": 24.0,
+          "model_calls": 48000,
+          "storage_gib": 1.098633
+        },
+        "scenario": "conservative",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 46,
+          "maximum_trajectories_per_shard": 2400,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 5
+        },
+        "study": "scale100"
+      },
+      "minimum": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 1,
+          "policies": 1,
+          "repeats": 1,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 1,
+          "tasks": 100,
+          "total_trajectories": 600,
+          "trajectories_without_reserve": 600
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "02c578741a340f47a45017fd020d0b2c6a4f8882574eb5ff444d80f96ceb00bb",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 100000,
+          "cpu_merge_scoring_hours": 0.006667,
+          "gpu_hours": 1.2,
+          "model_calls": 2400,
+          "storage_gib": 0.054932
+        },
+        "scenario": "minimum",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 600,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "scale100"
+      },
+      "planned": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 1,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 9000,
+          "trajectories_without_reserve": 9000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "4dc28a7a65b0d779b0787e716098e750cc0117b894c694118d278c5b5cfea34b",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 500000,
+          "cpu_merge_scoring_hours": 0.1,
+          "gpu_hours": 18.0,
+          "model_calls": 36000,
+          "storage_gib": 0.823975
+        },
+        "scenario": "planned",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 38,
+          "maximum_trajectories_per_shard": 2250,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 4
+        },
+        "study": "scale100"
+      },
+      "rerun_reserve": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 1,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 1800,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 10800,
+          "trajectories_without_reserve": 9000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "2275817cd03b335babfe5ac456befa3e1b7e5528ef3db19d3c95d6691a745d8d",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 500000,
+          "cpu_merge_scoring_hours": 0.12,
+          "gpu_hours": 21.6,
+          "model_calls": 43200,
+          "storage_gib": 0.98877
+        },
+        "scenario": "rerun_reserve",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 46,
+          "maximum_trajectories_per_shard": 2160,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 5
+        },
+        "study": "scale100"
+      }
+    },
+    "scale100_raac_light": {
+      "conservative": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 2,
+          "repeats": 4,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 4,
+          "tasks": 100,
+          "total_trajectories": 24000,
+          "trajectories_without_reserve": 24000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "62bcd4ddda7197985a8742d41ef336bdd0cff498cb8085e33d15fe30d02cce29",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 1000000,
+          "cpu_merge_scoring_hours": 0.266667,
+          "gpu_hours": 48.0,
+          "model_calls": 96000,
+          "storage_gib": 2.197266
+        },
+        "scenario": "conservative",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 86,
+          "maximum_trajectories_per_shard": 2400,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 10
+        },
+        "study": "scale100_raac_light"
+      },
+      "minimum": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 1,
+          "policies": 1,
+          "repeats": 1,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 1,
+          "tasks": 100,
+          "total_trajectories": 600,
+          "trajectories_without_reserve": 600
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "0f3a1f56eea62b550ee235d314eaf02881f0177696f493e47b244d94a62c224f",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 100000,
+          "cpu_merge_scoring_hours": 0.006667,
+          "gpu_hours": 1.2,
+          "model_calls": 2400,
+          "storage_gib": 0.054932
+        },
+        "scenario": "minimum",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 600,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "scale100_raac_light"
+      },
+      "planned": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 2,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 18000,
+          "trajectories_without_reserve": 18000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "c0528cd1d2291b4ee75f7f58f475fdd72af53feb599d35741437757e813deac8",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 1000000,
+          "cpu_merge_scoring_hours": 0.2,
+          "gpu_hours": 36.0,
+          "model_calls": 72000,
+          "storage_gib": 1.647949
+        },
+        "scenario": "planned",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 70,
+          "maximum_trajectories_per_shard": 2250,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 8
+        },
+        "study": "scale100_raac_light"
+      },
+      "rerun_reserve": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 100,
+          "family_count": 10,
+          "instance_count": 600,
+          "intervention_instances": 500,
+          "models": 5,
+          "policies": 2,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 3600,
+          "seeds": 3,
+          "tasks": 100,
+          "total_trajectories": 21600,
+          "trajectories_without_reserve": 18000
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/scale100_confirmatory_v2_public_manifest.json",
+        "manifest_sha256": "360023cb27c137e48050d2fbbf3af29edd2a737f3dbad66adaa25ad8dea962d7",
+        "manual_total_accepted": null,
+        "plan_receipt": "0e1fd690caf5c104b0233287b2e550ae289ece7091bbd0f3f661a0cddfbebbce",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 1000000,
+          "cpu_merge_scoring_hours": 0.24,
+          "gpu_hours": 43.2,
+          "model_calls": 86400,
+          "storage_gib": 1.977539
+        },
+        "scenario": "rerun_reserve",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 78,
+          "maximum_trajectories_per_shard": 2400,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 9
+        },
+        "study": "scale100_raac_light"
+      }
+    },
+    "transfer": {
+      "conservative": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 60,
+          "family_count": 10,
+          "instance_count": 360,
+          "intervention_instances": 300,
+          "models": 5,
+          "policies": 1,
+          "repeats": 4,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 4,
+          "tasks": 60,
+          "total_trajectories": 7200,
+          "trajectories_without_reserve": 7200
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+        "manifest_sha256": "b5cc363d22b34c80cd0af6722cea8f19ce408f6a78bc354d59894a1d19042990",
+        "manual_total_accepted": null,
+        "plan_receipt": "f3e2fdde84836a038c6a90eec56c1028f89c39907720c75c2b850de0b9838aba",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 500000,
+          "cpu_merge_scoring_hours": 0.08,
+          "gpu_hours": 14.4,
+          "model_calls": 28800,
+          "storage_gib": 0.65918
+        },
+        "scenario": "conservative",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 30,
+          "maximum_trajectories_per_shard": 2400,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 3
+        },
+        "study": "transfer"
+      },
+      "minimum": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 60,
+          "family_count": 10,
+          "instance_count": 360,
+          "intervention_instances": 300,
+          "models": 1,
+          "policies": 1,
+          "repeats": 1,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 1,
+          "tasks": 60,
+          "total_trajectories": 360,
+          "trajectories_without_reserve": 360
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+        "manifest_sha256": "b5cc363d22b34c80cd0af6722cea8f19ce408f6a78bc354d59894a1d19042990",
+        "manual_total_accepted": null,
+        "plan_receipt": "067af278d61e46b98f27b2f11e79b90dbc02a24478937923bbd5cb26226a1c6f",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 100000,
+          "cpu_merge_scoring_hours": 0.004,
+          "gpu_hours": 0.72,
+          "model_calls": 1440,
+          "storage_gib": 0.032959
+        },
+        "scenario": "minimum",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 14,
+          "maximum_trajectories_per_shard": 360,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 1
+        },
+        "study": "transfer"
+      },
+      "planned": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 60,
+          "family_count": 10,
+          "instance_count": 360,
+          "intervention_instances": 300,
+          "models": 5,
+          "policies": 1,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 0,
+          "seeds": 3,
+          "tasks": 60,
+          "total_trajectories": 5400,
+          "trajectories_without_reserve": 5400
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+        "manifest_sha256": "b5cc363d22b34c80cd0af6722cea8f19ce408f6a78bc354d59894a1d19042990",
+        "manual_total_accepted": null,
+        "plan_receipt": "4366ba48400816fdacbdcaff08cc4ddf5f5e0abe7d6c3c5d04e1d7a8be593be4",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 500000,
+          "cpu_merge_scoring_hours": 0.06,
+          "gpu_hours": 10.8,
+          "model_calls": 21600,
+          "storage_gib": 0.494385
+        },
+        "scenario": "planned",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 30,
+          "maximum_trajectories_per_shard": 1800,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 3
+        },
+        "study": "transfer"
+      },
+      "rerun_reserve": {
+        "assumptions": {
+          "bootstrap_repetitions": 10000,
+          "cpu_seconds_per_trajectory": 0.04,
+          "expected_files_per_shard": 8,
+          "gpu_seconds_per_model_call": 1.8,
+          "mean_model_calls_per_trajectory": 4.0,
+          "storage_kib_per_trajectory": 96.0,
+          "target_trajectories_per_shard": 2500
+        },
+        "counts": {
+          "clean_instances": 60,
+          "family_count": 10,
+          "instance_count": 360,
+          "intervention_instances": 300,
+          "models": 5,
+          "policies": 1,
+          "repeats": 3,
+          "rerun_reserve_trajectories": 1080,
+          "seeds": 3,
+          "tasks": 60,
+          "total_trajectories": 6480,
+          "trajectories_without_reserve": 5400
+        },
+        "evidence_class": "DESIGN_ONLY",
+        "manifest_path": "data/manifests/naturalistic_transfer_v2_public_manifest.json",
+        "manifest_sha256": "b5cc363d22b34c80cd0af6722cea8f19ce408f6a78bc354d59894a1d19042990",
+        "manual_total_accepted": null,
+        "plan_receipt": "4baee9d1c5c60e6468cdbcc8724e025ac7a5fa787ac54f52be223c52b8556b7d",
+        "planner_config_sha256": "c9c98fb91251da0d03b1305d68c20a16d96346eaf521780999dd865a451adcce",
+        "resources": {
+          "bootstrap_replicate_cells": 500000,
+          "cpu_merge_scoring_hours": 0.072,
+          "gpu_hours": 12.96,
+          "model_calls": 25920,
+          "storage_gib": 0.593262
+        },
+        "scenario": "rerun_reserve",
+        "schema_version": "cab_manifest_driven_resource_plan_v1",
+        "scientific_execution_performed": false,
+        "shards": {
+          "expected_files": 30,
+          "maximum_trajectories_per_shard": 2160,
+          "merge_requires_exact_manifest_hash": true,
+          "shard_count": 3
+        },
+        "study": "transfer"
+      }
+    }
+  }
+}

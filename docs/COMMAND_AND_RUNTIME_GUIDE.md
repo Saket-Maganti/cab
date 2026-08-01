@@ -8,6 +8,10 @@ Honest command reference for **Causal Agent Bench** at the current evidence stat
 - **C9:** engineering_only
 - **Provider pilot:** dry-run/preflight ready after self-authorization; live provider execution still blocked
 
+Authoritative status: [CURRENT_PROJECT_STATE.md](https://github.com/Saket-Maganti/cab/blob/main/CURRENT_PROJECT_STATE.md).
+V2 is the sole future scientific path; Main-500 and v1 scientific execution are
+superseded and fail closed.
+
 See also: [COMMAND_MAP.md](COMMAND_MAP.md), [NO_RUN_REPORTS_GUIDE.md](NO_RUN_REPORTS_GUIDE.md), [DO_NOT_OVERCLAIM.md](DO_NOT_OVERCLAIM.md), [RUN_INDEX_FRESHNESS.md](RUN_INDEX_FRESHNESS.md).
 
 ---
@@ -23,6 +27,9 @@ See also: [COMMAND_MAP.md](COMMAND_MAP.md), [NO_RUN_REPORTS_GUIDE.md](NO_RUN_REP
 | `python3 -m causal_agent_bench estimate-run-cost --config <cfg>` | ~5s | $0 | No — indicative only |
 | `make fast-check` | ~60s | $0 | No |
 | `python3 scripts/reproduce_artifact.py --all-deterministic` | varies | $0 | C9 engineering_only only |
+| `cab benchmark reachability-check` | ~2s | $0 | No — static design audit |
+| `cab pre-run scientific-check` | ~2s | $0 | No — hardening gate only |
+| `cab plan resources --study scale100 --scenario planned` | <2s | $0 | No — prospective plan |
 
 **Never use these outputs to fill Results/Abstract empirical sentences.**
 
