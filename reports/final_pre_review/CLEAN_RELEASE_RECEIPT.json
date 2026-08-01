@@ -1,14 +1,14 @@
 {
   "artifact_inventory": [
     {
-      "bytes": 936441,
+      "bytes": 936735,
       "name": "causal_agent_bench-0.1.0-py3-none-any.whl",
-      "sha256": "e2ea57b3ddd3a1b92d56b11b24d8346cdbcbed40eb745057337454dd57963831"
+      "sha256": "7420f0fe5314cf525cd2de11688dc02aa073b16bab3b4eff8c079ebdd415bb6e"
     },
     {
-      "bytes": 1018336,
+      "bytes": 1019432,
       "name": "causal_agent_bench-0.1.0.tar.gz",
-      "sha256": "81d039f605759cc6e7d58a6de56a2a721b7ffac258cbd6e1b573ef0d8078d8f6"
+      "sha256": "cff1afcf853dc7b471c2eeb31f49ada80bafb10ae2c1d2b7ae8c41884ef5063c"
     }
   ],
   "build_stderr_tail": "* Creating isolated environment: venv+pip...\n* Installing packages in isolated environment:\n  - setuptools>=68\n* Getting build dependencies for sdist...\n* Building sdist...\n* Building wheel from sdist\n* Creating isolated environment: venv+pip...\n* Installing packages in isolated environment:\n  - setuptools>=68\n* Getting build dependencies for wheel...\n* Building wheel...\n",
@@ -26,10 +26,10 @@
   "development_manifest_label": "DEVELOPMENT_SNAPSHOT_NOT_FINAL_RELEASE",
   "import_output_tail": "",
   "passed": true,
-  "receipt_hash": "45638e8581045cc7013d177bf5201aacfc7f3b5f3176fd2dee90527bd0d47b1c",
+  "receipt_hash": "d6d4599954cde6716b48aa92f60ea14babda814115ad541e23064060a13b8ac6",
   "schema_version": "cab_clean_release_receipt_v1",
-  "source_commit": "7656a94539720fb4afe841c7b8738c62d0ebadcd",
-  "source_tree_hash": "69fb5a31c328f0dc4aa84844a9992d66c07a6d04",
+  "source_commit": "3ea9ab481c558cf0fda29239cddc1dd5c57ca1ba",
+  "source_tree_hash": "be523ffd2f182151b7e5a96a41df7211ceb22ca8",
   "status": "CAB_CLEAN_RELEASE_PATH_READY",
-  "twine_output_tail": "Checking \n/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-clean-release-imj6yps5/dist\n/causal_agent_bench-0.1.0-py3-none-any.whl: PASSED\nChecking \n/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-clean-release-imj6yps5/dist\n/causal_agent_bench-0.1.0.tar.gz: PASSED\n"
+  "twine_output_tail": "Checking \n/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-clean-release-r8qe_nyr/dist\n/causal_agent_bench-0.1.0-py3-none-any.whl: PASSED\nChecking \n/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-clean-release-r8qe_nyr/dist\n/causal_agent_bench-0.1.0.tar.gz: PASSED\n"
 }

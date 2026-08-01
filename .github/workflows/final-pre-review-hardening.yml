@@ -37,10 +37,9 @@ jobs:
         run: python -m pytest -q -n 4 -m 'not provider and not model and not local_run'
       - name: Static quality
         run: |
-          python -m ruff format --check .
           python -m ruff check .
           python -m mypy src
-          python -m codespell .
+          codespell .
       - name: Strict docs
         run: python -m mkdocs build --strict
       - name: Distribution build

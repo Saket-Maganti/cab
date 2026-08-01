@@ -1,7 +1,7 @@
 {
   "cross_role_overlap_count": 0,
   "cross_role_overlaps": [],
-  "generated_at": "2026-08-01T09:32:36.195186+00:00",
+  "generated_at": "2026-08-01T15:44:46.496249+00:00",
   "immutability": "Membership and source hashes must be regenerated and reviewed before any result-affecting task change. A changed hash creates a new benchmark version.",
   "paper_eligible": false,
   "passed": true,
@@ -82,7 +82,7 @@
       "scientific_execution_allowed": false,
       "source": "data/compact20_reviewed/compact20_reviewed_manifest.json",
       "source_exists": true,
-      "source_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
+      "source_sha256": "c9b4553e6a8562ce66ce0ca033fc9c5bcfb13ad749010b3a0962582bd0fe80fa",
       "status": "PILOT_ONLY",
       "unique_base_task_count": 16
     },

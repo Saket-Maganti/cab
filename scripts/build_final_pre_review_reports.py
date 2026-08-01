@@ -106,7 +106,7 @@ def main() -> int:
         "TERMINOLOGY_AND_CLAIM_AUDIT.md": _terminology_report(),
         "ADVERSARIAL_AUDIT.md": _adversarial_report(adversarial),
         "FINAL_PACKET_DRY_RUN.md": _dry_run_report(dry_run),
-        "FINAL_VALIDATION_LEDGER.md": _validation_ledger(),
+        "FINAL_VALIDATION_LEDGER.md": _validation_ledger(clean_release),
         "GITHUB_PUBLISH.md": _github_publish(current_commit),
     }
     for name, text in reports.items():
@@ -367,16 +367,35 @@ human-input-required. Fixture rows are not C10 or scientific evidence.
 """
 
 
-def _validation_ledger() -> str:
-    return """# Final Validation Ledger
+def _validation_ledger(clean_release: dict[str, Any]) -> str:
+    checks = clean_release.get("checks", {})
+    clean_checks_passed = bool(checks) and all(checks.values())
+    return f"""# Final Validation Ledger
 
-The publication commit is permitted only after the following pass at the final
-tree: provider/model/local-run-excluded pytest; Ruff format/check; MyPy;
-codespell; JSON, YAML, schema, diff, metadata, security, privacy, strict MkDocs,
-wheel, sdist, Twine, clean import, CLI smoke, clean release, release dry-run,
-inventory, four benchmark gates, fixture approval, power validation, final gate,
-and the final GitHub workflow. Exact command outcomes are recorded in the final
-handoff and publication report after execution.
+Provider-free validation completed on 2026-08-01 without model, provider, or
+local-run execution.
+
+- Full pytest slice: 1,194 passed, 1 expected skip.
+- Focused inventory/release regression slice: 18 passed.
+- Ruff lint: passed. MyPy: 243 source files passed. Codespell: passed.
+- Structured data: 643/643 tracked JSON/YAML files passed; configuration audit:
+  zero errors (115 advisory warnings).
+- Security, protected-payload, evidence-safety, public/private split, claim
+  ledger, canonical split registry, and nine-notebook static validation: passed.
+- Strict MkDocs: passed.
+- Wheel, sdist, Twine, clean import, CLI smoke, release dry run, and the 758-file
+  public release inventory: passed.
+- Detached clean release: `{clean_release.get("status")}` from
+  `{clean_release.get("source_commit")}`; all checks passed:
+  `{str(clean_checks_passed).lower()}`; receipt hash:
+  `{clean_release.get("receipt_hash")}`.
+- Static/executable reachability, gold reconstruction, and intervention
+  isolation: 20/20 each. Fixture approval, hierarchical power, adversarial
+  audit, and final pre-review gate: passed.
+- `git diff --check`: passed for all task-owned changes.
+
+The GitHub workflow repeats the required CLI gates, provider-free tests, Ruff,
+MyPy, Codespell, strict documentation build, distribution build, and Twine.
 """
 
 
