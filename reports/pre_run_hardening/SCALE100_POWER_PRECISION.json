@@ -1,0 +1,128 @@
+{
+  "assumptions": {
+    "base_task_count": 100,
+    "clean_success": 0.72,
+    "equivalence_margin": 0.05,
+    "family_count": 10,
+    "family_heterogeneity": 0.05,
+    "human_exclusion_rate": 0.08,
+    "intervention_success": 0.55,
+    "interventions_per_task": 5.0,
+    "intraclass_correlation": 0.08,
+    "missing_run_rate": 0.03,
+    "models": 5,
+    "paired_discordance": 0.3,
+    "policies": 1,
+    "raac_improvement": 0.06,
+    "repeats": 3,
+    "scorer_error": 0.03,
+    "seed": 2026080102,
+    "sesoi": 0.08
+  },
+  "bootstrap_design": {
+    "cluster_unit": "base_task",
+    "paired_resampling": true,
+    "repetitions": 10000,
+    "stratify_by": [
+      "model",
+      "policy",
+      "intervention_family"
+    ],
+    "workload_replicate_cells": 500000
+  },
+  "effective_task_count": 174.84326,
+  "equivalence_margin": 0.05,
+  "equivalence_margin_resolved_at_expected_precision": true,
+  "evidence_class": "DESIGN_ONLY",
+  "exclusion_and_scorer_error_sensitivity": [
+    {
+      "expected_ci_width": 0.058274,
+      "human_exclusion_rate": 0.0,
+      "scorer_error": 0.0,
+      "sesoi_power": 0.999907
+    },
+    {
+      "expected_ci_width": 0.06218,
+      "human_exclusion_rate": 0.0,
+      "scorer_error": 0.03,
+      "sesoi_power": 0.999661
+    },
+    {
+      "expected_ci_width": 0.06772,
+      "human_exclusion_rate": 0.0,
+      "scorer_error": 0.08,
+      "sesoi_power": 0.998586
+    },
+    {
+      "expected_ci_width": 0.060754,
+      "human_exclusion_rate": 0.08,
+      "scorer_error": 0.0,
+      "sesoi_power": 0.999782
+    },
+    {
+      "expected_ci_width": 0.064827,
+      "human_exclusion_rate": 0.08,
+      "scorer_error": 0.03,
+      "sesoi_power": 0.999295
+    },
+    {
+      "expected_ci_width": 0.070603,
+      "human_exclusion_rate": 0.08,
+      "scorer_error": 0.08,
+      "sesoi_power": 0.99742
+    },
+    {
+      "expected_ci_width": 0.065152,
+      "human_exclusion_rate": 0.2,
+      "scorer_error": 0.0,
+      "sesoi_power": 0.999234
+    },
+    {
+      "expected_ci_width": 0.06952,
+      "human_exclusion_rate": 0.2,
+      "scorer_error": 0.03,
+      "sesoi_power": 0.997922
+    },
+    {
+      "expected_ci_width": 0.075713,
+      "human_exclusion_rate": 0.2,
+      "scorer_error": 0.08,
+      "sesoi_power": 0.993738
+    }
+  ],
+  "expected_confidence_interval_width": 0.064827,
+  "expected_degradation": 0.17,
+  "family_effect_precision_half_width": 0.14181,
+  "minimum_detectable_degradation_80pct_power": 0.041121,
+  "noninferiority_precision_half_width": 0.032414,
+  "power_for_expected_degradation": 1.0,
+  "power_for_preregistered_sesoi": 0.999295,
+  "raac_improvement_power": 0.821358,
+  "rank_change_probability": 0.0223,
+  "recommendation": "Planned unique-task count meets the prospective 80% SESOI-power target.",
+  "schema_version": "cab_prospective_power_precision_v1",
+  "scientific_execution_performed": false,
+  "simulation_receipt": "f69262912f5fe590b37a220a3ee7d1fba6990ce5492ed73462a99d06275e4d88",
+  "underpowered_for_sesoi": false,
+  "unresolved_ranking_probability": 0.9988,
+  "value_of_more_tasks_vs_repeats": [
+    {
+      "base_task_count": 125,
+      "minimum_detectable_degradation": 0.03678,
+      "repeats": 3,
+      "sesoi_power": 0.999916
+    },
+    {
+      "base_task_count": 100,
+      "minimum_detectable_degradation": 0.036819,
+      "repeats": 4,
+      "sesoi_power": 0.999914
+    },
+    {
+      "base_task_count": 200,
+      "minimum_detectable_degradation": 0.029077,
+      "repeats": 3,
+      "sesoi_power": 1.0
+    }
+  ]
+}

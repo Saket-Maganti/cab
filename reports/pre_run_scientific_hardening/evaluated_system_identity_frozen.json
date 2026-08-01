@@ -1,0 +1,145 @@
+{
+  "adapter_ablation_plan": {
+    "accounting": "equal model-call, tool-call, token, and wall-time budgets",
+    "comparison_label_if_adapter_differs": "system_comparison",
+    "native_lane": "native_tool_calling_secondary_ablation_v1",
+    "primary_lane": "cab_json_tool_protocol_v3",
+    "primary_results_never_replaced_by_native_results": true,
+    "schema_version": "cab_adapter_ablation_plan_v1",
+    "unsupported_native_lane_behavior": "fail_closed"
+  },
+  "comparisons_with_adapter_difference_label": "system_comparison",
+  "compatibility_matrix": {
+    "rows": [
+      {
+        "model_category": "strong_open_instruct",
+        "native_ablation_supported": true,
+        "notes": "Primary unified JSON lane required; native tools are separately labelled.",
+        "primary_adapter": "cab_json_tool_protocol_v3",
+        "primary_lane_supported": true,
+        "unsupported_behavior": "fail_closed"
+      },
+      {
+        "model_category": "second_open_family",
+        "native_ablation_supported": true,
+        "notes": "Primary unified JSON lane required; native tools are separately labelled.",
+        "primary_adapter": "cab_json_tool_protocol_v3",
+        "primary_lane_supported": true,
+        "unsupported_behavior": "fail_closed"
+      },
+      {
+        "model_category": "smaller_efficient_open",
+        "native_ablation_supported": false,
+        "notes": "Unified prompt adapter only; requesting native tools fails closed.",
+        "primary_adapter": "cab_json_tool_protocol_v3",
+        "primary_lane_supported": true,
+        "unsupported_behavior": "fail_closed"
+      },
+      {
+        "model_category": "optional_reasoning_open",
+        "native_ablation_supported": false,
+        "notes": "Must pass unified-protocol compatibility smoke before inclusion.",
+        "primary_adapter": "cab_json_tool_protocol_v3",
+        "primary_lane_supported": true,
+        "unsupported_behavior": "fail_closed"
+      }
+    ],
+    "schema_version": "cab_system_compatibility_matrix_v1"
+  },
+  "component_hashes": {
+    "adapter_ablation_plan": "f2f6f0921b718c09ae4550e0a557bc27a9f7bed4e36289e16a7791ec5739392f",
+    "chat_template": "78cc57ee4e1a0435852f6b7b5e3e1a5df30dbfb8845c2905f9bcc313c7afb6ce",
+    "compatibility_matrix": "e1ba2dd998a311d30f537715571fdcacc5c79f0c6333a53361fc015036cd522b",
+    "context_limit": "8b926d75599a618e21f1341318e66517be26e18cc7496783d2b59758c1333be8",
+    "decoding": "d3149f9b6906d2317a4fe888f8d42da7c9c947d14360e04afa3f66e16709e835",
+    "identity_schema_source": "5a7d3d7cf605057ae183c8b1f9dac9d03991c3c6e2dd4833aea6239564bb5d0a",
+    "parser_source": "c1d76dd9bed06579407d4a59043833495c61fffe4378161697c214e5dc3d7862",
+    "stop_conditions": "f9137ae4466a8d23e467ca6b4fc9474a3256a62a6253f945c3187de7a9be47e2",
+    "system_prompt": "b0c10a14649fc37cd96d14503bc4ada4ee6e20e4a35dd08f91f92d6ed1586db0",
+    "tool_adapter_source": "c1d76dd9bed06579407d4a59043833495c61fffe4378161697c214e5dc3d7862",
+    "tool_protocol": "4baa4ce5651c6926a50c14fb780893ed10860f796ee33a3a15537a3ff2cf91f7"
+  },
+  "contract": {
+    "adapter_accounting": {
+      "equal_budget_fields": [
+        "model_call_limit",
+        "tool_call_limit",
+        "token_limit",
+        "wall_time_limit"
+      ],
+      "native_tool_calling_lane": "secondary_ablation_only",
+      "primary_lane": "cab_json_tool_protocol_v3"
+    },
+    "binding_state": "MODEL_REVISION_AND_TOKENIZER_HASH_REQUIRED_AT_PREFLIGHT",
+    "chat_template": {
+      "content": "<|system|>{system_prompt}<|user|>{user_message}<|assistant|>",
+      "id": "cab_unified_chat_template_v1",
+      "version": "1.0.0"
+    },
+    "context_limit": 4096,
+    "decoding": {
+      "do_sample": false,
+      "max_new_tokens": 1024,
+      "seed": 20260801,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "evidence_binding": {
+      "every_scientific_run_requires_system_identity_hash": true,
+      "merge_requires_identical_system_identity_hash": true,
+      "scorer_version": "3.0.0"
+    },
+    "model_slots": [
+      "strong_open_instruct",
+      "second_open_family",
+      "smaller_efficient_open",
+      "optional_reasoning_open"
+    ],
+    "parser": {
+      "id": "parse_tool_action",
+      "source": "src/causal_agent_bench/agents/tool_protocol.py",
+      "version": "3.0.0"
+    },
+    "quantization_policy": "PIN_EXACT_BACKEND_AND_BITS_AT_PREFLIGHT",
+    "schema_version": "cab_evaluated_system_manifest_v1",
+    "scientific_execution_allowed_before_binding": false,
+    "stop_conditions": [
+      "valid_final_answer",
+      "valid_clarification",
+      "max_steps",
+      "timeout",
+      "invalid_protocol_budget_exhausted"
+    ],
+    "system_prompt": {
+      "content": "Use the frozen JSON action protocol. Gather required evidence before a substantive answer. If and only if a typed opportunity applies, clarify, refuse, or abstain with the verified blocker. Never claim an unexecuted recovery.",
+      "id": "cab_scientific_system_prompt_v3",
+      "version": "3.0.0"
+    },
+    "tool_adapter": {
+      "id": "cab_unified_json_tool_adapter",
+      "source": "src/causal_agent_bench/agents/tool_protocol.py",
+      "version": "3.0.0"
+    },
+    "tool_protocol": {
+      "id": "cab_json_tool_protocol_v3",
+      "single_action_per_turn": true,
+      "version": "3.0.0"
+    }
+  },
+  "fixture_binding_demonstration": {
+    "evidence_class": "FIXTURE_ONLY",
+    "scientific_evidence": false,
+    "system_identity_hash": "f5b8f3de741acab75f641d49fa60d1eaa69159406cb7d1473efc8eeff6a23d9b"
+  },
+  "frozen_contract_hash": "2c1c30fb05dafadc7d81f2bb7b27cb1fef8aadd28d569c988d1af5c296544c1b",
+  "model_revision_binding_pending": true,
+  "primary_lane_compatibility_smoke": {
+    "optional_reasoning_open": true,
+    "second_open_family": true,
+    "smaller_efficient_open": true,
+    "strong_open_instruct": true
+  },
+  "primary_lane_is_uniform": true,
+  "schema_version": "cab_evaluated_system_manifest_frozen_v1",
+  "scientific_execution_allowed_before_binding": false
+}

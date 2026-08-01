@@ -4,6 +4,8 @@ This is the short, canonical map for the pre-execution repository. It indexes
 active surfaces; it does not promote fixture, static-audit, or design artifacts
 to scientific evidence.
 
+The authoritative state and next action are in `CURRENT_PROJECT_STATE.md`.
+
 ## Entry points
 
 | Surface | Canonical path | Role |
@@ -24,15 +26,19 @@ to scientific evidence.
 | Paired statistical procedures | `src/causal_agent_bench/metrics/statistics.py` |
 | Canonical split registry | `src/causal_agent_bench/safety/split_registry.py` |
 | Run provenance and merge contract | `src/causal_agent_bench/runners/run_manifest_v2.py` |
+| Frozen scorer-v3 endpoints | `configs/pre_run/frozen_endpoints.json` |
+| Evaluated system identity | `src/causal_agent_bench/runners/system_identity.py` and `configs/pre_run/evaluated_system_manifest.json` |
+| Manifest-driven resource planner | `src/causal_agent_bench/runners/resource_planner.py` |
 
 ## Study inputs and execution surfaces
 
 | Surface | Canonical path | Current evidence class |
 |---|---|---|
 | Study-role membership and hashes | `data/manifests/CAB_CANONICAL_SPLIT_REGISTRY.json` | `ENGINEERING_ONLY` |
-| Confirmatory generation configs | `configs/generate_*_confirmatory_v1.yaml` | `DESIGN_ONLY` |
-| Naturalistic generation config | `configs/generate_naturalistic_transfer_v1.yaml` | `DESIGN_ONLY` |
-| Candidate datasets | `data/processed/*_candidate/` | `HUMAN_INPUT_REQUIRED` |
+| Compact v2 packet and commitment | `data/human_validation/compact20_real_review/` and `data/manifests/compact20_review_packet_v2_public_commitment.json` | `HUMAN_INPUT_REQUIRED` |
+| Scale v2 public commitment | `data/manifests/scale100_confirmatory_v2_public_manifest.json` | protected candidate; execution forbidden |
+| Artifact-rich synthetic transfer v2 commitment | `data/manifests/naturalistic_transfer_v2_public_manifest.json` | protected candidate; execution forbidden |
+| V2 execution templates | `configs/iclr/*v2_EXECUTION_TEMPLATE_NOT_APPROVED.yaml` | template only; human gates pending |
 | Kaggle T4×2 notebooks | `notebooks/kaggle/CAB_T4X2_*.ipynb` | `FIXTURE_ONLY` until an approved live run |
 | Human-review gate | `scripts/validate_cab_human_reviews.py` | `HUMAN_INPUT_REQUIRED` |
 
@@ -48,11 +54,13 @@ to scientific evidence.
 | Code and data licenses | `LICENSE` and `DATA_LICENSE.md` |
 | Release inventory | `release/release_manifest.json` and `scripts/release_check.py` |
 | Archive/deprecation plan | `docs/DOC_ARCHIVE_PLAN_NO_DELETE.md` |
+| Pre-run scientific gate | `cab pre-run scientific-check` and `.github/workflows/pre-run-scientific-hardening.yml` |
 
 ## Evidence boundary
 
 Real provider outputs, independent human validation, C10 isolation validation,
 and post-run scorer audits are not present. Therefore main-result, causal,
 cross-provider, human-validation, and venue-readiness claims remain forbidden.
-The safe aggregate check is `make max-ceiling-ci-serial`; it performs no model
-or provider execution.
+The canonical aggregate gate is `make pre-run-scientific-check`; it performs no
+model or provider execution. The exact next action is genuine dual independent
+Compact-20 review plus separate adjudication, not another engineering sprint.

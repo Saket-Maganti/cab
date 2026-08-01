@@ -1,5 +1,7 @@
 # Command Map
 
+Authoritative project state: [CURRENT_PROJECT_STATE.md](https://github.com/Saket-Maganti/cab/blob/main/CURRENT_PROJECT_STATE.md).
+
 Find the right command by **intent**. For full CLI details see [CLI_REFERENCE.md](CLI_REFERENCE.md).
 
 Status key: **safe** = no model calls · **heavy** = may run models locally · **paid** = may cost API money
@@ -17,6 +19,9 @@ Status key: **safe** = no model calls · **heavy** = may run models locally · *
 | `python3 scripts/check_submission_readiness.py` | safe | ~10s | No | $0 |
 | `make audit-repo` | safe | ~20s | No | $0 |
 | `make audit-configs` | safe | ~5s | No | $0 |
+| `cab pre-run scientific-check` | safe | ~2s | No | $0 |
+| `make pre-run-scientific-check` | safe | provider-free suite | No | $0 |
+| `cab benchmark reachability-check` | safe | ~2s | No | $0 |
 
 ---
 
@@ -29,6 +34,13 @@ Status key: **safe** = no model calls · **heavy** = may run models locally · *
 | `python3 -m causal_agent_bench estimate-cost --config <cfg>` | safe | ~5s | No | $0 |
 | `python3 -m causal_agent_bench dry-run --config <cfg>` | safe | ~30s | No | $0 |
 | `python3 -m causal_agent_bench validate-config --config <cfg>` | safe | ~2s | No | $0 |
+| `cab plan volume --study compact20 --scenario planned` | safe | <2s | No | $0 |
+| `cab plan resources --study scale100 --scenario planned` | safe | <2s | No | $0 |
+| `cab plan shards --study raac_ablations --scenario planned` | safe | <2s | No | $0 |
+
+Only the Compact-20 v2 packet, protected Scale-100 v2 path, and
+`artifact_rich_synthetic_transfer` v2 path are current. V1, Main-500, and
+unapproved public-candidate scientific execution are fail-closed.
 
 ---
 

@@ -1,5 +1,7 @@
 # Next Steps
 
+> `SUPERSEDED_BY: CURRENT_PROJECT_STATE.md` — do not follow this historical queue.
+
 ## Immediate engineering fixes
 
 - [ ] Add CI that runs `python3 -m pytest -q`, `python3 -m causal_agent_bench doctor`, and draft paper placeholder checks.

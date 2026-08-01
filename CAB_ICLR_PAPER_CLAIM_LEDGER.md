@@ -1,9 +1,24 @@
 # CAB ICLR Paper Claim Ledger
 
-Status: pre-execution. Supported empirical claims: 0.
+Status: `CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE`; pre-execution.
+Supported empirical claims: 0. Genuine human judgments and model trajectories: 0.
 
 The wording below is a ceiling, not draft results. Promotion requires audited
 evidence and an explicit machine-readable claim-ledger update.
+
+## Frozen pre-run bindings
+
+- Scientific scorer: `cab_typed_final_answer` `3.0.0`; safe non-completion is
+  never completion and recovery execution requires trajectory events.
+- Endpoints: the exact primary and secondary lists in
+  `configs/pre_run/frozen_endpoints.json`.
+- Compact gate: regenerated 20-item v2 packet, 16 unique tasks plus four
+  deliberate anchors, genuine review still required.
+- Confirmatory gate: protected Scale-100 v2 and artifact-rich synthetic transfer
+  v2 assignments pass prospective balance diagnostics but are not approved for
+  execution.
+- System identity, power assumptions, and resource scenarios are frozen before
+  outcomes. Model revisions remain to be bound at execution preflight.
 
 | ID | RQ / hypothesis | Required study and sample | Required validation and effect | Robustness checks | Current evidence | Allowed wording now | Forbidden wording now | Paper location |
 |---|---|---|---|---|---|---|---|---|
@@ -14,7 +29,7 @@ evidence and an explicit machine-readable claim-ledger update.
 | ICLR-C5 | RQ4: RAAC improves intervention success under equal budget | standard vs `RAAC_LIGHT` on locked paired tasks; preregistered `RAAC_FULL` subset | hidden-label blindness, compute parity, audited traces, positive effect relative to SESOI | clean trade-off, overhead, policy ablations, model/family heterogeneity | `ENGINEERING_ONLY`; implementation/fixtures only | “We introduce RAAC and plan an equal-budget evaluation.” | “RAAC improves robustness” | RAAC method, experiments, results |
 | ICLR-C6 | H6: RAAC avoids unnecessary clean intervention | clean trials under standard, LIGHT, FULL | no hidden metadata; false-abstention and clean-cost thresholds frozen | clean success equivalence/non-inferiority, trace audit | `ENGINEERING_ONLY` | “RAAC includes bounded clean-path behavior.” | “RAAC preserves clean performance” | RAAC method, ablations |
 | ICLR-C7 | RQ5: verification, retry, alternate route, clarification, abstention, and final verification have separable contributions | selected RAAC ablations on common locked support | budget matching and multiple-comparison plan | full-versus-component comparisons and interaction caution | `DESIGN_ONLY` | “The ablation plan isolates controller components.” | “Verification is the key component” | ablations |
-| ICLR-C8 | RQ6: controlled robustness predicts naturalistic outcomes beyond clean success | locked 50–100 naturalistic set and informative model subset | provenance/licence/privacy/injection/C10 pass; adequate panel | correlation CI, multivariable regression, calibration, leave-family-out | `EXECUTION_PENDING` | “We will test predictive validity.” | “CAB predicts real-world failures” | transfer method, results |
+| ICLR-C8 | RQ6: controlled robustness predicts artifact-rich synthetic transfer outcomes beyond clean success | locked 60-task artifact-rich synthetic set and informative model subset | provenance/licence/privacy/injection/C10 pass; exact parser-derived gold; adequate panel | correlation CI, multivariable regression, calibration, leave-family-out | `HUMAN_INPUT_REQUIRED`; artifacts materialized, 0 judgments | “We will test controlled artifact-class transfer.” | “CAB predicts real-world failures”; any real-world-origin claim | transfer method, results |
 | ICLR-C9 | H9: recovery/abstention denominators change conclusions relative to raw rates | audited opportunity-labelled trajectories | opportunity flags validated against blinded traces | missing-opportunity and scorer-flip sensitivity | `ENGINEERING_ONLY`; denominator checks exist | “CAB makes opportunity denominators explicit.” | any comparative recovery or abstention result | metrics, appendix |
 | ICLR-C10 | H10: an open-model core is feasible on free T4×2 sessions | measured approved smoke and Compact-20 sessions | pinned revisions/licences, measured VRAM/runtime, integrity audit | single-GPU fallback, quantisation and resume tests | `DESIGN_ONLY`; offline fixtures only | “The infrastructure targets dual T4 with fallbacks.” | “Model X fits/runs in Y minutes/GiB” | reproducibility |
 | ICLR-C11 | RQ7: robustness gains justify their compute overhead | audited policy outcomes plus measured calls/tokens/latency/cost | equal/practical budget separation and complete metering | Pareto frontier, alternative cost weights | `ENGINEERING_ONLY` | “The plan reports a cost-normalised frontier.” | “RAAC is efficient” | results, cost appendix |

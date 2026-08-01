@@ -1,0 +1,37 @@
+name: Pre-run scientific hardening
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pre-run-scientific-hardening-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  provider-free-hardening:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONHASHSEED: "0"
+      CAB_DISABLE_PROVIDER_CALLS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install provider-free validation dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Run frozen pre-run gate
+        run: make pre-run-scientific-check
+      - name: Static checks
+        run: |
+          python -m ruff check .
+          python -m mypy
+          git diff --check

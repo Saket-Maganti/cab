@@ -1,0 +1,44 @@
+{
+  "checks": {
+    "artifact_rich_synthetic_transfer": true,
+    "canonical_guidance": true,
+    "compact20_old_hashes_invalidated": true,
+    "compact20_packet_hashes_current": true,
+    "compact20_reachability": true,
+    "compact20_v2_constraints": true,
+    "endpoints_exact_and_frozen": true,
+    "genuine_evidence_counters_zero": true,
+    "power_assumptions_frozen": true,
+    "public_private_boundary": true,
+    "required_reports_present": true,
+    "resource_plans_manifest_driven": true,
+    "scale_assignment_balance": true,
+    "scorer_fields_distinct": true,
+    "scorer_version_3": true,
+    "system_identity_frozen_fail_closed": true,
+    "transfer_assignment_balance": true,
+    "v2_only_execution_templates": true
+  },
+  "external_blockers": [
+    "HUMAN_VALIDATION_REQUIRED",
+    "LIVE_EVIDENCE_REQUIRED"
+  ],
+  "failed_checks": [],
+  "genuine_evidence": {
+    "audited_real_runs": 0,
+    "community_pilots": 0,
+    "external_reproductions": 0,
+    "genuine_adjudications": 0,
+    "genuine_human_judgments": 0,
+    "paper_eligible_empirical_assets": 0,
+    "protected_evaluator_pilots": 0,
+    "real_model_trajectories": 0,
+    "supported_empirical_claims": 0
+  },
+  "next_action": "Recruit and onboard two genuine qualified independent Compact-20 reviewers using the regenerated packet, plus a separate adjudicator.",
+  "passed": true,
+  "provider_calls_performed": 0,
+  "schema_version": "cab_pre_run_scientific_hardening_gate_v1",
+  "scientific_execution_performed": false,
+  "state": "CAB_PRE_RUN_SCIENTIFIC_HARDENING_COMPLETE"
+}
