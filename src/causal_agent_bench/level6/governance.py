@@ -9,6 +9,23 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from causal_agent_bench.hashing import stable_hash
 
+DecisionType = Literal[
+    "amendment",
+    "appeal",
+    "dispute",
+    "emergency_correction",
+    "revocation",
+    "task_inclusion",
+    "task_removal",
+]
+CanaryKind = Literal[
+    "prompt_fragment",
+    "synthetic_unique_string",
+    "artifact_fingerprint",
+    "answer_canary",
+    "metadata_canary",
+]
+
 
 class BenchmarkLifecycle(StrEnum):
     ACTIVE = "ACTIVE"
@@ -60,15 +77,7 @@ class GovernanceDecisionRecord(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     decision_id: str = Field(min_length=1)
-    decision_type: Literal[
-        "amendment",
-        "appeal",
-        "dispute",
-        "emergency_correction",
-        "revocation",
-        "task_inclusion",
-        "task_removal",
-    ]
+    decision_type: DecisionType
     proposal_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
     conflict_disclosures: list[str]
     eligible_voter_count: int = Field(ge=0)
@@ -128,22 +137,16 @@ class LeakageCanary(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     canary_id: str = Field(min_length=1)
-    kind: Literal[
-        "prompt_fragment",
-        "synthetic_unique_string",
-        "artifact_fingerprint",
-        "answer_canary",
-        "metadata_canary",
-    ]
+    kind: CanaryKind
     commitment_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
     protected_pool_version: str = Field(min_length=1)
     active: bool = True
 
 
-def make_fixture_canary(canary_id: str, kind: str, secret: str) -> LeakageCanary:
+def make_fixture_canary(canary_id: str, kind: CanaryKind, secret: str) -> LeakageCanary:
     return LeakageCanary(
         canary_id=canary_id,
-        kind=kind,  # type: ignore[arg-type]
+        kind=kind,
         commitment_hash=stable_hash(secret, length=64),
         protected_pool_version="fixture-v1",
     )
@@ -175,10 +178,16 @@ def scan_canary_commitments(
 
 
 def governance_foundation_check() -> dict[str, Any]:
+    fixture_decision_types: tuple[DecisionType, ...] = (
+        "amendment",
+        "dispute",
+        "appeal",
+        "revocation",
+    )
     fixture_records = [
         GovernanceDecisionRecord(
             decision_id=f"fixture-{kind}",
-            decision_type=kind,  # type: ignore[arg-type]
+            decision_type=kind,
             proposal_hash=stable_hash({"kind": kind}, length=64),
             conflict_disclosures=[],
             eligible_voter_count=3,
@@ -190,7 +199,7 @@ def governance_foundation_check() -> dict[str, Any]:
             signatures=[],
             fixture_only=True,
         )
-        for kind in ("amendment", "dispute", "appeal", "revocation")
+        for kind in fixture_decision_types
     ]
     lifecycle = LifecycleTransition(
         benchmark_version="fixture-v1",
