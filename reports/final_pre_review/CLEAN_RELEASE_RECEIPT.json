@@ -1,0 +1,35 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 936441,
+      "name": "causal_agent_bench-0.1.0-py3-none-any.whl",
+      "sha256": "e2ea57b3ddd3a1b92d56b11b24d8346cdbcbed40eb745057337454dd57963831"
+    },
+    {
+      "bytes": 1018336,
+      "name": "causal_agent_bench-0.1.0.tar.gz",
+      "sha256": "81d039f605759cc6e7d58a6de56a2a721b7ffac258cbd6e1b573ef0d8078d8f6"
+    }
+  ],
+  "build_stderr_tail": "* Creating isolated environment: venv+pip...\n* Installing packages in isolated environment:\n  - setuptools>=68\n* Getting build dependencies for sdist...\n* Building sdist...\n* Building wheel from sdist\n* Creating isolated environment: venv+pip...\n* Installing packages in isolated environment:\n  - setuptools>=68\n* Getting build dependencies for wheel...\n* Building wheel...\n",
+  "build_stdout_tail": "_room.py'\nadding 'causal_agent_bench/safety/release_blocker_analyzer.py'\nadding 'causal_agent_bench/safety/release_readiness.py'\nadding 'causal_agent_bench/safety/repair_plan.py'\nadding 'causal_agent_bench/safety/report_quality_check.py'\nadding 'causal_agent_bench/safety/reproducibility_manifest.py'\nadding 'causal_agent_bench/safety/reproducibility_report.py'\nadding 'causal_agent_bench/safety/review_evidence.py'\nadding 'causal_agent_bench/safety/run_cost_estimator.py'\nadding 'causal_agent_bench/safety/run_health.py'\nadding 'causal_agent_bench/safety/scientific_execution_path.py'\nadding 'causal_agent_bench/safety/split_metadata_repair.py'\nadding 'causal_agent_bench/safety/split_registry.py'\nadding 'causal_agent_bench/safety/static_leakage.py'\nadding 'causal_agent_bench/safety/synthetic_fixtures.py'\nadding 'causal_agent_bench/safety/task_intervention_lint.py'\nadding 'causal_agent_bench/safety/tiny_provider_pilot.py'\nadding 'causal_agent_bench/safety/tool_schema_validation.py'\nadding 'causal_agent_bench/safety/two_stage_review.py'\nadding 'causal_agent_bench/safety/validity_scorecard.py'\nadding 'causal_agent_bench/safety/workflow_state.py'\nadding 'causal_agent_bench/tools/__init__.py'\nadding 'causal_agent_bench/tools/base.py'\nadding 'causal_agent_bench/tools/mock_tools.py'\nadding 'causal_agent_bench/tools/registry.py'\nadding 'causal_agent_bench/tools/simulated.py'\nadding 'causal_agent_bench/tools/web_snapshot.py'\nadding 'causal_agent_bench/utils/__init__.py'\nadding 'causal_agent_bench/utils/io.py'\nadding 'causal_agent_bench-0.1.0.dist-info/licenses/LICENSE'\nadding 'causal_agent_bench-0.1.0.dist-info/METADATA'\nadding 'causal_agent_bench-0.1.0.dist-info/WHEEL'\nadding 'causal_agent_bench-0.1.0.dist-info/entry_points.txt'\nadding 'causal_agent_bench-0.1.0.dist-info/top_level.txt'\nadding 'causal_agent_bench-0.1.0.dist-info/RECORD'\nremoving build/bdist.macosx-10.9-universal2/wheel\nSuccessfully built causal_agent_bench-0.1.0.tar.gz and causal_agent_bench-0.1.0-py3-none-any.whl\n",
+  "checks": {
+    "build_passed": true,
+    "clean_import_and_cli_parser_passed": true,
+    "detached_clean_worktree": true,
+    "sdist_built": true,
+    "source_commit_exact": true,
+    "source_tree_exact": true,
+    "twine_check_passed": true,
+    "wheel_built": true
+  },
+  "development_manifest_label": "DEVELOPMENT_SNAPSHOT_NOT_FINAL_RELEASE",
+  "import_output_tail": "",
+  "passed": true,
+  "receipt_hash": "45638e8581045cc7013d177bf5201aacfc7f3b5f3176fd2dee90527bd0d47b1c",
+  "schema_version": "cab_clean_release_receipt_v1",
+  "source_commit": "7656a94539720fb4afe841c7b8738c62d0ebadcd",
+  "source_tree_hash": "69fb5a31c328f0dc4aa84844a9992d66c07a6d04",
+  "status": "CAB_CLEAN_RELEASE_PATH_READY",
+  "twine_output_tail": "Checking \n/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-clean-release-imj6yps5/dist\n/causal_agent_bench-0.1.0-py3-none-any.whl: PASSED\nChecking \n/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-clean-release-imj6yps5/dist\n/causal_agent_bench-0.1.0.tar.gz: PASSED\n"
+}

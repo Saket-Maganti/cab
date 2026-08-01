@@ -20,6 +20,7 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
+  "cryptography>=43.0",
   # jinja2 is required by pandas>=3.0 for DataFrame.to_latex (it now routes
   # through the Styler). Table export (analysis/tables.py) breaks without it on
   # pandas 3.x; pandas 2.x used a built-in formatter and pulled jinja2 in only

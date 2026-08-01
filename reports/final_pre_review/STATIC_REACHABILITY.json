@@ -1,0 +1,894 @@
+{
+  "audits": [
+    {
+      "audit_hash": "b73e5b72415f2dd3d2493660c945891e45533ff5d646c68d776c355b1dcdb34f",
+      "base_task_id": "travel_planning_medium_004",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "travel_planning_medium_004.tool_removal",
+      "intervention_family": "tool_removal",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "calculate_price",
+            "compare_options"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "hotel refundability",
+            "hotel price",
+            "tax rate"
+          ],
+          "route_id": "travel_planning_medium_004.tool_removal.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "be3f957f785aeb0c4a51d02cef106ea06f54fc418181bb7d670c70b53d1a21e6",
+      "base_task_id": "file_spreadsheet_qa_hard_025",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "file_spreadsheet_qa_hard_025.tool_removal",
+      "intervention_family": "tool_removal",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "lookup_policy",
+            "query_spreadsheet",
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "launch note content",
+            "Q2 spreadsheet row"
+          ],
+          "route_id": "file_spreadsheet_qa_hard_025.tool_removal.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "5248b0654f22f172dffa120e3d97c8c06e33c8c554f660bdbdc2f6f475a525dc",
+      "base_task_id": "research_assistant_easy_010",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "research_assistant_easy_010.tool_removal",
+      "intervention_family": "tool_removal",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "Apex report evidence",
+            "claim verification"
+          ],
+          "route_id": "research_assistant_easy_010.tool_removal.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "abbafbcf5387d48a8bd783186367fbae9ad4148ba671420bc8250efe2416d0a3",
+      "base_task_id": "coding_debugging_stress_002",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "coding_debugging_stress_002.tool_removal",
+      "intervention_family": "tool_removal",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "compare_options",
+            "lookup_policy",
+            "query_spreadsheet",
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "retry helper code",
+            "issue note"
+          ],
+          "route_id": "coding_debugging_stress_002.tool_removal.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "7a755841425fcce1d5fa473dbe4c517e94893c58fdc889b0714d1a324ed46f4f",
+      "base_task_id": "policy_compliance_medium_012",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "policy_compliance_medium_012.tool_removal",
+      "intervention_family": "tool_removal",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "refund threshold",
+            "refund amount"
+          ],
+          "route_id": "policy_compliance_medium_012.tool_removal.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "f23127806a79c0bbc246a3db91631df2982d7bfa787a4e56950ed9ecd2d953ba",
+      "base_task_id": "travel_planning_medium_004",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "travel_planning_medium_004.tool_failure",
+      "intervention_family": "tool_failure",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "calculate_price"
+          ],
+          "intermediate_evidence": [
+            "post-failure successful recovery observation"
+          ],
+          "kind": "recovery",
+          "permitted_actions": [
+            "recover:travel_planning_medium_004.tool_failure.recovery.01"
+          ],
+          "required_facts": [
+            "hotel refundability",
+            "hotel price",
+            "tax rate"
+          ],
+          "route_id": "travel_planning_medium_004.tool_failure.recovery",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer after executed recovery"
+        },
+        {
+          "accessible_tools": [
+            "calculate_price",
+            "compare_options",
+            "search_database"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "hotel refundability",
+            "hotel price",
+            "tax rate"
+          ],
+          "route_id": "travel_planning_medium_004.tool_failure.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "b6a65f1f1a2d72a835ec33d18a9effdac05f69fdfa439bdb864587b2ed65b99a",
+      "base_task_id": "calendar_email_workflow_hard_022",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "calendar_email_workflow_hard_022.tool_failure",
+      "intervention_family": "tool_failure",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "post-failure successful recovery observation"
+          ],
+          "kind": "recovery",
+          "permitted_actions": [
+            "recover:calendar_email_workflow_hard_022.tool_failure.recovery.01"
+          ],
+          "required_facts": [
+            "calendar events",
+            "open afternoon slot",
+            "recipient"
+          ],
+          "route_id": "calendar_email_workflow_hard_022.tool_failure.recovery",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer after executed recovery"
+        },
+        {
+          "accessible_tools": [
+            "check_calendar",
+            "read_file",
+            "search_database",
+            "send_email_draft",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "calendar events",
+            "open afternoon slot",
+            "recipient"
+          ],
+          "route_id": "calendar_email_workflow_hard_022.tool_failure.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "1482df8e25253cd1a7bcc55c5bc1c8d3025db9f61812a8cf858c19bbd258dcd5",
+      "base_task_id": "shopping_comparison_easy_012",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "shopping_comparison_easy_012.tool_failure",
+      "intervention_family": "tool_failure",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "calculate_price"
+          ],
+          "intermediate_evidence": [
+            "post-failure successful recovery observation"
+          ],
+          "kind": "recovery",
+          "permitted_actions": [
+            "recover:shopping_comparison_easy_012.tool_failure.recovery.01"
+          ],
+          "required_facts": [
+            "bundle prices",
+            "tax rate"
+          ],
+          "route_id": "shopping_comparison_easy_012.tool_failure.recovery",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer after executed recovery"
+        },
+        {
+          "accessible_tools": [
+            "compare_options"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "bundle prices",
+            "tax rate"
+          ],
+          "route_id": "shopping_comparison_easy_012.tool_failure.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "06eb28ef8f9ec3e26411873282a4deb1723950ea4f2b6b9471ebb2bde1afb8e5",
+      "base_task_id": "operations_planning_stress_015",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "operations_planning_stress_015.tool_failure",
+      "intervention_family": "tool_failure",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "lookup_policy"
+          ],
+          "intermediate_evidence": [
+            "post-failure successful recovery observation"
+          ],
+          "kind": "recovery",
+          "permitted_actions": [
+            "recover:operations_planning_stress_015.tool_failure.recovery.01"
+          ],
+          "required_facts": [
+            "availability",
+            "vendor policy",
+            "vendor score",
+            "email recipient"
+          ],
+          "route_id": "operations_planning_stress_015.tool_failure.recovery",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer after executed recovery"
+        },
+        {
+          "accessible_tools": [
+            "check_calendar",
+            "compare_options",
+            "lookup_policy",
+            "query_spreadsheet",
+            "send_email_draft",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "availability",
+            "vendor policy",
+            "vendor score",
+            "email recipient"
+          ],
+          "route_id": "operations_planning_stress_015.tool_failure.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "5961bad0add4efc01b5dab2c9bc0f31db01181b25dc27ca8287ac2de3608d989",
+      "base_task_id": "file_spreadsheet_qa_medium_019",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "file_spreadsheet_qa_medium_019.tool_failure",
+      "intervention_family": "tool_failure",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "query_spreadsheet"
+          ],
+          "intermediate_evidence": [
+            "post-failure successful recovery observation"
+          ],
+          "kind": "recovery",
+          "permitted_actions": [
+            "recover:file_spreadsheet_qa_medium_019.tool_failure.recovery.01"
+          ],
+          "required_facts": [
+            "launch note content",
+            "Q2 spreadsheet row"
+          ],
+          "route_id": "file_spreadsheet_qa_medium_019.tool_failure.recovery",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer after executed recovery"
+        },
+        {
+          "accessible_tools": [
+            "query_spreadsheet",
+            "read_file",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "launch note content",
+            "Q2 spreadsheet row"
+          ],
+          "route_id": "file_spreadsheet_qa_medium_019.tool_failure.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "6411fe3343d7d55955532176eddbde541a30031f13f46fbd4dd95b9f81d7b25b",
+      "base_task_id": "research_assistant_easy_010",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "research_assistant_easy_010.memory_corruption",
+      "intervention_family": "memory_corruption",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "search_database"
+          ],
+          "intermediate_evidence": [
+            "verified:Apex report evidence",
+            "verified:claim verification"
+          ],
+          "kind": "substantive_answer",
+          "permitted_actions": [
+            "call:search_database"
+          ],
+          "required_facts": [
+            "Apex report evidence",
+            "claim verification"
+          ],
+          "route_id": "research_assistant_easy_010.memory_corruption.substantive",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer matching the frozen gold policy"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "9070172767dec875494500dd24969b1819cea4a3ccd17d78b4527300d6478c14",
+      "base_task_id": "coding_debugging_stress_006",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "coding_debugging_stress_006.memory_corruption",
+      "intervention_family": "memory_corruption",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "compare_options",
+            "lookup_policy",
+            "query_spreadsheet",
+            "read_file",
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "verified:retry helper code",
+            "verified:issue note"
+          ],
+          "kind": "substantive_answer",
+          "permitted_actions": [
+            "call:compare_options",
+            "call:lookup_policy",
+            "call:query_spreadsheet",
+            "call:read_file",
+            "call:search_database",
+            "call:verify_fact"
+          ],
+          "required_facts": [
+            "retry helper code",
+            "issue note"
+          ],
+          "route_id": "coding_debugging_stress_006.memory_corruption.substantive",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer matching the frozen gold policy"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "9c251612a7265238329513057543d7b466c60f886e9f7fa8e10bf391be79eb6a",
+      "base_task_id": "calendar_email_workflow_medium_019",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "calendar_email_workflow_medium_019.memory_corruption",
+      "intervention_family": "memory_corruption",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "check_calendar",
+            "send_email_draft",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "verified:calendar events",
+            "verified:open afternoon slot",
+            "verified:recipient"
+          ],
+          "kind": "substantive_answer",
+          "permitted_actions": [
+            "call:check_calendar",
+            "call:send_email_draft",
+            "call:verify_fact"
+          ],
+          "required_facts": [
+            "calendar events",
+            "open afternoon slot",
+            "recipient"
+          ],
+          "route_id": "calendar_email_workflow_medium_019.memory_corruption.substantive",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer matching the frozen gold policy"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "354beae3ab28773d40b4422ad7749e4822a65813c73282a7c144bf37170bd344",
+      "base_task_id": "policy_compliance_hard_026",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "policy_compliance_hard_026.memory_corruption",
+      "intervention_family": "memory_corruption",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "lookup_policy",
+            "query_spreadsheet",
+            "read_file",
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "verified:refund threshold",
+            "verified:refund amount"
+          ],
+          "kind": "substantive_answer",
+          "permitted_actions": [
+            "call:lookup_policy",
+            "call:query_spreadsheet",
+            "call:read_file",
+            "call:search_database",
+            "call:verify_fact"
+          ],
+          "required_facts": [
+            "refund threshold",
+            "refund amount"
+          ],
+          "route_id": "policy_compliance_hard_026.memory_corruption.substantive",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer matching the frozen gold policy"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "c26ce2726b21baef160edc7d886c95f4e01049598b158d11eb6efb507236fb3f",
+      "base_task_id": "operations_planning_medium_021",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "operations_planning_medium_021.memory_corruption",
+      "intervention_family": "memory_corruption",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "check_calendar",
+            "lookup_policy",
+            "query_spreadsheet"
+          ],
+          "intermediate_evidence": [
+            "verified:availability",
+            "verified:vendor policy",
+            "verified:vendor score",
+            "verified:email recipient"
+          ],
+          "kind": "substantive_answer",
+          "permitted_actions": [
+            "call:check_calendar",
+            "call:lookup_policy",
+            "call:query_spreadsheet"
+          ],
+          "required_facts": [
+            "availability",
+            "vendor policy",
+            "vendor score",
+            "email recipient"
+          ],
+          "route_id": "operations_planning_medium_021.memory_corruption.substantive",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "typed substantive answer matching the frozen gold policy"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "7e6384070ab4731079bc35441ec32fd51e63158cef824dcdb2c70d5621ba9c8e",
+      "base_task_id": "file_spreadsheet_qa_hard_025",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "file_spreadsheet_qa_hard_025.observation_conflict",
+      "intervention_family": "observation_conflict",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "lookup_policy",
+            "query_spreadsheet",
+            "read_file",
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "launch note content",
+            "Q2 spreadsheet row"
+          ],
+          "route_id": "file_spreadsheet_qa_hard_025.observation_conflict.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "26b8fa4b88e9871ce6c86719c8242e409bd4f82bc4b6ed1c08a842e1f336239b",
+      "base_task_id": "coding_debugging_stress_006",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "coding_debugging_stress_006.observation_conflict",
+      "intervention_family": "observation_conflict",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "compare_options",
+            "lookup_policy",
+            "query_spreadsheet",
+            "read_file",
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "retry helper code",
+            "issue note"
+          ],
+          "route_id": "coding_debugging_stress_006.observation_conflict.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "6a2a1e302a54d83bd48c62091c1291b4758f570378d271eab7f64ef677eb1053",
+      "base_task_id": "shopping_comparison_medium_001",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "shopping_comparison_medium_001.observation_conflict",
+      "intervention_family": "observation_conflict",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "calculate_price",
+            "compare_options",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "bundle prices",
+            "tax rate"
+          ],
+          "route_id": "shopping_comparison_medium_001.observation_conflict.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "d0f07f73f1c3c5b0953380c36add6b823b6eaad846a281f557e8a681a56a9611",
+      "base_task_id": "travel_planning_easy_026",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "travel_planning_easy_026.observation_conflict",
+      "intervention_family": "observation_conflict",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "search_database"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "hotel refundability",
+            "hotel price",
+            "tax rate"
+          ],
+          "route_id": "travel_planning_easy_026.observation_conflict.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    },
+    {
+      "audit_hash": "81a6a2d183782943d934400f63fedeef646acf5d62e53f7e8247b67758c70ce4",
+      "base_task_id": "research_assistant_hard_011",
+      "failure_codes": [],
+      "gate_kind": "static_intervention_policy_reachability",
+      "instance_id": "research_assistant_hard_011.observation_conflict",
+      "intervention_family": "observation_conflict",
+      "passed": true,
+      "routes": [
+        {
+          "accessible_tools": [
+            "lookup_policy",
+            "query_spreadsheet",
+            "read_file",
+            "search_database",
+            "verify_fact"
+          ],
+          "intermediate_evidence": [
+            "The intervention can make the preregistered evidence insufficient for a safe substantive answer."
+          ],
+          "kind": "abstention",
+          "permitted_actions": [
+            "inspect_surviving_evidence",
+            "state_verified_blocker"
+          ],
+          "required_facts": [
+            "Apex report evidence",
+            "claim verification"
+          ],
+          "route_id": "research_assistant_hard_011.observation_conflict.abstention",
+          "source_artifacts": [
+            "controlled_synthetic_environment"
+          ],
+          "valid_final_response": "qualified uncertainty or abstention authorized by opportunity"
+        }
+      ],
+      "schema_version": "cab_static_intervention_policy_reachability_v2",
+      "warning_codes": []
+    }
+  ],
+  "collection_hash": "3f670abbe0355d270cdc613eaff52d71dbe5b4aa7a8c73290d802dd1dac3eeff",
+  "failed_count": 0,
+  "failure_code_counts": {},
+  "gate_kind": "static_intervention_policy_reachability",
+  "instance_count": 20,
+  "passed": true,
+  "passed_count": 20,
+  "schema_version": "cab_static_intervention_policy_reachability_collection_v2"
+}

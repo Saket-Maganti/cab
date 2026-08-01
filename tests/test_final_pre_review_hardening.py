@@ -10,11 +10,16 @@ from causal_agent_bench.cli_parsers import build_parser
 from causal_agent_bench.runners.smoke_calibration import (
     validate_smoke_and_staged_raac_plan,
 )
+from causal_agent_bench.safety.approval_receipt import verify_fixture_approval
 from causal_agent_bench.safety.executable_reachability import (
     run_executable_reachability_check,
     run_gold_reconstruction_check,
     run_intervention_isolation_check,
     run_static_reachability_check,
+)
+from causal_agent_bench.safety.final_pre_review import final_pre_review_check
+from causal_agent_bench.safety.final_pre_review_adversarial import (
+    run_final_pre_review_adversarial_audit,
 )
 from causal_agent_bench.safety.two_stage_review import validate_stage2_unlock
 
@@ -109,3 +114,24 @@ def test_required_final_pre_review_cli_surfaces_parse() -> None:
         ["final-pre-review", "check"],
     )
     assert all(parser.parse_args(command).command for command in commands)
+
+
+def test_fixture_approval_is_signed_bound_and_not_scientific() -> None:
+    result = verify_fixture_approval(REPO_ROOT)
+    assert result["passed"] is True
+    assert result["signature_verified"] is True
+    assert result["approval_scope"] == "fixture"
+    assert result["verified_binding_count"] == 9
+
+
+def test_adversarial_campaign_and_final_gate_pass_without_evidence() -> None:
+    adversarial = run_final_pre_review_adversarial_audit(REPO_ROOT)
+    assert adversarial["passed"] is True
+    assert adversarial["silent_critical_failure_count"] == 0
+    assert adversarial["case_count"] >= 16
+    gate = final_pre_review_check(REPO_ROOT)
+    assert gate["passed"] is True
+    assert gate["state"] == "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE"
+    assert gate["review_packet_state"] == ("COMPACT20_REVIEW_PACKET_EVIDENCE_VERIFIABLE")
+    assert gate["CAB_LEVEL5_COMPLETE"] is False
+    assert all(value == 0 for value in gate["genuine_evidence"].values())

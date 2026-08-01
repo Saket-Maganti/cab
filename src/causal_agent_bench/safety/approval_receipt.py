@@ -121,6 +121,8 @@ def verify_approval_receipt(
     elif issuer.get("public_key_id") != receipt.public_key_id:
         errors.append("PUBLIC_KEY_ID_MISMATCH")
     else:
+        if receipt.approval_scope not in set(issuer.get("allowed_scopes", [])):
+            errors.append("ISSUER_SCOPE_NOT_TRUSTED")
         try:
             public_key = Ed25519PublicKey.from_public_bytes(
                 bytes.fromhex(str(issuer["public_key_hex"]))

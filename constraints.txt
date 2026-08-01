@@ -8,6 +8,10 @@ annotated-doc==0.0.4
     # via typer
 annotated-types==0.7.0
     # via pydantic
+cffi==2.1.0
+    # via cryptography
+cryptography==50.0.0
+    # via causal-agent-bench (pyproject.toml)
 jinja2==3.1.6
     # via causal-agent-bench (pyproject.toml)
 markdown-it-py==4.2.0
@@ -23,6 +27,8 @@ numpy==2.4.6
     #   scipy
 pandas==3.0.3
     # via causal-agent-bench (pyproject.toml)
+pycparser==3.0
+    # via cffi
 pydantic==2.13.4
     # via causal-agent-bench (pyproject.toml)
 pydantic-core==2.46.4

@@ -179,10 +179,12 @@ These are predictive associations, not causal deployment effects.
 Power calculations are prospective scenarios only and are labelled
 `DESIGN_ONLY`. Assumptions and seeds are frozen in
 `configs/pre_run/power_assumptions.json` before model outcomes exist. Compact-20
-has prospective SESOI power `0.395576` and is restricted to validation and
-piloting. Scale-100 has prospective SESOI power `0.999295` under the frozen
-assumptions and is the confirmatory path after genuine human approval. Measured
-variance cannot replace this preregistration without a dated deviation record.
+has prospective SESOI power `0.198194` and is restricted to validation and
+piloting. Scale-100 has prospective SESOI power `0.69794` under the corrected
+paired-task assumptions and is the confirmatory path after genuine human
+approval. Model count is a hierarchical factor, not an automatic task-ESS
+multiplier. Measured variance cannot replace this preregistration without a
+dated deviation record.
 
 ## Exclusions
 

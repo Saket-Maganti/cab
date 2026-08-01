@@ -1,0 +1,49 @@
+name: Final Pre-Review Hardening
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  final-pre-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project and validation dependencies
+        run: python -m pip install -e '.[dev,docs]'
+      - name: Static intervention-policy reachability
+        run: cab benchmark static-reachability-check
+      - name: Executable intervention reachability
+        run: cab benchmark executable-reachability-check
+      - name: Gold reconstruction
+        run: cab benchmark gold-reconstruction-check
+      - name: Intervention isolation
+        run: cab benchmark intervention-isolation-check
+      - name: Fixture approval signature and bindings
+        run: cab approval verify --fixture
+      - name: Hierarchical power design
+        run: cab power validate
+      - name: Final hardening gate
+        run: cab final-pre-review check
+      - name: Unit and integration tests without providers, models, or local runs
+        run: python -m pytest -q -n 4 -m 'not provider and not model and not local_run'
+      - name: Static quality
+        run: |
+          python -m ruff format --check .
+          python -m ruff check .
+          python -m mypy src
+          python -m codespell .
+      - name: Strict docs
+        run: python -m mkdocs build --strict
+      - name: Distribution build
+        run: |
+          python -m build
+          python -m twine check dist/*

@@ -1,0 +1,37 @@
+{
+  "CAB_LEVEL5_COMPLETE": false,
+  "baseline_commit": "715d981cf68eb2741dd6e05b097b08445f87accf",
+  "engineering_gates": {
+    "adversarial_audit": "CAB_FINAL_PRE_REVIEW_ADVERSARIAL_AUDIT_PASSED",
+    "clean_release": "CAB_CLEAN_RELEASE_PATH_READY",
+    "cryptographic_approval": "CAB_CRYPTOGRAPHIC_APPROVAL_GATE_READY",
+    "executable_reachability": "CAB_COMPACT_EXECUTABLE_REACHABILITY_READY",
+    "fixture_dry_run": "CAB_FINAL_REVIEW_AND_APPROVAL_DRY_RUN_READY",
+    "hierarchical_power": "CAB_HIERARCHICAL_POWER_PLAN_READY",
+    "recovery_authorization": "CAB_RECOVERY_AUTHORIZATION_V4_READY",
+    "reviewer_evidence_bundles": "CAB_COMPACT_REVIEW_EVIDENCE_BUNDLES_READY",
+    "smoke_and_raac": "CAB_SMOKE_CALIBRATION_AND_STAGED_RAAC_PLAN_READY",
+    "two_stage_review": "CAB_TWO_STAGE_HUMAN_REVIEW_READY"
+  },
+  "fixture_approval_verified": true,
+  "genuine_evidence": {
+    "audited_real_runs": 0,
+    "community_pilots": 0,
+    "external_reproductions": 0,
+    "genuine_adjudications": 0,
+    "genuine_human_judgments": 0,
+    "paper_eligible_empirical_assets": 0,
+    "protected_evaluator_pilots": 0,
+    "real_model_trajectories": 0,
+    "supported_empirical_claims": 0
+  },
+  "human_validation_state": "HUMAN_VALIDATION_REQUIRED",
+  "implementation_commit": "7656a94539720fb4afe841c7b8738c62d0ebadcd",
+  "live_evidence_state": "LIVE_EVIDENCE_REQUIRED",
+  "model_calls_performed": 0,
+  "provider_calls_performed": 0,
+  "review_packet_state": "COMPACT20_REVIEW_PACKET_EVIDENCE_VERIFIABLE",
+  "schema_version": "cab_final_pre_review_state_v1",
+  "scientific_execution_performed": false,
+  "state": "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE"
+}

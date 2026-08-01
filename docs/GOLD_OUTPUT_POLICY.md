@@ -16,6 +16,11 @@ This policy governs compact empirical work and main-benchmark preparation.
 | --- | --- | --- | --- | --- | --- | --- |
 | `tool_removal` | Usually changes if the removed tool was required; may remain same if enough evidence remains. | Yes, when evidence path is removed. | Yes, if it clearly states the missing tool prevents verification. | Sometimes. | Yes for answer-changing flags. | Forbidden unless unambiguous and non-frozen. |
 | `tool_failure` | May remain same if recovery path exists; changes if the failed tool is the only evidence path. | Yes. | Yes. | Sometimes. | Yes for main benchmark use. | Forbidden for ambiguous cases. |
+
+For current Compact-20 review, “recovery path” means a v4 authorization bound
+to an exact post-failure action, closed argument schema, useful-observation
+predicate, causal fact IDs, attempt budget, and cost. A bare fallback tool name
+is insufficient.
 | `memory_corruption` | Usually should remain the same if tools can verify; may change to abstention when verification impossible. | Yes. | Yes. | Sometimes. | Yes. | Forbidden for frozen data. |
 | `observation_conflict` | Often should change to conflict-aware answer or abstention. | Yes. | Yes. | Yes, if conflict resolution criteria are explicit. | Yes. | Forbidden unless conflict policy is explicit. |
 | `stale_memory` | Usually should remain same after verification; stale-memory answer is not gold. | Yes when no verification path exists. | Yes. | Sometimes. | Yes. | Forbidden for ambiguous cases. |

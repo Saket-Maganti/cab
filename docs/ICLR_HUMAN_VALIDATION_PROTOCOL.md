@@ -97,7 +97,9 @@ The packet includes no model output or model/provider identity. Reviewers
 cannot access live run outputs or leaderboards until the review and
 adjudication artifacts are locked. The clean/intervention condition and
 intervention family remain visible because validity cannot be judged without
-them. Gold and scorer policies are visible only in the reviewer packet; they
+them. Stage 1 exposes inspectable controlled artifacts and tool transcripts but
+not gold answers, intended routes, or scorer policies. Stage 2 exposes those
+materials only after the completed Stage-1 CSV hash is frozen immutably. They
 must never enter the agent-facing payload.
 
 ## 5. Packet construction and data entry
@@ -105,28 +107,27 @@ must never enter the agent-facing payload.
 Generate or refresh a still-blank packet:
 
 ```bash
-python3 scripts/build_c10_review_packet.py
+python3 scripts/build_final_pre_review_reports.py
 ```
 
 The builder refuses to overwrite completed reviewer, registry, adjudication, or
 session data. The canonical directory is
-`data/human_validation/compact20_real_review/`.
+`data/human_validation/compact20_two_stage_review/`.
 
-1. Confirm `review_items.jsonl` matches the candidate-manifest hash.
-2. Assign the corresponding `blinded_order_reviewer_a.json`,
-   `blinded_order_reviewer_b.json`, and `blinded_order_adjudicator.json` out of
-   band; do not exchange order files.
-3. Keep both model-blinding flags true in `review_session.json`.
-4. Register qualified reviewers in `reviewer_registry.csv`.
-5. Assign the pre-created reviewer slots out of band.
-6. Each reviewer independently completes only their rows in
-   `review_judgments.csv`.
-7. Lock initial sheets before computing agreement.
-8. Populate `adjudication.csv` only for observed disagreements.
-9. Update prerequisite report paths/hashes in `c10_prerequisites.json`.
-10. Change the session to `real_human` and attest human-only completion only
-   after the statements are true.
-11. Run the validator. Do not edit output state by hand.
+1. Confirm `stage1_review_items.jsonl` and the evidence-bundle index match their
+   committed hashes.
+2. Assign the Stage-1 reviewer orders out of band; do not exchange order files.
+3. Register qualified reviewers in `reviewer_registry.csv`.
+4. Each reviewer independently completes only their Stage-1 rows.
+5. Freeze the completed `stage1_judgments.csv` hash and timestamp in
+   `stage1_commitment.json`; do not revise Stage 1 afterward.
+6. Run the canonical unlock validator. Do not distribute Stage 2 if it fails.
+7. Assign the independently randomized Stage-2 orders and complete only the
+   assigned rows.
+8. Give the separate adjudicator both stages and immutable review history.
+9. Populate `adjudication.csv` only for observed disagreements.
+10. Run unchanged C10 thresholds and issue a content-bound approval receipt
+   only after genuine C10 passes. Do not edit output state by hand.
 
 Legacy split sheets (`task_clarity_review.csv`, `gold_policy_review.csv`,
 `intervention_isolation_review.csv`, and `adjudication_template.csv`) are
