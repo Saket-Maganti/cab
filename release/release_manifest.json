@@ -460,7 +460,7 @@
     "scripts/build_compact20_v2.py": "37a9fc389dbcc182d39565afd0fcafcac55fc3885e0654ceff8a74977ad07e95",
     "scripts/build_final_pre_review_reports.py": "1596a02172a58e937f91748bdf65f845e039b8cd1ba443239b151dedee7ec359",
     "scripts/build_kaggle_notebooks.py": "aa71f706c186d78229b5128c7f9b1950da55f24f55509fd405483617f8f7287d",
-    "scripts/build_level6_foundation.py": "073cad4e66cce9b66c69d9d6a1c7f82c51539431ad2517f828cd946feadb1c9e",
+    "scripts/build_level6_foundation.py": "c76c76f0b040fadb7550201595607872504acfdc069c37811bd018b1948c6670",
     "scripts/build_power_precision_reports.py": "b3709d870e4189be6cfc920caef5b32b00eaf1f227eed58657e75d89237499aa",
     "scripts/build_pre_run_hardening_reports.py": "2a7e95a8c13ceed30d4a2c94d3569eb8a22a93c9d33b4d46a688b1fcbf6ec562",
     "scripts/build_protected_heldout_exposure_inventory.py": "bf5277a3890f89931b4f8f7b9f2d12b90f5f94fe07523605b7994ccd9ce72530",
@@ -471,7 +471,7 @@
     "scripts/cab_resource_preflight.py": "45dcbacb0b49c41f123fdb1e0ed992a75ab933b175c862c7f69767a0ab944e3a",
     "scripts/camera_ready_precheck.py": "9ad46eee7971e815a9acd22391da40609f91342c12ad433c2cca8405c1b69b41"
   },
-  "generated_at": "2026-08-01T19:00:14.794716+00:00",
+  "generated_at": "2026-08-01T19:06:05.336668+00:00",
   "inventory_file_count": 780,
   "inventory_policy": {
     "categories": {
@@ -581,11 +581,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "2a80054ef1d0677b24ab5c33675a670d164dc7e309955d5eb1481b6a6b42774e",
+  "release_bundle_hash": "7fd3e7d6a4e9cf6d88887d83a6f7e9cb67300d88a7d3cd7fe74a265f504fc360",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "7a142f8a42ce9d68101e9cad7a575d4d654e406e",
+    "git_commit": "45ba0b5ca08c96f38fb0931f8ce7be80ad26106d",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",

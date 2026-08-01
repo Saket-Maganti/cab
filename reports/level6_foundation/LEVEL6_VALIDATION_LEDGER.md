@@ -1,7 +1,7 @@
 # Level-6 Validation Ledger
 
 - Focused Level-6/final-pre-review/typed-scorer slice: 47 passed.
-- Full provider-free regression suite: 1,205 passed, 1 expected skip.
+- Full provider-free regression suite: 1,206 passed, 1 expected skip.
 - Semantic reconstruction: 20/20.
 - Causal reachability: 20/20.
 - True Monte Carlo repetitions: 20,000.

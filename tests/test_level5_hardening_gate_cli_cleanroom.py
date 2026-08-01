@@ -352,6 +352,30 @@ def test_level5_cli_evaluator_evidence_certificates_reproduction_and_reliability
     )["passed"]
 
 
+def test_level6_foundation_cli_dispatch_is_covered_by_level5_lane(capsys):
+    commands = (
+        ["benchmark", "semantic-fact-check"],
+        ["benchmark", "evidence-gold-check"],
+        ["benchmark", "stage1-blinding-check"],
+        ["benchmark", "causal-reachability-check"],
+        ["recovery", "authorization-check"],
+        ["power", "analytic-validate"],
+        ["power", "simulate-validate"],
+        ["measurement", "foundation-check"],
+        ["antigaming", "foundation-check"],
+        ["governance", "foundation-check"],
+        ["portability", "conformance-check"],
+        ["release", "final-tip-check"],
+        ["level6", "foundation-check"],
+    )
+    for command in commands:
+        result = _cli(command, capsys)
+        passed = result.get("passed")
+        if passed is None:
+            passed = result["stage1_leakage_scan"]["passed"]
+        assert passed is True, command
+
+
 @pytest.mark.slow
 def test_cleanroom_reproduction_uses_committed_archive_and_clean_environment(tmp_path):
     report = run_cleanroom_reproduction(
