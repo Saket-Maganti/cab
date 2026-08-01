@@ -12,11 +12,13 @@ This policy governs confirmatory and challenge material registered in
 | Study role | Default disclosure | Earliest allowed release |
 |---|---|---|
 | `dev_fixture` | Public fixture | Development release |
-| `compact20_pilot` | Harness and protocol only | After human-review and execution-entry gates |
-| `scale100_confirmatory` | Hidden or delayed task pack | After confirmatory decisions are frozen |
-| `naturalistic_transfer` | Hidden or delayed task pack | After provenance, privacy, license, and human review |
-| `main500_confirmatory` | Hidden or delayed task pack | After the primary analysis is locked |
+| `compact20_v2_pilot` | Harness, blank packet, and public commitments only | After genuine dual review, adjudication, C10, and execution-entry gates |
+| `scale100_confirmatory_v2` | Aggregate public commitment; private task pack | After genuine review, approved materialization, execution, and confirmatory decisions are frozen |
+| `artifact_rich_synthetic_transfer_v2` | Aggregate artifact/assignment commitment; private task pack | After provenance, privacy, license, genuine review, and approved materialization |
 | `heldout_challenge` | Membership and answers withheld | Post-study full release or separately governed challenge release |
+
+Main-500 and all v1 scientific roles are superseded. They have no release tier
+that restores confirmatory eligibility.
 
 Publishing a generator, schema, task count, or membership hash does not
 authorize publishing protected task text, labels, gold outputs, or answer keys.
@@ -41,8 +43,10 @@ Release or live evaluation remains blocked until all applicable gates pass:
 3. Static leakage reports contain no blocker cluster.
 4. Independent human task/gold/isolation review is complete, including C10.
 5. Privacy, PII, injection, source provenance, and license reviews are complete.
-6. The scorer version and answer contract are frozen.
-7. Analysis decisions, exclusions, seeds, and model identifiers are registered.
+6. Scorer version 3.0.0, typed answer contracts, abstention opportunities, and
+   the endpoint specification are frozen.
+7. Analysis decisions, exclusions, seeds, and the complete evaluated-system
+   identity (model plus adapter components) are registered and hashed.
 8. Budget/provider authorization exists for any live execution.
 9. Run manifests and append-only ledgers pass integrity validation.
 10. Claim and release checks pass without converting fixture evidence into
@@ -63,8 +67,10 @@ Release or live evaluation remains blocked until all applicable gates pass:
 ## Privacy, provenance, and licensing
 
 - Synthetic data follows `DATA_LICENSE.md`; code follows `LICENSE`.
-- Naturalistic material requires an item-level source/license log and explicit
-  redistribution authority. Unknown or incompatible rights block release.
+- Artifact-rich synthetic transfer material must retain deterministic
+  provenance and the no-real-world-origin claim. Any later genuine external
+  material requires an item-level source/license log and explicit
+  redistribution authority; unknown or incompatible rights block release.
 - Do not commit real reviewer identities, provider credentials, customer data,
   private communications, or unredacted model logs.
 - Pseudonymize reviewer identifiers and minimize retained free-text notes.

@@ -80,6 +80,7 @@ LEVEL5_COMMANDS = {
     "model-card",
     "claims",
     "plugins",
+    "pre-run",
     "reproduce",
     "redteam",
     "level5",
@@ -177,6 +178,31 @@ def _env_doctor(args: Any) -> None:
 
 def _benchmark(args: Any) -> None:
     command = args.benchmark_command
+    if command in {"reachability-check", "intervention-audit"}:
+        from causal_agent_bench.safety.intervention_reachability import (
+            audit_intervention_collection,
+        )
+        from causal_agent_bench.schemas import BenchmarkInstance
+        from causal_agent_bench.utils.io import read_jsonl
+
+        instances = read_jsonl(args.instances, BenchmarkInstance)
+        interventions = [
+            instance for instance in instances if instance.condition == "intervention"
+        ]
+        report = audit_intervention_collection(interventions)
+        report["command"] = command
+        if args.output:
+            output = Path(args.output)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(
+                json.dumps(report, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            report["output"] = str(output)
+        _print(report)
+        if not report["passed"]:
+            raise SystemExit(1)
+        return
     path = Path(args.spec)
     if command == "init":
         if path.exists() and not args.force:
@@ -237,13 +263,37 @@ def _benchmark(args: Any) -> None:
 
 
 def _plan(args: Any) -> None:
+    if args.plan_command in {"volume", "resources", "shards"}:
+        from causal_agent_bench.runners.resource_planner import (
+            plan_study_resources,
+        )
+
+        plan = plan_study_resources(
+            Path.cwd(),
+            study=args.study,
+            scenario=args.scenario,
+            config_path=args.planner_config,
+            shard_override=args.shards,
+            declared_total_trajectories=args.declared_total_trajectories,
+        )
+        plan["requested_view"] = args.plan_command
+        if args.output:
+            output = Path(args.output)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(
+                json.dumps(plan, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            plan["output"] = str(output)
+        _print(plan)
+        return
     spec = (
         RunPlanSpec.model_validate_json(Path(args.spec).read_text(encoding="utf-8"))
         if args.spec
         else fixture_20_spec()
     )
-    manifest = compile_run_plan(spec, shard_count=args.shards)
-    output = Path(args.output)
+    manifest = compile_run_plan(spec, shard_count=args.shards or 2)
+    output = Path(args.output or ".cab/run_manifest.json")
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(manifest.model_dump_json(indent=2) + "\n", encoding="utf-8")
     _print(
@@ -582,6 +632,22 @@ def handle_level5_command(args: Any) -> bool:
                 raise SystemExit(1)
         else:
             _print(_gate(args.state))
+    elif command == "pre-run":
+        from causal_agent_bench.safety.pre_run_scientific_hardening import (
+            scientific_hardening_check,
+        )
+
+        result = scientific_hardening_check(args.repo_root)
+        if args.output:
+            output = Path(args.output)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(
+                json.dumps(result, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
     elif command == "release-check":
         from scripts.release_check import run_release_check
 

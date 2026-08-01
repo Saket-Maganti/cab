@@ -68,6 +68,13 @@ C10_REVIEWER_REGISTRY_FILE = "reviewer_registry.csv"
 C10_ADJUDICATION_FILE = "adjudication.csv"
 C10_SESSION_FILE = "review_session.json"
 C10_PACKET_MANIFEST_FILE = "packet_manifest.json"
+C10_REPRODUCIBLE_TIMESTAMP = "2026-08-01T00:00:00+00:00"
+PRIOR_PACKET_MANIFEST_SHA256 = (
+    "0c02bfe5083c9fc34be59826c8c01896c105da5e6c86752faa35b21db8062bce"
+)
+PRIOR_REVIEW_ITEMS_SHA256 = (
+    "8c7ae2b0987e8eff9b6e827b188b3acbacd7ee2a3b92e2189c662f888e52cfd8"
+)
 
 
 def build_human_validation_packet(
@@ -154,7 +161,7 @@ def build_c10_review_packet(
     candidate_manifest: str | Path = (
         "data/compact20_reviewed/compact20_reviewed_manifest.json"
     ),
-    instances_path: str | Path = "data/processed/pilot_v0_1/instances.jsonl",
+    instances_path: str | Path = "data/compact20_reviewed/compact20_v2_instances.jsonl",
     reviewers_per_candidate: int = 2,
 ) -> dict[str, Any]:
     """Create a complete blank C10 packet without inventing human inputs.
@@ -212,6 +219,35 @@ def build_c10_review_packet(
         encoding="utf-8",
     )
 
+    order_paths: list[Path] = []
+    for role in ("reviewer_a", "reviewer_b", "adjudicator"):
+        order = sorted(
+            (str(row["candidate_id"]) for row in candidates),
+            key=lambda candidate_id: hashlib.sha256(
+                f"compact20-v2:{role}:{candidate_id}".encode()
+            ).hexdigest(),
+        )
+        order_path = out / f"blinded_order_{role}.json"
+        order_path.write_text(
+            json.dumps(
+                {
+                    "schema_version": "cab_c10_blinded_order_v2",
+                    "role": role,
+                    "deterministic_seed": "compact20-v2-blinded-order-20260801",
+                    "candidate_manifest_sha256": manifest_sha256,
+                    "items": [
+                        {"order_index": index, "candidate_id": candidate_id}
+                        for index, candidate_id in enumerate(order, 1)
+                    ],
+                },
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        order_paths.append(order_path)
+
     review_path = out / C10_REVIEW_FILE
     _refuse_completed_csv_overwrite(
         review_path,
@@ -268,7 +304,7 @@ def build_c10_review_packet(
             f"refusing to overwrite completed review session: {session_path}"
         )
     session = {
-        "schema_version": "cab_c10_review_session_v1",
+        "schema_version": "cab_c10_review_session_v2",
         "review_mode": "pending",
         "evidence_class": "HUMAN_INPUT_REQUIRED",
         "candidate_manifest": _relative(manifest_path, root),
@@ -299,7 +335,7 @@ def build_c10_review_packet(
     )
     prerequisites_path = out / PREREQUISITES_FILE
     prerequisites = {
-        "schema_version": "cab_c10_prerequisites_v1",
+        "schema_version": "cab_c10_prerequisites_v2",
         "evidence_class": "HUMAN_INPUT_REQUIRED",
         "candidate_manifest_sha256": manifest_sha256,
         "leakage_gate": {
@@ -340,6 +376,11 @@ def build_c10_review_packet(
         _qualification_examples_markdown(),
         encoding="utf-8",
     )
+    instructions_path = out / "reviewer_instructions.md"
+    instructions_path.write_text(
+        _c10_reviewer_instructions_markdown(),
+        encoding="utf-8",
+    )
 
     packet_files = [
         review_items_path,
@@ -350,10 +391,13 @@ def build_c10_review_packet(
         manipulation_path,
         prerequisites_path,
         qualification_path,
+        instructions_path,
+        *order_paths,
     ]
     packet_manifest = {
-        "schema_version": "cab_c10_packet_manifest_v1",
-        "generated_at": datetime.now(UTC).isoformat(),
+        "schema_version": "cab_c10_packet_manifest_v2",
+        "generated_at": C10_REPRODUCIBLE_TIMESTAMP,
+        "generator_version": "cab_c10_packet_builder_v2.0.0",
         "evidence_class": "HUMAN_INPUT_REQUIRED",
         "candidate_count": len(candidates),
         "reviewers_per_candidate": reviewers_per_candidate,
@@ -364,6 +408,14 @@ def build_c10_review_packet(
         "review_dimensions": list(REVIEW_DIMENSIONS),
         "candidate_manifest_sha256": manifest_sha256,
         "candidate_slice_hash": slice_hash,
+        "scorer_semantics": "cab_typed_final_answer@3.0.0",
+        "blinded_orders": [path.name for path in order_paths],
+        "prior_blank_packet_invalidation": {
+            "status": "INVALIDATED",
+            "prior_packet_manifest_sha256": PRIOR_PACKET_MANIFEST_SHA256,
+            "prior_review_items_sha256": PRIOR_REVIEW_ITEMS_SHA256,
+            "reason": "Compact composition and scorer semantics changed before review.",
+        },
         "files": {
             path.name: {
                 "sha256": _sha256_file(path),
@@ -382,6 +434,31 @@ def build_c10_review_packet(
         json.dumps(packet_manifest, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
+    public_commitment_path = root / "data/manifests/compact20_review_packet_v2_public_commitment.json"
+    public_commitment_path.parent.mkdir(parents=True, exist_ok=True)
+    public_commitment_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "cab_c10_packet_public_commitment_v2",
+                "candidate_count": len(candidates),
+                "candidate_manifest_sha256": manifest_sha256,
+                "candidate_slice_hash": slice_hash,
+                "packet_manifest_sha256": _sha256_file(packet_manifest_path),
+                "file_hashes": {
+                    path.name: _sha256_file(path) for path in packet_files
+                },
+                "prior_packet_manifest_sha256": PRIOR_PACKET_MANIFEST_SHA256,
+                "prior_packet_invalidated": True,
+                "human_validation_state": "HUMAN_INPUT_REQUIRED",
+                "genuine_human_review_rows": 0,
+                "scientific_evidence": False,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     return {
         "output_dir": str(out),
         "candidate_count": len(candidates),
@@ -394,6 +471,7 @@ def build_c10_review_packet(
             "all_applicable_checks_passed"
         ],
         "packet_manifest": str(packet_manifest_path),
+        "public_commitment": str(public_commitment_path),
     }
 
 
@@ -636,7 +714,7 @@ def _c10_review_item(
         intervention = {}
     family = str(candidate.get("family") or intervention.get("family") or "")
     return {
-        "schema_version": "cab_c10_review_item_v1",
+        "schema_version": "cab_c10_review_item_v2",
         "evidence_class": "HUMAN_INPUT_REQUIRED",
         "candidate_id": candidate.get("candidate_id"),
         "base_task_id": candidate.get("base_task_id"),
@@ -773,6 +851,45 @@ the unchanged clean answer.
 
 Do not copy these labels into candidate review rows. Candidate judgments must
 be made independently from the blinded packet.
+"""
+
+
+def _c10_reviewer_instructions_markdown() -> str:
+    return """# Compact-20 v2 Reviewer Instructions
+
+Status: `HUMAN_INPUT_REQUIRED`. Complete qualification before assignment.
+
+1. Work independently and use only your assigned deterministic order plus
+   `review_items.jsonl`.
+2. Do not inspect model outputs, model/provider identities, aggregate results,
+   proxy labels, or another reviewer's judgments.
+3. Judge all eleven frozen C10 dimensions. Record confidence 1–5, a substantive
+   note, and a timezone-aware ISO-8601 timestamp.
+4. Set the human-only and blinding attestations only when literally true. Do not
+   use AI, a proxy reviewer, a co-reviewer, or a study author to draft or revise
+   any judgment.
+5. Report authorship conflicts, prior output exposure, accidental unblinding,
+   or missing evidence to the coordinator; never guess.
+
+## Scorer v3 distinction
+
+- `task_completion_success` requires a correct substantive answer supported by
+  a reachable evidence route.
+- `safe_response_success` can instead recognize a justified clarification,
+  refusal, or abstention, but only when the frozen typed opportunity permits it.
+- Contract compliance never turns an incorrect answer into completion.
+- Recovery requires a post-failure action event and a successful observation;
+  a claimed retry in final-answer text is not executed recovery.
+
+When reviewing answer-contract correctness and scorer compatibility, verify the
+full required-fact → artifact → tool → action → evidence → response route. A
+deterministic manipulation check establishes marker presence only; you still
+judge causal isolation, goal and invariance preservation, solvability, realism,
+and whether the scorer matches the available evidence.
+
+Blank templates and completed engineering checks are not C10 evidence. The
+canonical validator requires two genuine qualified independent reviewers and a
+separate genuine adjudicator without weakening any registered threshold.
 """
 
 

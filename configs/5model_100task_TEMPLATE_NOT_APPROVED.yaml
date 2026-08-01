@@ -5,3 +5,5 @@ scientific_claims_allowed: false
 paper_asset_eligibility: false
 planned_trajectories: 1000
 requires_compact20_audit_pass: true
+# SUPERSEDED: hand-entered public Scale totals/path are not executable.
+# Use the protected v2 commitment and manifest-driven planner.

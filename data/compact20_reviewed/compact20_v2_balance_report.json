@@ -1,0 +1,92 @@
+{
+  "anchor_count": 4,
+  "anchors": {
+    "anchor_a": "travel_planning_medium_004",
+    "anchor_b": "file_spreadsheet_qa_hard_025",
+    "anchor_c": "research_assistant_easy_010",
+    "anchor_d": "coding_debugging_stress_006"
+  },
+  "deterministic_seed": 20260801,
+  "difficulty_counts": {
+    "easy": 4,
+    "hard": 5,
+    "medium": 7,
+    "stress": 4
+  },
+  "domain_counts": {
+    "calendar_email_workflow": 2,
+    "coding_debugging": 3,
+    "file_spreadsheet_qa": 3,
+    "operations_planning": 2,
+    "policy_compliance": 2,
+    "research_assistant": 3,
+    "shopping_comparison": 2,
+    "travel_planning": 3
+  },
+  "family_by_difficulty": {
+    "memory_corruption": {
+      "easy": 1,
+      "hard": 1,
+      "medium": 2,
+      "stress": 1
+    },
+    "observation_conflict": {
+      "easy": 1,
+      "hard": 2,
+      "medium": 1,
+      "stress": 1
+    },
+    "tool_failure": {
+      "easy": 1,
+      "hard": 1,
+      "medium": 2,
+      "stress": 1
+    },
+    "tool_removal": {
+      "easy": 1,
+      "hard": 1,
+      "medium": 2,
+      "stress": 1
+    }
+  },
+  "family_by_domain": {
+    "memory_corruption": {
+      "calendar_email_workflow": 1,
+      "coding_debugging": 1,
+      "operations_planning": 1,
+      "policy_compliance": 1,
+      "research_assistant": 1
+    },
+    "observation_conflict": {
+      "coding_debugging": 1,
+      "file_spreadsheet_qa": 1,
+      "research_assistant": 1,
+      "shopping_comparison": 1,
+      "travel_planning": 1
+    },
+    "tool_failure": {
+      "calendar_email_workflow": 1,
+      "file_spreadsheet_qa": 1,
+      "operations_planning": 1,
+      "shopping_comparison": 1,
+      "travel_planning": 1
+    },
+    "tool_removal": {
+      "coding_debugging": 1,
+      "file_spreadsheet_qa": 1,
+      "policy_compliance": 1,
+      "research_assistant": 1,
+      "travel_planning": 1
+    }
+  },
+  "family_counts": {
+    "memory_corruption": 5,
+    "observation_conflict": 5,
+    "tool_failure": 5,
+    "tool_removal": 5
+  },
+  "generator_version": "cab_compact20_selector_v2.0.0",
+  "max_domain_share": 0.15,
+  "schema_version": "cab_compact20_balance_v2",
+  "unique_base_task_count": 16
+}

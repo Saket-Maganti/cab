@@ -3,3 +3,4 @@ allow_paid_calls: false
 approved_for_live_run: false
 scientific_claims_allowed: false
 paper_asset_eligibility: false
+# SUPERSEDED: use artifact_rich_synthetic_transfer v2 after genuine review.

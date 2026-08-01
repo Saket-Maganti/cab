@@ -939,6 +939,8 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
         "freeze",
         "retire",
         "contamination-audit",
+        "reachability-check",
+        "intervention-audit",
     ):
         child = benchmark_sub.add_parser(name)
         child.add_argument("--spec", default="examples/level5/public_fixture/authoring.yaml")
@@ -947,11 +949,48 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
             child.add_argument("--force", action="store_true")
         if name == "compile":
             child.add_argument("--allow-private-output", action="store_true")
+        if name in {"reachability-check", "intervention-audit"}:
+            child.add_argument(
+                "--instances",
+                default="data/compact20_reviewed/compact20_v2_instances.jsonl",
+            )
+            child.add_argument("--output", default=None)
 
-    plan = subparsers.add_parser("plan", help="Compile an immutable Level-5 fixture run plan.")
+    plan = subparsers.add_parser(
+        "plan",
+        help="Compile a fixture plan or derive scientific volume/resources/shards.",
+    )
+    plan.add_argument(
+        "plan_command",
+        nargs="?",
+        choices=["volume", "resources", "shards"],
+    )
     plan.add_argument("--spec", default=None)
-    plan.add_argument("--output", default=".cab/run_manifest.json")
-    plan.add_argument("--shards", type=int, default=2)
+    plan.add_argument("--output", default=None)
+    plan.add_argument("--shards", type=int, default=None)
+    plan.add_argument(
+        "--study",
+        choices=[
+            "compact20",
+            "compact20_raac_light",
+            "scale100",
+            "scale100_raac_light",
+            "raac_equal_budget",
+            "raac_ablations",
+            "transfer",
+        ],
+        default="scale100",
+    )
+    plan.add_argument(
+        "--scenario",
+        choices=["minimum", "planned", "conservative", "rerun_reserve"],
+        default="planned",
+    )
+    plan.add_argument(
+        "--planner-config",
+        default="configs/pre_run/study_execution_manifests.json",
+    )
+    plan.add_argument("--declared-total-trajectories", type=int, default=None)
 
     # Extend the legacy run command with a provider-free Level-5 dry-run surface.
     run_parser = subparsers.choices["run"]
@@ -1075,6 +1114,15 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
         "--state",
         default="reports/level5_hardening/CAB_LEVEL5_HARDENING_STATE.json",
     )
+
+    pre_run = subparsers.add_parser(
+        "pre-run",
+        help="Validate the frozen provider-free pre-run scientific design.",
+    )
+    pre_run_sub = pre_run.add_subparsers(dest="pre_run_command", required=True)
+    scientific_check = pre_run_sub.add_parser("scientific-check")
+    scientific_check.add_argument("--repo-root", default=".")
+    scientific_check.add_argument("--output", default=None)
 
     release_check = subparsers.add_parser(
         "release-check",

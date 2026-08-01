@@ -4,11 +4,11 @@
   "blocked_count": 0,
   "candidate_count": 20,
   "candidate_manifest": "data/compact20_reviewed/compact20_reviewed_manifest.json",
-  "candidate_manifest_sha256": "683c9c873594c83b6a45179cc25ab4fa7a5ca14f875635e2aee22ae8fd030224",
+  "candidate_manifest_sha256": "7ed5ebc5cbe41bab8de0541d36a171fa3ccf0d7dae95636b631ad65c692bc46b",
   "evidence_class": "ENGINEERING_ONLY",
   "failed_count": 0,
-  "instances_path": "data/processed/pilot_v0_1/instances.jsonl",
-  "instances_sha256": "cc131c47fbce9b1f08f2af6f53cfe8ea229fe5612b5c89cbc23c8255545d7ab8",
+  "instances_path": "data/compact20_reviewed/compact20_v2_instances.jsonl",
+  "instances_sha256": "eeb74b0c49a2ca0719d1fa38a52dd2a748afc734488f146a79f2c4124aebe691",
   "linkage_registry": {
     "ambiguous_instruction": "instruction_ambiguity",
     "distractor_evidence": "distractor_presence",
@@ -30,7 +30,7 @@
   "record_count": 20,
   "records": [
     {
-      "candidate_id": "compact20_cand_01",
+      "candidate_id": "compact20_v2_cand_01",
       "check_name": "tool_absent",
       "deterministic": true,
       "diagnostics": {
@@ -38,15 +38,15 @@
         "still_available": []
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "travel_planning_medium_000.tool_removal",
+      "instance_id": "travel_planning_medium_004.tool_removal",
       "intervention_family": "tool_removal",
-      "linkage_id": "b91b13b97db433d88cd2d0db",
+      "linkage_id": "23cd11b5b254c1a2d749c1ff",
       "passed": true,
       "reason_code": "REMOVED_TOOLS_ABSENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_02",
+      "candidate_id": "compact20_v2_cand_02",
       "check_name": "tool_absent",
       "deterministic": true,
       "diagnostics": {
@@ -54,15 +54,15 @@
         "still_available": []
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "file_spreadsheet_qa_medium_000.tool_removal",
+      "instance_id": "file_spreadsheet_qa_hard_025.tool_removal",
       "intervention_family": "tool_removal",
-      "linkage_id": "a6c0cf343f7a5f80f54c02d2",
+      "linkage_id": "7f06725cd78fefe273b52832",
       "passed": true,
       "reason_code": "REMOVED_TOOLS_ABSENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_03",
+      "candidate_id": "compact20_v2_cand_03",
       "check_name": "tool_absent",
       "deterministic": true,
       "diagnostics": {
@@ -70,15 +70,15 @@
         "still_available": []
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "research_assistant_easy_000.tool_removal",
+      "instance_id": "research_assistant_easy_010.tool_removal",
       "intervention_family": "tool_removal",
-      "linkage_id": "710ed46484ebcc28a59d7148",
+      "linkage_id": "51c7a15d042a0255860c82a0",
       "passed": true,
       "reason_code": "REMOVED_TOOLS_ABSENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_04",
+      "candidate_id": "compact20_v2_cand_04",
       "check_name": "tool_absent",
       "deterministic": true,
       "diagnostics": {
@@ -86,15 +86,15 @@
         "still_available": []
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "coding_debugging_stress_000.tool_removal",
+      "instance_id": "coding_debugging_stress_002.tool_removal",
       "intervention_family": "tool_removal",
-      "linkage_id": "67a02c7e028d5c26d3f6bc6c",
+      "linkage_id": "253f07d872ea6d813e45f074",
       "passed": true,
       "reason_code": "REMOVED_TOOLS_ABSENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_05",
+      "candidate_id": "compact20_v2_cand_05",
       "check_name": "tool_absent",
       "deterministic": true,
       "diagnostics": {
@@ -102,90 +102,90 @@
         "still_available": []
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "travel_planning_medium_001.tool_removal",
+      "instance_id": "policy_compliance_medium_012.tool_removal",
       "intervention_family": "tool_removal",
-      "linkage_id": "2b116feecc4f41fb7581accd",
+      "linkage_id": "beea80eb7c33636bc51e0941",
       "passed": true,
       "reason_code": "REMOVED_TOOLS_ABSENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_06",
+      "candidate_id": "compact20_v2_cand_06",
       "check_name": "tool_failure_injected",
       "deterministic": true,
       "diagnostics": {
         "target_tool": "search_database"
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "travel_planning_medium_000.tool_failure",
+      "instance_id": "travel_planning_medium_004.tool_failure",
       "intervention_family": "tool_failure",
-      "linkage_id": "f3874da9855e33444bfbc6bd",
+      "linkage_id": "451804f2e07fc06228b6bdc3",
       "passed": true,
       "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_07",
+      "candidate_id": "compact20_v2_cand_07",
+      "check_name": "tool_failure_injected",
+      "deterministic": true,
+      "diagnostics": {
+        "target_tool": "check_calendar"
+      },
+      "evidence_class": "ENGINEERING_ONLY",
+      "instance_id": "calendar_email_workflow_hard_022.tool_failure",
+      "intervention_family": "tool_failure",
+      "linkage_id": "6e45c1e3c527ed0d4201934b",
+      "passed": true,
+      "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
+      "status": "PASS"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_08",
+      "check_name": "tool_failure_injected",
+      "deterministic": true,
+      "diagnostics": {
+        "target_tool": "compare_options"
+      },
+      "evidence_class": "ENGINEERING_ONLY",
+      "instance_id": "shopping_comparison_easy_012.tool_failure",
+      "intervention_family": "tool_failure",
+      "linkage_id": "851a76ab0e7e5abb385096ca",
+      "passed": true,
+      "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
+      "status": "PASS"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_09",
+      "check_name": "tool_failure_injected",
+      "deterministic": true,
+      "diagnostics": {
+        "target_tool": "check_calendar"
+      },
+      "evidence_class": "ENGINEERING_ONLY",
+      "instance_id": "operations_planning_stress_015.tool_failure",
+      "intervention_family": "tool_failure",
+      "linkage_id": "b86b084fbba6df7797c251fe",
+      "passed": true,
+      "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
+      "status": "PASS"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_10",
       "check_name": "tool_failure_injected",
       "deterministic": true,
       "diagnostics": {
         "target_tool": "read_file"
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "file_spreadsheet_qa_medium_000.tool_failure",
+      "instance_id": "file_spreadsheet_qa_medium_019.tool_failure",
       "intervention_family": "tool_failure",
-      "linkage_id": "ec8d2c9122cb685518aae4a7",
+      "linkage_id": "1770999e6592d30d90dae361",
       "passed": true,
       "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_08",
-      "check_name": "tool_failure_injected",
-      "deterministic": true,
-      "diagnostics": {
-        "target_tool": "search_database"
-      },
-      "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "research_assistant_easy_000.tool_failure",
-      "intervention_family": "tool_failure",
-      "linkage_id": "2275e1e82ef70a5e7ffd1870",
-      "passed": true,
-      "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
-      "status": "PASS"
-    },
-    {
-      "candidate_id": "compact20_cand_09",
-      "check_name": "tool_failure_injected",
-      "deterministic": true,
-      "diagnostics": {
-        "target_tool": "read_file"
-      },
-      "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "coding_debugging_stress_000.tool_failure",
-      "intervention_family": "tool_failure",
-      "linkage_id": "8e1850abe09ccc48e47e1a41",
-      "passed": true,
-      "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
-      "status": "PASS"
-    },
-    {
-      "candidate_id": "compact20_cand_10",
-      "check_name": "tool_failure_injected",
-      "deterministic": true,
-      "diagnostics": {
-        "target_tool": "search_database"
-      },
-      "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "travel_planning_medium_001.tool_failure",
-      "intervention_family": "tool_failure",
-      "linkage_id": "1c07a2697cd5ec3dab7e997a",
-      "passed": true,
-      "reason_code": "DETERMINISTIC_FAILURE_MARKER_PRESENT",
-      "status": "PASS"
-    },
-    {
-      "candidate_id": "compact20_cand_11",
+      "candidate_id": "compact20_v2_cand_11",
       "check_name": "memory_corruption",
       "deterministic": true,
       "diagnostics": {
@@ -195,15 +195,15 @@
         ]
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "travel_planning_medium_000.memory_corruption",
+      "instance_id": "research_assistant_easy_010.memory_corruption",
       "intervention_family": "memory_corruption",
-      "linkage_id": "629b481031ab10b8810cd868",
+      "linkage_id": "495ca9a0d44403f7ccbc606a",
       "passed": true,
       "reason_code": "MEMORY_CORRUPTION_MARKER_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_12",
+      "candidate_id": "compact20_v2_cand_12",
       "check_name": "memory_corruption",
       "deterministic": true,
       "diagnostics": {
@@ -213,15 +213,15 @@
         ]
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "file_spreadsheet_qa_medium_000.memory_corruption",
+      "instance_id": "coding_debugging_stress_006.memory_corruption",
       "intervention_family": "memory_corruption",
-      "linkage_id": "38c258737cc4a4e1b853ed9b",
+      "linkage_id": "240e20db87eb6bc0571e3021",
       "passed": true,
       "reason_code": "MEMORY_CORRUPTION_MARKER_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_13",
+      "candidate_id": "compact20_v2_cand_13",
       "check_name": "memory_corruption",
       "deterministic": true,
       "diagnostics": {
@@ -231,15 +231,15 @@
         ]
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "research_assistant_easy_000.memory_corruption",
+      "instance_id": "calendar_email_workflow_medium_019.memory_corruption",
       "intervention_family": "memory_corruption",
-      "linkage_id": "f1fdd04cb2a535daafcc2c3d",
+      "linkage_id": "56be79de4a7107f8c4b1cb96",
       "passed": true,
       "reason_code": "MEMORY_CORRUPTION_MARKER_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_14",
+      "candidate_id": "compact20_v2_cand_14",
       "check_name": "memory_corruption",
       "deterministic": true,
       "diagnostics": {
@@ -249,15 +249,15 @@
         ]
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "coding_debugging_stress_000.memory_corruption",
+      "instance_id": "policy_compliance_hard_026.memory_corruption",
       "intervention_family": "memory_corruption",
-      "linkage_id": "3186c3e6b18d49aeca38d70a",
+      "linkage_id": "5f10946dc0b83dcb2b12968e",
       "passed": true,
       "reason_code": "MEMORY_CORRUPTION_MARKER_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_15",
+      "candidate_id": "compact20_v2_cand_15",
       "check_name": "memory_corruption",
       "deterministic": true,
       "diagnostics": {
@@ -267,15 +267,15 @@
         ]
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "travel_planning_medium_001.memory_corruption",
+      "instance_id": "operations_planning_medium_021.memory_corruption",
       "intervention_family": "memory_corruption",
-      "linkage_id": "986590a5149a08afc43a3657",
+      "linkage_id": "df245b9c5326b120bc62255a",
       "passed": true,
       "reason_code": "MEMORY_CORRUPTION_MARKER_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_16",
+      "candidate_id": "compact20_v2_cand_16",
       "check_name": "conflicting_observations",
       "deterministic": true,
       "diagnostics": {
@@ -283,15 +283,15 @@
         "source_count": 2
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "calendar_email_workflow_easy_000.observation_conflict",
+      "instance_id": "file_spreadsheet_qa_hard_025.observation_conflict",
       "intervention_family": "observation_conflict",
-      "linkage_id": "c6e7fb2753cc1f45fabc1934",
+      "linkage_id": "2cf598a8c1500f76f9057949",
       "passed": true,
       "reason_code": "DISTINCT_CONFLICTING_VALUES_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_17",
+      "candidate_id": "compact20_v2_cand_17",
       "check_name": "conflicting_observations",
       "deterministic": true,
       "diagnostics": {
@@ -299,15 +299,15 @@
         "source_count": 2
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "shopping_comparison_easy_000.observation_conflict",
+      "instance_id": "coding_debugging_stress_006.observation_conflict",
       "intervention_family": "observation_conflict",
-      "linkage_id": "808c4911ede2c64726503dfc",
+      "linkage_id": "c67e68dd44e6e8e510cb108e",
       "passed": true,
       "reason_code": "DISTINCT_CONFLICTING_VALUES_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_18",
+      "candidate_id": "compact20_v2_cand_18",
       "check_name": "conflicting_observations",
       "deterministic": true,
       "diagnostics": {
@@ -315,15 +315,15 @@
         "source_count": 2
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "policy_compliance_hard_000.observation_conflict",
+      "instance_id": "shopping_comparison_medium_001.observation_conflict",
       "intervention_family": "observation_conflict",
-      "linkage_id": "d494060baadd85bd6b49a847",
+      "linkage_id": "f65a17bea11f69aaf70334e6",
       "passed": true,
       "reason_code": "DISTINCT_CONFLICTING_VALUES_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_19",
+      "candidate_id": "compact20_v2_cand_19",
       "check_name": "conflicting_observations",
       "deterministic": true,
       "diagnostics": {
@@ -331,15 +331,15 @@
         "source_count": 2
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "operations_planning_medium_000.observation_conflict",
+      "instance_id": "travel_planning_easy_026.observation_conflict",
       "intervention_family": "observation_conflict",
-      "linkage_id": "234516be7dee337fccca55be",
+      "linkage_id": "11570d4097319e9b7c7db9c7",
       "passed": true,
       "reason_code": "DISTINCT_CONFLICTING_VALUES_PRESENT",
       "status": "PASS"
     },
     {
-      "candidate_id": "compact20_cand_20",
+      "candidate_id": "compact20_v2_cand_20",
       "check_name": "conflicting_observations",
       "deterministic": true,
       "diagnostics": {
@@ -347,9 +347,9 @@
         "source_count": 2
       },
       "evidence_class": "ENGINEERING_ONLY",
-      "instance_id": "calendar_email_workflow_medium_001.observation_conflict",
+      "instance_id": "research_assistant_hard_011.observation_conflict",
       "intervention_family": "observation_conflict",
-      "linkage_id": "8142a2405fe6667775a1fb22",
+      "linkage_id": "fa8a1140c090d6e95c999057",
       "passed": true,
       "reason_code": "DISTINCT_CONFLICTING_VALUES_PRESENT",
       "status": "PASS"

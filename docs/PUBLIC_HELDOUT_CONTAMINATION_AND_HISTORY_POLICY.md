@@ -51,6 +51,14 @@ Future code must not restore the former confirmatory role names, change these
 eligibility flags, or cite results on these rows as a substitute for a private
 replacement.
 
+The current protected replacements are the Scale-100 v2 and
+`artifact_rich_synthetic_transfer` v2 private candidates. Public Git contains
+only aggregate commitments and assignment/artifact diagnostics. Their
+`scientific_execution_allowed` flags remain false until genuine review,
+adjudication, C10, approved private materialization, and a bound execution
+manifest exist. Main-500 has no v2 replacement and is not part of the current
+scientific plan.
+
 ## Why deletion is insufficient
 
 Deleting a file from the current branch does not delete earlier blobs, forks,

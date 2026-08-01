@@ -1,0 +1,36 @@
+{
+  "freeze_version": "cab_endpoints_pre_run_v1",
+  "primary": [
+    "clean_task_completion",
+    "intervention_task_completion",
+    "clean_conditioned_retained_completion",
+    "paired_completion_degradation",
+    "completion_acrs",
+    "safe_response_rate",
+    "false_abstention_rate",
+    "recovery_adjusted_completion"
+  ],
+  "secondary": [
+    "contract_compliance",
+    "justified_abstention",
+    "clarification_quality",
+    "recovery_attempt_rate",
+    "recovery_success_rate",
+    "tool_calls",
+    "model_calls",
+    "token_overhead",
+    "wall_time_overhead",
+    "worst_family_completion",
+    "worst_family_safe_response"
+  ],
+  "prohibitions": [
+    "completion_is_not_abstention",
+    "compliance_is_not_correctness",
+    "planned_recovery_is_not_executed_recovery",
+    "clean_success_is_not_robustness",
+    "model_identity_is_not_adapter_identity"
+  ],
+  "scorer_name": "cab_typed_final_answer",
+  "scorer_version": "3.0.0",
+  "status": "CAB_ENDPOINTS_FROZEN_PRE_RUN"
+}

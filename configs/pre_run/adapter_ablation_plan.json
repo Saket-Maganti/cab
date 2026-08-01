@@ -1,0 +1,9 @@
+{
+  "accounting": "equal model-call, tool-call, token, and wall-time budgets",
+  "comparison_label_if_adapter_differs": "system_comparison",
+  "native_lane": "native_tool_calling_secondary_ablation_v1",
+  "primary_lane": "cab_json_tool_protocol_v3",
+  "primary_results_never_replaced_by_native_results": true,
+  "schema_version": "cab_adapter_ablation_plan_v1",
+  "unsupported_native_lane_behavior": "fail_closed"
+}

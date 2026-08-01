@@ -1,0 +1,29 @@
+# Protected v2 only. This template must be copied, bound, reviewed, and approved.
+seed: 20260801
+run_name: scale100_v2_EXECUTION_TEMPLATE_NOT_APPROVED
+benchmark_path: private_data/approved/scale100_v2/approved_materialized_bundle/instances.jsonl
+output_dir: results/scale100_v2
+agents:
+  - local_hf_chat_agent
+max_steps: 12
+num_repeats: 3
+save_observations: true
+save_agent_thoughts: false
+write_markdown_trajectories: false
+fail_fast: true
+auto_score: true
+allow_paid_calls: false
+cost_mode: zero_cost
+scientific_evidence_level: preliminary_or_engineering
+scientific_evidence: false
+template_only: true
+require_dry_run_before_live: true
+provider_type: local
+approval:
+  advisor_approved: false
+  budget_approved: false
+  approved_for_dry_run: false
+  approved_for_live_run: false
+  notes: TEMPLATE_NOT_APPROVED; bind C10 receipt and system identity before copying.
+# Notebook activation guard requires this explicit marker and therefore refuses this file.
+# approved_for_live_run: false

@@ -27,29 +27,36 @@ label.
 
 ## Primary endpoints
 
-1. Absolute paired degradation:
-   \(P(S_{\mathrm{clean}}=1)-P(S_{\mathrm{intervention}}=1)\).
-2. ACRS, reported with both component rates and its denominator policy.
-3. Clean-conditioned robustness:
-   \(P(S_{\mathrm{intervention}}=1\mid S_{\mathrm{clean}}=1)\).
-4. RAAC treatment effect on intervention success under the preregistered budget
-   comparison.
+The exact frozen primary endpoints are:
+
+1. `clean_task_completion`;
+2. `intervention_task_completion`;
+3. `clean_conditioned_retained_completion`;
+4. `paired_completion_degradation`;
+5. `completion_acrs`;
+6. `safe_response_rate`;
+7. `false_abstention_rate`;
+8. `recovery_adjusted_completion`.
+
+Completion always means scorer-v3 substantive completion. A justified safe
+non-completion response is reported through the safe-response endpoint and
+never folded into completion.
 
 No primary endpoint is reportable until C10, slice lock, scorer validation,
 run-integrity audit, and evidence promotion pass.
 
 ## Secondary endpoints
 
-- transition profile: success→success, success→failure, failure→success,
-  failure→failure;
-- per-family degradation and worst-family robustness;
-- recovery success among recovery opportunities;
-- correct abstention among abstention opportunities and false abstention on
-  solvable clean tasks;
-- clean-performance change under RAAC;
-- added model calls, tool calls, tokens, latency, and measured cost;
-- rank probability and pairwise superiority probability;
-- naturalistic-transfer success and calibration.
+The exact frozen secondary endpoints are `contract_compliance`,
+`justified_abstention`, `clarification_quality`, `recovery_attempt_rate`,
+`recovery_success_rate`, `tool_calls`, `model_calls`, `token_overhead`,
+`wall_time_overhead`, `worst_family_completion`, and
+`worst_family_safe_response`.
+
+Transition profiles, rank probabilities, pairwise superiority, family
+interactions, RAAC contrasts, measured cost, and artifact-rich synthetic
+transfer calibration remain derived or exploratory analyses rather than
+substitutes for these endpoints.
 
 ## Exploratory endpoints
 
@@ -146,12 +153,15 @@ separate deployment analysis. Report clean and intervention outcomes plus every
 overhead dimension. An improvement that comes only from extra budget is not an
 equal-budget effect.
 
-## Naturalistic predictive validity
+## Artifact-rich synthetic transfer predictive validity
 
-The outcome is naturalistic task success on the locked transfer set. Candidate
-predictors are clean success, ACRS, clean-conditioned robustness, recovery
-score, abstention score, worst-family robustness, and the full robustness
-profile.
+The outcome is completion and safe-response behavior on the locked
+`artifact_rich_synthetic_transfer` set. The study uses deterministic generated
+email, table, policy, configuration, log, timeline, ticket, and small repository
+artifacts. It makes no real-world-origin claim. Candidate predictors are clean
+completion, completion ACRS, clean-conditioned retained completion, executed
+recovery, justified and false abstention, worst-family completion, and the full
+robustness profile.
 
 Report:
 
@@ -166,12 +176,13 @@ These are predictive associations, not causal deployment effects.
 
 ## Power and allocation
 
-Power calculations are prospective scenarios only and must be labelled
-`ESTIMATE_NOT_MEASURED`. They vary paired degradation, within-task correlation,
-cluster count, family allocation, repeats, and expected uncertainty width.
-Measured variance cannot be substituted until a genuinely executed pilot is
-audited. Compact-20 informs feasibility and scorer sanity; it is not
-automatically adequate for headline claims.
+Power calculations are prospective scenarios only and are labelled
+`DESIGN_ONLY`. Assumptions and seeds are frozen in
+`configs/pre_run/power_assumptions.json` before model outcomes exist. Compact-20
+has prospective SESOI power `0.395576` and is restricted to validation and
+piloting. Scale-100 has prospective SESOI power `0.999295` under the frozen
+assumptions and is the confirmatory path after genuine human approval. Measured
+variance cannot replace this preregistration without a dated deviation record.
 
 ## Exclusions
 

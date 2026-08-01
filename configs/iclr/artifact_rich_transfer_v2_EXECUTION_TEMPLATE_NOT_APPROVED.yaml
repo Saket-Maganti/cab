@@ -1,0 +1,28 @@
+# Artifact-rich synthetic transfer only; no unqualified naturalistic claim.
+seed: 20260801
+run_name: artifact_rich_transfer_v2_EXECUTION_TEMPLATE_NOT_APPROVED
+benchmark_path: private_data/approved/artifact_rich_synthetic_transfer/approved_materialized_bundle/instances.jsonl
+output_dir: results/artifact_rich_synthetic_transfer
+agents:
+  - local_hf_chat_agent
+max_steps: 12
+num_repeats: 3
+save_observations: true
+save_agent_thoughts: false
+write_markdown_trajectories: false
+fail_fast: true
+auto_score: true
+allow_paid_calls: false
+cost_mode: zero_cost
+scientific_evidence_level: preliminary_or_engineering
+scientific_evidence: false
+template_only: true
+require_dry_run_before_live: true
+provider_type: local
+approval:
+  advisor_approved: false
+  budget_approved: false
+  approved_for_dry_run: false
+  approved_for_live_run: false
+  notes: TEMPLATE_NOT_APPROVED; bind artifact, C10, and system identity receipts first.
+# approved_for_live_run: false

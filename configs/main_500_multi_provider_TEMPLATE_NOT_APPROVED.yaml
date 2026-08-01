@@ -4,3 +4,4 @@ approved_for_live_run: false
 scientific_claims_allowed: false
 paper_asset_eligibility: false
 requires_compact20_success: true
+# SUPERSEDED: Main-500 is not part of the canonical pre-run scientific path.

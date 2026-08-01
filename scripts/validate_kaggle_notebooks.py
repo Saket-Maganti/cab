@@ -357,10 +357,23 @@ def validate_notebook_static(path: str | Path) -> tuple[NotebookValidation, dict
 
     live_source = "\n".join(source for _, role, source, _ in code_cells if role == "live_plan")
     index = EXPECTED_NOTEBOOKS.index(notebook_path.name) if notebook_path.name in EXPECTED_NOTEBOOKS else -1
-    if index in {2, 3, 4, 5, 8}:
+    if index in {2, 3, 5, 8}:
         for required in ("CUDA_VISIBLE_DEVICES", "subprocess.Popen", "batch-plan", "--no-score"):
             if required not in live_source:
                 add("t4x2_live_plan", f"runner live plan is missing {required!r}")
+    if index == 4:
+        if 'LIVE_KIND = "none"' not in config_source:
+            add("main500_disabled", "obsolete Main-500 notebook must declare LIVE_KIND = none")
+        if "SUPPORTS_REAL_ARTIFACTS = False" not in config_source:
+            add(
+                "main500_disabled",
+                "obsolete Main-500 notebook must reject real-artifact execution",
+            )
+        if "NO_LIVE_INFERENCE_PATH_PRESENT" not in live_source:
+            add("main500_disabled", "obsolete Main-500 notebook is missing its fail-closed cell")
+        for forbidden in ("subprocess.Popen", "batch-plan", "--no-score"):
+            if forbidden in live_source:
+                add("main500_disabled", f"obsolete Main-500 notebook contains {forbidden!r}")
     if index == 6:
         for required in ("batch-merge", "merge_report.json", "score"):
             if required not in live_source:

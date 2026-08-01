@@ -1,0 +1,198 @@
+{
+  "$defs": {
+    "DecodingConfiguration": {
+      "additionalProperties": false,
+      "properties": {
+        "do_sample": {
+          "title": "Do Sample",
+          "type": "boolean"
+        },
+        "max_new_tokens": {
+          "minimum": 1,
+          "title": "Max New Tokens",
+          "type": "integer"
+        },
+        "seed": {
+          "title": "Seed",
+          "type": "integer"
+        },
+        "temperature": {
+          "minimum": 0,
+          "title": "Temperature",
+          "type": "number"
+        },
+        "top_p": {
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Top P",
+          "type": "number"
+        }
+      },
+      "required": [
+        "temperature",
+        "top_p",
+        "do_sample",
+        "max_new_tokens",
+        "seed"
+      ],
+      "title": "DecodingConfiguration",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Fully bound system identity; placeholders are never valid here.",
+  "properties": {
+    "adapter_lane": {
+      "enum": [
+        "cab_json_tool_protocol_v3",
+        "native_tool_calling_secondary_ablation_v1"
+      ],
+      "title": "Adapter Lane",
+      "type": "string"
+    },
+    "chat_template_hash": {
+      "title": "Chat Template Hash",
+      "type": "string"
+    },
+    "chat_template_id": {
+      "minLength": 1,
+      "title": "Chat Template Id",
+      "type": "string"
+    },
+    "context_limit": {
+      "minimum": 1,
+      "title": "Context Limit",
+      "type": "integer"
+    },
+    "decoding": {
+      "$ref": "#/$defs/DecodingConfiguration"
+    },
+    "model_id": {
+      "minLength": 1,
+      "title": "Model Id",
+      "type": "string"
+    },
+    "model_revision": {
+      "minLength": 1,
+      "title": "Model Revision",
+      "type": "string"
+    },
+    "parser_hash": {
+      "title": "Parser Hash",
+      "type": "string"
+    },
+    "parser_id": {
+      "minLength": 1,
+      "title": "Parser Id",
+      "type": "string"
+    },
+    "parser_version": {
+      "minLength": 1,
+      "title": "Parser Version",
+      "type": "string"
+    },
+    "quantization": {
+      "minLength": 1,
+      "title": "Quantization",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "cab_evaluated_system_identity_v1",
+      "default": "cab_evaluated_system_identity_v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "stop_conditions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Stop Conditions",
+      "type": "array"
+    },
+    "system_identity_hash": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "System Identity Hash"
+    },
+    "system_prompt_hash": {
+      "title": "System Prompt Hash",
+      "type": "string"
+    },
+    "system_prompt_id": {
+      "minLength": 1,
+      "title": "System Prompt Id",
+      "type": "string"
+    },
+    "tokenizer_hash": {
+      "title": "Tokenizer Hash",
+      "type": "string"
+    },
+    "tokenizer_id": {
+      "minLength": 1,
+      "title": "Tokenizer Id",
+      "type": "string"
+    },
+    "tokenizer_revision": {
+      "minLength": 1,
+      "title": "Tokenizer Revision",
+      "type": "string"
+    },
+    "tool_adapter_hash": {
+      "title": "Tool Adapter Hash",
+      "type": "string"
+    },
+    "tool_adapter_id": {
+      "minLength": 1,
+      "title": "Tool Adapter Id",
+      "type": "string"
+    },
+    "tool_adapter_version": {
+      "minLength": 1,
+      "title": "Tool Adapter Version",
+      "type": "string"
+    },
+    "tool_protocol_hash": {
+      "title": "Tool Protocol Hash",
+      "type": "string"
+    },
+    "tool_protocol_id": {
+      "minLength": 1,
+      "title": "Tool Protocol Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "model_id",
+    "model_revision",
+    "quantization",
+    "tokenizer_id",
+    "tokenizer_revision",
+    "tokenizer_hash",
+    "chat_template_id",
+    "chat_template_hash",
+    "system_prompt_id",
+    "system_prompt_hash",
+    "tool_adapter_id",
+    "tool_adapter_version",
+    "tool_adapter_hash",
+    "parser_id",
+    "parser_version",
+    "parser_hash",
+    "tool_protocol_id",
+    "tool_protocol_hash",
+    "decoding",
+    "context_limit",
+    "stop_conditions",
+    "adapter_lane"
+  ],
+  "title": "EvaluatedSystemIdentity",
+  "type": "object"
+}

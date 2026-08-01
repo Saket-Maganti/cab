@@ -14,13 +14,25 @@ import hashlib
 import json
 import subprocess
 import sys
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
+from causal_agent_bench.analysis.assignment_balance import (
+    ASSIGNMENT_DESIGN_VERSION,
+    assignment_balance_diagnostics,
+)
+from causal_agent_bench.generation.transfer_artifacts import (
+    STUDY_NAME as TRANSFER_STUDY_NAME,
+)
+from causal_agent_bench.generation.transfer_artifacts import (
+    parse_transfer_bundle,
+)
 from causal_agent_bench.safety.iclr_dataset_audit import (
     CANONICAL_ANSWER_CONTRACTS,
     diversity_audit,
@@ -68,8 +80,101 @@ PRIVATE_FILE_ROLES = (
     "candidate_tasks.jsonl",
     "human_review_items.jsonl",
     "human_review_judgments.csv",
+    "assignment_balance.json",
+    "artifact_inventory.json",
     "private_manifest.json",
 )
+
+
+def audit_public_commitments(repo_root: Path) -> dict[str, Any]:
+    """Validate CI-safe v2 commitments without requiring ignored private bodies."""
+
+    issues: list[str] = []
+    datasets: dict[str, Any] = {}
+    for spec in CANDIDATES:
+        path = repo_root / spec.public_manifest_relative
+        manifest = _read_json_object(
+            path,
+            issues,
+            f"{spec.key}:public_manifest_missing",
+        )
+        payload_issues = public_manifest_payload_issues(manifest)
+        issues.extend(f"{spec.key}:{issue}" for issue in payload_issues)
+        counts = manifest.get("aggregate_counts", {})
+        assignment = manifest.get("assignment_design", {})
+        checks = assignment.get("checks", {}) if isinstance(assignment, dict) else {}
+        threshold = float(assignment.get("association_threshold", 0.0) or 0.0)
+        family_difficulty = (
+            assignment.get("family_by_difficulty", {})
+            if isinstance(assignment, dict)
+            else {}
+        )
+        family_domain = (
+            assignment.get("family_by_domain", {})
+            if isinstance(assignment, dict)
+            else {}
+        )
+        conditions = {
+            "expected_task_count": counts.get("base_task_count") == spec.expected_count,
+            "assignment_passed": assignment.get("passed") is True,
+            "assignment_checks_passed": bool(checks) and all(checks.values()),
+            "family_difficulty_below_threshold": (
+                float(family_difficulty.get("cramers_v", 1.0)) <= threshold
+            ),
+            "family_domain_below_threshold": (
+                float(family_domain.get("cramers_v", 1.0)) <= threshold
+            ),
+            "deterministic_receipt_present": bool(
+                assignment.get("deterministic_receipt")
+            ),
+            "scientific_execution_blocked": (
+                manifest.get("scientific_execution_allowed") is False
+                and manifest.get("confirmatory_eligible") is False
+                and manifest.get("paper_eligible") is False
+            ),
+        }
+        if spec.key == "naturalistic":
+            artifacts = manifest.get("artifact_materialization", {})
+            conditions.update(
+                {
+                    "artifact_scope_named": (
+                        manifest.get("canonical_study_name")
+                        == "artifact_rich_synthetic_transfer"
+                        and artifacts.get("artifact_class")
+                        == "artifact_rich_synthetic"
+                    ),
+                    "artifact_commitments_present": (
+                        artifacts.get("bundle_count") == spec.expected_count
+                        and int(artifacts.get("artifact_file_count", 0)) > 0
+                        and bool(artifacts.get("bundle_root_commitment_sha256"))
+                    ),
+                    "real_world_origin_not_claimed": (
+                        artifacts.get("real_world_origin_claimed") is False
+                    ),
+                }
+            )
+        for name, passed in conditions.items():
+            if not passed:
+                issues.append(f"{spec.key}:public_commitment:{name}")
+        datasets[spec.key] = {
+            "task_count": int(counts.get("base_task_count", 0) or 0),
+            "assignment_design": assignment,
+            "checks": conditions,
+            "passed": all(conditions.values()) and not payload_issues,
+        }
+    return {
+        "schema_version": "cab_iclr_public_commitment_validation_v1",
+        "status": (
+            "PUBLIC_V2_COMMITMENTS_PASS_HUMAN_REVIEW_REQUIRED"
+            if not issues
+            else "PUBLIC_V2_COMMITMENTS_FAILED"
+        ),
+        "static_passed": not issues,
+        "datasets": datasets,
+        "issue_codes": sorted(set(issues)),
+        "human_validation_complete": False,
+        "scientific_execution_performed": False,
+    }
 
 
 def audit_repository(repo_root: Path) -> dict[str, Any]:
@@ -105,6 +210,10 @@ def audit_repository(repo_root: Path) -> dict[str, Any]:
         safety = naturalistic_safety_audit(rows)
         review = _review_packet_audit(private_root, rows)
         issues.extend(review.pop("issues"))
+        assignment = _assignment_audit(rows, manifest)
+        issues.extend(assignment.pop("issues"))
+        artifacts = _artifact_audit(spec, private_root, rows, manifest)
+        issues.extend(artifacts.pop("issues"))
         issues.extend(public_manifest_payload_issues(manifest, private_rows=rows))
         issues.extend(
             _candidate_contract_issues(
@@ -136,6 +245,8 @@ def audit_repository(repo_root: Path) -> dict[str, Any]:
                 "artifact_type_count": safety["artifact_type_count"],
             },
             "review": review,
+            "assignment_design": assignment,
+            "artifacts": artifacts,
             "manifest": {
                 "schema_version": manifest.get("schema_version"),
                 "candidate_materialized": manifest.get("candidate_materialized"),
@@ -297,6 +408,218 @@ def _candidate_contract_issues(
     return issues
 
 
+def _assignment_audit(
+    rows: list[dict[str, Any]],
+    public_manifest: dict[str, Any],
+) -> dict[str, Any]:
+    issues: list[str] = []
+    families = [
+        "tool_removal",
+        "tool_failure",
+        "tool_corruption",
+        "irrelevant_tools",
+        "memory_corruption",
+        "observation_conflict",
+        "ambiguous_instruction",
+        "long_horizon_dependency",
+        "premature_success_signal",
+        "distractor_evidence",
+    ]
+    assignments = [
+        [
+            str(mapping.get("family"))
+            for mapping in row.get("intervention_mapping", [])
+            if isinstance(mapping, dict)
+        ]
+        for row in rows
+    ]
+    tasks = [
+        {
+            "domain": row.get("domain"),
+            "difficulty": row.get("difficulty"),
+        }
+        for row in rows
+    ]
+    try:
+        diagnostics = assignment_balance_diagnostics(
+            tasks,
+            assignments,
+            families=families,
+        )
+    except (KeyError, TypeError, ValueError) as exc:
+        return {
+            "design_version": None,
+            "passed": False,
+            "issues": [f"assignment_diagnostics_failed:{type(exc).__name__}"],
+        }
+    if not diagnostics["passed"]:
+        issues.extend(
+            f"assignment_check_failed:{key}"
+            for key, value in diagnostics["checks"].items()
+            if not value
+        )
+    for row, assignment in zip(rows, assignments, strict=True):
+        mappings = row.get("intervention_mapping", [])
+        if len(assignment) != 5:
+            issues.append("assignment_block_size_mismatch")
+        for position, mapping in enumerate(mappings):
+            metadata = mapping.get("assignment") if isinstance(mapping, dict) else None
+            if not isinstance(metadata, dict):
+                issues.append("assignment_metadata_missing")
+                continue
+            if metadata.get("design_version") != ASSIGNMENT_DESIGN_VERSION:
+                issues.append("assignment_design_version_mismatch")
+            if metadata.get("within_block_position") != position:
+                issues.append("assignment_position_mismatch")
+            if metadata.get("repeated_intervention_explicit") is not True:
+                issues.append("assignment_repetition_not_explicit")
+    if public_manifest.get("assignment_design") != diagnostics:
+        issues.append("public_assignment_diagnostics_mismatch")
+    return {
+        "design_version": diagnostics["design_version"],
+        "association_threshold": diagnostics["association_threshold"],
+        "family_difficulty_cramers_v": diagnostics["family_by_difficulty"][
+            "cramers_v"
+        ],
+        "family_domain_cramers_v": diagnostics["family_by_domain"][
+            "cramers_v"
+        ],
+        "mutual_information_family_difficulty": diagnostics[
+            "family_by_difficulty"
+        ]["mutual_information_nats"],
+        "deterministic_receipt": diagnostics["deterministic_receipt"],
+        "checks": diagnostics["checks"],
+        "passed": diagnostics["passed"] and not issues,
+        "issues": sorted(set(issues)),
+    }
+
+
+def _artifact_audit(
+    spec: CandidateSpec,
+    private_root: Path,
+    rows: list[dict[str, Any]],
+    public_manifest: dict[str, Any],
+) -> dict[str, Any]:
+    issues: list[str] = []
+    inventory_path = private_root / "artifact_inventory.json"
+    inventory = _read_json_object(
+        inventory_path,
+        issues,
+        "artifact_inventory_missing",
+    )
+    public_inventory = public_manifest.get("artifact_materialization")
+    if spec.key != "naturalistic":
+        if inventory.get("bundle_count") != 0:
+            issues.append("scale_artifact_inventory_must_be_not_applicable")
+        return {
+            "applicable": False,
+            "bundle_count": int(inventory.get("bundle_count") or 0),
+            "passed": not issues,
+            "issues": sorted(set(issues)),
+        }
+
+    bundles = inventory.get("bundles")
+    if not isinstance(bundles, list) or len(bundles) != len(rows):
+        issues.append("artifact_bundle_inventory_count_mismatch")
+        bundles = []
+    by_task = {
+        str(bundle.get("task_id")): bundle
+        for bundle in bundles
+        if isinstance(bundle, dict)
+    }
+    format_counts: Counter[str] = Counter()
+    artifact_file_count = 0
+    for row in rows:
+        task_id = str(row.get("task_id") or "")
+        bundle = by_task.get(task_id)
+        if bundle is None:
+            issues.append("artifact_bundle_missing_for_task")
+            continue
+        bundle_root = private_root / str(bundle.get("bundle_path") or "")
+        manifest_path = bundle_root / "artifact_manifest.json"
+        manifest = _read_json_object(
+            manifest_path,
+            issues,
+            "artifact_manifest_missing",
+        )
+        if bundle.get("manifest_sha256") != (
+            _sha256_file(manifest_path) if manifest_path.is_file() else None
+        ):
+            issues.append("artifact_manifest_hash_mismatch")
+        if manifest.get("bundle_root_sha256") != bundle.get(
+            "bundle_root_sha256"
+        ):
+            issues.append("artifact_bundle_root_mismatch")
+        if manifest.get("study_name") != TRANSFER_STUDY_NAME:
+            issues.append("artifact_study_name_mismatch")
+        if manifest.get("provenance", {}).get("real_world_origin_claimed") is not False:
+            issues.append("artifact_real_world_origin_claimed")
+        try:
+            derived = parse_transfer_bundle(bundle_root)
+        except (OSError, ValueError):
+            issues.append("artifact_parser_failed")
+        else:
+            if derived != row.get("hidden_answer_key"):
+                issues.append("artifact_gold_derivation_mismatch")
+        clean_files = manifest.get("clean_files")
+        intervention_files = manifest.get("intervention_files")
+        for file_row in [
+            *(clean_files if isinstance(clean_files, list) else []),
+            *(intervention_files if isinstance(intervention_files, list) else []),
+        ]:
+            if not isinstance(file_row, dict):
+                issues.append("artifact_file_record_invalid")
+                continue
+            path = bundle_root / str(file_row.get("path") or "")
+            artifact_file_count += 1
+            format_counts[str(file_row.get("format") or "unknown")] += 1
+            if not path.is_file() or file_row.get("sha256") != (
+                _sha256_file(path) if path.is_file() else None
+            ):
+                issues.append("artifact_file_hash_mismatch")
+        mapping_families = {
+            str(mapping.get("family"))
+            for mapping in row.get("intervention_mapping", [])
+            if isinstance(mapping, dict)
+        }
+        patch_families = {
+            path.parent.name
+            for path in (bundle_root / "interventions").glob("*/patch.json")
+        }
+        if mapping_families != patch_families:
+            issues.append("artifact_intervention_patch_coverage_mismatch")
+        artifact_spec = row.get("artifact_spec")
+        if not isinstance(artifact_spec, dict) or not artifact_spec.get("files"):
+            issues.append("task_artifact_file_routes_missing")
+
+    public_aggregate = {
+        key: value
+        for key, value in inventory.items()
+        if key not in {"applicable", "bundles"}
+    }
+    if public_inventory != public_aggregate:
+        issues.append("public_artifact_inventory_mismatch")
+    if public_manifest.get("canonical_study_name") != TRANSFER_STUDY_NAME:
+        issues.append("canonical_transfer_study_name_mismatch")
+    if inventory.get("all_gold_derivations_match") is not True:
+        issues.append("artifact_inventory_gold_derivation_failed")
+    return {
+        "applicable": True,
+        "study_name": TRANSFER_STUDY_NAME,
+        "bundle_count": len(bundles),
+        "artifact_file_count": artifact_file_count,
+        "format_counts": dict(sorted(format_counts.items())),
+        "all_gold_derivations_match": not any(
+            issue in {"artifact_parser_failed", "artifact_gold_derivation_mismatch"}
+            for issue in issues
+        ),
+        "real_world_origin_claimed": False,
+        "human_review_state": "HUMAN_INPUT_REQUIRED_AFTER_MATERIALIZATION",
+        "passed": not issues,
+        "issues": sorted(set(issues)),
+    }
+
+
 def _review_packet_audit(
     private_root: Path,
     tasks: list[dict[str, Any]],
@@ -403,6 +726,8 @@ def _commitment_issues(
         "candidate_tasks.jsonl": "candidate_sha256",
         "human_review_items.jsonl": "review_items_sha256",
         "human_review_judgments.csv": "review_csv_sha256",
+        "assignment_balance.json": "assignment_balance_sha256",
+        "artifact_inventory.json": "artifact_inventory_sha256",
     }
     for role, field in private_hash_fields.items():
         path = private_root / role
@@ -714,8 +1039,17 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         help="Optional public-safe aggregate JSON report path.",
     )
+    parser.add_argument(
+        "--public-only",
+        action="store_true",
+        help="Validate committed public v2 metadata without ignored private bodies.",
+    )
     args = parser.parse_args(argv)
-    report = audit_repository(args.repo_root)
+    report = (
+        audit_public_commitments(args.repo_root)
+        if args.public_only
+        else audit_repository(args.repo_root)
+    )
     if args.write_json:
         output = args.write_json
         if not output.is_absolute():
