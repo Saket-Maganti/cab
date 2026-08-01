@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cab.example/spec/level6/recovery-attempt-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["attempt_id", "failure_event_id", "authorized_action_id", "tool_name", "validated_arguments", "start_step", "end_step", "attempt_number", "budget_remaining", "observation_hash", "returned_fact_ids", "success_predicate_results", "authorized", "succeeded"],
+  "properties": {
+    "attempt_id": {"type": "string"},
+    "failure_event_id": {"type": "string"},
+    "authorized_action_id": {"type": "string"},
+    "tool_name": {"type": "string"},
+    "validated_arguments": {"type": "object"},
+    "start_step": {"type": "integer", "minimum": 0},
+    "end_step": {"type": "integer", "minimum": 0},
+    "attempt_number": {"type": "integer", "minimum": 1},
+    "budget_remaining": {"type": "integer", "minimum": 0},
+    "observation_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "returned_fact_ids": {"type": "array", "items": {"type": "string"}},
+    "success_predicate_results": {"type": "object", "additionalProperties": {"type": "boolean"}},
+    "authorized": {"type": "boolean"},
+    "succeeded": {"type": "boolean"}
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cab.example/spec/level6/governance-decision-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_id", "decision_type", "proposal_hash", "conflict_disclosures", "eligible_voter_count", "quorum_required", "affirmative_votes", "negative_votes", "abstentions", "outcome", "signatures", "fixture_only"],
+  "properties": {
+    "decision_id": {"type": "string"},
+    "decision_type": {"enum": ["amendment", "appeal", "dispute", "emergency_correction", "revocation", "task_inclusion", "task_removal"]},
+    "proposal_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "conflict_disclosures": {"type": "array", "items": {"type": "string"}},
+    "eligible_voter_count": {"type": "integer", "minimum": 0},
+    "quorum_required": {"type": "integer", "minimum": 1},
+    "affirmative_votes": {"type": "integer", "minimum": 0},
+    "negative_votes": {"type": "integer", "minimum": 0},
+    "abstentions": {"type": "integer", "minimum": 0},
+    "outcome": {"enum": ["accepted", "rejected", "pending"]},
+    "signatures": {"type": "array", "items": {"type": "string"}},
+    "fixture_only": {"type": "boolean"}
+  }
+}

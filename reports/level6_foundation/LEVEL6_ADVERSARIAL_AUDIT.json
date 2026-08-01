@@ -1,0 +1,138 @@
+{
+  "audit_hash": "fb95749b6f4d4f6bfdb8b2870266e3d1de1eb239d3be8e85c4213efc4c851fe5",
+  "case_count": 18,
+  "cases": [
+    {
+      "attack": "valid_control",
+      "expected": "accept",
+      "observed": "accept",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "wrong_action_id",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "wrong_tool",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "wrong_arguments",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "missing_observation",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "unrelated_observation",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "recovery_before_failure",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "text_only_substring",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "attempt_budget_exceeded",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "stale_failure_id",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "replayed_attempt",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "recovery"
+    },
+    {
+      "attack": "recovery_contract_removed",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "reachability"
+    },
+    {
+      "attack": "valid_fixture_control",
+      "expected": "accept",
+      "observed": "accept",
+      "passed": true,
+      "surface": "approval"
+    },
+    {
+      "attack": "candidate_hash_substitution",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "approval"
+    },
+    {
+      "attack": "signature_replay_as_scientific",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "approval"
+    },
+    {
+      "attack": "path_only_approval",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "approval"
+    },
+    {
+      "attack": "model_count_pseudoreplication",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "power"
+    },
+    {
+      "attack": "inconsistent_fake_smoke_counts",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "surface": "resource"
+    }
+  ],
+  "failed_count": 0,
+  "passed": true,
+  "passed_count": 18,
+  "schema_version": "cab_final_pre_review_adversarial_audit_v1",
+  "silent_critical_failure_count": 0,
+  "status": "CAB_FINAL_PRE_REVIEW_ADVERSARIAL_AUDIT_PASSED"
+}

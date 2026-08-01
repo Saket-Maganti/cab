@@ -1,0 +1,20 @@
+{
+  "schema_version": "cab_level6_build_provenance_v1",
+  "predicate_type": "https://slsa.dev/provenance/v1",
+  "development_foundation_only": true,
+  "source_commit": null,
+  "source_tree_hash": null,
+  "source_archive_sha256": null,
+  "builder": {
+    "id": "cab-exact-final-tip-detached-archive-builder",
+    "hermetic_claimed": false
+  },
+  "build_environment": null,
+  "dependency_hashes": {},
+  "artifact_hashes": {},
+  "sbom_sha256": null,
+  "test_summary": null,
+  "signature": null,
+  "transparency_log_receipt": null,
+  "seal_state": "FINAL_TAG_AND_EXTERNAL_SIGNING_REQUIRED"
+}

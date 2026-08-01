@@ -1,28 +1,67 @@
 {
+  "artifact_hash": "a85d2d4c0f893abfd74ffa9b3c35bfb9bdc575997db33181b8e530cd20d52f3e",
   "base_task_id": "research_assistant_easy_010",
   "candidate_id": "compact20_v2_cand_11",
   "empirical_evidence": false,
   "facts": [
     {
-      "fact_id": "research_assistant_easy_010.fact.01",
-      "label": "Apex report evidence",
-      "source_key": "claim_supported",
-      "value": false
+      "canonical_label": "claim verification",
+      "derivation_role": "derived_input",
+      "fact_id": "research_assistant_easy_010.claim_supported",
+      "hash": "864674996710bdc1b9e4b12bd7b04da0ab5c392fc5fed2301c891da54b12ab56",
+      "normalized_value": false,
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "boolean",
+      "sensitive": false,
+      "source_artifact_id": "research_assistant_easy_010.controlled_evidence",
+      "source_field_or_locator": "source_records.claim_supported",
+      "source_path": "controlled_evidence.json",
+      "source_value": false,
+      "unit": "boolean"
     },
     {
-      "fact_id": "research_assistant_easy_010.fact.02",
-      "label": "claim verification",
-      "source_key": "reported_latency_ms",
-      "value": 118
+      "canonical_label": "Apex report evidence",
+      "derivation_role": "input",
+      "fact_id": "research_assistant_easy_010.reported_latency",
+      "hash": "34f3db484273b50423c5a711d73bc1d628e734a96f964f6f5bb813b4bc84d246",
+      "normalized_value": 118,
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "integer",
+      "sensitive": false,
+      "source_artifact_id": "research_assistant_easy_010.controlled_evidence",
+      "source_field_or_locator": "source_records.reported_latency_ms",
+      "source_path": "controlled_evidence.json",
+      "source_value": 118,
+      "unit": "ms"
+    },
+    {
+      "canonical_label": "claim latency threshold",
+      "derivation_role": "constraint",
+      "fact_id": "research_assistant_easy_010.claim_threshold",
+      "hash": "14eac85f0a332cc442ab7f403b18dafe8c027306fbdabe0ee519841f4a915a93",
+      "normalized_value": 100,
+      "required_for_clean_answer": true,
+      "required_for_intervention_answer": true,
+      "reviewer_visible": true,
+      "semantic_type": "integer",
+      "sensitive": false,
+      "source_artifact_id": "research_assistant_easy_010.controlled_evidence",
+      "source_field_or_locator": "source_records.claim_threshold_ms",
+      "source_path": "controlled_evidence.json",
+      "source_value": 100,
+      "unit": "ms"
     }
   ],
-  "gold_derivation_inputs": {
+  "reviewer_visible": true,
+  "schema_version": "cab_controlled_evidence_artifact_v2",
+  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE",
+  "source_records": {
     "claim_supported": false,
-    "public_domain": "research_assistant",
-    "reported_latency_ms": 118,
-    "template_domain": "research_assistant",
-    "variant": 10
-  },
-  "schema_version": "cab_controlled_evidence_artifact_v1",
-  "source_class": "REPOSITORY_AUTHORED_CONTROLLED_SYNTHETIC_FIXTURE"
+    "claim_threshold_ms": 100,
+    "reported_latency_ms": 118
+  }
 }

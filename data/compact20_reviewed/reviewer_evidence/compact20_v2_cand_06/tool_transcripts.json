@@ -5,56 +5,102 @@
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_06",
-        "fact_id": "travel_planning_medium_004.fact.01"
+        "fact_id": "travel_planning_medium_004.hotel_refundability"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "travel_planning_medium_004.fact.01",
-        "label": "hotel refundability",
-        "source_key": "best_option_id",
-        "value": "saver_hotel"
+        "canonical_label": "hotel refundability",
+        "fact_hash": "30772826eb912b17da234cd3a6549dac1a128c8fd0131b78cfe77b253536d928",
+        "fact_id": "travel_planning_medium_004.hotel_refundability",
+        "source_artifact_hash": "54ac046fb577272cf25defcffe2a299ecf4a354edf01bfa3080e0cb71a5936c0",
+        "source_locator": "source_records.hotel_refundable",
+        "value": true
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "0caa7097ca64ea6ebeb55406657edfa0"
+      "transcript_id": "197e4e839c1e8449ff743bbaea7deb1f"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_06",
-        "fact_id": "travel_planning_medium_004.fact.02"
+        "fact_id": "travel_planning_medium_004.hotel_base_price"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "travel_planning_medium_004.fact.02",
-        "label": "hotel price",
-        "source_key": "tax_rate",
+        "canonical_label": "hotel base price",
+        "fact_hash": "d9e96c597b888ed355fa4da065ba3541ada6c8c743cedf68eb4aeaab6070c382",
+        "fact_id": "travel_planning_medium_004.hotel_base_price",
+        "source_artifact_hash": "54ac046fb577272cf25defcffe2a299ecf4a354edf01bfa3080e0cb71a5936c0",
+        "source_locator": "source_records.hotel_base_price_usd",
+        "value": 160.0
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "1ce5774f64bddf46a7ffa3d9620ddf7a"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_06",
+        "fact_id": "travel_planning_medium_004.hotel_tax_rate"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "hotel tax rate",
+        "fact_hash": "349a1992b4c453dd66fee1ded6f6bc2879b1e2dfc135e46275ad3dc8f5e38e10",
+        "fact_id": "travel_planning_medium_004.hotel_tax_rate",
+        "source_artifact_hash": "54ac046fb577272cf25defcffe2a299ecf4a354edf01bfa3080e0cb71a5936c0",
+        "source_locator": "source_records.tax_rate",
         "value": 0.1
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "7af9a50f2b57cd66d6b4dab3eb872fbb"
+      "transcript_id": "f5220c03179d9b5d8b2fe3dcd016d60f"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_06",
-        "fact_id": "travel_planning_medium_004.fact.03"
+        "fact_id": "travel_planning_medium_004.hotel_total_price"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "travel_planning_medium_004.fact.03",
-        "label": "tax rate",
-        "source_key": "total",
+        "canonical_label": "hotel total price",
+        "fact_hash": "bf6b6897c5e5026dcd84380027b954a2dfe08a2593787b9839f577a5ecc82fd5",
+        "fact_id": "travel_planning_medium_004.hotel_total_price",
+        "source_artifact_hash": "54ac046fb577272cf25defcffe2a299ecf4a354edf01bfa3080e0cb71a5936c0",
+        "source_locator": "source_records.total",
         "value": 176.0
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "c74b53de68226e567cd9b74e9ca656bb"
+      "transcript_id": "4406ce2ef3cd790f8f11816f91daddd0"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_06",
+        "fact_id": "travel_planning_medium_004.selected_hotel"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "selected hotel option",
+        "fact_hash": "b097949e340663a40e735a727ca1e4a752434e4e72cfc74ed13ca125891212bb",
+        "fact_id": "travel_planning_medium_004.selected_hotel",
+        "source_artifact_hash": "54ac046fb577272cf25defcffe2a299ecf4a354edf01bfa3080e0cb71a5936c0",
+        "source_locator": "source_records.best_option_id",
+        "value": "saver_hotel"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "a78437e4069c94f98343e099fc1e9632"
     }
   ]
 }

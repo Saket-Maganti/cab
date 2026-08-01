@@ -979,6 +979,10 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
         "gold-reconstruction-check",
         "intervention-isolation-check",
         "intervention-audit",
+        "semantic-fact-check",
+        "evidence-gold-check",
+        "stage1-blinding-check",
+        "causal-reachability-check",
     ):
         child = benchmark_sub.add_parser(name)
         child.add_argument("--spec", default="examples/level5/public_fixture/authoring.yaml")
@@ -994,6 +998,10 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
             "gold-reconstruction-check",
             "intervention-isolation-check",
             "intervention-audit",
+            "semantic-fact-check",
+            "evidence-gold-check",
+            "stage1-blinding-check",
+            "causal-reachability-check",
         }:
             child.add_argument(
                 "--instances",
@@ -1027,6 +1035,33 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
         "--design",
         default="reports/final_pre_review/HIERARCHICAL_POWER_DESIGN.json",
     )
+    for name in ("analytic-validate", "simulate-validate"):
+        child = power_sub.add_parser(name)
+        child.add_argument("--repo-root", default=".")
+
+    recovery = subparsers.add_parser(
+        "recovery",
+        help="Validate per-attempt recovery authorization.",
+    )
+    recovery_sub = recovery.add_subparsers(dest="recovery_command", required=True)
+    recovery_sub.add_parser("authorization-check").add_argument("--repo-root", default=".")
+
+    for command, help_text in (
+        ("measurement", "Validate measurement-science foundations."),
+        ("antigaming", "Validate anti-gaming foundations."),
+        ("governance", "Validate governance foundations."),
+        ("portability", "Run cross-implementation fixture conformance."),
+        ("release", "Validate exact-final-tip release path."),
+        ("level6", "Evaluate the honest CAB Level-6 foundation gate."),
+    ):
+        parent = subparsers.add_parser(command, help=help_text)
+        children = parent.add_subparsers(dest=f"{command}_command", required=True)
+        child_name = {
+            "portability": "conformance-check",
+            "release": "final-tip-check",
+            "level6": "foundation-check",
+        }.get(command, "foundation-check")
+        children.add_parser(child_name).add_argument("--repo-root", default=".")
 
     final_pre_review = subparsers.add_parser(
         "final-pre-review",

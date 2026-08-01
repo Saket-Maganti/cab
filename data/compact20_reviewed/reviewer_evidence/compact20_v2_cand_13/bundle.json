@@ -7,22 +7,22 @@
       "sha256": "347df615ff05897a83ad338211dc87e9ebf2ed14923a372b66afa16de46fe047"
     },
     {
-      "bytes": 1008,
+      "bytes": 3474,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "1865c284c198f13325f69aead90de1a0fbdce18afac533647b9814aa8490488c"
+      "sha256": "67edcf8b658fc70b810a35f59c85b0e6254eb3bfdfa7ea6ab661d56e8861ec1a"
     },
     {
-      "bytes": 1222,
+      "bytes": 2401,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "c8add72abcc91c210c7ff91cdae892c782ac195d29bf44ed8c9d75a119aab188"
+      "sha256": "e8952c6a634d8a3f4bd8dd541e36808cd1de17c37b796f4016cd84df86b4f1e9"
     },
     {
-      "bytes": 570,
+      "bytes": 4595,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "acd60fca07784695ad37cdf0cd192650e7b9d6ad94ca706bb427513eaf868fe1"
+      "sha256": "2eaa1aa5bfd9592ba349a46849566338741eb57f28a926e49f29e82d844c59c2"
     },
     {
       "bytes": 1480,
@@ -37,20 +37,20 @@
       "sha256": "8b449280f8956ef6823975399fef4bedc4ca6b97de276fa91982c5ce7c236c7d"
     },
     {
-      "bytes": 3713,
+      "bytes": 3754,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "73df805fcdcde1983f08e7356d85ed2bf2151237910866caeedfc98d218e6a25"
+      "sha256": "b1ffefa3a326672c664520f5051671592ada0fbaf4f8faa6ac53752618632fde"
     },
     {
-      "bytes": 1996,
+      "bytes": 3551,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "6c6d980cd47f29550e0417a74fb79972d8f3f83370300e452309728d6876b870"
+      "sha256": "7d31ea07e25eb703d21e0ced93e2963ecce6a49d0662ca7c833d61e05053f22e"
     }
   ],
   "base_task_id": "calendar_email_workflow_medium_019",
-  "bundle_hash": "ff5a9b2cc1bb0338692944bdeeabe25932b9bd102e271d8e18d290fc28f181d1",
+  "bundle_hash": "85bd925649a3c9b1f2291ca1789bb363e0f9e1bdf4c7a8d7d3bb67e5406c49f6",
   "candidate_id": "compact20_v2_cand_13",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "calendar_email_workflow_medium_019.clean",
@@ -90,9 +90,10 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "calendar_email_workflow_medium_019.fact.01",
-    "calendar_email_workflow_medium_019.fact.02",
-    "calendar_email_workflow_medium_019.fact.03"
+    "calendar_email_workflow_medium_019.meeting_date",
+    "calendar_email_workflow_medium_019.first_open_slot",
+    "calendar_email_workflow_medium_019.recipient_email",
+    "calendar_email_workflow_medium_019.draft_status"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

@@ -7,28 +7,28 @@
       "sha256": "4641ecf643edd9b9da5ecbf107b7d0bc33e142b03703878c03ef74c8919bac1d"
     },
     {
-      "bytes": 940,
+      "bytes": 4072,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "0c58aceab1c759bf76c159b652414c6ec103738d09fa112fda4cebf7d47e960b"
+      "sha256": "8b231f38a64e7a09611b72a7d5aa0d273e646d3475d74d258e84f6014fe809ac"
     },
     {
-      "bytes": 1174,
+      "bytes": 2927,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "41f697f1bb057893d0b903a24dfa2dd1c09eaaa56b1f278010e0c78fe31101aa"
+      "sha256": "37bbae73529fee2a3def64b0c8b355920959110a455611c81318115e2da55fa4"
     },
     {
-      "bytes": 547,
+      "bytes": 3778,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "dff545a68c4cd0e9a2b0475570b447da0282ef395061d6f290432dc2a3e3fed3"
+      "sha256": "ab0de7557f96da9496df12cddec94411997636145392cab7360c33c872734ea0"
     },
     {
       "bytes": 1469,
       "mime_type": "application/json",
       "path": "intervention_fixture.json",
-      "sha256": "0f500a5a315221b5b7770b6a04d01975b882476ba78c431f3fb5ffe317d67e2a"
+      "sha256": "bb12c8e29d9512177482b4354988e2b1b84e4e1b1b716b68a3e155f973a79d39"
     },
     {
       "bytes": 535,
@@ -37,20 +37,20 @@
       "sha256": "e2373033a6d6f50d5ba5e6f4f7dc0b5295626001a6cbb054a5495a6480e28668"
     },
     {
-      "bytes": 3602,
+      "bytes": 3643,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "84521fc017d0eb06571e5597ae094bf4b3e5bf19af611833ea029cf1a7d59baa"
+      "sha256": "47869a574d5ff268cf63374aeddb051fd24c998e6fa50c61da403848e036477d"
     },
     {
-      "bytes": 1920,
+      "bytes": 4334,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "dbd7efbab3c9294f153d8af072d31802f577089c0c45d62904e0624241021ca1"
+      "sha256": "95342531942adf84d8fb3c995d3551da60e4a9067e9f54d6269cb5805119b9de"
     }
   ],
   "base_task_id": "travel_planning_medium_004",
-  "bundle_hash": "940057d5bcd79424231a6a1e318dbb1ed9564e0806712723e118e7d996f9ee97",
+  "bundle_hash": "23510892f9b7604e8955d1771c7bd1f2d0609e00a09ddd760488bb374fae537f",
   "candidate_id": "compact20_v2_cand_06",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "travel_planning_medium_004.clean",
@@ -116,9 +116,11 @@
       ],
       "success_predicate": {
         "causal_fact_ids_required": [
-          "travel_planning_medium_004.fact.01",
-          "travel_planning_medium_004.fact.02",
-          "travel_planning_medium_004.fact.03"
+          "travel_planning_medium_004.hotel_refundability",
+          "travel_planning_medium_004.hotel_base_price",
+          "travel_planning_medium_004.hotel_tax_rate",
+          "travel_planning_medium_004.hotel_total_price",
+          "travel_planning_medium_004.selected_hotel"
         ],
         "kind": "nonempty_error_free_observation",
         "required_output_keys": [
@@ -128,9 +130,11 @@
         ]
       },
       "supported_fact_ids": [
-        "travel_planning_medium_004.fact.01",
-        "travel_planning_medium_004.fact.02",
-        "travel_planning_medium_004.fact.03"
+        "travel_planning_medium_004.hotel_refundability",
+        "travel_planning_medium_004.hotel_base_price",
+        "travel_planning_medium_004.hotel_tax_rate",
+        "travel_planning_medium_004.hotel_total_price",
+        "travel_planning_medium_004.selected_hotel"
       ],
       "terminal": false
     }
@@ -142,9 +146,11 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "travel_planning_medium_004.fact.01",
-    "travel_planning_medium_004.fact.02",
-    "travel_planning_medium_004.fact.03"
+    "travel_planning_medium_004.hotel_refundability",
+    "travel_planning_medium_004.hotel_base_price",
+    "travel_planning_medium_004.hotel_tax_rate",
+    "travel_planning_medium_004.hotel_total_price",
+    "travel_planning_medium_004.selected_hotel"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

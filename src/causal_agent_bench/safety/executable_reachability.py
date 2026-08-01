@@ -10,6 +10,8 @@ from typing import Any, Literal
 from causal_agent_bench.answer_contracts import AnswerContract, RecoveryActionContract
 from causal_agent_bench.environment import BenchmarkEnvironment
 from causal_agent_bench.hashing import stable_hash
+from causal_agent_bench.level6.recovery import evaluate_recovery_attempts
+from causal_agent_bench.level6.semantic import compute_fact_support
 from causal_agent_bench.safety.intervention_reachability import (
     audit_intervention_collection,
 )
@@ -71,12 +73,14 @@ def run_executable_reachability_check(
             )
             for fact_id in bundle["required_fact_ids"]
         ]
+        support = compute_fact_support(
+            evidence["facts"],
+            fact_transcripts,
+            required_fact_ids=bundle["required_fact_ids"],
+        )
         unsupported = [
-            fact_id
-            for fact_id, transcript in zip(
-                bundle["required_fact_ids"], fact_transcripts, strict=True
-            )
-            if transcript["observation"].get("fact_id") != fact_id
+            *support["unsupported_fact_ids"],
+            *support["partially_supported_fact_ids"],
         ]
         intervention_spec = instance.intervention
         assert intervention_spec is not None
@@ -92,13 +96,22 @@ def run_executable_reachability_check(
         else:
             route = {
                 "kind": "substantive_answer",
+                "route_type": "substantive_completion",
+                "required_fact_ids": bundle["required_fact_ids"],
+                "artifact_ids": [evidence["base_task_id"] + ".controlled_evidence"],
+                "tool_sequence": ["cab_fixture_read_fact"] * len(fact_transcripts),
+                "preconditions": ["reviewer_visible_evidence_hash_verified"],
+                "failure_conditions": ["missing_or_semantically_invalid_fact"],
+                "success_predicates": ["all_required_facts_fully_supported", "gold_equal"],
+                "permitted_fallbacks": [],
+                "terminal_response_type": "typed_substantive_answer",
                 "tool_invocations": fact_transcripts,
                 "valid_final_response": clean.base_task.goal.expected_final_answer,
                 "passed": not unsupported,
             }
         reconstructed = reconstruct_clean_gold(
             clean.base_task.domain,
-            evidence["gold_derivation_inputs"],
+            evidence,
         )
         isolation = intervention_isolation_result(clean, instance)
         row: dict[str, Any] = {
@@ -123,9 +136,11 @@ def run_executable_reachability_check(
         row["execution_hash"] = stable_hash(row, length=64)
         rows.append(row)
     payload: dict[str, Any] = {
-        "schema_version": "cab_executable_intervention_reachability_v1",
-        "gate_kind": "executable_intervention_reachability",
-        "status": "CAB_COMPACT_EXECUTABLE_REACHABILITY_READY",
+        "schema_version": "cab_causal_route_reachability_v1",
+        "gate_kind": "CAUSAL_ROUTE_REACHABILITY",
+        "static_gate_kind": "STATIC_POLICY_REACHABILITY",
+        "execution_gate_kind": "EXECUTABLE_SEMANTIC_REACHABILITY",
+        "status": "CAB_CAUSAL_EXECUTABLE_REACHABILITY_READY",
         "instance_count": len(rows),
         "passed_count": sum(row["passed"] for row in rows),
         "failed_count": sum(not row["passed"] for row in rows),
@@ -256,13 +271,47 @@ def _execute_recovery_route(
         )
     )
     observation = recovery_step.get("observation")
+    failure_event_id = stable_hash(
+        {"instance": instance.instance_id, "tool": target, "kind": "failure"},
+        length=32,
+    )
+    attempt_id = stable_hash(
+        {"instance": instance.instance_id, "action": contract.action_id, "attempt": 1},
+        length=32,
+    )
+    if isinstance(failure_observation, dict):
+        failure_observation["failure_event_id"] = failure_event_id
+    action = recovery_step.get("action")
+    if isinstance(action, dict):
+        metadata = action.setdefault("metadata", {})
+        if isinstance(metadata, dict):
+            metadata["attempt_id"] = attempt_id
+            metadata["failure_event_id"] = failure_event_id
+    if isinstance(observation, dict):
+        observation["attempt_id"] = attempt_id
+        observation["returned_fact_ids"] = contract.supported_fact_ids
     useful = bool(
         isinstance(observation, dict)
         and not observation.get("error")
         and observation.get("output") not in (None, {}, [], "")
     )
+    authorization = evaluate_recovery_attempts(
+        [failure_step, recovery_step],
+        [contract],
+        final_answer_correct=useful,
+    )
     return {
         "kind": "recovery",
+        "route_type": "recovery",
+        "required_fact_ids": contract.supported_fact_ids,
+        "artifact_ids": [f"{instance.base_task.task_id}.controlled_evidence"],
+        "tool_sequence": [target, recovery_tool],
+        "argument_schemas": [contract.argument_schema],
+        "preconditions": contract.preconditions,
+        "failure_conditions": contract.failure_types,
+        "success_predicates": [contract.success_predicate],
+        "permitted_fallbacks": [contract.action_id],
+        "terminal_response_type": "typed_substantive_answer",
         "target_tool": target,
         "failure_step": failure_step,
         "actual_failure_observed": actual_failure,
@@ -272,12 +321,13 @@ def _execute_recovery_route(
         "recovery_step": recovery_step,
         "useful_observation": useful,
         "causal_fact_ids": contract.supported_fact_ids,
+        "authorization_v5": authorization,
         "valid_final_response": (
             instance.base_task.goal.expected_final_answer
             if useful
             else "qualified uncertainty after failed recovery"
         ),
-        "passed": bool(actual_failure and useful and contract.supported_fact_ids),
+        "passed": bool(actual_failure and useful and authorization["task_recovered"]),
     }
 
 
@@ -294,9 +344,29 @@ def _execute_uncertainty_route(
     )
     return {
         "kind": "qualified_uncertainty",
+        "route_type": "justified_abstention",
+        "required_fact_ids": (
+            opportunity.missing_or_contradictory_evidence if opportunity else []
+        ),
+        "artifact_ids": [f"{instance.base_task.task_id}.controlled_evidence"],
+        "tool_sequence": [],
+        "argument_schemas": [],
+        "preconditions": ["all_completion_and_recovery_routes_exhausted"],
+        "failure_conditions": ["required_fact_unavailable_or_contradictory"],
+        "success_predicates": ["abstention_contract_matches_unavailable_fact"],
+        "permitted_fallbacks": [],
+        "terminal_response_type": "qualified_uncertainty",
         "mutation_materialized": mutation_materialized,
         "fact_observation_count": len(fact_transcripts),
         "opportunity_id": opportunity.opportunity_id if opportunity else None,
+        "route_exhaustion_proof": {
+            "allowed_routes_enumerated": True,
+            "completion_route_eliminated_by_intervention": mutation_materialized,
+            "recovery_route_available": bool(opportunity and opportunity.recovery_possible),
+            "required_fact_still_unavailable": bool(
+                opportunity and opportunity.completion_impossible_or_unsafe
+            ),
+        },
         "valid_final_response": (
             "Cannot safely determine the unchanged clean answer because the "
             "declared evidence route is unavailable or contradictory."

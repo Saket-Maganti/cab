@@ -3,22 +3,50 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "shopping_comparison_easy_012.fact.01",
-      "output_sha256": "201aa6052a8ab2b16d0458727efaa66844666b9adaa51a562a7cd9f026167a90",
+      "artifact_sha256": "37ddf6d4b21ce3738a1b6118696c61edbd2945e5b75e5d24c77d8cda937b0add",
+      "canonical_label": "bundle B base price",
+      "fact_id": "shopping_comparison_easy_012.bundle_b_base_price",
+      "output_sha256": "3c3468cfa119a899014decef5a03c7341b4565746d5dd7e3a90b99b74e901f39",
+      "source_locator": "source_records.bundle_b_base_price_usd",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "6908b090e7f1285b6e79bf4a1d868a4b"
+      "transcript_id": "ebd7a5a56688b46c4e67e47a0a26f0f8"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "shopping_comparison_easy_012.fact.02",
-      "output_sha256": "fa73aef3b0949ced2672c1a0de40c1a29a3661cb3617c5d43165947d933c7e8f",
+      "artifact_sha256": "37ddf6d4b21ce3738a1b6118696c61edbd2945e5b75e5d24c77d8cda937b0add",
+      "canonical_label": "bundle tax rate",
+      "fact_id": "shopping_comparison_easy_012.bundle_tax_rate",
+      "output_sha256": "a054a83b580aecc4b7995a8cfaa84d9589ffb2ecb0314886443c356fdb7a46ac",
+      "source_locator": "source_records.tax_rate",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "8f96d668fb53e75cd5a4c581d9c5eaf0"
+      "transcript_id": "9e1b3e8f17232b4eb49a6a84e9686e01"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "37ddf6d4b21ce3738a1b6118696c61edbd2945e5b75e5d24c77d8cda937b0add",
+      "canonical_label": "selected bundle total price",
+      "fact_id": "shopping_comparison_easy_012.bundle_total_price",
+      "output_sha256": "c1b8e20ff0703f27f1305bb4488e0122b7c545afe6a575a874ff8d37423eb765",
+      "source_locator": "source_records.total",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "0fecf5fb8139765a8d5ed04ae2644c10"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "37ddf6d4b21ce3738a1b6118696c61edbd2945e5b75e5d24c77d8cda937b0add",
+      "canonical_label": "selected bundle option",
+      "fact_id": "shopping_comparison_easy_012.selected_bundle",
+      "output_sha256": "b473452b8730cf0630fdbe9d0c51754dee05aeb76d3d094d06859c48c0c8e262",
+      "source_locator": "source_records.best_option_id",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "de7d821b021f813da7c5524cc0a346ad"
     }
   ],
   "required_fact_ids": [
-    "shopping_comparison_easy_012.fact.01",
-    "shopping_comparison_easy_012.fact.02"
+    "shopping_comparison_easy_012.bundle_b_base_price",
+    "shopping_comparison_easy_012.bundle_tax_rate",
+    "shopping_comparison_easy_012.bundle_total_price",
+    "shopping_comparison_easy_012.selected_bundle"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

@@ -1,0 +1,25 @@
+{
+  "active_stewardship_board": false,
+  "checks": {
+    "board_not_falsely_active": true,
+    "constitution_contract": true,
+    "discrepancy_protocol": true,
+    "external_audit_packets": true,
+    "fixture_decisions_valid": true,
+    "lifecycle_transition_valid": true,
+    "protected_pool_architecture": true,
+    "submission_governance": true,
+    "task_replenishment_protocol": true
+  },
+  "completed_longitudinal_monitoring_cycles": 0,
+  "fixture_only": true,
+  "genuine_external_validation_records": 0,
+  "passed": true,
+  "schema_version": "cab_level6_governance_foundation_v1",
+  "statuses": [
+    "CAB_GOVERNANCE_CONSTITUTION_READY",
+    "CAB_ANTIGAMING_FOUNDATION_READY",
+    "CAB_LONGITUDINAL_MONITORING_FOUNDATION_READY",
+    "CAB_EXTERNAL_VALIDATION_PROTOCOL_READY"
+  ]
+}

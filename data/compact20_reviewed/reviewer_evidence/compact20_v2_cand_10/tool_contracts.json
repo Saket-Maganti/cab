@@ -156,9 +156,10 @@
     "output_schema": {
       "required": [
         "fact_id",
-        "label",
+        "canonical_label",
         "value",
-        "source_key"
+        "fact_hash",
+        "source_artifact_hash"
       ],
       "type": "object"
     },

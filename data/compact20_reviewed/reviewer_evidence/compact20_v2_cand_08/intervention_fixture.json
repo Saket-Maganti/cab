@@ -34,7 +34,7 @@
     "tax rate"
   ],
   "schema_version": "cab_review_fixture_snapshot_v1",
-  "snapshot_hash": "fee1db027385cc2ab0d1c0283fbc7e5a7b13175266ac2b3075fa9153002e6062",
+  "snapshot_hash": "fbc8f6c3214c1a1878f325301ca979cbf899afc099b7dd7f4ba62880128b419f",
   "success_criteria": [
     "Chooses the cheaper bundle.",
     "Reports total cost after tax."

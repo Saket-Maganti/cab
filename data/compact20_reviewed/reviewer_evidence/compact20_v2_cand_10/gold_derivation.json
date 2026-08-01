@@ -1,19 +1,122 @@
 {
   "candidate_id": "compact20_v2_cand_10",
-  "derivation_name": "reconstruct_file_spreadsheet_qa_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "b0ff56c61d3723292535f76e27490481db46f721eb9e6e5a2429cd176671d834",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:launch_name"
+      },
+      {
+        "hash": "1ecdb7a69eb1779bb16dec50ac6de2a3494f80528ce8e87abf20bea9bd086325",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:q2_revenue"
+      },
+      {
+        "hash": "bcc2d18f1e79ad10a2f2170d84a4c9ad8afe01cbbb0f867360815b039073f43e",
+        "kind": "normalization_and_derivation",
+        "source": "fact:launch_name",
+        "target": "derivation"
+      },
+      {
+        "hash": "046beaad2cad573421a7e29b6dfcf906a67fa34b60f9164344ee4000b43cc7c8",
+        "kind": "normalization_and_derivation",
+        "source": "fact:q2_revenue",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "eed743a08f6194e7a042d3a48a8ceefb98d3b1e46e51be4bb5e923673f340aaa",
+    "nodes": [
+      {
+        "hash": "ecb95047f4a96fd093114b8a2bea7e8630b07e11f79f8edd0b36c62af24b97ff",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "f092ebaf4f6590a2edcec3a780344fd5416d240d88fd26023c9c2c6a3dd80f8d",
+        "kind": "semantic_fact",
+        "node_id": "fact:launch_name"
+      },
+      {
+        "hash": "10b0d0378da2f5490d6b6bb51845477a1c24462c6dadff9d14c2855b7632afd9",
+        "kind": "semantic_fact",
+        "node_id": "fact:q2_revenue"
+      },
+      {
+        "hash": "4e9f72960a5a53df99e59bad0a603515e03f72f5812607d20a54cbe638d1ba9e",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "ceebdf6adafdf96dc125dab4c659d1de725e849c80c30ef63a28d9c8ae5706eb",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.file_spreadsheet_qa.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.file_spreadsheet_qa.evidence_only.v1",
+    "domain": "file_spreadsheet_qa",
+    "expression": {
+      "args": [],
+      "fact": null,
+      "fields": {
+        "launch": {
+          "args": [],
+          "fact": "launch_name",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        "q2_revenue": {
+          "args": [],
+          "fact": "q2_revenue",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      },
+      "key": null,
+      "op": "object",
+      "operator": null,
+      "reverse": false,
+      "template": null,
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "launch_name",
+      "q2_revenue"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "05e541e866c9c01b2558247ef9752561a0721042dac901191d05cd3c97e6a8fe",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "launch",
-    "public_domain",
-    "q2_revenue",
-    "template_domain",
-    "variant"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": {
     "launch": "Beta",
-    "q2_revenue": 4200
+    "q2_revenue": 4200.0
   },
+  "required_fact_suffixes": [
+    "launch_name",
+    "q2_revenue"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

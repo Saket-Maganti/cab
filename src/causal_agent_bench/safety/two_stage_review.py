@@ -61,10 +61,14 @@ def build_two_stage_review_packet(
     repo_root: str | Path,
     *,
     evidence_index: str | Path = ("data/compact20_reviewed/reviewer_evidence/bundle_index.json"),
-    output_dir: str | Path = ("data/human_validation/compact20_two_stage_review"),
+    output_dir: str | Path = ("private_data/review_packages/legacy_combined_fixture"),
     reviewers_per_candidate: int = 2,
 ) -> dict[str, Any]:
-    """Build a blank packet; never create or overwrite human judgments."""
+    """Build the legacy combined fixture under a Git-ignored private root.
+
+    New workflows must use ``level6.blinding`` for physically separated role
+    archives.  The public Level-5 packet is historical and must not be refreshed.
+    """
 
     if reviewers_per_candidate < 2:
         raise ValueError("two-stage C10 review requires two independent reviewers")

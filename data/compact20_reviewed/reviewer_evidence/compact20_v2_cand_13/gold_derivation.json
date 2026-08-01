@@ -1,20 +1,155 @@
 {
   "candidate_id": "compact20_v2_cand_13",
-  "derivation_name": "reconstruct_calendar_email_workflow_gold_v1",
+  "derivation_graph": {
+    "edges": [
+      {
+        "hash": "ca087e172f83065fe3906b6cc14de7327208d8912d7dcac7b864d0a3b72b7212",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:draft_status"
+      },
+      {
+        "hash": "548406be71fc9ce8f1d986f52f8addcac4da93a64ded8ef228f511560edcf5e3",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:first_open_slot"
+      },
+      {
+        "hash": "21eb17e6d2ce3619fecfc28dccc23e3a529527d5bbf2171680834ff3369808e8",
+        "kind": "extraction",
+        "source": "artifact",
+        "target": "fact:meeting_date"
+      },
+      {
+        "hash": "63dec8b7959a7f377e5dcc6c204da52e721bae6460b682bf11f20a998ed9e211",
+        "kind": "normalization_and_derivation",
+        "source": "fact:draft_status",
+        "target": "derivation"
+      },
+      {
+        "hash": "19a85e58c958a801a34caf03c132094885c9433bddc3eb2b69c9800b76c6dfd8",
+        "kind": "normalization_and_derivation",
+        "source": "fact:first_open_slot",
+        "target": "derivation"
+      },
+      {
+        "hash": "cda6ff1e35983142122540b345fa4cbdaa608cde405a7f2a0c0493a78ac6de3d",
+        "kind": "normalization_and_derivation",
+        "source": "fact:meeting_date",
+        "target": "derivation"
+      },
+      {
+        "hash": "63750b71245f333c2a8e5f9e0b38b9aa2f82cc407b7c6d5b267097fc9565c974",
+        "kind": "finalization",
+        "source": "derivation",
+        "target": "answer"
+      }
+    ],
+    "graph_hash": "0d28bde56ab94244712baf9bd5599af60abff6580cec6a6d411494e6a8f560c5",
+    "nodes": [
+      {
+        "hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+        "kind": "artifact",
+        "node_id": "artifact"
+      },
+      {
+        "hash": "4bd46ec6ec7099f0e89e4548ccb14d0ed7d1d9cb6386df4e2fd0ebffa96e864c",
+        "kind": "semantic_fact",
+        "node_id": "fact:draft_status"
+      },
+      {
+        "hash": "ab964b31bae713732653b05a613ad9224674a9a5f97a39252a60e545a29ed367",
+        "kind": "semantic_fact",
+        "node_id": "fact:first_open_slot"
+      },
+      {
+        "hash": "7b331de9c4d620c0643822fea942aeb140c5b39396b07ffe940507d839bc3beb",
+        "kind": "semantic_fact",
+        "node_id": "fact:meeting_date"
+      },
+      {
+        "hash": "fbe1dfd0bae2feceda2d8d7a227f122388ee6e2cc14e1fd65782b24d1153410a",
+        "kind": "deterministic_derivation",
+        "node_id": "derivation"
+      },
+      {
+        "hash": "fcc33040cbe7a1093db1347aa6c31e3a28759d0db0a78fe96c58e22e8182c9ea",
+        "kind": "final_answer",
+        "node_id": "answer"
+      }
+    ]
+  },
+  "derivation_name": "compact.calendar_email_workflow.evidence_only.v1",
+  "derivation_spec": {
+    "derivation_id": "compact.calendar_email_workflow.evidence_only.v1",
+    "domain": "calendar_email_workflow",
+    "expression": {
+      "args": [],
+      "fact": null,
+      "fields": {
+        "date": {
+          "args": [],
+          "fact": "meeting_date",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        "slot": {
+          "args": [],
+          "fact": "first_open_slot",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        },
+        "status": {
+          "args": [],
+          "fact": "draft_status",
+          "fields": {},
+          "key": null,
+          "op": "direct",
+          "operator": null,
+          "reverse": false,
+          "template": null,
+          "value": null
+        }
+      },
+      "key": null,
+      "op": "object",
+      "operator": null,
+      "reverse": false,
+      "template": null,
+      "value": null
+    },
+    "required_fact_suffixes": [
+      "meeting_date",
+      "first_open_slot",
+      "recipient_email",
+      "draft_status"
+    ],
+    "schema_version": "cab_gold_derivation_dsl_v1"
+  },
   "frozen_gold_policy_hash": "6faba586470d1313164d5b1bed2e0a0f9d784ead9d7ce5dd208445d3600b5242",
+  "hidden_ground_truth_available": false,
   "input_artifact": "controlled_evidence.json",
-  "input_keys": [
-    "first_open_slot",
-    "public_domain",
-    "recipient",
-    "template_domain",
-    "variant"
-  ],
   "matches_frozen_gold": true,
   "reconstructed_gold": {
     "date": "2026-06-03",
     "slot": "15:00",
     "status": "draft_created"
   },
+  "required_fact_suffixes": [
+    "meeting_date",
+    "first_open_slot",
+    "recipient_email",
+    "draft_status"
+  ],
   "schema_version": "cab_clean_gold_derivation_v1"
 }

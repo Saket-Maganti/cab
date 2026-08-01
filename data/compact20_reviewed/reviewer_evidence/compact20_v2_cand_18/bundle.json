@@ -7,22 +7,22 @@
       "sha256": "05987e689851b9d13e9ff99f6982d58876b8a6e8e14c28953405472384a55965"
     },
     {
-      "bytes": 811,
+      "bytes": 3390,
       "mime_type": "application/json",
       "path": "controlled_evidence.json",
-      "sha256": "6c8d194cd6600b611e235f15335454542c69fb2eba51f26da1c2055d2e7b1025"
+      "sha256": "d95d5ecd841f7cc5bc4805d78fdcfcf71ac7bc3261304f9eaa0b55abd8a38fab"
     },
     {
-      "bytes": 846,
+      "bytes": 2421,
       "mime_type": "application/json",
       "path": "fact_map.json",
-      "sha256": "6e466a7960f50dc1699bee9c1aa9ed92f62b30456b6961887d469b4d1a935b3a"
+      "sha256": "c444a151bf71b90a380ded98539982639dca7220cfd3396ba65a035e990ff15b"
     },
     {
-      "bytes": 548,
+      "bytes": 3751,
       "mime_type": "application/json",
       "path": "gold_derivation.json",
-      "sha256": "880b7a81feb35f6d2bad87a5e1255a88db855b51fd6a67bed9c23315514a3e21"
+      "sha256": "a63e15b7a6f1dcd00036ea1c9d61d97bcf74fcb6c609784b6860d5772cc76607"
     },
     {
       "bytes": 1415,
@@ -37,20 +37,20 @@
       "sha256": "99eef572b46a0bf5d3be404b34aa93704564339140518c683b72e13eb9c19301"
     },
     {
-      "bytes": 3667,
+      "bytes": 3708,
       "mime_type": "application/json",
       "path": "tool_contracts.json",
-      "sha256": "15c374871685713293e32c7629f31dd7537f7f4885dad2a93606eaddf730ee99"
+      "sha256": "cf6e9761f56dc363d39983c212f4f9ce8ed76079e7b7ff203998146b20b91143"
     },
     {
-      "bytes": 1337,
+      "bytes": 3543,
       "mime_type": "application/json",
       "path": "tool_transcripts.json",
-      "sha256": "84e4895bd1bee9f56c542fef56d0224ede6295a564d99eaaf2d7669600f869eb"
+      "sha256": "a1151958979aef91376855600a087807aee627eace322a5336afaf2a9249654e"
     }
   ],
   "base_task_id": "shopping_comparison_medium_001",
-  "bundle_hash": "8a93bc9d752b0aaad301b39c96353fdab09983848f574d52f9f59533f3ec64f6",
+  "bundle_hash": "f782003026d9bce2e258f5b4d1e93c5e8ebe9c126a61e200bb04b108e0dc61ac",
   "candidate_id": "compact20_v2_cand_18",
   "clean_gold_derivation_file": "gold_derivation.json",
   "clean_instance_id": "shopping_comparison_medium_001.clean",
@@ -86,8 +86,10 @@
     "secrets_absent": true
   },
   "required_fact_ids": [
-    "shopping_comparison_medium_001.fact.01",
-    "shopping_comparison_medium_001.fact.02"
+    "shopping_comparison_medium_001.bundle_b_base_price",
+    "shopping_comparison_medium_001.bundle_tax_rate",
+    "shopping_comparison_medium_001.bundle_total_price",
+    "shopping_comparison_medium_001.selected_bundle"
   ],
   "schema_version": "cab_reviewer_evidence_bundle_v1",
   "scientific_execution_performed": false,

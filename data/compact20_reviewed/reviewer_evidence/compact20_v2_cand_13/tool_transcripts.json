@@ -5,56 +5,82 @@
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_13",
-        "fact_id": "calendar_email_workflow_medium_019.fact.01"
+        "fact_id": "calendar_email_workflow_medium_019.meeting_date"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "calendar_email_workflow_medium_019.fact.01",
-        "label": "calendar events",
-        "source_key": "first_open_slot",
-        "value": "15:00"
+        "canonical_label": "calendar date",
+        "fact_hash": "7b331de9c4d620c0643822fea942aeb140c5b39396b07ffe940507d839bc3beb",
+        "fact_id": "calendar_email_workflow_medium_019.meeting_date",
+        "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+        "source_locator": "source_records.meeting_date",
+        "value": "2026-06-03"
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "9188b660203a01a11dceae9a0bbc2255"
+      "transcript_id": "8e603c1e7f7bdd1575b6fd259f44926b"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_13",
-        "fact_id": "calendar_email_workflow_medium_019.fact.02"
+        "fact_id": "calendar_email_workflow_medium_019.first_open_slot"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "calendar_email_workflow_medium_019.fact.02",
-        "label": "open afternoon slot",
-        "source_key": "recipient",
+        "canonical_label": "open afternoon slot",
+        "fact_hash": "ab964b31bae713732653b05a613ad9224674a9a5f97a39252a60e545a29ed367",
+        "fact_id": "calendar_email_workflow_medium_019.first_open_slot",
+        "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+        "source_locator": "source_records.first_open_slot",
+        "value": "15:00"
+      },
+      "schema_version": "cab_fixture_tool_transcript_v1",
+      "tool_name": "cab_fixture_read_fact",
+      "transcript_id": "780437e3bf891b09dec75f330f7135ea"
+    },
+    {
+      "arguments": {
+        "candidate_id": "compact20_v2_cand_13",
+        "fact_id": "calendar_email_workflow_medium_019.recipient_email"
+      },
+      "deterministic": true,
+      "error": null,
+      "harness_version": "cab_compact_fixture_harness_v1",
+      "observation": {
+        "canonical_label": "recipient",
+        "fact_hash": "7e6fe9a70ac12bce930ce79a0ac01e0271452b594b2484f9962e70a9bfd67454",
+        "fact_id": "calendar_email_workflow_medium_019.recipient_email",
+        "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+        "source_locator": "source_records.recipient",
         "value": "mina@example.com"
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "2779105a37c78a4badc720b663bf1d52"
+      "transcript_id": "e3dfd25cfdcd67982cfc3619881a6ebf"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_13",
-        "fact_id": "calendar_email_workflow_medium_019.fact.03"
+        "fact_id": "calendar_email_workflow_medium_019.draft_status"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "calendar_email_workflow_medium_019.fact.03",
-        "label": "recipient",
-        "source_key": "first_open_slot",
-        "value": "15:00"
+        "canonical_label": "email draft status",
+        "fact_hash": "4bd46ec6ec7099f0e89e4548ccb14d0ed7d1d9cb6386df4e2fd0ebffa96e864c",
+        "fact_id": "calendar_email_workflow_medium_019.draft_status",
+        "source_artifact_hash": "9b5d2e56f7da0c1a1addec0526a97b99ee7d238fef912fad57047e67be39a856",
+        "source_locator": "source_records.draft_status",
+        "value": "draft_created"
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "7984b4dc6df7b219b5d396f59ba2ce55"
+      "transcript_id": "b7280de326b472cdcf161b12c7b29a69"
     }
   ]
 }

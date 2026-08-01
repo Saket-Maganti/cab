@@ -3,22 +3,39 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "research_assistant_easy_010.fact.01",
-      "output_sha256": "8a8283097ac86a28ee3299a879e10c3d1ba6b3653fd6b4a4ac576171ec5bf00f",
+      "artifact_sha256": "a4dec67988a51022c2060b7a52adbbd417cba63105a203899f1b69350ce8a34c",
+      "canonical_label": "claim verification",
+      "fact_id": "research_assistant_easy_010.claim_supported",
+      "output_sha256": "3f202c3a02d2c5084665b334fa5121874caef0584e28903c75ad9a342cf426e0",
+      "source_locator": "source_records.claim_supported",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "876084c56f3e6e3c231897123546bdc8"
+      "transcript_id": "68a2f1274105cdd8a3e9607c3ec908e1"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "research_assistant_easy_010.fact.02",
-      "output_sha256": "11bf8d5684eedc994713093fc8e11a66e6d99ec4755c048bd88ee6faaac834ca",
+      "artifact_sha256": "a4dec67988a51022c2060b7a52adbbd417cba63105a203899f1b69350ce8a34c",
+      "canonical_label": "Apex report evidence",
+      "fact_id": "research_assistant_easy_010.reported_latency",
+      "output_sha256": "92733b0e78a46b8b5dff6741e6460c1498e99afa082f1369c130f990a3ba14ba",
+      "source_locator": "source_records.reported_latency_ms",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "e5f75c06f6e206ecd8baf37b60ae5b74"
+      "transcript_id": "8d88af115fc4cdcd49343a7fca51845c"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "a4dec67988a51022c2060b7a52adbbd417cba63105a203899f1b69350ce8a34c",
+      "canonical_label": "claim latency threshold",
+      "fact_id": "research_assistant_easy_010.claim_threshold",
+      "output_sha256": "58df41791d31adf5c5b0fc6bb829a175a1c4c108124c215f8677dab7d140eee4",
+      "source_locator": "source_records.claim_threshold_ms",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "166e1355a4596798e8c172a62b617b5c"
     }
   ],
   "required_fact_ids": [
-    "research_assistant_easy_010.fact.01",
-    "research_assistant_easy_010.fact.02"
+    "research_assistant_easy_010.claim_supported",
+    "research_assistant_easy_010.reported_latency",
+    "research_assistant_easy_010.claim_threshold"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

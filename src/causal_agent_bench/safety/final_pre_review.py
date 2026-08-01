@@ -24,9 +24,14 @@ from causal_agent_bench.safety.executable_reachability import (
 )
 from causal_agent_bench.safety.two_stage_review import validate_stage2_unlock
 
-FINAL_STATE = "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE"
+FINAL_STATE = "CAB_FINAL_PRE_REVIEW_SEMANTIC_AUDIT_PASSED"
+LEGACY_ENGINEERING_STATE = "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE"
 PACKET_STATE = "COMPACT20_REVIEW_PACKET_EVIDENCE_VERIFIABLE"
-EXTERNAL_BLOCKERS = ("HUMAN_VALIDATION_REQUIRED", "LIVE_EVIDENCE_REQUIRED")
+EXTERNAL_BLOCKERS = (
+    "HUMAN_VALIDATION_REQUIRED",
+    "LIVE_EVIDENCE_REQUIRED",
+    "EXTERNAL_LEVEL6_VALIDATION_REQUIRED",
+)
 
 REQUIRED_REPORTS = (
     "CAB_FINAL_PRE_REVIEW_HARDENING_REPORT.md",
@@ -95,7 +100,7 @@ def final_pre_review_check(repo_root: str | Path) -> dict[str, Any]:
             and packet.get("genuine_human_review_rows") == 0
             and unlock.get("passed") is False
         ),
-        "recovery_authorization_v4": recovery["passed"],
+        "recovery_authorization_v5": recovery["passed"],
         "static_reachability": static.get("passed") is True and static.get("instance_count") == 20,
         "executable_reachability": executable.get("passed") is True,
         "gold_reconstruction": gold.get("passed") is True,
@@ -115,10 +120,13 @@ def final_pre_review_check(repo_root: str | Path) -> dict[str, Any]:
         "workflow_present": workflow.is_file(),
         "terminal_state_exact": (
             state.get("state") == FINAL_STATE
+            and state.get("legacy_engineering_state") == LEGACY_ENGINEERING_STATE
             and state.get("review_packet_state") == PACKET_STATE
             and state.get("human_validation_state") == EXTERNAL_BLOCKERS[0]
             and state.get("live_evidence_state") == EXTERNAL_BLOCKERS[1]
+            and state.get("external_validation_state") == EXTERNAL_BLOCKERS[2]
             and state.get("CAB_LEVEL5_COMPLETE") is False
+            and state.get("CAB_LEVEL6_COMPLETE") is False
         ),
     }
     passed = all(checks.values())
@@ -129,7 +137,10 @@ def final_pre_review_check(repo_root: str | Path) -> dict[str, Any]:
         "review_packet_state": PACKET_STATE if passed else "CHECK_FAILED",
         "human_validation_state": EXTERNAL_BLOCKERS[0],
         "live_evidence_state": EXTERNAL_BLOCKERS[1],
+        "external_validation_state": EXTERNAL_BLOCKERS[2],
+        "legacy_engineering_state": LEGACY_ENGINEERING_STATE,
         "CAB_LEVEL5_COMPLETE": False,
+        "CAB_LEVEL6_COMPLETE": False,
         "checks": checks,
         "failed_checks": sorted(name for name, value in checks.items() if not value),
         "genuine_evidence": counters,
@@ -184,10 +195,10 @@ def _recovery_contract_check(root: Path) -> dict[str, Any]:
             if not required.issubset(contract):
                 failures.append(f"{row['instance_id']}:missing_fields")
     return {
-        "schema_version": "cab_recovery_authorization_v4_gate_v1",
-        "status": "CAB_RECOVERY_AUTHORIZATION_V4_READY"
+        "schema_version": "cab_recovery_authorization_v5_contract_gate_v1",
+        "status": "CAB_RECOVERY_AUTHORIZATION_V5_READY"
         if not failures and len(recoveries) == 5
-        else "CAB_RECOVERY_AUTHORIZATION_V4_FAILED",
+        else "CAB_RECOVERY_AUTHORIZATION_V5_FAILED",
         "recovery_instance_count": len(recoveries),
         "failures": failures,
         "passed": not failures and len(recoveries) == 5,
@@ -232,6 +243,7 @@ def _sha256_file(path: Path) -> str:
 __all__ = [
     "EXTERNAL_BLOCKERS",
     "FINAL_STATE",
+    "LEGACY_ENGINEERING_STATE",
     "PACKET_STATE",
     "REQUIRED_REPORTS",
     "final_pre_review_check",

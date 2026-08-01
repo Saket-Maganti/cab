@@ -3,30 +3,50 @@
   "mappings": [
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "calendar_email_workflow_medium_019.fact.01",
-      "output_sha256": "575902d0fd444473fb9735291d651e9cf0a759215b700216063a8979a92e0aac",
+      "artifact_sha256": "5b511ff26a1cd5852d98f5ca9bc1228b12058858a173a697e7dc5fa3b418b837",
+      "canonical_label": "calendar date",
+      "fact_id": "calendar_email_workflow_medium_019.meeting_date",
+      "output_sha256": "df6e2bb93c175c75a16e6e405bf5bf0aa498b4e51de4c48f08ff3081ecca6b9c",
+      "source_locator": "source_records.meeting_date",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "9188b660203a01a11dceae9a0bbc2255"
+      "transcript_id": "8e603c1e7f7bdd1575b6fd259f44926b"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "calendar_email_workflow_medium_019.fact.02",
-      "output_sha256": "9843f8546df7265ecc9c98237b35831ef4c1d41484aca6399b15020df9994f5e",
+      "artifact_sha256": "5b511ff26a1cd5852d98f5ca9bc1228b12058858a173a697e7dc5fa3b418b837",
+      "canonical_label": "open afternoon slot",
+      "fact_id": "calendar_email_workflow_medium_019.first_open_slot",
+      "output_sha256": "06cca10bc1269bd58da665b7316ae6cb6372bdde2f0f056dce96dfefb15e2832",
+      "source_locator": "source_records.first_open_slot",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "2779105a37c78a4badc720b663bf1d52"
+      "transcript_id": "780437e3bf891b09dec75f330f7135ea"
     },
     {
       "artifact": "controlled_evidence.json",
-      "fact_id": "calendar_email_workflow_medium_019.fact.03",
-      "output_sha256": "19a7b01849ca94b223ee1b19ec58b1dbd280ca064137d31286e51426bdcb2d4d",
+      "artifact_sha256": "5b511ff26a1cd5852d98f5ca9bc1228b12058858a173a697e7dc5fa3b418b837",
+      "canonical_label": "recipient",
+      "fact_id": "calendar_email_workflow_medium_019.recipient_email",
+      "output_sha256": "aebcef4bc27167e4ab6862685bd5c86c938e11bc453d5b4fa0c2740f1c636aaf",
+      "source_locator": "source_records.recipient",
       "tool": "cab_fixture_read_fact",
-      "transcript_id": "7984b4dc6df7b219b5d396f59ba2ce55"
+      "transcript_id": "e3dfd25cfdcd67982cfc3619881a6ebf"
+    },
+    {
+      "artifact": "controlled_evidence.json",
+      "artifact_sha256": "5b511ff26a1cd5852d98f5ca9bc1228b12058858a173a697e7dc5fa3b418b837",
+      "canonical_label": "email draft status",
+      "fact_id": "calendar_email_workflow_medium_019.draft_status",
+      "output_sha256": "88f3ce04c9b716f4b96037f606d9a407d0e8d7b1b626cf61db3f23e509c962d2",
+      "source_locator": "source_records.draft_status",
+      "tool": "cab_fixture_read_fact",
+      "transcript_id": "b7280de326b472cdcf161b12c7b29a69"
     }
   ],
   "required_fact_ids": [
-    "calendar_email_workflow_medium_019.fact.01",
-    "calendar_email_workflow_medium_019.fact.02",
-    "calendar_email_workflow_medium_019.fact.03"
+    "calendar_email_workflow_medium_019.meeting_date",
+    "calendar_email_workflow_medium_019.first_open_slot",
+    "calendar_email_workflow_medium_019.recipient_email",
+    "calendar_email_workflow_medium_019.draft_status"
   ],
   "schema_version": "cab_fact_evidence_map_v1"
 }

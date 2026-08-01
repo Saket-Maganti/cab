@@ -1557,6 +1557,37 @@ def _recovery_state(
     authorizations: list[Any],
     answer: str,
 ) -> dict[str, bool]:
+    if authorizations:
+        from causal_agent_bench.level6.recovery import evaluate_recovery_attempts
+
+        evaluated = evaluate_recovery_attempts(
+            list(trajectory.steps),
+            authorizations,
+        )
+        plan_stated = bool(
+            evaluated["attempted"]
+            or re.search(
+                r"(?i)\b(?:retry|retried|recover|recovered|fallback|"
+                r"recovery_action_succeeded|alternate\s+(?:route|tool)|"
+                r"try\s+(?:again|another))\b",
+                answer,
+            )
+        )
+        attempts = evaluated["attempts"]
+        return {
+            "plan_stated": plan_stated,
+            "attempted": bool(evaluated["attempted"]),
+            "succeeded": bool(evaluated["succeeded"]),
+            "authorized": bool(evaluated["authorized"]),
+            "useful_observation": any(
+                row["success_predicate_results"]["success_predicate_satisfied"]
+                for row in attempts
+            ),
+            "causally_bound": any(
+                row["success_predicate_results"]["returned_facts_exact"]
+                for row in attempts
+            ),
+        }
     plan_stated = bool(
         re.search(
             r"(?i)\b(?:retry|retried|recover|recovered|fallback|"

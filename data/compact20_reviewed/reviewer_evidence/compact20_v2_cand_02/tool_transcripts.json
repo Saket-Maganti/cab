@@ -5,38 +5,42 @@
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_02",
-        "fact_id": "file_spreadsheet_qa_hard_025.fact.01"
+        "fact_id": "file_spreadsheet_qa_hard_025.launch_name"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "file_spreadsheet_qa_hard_025.fact.01",
-        "label": "launch note content",
-        "source_key": "launch",
+        "canonical_label": "launch note content",
+        "fact_hash": "dcde894b96863279115581532e4426bcf61c6d9c3b1066604461e1ac64f6af7f",
+        "fact_id": "file_spreadsheet_qa_hard_025.launch_name",
+        "source_artifact_hash": "dd09737b6e309f339c89789f4dc393ced535faf8da177e77c1f4002aebf06463",
+        "source_locator": "source_records.launch",
         "value": "Beta"
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "72a5a584197e5170a5b55fba87cc0c31"
+      "transcript_id": "78521deee861f9c95ecd0f8cf779cc2f"
     },
     {
       "arguments": {
         "candidate_id": "compact20_v2_cand_02",
-        "fact_id": "file_spreadsheet_qa_hard_025.fact.02"
+        "fact_id": "file_spreadsheet_qa_hard_025.q2_revenue"
       },
       "deterministic": true,
       "error": null,
       "harness_version": "cab_compact_fixture_harness_v1",
       "observation": {
-        "fact_id": "file_spreadsheet_qa_hard_025.fact.02",
-        "label": "Q2 spreadsheet row",
-        "source_key": "q2_revenue",
-        "value": 4200
+        "canonical_label": "Q2 spreadsheet row",
+        "fact_hash": "6aefc0603aaab3d720f5e1502ad5e8cb38d880baf9397771cb1d29204d4d4a1b",
+        "fact_id": "file_spreadsheet_qa_hard_025.q2_revenue",
+        "source_artifact_hash": "dd09737b6e309f339c89789f4dc393ced535faf8da177e77c1f4002aebf06463",
+        "source_locator": "source_records.q2_revenue",
+        "value": 4200.0
       },
       "schema_version": "cab_fixture_tool_transcript_v1",
       "tool_name": "cab_fixture_read_fact",
-      "transcript_id": "eaad173fa85915302ea9e9862051a022"
+      "transcript_id": "77988134b1488018f65da9748f2da2d0"
     }
   ]
 }

@@ -38,7 +38,7 @@
     "recipient"
   ],
   "schema_version": "cab_review_fixture_snapshot_v1",
-  "snapshot_hash": "528e26728af62b99cb3b2663768dac6c4466f54237a0c5968e3a9fb47b355efd",
+  "snapshot_hash": "7bb7daf67495ca9ff0210b505846412190b5e33921cd122fcefbef2d51464718",
   "success_criteria": [
     "Identifies the first open afternoon slot.",
     "Creates only a draft email."

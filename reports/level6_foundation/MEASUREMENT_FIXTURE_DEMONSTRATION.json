@@ -1,0 +1,193 @@
+{
+  "fixture_only": true,
+  "foundation": {
+    "checks": {
+      "construct_map_complete": true,
+      "dif_methods_available": true,
+      "g_theory_available": true,
+      "measurement_invariance_contract_available": true,
+      "uncertainty_propagation_available": true,
+      "validity_protocol_complete": true,
+      "variance_decomposition_available": true
+    },
+    "construct_map": {
+      "abstention": {
+        "claim": "bounded evidence about abstention; not a general capability claim",
+        "endpoint": "justified abstention",
+        "intervention": "route exhaustion",
+        "observable_behavior": "safe abstention",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "exhaustion proof"
+      },
+      "calibration": {
+        "claim": "bounded evidence about calibration; not a general capability claim",
+        "endpoint": "calibration error",
+        "intervention": "evidence uncertainty",
+        "observable_behavior": "confidence qualification",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "answer and evidence state"
+      },
+      "evidence_integration": {
+        "claim": "bounded evidence about evidence_integration; not a general capability claim",
+        "endpoint": "supported completion",
+        "intervention": "multi-source conflict",
+        "observable_behavior": "fact joining",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "fact derivation graph"
+      },
+      "memory": {
+        "claim": "bounded evidence about memory; not a general capability claim",
+        "endpoint": "memory robustness",
+        "intervention": "memory corruption",
+        "observable_behavior": "source checking",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "memory reads and corrections"
+      },
+      "observation_handling": {
+        "claim": "bounded evidence about observation_handling; not a general capability claim",
+        "endpoint": "observation validity",
+        "intervention": "observation conflict",
+        "observable_behavior": "conflict resolution",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "observation citations"
+      },
+      "planning": {
+        "claim": "bounded evidence about planning; not a general capability claim",
+        "endpoint": "plan validity",
+        "intervention": "planning-horizon disruption",
+        "observable_behavior": "route selection",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "ordered action plan"
+      },
+      "recovery": {
+        "claim": "bounded evidence about recovery; not a general capability claim",
+        "endpoint": "task recovery",
+        "intervention": "tool failure",
+        "observable_behavior": "authorized fallback",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "recovery attempt receipt"
+      },
+      "robustness": {
+        "claim": "bounded evidence about robustness; not a general capability claim",
+        "endpoint": "paired degradation",
+        "intervention": "paired intervention",
+        "observable_behavior": "retained performance",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "paired outcomes"
+      },
+      "stopping": {
+        "claim": "bounded evidence about stopping; not a general capability claim",
+        "endpoint": "stopping correctness",
+        "intervention": "partial completion",
+        "observable_behavior": "termination choice",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "terminal event"
+      },
+      "tool_use": {
+        "claim": "bounded evidence about tool_use; not a general capability claim",
+        "endpoint": "tool contract compliance",
+        "intervention": "tool removal/failure",
+        "observable_behavior": "tool selection",
+        "task_design": "paired controlled task with construct-relevant demand",
+        "trajectory_evidence": "content-bound calls"
+      }
+    },
+    "construct_validity_protocol": [
+      "content_validity",
+      "convergent_validity",
+      "discriminant_validity",
+      "criterion_validity",
+      "predictive_validity",
+      "known_groups_validity"
+    ],
+    "fixture_only": true,
+    "passed": true,
+    "real_measurement_results_claimed": false,
+    "schema_version": "cab_measurement_science_foundation_v1",
+    "status": "CAB_MEASUREMENT_SCIENCE_FOUNDATION_READY"
+  },
+  "g_theory": {
+    "dependability_coefficient": 1.0,
+    "design": "person/model \u00d7 task \u00d7 intervention \u00d7 scorer \u00d7 repeat",
+    "fixture_only": true,
+    "g_coefficient": 1.0,
+    "schema_version": "cab_g_theory_fixture_result_v1"
+  },
+  "hierarchical_item_model": {
+    "contract_ready": true,
+    "implementation_mode": "future governed fit",
+    "real_result": null
+  },
+  "invariance": {
+    "assessments_prepared": [
+      "configural",
+      "metric",
+      "scalar",
+      "partial",
+      "model_family",
+      "domain",
+      "intervention_family"
+    ],
+    "fixture_contract_exercised": true,
+    "fixture_mean_spread": 0.0,
+    "fixture_only": true,
+    "real_invariance_conclusion": null,
+    "schema_version": "cab_measurement_invariance_fixture_v1"
+  },
+  "logistic_dif": {
+    "coefficients": [
+      -81.281262,
+      54.169039,
+      -125.645019,
+      -8.753617
+    ],
+    "fixture_only": true,
+    "multiple_testing_correction": "benjamini_hochberg_required_for_item_set",
+    "nonuniform_dif_interaction_z": -0.014219,
+    "schema_version": "cab_logistic_dif_fixture_v1",
+    "uniform_dif_group_z": -0.049206,
+    "z_values": [
+      -0.097928,
+      0.121888,
+      -0.049206,
+      -0.014219
+    ]
+  },
+  "mantel_haenszel": {
+    "common_odds_ratio": 4.0,
+    "fixture_only": true,
+    "schema_version": "cab_mantel_haenszel_dif_fixture_v1"
+  },
+  "schema_version": "cab_measurement_fixture_demonstration_v1",
+  "uncertainty": {
+    "bootstrap_repetitions": 2000,
+    "fixture_only": true,
+    "interval": [
+      0.333333,
+      1.0
+    ],
+    "mean": 0.666667,
+    "result_hash": "9e8d1cc5c332aa9d767c9ca0efc35f5eabae34f2c3cd85eef5005cfe9f21c74c",
+    "schema_version": "cab_reviewer_scorer_uncertainty_fixture_v1",
+    "uncertainty_sources": [
+      "scorer_disagreement",
+      "reviewer_disagreement",
+      "adjudication_uncertainty",
+      "exclusion_uncertainty"
+    ]
+  },
+  "variance_decomposition": {
+    "components": {
+      "intervention_family": 0.0,
+      "model": 0.22988506,
+      "repeat": 0.0,
+      "residual": 0.0,
+      "reviewer": 0.0,
+      "scorer": 0.0,
+      "task": 0.0
+    },
+    "fixture_only": true,
+    "schema_version": "cab_fixture_variance_decomposition_v1",
+    "total_variance": 0.22988506
+  }
+}
