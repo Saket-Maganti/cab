@@ -26,7 +26,7 @@
     "supported_empirical_claims": 0
   },
   "human_validation_state": "HUMAN_VALIDATION_REQUIRED",
-  "implementation_commit": "3ea9ab481c558cf0fda29239cddc1dd5c57ca1ba",
+  "implementation_commit": "82150dea538080c213cba548aee9c62d78315fbd",
   "live_evidence_state": "LIVE_EVIDENCE_REQUIRED",
   "model_calls_performed": 0,
   "provider_calls_performed": 0,

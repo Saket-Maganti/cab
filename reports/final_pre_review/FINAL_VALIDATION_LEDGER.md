@@ -14,9 +14,9 @@ local-run execution.
 - Wheel, sdist, Twine, clean import, CLI smoke, release dry run, and the 758-file
   public release inventory: passed.
 - Detached clean release: `CAB_CLEAN_RELEASE_PATH_READY` from
-  `3ea9ab481c558cf0fda29239cddc1dd5c57ca1ba`; all checks passed:
+  `82150dea538080c213cba548aee9c62d78315fbd`; all checks passed:
   `true`; receipt hash:
-  `d6d4599954cde6716b48aa92f60ea14babda814115ad541e23064060a13b8ac6`.
+  `ffc8bc9ee58f33454fa25e1d59342f5833041da0269e1ef9cd7956941f9099fe`.
 - Static/executable reachability, gold reconstruction, and intervention
   isolation: 20/20 each. Fixture approval, hierarchical power, adversarial
   audit, and final pre-review gate: passed.
