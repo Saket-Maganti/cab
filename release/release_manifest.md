@@ -2,16 +2,16 @@
 
 - **Release ID:** `causal-agent-bench-0.1.0`
 - **Package version:** `0.1.0`
-- **Generated:** `2026-08-02T06:13:18.301707+00:00`
-- **Git commit:** `7c4705ce6c682c4d4433c008b0eda0b45526e138` (dirty=True)
+- **Generated:** `2026-08-02T06:16:53.377300+00:00`
+- **Git commit:** `9055b10b9e8d2e37acab6fb2bcdf7ee4127d98f0` (dirty=True)
 - **Python:** `3.11.9`
-- **Bundle hash:** `ee1b6694697801b36392a4416061232eadd53156564950206a90126116bfb8c2`
+- **Bundle hash:** `c373bc3c07e1615cf0a55cdd7da376bb0e56d83d6b3760ae998b7273336bc65e`
 
 ## Inventory counts
 
 - Configs: 120
 - Docs: 241
-- Scripts: 83
+- Scripts: 84
 - Source modules: 263
 - Kaggle notebooks: 9
 - Data manifests: 10
