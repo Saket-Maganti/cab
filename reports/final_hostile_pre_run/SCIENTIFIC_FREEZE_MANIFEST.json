@@ -13,10 +13,10 @@
     "sha256": "8bc4369d03de89031a93436562d708bbd1b155dafef47f7ebca77ea9a0a08154",
     "version": "cab_endpoints_pre_run_v1"
   },
-  "freeze_manifest_sha256": "8ad585c2af403c69b83e8b8dd53ca2791f76333d68d209ce8eb961c8e4d302fd",
+  "freeze_manifest_sha256": "7218f206ef7f3f0a7fc7c94e1ad96a34f9eda76ce4a865d4412e151fb33212f5",
   "generator": {
     "path": "src/causal_agent_bench/final_pre_run/private_packet.py",
-    "source_commit": "029a9eb8412a80175ffbb1f5702b2946d552a581",
+    "source_commit": "029a9eb440b2a5f3f6ba9080a0d8122e1b1fe392",
     "source_sha256": "862cac9a9d6bef83a9e7d0b1bbde35c4e99be7bb27ad89019a4ecc24c73a1ca7"
   },
   "invalidation_rules": {

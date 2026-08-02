@@ -38,6 +38,14 @@ def build_freeze_manifest(repo_root: Path, *, generator_commit: str) -> dict[str
     commitment = json.loads(commitment_path.read_text())
     endpoints = json.loads(endpoint_path.read_text())
     scorer = json.loads(scorer_path.read_text())
+    committed_generator = subprocess.run(
+        ["git", "show", f"{generator_commit}:{generator_path.relative_to(repo_root)}"],
+        cwd=repo_root,
+        check=True,
+        capture_output=True,
+    ).stdout
+    if hashlib.sha256(committed_generator).hexdigest() != file_sha256(generator_path):
+        raise ValueError("generator commit does not contain the frozen generator source")
     manifest: dict[str, Any] = {
         "schema_version": "cab_scientific_freeze_manifest_v1",
         "status": "CAB_REPOSITORY_FROZEN_FOR_HUMAN_REVIEW",
@@ -115,6 +123,17 @@ def verify_scientific_freeze(repo_root: Path, manifest_path: Path | None = None)
         checks[f"{key}_hash_matches"] = file_sha256(repo_root / binding["path"]) == binding["sha256"]
     generator = manifest["generator"]
     checks["generator_hash_matches"] = file_sha256(repo_root / generator["path"]) == generator["source_sha256"]
+    committed_generator = subprocess.run(
+        ["git", "show", f"{generator['source_commit']}:{generator['path']}"],
+        cwd=repo_root,
+        check=False,
+        capture_output=True,
+    )
+    checks["generator_commit_resolves"] = committed_generator.returncode == 0
+    checks["generator_commit_content_matches"] = bool(
+        committed_generator.returncode == 0
+        and hashlib.sha256(committed_generator.stdout).hexdigest() == generator["source_sha256"]
+    )
     without_hash = dict(manifest)
     declared = without_hash.pop("freeze_manifest_sha256")
     checks["manifest_self_hash_matches"] = hashlib.sha256(canonical_bytes(without_hash)).hexdigest() == declared
