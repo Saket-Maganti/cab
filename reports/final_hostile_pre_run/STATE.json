@@ -7,7 +7,7 @@
   "engineering_gate_passed": true,
   "exposed_candidate_count": 40,
   "external_release_attestation_pending_until_final_commit": true,
-  "generator_commit": "029a9eb8412a80175ffbb1f5702b2946d552a581",
+  "generator_commit": "029a9eb440b2a5f3f6ba9080a0d8122e1b1fe392",
   "genuine_evidence": {
     "audited_real_runs": 0,
     "genuine_adjudications": 0,
@@ -26,7 +26,7 @@
   "power_report_sha256": "9e8a8130b4c45d1df088ce5af3e3faa0880509b602b69ec2fd000e6e9a0dc375",
   "public_stage2_paths_from_retired_packets_preserved": true,
   "release_attestation_model": "EXTERNAL_FINAL_COMMIT",
-  "report_build_head": "029a9eb440b2a5f3f6ba9080a0d8122e1b1fe392",
+  "report_build_head": "515b6dee602ff74e0cc48fa052285ae261a9e37d",
   "review_packet_commitment_sha256": "f4767f10ef0c5edadb2a22a5445450fba5583a99eee8aff709a0537c86e6e66f",
   "schema_version": "cab_final_hostile_pre_run_state_v1",
   "scorer": {
