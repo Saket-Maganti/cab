@@ -8,7 +8,10 @@ archives contain primitive records only; Stage 2 and keys remain private. Actual
 20/20 hidden answers, all causal routes and hostile recovery trajectories pass, and the paired
 analysis is calibrated with actual estimators. Scientific surfaces are hash-frozen.
 
-`HUMAN_VALIDATION_REQUIRED`  
-`LIVE_EVIDENCE_REQUIRED`  
-`CAB_LEVEL5_COMPLETE=false`  
+`HUMAN_VALIDATION_REQUIRED`
+
+`LIVE_EVIDENCE_REQUIRED`
+
+`CAB_LEVEL5_COMPLETE=false`
+
 `CAB_LEVEL6_COMPLETE=false`
