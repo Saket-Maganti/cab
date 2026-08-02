@@ -478,8 +478,8 @@
     "scripts/cab_max_ceiling_gate.py": "9ca96db371a5f2147c3883721e53964d9c55ee927d6ae7c3fe6992c88bf823fa",
     "scripts/cab_resource_preflight.py": "45dcbacb0b49c41f123fdb1e0ed992a75ab933b175c862c7f69767a0ab944e3a"
   },
-  "generated_at": "2026-08-02T06:13:18.301707+00:00",
-  "inventory_file_count": 797,
+  "generated_at": "2026-08-02T06:16:53.377300+00:00",
+  "inventory_file_count": 798,
   "inventory_policy": {
     "categories": {
       "configs": [
@@ -588,11 +588,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "ee1b6694697801b36392a4416061232eadd53156564950206a90126116bfb8c2",
+  "release_bundle_hash": "c373bc3c07e1615cf0a55cdd7da376bb0e56d83d6b3760ae998b7273336bc65e",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "7c4705ce6c682c4d4433c008b0eda0b45526e138",
+    "git_commit": "9055b10b9e8d2e37acab6fb2bcdf7ee4127d98f0",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
@@ -690,6 +690,7 @@
     "scripts/make_paper_assets.py",
     "scripts/materialize_iclr_private_candidates.py",
     "scripts/mine_failure_gallery.py",
+    "scripts/normalize_sdist.py",
     "scripts/paper_paths.py",
     "scripts/release_check.py",
     "scripts/release_dry_run.py",

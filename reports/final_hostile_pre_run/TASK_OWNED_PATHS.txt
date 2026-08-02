@@ -7,6 +7,7 @@ docs/final_hostile_pre_run/
 reports/final_hostile_pre_run/
 scripts/build_final_hostile_pre_run.py
 scripts/generate_private_compact20_final.py
+scripts/normalize_sdist.py
 spec/final_hostile_pre_run/
 src/causal_agent_bench/final_pre_run/
 src/causal_agent_bench/level6/recovery.py
