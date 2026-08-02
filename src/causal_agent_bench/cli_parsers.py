@@ -1075,6 +1075,31 @@ def _add_level5_parsers(subparsers: argparse._SubParsersAction) -> None:
     final_pre_review_check.add_argument("--repo-root", default=".")
     final_pre_review_check.add_argument("--output", default=None)
 
+    final = subparsers.add_parser(
+        "final",
+        help="Run direct hostile pre-run and scientific-freeze checks.",
+    )
+    final_sub = final.add_subparsers(dest="final_command", required=True)
+    for name in (
+        "exposed-candidate-check",
+        "new-compact-novelty-check",
+        "primitive-evidence-check",
+        "stage1-black-box-check",
+        "actual-tool-gold-check",
+        "expected-fact-injection-check",
+        "causal-route-check",
+        "recovery-isolation-check",
+        "power-calibration-check",
+        "exact-head-release-check",
+        "scientific-freeze-check",
+        "hostile-pre-run-check",
+    ):
+        child = final_sub.add_parser(name)
+        child.add_argument("--repo-root", default=".")
+        child.add_argument("--private-root", default="private_data/final_hostile_pre_run")
+        child.add_argument("--receipt", default=None)
+        child.add_argument("--allow-attestation-pending", action="store_true")
+
     plan = subparsers.add_parser(
         "plan",
         help="Compile a fixture plan or derive scientific volume/resources/shards.",

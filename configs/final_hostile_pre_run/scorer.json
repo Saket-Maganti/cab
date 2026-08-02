@@ -1,0 +1,7 @@
+{
+  "answer_comparison": "typed_normalized_exact",
+  "answer_contract_enforcement": "fail_closed",
+  "schema_version": "cab_final_scorer_freeze_v1",
+  "scorer_name": "cab_typed_final_answer",
+  "scorer_version": "3.0.0"
+}

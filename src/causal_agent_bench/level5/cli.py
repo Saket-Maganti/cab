@@ -88,6 +88,7 @@ LEVEL5_COMMANDS = {
     "approval",
     "power",
     "final-pre-review",
+    "final",
     "recovery",
     "measurement",
     "antigaming",
@@ -836,6 +837,21 @@ def handle_level5_command(args: Any) -> bool:
                 json.dumps(result, indent=2, sort_keys=True) + "\n",
                 encoding="utf-8",
             )
+        _print(result)
+        if not result["passed"]:
+            raise SystemExit(1)
+    elif command == "final":
+        from causal_agent_bench.final_pre_run.gate import run_named_check
+
+        private_root = Path(args.private_root) if args.private_root else None
+        receipt_path = Path(args.receipt) if args.receipt else None
+        result = run_named_check(
+            args.final_command,
+            Path(args.repo_root).resolve(),
+            private_root=private_root,
+            receipt_path=receipt_path,
+            allow_attestation_pending=args.allow_attestation_pending,
+        )
         _print(result)
         if not result["passed"]:
             raise SystemExit(1)

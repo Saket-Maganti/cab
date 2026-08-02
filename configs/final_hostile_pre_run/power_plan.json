@@ -1,0 +1,32 @@
+{
+  "alternative_family_degradation": [
+    0.03,
+    0.09,
+    0.2,
+    0.28
+  ],
+  "clean_noninferiority_margin": 0.05,
+  "conditional_transition_gain_flow": 0.04,
+  "fixed_model_clean_probabilities": [
+    0.78,
+    0.74,
+    0.7,
+    0.66,
+    0.62
+  ],
+  "minimum_per_model_power": 0.8,
+  "null_ci_coverage_tolerance": [
+    0.92,
+    0.98
+  ],
+  "null_type_i_tolerance": [
+    0.025,
+    0.075
+  ],
+  "paired_generator": "conditional_transition_bernoulli_v1",
+  "planned_repetitions": 4000,
+  "raac_improvement": 0.08,
+  "schema_version": "cab_final_power_plan_v1",
+  "shard_size": 500,
+  "tasks_per_family": 25
+}

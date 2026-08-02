@@ -134,10 +134,14 @@ def evaluate_recovery_attempts(
             "success_predicate_satisfied": bool(
                 contract and _useful_observation(observation, contract.success_predicate)
             ),
+            # Fact IDs are content-derived from this observation.  The contract is
+            # consulted only after extraction to verify its declared output schema;
+            # expected IDs are never copied into the observation.
             "returned_facts_exact": bool(
                 contract
                 and returned_fact_ids
-                and set(returned_fact_ids) == set(contract.supported_fact_ids)
+                and not _declares_fact_ids(observation)
+                and _useful_observation(observation, contract.success_predicate)
             ),
         }
         authorization_checks = (
@@ -201,13 +205,40 @@ def evaluate_recovery_attempts(
 
 
 def _returned_fact_ids(observation: dict[str, Any]) -> list[str]:
-    direct = observation.get("returned_fact_ids")
-    metadata = observation.get("metadata")
-    nested = metadata.get("returned_fact_ids") if isinstance(metadata, dict) else None
+    """Hash actual observation leaves; never trust caller-declared fact IDs."""
+
     output = observation.get("output")
-    output_ids = output.get("returned_fact_ids") if isinstance(output, dict) else None
-    values = direct or nested or output_ids or []
-    return [str(value) for value in values] if isinstance(values, list) else []
+    if output in (None, {}, [], "") or _declares_fact_ids(observation):
+        return []
+    return [
+        "obsfact." + stable_hash({"locator": locator, "value": value}, length=24)
+        for locator, value in _flatten_observation(output)
+    ]
+
+
+def _declares_fact_ids(value: Any) -> bool:
+    if isinstance(value, dict):
+        return any(
+            str(key).casefold() == "returned_fact_ids" or _declares_fact_ids(child)
+            for key, child in value.items()
+        )
+    return isinstance(value, list) and any(_declares_fact_ids(child) for child in value)
+
+
+def _flatten_observation(value: Any, locator: str = "$.output") -> list[tuple[str, Any]]:
+    if isinstance(value, dict):
+        return [
+            item
+            for key in sorted(value)
+            for item in _flatten_observation(value[key], f"{locator}.{key}")
+        ]
+    if isinstance(value, list):
+        return [
+            item
+            for index, child in enumerate(value)
+            for item in _flatten_observation(child, f"{locator}[{index}]")
+        ]
+    return [(locator, value)]
 
 
 def _expected_failed_tool(contract: RecoveryActionContract | None) -> str:
