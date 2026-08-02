@@ -1,0 +1,14 @@
+{
+  "attestation_model": "EXTERNAL_FINAL_COMMIT",
+  "required_external_receipt_fields": [
+    "source_commit",
+    "wheel.sha256",
+    "wheel.reproducible",
+    "sdist.sha256",
+    "sdist.reproducible"
+  ],
+  "schema_version": "cab_external_release_attestation_pointer_v1",
+  "self_inclusion_claimed": false,
+  "status": "EXTERNAL_FINAL_COMMIT_ATTESTATION_REQUIRED_AFTER_COMMIT",
+  "tracked_file_is_not_the_final_receipt": true
+}

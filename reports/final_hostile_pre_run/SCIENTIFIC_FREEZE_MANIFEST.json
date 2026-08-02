@@ -1,0 +1,60 @@
+{
+  "analysis_plan": {
+    "path": "configs/final_hostile_pre_run/analysis_plan.json",
+    "sha256": "f61e933b834fc167393e3a135dfa7cf80dbf7e54ef283ce63038ab3f10205759"
+  },
+  "benchmark_version": "cab-compact20-private-v1",
+  "c10_contract": {
+    "path": "configs/human_validation/c10_contract_v1.json",
+    "sha256": "2d6df3dc77a1bf8ba11cb528ce48a86e452f745c0107c92195cb3e73d2c13972"
+  },
+  "endpoints": {
+    "path": "configs/pre_run/frozen_endpoints.json",
+    "sha256": "8bc4369d03de89031a93436562d708bbd1b155dafef47f7ebca77ea9a0a08154",
+    "version": "cab_endpoints_pre_run_v1"
+  },
+  "freeze_manifest_sha256": "8ad585c2af403c69b83e8b8dd53ca2791f76333d68d209ce8eb961c8e4d302fd",
+  "generator": {
+    "path": "src/causal_agent_bench/final_pre_run/private_packet.py",
+    "source_commit": "029a9eb8412a80175ffbb1f5702b2946d552a581",
+    "source_sha256": "862cac9a9d6bef83a9e7d0b1bbde35c4e99be7bb27ad89019a4ecc24c73a1ca7"
+  },
+  "invalidation_rules": {
+    "endpoint_change": "NEW_ENDPOINT_VERSION_AND_REVIEW_REQUIRED",
+    "packet_regeneration": "PRIOR_REVIEW_INVALID",
+    "run_hash_mismatch": "EXECUTION_REFUSED",
+    "scorer_change": "NEW_SCORER_VERSION_AND_REVIEW_REQUIRED",
+    "task_change": "NEW_BENCHMARK_VERSION_AND_REVIEW_REQUIRED"
+  },
+  "packet_commitment": {
+    "commitment_sha256": "f4767f10ef0c5edadb2a22a5445450fba5583a99eee8aff709a0537c86e6e66f",
+    "path": "data/manifests/compact20_final_private_commitment.json",
+    "sha256": "19ad8ffc52bba1464e1441f0d54e3ae5d0814d4d19414678ec8b5bcdb4cb4920"
+  },
+  "power_plan": {
+    "path": "configs/final_hostile_pre_run/power_plan.json",
+    "sha256": "98da1c78edd1b81aa61a2661a81b5e4e645308f46a3abf5acaa0acdf98dde49a"
+  },
+  "review_protocol": {
+    "path": "docs/final_hostile_pre_run/HUMAN_REVIEW_PROTOCOL.md",
+    "sha256": "156dd6b24fb9c0244b097ac7bcd828d7496cd371b4cfd7c50a1804cbd92d2bc7"
+  },
+  "schema_version": "cab_scientific_freeze_manifest_v1",
+  "scorer": {
+    "name": "cab_typed_final_answer",
+    "path": "configs/final_hostile_pre_run/scorer.json",
+    "sha256": "214af98316009220bff990071a9be9c6a6b97f088efb703dbd30aed6cd56f842",
+    "version": "3.0.0"
+  },
+  "stage1_package_hashes": {
+    "stage1_adjudicator.zip": "e4de5be7075d09d18fcb24075a32bde1d319213caba999c256d072b0cb7a8487",
+    "stage1_reviewer_a.zip": "35e2521d2843f5b5b3e8b5d75f5169fc48d246c9f6dbccd3f42a39659c42b52e",
+    "stage1_reviewer_b.zip": "213e35847448dc93ffe982d92a5d04dc979343bf102c65260c21ae09e1777e15"
+  },
+  "stage2_encrypted_commitment": "2bf5e0b536bada749c89a7421fad2f5f3b67dac7543ded7167cf5084e63d940d",
+  "status": "CAB_REPOSITORY_FROZEN_FOR_HUMAN_REVIEW",
+  "system_identity_schema": {
+    "path": "configs/pre_run/evaluated_system_identity.schema.json",
+    "sha256": "735360fb9d384608c89a48b6252dd58407c6c0de782300fac5e0866701570061"
+  }
+}

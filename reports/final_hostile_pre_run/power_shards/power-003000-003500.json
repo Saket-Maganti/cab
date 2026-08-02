@@ -1,0 +1,75 @@
+{
+  "hash": "521246bfe2f54a6a8be9bc76206c4a6ec424c310396d20c27e38dd366b77f9a8",
+  "replicate_end": 3500,
+  "replicate_start": 3000,
+  "result": {
+    "clean_noninferiority_passes": 455,
+    "family_rejections": 491,
+    "interaction_alt_rejections": 340,
+    "interaction_null_rejections": 25,
+    "marginal_clean_sum": [
+      39036.0,
+      36988.0,
+      34953.0,
+      32969.0,
+      30946.0
+    ],
+    "marginal_denominator": 50000,
+    "marginal_intervention_sum": [
+      31400.0,
+      29518.0,
+      27477.0,
+      25440.0,
+      23569.0
+    ],
+    "null_coverage": [
+      474,
+      476,
+      479,
+      472,
+      470
+    ],
+    "null_rejections": [
+      26,
+      24,
+      21,
+      28,
+      30
+    ],
+    "per_model_all_pass": 330,
+    "per_model_coverage": [
+      473,
+      482,
+      478,
+      483,
+      470
+    ],
+    "per_model_estimate_sum": [
+      76.35999999999999,
+      74.69999999999993,
+      74.76000000000005,
+      75.28999999999996,
+      73.76999999999994
+    ],
+    "per_model_rejections": [
+      462,
+      467,
+      466,
+      462,
+      446
+    ],
+    "per_model_squared_error_sum": [
+      1.0775999999999983,
+      0.9333999999999992,
+      0.9871999999999995,
+      0.9154999999999993,
+      1.0900999999999983
+    ],
+    "pooled_rejections": 500,
+    "raac_rejections": 498,
+    "repetitions": 500
+  },
+  "seed": 845913,
+  "simulation_shard_id": "power-003000-003500",
+  "status": "complete"
+}

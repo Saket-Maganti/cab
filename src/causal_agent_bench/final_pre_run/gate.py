@@ -87,7 +87,7 @@ def novelty_check(repo_root: Path) -> dict[str, Any]:
     appeared: list[str] = []
     for digest in hashes:
         result = subprocess.run(
-            ["git", "log", BASELINE_COMMIT, "--all", "-S", str(digest), "--format=%H"],
+            ["git", "log", BASELINE_COMMIT, "-S", str(digest), "--format=%H"],
             cwd=repo_root,
             check=True,
             capture_output=True,
