@@ -293,7 +293,6 @@ def _valid_recovery_steps(
                 "output": output,
                 "error": None,
                 "attempt_id": "attempt-fixture-01",
-                "returned_fact_ids": contract.supported_fact_ids,
             },
         },
     ]

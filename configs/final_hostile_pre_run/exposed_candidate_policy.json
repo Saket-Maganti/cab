@@ -1,0 +1,18 @@
+{
+  "blocked_evidence_uses": [
+    "genuine_packet",
+    "scientific_execution",
+    "C10",
+    "human_validation",
+    "compact_pilot_results",
+    "paper_analysis"
+  ],
+  "candidate_id_patterns": [
+    "compact20_cand_01..20",
+    "compact20_v2_cand_01..20"
+  ],
+  "enforcement": "fail_closed",
+  "historical_files": "preserved_as_development_fixtures",
+  "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+  "schema_version": "cab_exposed_candidate_policy_v1"
+}

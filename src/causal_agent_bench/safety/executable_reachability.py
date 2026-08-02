@@ -289,7 +289,6 @@ def _execute_recovery_route(
             metadata["failure_event_id"] = failure_event_id
     if isinstance(observation, dict):
         observation["attempt_id"] = attempt_id
-        observation["returned_fact_ids"] = contract.supported_fact_ids
     useful = bool(
         isinstance(observation, dict)
         and not observation.get("error")
@@ -320,7 +319,11 @@ def _execute_recovery_route(
         "recovery_arguments": recovery_args,
         "recovery_step": recovery_step,
         "useful_observation": useful,
-        "causal_fact_ids": contract.supported_fact_ids,
+        "causal_fact_ids": (
+            authorization["attempts"][0]["returned_fact_ids"]
+            if authorization["attempts"]
+            else []
+        ),
         "authorization_v5": authorization,
         "valid_final_response": (
             instance.base_task.goal.expected_final_answer

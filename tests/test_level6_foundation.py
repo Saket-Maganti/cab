@@ -188,7 +188,6 @@ def _recovery_steps() -> list[dict[str, object]]:
                 "tool_name": "read_backup",
                 "output": {"value": 1},
                 "attempt_id": "attempt-1",
-                "returned_fact_ids": ["fact.a"],
             },
         },
     ]
@@ -203,7 +202,7 @@ def test_recovery_v5_is_per_attempt_and_exact() -> None:
     )
     assert valid["succeeded"] is True
     assert valid["task_recovered"] is True
-    assert valid["attempts"][0]["returned_fact_ids"] == ["fact.a"]
+    assert valid["attempts"][0]["returned_fact_ids"][0].startswith("obsfact.")
     for mutation in ("wrong_action", "wrong_tool", "wrong_args", "stale_failure", "foreign_observation"):
         steps = deepcopy(_recovery_steps())
         if mutation == "wrong_action":

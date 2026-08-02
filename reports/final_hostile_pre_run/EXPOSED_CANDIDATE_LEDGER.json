@@ -1,0 +1,629 @@
+{
+  "candidate_count": 40,
+  "candidates": [
+    {
+      "candidate_id": "compact20_cand_01",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_000"
+    },
+    {
+      "candidate_id": "compact20_cand_02",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "file_spreadsheet_qa_medium_000"
+    },
+    {
+      "candidate_id": "compact20_cand_03",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "research_assistant_easy_000"
+    },
+    {
+      "candidate_id": "compact20_cand_04",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "coding_debugging_stress_000"
+    },
+    {
+      "candidate_id": "compact20_cand_05",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_001"
+    },
+    {
+      "candidate_id": "compact20_cand_06",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_000"
+    },
+    {
+      "candidate_id": "compact20_cand_07",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "file_spreadsheet_qa_medium_000"
+    },
+    {
+      "candidate_id": "compact20_cand_08",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "research_assistant_easy_000"
+    },
+    {
+      "candidate_id": "compact20_cand_09",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "coding_debugging_stress_000"
+    },
+    {
+      "candidate_id": "compact20_cand_10",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_001"
+    },
+    {
+      "candidate_id": "compact20_cand_11",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_000"
+    },
+    {
+      "candidate_id": "compact20_cand_12",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "file_spreadsheet_qa_medium_000"
+    },
+    {
+      "candidate_id": "compact20_cand_13",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "research_assistant_easy_000"
+    },
+    {
+      "candidate_id": "compact20_cand_14",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "coding_debugging_stress_000"
+    },
+    {
+      "candidate_id": "compact20_cand_15",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_001"
+    },
+    {
+      "candidate_id": "compact20_cand_16",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "calendar_email_workflow_easy_000"
+    },
+    {
+      "candidate_id": "compact20_cand_17",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "shopping_comparison_easy_000"
+    },
+    {
+      "candidate_id": "compact20_cand_18",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "policy_compliance_hard_000"
+    },
+    {
+      "candidate_id": "compact20_cand_19",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "operations_planning_medium_000"
+    },
+    {
+      "candidate_id": "compact20_cand_20",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "clean_gold",
+        "intervention_metadata"
+      ],
+      "exposure_type": "PUBLIC_CANDIDATE_AND_REVIEW_METADATA",
+      "first_public_commit": "ca9c13b87ea546c6d079ca4b400c06c04e558b8b",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "calendar_email_workflow_medium_001"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_01",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_004"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_02",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "file_spreadsheet_qa_hard_025"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_03",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "research_assistant_easy_010"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_04",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "coding_debugging_stress_002"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_05",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "policy_compliance_medium_012"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_06",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_medium_004"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_07",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "calendar_email_workflow_hard_022"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_08",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "shopping_comparison_easy_012"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_09",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "operations_planning_stress_015"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_10",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "file_spreadsheet_qa_medium_019"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_11",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "research_assistant_easy_010"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_12",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "coding_debugging_stress_006"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_13",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "calendar_email_workflow_medium_019"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_14",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "policy_compliance_hard_026"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_15",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "operations_planning_medium_021"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_16",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "file_spreadsheet_qa_hard_025"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_17",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "coding_debugging_stress_006"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_18",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "shopping_comparison_medium_001"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_19",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "travel_planning_easy_026"
+    },
+    {
+      "candidate_id": "compact20_v2_cand_20",
+      "exposed_fields": [
+        "candidate_id",
+        "task_content",
+        "stage2_gold",
+        "scorer_policy",
+        "answer_contract",
+        "recovery_route",
+        "abstention_opportunity"
+      ],
+      "exposure_type": "PUBLIC_FULL_STAGE2_AND_ROUTE_EXPOSURE",
+      "first_public_commit": "3a3a2758c70b58ac169b321ac3983d3d1e018e2c",
+      "replacement_required": true,
+      "retirement_status": "EXPOSED_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW",
+      "task_id": "research_assistant_hard_011"
+    }
+  ],
+  "history_rewritten": false,
+  "ledger_sha256": "2086feecf7854a155eb76e2a7565eb64d14942bcd99e152ba780609a1a15e912",
+  "schema_version": "cab_exposed_candidate_ledger_v1",
+  "status": "CAB_EXPOSED_COMPACT_SLICE_RETIRED"
+}

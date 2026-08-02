@@ -1,0 +1,13 @@
+{
+  "alpha": 0.05,
+  "clean_noninferiority": "upper confidence bound on clean loss below margin",
+  "family_effects": "one-way fixed-effect ANOVA F-test on paired degradation",
+  "fixed_panel_pooled_degradation": "paired mean over fixed model-task cells with two-sided Wald confidence interval",
+  "model_family_interaction": "two-way fixed-effect ANOVA interaction F-test",
+  "panel_target": "fixed_named_five_model_panel",
+  "per_model_paired_degradation": "paired mean(clean minus intervention) with two-sided Wald confidence interval",
+  "raac_improvement": "paired mean(RAAC minus standard) with lower confidence bound above zero",
+  "rank_instability": "paired task bootstrap probability of any rank reversal",
+  "schema_version": "cab_final_analysis_plan_v1",
+  "unresolved_ranking": "simultaneous 95 percent intervals overlap for at least one adjacent pair"
+}

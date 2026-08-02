@@ -1,0 +1,62 @@
+{
+  "candidate_content_hashes": {
+    "private_slot_01": "c06cc197e044e04013485e3fbac05f49ea880f1a9e3b081f991c7e24bd4dceb2",
+    "private_slot_02": "3f29fd842fc276216ef48849e3b9d69a147d514ab74664f5a49d495eb10c1a7a",
+    "private_slot_03": "7b659f23c1d306e9a4435ef18525c11ee8dcd9cf3454d28f88087e82a027afe2",
+    "private_slot_04": "b5a93a30d9a48c2682bffa4cb54e44874340acd2b0dd2bd902164545c03f887d",
+    "private_slot_05": "00f9cbf1cbef07ecac2cde7d823dd68cb0e79c4be15b97d3935b3ee842514e67",
+    "private_slot_06": "06554c8a569ac069e12e5a5526098a341a21b416b9bda6102501ba37058e6095",
+    "private_slot_07": "7e9a0c81c4bdee049340d934a057c11b546bb68efa5b8091c26f81e4da4160aa",
+    "private_slot_08": "c92aa4851000b5b23a7071f5b39d0fc06efc300a674ffb1c84b34092537e9c7e",
+    "private_slot_09": "a217a64e1a8b0da052fb5c49d0f1670087c4929ac8918d1b818313351a3a7d9b",
+    "private_slot_10": "5bd7dc86e7c77c4bb0055db7ea8af4bb14cc279cee57808501bd0ace5cf8ecb7",
+    "private_slot_11": "64c299931f41cb7a191c2d825d8e7a4cdcafa114ec52330eb57ede63e70d860e",
+    "private_slot_12": "0bab5da2824a17eaa21ae14de38f9f746ae3414f08d2ea313eca5200ce7891a6",
+    "private_slot_13": "475c2572d8f058b44467a0ec38dd417e07519aea8765593ae4216b096afccd2f",
+    "private_slot_14": "f8ad9093821e8cb518d6257b64418d8ba0fefb037f0be705dde8a52979e0ab64",
+    "private_slot_15": "db1d46999564c5cba6fda742d28ad6f290b5d999c7469a5edcbda968721fc560",
+    "private_slot_16": "51d3c4d5bc3c8f17c3e80e1d4ba486cb350c63f8d519f070bcd5a9755cd8dfd3",
+    "private_slot_17": "f052548308b6423b747159599d9067b3d939a356b213caff989e4b2bcd24489e",
+    "private_slot_18": "c84555fa36a932eb29cd5764de8969350a0976dadf922da56b59c595eb38a87d",
+    "private_slot_19": "38fa1ed3e3aa2d2b607bb326c53a4b00905b07a75dbf1c40010a68cd2e147bbf",
+    "private_slot_20": "0ff5f76e53e2941f5a450f40911b6d7330091b410552a79f31f925fe65355eca"
+  },
+  "candidate_count": 20,
+  "commitment_sha256": "f4767f10ef0c5edadb2a22a5445450fba5583a99eee8aff709a0537c86e6e66f",
+  "difficulty_counts": {
+    "easy": 4,
+    "hard": 4,
+    "medium": 8,
+    "stress": 4
+  },
+  "domain_counts": {
+    "calendar": 2,
+    "coding": 2,
+    "operations": 3,
+    "policy": 2,
+    "research": 3,
+    "shopping": 2,
+    "spreadsheet": 3,
+    "travel": 3
+  },
+  "exposure_scan_result": "PASS_NO_PUBLIC_MATCH",
+  "family_counts": {
+    "memory_corruption": 5,
+    "observation_conflict": 5,
+    "tool_failure": 5,
+    "tool_removal": 5
+  },
+  "generator_version": "cab_private_compact20_v1",
+  "packet_id": "compact20-final-private-v1",
+  "private_bodies_committed": false,
+  "schema_version": "cab_private_compact20_public_commitment_v1",
+  "seed_commitment": "cb42ca885c4718685696ace5077ba2594ac20ea034c02504772ef169b32ebc54",
+  "stage1_package_hashes": {
+    "stage1_adjudicator.zip": "e4de5be7075d09d18fcb24075a32bde1d319213caba999c256d072b0cb7a8487",
+    "stage1_reviewer_a.zip": "35e2521d2843f5b5b3e8b5d75f5169fc48d246c9f6dbccd3f42a39659c42b52e",
+    "stage1_reviewer_b.zip": "213e35847448dc93ffe982d92a5d04dc979343bf102c65260c21ae09e1777e15"
+  },
+  "stage2_encrypted_sha256": "2bf5e0b536bada749c89a7421fad2f5f3b67dac7543ded7167cf5084e63d940d",
+  "stage2_private_and_unexposed": true,
+  "status": "CAB_NEW_COMPACT20_PRIVATE_SLICE_READY"
+}
