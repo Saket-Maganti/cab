@@ -1,0 +1,37 @@
+name: Final hostile pre-run freeze
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hostile-freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install -e '.[dev,docs]'
+      - name: Focused hostile tests
+        run: python -m pytest -q -n0 tests/test_final_hostile_pre_run.py tests/test_level5_final_hostile_cli.py tests/test_level6_foundation.py
+      - name: Direct hostile gate (public fixture attack; external release receipt pending)
+        run: cab final hostile-pre-run-check --repo-root . --private-root /tmp/cab-no-private-packet --allow-attestation-pending
+      - name: Static checks
+        run: |
+          python -m ruff check src/causal_agent_bench/final_pre_run scripts/build_final_hostile_pre_run.py scripts/generate_private_compact20_final.py tests/test_final_hostile_pre_run.py tests/test_level5_final_hostile_cli.py
+          python -m mypy src/causal_agent_bench/final_pre_run
+          git diff --check HEAD^
+      - name: Public privacy boundary
+        run: |
+          test -z "$(git ls-files 'private_data/**' '*.key' '*.aesgcm' '*stage2_private*')"
+          ! git grep -nE 'c-[0-9a-f]{24}|t-[0-9a-f]{24}' -- ':!tests' ':!src/causal_agent_bench/final_pre_run/private_packet.py'
+          cab final expected-fact-injection-check --repo-root .
