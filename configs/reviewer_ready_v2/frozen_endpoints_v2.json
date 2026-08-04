@@ -1,0 +1,16 @@
+{
+  "exploratory_endpoints": [
+    "model_by_family_interaction",
+    "rank_instability_excess_over_matched_noise_floor"
+  ],
+  "freeze_version": "2.0.0",
+  "frozen_before_execution": true,
+  "inference_scope": "fixed evaluated model panel",
+  "primary_endpoint": "paired_clean_minus_intervention_success_rate",
+  "schema_version": "cab_review_ready_v2_endpoints_v1",
+  "secondary_endpoints": [
+    "per_family_paired_degradation",
+    "route_appropriate_response_rate"
+  ],
+  "unit_of_analysis": "clean_intervention_pair"
+}

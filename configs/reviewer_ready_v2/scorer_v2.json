@@ -1,0 +1,34 @@
+{
+  "abstention": {
+    "fabricated_value_scores_zero": true,
+    "match": "structured_policy",
+    "must_not_return_a_final_answer": true,
+    "requires_naming_every_unavailable_required_input": true
+  },
+  "clarification": {
+    "generic_request_scores_zero": true,
+    "match": "structured_policy",
+    "must_not_return_a_final_answer": true,
+    "requires_reference_to_missing_input_key": true
+  },
+  "final_answer": {
+    "field_separator": "|",
+    "match": "normalized_exact",
+    "normalization": [
+      "strip",
+      "casefold",
+      "collapse_whitespace"
+    ],
+    "partial_credit": false
+  },
+  "notes": "Frozen before any model execution. Changing this file requires a new scorer version and a new review.",
+  "recovery": {
+    "credit_never_inherited_from_unrelated_success": true,
+    "match": "normalized_exact_plus_trajectory_binding",
+    "requires_exact_authorized_tool_and_arguments": true,
+    "requires_observed_loss_before_authorized_action": true
+  },
+  "schema_version": "cab_review_ready_v2_scorer_v1",
+  "scorer_name": "cab_review_ready_v2_paired_scorer",
+  "scorer_version": "2.0.0"
+}

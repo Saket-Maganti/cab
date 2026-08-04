@@ -1,0 +1,21 @@
+{
+  "changes_require": "a new analysis-plan version and a fresh human review",
+  "compact20_role": "pilot / feasibility / protocol validation only; no confirmatory claim may cite it",
+  "design": "paired within-item, within-model clean vs intervention",
+  "exploratory_tests": {
+    "model_by_family_interaction": "within-design permutation of family labels across items; reported as exploratory because prospective power is below 0.80 across the whole SESOI grid",
+    "rank_instability": "reported only as excess over the matched zero-degradation noise floor; the raw reversal probability is not an estimand"
+  },
+  "frozen_before_execution": true,
+  "missing_data": "trajectories that fail to complete are reported and excluded pairwise; the exclusion count is published",
+  "primary_test": {
+    "alpha": 0.05,
+    "multiplicity": "single primary endpoint; no correction required",
+    "name": "one-sided paired test on per-item clean minus intervention success"
+  },
+  "schema_version": "cab_review_ready_v2_analysis_plan_v1",
+  "secondary_tests": {
+    "per_family_degradation": "Holm correction across the four intervention families",
+    "route_appropriate_response_rate": "descriptive with exact binomial intervals"
+  }
+}
