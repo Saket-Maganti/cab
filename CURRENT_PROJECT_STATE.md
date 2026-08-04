@@ -1,14 +1,61 @@
 # CAB Current Project State
 
 **Authority:** this is the sole current top-level state and next-action guide.
-**State:** `CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE`
-**Review packet:** `COMPACT20_REVIEW_PACKET_EVIDENCE_VERIFIABLE`
+**State:** `CAB_REVIEWER_READY_V2_REPAIR_COMPLETE`
+**Review packet:** `compact20-review-ready-v2` (all earlier packets are retired)
 **External gates:** `HUMAN_VALIDATION_REQUIRED`, `LIVE_EVIDENCE_REQUIRED`
 **Scientific execution during this pass:** none
 **Final pre-review baseline SHA:** `715d981cf68eb2741dd6e05b097b08445f87accf`
 **Publication SHA:** recorded after the direct-main push in
 `reports/pre_run_hardening/CAB_PRE_RUN_GITHUB_PUBLISH.md` and in the release
 handoff; a commit cannot truthfully contain its own future hash.
+
+## Canonical review path (reviewer-ready V2)
+
+The repository is engineering-ready for genuine Stage-1 review.
+No genuine review has occurred.
+Stage 2 remains locked.
+C10 has not passed.
+Model execution is prohibited.
+
+The active packet is `compact20-review-ready-v2`. Every earlier Compact packet —
+including `compact20-final-private-v1` — is retired and rejected **in code** at
+ingestion, C10, slice lock and execution authorization, by public-commitment and
+package-hash identity rather than by name. Resolve every path from
+`reports/reviewer_ready_v2/ACTIVE_PATH_REGISTRY.json`.
+
+```bash
+export CAB_STAGE2_KEY_PATH="$HOME/.cab/keys/stage2_review_ready_v2.key"
+python3 scripts/cab_review_ready_v2.py validate-private-packet
+python3 scripts/cab_review_ready_v2.py validate-stage1-packages
+python3 scripts/cab_review_ready_v2.py fixture-e2e
+python3 scripts/cab_review_ready_v2.py verify-freeze
+```
+
+Canonical documents:
+[runbook](docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md) ·
+[scientific design](docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md) ·
+[reviewer instructions](docs/STAGE1_REVIEWER_INSTRUCTIONS_V2.md) ·
+[coordinator runbook](docs/STAGE2_COORDINATOR_RUNBOOK_V2.md) ·
+[security policy](docs/PRIVATE_PACKET_SECURITY_POLICY.md).
+
+The V2 kernel is paired: each unit is a clean instance plus an intervention
+instance produced by applying exactly one executable operator to it. Intervention
+family is no longer confounded with the required response type, anchors are
+controlled repetitions rather than flags, abstention requires proved route
+exhaustion, and there is no general-purpose artifact reader in the scientific
+route.
+
+Compact-20 is a **pilot**: feasibility, protocol validation, scorer-audit basis,
+runtime calibration and effect-direction exploration. It is not confirmatory and
+is not adequately powered for broad claims. Inference applies to the fixed
+evaluated model panel unless a model-superpopulation design is separately
+preregistered. Prospective calibration shows the model x family interaction is
+underpowered across the whole SESOI grid and is designated
+secondary/exploratory, and that the raw rank-reversal probability is dominated
+by its own noise floor and is therefore not a usable estimand.
+
+Sections below this point describe earlier passes and are retained as history.
 
 ## Platform state
 

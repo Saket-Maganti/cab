@@ -1,0 +1,77 @@
+{
+  "archive_wide_secret_count": 136,
+  "leaked_values_are_never_printed": true,
+  "package_count": 3,
+  "packages": [
+    {
+      "archive_wide_hit_count": 0,
+      "checks": {
+        "archive_metadata_normalised": true,
+        "no_archive_wide_stage2_value_present": true,
+        "no_derived_gold_component_in_its_own_item": true,
+        "no_forbidden_structural_keys": true,
+        "no_forbidden_tokens": true,
+        "no_reference_key_file": true,
+        "no_source_code_shipped": true,
+        "no_stage2_value_in_a_filename": true,
+        "no_unsafe_or_hidden_paths": true
+      },
+      "file_count": 10,
+      "forbidden_structural_key_count": 0,
+      "forbidden_token_count": 0,
+      "items_value_scanned": 0,
+      "package": "qualification_packet",
+      "passed": true,
+      "per_item_derived_hit_count": 0,
+      "sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669"
+    },
+    {
+      "archive_wide_hit_count": 0,
+      "checks": {
+        "archive_metadata_normalised": true,
+        "no_archive_wide_stage2_value_present": true,
+        "no_derived_gold_component_in_its_own_item": true,
+        "no_forbidden_structural_keys": true,
+        "no_forbidden_tokens": true,
+        "no_reference_key_file": true,
+        "no_source_code_shipped": true,
+        "no_stage2_value_in_a_filename": true,
+        "no_unsafe_or_hidden_paths": true
+      },
+      "file_count": 25,
+      "forbidden_structural_key_count": 0,
+      "forbidden_token_count": 0,
+      "items_value_scanned": 20,
+      "package": "stage1_reviewer_a",
+      "passed": true,
+      "per_item_derived_hit_count": 0,
+      "sha256": "3fcd2192c68cc356b2a1506a2ca32f191caf00ccf5dc7769a87bcd47db618113"
+    },
+    {
+      "archive_wide_hit_count": 0,
+      "checks": {
+        "archive_metadata_normalised": true,
+        "no_archive_wide_stage2_value_present": true,
+        "no_derived_gold_component_in_its_own_item": true,
+        "no_forbidden_structural_keys": true,
+        "no_forbidden_tokens": true,
+        "no_reference_key_file": true,
+        "no_source_code_shipped": true,
+        "no_stage2_value_in_a_filename": true,
+        "no_unsafe_or_hidden_paths": true
+      },
+      "file_count": 25,
+      "forbidden_structural_key_count": 0,
+      "forbidden_token_count": 0,
+      "items_value_scanned": 20,
+      "package": "stage1_reviewer_b",
+      "passed": true,
+      "per_item_derived_hit_count": 0,
+      "sha256": "0185fcfbe89402e6284999fa6ed472fb0e1f90d28335a8ccfc6094e158a2d6cf"
+    }
+  ],
+  "passed": true,
+  "per_item_derived_secret_count": 20,
+  "schema_version": "cab_review_ready_v2_public_leakage_summary_v1",
+  "status": "CAB_STAGE1_LEAKAGE_AUDIT_PASSED"
+}

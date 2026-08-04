@@ -14,77 +14,77 @@
       {
         "assumed_mean_degradation": 0.03,
         "is_empirical_finding": false,
-        "kendall_mean": 0.1812,
+        "kendall_mean": 0.191,
         "kendall_p05": -0.527,
-        "mean_max_rank_shift": 2.368,
+        "mean_max_rank_shift": 2.352,
         "pairs": 20,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.9137,
-        "probability_of_tied_intervention_scores": 0.73,
-        "probability_of_top_model_identity_change": 0.6913,
-        "replicates": 800,
-        "spearman_mean": 0.2141,
-        "spearman_p05": -0.6456
+        "probability_of_meaningful_rank_reversal": 0.9092,
+        "probability_of_tied_intervention_scores": 0.725,
+        "probability_of_top_model_identity_change": 0.6858,
+        "replicates": 1200,
+        "spearman_mean": 0.2247,
+        "spearman_p05": -0.6331
       },
       {
         "assumed_mean_degradation": 0.05,
         "is_empirical_finding": false,
-        "kendall_mean": 0.2207,
-        "kendall_p05": -0.5169,
-        "mean_max_rank_shift": 2.281,
+        "kendall_mean": 0.2083,
+        "kendall_p05": -0.527,
+        "mean_max_rank_shift": 2.326,
         "pairs": 20,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.9175,
-        "probability_of_tied_intervention_scores": 0.7163,
-        "probability_of_top_model_identity_change": 0.6525,
-        "replicates": 800,
-        "spearman_mean": 0.2624,
+        "probability_of_meaningful_rank_reversal": 0.9233,
+        "probability_of_tied_intervention_scores": 0.715,
+        "probability_of_top_model_identity_change": 0.6533,
+        "replicates": 1200,
+        "spearman_mean": 0.2486,
         "spearman_p05": -0.6316
       },
       {
         "assumed_mean_degradation": 0.08,
         "is_empirical_finding": false,
-        "kendall_mean": 0.1899,
+        "kendall_mean": 0.1993,
         "kendall_p05": -0.527,
-        "mean_max_rank_shift": 2.362,
+        "mean_max_rank_shift": 2.337,
         "pairs": 20,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.9237,
-        "probability_of_tied_intervention_scores": 0.7163,
-        "probability_of_top_model_identity_change": 0.665,
-        "replicates": 800,
-        "spearman_mean": 0.2258,
+        "probability_of_meaningful_rank_reversal": 0.9208,
+        "probability_of_tied_intervention_scores": 0.7142,
+        "probability_of_top_model_identity_change": 0.6392,
+        "replicates": 1200,
+        "spearman_mean": 0.2371,
         "spearman_p05": -0.6669
       },
       {
         "assumed_mean_degradation": 0.1,
         "is_empirical_finding": false,
-        "kendall_mean": 0.1942,
+        "kendall_mean": 0.2003,
         "kendall_p05": -0.4472,
-        "mean_max_rank_shift": 2.402,
+        "mean_max_rank_shift": 2.372,
         "pairs": 20,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.9325,
-        "probability_of_tied_intervention_scores": 0.725,
-        "probability_of_top_model_identity_change": 0.6613,
-        "replicates": 800,
-        "spearman_mean": 0.231,
-        "spearman_p05": -0.5643
+        "probability_of_meaningful_rank_reversal": 0.9267,
+        "probability_of_tied_intervention_scores": 0.7308,
+        "probability_of_top_model_identity_change": 0.65,
+        "replicates": 1200,
+        "spearman_mean": 0.238,
+        "spearman_p05": -0.5735
       },
       {
         "assumed_mean_degradation": 0.15,
         "is_empirical_finding": false,
-        "kendall_mean": 0.2057,
+        "kendall_mean": 0.1995,
         "kendall_p05": -0.504,
-        "mean_max_rank_shift": 2.373,
+        "mean_max_rank_shift": 2.367,
         "pairs": 20,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.9363,
-        "probability_of_tied_intervention_scores": 0.7262,
-        "probability_of_top_model_identity_change": 0.6525,
-        "replicates": 800,
-        "spearman_mean": 0.2433,
-        "spearman_p05": -0.631
+        "probability_of_meaningful_rank_reversal": 0.9292,
+        "probability_of_tied_intervention_scores": 0.7217,
+        "probability_of_top_model_identity_change": 0.6575,
+        "replicates": 1200,
+        "spearman_mean": 0.2358,
+        "spearman_p05": -0.6325
       }
     ],
     "status": "PILOT_FEASIBILITY_PROTOCOL_VALIDATION_SCORER_AUDIT_RUNTIME_CALIBRATION_EFFECT_DIRECTION_ONLY"
@@ -99,14 +99,14 @@
         "alpha": 0.05,
         "assumed_mean_degradation": 0.03,
         "designation": "secondary_exploratory",
-        "estimated_power": 0.0451,
+        "estimated_power": 0.065,
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
-        "null_rejection_rate": 0.0376,
+        "null_rejection_rate": 0.03,
         "pairs": 100,
         "permutations": 199,
         "repeats_per_pair": 3,
-        "replicates": 133,
+        "replicates": 200,
         "test": "within-design permutation of family labels across items",
         "test_calibrated_under_null": true
       },
@@ -114,14 +114,14 @@
         "alpha": 0.05,
         "assumed_mean_degradation": 0.05,
         "designation": "secondary_exploratory",
-        "estimated_power": 0.0526,
+        "estimated_power": 0.045,
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
-        "null_rejection_rate": 0.0376,
+        "null_rejection_rate": 0.03,
         "pairs": 100,
         "permutations": 199,
         "repeats_per_pair": 3,
-        "replicates": 133,
+        "replicates": 200,
         "test": "within-design permutation of family labels across items",
         "test_calibrated_under_null": true
       },
@@ -129,14 +129,14 @@
         "alpha": 0.05,
         "assumed_mean_degradation": 0.08,
         "designation": "secondary_exploratory",
-        "estimated_power": 0.0451,
+        "estimated_power": 0.05,
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
-        "null_rejection_rate": 0.0451,
+        "null_rejection_rate": 0.035,
         "pairs": 100,
         "permutations": 199,
         "repeats_per_pair": 3,
-        "replicates": 133,
+        "replicates": 200,
         "test": "within-design permutation of family labels across items",
         "test_calibrated_under_null": true
       },
@@ -144,14 +144,14 @@
         "alpha": 0.05,
         "assumed_mean_degradation": 0.1,
         "designation": "secondary_exploratory",
-        "estimated_power": 0.0451,
+        "estimated_power": 0.065,
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
-        "null_rejection_rate": 0.0301,
+        "null_rejection_rate": 0.025,
         "pairs": 100,
         "permutations": 199,
         "repeats_per_pair": 3,
-        "replicates": 133,
+        "replicates": 200,
         "test": "within-design permutation of family labels across items",
         "test_calibrated_under_null": true
       },
@@ -159,14 +159,14 @@
         "alpha": 0.05,
         "assumed_mean_degradation": 0.15,
         "designation": "secondary_exploratory",
-        "estimated_power": 0.0977,
+        "estimated_power": 0.1,
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
-        "null_rejection_rate": 0.0301,
+        "null_rejection_rate": 0.025,
         "pairs": 100,
         "permutations": 199,
         "repeats_per_pair": 3,
-        "replicates": 133,
+        "replicates": 200,
         "test": "within-design permutation of family labels across items",
         "test_calibrated_under_null": true
       }
@@ -186,9 +186,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 20,
-        "panel_average_power": 0.1278,
+        "panel_average_power": 0.1275,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -197,9 +197,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 20,
-        "panel_average_power": 0.1955,
+        "panel_average_power": 0.2,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -208,9 +208,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 20,
-        "panel_average_power": 0.3008,
+        "panel_average_power": 0.295,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -219,9 +219,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 20,
-        "panel_average_power": 0.3797,
+        "panel_average_power": 0.3725,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -230,9 +230,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 20,
-        "panel_average_power": 0.6391,
+        "panel_average_power": 0.635,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       }
     ],
     "design": "scale100",
@@ -247,9 +247,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 100,
-        "panel_average_power": 0.2368,
+        "panel_average_power": 0.2275,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -258,9 +258,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 100,
-        "panel_average_power": 0.4023,
+        "panel_average_power": 0.4075,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -269,9 +269,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": false,
         "pairs": 100,
-        "panel_average_power": 0.718,
+        "panel_average_power": 0.725,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -280,9 +280,9 @@
         "is_empirical_finding": false,
         "meets_confirmatory_adequacy": true,
         "pairs": 100,
-        "panel_average_power": 0.8647,
+        "panel_average_power": 0.8775,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       },
       {
         "alpha": 0.05,
@@ -293,7 +293,7 @@
         "pairs": 100,
         "panel_average_power": 1.0,
         "repeats_per_pair": 1,
-        "replicates": 266
+        "replicates": 400
       }
     ]
   },
@@ -306,10 +306,10 @@
       "min_rank_shift": 1
     },
     "noise_floor": {
-      "compact20_excess_over_floor_at_largest_effect": 0.0313,
-      "compact20_zero_degradation_reversal_probability": 0.905,
-      "scale100_excess_over_floor_at_largest_effect": 0.0125,
-      "scale100_zero_degradation_reversal_probability": 0.8275
+      "compact20_excess_over_floor_at_largest_effect": 0.0184,
+      "compact20_zero_degradation_reversal_probability": 0.9108,
+      "scale100_excess_over_floor_at_largest_effect": 0.0166,
+      "scale100_zero_degradation_reversal_probability": 0.8217
     },
     "prospectively_calibrated": true,
     "raw_reversal_probability_is_a_usable_estimand": false,
@@ -319,10 +319,10 @@
           0.15
         ],
         "compact20_reversal_probability": [
-          0.9363
+          0.9292
         ],
         "scale100_reversal_probability": [
-          0.84
+          0.8383
         ]
       },
       "medium": {
@@ -331,12 +331,12 @@
           0.1
         ],
         "compact20_reversal_probability": [
-          0.9237,
-          0.9325
+          0.9208,
+          0.9267
         ],
         "scale100_reversal_probability": [
-          0.855,
-          0.8275
+          0.8267,
+          0.8283
         ]
       },
       "small": {
@@ -345,12 +345,12 @@
           0.05
         ],
         "compact20_reversal_probability": [
-          0.9137,
-          0.9175
+          0.9092,
+          0.9233
         ],
         "scale100_reversal_probability": [
-          0.8263,
-          0.8337
+          0.82,
+          0.8408
         ]
       }
     }
@@ -364,76 +364,76 @@
       {
         "assumed_mean_degradation": 0.03,
         "is_empirical_finding": false,
-        "kendall_mean": 0.4963,
+        "kendall_mean": 0.5052,
         "kendall_p05": -0.1054,
-        "mean_max_rank_shift": 1.75,
+        "mean_max_rank_shift": 1.728,
         "pairs": 100,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.8263,
+        "probability_of_meaningful_rank_reversal": 0.82,
         "probability_of_tied_intervention_scores": 0.3,
-        "probability_of_top_model_identity_change": 0.5088,
-        "replicates": 800,
-        "spearman_mean": 0.5856,
-        "spearman_p05": -0.0821
+        "probability_of_top_model_identity_change": 0.5133,
+        "replicates": 1200,
+        "spearman_mean": 0.5963,
+        "spearman_p05": -0.0513
       },
       {
         "assumed_mean_degradation": 0.05,
         "is_empirical_finding": false,
-        "kendall_mean": 0.5023,
+        "kendall_mean": 0.4985,
         "kendall_p05": -0.0053,
-        "mean_max_rank_shift": 1.711,
+        "mean_max_rank_shift": 1.732,
         "pairs": 100,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.8337,
-        "probability_of_tied_intervention_scores": 0.2888,
-        "probability_of_top_model_identity_change": 0.4963,
-        "replicates": 800,
-        "spearman_mean": 0.5976,
+        "probability_of_meaningful_rank_reversal": 0.8408,
+        "probability_of_tied_intervention_scores": 0.2792,
+        "probability_of_top_model_identity_change": 0.5,
+        "replicates": 1200,
+        "spearman_mean": 0.5934,
         "spearman_p05": -0.0513
       },
       {
         "assumed_mean_degradation": 0.08,
         "is_empirical_finding": false,
-        "kendall_mean": 0.4895,
+        "kendall_mean": 0.5079,
         "kendall_p05": 0.0,
-        "mean_max_rank_shift": 1.776,
+        "mean_max_rank_shift": 1.719,
         "pairs": 100,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.855,
-        "probability_of_tied_intervention_scores": 0.2825,
-        "probability_of_top_model_identity_change": 0.4938,
-        "replicates": 800,
-        "spearman_mean": 0.5791,
-        "spearman_p05": -0.0513
+        "probability_of_meaningful_rank_reversal": 0.8267,
+        "probability_of_tied_intervention_scores": 0.29,
+        "probability_of_top_model_identity_change": 0.4833,
+        "replicates": 1200,
+        "spearman_mean": 0.5977,
+        "spearman_p05": 0.0
       },
       {
         "assumed_mean_degradation": 0.1,
         "is_empirical_finding": false,
-        "kendall_mean": 0.5172,
+        "kendall_mean": 0.5049,
         "kendall_p05": 0.0,
-        "mean_max_rank_shift": 1.677,
+        "mean_max_rank_shift": 1.726,
         "pairs": 100,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.8275,
-        "probability_of_tied_intervention_scores": 0.2875,
-        "probability_of_top_model_identity_change": 0.4913,
-        "replicates": 800,
-        "spearman_mean": 0.6096,
+        "probability_of_meaningful_rank_reversal": 0.8283,
+        "probability_of_tied_intervention_scores": 0.2858,
+        "probability_of_top_model_identity_change": 0.4975,
+        "replicates": 1200,
+        "spearman_mean": 0.5968,
         "spearman_p05": -0.0513
       },
       {
         "assumed_mean_degradation": 0.15,
         "is_empirical_finding": false,
-        "kendall_mean": 0.5098,
+        "kendall_mean": 0.5142,
         "kendall_p05": 0.0,
-        "mean_max_rank_shift": 1.724,
+        "mean_max_rank_shift": 1.698,
         "pairs": 100,
         "panel_size": 5,
-        "probability_of_meaningful_rank_reversal": 0.84,
-        "probability_of_tied_intervention_scores": 0.3,
-        "probability_of_top_model_identity_change": 0.46,
-        "replicates": 800,
-        "spearman_mean": 0.6036,
+        "probability_of_meaningful_rank_reversal": 0.8383,
+        "probability_of_tied_intervention_scores": 0.2958,
+        "probability_of_top_model_identity_change": 0.4667,
+        "replicates": 1200,
+        "spearman_mean": 0.6078,
         "spearman_p05": 0.0
       }
     ]

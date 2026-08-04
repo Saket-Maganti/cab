@@ -1,0 +1,92 @@
+{
+  "counts_as_genuine_evidence": false,
+  "evidence_class": "SYNTHETIC_TEST_FIXTURE_NOT_HUMAN_EVIDENCE",
+  "genuine_human_judgments": 0,
+  "genuine_model_trajectories": 0,
+  "passed": true,
+  "schema_version": "cab_review_ready_v2_fixture_e2e_v1",
+  "status": "CAB_TWO_STAGE_WORKFLOW_E2E_FIXTURE_VALIDATED",
+  "step_count": 16,
+  "steps": [
+    {
+      "detail": "",
+      "passed": true,
+      "step": "fixture_packet_generation"
+    },
+    {
+      "detail": "independent item order",
+      "passed": true,
+      "step": "stage1_package_generation"
+    },
+    {
+      "detail": "both fixture reviewers qualified",
+      "passed": true,
+      "step": "qualification_fixture"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "stage1_fixture_ingestion"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "stage1_commitment"
+    },
+    {
+      "detail": "wrong key refused",
+      "passed": true,
+      "step": "stage2_fixture_vault_roundtrip"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "stage2_fixture_unlock"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "stage2_fixture_ingestion"
+    },
+    {
+      "detail": "1 disputed pair(s)",
+      "passed": true,
+      "step": "disagreement_queue"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "fixture_adjudication"
+    },
+    {
+      "detail": "raw=0.9844",
+      "passed": true,
+      "step": "agreement_computed"
+    },
+    {
+      "detail": "mechanics pass, genuine C10 still pending",
+      "passed": true,
+      "step": "c10_fixture_evaluation"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "fixture_slice_lock"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "fixture_execution_authorization"
+    },
+    {
+      "detail": "fixture receipts refused as genuine evidence",
+      "passed": true,
+      "step": "production_gates_reject_fixture_receipts"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "fixture_status_reports_pending"
+    }
+  ]
+}

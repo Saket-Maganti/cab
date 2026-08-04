@@ -1,0 +1,66 @@
+{
+  "baseline_head": "267491d96a4d9746c35b404272cb021e2dca83ad",
+  "branch": "main",
+  "contains_private_content": false,
+  "known_blockers_at_baseline": [
+    "final-private Compact-20 was not represented as explicit clean/intervention pairs",
+    "twenty unique tasks meant unique identifiers, not twenty semantically distinct objectives",
+    "the four claimed anchors were boolean flags on unrelated rows",
+    "intervention family was perfectly confounded with the required response type",
+    "several interventions were declarations rather than environment transformations",
+    "observation conflict did not always inject an executable conflict",
+    "memory corruption did not always corrupt a valid task-critical predecessor field",
+    "tool removal could force abstention while another legitimate route remained",
+    "tool-failure recovery leaned on a general read_file-style oracle fallback",
+    "abstention was not proved by route exhaustion",
+    "Stage-1 packages exposed too little structure to assess intervention validity",
+    "Stage-1 packages contained no structured review form",
+    "the two-stage workflow was not connected end to end",
+    "commands and canonical docs still defaulted to retired exposed review paths",
+    "Stage-2 plaintext and its key coexisted in the same archive",
+    "the uploaded worktree was not clean",
+    "no external exact-commit release attestation existed",
+    "distribution hashes did not substantiate the hashes quoted in the prior handoff",
+    "Compact-20 was not labelled a pilot",
+    "the central rank-instability claim had no prospective calibration",
+    "fixed-panel inference was not stated explicitly",
+    "interaction power was below conventional confirmatory adequacy",
+    "builder-authored reports claimed completion before deeper invariants held"
+  ],
+  "preexisting_state_found": {
+    "external_exact_commit_attestation_present": false,
+    "prior_private_packet_versions_found": [
+      "compact20-final-private-v1"
+    ],
+    "stage2_plaintext_beside_its_own_key": true,
+    "stage2_plaintext_path_class": "prior packet stage2 directory"
+  },
+  "private_backup": {
+    "contents": [
+      "private_data tree",
+      "prior reviewer archives",
+      "prior Stage-2 material",
+      "prior freeze reports"
+    ],
+    "file_count": 740,
+    "inventory_sha256": "96b1ca33e9c4d0628ebffa12cf047c0c43dd1e1864aff44729bc8c361ece47ae",
+    "outside_repository": true,
+    "path": "~/.cab/private_backups/20260804T131155Z",
+    "permissions": "0700 directories, 0600 files",
+    "private_filenames_not_published": true
+  },
+  "remotes": [
+    "origin"
+  ],
+  "schema_version": "cab_review_ready_v2_baseline_audit_v1",
+  "status": "CAB_REVIEWER_READY_V2_BASELINE_RECORDED",
+  "worktree_at_start": {
+    "resolution": "restored to HEAD; no scientific content was discarded",
+    "tracked_modification_nature": "regenerated timestamps, run counters and environment snapshots only",
+    "tracked_modifications_were_scientifically_meaningful": false,
+    "tracked_modified_files": 19,
+    "untracked_entries": 13,
+    "untracked_nature": "prompt packs under the already-tracked promptpacks/ surface, plus one report",
+    "untracked_resolution": "committed as part of this repair because promptpacks/ is an intended tracked surface"
+  }
+}

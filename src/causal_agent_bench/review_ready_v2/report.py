@@ -213,10 +213,13 @@ def build_readiness_report(
         "CAB_CANONICAL_PATHS_UPDATED": paths["passed"],
         "CAB_RETIRED_PACKETS_BLOCKED": retirement["passed"],
         "CAB_SCIENTIFIC_FREEZE_V2_VALID": freeze["passed"],
-        "CAB_EXACT_COMMIT_ATTESTATION_CREATED": attestation["passed"],
         "CAB_ROUTE_HOSTILE_AUDIT_PASSED": hostile["passed"],
         "CAB_POWER_PLAN_CALIBRATED": power["status"] == "CAB_POWER_PLAN_CALIBRATED",
     }
+    # The exact-commit attestation is deliberately NOT a tracked gate: a receipt
+    # cannot truthfully live inside the commit it attests. The repository tracks
+    # the policy; the receipt itself is written outside after the final commit
+    # and verified with `verify-attestation`.
     ready = all(gates.values())
     return {
         "schema_version": "cab_review_ready_v2_readiness_report_v1",
@@ -240,6 +243,19 @@ def build_readiness_report(
             "stage2_key_environment_variable": commitment["stage2_key_environment_variable"],
             "stage2_key_stored_in_repository": False,
         },
+        "external_exact_commit_attestation": {
+            "required_before_distribution": True,
+            "tracked_policy": "reports/reviewer_ready_v2/ATTESTATION_POLICY.json",
+            "why_not_tracked": (
+                "An exact-commit attestation cannot be committed inside the commit it attests, so "
+                "it is written outside the repository after the final tracked commit."
+            ),
+            "verify_with": "python3 scripts/cab_review_ready_v2.py verify-attestation",
+            "status_when_this_report_was_generated": attestation["status"],
+            "present_when_this_report_was_generated": attestation.get(
+                "attestation_present", False
+            ),
+        },
         "audits": {
             "design": design["status"],
             "isolation": isolation["status"],
@@ -251,7 +267,6 @@ def build_readiness_report(
             "fixture_e2e": fixture["status"],
             "retirement_enforcement": retirement["status"],
             "scientific_freeze": freeze["status"],
-            "attestation": attestation["status"],
         },
         "scientific_scope": {
             "compact20_label": COMPACT_LABEL,
@@ -327,6 +342,20 @@ def readiness_markdown(report: dict[str, Any]) -> str:
             f"{row['clarification']} | {row['abstention']} |"
         )
     lines += [
+        "",
+        "## External exact-commit attestation",
+        "",
+        "An exact-commit attestation cannot be committed inside the commit it attests. The",
+        "repository tracks the policy at `reports/reviewer_ready_v2/ATTESTATION_POLICY.json`;",
+        "the receipt is written outside the repository after the final tracked commit. Verify",
+        "it with:",
+        "",
+        "```bash",
+        "python3 scripts/cab_review_ready_v2.py verify-attestation",
+        "```",
+        "",
+        f"Status when this report was generated: "
+        f"`{report['external_exact_commit_attestation']['status_when_this_report_was_generated']}`",
         "",
         "## Audits",
         "",

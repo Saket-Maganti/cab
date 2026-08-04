@@ -53,12 +53,30 @@ engineering validation only. Genuine human review, live model evidence,
 independent reproduction and external evaluator/community pilots remain
 mandatory for `CAB_LEVEL5_COMPLETE`.
 
-The Compact-20 packet is now an immutable two-stage workflow backed by 20
-inspectable controlled-evidence bundles. Static reachability, executable
-reachability, gold reconstruction, intervention isolation, fixture approval,
-and hierarchical power validation are separate commands. An approved-looking
-path or Boolean is never live authorization; scientific execution requires a
-trusted content-bound cryptographic receipt after genuine C10.
+### Compact-20 reviewer-ready V2
+
+The active review packet is `compact20-review-ready-v2`. Its unit of evaluation
+is an explicit **pair**: a clean instance plus an intervention instance produced
+by applying exactly one executable environment operator to it. Intervention
+family is deconfounded from the required response type, the four anchors are
+controlled repetitions of real objectives, abstention requires proved route
+exhaustion, and no general-purpose artifact reader exists in the scientific
+route. Stage-2 material is encrypted with a key that must live outside the
+repository.
+
+```bash
+export CAB_STAGE2_KEY_PATH="$HOME/.cab/keys/stage2_review_ready_v2.key"
+python3 scripts/cab_review_ready_v2.py validate-private-packet
+python3 scripts/cab_review_ready_v2.py fixture-e2e
+```
+
+Every earlier Compact packet is retired and rejected in code at ingestion, C10,
+slice lock and execution authorization. See the
+[human review runbook](docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md) and the
+[V2 scientific design](docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md).
+
+Compact-20 is a pilot, not a confirmatory design. No genuine human review has
+occurred, C10 is `C10_PENDING_GENUINE_REVIEW`, and model execution is blocked.
 
 ## Quick safe demo
 
