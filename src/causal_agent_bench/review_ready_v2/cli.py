@@ -1,8 +1,13 @@
 """Canonical CLI for the reviewer-ready V2 packet and two-stage review workflow.
 
 Output is always public-safe: statuses, counts and hashes.  No command prints a
-prompt, a record, an answer, a route label, a private identifier, or Stage-2
-content, and no command performs model execution or genuine human review.
+prompt, a record, an answer, a route label, a private identifier, a reviewer
+pseudonym, or Stage-2 content, and no command performs model execution or genuine
+human review.
+
+Reviewer roles are given as ``--role``.  Any accepted spelling is normalized to
+the canonical enum ``REVIEWER_A`` / ``REVIEWER_B`` / ``ADJUDICATOR`` before it is
+used, and there are no reviewer-id defaults to disagree with each other.
 """
 
 from __future__ import annotations
@@ -16,22 +21,49 @@ from pathlib import Path
 from typing import Any
 
 from causal_agent_bench.review_ready_v2 import PACKET_VERSION
+from causal_agent_bench.review_ready_v2.adjudication import STAGE1, STAGE2, adjudication_package
+from causal_agent_bench.review_ready_v2.assignments import (
+    AssignmentError,
+    create_assignment,
+    load_assignments,
+    public_assignment_summary,
+    verify_registry_complete,
+)
 from causal_agent_bench.review_ready_v2.common import read_json, sha256_bytes, write_json
+from causal_agent_bench.review_ready_v2.declarations import DeclarationError
 from causal_agent_bench.review_ready_v2.design import design_audit
 from causal_agent_bench.review_ready_v2.fixture_e2e import run_fixture_e2e
 from causal_agent_bench.review_ready_v2.freeze import (
     attestation_policy,
     build_freeze,
     current_head,
+    generator_provenance,
     verify_attestation,
     verify_freeze,
 )
 from causal_agent_bench.review_ready_v2.hostile import hostile_route_audit
+from causal_agent_bench.review_ready_v2.keys import ExternalKeyError
 from causal_agent_bench.review_ready_v2.leakage import stage1_leakage_audit, usability_audit
 from causal_agent_bench.review_ready_v2.operators import isolation_audit
-from causal_agent_bench.review_ready_v2.packet import build_packet, load_pairs, private_root_for
+from causal_agent_bench.review_ready_v2.packet import (
+    build_packet,
+    load_pairs,
+    private_root_for,
+    write_qualification_packages,
+)
 from causal_agent_bench.review_ready_v2.power import build_power_plan
-from causal_agent_bench.review_ready_v2.qualification import build_qualification_package
+from causal_agent_bench.review_ready_v2.qualification import (
+    QUALIFICATION_KEY_ENV,
+    QUALIFICATION_SCHEMA_VERSION,
+    QualificationError,
+    load_qualification_keys,
+    retired_qualification_registry,
+)
+from causal_agent_bench.review_ready_v2.receipts import (
+    COORDINATOR_KEY_ENV,
+    ReceiptError,
+    coordinator_key_available,
+)
 from causal_agent_bench.review_ready_v2.registry import (
     active_path_registry,
     retired_packet_registry,
@@ -47,8 +79,20 @@ from causal_agent_bench.review_ready_v2.report import (
     public_route_summary,
     readiness_markdown,
 )
+from causal_agent_bench.review_ready_v2.roles import (
+    CANONICAL_ROLES,
+    REVIEW_ROLES,
+    RoleError,
+    normalize_role,
+    package_basename,
+)
 from causal_agent_bench.review_ready_v2.routes import validate_pair_routes
 from causal_agent_bench.review_ready_v2.stage1 import build_stage1_package, zip_bytes
+from causal_agent_bench.review_ready_v2.stage2 import (
+    STAGE2_REVIEWER_INSTRUCTIONS,
+    acceptance_policy,
+    stage2_form_template,
+)
 from causal_agent_bench.review_ready_v2.vault import (
     KEY_ENV,
     VaultError,
@@ -58,24 +102,33 @@ from causal_agent_bench.review_ready_v2.vault import (
     vault_status,
 )
 from causal_agent_bench.review_ready_v2.workflow import (
-    STAGE2_FORM_COLUMNS,
     ReviewWorkspace,
+    WorkflowError,
     authorize_model_execution,
     build_exclusion_register,
     lock_reviewed_slice,
-    parse_review_csv,
     run_c10,
-    validate_stage1_submission,
-    validate_stage2_submission,
     workflow_status,
 )
 
 REPORT_DIR = "reports/reviewer_ready_v2"
-REVIEWERS = ("stage1_reviewer_a", "stage1_reviewer_b")
 
 
 def _emit(payload: dict[str, Any]) -> None:
     print(json.dumps(payload, indent=2, sort_keys=True))
+
+
+def _require(args: argparse.Namespace, *names: str) -> None:
+    missing = sorted(name for name in names if getattr(args, name.replace("-", "_"), None) is None)
+    if missing:
+        raise SystemExit(
+            "missing required argument(s): " + ", ".join(f"--{name}" for name in missing)
+        )
+
+
+def _role(args: argparse.Namespace) -> str:
+    _require(args, "role")
+    return normalize_role(args.role)
 
 
 def _seed(repo_root: Path, explicit: str | None) -> bytes:
@@ -93,18 +146,45 @@ def _seed(repo_root: Path, explicit: str | None) -> bytes:
     )
 
 
+def _private_root(repo_root: Path, args: argparse.Namespace) -> Path:
+    return Path(args.private_root) if args.private_root else private_root_for(repo_root)
+
+
 def _mappings(private_root: Path) -> dict[str, dict[str, str]]:
+    """Reviewer-item to pair mappings, keyed by the canonical role."""
+
     mappings: dict[str, dict[str, str]] = {}
-    for role in REVIEWERS:
-        path = private_root / "mappings" / f"{role}_mapping.json"
+    for role in REVIEW_ROLES:
+        path = private_root / "mappings" / f"{package_basename(role)}_mapping.json"
         if path.is_file():
             mappings[role] = read_json(path)["reviewer_item_to_pair"]
     return mappings
 
 
 def _workspace(repo_root: Path, args: argparse.Namespace) -> ReviewWorkspace:
-    root = Path(args.private_root) if args.private_root else private_root_for(repo_root)
-    return ReviewWorkspace(root, fixture=bool(getattr(args, "fixture", False)))
+    root = _private_root(repo_root, args)
+    if getattr(args, "fixture", False):
+        return ReviewWorkspace.fixture(root)
+    return ReviewWorkspace.production(root, repo_root)
+
+
+def _stage2_records(repo_root: Path, private_root: Path) -> dict[str, dict[str, Any]]:
+    _, key = load_key(repo_root)
+    vault = (private_root / "stage2" / "stage2_vault.enc").read_bytes()
+    return {str(row["pair_id"]): row for row in unseal(vault, key)}
+
+
+def _applicability_by_pair(repo_root: Path, private_root: Path) -> dict[str, dict[str, bool]]:
+    return {
+        pair_id: dict(record["stage2_dimension_applicability"])
+        for pair_id, record in _stage2_records(repo_root, private_root).items()
+    }
+
+
+def _qualification_keys(repo_root: Path, private_root: Path) -> dict[str, Any]:
+    return load_qualification_keys(
+        private_root / "qualification" / "qualification_key.enc", repo_root
+    )
 
 
 # --------------------------------------------------------------------------
@@ -126,7 +206,7 @@ def cmd_generate_private_packet(repo_root: Path, args: argparse.Namespace) -> di
 
 
 def cmd_validate_private_packet(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
-    private_root = Path(args.private_root) if args.private_root else private_root_for(repo_root)
+    private_root = _private_root(repo_root, args)
     pairs = load_pairs(private_root)
     design = design_audit(pairs)
     isolation = [
@@ -151,38 +231,57 @@ def cmd_validate_private_packet(repo_root: Path, args: argparse.Namespace) -> di
 
 def cmd_generate_stage1_packages(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     seed = _seed(repo_root, args.seed)
-    private_root = Path(args.private_root) if args.private_root else private_root_for(repo_root)
+    private_root = _private_root(repo_root, args)
     pairs = load_pairs(private_root)
     hashes: dict[str, str] = {}
-    for role in REVIEWERS:
-        payload, mapping, _ = build_stage1_package(pairs, seed, role)
-        target = private_root / "stage1" / f"{role}.zip"
+    for role in REVIEW_ROLES:
+        basename = package_basename(role)
+        payload, mapping, _ = build_stage1_package(pairs, seed, basename)
+        target = private_root / "stage1" / f"{basename}.zip"
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(payload)
         target.chmod(0o600)
-        write_json(private_root / "mappings" / f"{role}_mapping.json", {"reviewer_item_to_pair": mapping})
-        hashes[f"{role}.zip"] = sha256_bytes(payload)
-    qualification = build_qualification_package()
-    (private_root / "qualification" / "qualification_packet.zip").write_bytes(qualification)
+        write_json(
+            private_root / "mappings" / f"{basename}_mapping.json",
+            {"reviewer_item_to_pair": mapping},
+        )
+        hashes[role] = sha256_bytes(payload)
+    return {"status": "CAB_STAGE1_PACKAGES_READY", "stage1_package_hashes": hashes}
+
+
+def cmd_generate_private_qualification_packages(
+    repo_root: Path, args: argparse.Namespace
+) -> dict[str, Any]:
+    seed = _seed(repo_root, args.seed)
+    private_root = _private_root(repo_root, args)
+    manifest = write_qualification_packages(
+        private_root / "qualification", repo_root, seed=seed
+    )
     return {
-        "status": "CAB_STAGE1_PACKAGES_READY",
-        "stage1_package_hashes": hashes,
-        "qualification_package_sha256": sha256_bytes(qualification),
+        "status": "CAB_PRIVATE_QUALIFICATION_PACKAGES_READY",
+        "qualification_version": manifest["qualification_version"],
+        "qualification_package_hashes": {
+            role: row["sha256"] for role, row in manifest["packages"].items()
+        },
+        "encrypted_key_sha256": manifest["encrypted_key_sha256"],
+        "answer_key_environment_variable": QUALIFICATION_KEY_ENV,
+        "plaintext_answer_key_persisted": False,
     }
 
 
 def cmd_validate_stage1_packages(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
-    private_root = Path(args.private_root) if args.private_root else private_root_for(repo_root)
+    private_root = _private_root(repo_root, args)
     pairs = load_pairs(private_root)
-    packages = {
-        role: (private_root / "stage1" / f"{role}.zip").read_bytes()
-        for role in REVIEWERS
-        if (private_root / "stage1" / f"{role}.zip").is_file()
-    }
-    qualification_path = private_root / "qualification" / "qualification_packet.zip"
-    if qualification_path.is_file():
-        packages["qualification_packet"] = qualification_path.read_bytes()
-    leakage = stage1_leakage_audit(packages, pairs, _mappings(private_root))
+    packages: dict[str, bytes] = {}
+    for role in REVIEW_ROLES:
+        basename = package_basename(role)
+        path = private_root / "stage1" / f"{basename}.zip"
+        if path.is_file():
+            packages[basename] = path.read_bytes()
+        qualification = private_root / "qualification" / f"qualification_{role.casefold()}.zip"
+        if qualification.is_file():
+            packages[f"qualification_{role.casefold()}"] = qualification.read_bytes()
+    leakage = stage1_leakage_audit(packages, pairs, _mappings_by_basename(private_root))
     usability = usability_audit(packages)
     return {
         "leakage": public_leakage_summary(leakage),
@@ -191,46 +290,137 @@ def cmd_validate_stage1_packages(repo_root: Path, args: argparse.Namespace) -> d
     }
 
 
+def _mappings_by_basename(private_root: Path) -> dict[str, dict[str, str]]:
+    return {
+        package_basename(role): mapping for role, mapping in _mappings(private_root).items()
+    }
+
+
 # --------------------------------------------------------------------------
-# two-stage workflow
+# reviewer assignment, declarations, qualification
 # --------------------------------------------------------------------------
 
 
-def cmd_ingest_reviewer_qualification(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+def cmd_create_reviewer_assignment(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    role = _role(args)
+    _require(args, "pseudonym")
+    private_root = _private_root(repo_root, args)
+    stage1_hash = qualification_hash = None
+    if role in REVIEW_ROLES:
+        stage1_path = private_root / "stage1" / f"{package_basename(role)}.zip"
+        qualification_path = (
+            private_root / "qualification" / f"qualification_{role.casefold()}.zip"
+        )
+        for label, path in (("Stage-1", stage1_path), ("qualification", qualification_path)):
+            if not path.is_file():
+                raise SystemExit(
+                    f"the {label} package for {role} does not exist yet: generate it first"
+                )
+        stage1_hash = sha256_bytes(stage1_path.read_bytes())
+        qualification_hash = sha256_bytes(qualification_path.read_bytes())
+    assignment = create_assignment(
+        private_root,
+        packet_version=PACKET_VERSION,
+        reviewer_pseudonym=args.pseudonym,
+        role=role,
+        stage1_package_hash=stage1_hash,
+        qualification_package_hash=qualification_hash,
+    )
+    return {
+        "status": "CAB_REVIEWER_ASSIGNMENT_CREATED",
+        "reviewer_role": assignment["reviewer_role"],
+        "stage1_package_hash": assignment["stage1_package_hash"],
+        "qualification_package_hash": assignment["qualification_package_hash"],
+        "opaque_id_namespace": assignment["stage1_opaque_id_namespace"],
+        "assignment_sha256": assignment["assignment_sha256"],
+        "reviewer_pseudonym_published": False,
+    }
+
+
+def cmd_show_reviewer_assignments(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    registry = load_assignments(_private_root(repo_root, args), packet_version=PACKET_VERSION)
+    return {
+        "status": "CAB_REVIEWER_ASSIGNMENTS",
+        **public_assignment_summary(registry),
+        "completeness": verify_registry_complete(registry),
+    }
+
+
+def cmd_ingest_reviewer_declaration(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    role = _role(args)
+    _require(args, "declaration")
     workspace = _workspace(repo_root, args)
-    submission = read_json(Path(args.submission))
-    receipt = workspace.ingest_qualification(args.reviewer_id, submission)
-    return {"status": "REVIEWER_QUALIFIED", "receipt_sha256": receipt["receipt_sha256"]}
+    receipt = workspace.ingest_declaration(role, read_json(Path(args.declaration)))
+    return {
+        "status": "REVIEWER_DECLARATION_RECORDED",
+        "reviewer_role": role,
+        "declaration_sha256": receipt["declaration_sha256"],
+        "requires_coordinator_review": receipt["requires_coordinator_review"],
+        "next_step": "accept-reviewer-declaration"
+        if receipt["requires_coordinator_review"]
+        else "score-private-qualification",
+    }
+
+
+def cmd_accept_reviewer_declaration(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    role = _role(args)
+    _require(args, "decision", "rationale")
+    workspace = _workspace(repo_root, args)
+    receipt = workspace.accept_declaration(
+        role, decision=str(args.decision).upper(), rationale=args.rationale
+    )
+    return {
+        "status": "CAB_DECLARATION_DECISION_RECORDED",
+        "reviewer_role": role,
+        "coordinator_review_decision": receipt["coordinator_review_decision"],
+    }
+
+
+def cmd_score_private_qualification(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    role = _role(args)
+    _require(args, "submission")
+    workspace = _workspace(repo_root, args)
+    keys = _qualification_keys(repo_root, workspace.private_root)
+    if role not in keys:
+        raise SystemExit(f"the encrypted qualification key holds no answers for {role}")
+    receipt = workspace.ingest_qualification(
+        role, read_json(Path(args.submission)), keys[role],
+        qualification_version=QUALIFICATION_SCHEMA_VERSION,
+    )
+    return {
+        "status": "REVIEWER_QUALIFIED",
+        "reviewer_role": role,
+        "rate": receipt["rate"],
+        "threshold": receipt["threshold"],
+        "receipt_sha256": receipt["receipt_sha256"],
+        "answer_key_disclosed": False,
+    }
+
+
+# --------------------------------------------------------------------------
+# Stage 1
+# --------------------------------------------------------------------------
 
 
 def cmd_ingest_stage1(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    role = _role(args)
+    _require(args, "submission")
     workspace = _workspace(repo_root, args)
     private_root = workspace.private_root
-    mapping = _mappings(private_root)[args.package_role]
-    package = (private_root / "stage1" / f"{args.package_role}.zip").read_bytes()
+    mapping = _mappings(private_root)[role]
+    package = (private_root / "stage1" / f"{package_basename(role)}.zip").read_bytes()
     receipt = workspace.ingest_stage1(
-        args.reviewer_id,
+        role,
         Path(args.submission).read_bytes(),
         expected_item_ids=sorted(mapping),
         package_sha256=sha256_bytes(package),
     )
-    return {"status": "STAGE1_SUBMISSION_RECORDED", "submission_sha256": receipt["submission_sha256"]}
-
-
-def cmd_validate_stage1_submissions(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
-    private_root = (
-        Path(args.private_root) if args.private_root else private_root_for(repo_root)
-    )
-    mappings = _mappings(private_root)
-    rows = parse_review_csv(Path(args.submission).read_bytes(), tuple(_stage1_columns()))
-    validation = validate_stage1_submission(rows, sorted(mappings[args.package_role]))
-    return {"status": "STAGE1_SUBMISSION_VALID" if validation["passed"] else "STAGE1_SUBMISSION_INVALID", **validation}
-
-
-def _stage1_columns() -> list[str]:
-    from causal_agent_bench.review_ready_v2.stage1 import REVIEW_FORM_COLUMNS
-
-    return list(REVIEW_FORM_COLUMNS)
+    return {
+        "status": "STAGE1_SUBMISSION_RECORDED",
+        "reviewer_role": role,
+        "submission_sha256": receipt["submission_sha256"],
+        "row_count": receipt["row_count"],
+    }
 
 
 def cmd_commit_stage1(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
@@ -238,7 +428,6 @@ def cmd_commit_stage1(repo_root: Path, args: argparse.Namespace) -> dict[str, An
     commitment = read_json(repo_root / REPORT_DIR / "PUBLIC_PACKET_COMMITMENT.json")
     freeze = read_json(repo_root / REPORT_DIR / "SCIENTIFIC_FREEZE_V2.json")
     receipt = workspace.commit_stage1(
-        reviewer_ids=(args.reviewer_a, args.reviewer_b),
         packet_commitment=commitment["commitment_sha256"],
         package_hashes=commitment["stage1_package_hashes"],
         review_schema_version="cab_stage1_review_form_v2",
@@ -246,6 +435,11 @@ def cmd_commit_stage1(repo_root: Path, args: argparse.Namespace) -> dict[str, An
         exact_commit=current_head(repo_root),
     )
     return {"status": "CAB_STAGE1_COMMITTED", "receipt_sha256": receipt["receipt_sha256"]}
+
+
+# --------------------------------------------------------------------------
+# Stage 2
+# --------------------------------------------------------------------------
 
 
 def cmd_unlock_stage2(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
@@ -267,11 +461,10 @@ def cmd_unlock_stage2(repo_root: Path, args: argparse.Namespace) -> dict[str, An
 
 
 def cmd_generate_stage2_packages(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    _require(args, "output_dir")
     workspace = _workspace(repo_root, args)
     workspace.read("stage2_unlock")
     private_root = workspace.private_root
-    _, key = load_key(repo_root)
-    vault = (private_root / "stage2" / "stage2_vault.enc").read_bytes()
     output = Path(args.output_dir).expanduser()
     if str(output.resolve()).startswith(str(repo_root.resolve())):
         raise SystemExit("Stage-2 packages must be written outside the repository root")
@@ -279,27 +472,33 @@ def cmd_generate_stage2_packages(repo_root: Path, args: argparse.Namespace) -> d
     output.chmod(0o700)
     hashes: dict[str, str] = {}
     with unlocked_workspace(prefix="cab-stage2-build-") as scratch:
-        records = unseal(vault, key)
-        by_pair = {str(row["pair_id"]): row for row in records}
-        for role in REVIEWERS:
+        by_pair = _stage2_records(repo_root, private_root)
+        for role in REVIEW_ROLES:
             mapping = _mappings(private_root)[role]
             files: dict[str, bytes] = {}
-            rows = [",".join(STAGE2_FORM_COLUMNS)]
+            applicability: dict[str, dict[str, bool]] = {}
             for item_id in sorted(mapping):
                 record = by_pair[mapping[item_id]]
                 shipped = dict(record)
                 shipped["reviewer_item_id"] = item_id
                 shipped.pop("pair_id", None)
+                applicability[item_id] = dict(record["stage2_dimension_applicability"])
                 files[f"items/{item_id}.json"] = (
                     json.dumps(shipped, indent=2, sort_keys=True) + "\n"
                 ).encode()
-                rows.append(item_id + "," * (len(STAGE2_FORM_COLUMNS) - 1))
-            files["stage2_form.csv"] = ("\n".join(rows) + "\n").encode()
+            files["stage2_form.csv"] = stage2_form_template(sorted(mapping))
+            files["applicability.json"] = (
+                json.dumps(applicability, indent=2, sort_keys=True) + "\n"
+            ).encode()
+            files["STAGE2_REVIEWER_INSTRUCTIONS.md"] = STAGE2_REVIEWER_INSTRUCTIONS.encode()
+            files["acceptance_policy.json"] = (
+                json.dumps(acceptance_policy(), indent=2, sort_keys=True) + "\n"
+            ).encode()
             payload = zip_bytes(files)
-            target = output / f"stage2_{role}.zip"
+            target = output / f"stage2_{role.casefold()}.zip"
             target.write_bytes(payload)
             target.chmod(0o600)
-            hashes[target.name] = sha256_bytes(payload)
+            hashes[role] = sha256_bytes(payload)
         leftover = sorted(path.name for path in scratch.rglob("*") if path.is_file())
     remaining = sorted(
         path.name
@@ -316,58 +515,139 @@ def cmd_generate_stage2_packages(repo_root: Path, args: argparse.Namespace) -> d
 
 
 def cmd_ingest_stage2(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    role = _role(args)
+    _require(args, "submission")
     workspace = _workspace(repo_root, args)
-    mapping = _mappings(workspace.private_root)[args.package_role]
+    private_root = workspace.private_root
+    mapping = _mappings(private_root)[role]
+    by_pair = _applicability_by_pair(repo_root, private_root)
     receipt = workspace.ingest_stage2(
-        args.reviewer_id, Path(args.submission).read_bytes(), expected_item_ids=sorted(mapping)
+        role,
+        Path(args.submission).read_bytes(),
+        expected_item_ids=sorted(mapping),
+        applicability={item_id: by_pair[pair_id] for item_id, pair_id in mapping.items()},
     )
-    return {"status": "STAGE2_SUBMISSION_RECORDED", "submission_sha256": receipt["submission_sha256"]}
-
-
-def cmd_validate_stage2_submissions(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
-    private_root = Path(args.private_root) if args.private_root else private_root_for(repo_root)
-    mapping = _mappings(private_root)[args.package_role]
-    rows = parse_review_csv(Path(args.submission).read_bytes(), STAGE2_FORM_COLUMNS)
-    validation = validate_stage2_submission(rows, sorted(mapping))
     return {
-        "status": "STAGE2_SUBMISSION_VALID" if validation["passed"] else "STAGE2_SUBMISSION_INVALID",
-        **validation,
+        "status": "STAGE2_SUBMISSION_RECORDED",
+        "reviewer_role": role,
+        "submission_sha256": receipt["submission_sha256"],
+        "form_complete": receipt["form_complete"],
+        "blocking_value_count": receipt["blocking_value_count"],
+        "form_completion_is_not_approval": True,
     }
 
 
-def cmd_build_disagreement_queue(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+# --------------------------------------------------------------------------
+# disagreement, adjudication, final records
+# --------------------------------------------------------------------------
+
+
+def cmd_build_stage1_disagreements(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     workspace = _workspace(repo_root, args)
-    receipt = workspace.build_disagreement_queue(
-        reviewer_ids=(args.reviewer_a, args.reviewer_b), mappings=_mappings(workspace.private_root)
-    )
+    receipt = workspace.build_stage1_disagreements(mappings=_mappings(workspace.private_root))
+    _write_adjudication_package(repo_root, args, receipt, STAGE1)
     return {
-        "status": "CAB_DISAGREEMENT_QUEUE_BUILT",
+        "status": "CAB_STAGE1_DISAGREEMENT_QUEUE_BUILT",
         "pair_count": receipt["pair_count"],
         "disputed_pair_count": receipt["disputed_pair_count"],
+        "disputed_dimension_count": receipt["disputed_dimension_count"],
     }
 
 
-def cmd_ingest_adjudication(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+def cmd_build_stage2_disagreements(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     workspace = _workspace(repo_root, args)
-    decisions = json.loads(Path(args.decisions).read_text())
-    receipt = workspace.ingest_adjudication(
-        adjudicator_id=args.adjudicator_id,
-        decisions=decisions,
-        reviewer_ids=(args.reviewer_a, args.reviewer_b),
+    receipt = workspace.build_stage2_disagreements(
+        mappings=_mappings(workspace.private_root),
+        applicability=_applicability_by_pair(repo_root, workspace.private_root),
     )
-    return {"status": "CAB_ADJUDICATION_RECORDED", "decision_count": receipt["decision_count"]}
+    _write_adjudication_package(repo_root, args, receipt, STAGE2)
+    return {
+        "status": "CAB_STAGE2_DISAGREEMENT_QUEUE_BUILT",
+        "pair_count": receipt["pair_count"],
+        "disputed_pair_count": receipt["disputed_pair_count"],
+        "disputed_dimension_count": receipt["disputed_dimension_count"],
+    }
+
+
+def _write_adjudication_package(
+    repo_root: Path, args: argparse.Namespace, queue: dict[str, Any], stage: str
+) -> None:
+    if not getattr(args, "output_dir", None):
+        return
+    output = Path(args.output_dir).expanduser()
+    if str(output.resolve()).startswith(str(repo_root.resolve())):
+        raise SystemExit("adjudication packages must be written outside the repository root")
+    output.mkdir(parents=True, exist_ok=True)
+    output.chmod(0o700)
+    target = output / f"{stage}_adjudication_package.json"
+    write_json(target, adjudication_package(queue))
+    target.chmod(0o600)
+
+
+def _ingest_adjudication(repo_root: Path, args: argparse.Namespace, stage: str) -> dict[str, Any]:
+    _require(args, "pseudonym", "decisions")
+    workspace = _workspace(repo_root, args)
+    receipt = workspace.ingest_adjudication(
+        stage=stage,
+        adjudicator_pseudonym=args.pseudonym,
+        decisions=json.loads(Path(args.decisions).read_text()),
+    )
+    return {
+        "status": f"CAB_{stage.upper()}_ADJUDICATION_RECORDED",
+        "decision_count": receipt["decision_count"],
+        "excluded_pair_count": len(receipt["excluded_pair_ids"]),
+        "all_disputes_resolved": receipt["all_disputes_resolved"],
+    }
+
+
+def cmd_ingest_stage1_adjudication(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    return _ingest_adjudication(repo_root, args, STAGE1)
+
+
+def cmd_ingest_stage2_adjudication(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    return _ingest_adjudication(repo_root, args, STAGE2)
 
 
 def cmd_compute_agreement(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     workspace = _workspace(repo_root, args)
-    receipt = workspace.compute_agreement(
-        reviewer_ids=(args.reviewer_a, args.reviewer_b), mappings=_mappings(workspace.private_root)
-    )
+    receipt = workspace.compute_agreement(mappings=_mappings(workspace.private_root))
     return {
         "status": "CAB_AGREEMENT_COMPUTED",
-        "overall_raw_agreement": receipt["overall_raw_agreement"],
-        "per_dimension": receipt["per_dimension"],
+        "computed_from": receipt["computed_from"],
+        "adjudicated_values_used": receipt["adjudicated_values_used"],
+        "stage1_overall_raw_agreement": receipt["stage1"]["overall_raw_agreement"],
+        "stage2_overall_raw_agreement": receipt["stage2"]["overall_raw_agreement"],
+        "stage1_per_dimension": receipt["stage1"]["per_dimension"],
+        "stage2_per_dimension": receipt["stage2"]["per_dimension"],
     }
+
+
+def cmd_build_final_adjudicated_records(
+    repo_root: Path, args: argparse.Namespace
+) -> dict[str, Any]:
+    workspace = _workspace(repo_root, args)
+    contract = read_json(repo_root / "configs/human_validation/c10_contract_v2.json")
+    receipt = workspace.build_final_adjudicated_records(
+        mappings=_mappings(workspace.private_root),
+        applicability=_applicability_by_pair(repo_root, workspace.private_root),
+        expected_pair_count=int(contract["expected_pair_count"]),
+    )
+    return {
+        "status": "CAB_FINAL_ADJUDICATED_RECORDS_BUILT"
+        if receipt["passed"]
+        else "CAB_FINAL_ADJUDICATED_RECORDS_INCOMPLETE",
+        "record_count": receipt["record_count"],
+        "included_count": receipt["included_count"],
+        "excluded_count": receipt["excluded_count"],
+        "provenance_counts": receipt["provenance_counts"],
+        "unresolved_count": len(receipt["unresolved"]),
+        "checks": receipt["checks"],
+    }
+
+
+# --------------------------------------------------------------------------
+# C10, slice lock, execution authorization
+# --------------------------------------------------------------------------
 
 
 def cmd_run_c10(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
@@ -378,24 +658,29 @@ def cmd_run_c10(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     report = run_c10(
         workspace,
         contract=contract,
-        reviewer_ids=(args.reviewer_a, args.reviewer_b),
         mappings=_mappings(workspace.private_root),
+        applicability=_applicability_by_pair(repo_root, workspace.private_root),
         prerequisites={
             "retired_packet_registry_enforced": retirement_enforcement_report()["passed"],
+            "retired_qualification_registry_enforced": bool(
+                retired_qualification_registry()["retired_versions"]
+            ),
             "scientific_freeze_v2": verify_freeze(repo_root)["passed"],
         },
         packet_commitment=commitment["commitment_sha256"],
         scientific_freeze_sha256=freeze["freeze_sha256"],
     )
     workspace.write("c10_report", report)
-    return {"status": report["status"], "failed_checks": report["failed_checks"]}
+    return {
+        "status": report["status"],
+        "failed_checks": report["failed_checks"],
+        "included_count": report["included_count"],
+        "excluded_count": report["excluded_count"],
+    }
 
 
 def cmd_build_exclusion_register(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
-    workspace = _workspace(repo_root, args)
-    receipt = build_exclusion_register(
-        workspace, reviewer_ids=(args.reviewer_a, args.reviewer_b), mappings=_mappings(workspace.private_root)
-    )
+    receipt = build_exclusion_register(_workspace(repo_root, args))
     return {
         "status": "CAB_EXCLUSION_REGISTER_BUILT",
         "included_count": receipt["included_count"],
@@ -419,21 +704,110 @@ def cmd_lock_reviewed_slice(repo_root: Path, args: argparse.Namespace) -> dict[s
         scientific_freeze_sha256=freeze["freeze_sha256"],
         exact_commit=current_head(repo_root),
     )
-    return {"status": "CAB_REVIEWED_SLICE_LOCKED", "included_count": len(receipt["included_pair_ids"])}
+    return {
+        "status": "CAB_REVIEWED_SLICE_LOCKED",
+        "included_count": len(receipt["included_pair_ids"]),
+    }
 
 
 def cmd_authorize_model_execution(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     workspace = _workspace(repo_root, args)
     freeze = read_json(repo_root / REPORT_DIR / "SCIENTIFIC_FREEZE_V2.json")
+    attestation = verify_attestation(repo_root, _attestation_path(repo_root, args))
     receipt = authorize_model_execution(
-        workspace, exact_commit=current_head(repo_root), scientific_freeze_sha256=freeze["freeze_sha256"]
+        workspace,
+        exact_commit=current_head(repo_root),
+        scientific_freeze_sha256=freeze["freeze_sha256"],
+        external_attestation_present=bool(attestation.get("passed")),
     )
-    return {"status": "CAB_MODEL_EXECUTION_AUTHORIZED", "receipt_sha256": receipt["receipt_sha256"]}
+    return {
+        "status": "CAB_MODEL_EXECUTION_AUTHORIZED",
+        "receipt_sha256": receipt["receipt_sha256"],
+    }
 
 
 def cmd_status(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
-    workspace = _workspace(repo_root, args)
-    return workflow_status(workspace)
+    """Dry-run status.  Reveals stage completion only, never private content."""
+
+    private_root = _private_root(repo_root, args)
+    try:
+        workspace = _workspace(repo_root, args)
+        status = workflow_status(workspace)
+    except (ReceiptError, WorkflowError) as error:
+        status = {
+            "schema_version": "cab_review_ready_v2_workflow_status_v2",
+            "artifact_origin": "UNAVAILABLE",
+            "reason": str(error),
+            "c10_status": "C10_PENDING_GENUINE_REVIEW",
+            "model_execution": "MODEL_EXECUTION_BLOCKED",
+        }
+    return {
+        **status,
+        "packet_version": PACKET_VERSION,
+        "external_keys_configured": {
+            KEY_ENV: _key_configured(repo_root, KEY_ENV),
+            QUALIFICATION_KEY_ENV: _key_configured(repo_root, QUALIFICATION_KEY_ENV),
+            COORDINATOR_KEY_ENV: coordinator_key_available(repo_root),
+        },
+        "private_root_present": private_root.is_dir(),
+        "genuine_human_judgments": 0,
+        "genuine_model_trajectories": 0,
+    }
+
+
+def _key_configured(repo_root: Path, env_var: str) -> bool:
+    from causal_agent_bench.review_ready_v2.keys import external_key_available
+
+    return external_key_available(env_var, repo_root)
+
+
+def cmd_coordinator_checklist(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    return {
+        "status": "CAB_COORDINATOR_CHECKLIST",
+        "canonical_roles": list(CANONICAL_ROLES),
+        "external_keys": {
+            "CAB_PACKET_SEED_PATH": "private packet generation seed",
+            KEY_ENV: "Stage-2 vault key",
+            QUALIFICATION_KEY_ENV: "qualification answer key",
+            COORDINATOR_KEY_ENV: "coordinator acceptance key that seals production receipts",
+        },
+        "ordered_steps": [
+            "generate-private-packet",
+            "validate-private-packet",
+            "generate-stage1-packages",
+            "generate-private-qualification-packages",
+            "validate-stage1-packages",
+            "create-reviewer-assignment --role REVIEWER_A --pseudonym <pseudonym>",
+            "create-reviewer-assignment --role REVIEWER_B --pseudonym <pseudonym>",
+            "create-reviewer-assignment --role ADJUDICATOR --pseudonym <pseudonym>",
+            "ingest-reviewer-declaration --role REVIEWER_A --declaration <file>",
+            "ingest-reviewer-declaration --role REVIEWER_B --declaration <file>",
+            "accept-reviewer-declaration --role <role> --decision ACCEPTED --rationale <text>",
+            "score-private-qualification --role <role> --submission <file>",
+            "ingest-stage1 --role <role> --submission <file>",
+            "commit-stage1",
+            "unlock-stage2",
+            "generate-stage2-packages --output-dir <outside-repo>",
+            "ingest-stage2 --role <role> --submission <file>",
+            "build-stage1-disagreements --output-dir <outside-repo>",
+            "build-stage2-disagreements --output-dir <outside-repo>",
+            "ingest-stage1-adjudication --pseudonym <pseudonym> --decisions <file>",
+            "ingest-stage2-adjudication --pseudonym <pseudonym> --decisions <file>",
+            "build-final-adjudicated-records",
+            "compute-agreement",
+            "run-c10",
+            "build-exclusion-register",
+            "lock-reviewed-slice",
+            "authorize-model-execution",
+        ],
+        "rules": [
+            "Never edit a receipt, a registry, or a queue by hand; every one is content-bound.",
+            "accept-reviewer-declaration is required only when a reviewer disclosed a conflict.",
+            "Stage-2 material must never be sent before commit-stage1 and unlock-stage2 succeed.",
+            "A complete Stage-2 form is not an approval; adjudicate every NO and every UNSURE.",
+            "No genuine review has occurred. C10 has not passed. Model execution is blocked.",
+        ],
+    }
 
 
 # --------------------------------------------------------------------------
@@ -451,8 +825,35 @@ def cmd_verify_freeze(repo_root: Path, args: argparse.Namespace) -> dict[str, An
     return verify_freeze(repo_root)
 
 
+def cmd_verify_provenance(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    """Prove the recorded generator provenance resolves from the branch alone."""
+
+    manifest_path = repo_root / REPORT_DIR / "SCIENTIFIC_FREEZE_V2.json"
+    recorded = read_json(manifest_path)["generator"] if manifest_path.is_file() else {}
+    live = generator_provenance(repo_root)
+    checks = {
+        "recorded_commit_is_ancestor_of_head": bool(recorded.get("commit_is_ancestor_of_head"))
+        and live["commit_is_ancestor_of_head"],
+        "recorded_commit_resolves": bool(recorded.get("commit_resolves")),
+        "recorded_commit_matches_live_resolution": recorded.get("source_commit")
+        == live["source_commit"],
+        "generator_content_matches": live["commit_content_matches"],
+        "generator_blobs_present": live["generator_blobs_present"],
+        "needs_no_unreachable_objects": live["requires_unreachable_objects"] is False,
+    }
+    return {
+        "status": "CAB_GENERATOR_PROVENANCE_PORTABLE"
+        if all(checks.values())
+        else "CAB_GENERATOR_PROVENANCE_NOT_PORTABLE",
+        "head": current_head(repo_root),
+        "source_commit": live["source_commit"],
+        "checks": checks,
+        "passed": all(checks.values()),
+    }
+
+
 def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
-    private_root = Path(args.private_root) if args.private_root else private_root_for(repo_root)
+    private_root = _private_root(repo_root, args)
     pairs = load_pairs(private_root)
     design = design_audit(pairs)
     isolation = [
@@ -461,13 +862,15 @@ def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, An
     ]
     routes = [validate_pair_routes(pair) for pair in pairs]
     hostile = hostile_route_audit(pairs)
-    packages = {
-        role: (private_root / "stage1" / f"{role}.zip").read_bytes() for role in REVIEWERS
-    }
-    packages["qualification_packet"] = (
-        private_root / "qualification" / "qualification_packet.zip"
-    ).read_bytes()
-    leakage = stage1_leakage_audit(packages, pairs, _mappings(private_root))
+    packages: dict[str, bytes] = {}
+    for role in REVIEW_ROLES:
+        packages[package_basename(role)] = (
+            private_root / "stage1" / f"{package_basename(role)}.zip"
+        ).read_bytes()
+        packages[f"qualification_{role.casefold()}"] = (
+            private_root / "qualification" / f"qualification_{role.casefold()}.zip"
+        ).read_bytes()
+    leakage = stage1_leakage_audit(packages, pairs, _mappings_by_basename(private_root))
     usability = usability_audit(packages)
     vault = vault_status(private_root / "stage2" / "stage2_vault.enc", repo_root)
     fixture = run_fixture_e2e()
@@ -476,6 +879,7 @@ def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, An
 
     report_dir = repo_root / REPORT_DIR
     write_json(report_dir / "RETIRED_PACKET_REGISTRY.json", retired_packet_registry())
+    write_json(report_dir / "RETIRED_QUALIFICATION_REGISTRY.json", retired_qualification_registry())
     write_json(report_dir / "ACTIVE_PATH_REGISTRY.json", active_path_registry(repo_root))
     write_json(report_dir / "RETIREMENT_ENFORCEMENT.json", retirement)
     write_json(report_dir / "DESIGN_AUDIT.json", public_design_summary(design))
@@ -485,14 +889,21 @@ def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, An
     write_json(report_dir / "STAGE1_LEAKAGE_AUDIT.json", public_leakage_summary(leakage))
     write_json(report_dir / "STAGE1_PACKAGE_RECEIPT.json", usability)
     write_json(report_dir / "STAGE2_VAULT_STATUS.json", vault)
+    write_json(report_dir / "STAGE2_ACCEPTANCE_POLICY.json", acceptance_policy())
     write_json(report_dir / "FIXTURE_E2E_WORKFLOW.json", fixture)
     write_json(report_dir / "ATTESTATION_POLICY.json", attestation_policy())
     write_json(repo_root / "configs/reviewer_ready_v2/power_plan_v2.json", power)
+    write_json(
+        repo_root / "configs/reviewer_ready_v2/stage2_acceptance_policy_v1.json",
+        acceptance_policy(),
+    )
 
     commitment = read_json(report_dir / "PUBLIC_PACKET_COMMITMENT.json")
     freeze = build_freeze(repo_root, generator_commit=args.generator_commit)
     write_json(report_dir / "SCIENTIFIC_FREEZE_V2.json", freeze)
     freeze_check = verify_freeze(repo_root)
+    provenance = cmd_verify_provenance(repo_root, args)
+    write_json(report_dir / "GENERATOR_PROVENANCE.json", provenance)
     # The path registry names the freeze, so it can only be verified once the
     # freeze file exists on disk.
     paths = verify_active_paths(repo_root)
@@ -520,6 +931,7 @@ def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, An
         "status": readiness["status"],
         "blocking_gates": readiness["blocking_gates"],
         "freeze_sha256": freeze["freeze_sha256"],
+        "generator_provenance": provenance["status"],
     }
 
 
@@ -544,28 +956,43 @@ def cmd_new_seed(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
 
 
 COMMANDS = {
+    # packet
     "generate-private-packet": cmd_generate_private_packet,
     "validate-private-packet": cmd_validate_private_packet,
     "generate-stage1-packages": cmd_generate_stage1_packages,
+    "generate-private-qualification-packages": cmd_generate_private_qualification_packages,
     "validate-stage1-packages": cmd_validate_stage1_packages,
-    "ingest-reviewer-qualification": cmd_ingest_reviewer_qualification,
+    # reviewer provenance
+    "create-reviewer-assignment": cmd_create_reviewer_assignment,
+    "show-reviewer-assignments": cmd_show_reviewer_assignments,
+    "ingest-reviewer-declaration": cmd_ingest_reviewer_declaration,
+    "accept-reviewer-declaration": cmd_accept_reviewer_declaration,
+    "score-private-qualification": cmd_score_private_qualification,
+    # stage 1
     "ingest-stage1": cmd_ingest_stage1,
-    "validate-stage1-submissions": cmd_validate_stage1_submissions,
     "commit-stage1": cmd_commit_stage1,
+    # stage 2
     "unlock-stage2": cmd_unlock_stage2,
     "generate-stage2-packages": cmd_generate_stage2_packages,
     "ingest-stage2": cmd_ingest_stage2,
-    "validate-stage2-submissions": cmd_validate_stage2_submissions,
-    "build-disagreement-queue": cmd_build_disagreement_queue,
-    "ingest-adjudication": cmd_ingest_adjudication,
+    # disagreement and adjudication
+    "build-stage1-disagreements": cmd_build_stage1_disagreements,
+    "build-stage2-disagreements": cmd_build_stage2_disagreements,
+    "ingest-stage1-adjudication": cmd_ingest_stage1_adjudication,
+    "ingest-stage2-adjudication": cmd_ingest_stage2_adjudication,
+    "build-final-adjudicated-records": cmd_build_final_adjudicated_records,
     "compute-agreement": cmd_compute_agreement,
+    # C10 and execution
     "run-c10": cmd_run_c10,
     "build-exclusion-register": cmd_build_exclusion_register,
     "lock-reviewed-slice": cmd_lock_reviewed_slice,
     "authorize-model-execution": cmd_authorize_model_execution,
+    # status, audits, freeze
     "status": cmd_status,
+    "coordinator-checklist": cmd_coordinator_checklist,
     "fixture-e2e": cmd_fixture_e2e,
     "verify-freeze": cmd_verify_freeze,
+    "verify-provenance": cmd_verify_provenance,
     "verify-attestation": cmd_verify_attestation,
     "build-reports": cmd_build_reports,
     "new-seed": cmd_new_seed,
@@ -577,27 +1004,39 @@ def build_parser() -> argparse.ArgumentParser:
         prog="cab-review-ready-v2",
         description=(
             "Reviewer-ready V2 packet and two-stage human-review workflow. No command performs "
-            "model execution or genuine human review."
+            "model execution or genuine human review. No genuine review has occurred, C10 has "
+            "not passed, and model execution is blocked."
         ),
     )
     parser.add_argument("command", choices=sorted(COMMANDS))
     parser.add_argument("--private-root", default=None, help="override the private packet root")
     parser.add_argument("--seed", default=None, help="private generation seed (hex)")
-    parser.add_argument("--reviewer-id", default=None)
-    parser.add_argument("--reviewer-a", default="reviewer-a")
-    parser.add_argument("--reviewer-b", default="reviewer-b")
-    parser.add_argument("--adjudicator-id", default="adjudicator")
-    parser.add_argument("--package-role", default="stage1_reviewer_a", choices=list(REVIEWERS))
+    parser.add_argument(
+        "--role",
+        default=None,
+        help="canonical reviewer role: REVIEWER_A, REVIEWER_B or ADJUDICATOR",
+    )
+    parser.add_argument(
+        "--pseudonym", default=None, help="reviewer pseudonym, as recorded in the private registry"
+    )
+    parser.add_argument("--declaration", default=None, help="path to a signed reviewer declaration")
+    parser.add_argument("--decision", default=None, help="ACCEPTED or REJECTED")
+    parser.add_argument("--rationale", default=None, help="coordinator rationale for a decision")
     parser.add_argument("--submission", default=None, help="path to a reviewer submission file")
     parser.add_argument("--decisions", default=None, help="path to an adjudication decision file")
-    parser.add_argument("--output-dir", default=None, help="where Stage-2 packages are written")
+    parser.add_argument("--output-dir", default=None, help="where packages are written")
     parser.add_argument("--attestation", default=None, help="path to the external attestation")
     parser.add_argument("--generator-commit", default=None)
-    parser.add_argument("--power-replicates", default=800)
+    # Matches the replicate count the tracked power plan was generated with, so
+    # `build-reports` reproduces the committed artifact byte-for-byte by default.
+    parser.add_argument("--power-replicates", default=1200)
     parser.add_argument(
         "--fixture",
         action="store_true",
-        help="operate on the synthetic fixture namespace; never counts as genuine evidence",
+        help=(
+            "operate in the synthetic fixture namespace. Fixture artifacts are sealed by a public "
+            "authority and can never satisfy a production gate."
+        ),
     )
     return parser
 
@@ -607,7 +1046,18 @@ def main(argv: list[str] | None = None, *, repo_root: Path | None = None) -> int
     root = repo_root or Path(__file__).resolve().parents[3]
     try:
         _emit(COMMANDS[args.command](root, args))
-    except (VaultError, ValueError, RuntimeError, KeyError) as error:
+    except (
+        AssignmentError,
+        DeclarationError,
+        ExternalKeyError,
+        QualificationError,
+        ReceiptError,
+        RoleError,
+        VaultError,
+        ValueError,
+        RuntimeError,
+        KeyError,
+    ) as error:
         _emit({"status": "REFUSED", "command": args.command, "reason": str(error)})
         return 1
     return 0

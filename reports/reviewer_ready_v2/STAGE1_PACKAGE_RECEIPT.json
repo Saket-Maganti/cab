@@ -16,9 +16,28 @@
         "package_size_reasonable": true
       },
       "item_count": 5,
-      "package": "qualification_packet",
+      "package": "qualification_reviewer_a",
       "passed": true,
-      "sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669"
+      "sha256": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1"
+    },
+    {
+      "checks": {
+        "conflict_declaration_present": true,
+        "every_referenced_file_exists": true,
+        "form_present": true,
+        "form_rows_match_item_ids": true,
+        "instructions_present": true,
+        "items_parse_as_json": true,
+        "manifest_present": true,
+        "no_private_manifest_shipped": true,
+        "one_form_row_per_item": true,
+        "opaque_ids_unique": true,
+        "package_size_reasonable": true
+      },
+      "item_count": 5,
+      "package": "qualification_reviewer_b",
+      "passed": true,
+      "sha256": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f"
     },
     {
       "checks": {

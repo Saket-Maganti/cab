@@ -1,0 +1,53 @@
+{
+  "accepting_values": [
+    "NOT_APPLICABLE",
+    "YES"
+  ],
+  "allowed_values": [
+    "YES",
+    "NO",
+    "UNSURE",
+    "NOT_APPLICABLE"
+  ],
+  "blocking_values": [
+    "NO",
+    "UNSURE"
+  ],
+  "conditional_dimensions": [
+    "recovery_authorization_valid_or_not_applicable",
+    "abstention_policy_valid_or_not_applicable",
+    "clarification_policy_valid_or_not_applicable"
+  ],
+  "core_dimensions": [
+    "gold_correct",
+    "accepted_variants_complete",
+    "answer_contract_valid",
+    "scorer_compatible",
+    "intervention_policy_valid",
+    "route_policy_defensible"
+  ],
+  "form_completion_is_not_approval": true,
+  "form_schema_version": "cab_stage2_review_form_v2",
+  "frozen_before_genuine_review": true,
+  "min_reviewer_confidence": 3,
+  "not_applicable_allowed_dimensions": [
+    "recovery_authorization_valid_or_not_applicable",
+    "abstention_policy_valid_or_not_applicable",
+    "clarification_policy_valid_or_not_applicable"
+  ],
+  "notes_required_for_values": [
+    "NO",
+    "UNSURE"
+  ],
+  "rules": [
+    "NO is a substantive objection and blocks acceptance of that dimension.",
+    "UNSURE is unresolved and blocks acceptance exactly as NO does.",
+    "NOT_APPLICABLE is accepted only for a conditional dimension whose frozen applicability map marks it structurally inapplicable for that item.",
+    "Notes are mandatory for every NO and every UNSURE.",
+    "reviewer_confidence below the minimum sends the item to adjudication even when every value would otherwise accept.",
+    "A complete Stage-2 form is not an approval; completion and acceptance are separate.",
+    "A dimension is accepted only when the final adjudicated value is YES, or is NOT_APPLICABLE and the applicability map agrees.",
+    "No item carrying an unresolved NO or UNSURE may enter a C10 pass or a reviewed slice lock."
+  ],
+  "schema_version": "cab_stage2_acceptance_policy_v1"
+}

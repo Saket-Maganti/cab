@@ -3,7 +3,7 @@
 `CAB_REVIEWER_READY_V2_REPAIR_COMPLETE`
 
 Packet version: `compact20-review-ready-v2`
-Public commitment: `4f5afe5ed626690fb8fd9dae23740b94e0a39ec2fa3999a65696114f942839c8`
+Public commitment: `af1f24ce4772b7520087e9862b2f6aded976f07df03def6b2faa59e162884f64`
 
 ## Gates
 
@@ -100,4 +100,4 @@ Status when this report was generated: `CAB_EXACT_COMMIT_ATTESTATION_CREATED`
 
 ## Exact next human action
 
-> Recruit two independent qualified reviewers, give each only their assigned frozen Stage-1 package and qualification materials, keep Stage 2 inaccessible until both qualified Stage-1 submissions are validated and committed, then continue through the canonical two-stage workflow.
+> Recruit two independent qualified reviewers, create and accept their reviewer assignments and signed declarations, give each only the assigned private qualification package and frozen Stage-1 package, score qualification privately, ingest genuine Stage-1 submissions, commit Stage 1, and keep Stage 2 inaccessible until every Stage-1 prerequisite passes.

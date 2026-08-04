@@ -1,7 +1,7 @@
 {
   "anchor_group_count": 4,
   "c10_status": "C10_PENDING_GENUINE_REVIEW",
-  "commitment_sha256": "4f5afe5ed626690fb8fd9dae23740b94e0a39ec2fa3999a65696114f942839c8",
+  "commitment_sha256": "af1f24ce4772b7520087e9862b2f6aded976f07df03def6b2faa59e162884f64",
   "difficulty_counts": {
     "easy": 4,
     "hard": 4,
@@ -89,7 +89,31 @@
   },
   "pair_count": 20,
   "private_bodies_committed": false,
-  "qualification_package_sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669",
+  "qualification_commitment": {
+    "commitment_sha256": "c48a945c5c5bef890c3c744881b8f25a2d01dfd87dfafbb849bcafaad3d1025e",
+    "encrypted_key_material_hash": "d1a0e27a3a89de5a7956c106ef44ce433ba5bfc7b93d27190ce8140be254fc9f",
+    "generator_source_hash": "104a1b547ba3b19bcdd4977341a0660e88559d249e20c3586f037cb85f2677bb",
+    "items_published": false,
+    "key_environment_variable": "CAB_QUALIFICATION_KEY_PATH",
+    "key_value_bound": false,
+    "qualification_version": "cab_qualification_v3",
+    "reference_judgements_published": false,
+    "retired_qualification_versions": [
+      "cab_stage1_qualification_v2"
+    ],
+    "reviewer_a_package_hash": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1",
+    "reviewer_b_package_hash": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f",
+    "schema_version": "cab_qualification_commitment_v1",
+    "scored_dimensions_published": false
+  },
+  "qualification_items_published": false,
+  "qualification_key_environment_variable": "CAB_QUALIFICATION_KEY_PATH",
+  "qualification_package_hashes": {
+    "REVIEWER_A": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1",
+    "REVIEWER_B": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f"
+  },
+  "qualification_reference_judgements_published": false,
+  "qualification_version": "cab_qualification_v3",
   "schema_version": "cab_review_ready_v2_public_commitment_v1",
   "seed_commitment": "38fec0ccea7f439c2858e046205551081a953a0acf9f98126b4f22c8cf239e85",
   "stage1_package_hashes": {
@@ -99,7 +123,7 @@
   "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
   "stage2_key_stored_in_repository": false,
   "stage2_plaintext_persisted": false,
-  "stage2_vault_sha256": "1bf671d74764c79abf53e13fb5cffcfe823daf0c145fbdb90664819d9faadd9f",
+  "stage2_vault_sha256": "8530b782515d9626084a843bfdff8d9be65d108062069eeb356b5ccc94622ae4",
   "status": "CAB_NEW_PRIVATE_COMPACT20_V2_READY",
   "unit_of_evaluation": "clean_intervention_pair"
 }

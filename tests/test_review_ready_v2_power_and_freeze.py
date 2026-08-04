@@ -36,21 +36,23 @@ from causal_agent_bench.review_ready_v2.report import HONEST_STATUS_BLOCK, NEXT_
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REPORT_DIR = REPO_ROOT / "reports/reviewer_ready_v2"
 
+#: The canonical coordinator workflow. Every verb must exist in the CLI and in
+#: the active path registry, so a coordinator never has to guess a command.
 REQUIRED_COMMANDS = (
-    "generate-private-packet",
-    "validate-private-packet",
-    "generate-stage1-packages",
-    "validate-stage1-packages",
-    "ingest-reviewer-qualification",
+    "create-reviewer-assignment",
+    "generate-private-qualification-packages",
+    "ingest-reviewer-declaration",
+    "score-private-qualification",
     "ingest-stage1",
-    "validate-stage1-submissions",
     "commit-stage1",
     "unlock-stage2",
     "generate-stage2-packages",
     "ingest-stage2",
-    "validate-stage2-submissions",
-    "build-disagreement-queue",
-    "ingest-adjudication",
+    "build-stage1-disagreements",
+    "build-stage2-disagreements",
+    "ingest-stage1-adjudication",
+    "ingest-stage2-adjudication",
+    "build-final-adjudicated-records",
     "compute-agreement",
     "run-c10",
     "build-exclusion-register",
@@ -212,6 +214,8 @@ def test_active_path_registry_lists_every_workflow_command() -> None:
     assert registry["active_private_packet_version"] == "compact20-review-ready-v2"
     assert set(REQUIRED_COMMANDS) <= set(registry["canonical_cli_commands"])
     assert registry["external_key_environment_variable"] == "CAB_STAGE2_KEY_PATH"
+    assert registry["canonical_reviewer_roles"] == ["REVIEWER_A", "REVIEWER_B", "ADJUDICATOR"]
+    assert "cab_stage1_qualification_v2" in registry["retired_qualification_versions"]
     assert "compact20-final-private-v1" in json.dumps(registry["superseded_paths"])
 
 
@@ -245,20 +249,25 @@ def test_scientific_freeze_verifies() -> None:
         pytest.skip("freeze has not been generated in this working tree")
     report = verify_freeze(REPO_ROOT)
     generator = json.loads(path.read_text())["generator"]
-    committed = subprocess.run(
-        ["git", "cat-file", "-e", f"{generator['source_commit']}:{generator['path']}"],
+    # The recorded generator commit must be reachable from the branch, not merely
+    # present in this machine's object store.
+    ancestor = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", generator["source_commit"], "HEAD"],
         cwd=REPO_ROOT,
         check=False,
         capture_output=True,
     )
-    structural = {
-        name: value
-        for name, value in report["checks"].items()
-        if not name.startswith("generator_commit")
-    }
-    assert all(structural.values()), report["mismatched_paths"]
-    if committed.returncode == 0:
-        assert report["passed"], report["checks"]
+    assert ancestor.returncode == 0, "the freeze names a commit that is not an ancestor of HEAD"
+    assert generator["requires_unreachable_objects"] is False
+    for source in generator["sources"]:
+        committed = subprocess.run(
+            ["git", "cat-file", "-e", f"{generator['source_commit']}:{source['path']}"],
+            cwd=REPO_ROOT,
+            check=False,
+            capture_output=True,
+        )
+        assert committed.returncode == 0, source["path"]
+    assert report["passed"], report["checks"]
 
 
 def test_attestation_policy_requires_an_external_exact_commit_receipt() -> None:
