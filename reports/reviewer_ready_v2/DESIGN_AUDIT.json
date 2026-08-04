@@ -1,0 +1,416 @@
+{
+  "anchors": {
+    "checks": {
+      "anchor_sources_are_non_anchor_pairs": true,
+      "anchors_span_all_four_families": true,
+      "every_anchor_group_valid": true,
+      "exactly_four_anchor_groups": true
+    },
+    "group_count": 4,
+    "groups": [
+      {
+        "anchor_group_id": "ANCHOR-A",
+        "checks": {
+          "declared_forbidden_axes_present": true,
+          "declared_nuisance_axes_present": true,
+          "identifier_labels_differ": true,
+          "instances_are_not_byte_identical": true,
+          "record_order_differs": true,
+          "same_answer_logic_numeric_values": true,
+          "same_difficulty": true,
+          "same_goal_text": true,
+          "same_gold_derivation_signature": true,
+          "same_intervention_family": true,
+          "same_intervention_operator": true,
+          "same_prompt_text": true,
+          "same_required_inputs": true,
+          "same_route_requirement": true,
+          "same_semantic_objective": true,
+          "same_task_archetype": true
+        },
+        "family": "tool_removal",
+        "passed": true,
+        "route": "withheld_until_stage2"
+      },
+      {
+        "anchor_group_id": "ANCHOR-B",
+        "checks": {
+          "declared_forbidden_axes_present": true,
+          "declared_nuisance_axes_present": true,
+          "identifier_labels_differ": true,
+          "instances_are_not_byte_identical": true,
+          "record_order_differs": true,
+          "same_answer_logic_numeric_values": true,
+          "same_difficulty": true,
+          "same_goal_text": true,
+          "same_gold_derivation_signature": true,
+          "same_intervention_family": true,
+          "same_intervention_operator": true,
+          "same_prompt_text": true,
+          "same_required_inputs": true,
+          "same_route_requirement": true,
+          "same_semantic_objective": true,
+          "same_task_archetype": true
+        },
+        "family": "tool_failure",
+        "passed": true,
+        "route": "withheld_until_stage2"
+      },
+      {
+        "anchor_group_id": "ANCHOR-C",
+        "checks": {
+          "declared_forbidden_axes_present": true,
+          "declared_nuisance_axes_present": true,
+          "identifier_labels_differ": true,
+          "instances_are_not_byte_identical": true,
+          "record_order_differs": true,
+          "same_answer_logic_numeric_values": true,
+          "same_difficulty": true,
+          "same_goal_text": true,
+          "same_gold_derivation_signature": true,
+          "same_intervention_family": true,
+          "same_intervention_operator": true,
+          "same_prompt_text": true,
+          "same_required_inputs": true,
+          "same_route_requirement": true,
+          "same_semantic_objective": true,
+          "same_task_archetype": true
+        },
+        "family": "memory_corruption",
+        "passed": true,
+        "route": "withheld_until_stage2"
+      },
+      {
+        "anchor_group_id": "ANCHOR-D",
+        "checks": {
+          "declared_forbidden_axes_present": true,
+          "declared_nuisance_axes_present": true,
+          "identifier_labels_differ": true,
+          "instances_are_not_byte_identical": true,
+          "record_order_differs": true,
+          "same_answer_logic_numeric_values": true,
+          "same_difficulty": true,
+          "same_goal_text": true,
+          "same_gold_derivation_signature": true,
+          "same_intervention_family": true,
+          "same_intervention_operator": true,
+          "same_prompt_text": true,
+          "same_required_inputs": true,
+          "same_route_requirement": true,
+          "same_semantic_objective": true,
+          "same_task_archetype": true
+        },
+        "family": "observation_conflict",
+        "passed": true,
+        "route": "withheld_until_stage2"
+      }
+    ]
+  },
+  "composition": {
+    "checks": {
+      "at_least_eight_domains": true,
+      "clean_route_always_completion": true,
+      "difficulty_distribution_exact": true,
+      "every_pair_has_both_instances": true,
+      "four_anchor_pairs": true,
+      "four_families_five_pairs_each": true,
+      "no_domain_above_three_pairs": true,
+      "no_duplicate_pair_ids": true,
+      "pair_count_is_twenty": true,
+      "sixteen_distinct_non_anchor_objectives": true
+    },
+    "difficulty_counts": {
+      "easy": 4,
+      "hard": 4,
+      "medium": 8,
+      "stress": 4
+    },
+    "distinct_non_anchor_objectives": 16,
+    "domain_counts": {
+      "calendar": 2,
+      "coding": 2,
+      "operations": 2,
+      "policy": 2,
+      "research": 3,
+      "shopping": 3,
+      "spreadsheet": 3,
+      "travel": 3
+    },
+    "family_counts": {
+      "memory_corruption": 5,
+      "observation_conflict": 5,
+      "tool_failure": 5,
+      "tool_removal": 5
+    }
+  },
+  "confounding": {
+    "archetype_family_matrix": {
+      "aggregate_then_min_cost": {
+        "tool_failure": 2
+      },
+      "boundary_condition_diagnosis": {
+        "memory_corruption": 1
+      },
+      "calendar_offset_computation": {
+        "memory_corruption": 1
+      },
+      "categorical_policy_lookup": {
+        "observation_conflict": 1
+      },
+      "cross_source_field_mismatch": {
+        "observation_conflict": 2
+      },
+      "date_window_eligibility": {
+        "observation_conflict": 1
+      },
+      "fault_localization_from_logs": {
+        "tool_removal": 1
+      },
+      "filter_then_min_cost": {
+        "tool_failure": 1,
+        "tool_removal": 2
+      },
+      "interval_gap_search": {
+        "tool_removal": 1
+      },
+      "inventory_balance_arithmetic": {
+        "observation_conflict": 1
+      },
+      "per_row_difference_argmax": {
+        "tool_removal": 1
+      },
+      "proportion_threshold_comparison": {
+        "tool_failure": 1
+      },
+      "rule_precedence_resolution": {
+        "tool_failure": 1
+      },
+      "temporal_feasibility_check": {
+        "memory_corruption": 1
+      },
+      "threshold_excess_sum": {
+        "memory_corruption": 2
+      }
+    },
+    "checks": {
+      "every_family_spans_three_difficulties": true,
+      "every_family_spans_three_domains": true,
+      "every_route_spans_two_difficulties": true,
+      "matches_frozen_target_matrix": true,
+      "no_difficulty_confined_to_one_family": true,
+      "no_domain_confined_to_one_family": true,
+      "no_family_maps_to_exactly_one_route": true,
+      "no_route_confined_to_one_family": true
+    },
+    "difficulty_family_matrix": {
+      "easy": {
+        "observation_conflict": 1,
+        "tool_failure": 2,
+        "tool_removal": 1
+      },
+      "hard": {
+        "memory_corruption": 1,
+        "tool_failure": 2,
+        "tool_removal": 1
+      },
+      "medium": {
+        "memory_corruption": 3,
+        "observation_conflict": 2,
+        "tool_failure": 1,
+        "tool_removal": 2
+      },
+      "stress": {
+        "memory_corruption": 1,
+        "observation_conflict": 2,
+        "tool_removal": 1
+      }
+    },
+    "domain_family_matrix": {
+      "calendar": {
+        "memory_corruption": 1,
+        "tool_removal": 1
+      },
+      "coding": {
+        "memory_corruption": 1,
+        "tool_removal": 1
+      },
+      "operations": {
+        "observation_conflict": 1,
+        "tool_failure": 1
+      },
+      "policy": {
+        "observation_conflict": 1,
+        "tool_failure": 1
+      },
+      "research": {
+        "observation_conflict": 2,
+        "tool_failure": 1
+      },
+      "shopping": {
+        "observation_conflict": 1,
+        "tool_failure": 2
+      },
+      "spreadsheet": {
+        "memory_corruption": 2,
+        "tool_removal": 1
+      },
+      "travel": {
+        "memory_corruption": 1,
+        "tool_removal": 2
+      }
+    },
+    "families_per_route": {
+      "abstention": 3,
+      "clarification": 3,
+      "completion": 4,
+      "recovery": 2
+    },
+    "family_route_matrix": {
+      "memory_corruption": {
+        "abstention": 1,
+        "clarification": 2,
+        "completion": 2,
+        "recovery": 0
+      },
+      "observation_conflict": {
+        "abstention": 1,
+        "clarification": 2,
+        "completion": 2,
+        "recovery": 0
+      },
+      "tool_failure": {
+        "abstention": 0,
+        "clarification": 1,
+        "completion": 1,
+        "recovery": 3
+      },
+      "tool_removal": {
+        "abstention": 1,
+        "clarification": 0,
+        "completion": 2,
+        "recovery": 2
+      }
+    },
+    "route_difficulty_matrix": {
+      "abstention": {
+        "hard": 1,
+        "stress": 2
+      },
+      "clarification": {
+        "hard": 1,
+        "medium": 4
+      },
+      "completion": {
+        "easy": 1,
+        "hard": 1,
+        "medium": 4,
+        "stress": 1
+      },
+      "recovery": {
+        "easy": 3,
+        "hard": 1,
+        "stress": 1
+      }
+    },
+    "routes_per_family": {
+      "memory_corruption": 3,
+      "observation_conflict": 3,
+      "tool_failure": 3,
+      "tool_removal": 3
+    }
+  },
+  "passed": true,
+  "schema_version": "cab_review_ready_v2_public_design_summary_v1",
+  "semantic_diversity": {
+    "archetype_counts": {
+      "aggregate_then_min_cost": 1,
+      "boundary_condition_diagnosis": 1,
+      "calendar_offset_computation": 1,
+      "categorical_policy_lookup": 1,
+      "cross_source_field_mismatch": 1,
+      "date_window_eligibility": 1,
+      "fault_localization_from_logs": 1,
+      "filter_then_min_cost": 2,
+      "interval_gap_search": 1,
+      "inventory_balance_arithmetic": 1,
+      "per_row_difference_argmax": 1,
+      "proportion_threshold_comparison": 1,
+      "rule_precedence_resolution": 1,
+      "temporal_feasibility_check": 1,
+      "threshold_excess_sum": 1
+    },
+    "checks": {
+      "archetype_reuse_within_limit": true,
+      "at_least_sixteen_distinct_objective_signatures": true,
+      "distinct_derivation_signatures": true,
+      "distinct_structural_schemas": true,
+      "no_domain_maps_to_a_single_operation_type": true,
+      "no_family_uses_a_single_archetype": true,
+      "no_generic_placeholder_prompts": true,
+      "no_prompt_template_cluster_dominates": true
+    },
+    "distinct_objective_signatures": 16,
+    "domain_archetypes": {
+      "calendar": [
+        "calendar_offset_computation",
+        "interval_gap_search"
+      ],
+      "coding": [
+        "boundary_condition_diagnosis",
+        "fault_localization_from_logs"
+      ],
+      "operations": [
+        "filter_then_min_cost",
+        "inventory_balance_arithmetic"
+      ],
+      "policy": [
+        "categorical_policy_lookup",
+        "rule_precedence_resolution"
+      ],
+      "research": [
+        "cross_source_field_mismatch",
+        "proportion_threshold_comparison"
+      ],
+      "shopping": [
+        "aggregate_then_min_cost",
+        "date_window_eligibility"
+      ],
+      "spreadsheet": [
+        "per_row_difference_argmax",
+        "threshold_excess_sum"
+      ],
+      "travel": [
+        "filter_then_min_cost",
+        "temporal_feasibility_check"
+      ]
+    },
+    "family_archetypes": {
+      "memory_corruption": [
+        "boundary_condition_diagnosis",
+        "calendar_offset_computation",
+        "temporal_feasibility_check",
+        "threshold_excess_sum"
+      ],
+      "observation_conflict": [
+        "categorical_policy_lookup",
+        "cross_source_field_mismatch",
+        "date_window_eligibility",
+        "inventory_balance_arithmetic"
+      ],
+      "tool_failure": [
+        "aggregate_then_min_cost",
+        "filter_then_min_cost",
+        "proportion_threshold_comparison",
+        "rule_precedence_resolution"
+      ],
+      "tool_removal": [
+        "fault_localization_from_logs",
+        "filter_then_min_cost",
+        "interval_gap_search",
+        "per_row_difference_argmax"
+      ]
+    },
+    "prompt_similarity_violation_count": 0
+  },
+  "status": "CAB_SEMANTIC_DIVERSITY_VALIDATED"
+}

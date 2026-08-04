@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "external_key_environment_variable_configured": true,
+    "key_outside_repository": true,
+    "key_owner_only_permissions": true,
+    "no_stage2_plaintext_beside_vault": true,
+    "vault_present": true
+  },
+  "key_environment_variable": "CAB_STAGE2_KEY_PATH",
+  "key_path_recorded": false,
+  "passed": true,
+  "vault_sha256": "1bf671d74764c79abf53e13fb5cffcfe823daf0c145fbdb90664819d9faadd9f"
+}

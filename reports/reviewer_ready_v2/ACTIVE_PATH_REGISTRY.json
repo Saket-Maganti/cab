@@ -1,0 +1,53 @@
+{
+  "active_c10_contract": "configs/human_validation/c10_contract_v2.json",
+  "active_private_packet_version": "compact20-review-ready-v2",
+  "active_private_root": "private_data/human_review/compact20-review-ready-v2",
+  "active_public_commitment": "reports/reviewer_ready_v2/PUBLIC_PACKET_COMMITMENT.json",
+  "active_qualification_package_path": "private_data/human_review/compact20-review-ready-v2/qualification/qualification_packet.zip",
+  "active_review_form_schema": "cab_stage1_review_form_v2",
+  "active_review_schema": "cab_stage1_pair_review_v2",
+  "active_scientific_freeze": "reports/reviewer_ready_v2/SCIENTIFIC_FREEZE_V2.json",
+  "active_stage1_package_paths": [
+    "private_data/human_review/compact20-review-ready-v2/stage1/stage1_reviewer_a.zip",
+    "private_data/human_review/compact20-review-ready-v2/stage1/stage1_reviewer_b.zip"
+  ],
+  "active_stage2_vault_path": "private_data/human_review/compact20-review-ready-v2/stage2/stage2_vault.enc",
+  "canonical_cli_commands": [
+    "generate-private-packet",
+    "validate-private-packet",
+    "generate-stage1-packages",
+    "validate-stage1-packages",
+    "ingest-reviewer-qualification",
+    "ingest-stage1",
+    "validate-stage1-submissions",
+    "commit-stage1",
+    "unlock-stage2",
+    "generate-stage2-packages",
+    "ingest-stage2",
+    "validate-stage2-submissions",
+    "build-disagreement-queue",
+    "ingest-adjudication",
+    "compute-agreement",
+    "run-c10",
+    "build-exclusion-register",
+    "lock-reviewed-slice",
+    "authorize-model-execution"
+  ],
+  "canonical_coordinator_runbook": "docs/STAGE2_COORDINATOR_RUNBOOK_V2.md",
+  "canonical_review_runbook": "docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md",
+  "canonical_reviewer_instructions": "docs/STAGE1_REVIEWER_INSTRUCTIONS_V2.md",
+  "canonical_scientific_design": "docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md",
+  "canonical_security_policy": "docs/PRIVATE_PACKET_SECURITY_POLICY.md",
+  "cli_entry_point": "scripts/cab_review_ready_v2.py",
+  "external_key_environment_variable": "CAB_STAGE2_KEY_PATH",
+  "repo_root_checked": "causal-agent-bench",
+  "repository_root_relative": true,
+  "retired_packet_registry": "reports/reviewer_ready_v2/RETIRED_PACKET_REGISTRY.json",
+  "schema_version": "cab_review_ready_v2_active_path_registry_v1",
+  "status": "CAB_CANONICAL_PATHS_UPDATED",
+  "superseded_paths": {
+    "data/manifests/compact20_final_private_commitment.json": "RETIRED_COMMITMENT_RECORD",
+    "private_data/final_hostile_pre_run/compact20-final-private-v1": "RETIRED",
+    "reports/final_hostile_pre_run/SCIENTIFIC_FREEZE_MANIFEST.json": "SUPERSEDED_BY_FREEZE_V2"
+  }
+}

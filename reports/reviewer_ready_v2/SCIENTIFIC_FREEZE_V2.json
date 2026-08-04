@@ -1,0 +1,115 @@
+{
+  "benchmark_version": "compact20-review-ready-v2",
+  "freeze_sha256": "5d5dd1b365f386a94a7a0e7a71d9f319a90e3ff99e85b17235196b9130167b03",
+  "frozen_configs": {
+    "analysis_plan": {
+      "path": "configs/reviewer_ready_v2/analysis_plan_v2.json",
+      "sha256": "d4c1af92c15ce96a3306f1e76148a548881f61701d422458b909561e8f78c965"
+    },
+    "c10_contract": {
+      "path": "configs/human_validation/c10_contract_v2.json",
+      "sha256": "805f61fdfca684075bf0f1a466a4eedbb0d868cd21bbc1e344e198cbb8b310b6"
+    },
+    "endpoints": {
+      "path": "configs/reviewer_ready_v2/frozen_endpoints_v2.json",
+      "sha256": "3c1b3d18d6b45d0994204a28b43ae0bf1e0613614d74281392eba81ef8ec5fcf"
+    },
+    "packet_config": {
+      "path": "configs/human_review/compact20_review_ready_v2.yaml",
+      "sha256": "572d4fef84a0340c5c1d5f6945058d0e9613011f33cd0eba1acca6eb1b8a73c1"
+    },
+    "power_plan": {
+      "path": "configs/reviewer_ready_v2/power_plan_v2.json",
+      "sha256": "961be6ad584f8c9ce6ea0025d87f1f0cf89c4f98a10f8bccf39cec896210b3a6"
+    },
+    "scorer": {
+      "path": "configs/reviewer_ready_v2/scorer_v2.json",
+      "sha256": "028ba7c341215c766b66a3e324d59060b27ee2f4ee63837c85d121a17352274a"
+    },
+    "system_identity_schema": {
+      "path": "configs/pre_run/evaluated_system_identity.schema.json",
+      "sha256": "735360fb9d384608c89a48b6252dd58407c6c0de782300fac5e0866701570061"
+    }
+  },
+  "frozen_docs": {
+    "coordinator_runbook": {
+      "path": "docs/STAGE2_COORDINATOR_RUNBOOK_V2.md",
+      "sha256": "c7355290e8eef6d7cc03b35ff1567d84f0a77e3c7f3f15fb773ac1fed7ca5190"
+    },
+    "review_runbook": {
+      "path": "docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md",
+      "sha256": "412627a5db649882a4f921075ed7b6bc846c530157002fe3fae494d6b5920827"
+    },
+    "reviewer_instructions": {
+      "path": "docs/STAGE1_REVIEWER_INSTRUCTIONS_V2.md",
+      "sha256": "dd20c39d8278d6c4ea22d7a4b1e35040564ab2bc56181dfd83106f5634357024"
+    },
+    "scientific_design": {
+      "path": "docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md",
+      "sha256": "21267ef2164c8290e0cf190d1a53cff770a43420670964e04d4114b61de0ced9"
+    },
+    "security_policy": {
+      "path": "docs/PRIVATE_PACKET_SECURITY_POLICY.md",
+      "sha256": "4eaff91ee77f1f3af7eebca740eb712e2d2ee098f65c66098ffe19fce8d482d3"
+    }
+  },
+  "frozen_reports": {
+    "active_path_registry": {
+      "path": "reports/reviewer_ready_v2/ACTIVE_PATH_REGISTRY.json",
+      "sha256": "179877dc62bf34faa5b87ac5eee77a5df7534a7b27758a5b6f4083e89314fd0e"
+    },
+    "public_packet_commitment": {
+      "path": "reports/reviewer_ready_v2/PUBLIC_PACKET_COMMITMENT.json",
+      "sha256": "9683eecb285d56309d8b925561c25e374cc638ce191a06c6d1e76037b156f7b1"
+    },
+    "retired_packet_registry": {
+      "path": "reports/reviewer_ready_v2/RETIRED_PACKET_REGISTRY.json",
+      "sha256": "18b918ed104cdcb1ef62d006f503ae92d1debde29770b71e507aa0222ede2ffe"
+    }
+  },
+  "frozen_sources": {
+    "src/causal_agent_bench/review_ready_v2/catalog.py": "554521c4044435cd4a3ac6cfd21496ce5878d71705ba4d576dbbb87c6bb31b52",
+    "src/causal_agent_bench/review_ready_v2/design.py": "cd14aebf5bb4d549f8c87b9047b5d1d720ca635253e842cf7f34dd5debfa1de8",
+    "src/causal_agent_bench/review_ready_v2/evidence.py": "d17e2c078f6c8b5ef66b2eb854a58440e760f94729011de7f491cb53e7b50fb9",
+    "src/causal_agent_bench/review_ready_v2/leakage.py": "1dc1465864e6ee6f71b16aee311afc638ecff4ae987ab9b6421097c5e5b6a619",
+    "src/causal_agent_bench/review_ready_v2/models.py": "2ed77859fa2090716d9f89446ca4aaf868c76caa68d1eb27463bbf84b4896762",
+    "src/causal_agent_bench/review_ready_v2/operators.py": "6a4593692d4fdb16be77ca50bfaafc7005fa59801904559f23e53551d9c58bf8",
+    "src/causal_agent_bench/review_ready_v2/packet.py": "18f4bae730e9907c4def96c27ce9248013f6523b5e573c605b08648fb2401d10",
+    "src/causal_agent_bench/review_ready_v2/pairs.py": "57f193cee713938d8152a6cdc2217695895b2123c3b2d646a2d61b2c595c364d",
+    "src/causal_agent_bench/review_ready_v2/power.py": "b008677fdaf52e03001845638770be32339f93de37a5891d464899619628c419",
+    "src/causal_agent_bench/review_ready_v2/qualification.py": "57c09d5bd489c061d1877b55d9bd0b11e26937bf0a391fd6240a0baca6096278",
+    "src/causal_agent_bench/review_ready_v2/registry.py": "a041cbf573b136094562a2270db95a8e014cdff987f4afedb748de3ecf6dc989",
+    "src/causal_agent_bench/review_ready_v2/routes.py": "784a3118ceb23310fd8aea0822f7e7c88924b910686767f166164c490d026b99",
+    "src/causal_agent_bench/review_ready_v2/runtime.py": "95dc3ad14c64b82faed89377b6f8eb26036cedd59ed3a296b74306e66f0a177a",
+    "src/causal_agent_bench/review_ready_v2/stage1.py": "035d8dbdf022358aa500c9a8fba1cf03dc6303b1d5a0e0507c27673deb0a9a10",
+    "src/causal_agent_bench/review_ready_v2/vault.py": "e08f66d0d5f9a48f5c00be964c4481d46c957c01d22d32c751af7e303bb73b61",
+    "src/causal_agent_bench/review_ready_v2/workflow.py": "45d8d7ecd75ebccfd837029673b2a7887f3655a1e50ce64851bb6c8ae4bfec97"
+  },
+  "generator": {
+    "commit_content_matches": true,
+    "commit_resolves": true,
+    "path": "src/causal_agent_bench/review_ready_v2/pairs.py",
+    "source_commit": "b7cc158d078584518d3f133fb3fcfa7d7eeae73a",
+    "source_sha256": "57f193cee713938d8152a6cdc2217695895b2123c3b2d646a2d61b2c595c364d"
+  },
+  "invalidation_rules": {
+    "endpoint_change": "NEW_ENDPOINT_VERSION_AND_FRESH_REVIEW_REQUIRED",
+    "operator_change": "NEW_BENCHMARK_VERSION_AND_FRESH_REVIEW_REQUIRED",
+    "packet_regeneration": "PRIOR_REVIEW_INVALID",
+    "pair_change": "NEW_BENCHMARK_VERSION_AND_FRESH_REVIEW_REQUIRED",
+    "run_hash_mismatch": "EXECUTION_REFUSED",
+    "scorer_change": "NEW_SCORER_VERSION_AND_FRESH_REVIEW_REQUIRED"
+  },
+  "packet_commitment_sha256": "4f5afe5ed626690fb8fd9dae23740b94e0a39ec2fa3999a65696114f942839c8",
+  "qualification_package_sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669",
+  "schema_version": "cab_review_ready_v2_scientific_freeze_v1",
+  "stage1_package_hashes": {
+    "stage1_reviewer_a.zip": "3fcd2192c68cc356b2a1506a2ca32f191caf00ccf5dc7769a87bcd47db618113",
+    "stage1_reviewer_b.zip": "0185fcfbe89402e6284999fa6ed472fb0e1f90d28335a8ccfc6094e158a2d6cf"
+  },
+  "stage2_encrypted_vault_sha256": "1bf671d74764c79abf53e13fb5cffcfe823daf0c145fbdb90664819d9faadd9f",
+  "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
+  "stage2_key_value_bound": false,
+  "status": "CAB_SCIENTIFIC_FREEZE_V2_VALID",
+  "two_stage_workflow_version": "cab_review_ready_v2_two_stage_workflow_v1"
+}

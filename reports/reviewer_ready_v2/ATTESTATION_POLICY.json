@@ -1,0 +1,23 @@
+{
+  "attestation_model": "EXTERNAL_EXACT_COMMIT",
+  "environment_override": "CAB_ATTESTATION_DIR",
+  "location_template": "~/.cab/attestations/cab-review-ready-v2-<commit>.json",
+  "permissions": "0700 directories, 0600 files",
+  "required_before": "any distribution of this repository as a release artifact",
+  "required_fields": [
+    "exact_commit",
+    "branch",
+    "scientific_freeze_hash",
+    "public_packet_commitment",
+    "stage1_reviewer_a_hash",
+    "stage1_reviewer_b_hash",
+    "encrypted_stage2_vault_hash",
+    "wheel_hash",
+    "normalized_sdist_hash",
+    "test_summary",
+    "build_environment",
+    "timestamp"
+  ],
+  "schema_version": "cab_review_ready_v2_attestation_policy_v1",
+  "why_external": "An exact-commit attestation cannot be committed inside the commit it attests, so it is written outside the repository after the final tracked commit."
+}

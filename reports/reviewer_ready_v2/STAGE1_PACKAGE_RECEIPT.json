@@ -1,0 +1,66 @@
+{
+  "human_pilot_performed": false,
+  "packages": [
+    {
+      "checks": {
+        "conflict_declaration_present": true,
+        "every_referenced_file_exists": true,
+        "form_present": true,
+        "form_rows_match_item_ids": true,
+        "instructions_present": true,
+        "items_parse_as_json": true,
+        "manifest_present": true,
+        "no_private_manifest_shipped": true,
+        "one_form_row_per_item": true,
+        "opaque_ids_unique": true,
+        "package_size_reasonable": true
+      },
+      "item_count": 5,
+      "package": "qualification_packet",
+      "passed": true,
+      "sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669"
+    },
+    {
+      "checks": {
+        "conflict_declaration_present": true,
+        "every_referenced_file_exists": true,
+        "form_present": true,
+        "form_rows_match_item_ids": true,
+        "instructions_present": true,
+        "items_parse_as_json": true,
+        "manifest_present": true,
+        "no_private_manifest_shipped": true,
+        "one_form_row_per_item": true,
+        "opaque_ids_unique": true,
+        "package_size_reasonable": true
+      },
+      "item_count": 20,
+      "package": "stage1_reviewer_a",
+      "passed": true,
+      "sha256": "3fcd2192c68cc356b2a1506a2ca32f191caf00ccf5dc7769a87bcd47db618113"
+    },
+    {
+      "checks": {
+        "conflict_declaration_present": true,
+        "every_referenced_file_exists": true,
+        "form_present": true,
+        "form_rows_match_item_ids": true,
+        "instructions_present": true,
+        "items_parse_as_json": true,
+        "manifest_present": true,
+        "no_private_manifest_shipped": true,
+        "one_form_row_per_item": true,
+        "opaque_ids_unique": true,
+        "package_size_reasonable": true
+      },
+      "item_count": 20,
+      "package": "stage1_reviewer_b",
+      "passed": true,
+      "sha256": "0185fcfbe89402e6284999fa6ed472fb0e1f90d28335a8ccfc6094e158a2d6cf"
+    }
+  ],
+  "passed": true,
+  "reviewer_orders_independent": true,
+  "schema_version": "cab_review_ready_v2_usability_audit_v1",
+  "status": "CAB_STAGE1_USABILITY_CHECKS_PASSED"
+}

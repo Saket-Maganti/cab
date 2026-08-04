@@ -1,0 +1,113 @@
+{
+  "checks": {
+    "active_packet_accepted": true,
+    "every_retired_packet_rejected_at_every_gate": true,
+    "renamed_copy_with_retired_commitment_rejected": true
+  },
+  "passed": true,
+  "probe_count": 21,
+  "rows": [
+    {
+      "gate": "stage1_ingestion",
+      "packet_version": "compact20-public-development",
+      "rejected": true
+    },
+    {
+      "gate": "stage1_ingestion",
+      "packet_version": "compact20_real_review",
+      "rejected": true
+    },
+    {
+      "gate": "stage1_ingestion",
+      "packet_version": "compact20-reviewed-v1",
+      "rejected": true
+    },
+    {
+      "gate": "stage1_ingestion",
+      "packet_version": "compact20-v2-instances",
+      "rejected": true
+    },
+    {
+      "gate": "stage1_ingestion",
+      "packet_version": "compact20-final-private-v1",
+      "rejected": true
+    },
+    {
+      "gate": "c10_evaluation",
+      "packet_version": "compact20-public-development",
+      "rejected": true
+    },
+    {
+      "gate": "c10_evaluation",
+      "packet_version": "compact20_real_review",
+      "rejected": true
+    },
+    {
+      "gate": "c10_evaluation",
+      "packet_version": "compact20-reviewed-v1",
+      "rejected": true
+    },
+    {
+      "gate": "c10_evaluation",
+      "packet_version": "compact20-v2-instances",
+      "rejected": true
+    },
+    {
+      "gate": "c10_evaluation",
+      "packet_version": "compact20-final-private-v1",
+      "rejected": true
+    },
+    {
+      "gate": "slice_lock",
+      "packet_version": "compact20-public-development",
+      "rejected": true
+    },
+    {
+      "gate": "slice_lock",
+      "packet_version": "compact20_real_review",
+      "rejected": true
+    },
+    {
+      "gate": "slice_lock",
+      "packet_version": "compact20-reviewed-v1",
+      "rejected": true
+    },
+    {
+      "gate": "slice_lock",
+      "packet_version": "compact20-v2-instances",
+      "rejected": true
+    },
+    {
+      "gate": "slice_lock",
+      "packet_version": "compact20-final-private-v1",
+      "rejected": true
+    },
+    {
+      "gate": "model_execution_authorization",
+      "packet_version": "compact20-public-development",
+      "rejected": true
+    },
+    {
+      "gate": "model_execution_authorization",
+      "packet_version": "compact20_real_review",
+      "rejected": true
+    },
+    {
+      "gate": "model_execution_authorization",
+      "packet_version": "compact20-reviewed-v1",
+      "rejected": true
+    },
+    {
+      "gate": "model_execution_authorization",
+      "packet_version": "compact20-v2-instances",
+      "rejected": true
+    },
+    {
+      "gate": "model_execution_authorization",
+      "packet_version": "compact20-final-private-v1",
+      "rejected": true
+    }
+  ],
+  "schema_version": "cab_review_ready_v2_retirement_enforcement_v1",
+  "status": "CAB_RETIRED_PACKETS_BLOCKED"
+}

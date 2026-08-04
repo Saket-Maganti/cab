@@ -1,0 +1,105 @@
+{
+  "anchor_group_count": 4,
+  "c10_status": "C10_PENDING_GENUINE_REVIEW",
+  "commitment_sha256": "4f5afe5ed626690fb8fd9dae23740b94e0a39ec2fa3999a65696114f942839c8",
+  "difficulty_counts": {
+    "easy": 4,
+    "hard": 4,
+    "medium": 8,
+    "stress": 4
+  },
+  "distinct_objective_signatures": 16,
+  "distinct_semantic_objectives": 16,
+  "domain_counts": {
+    "calendar": 2,
+    "coding": 2,
+    "operations": 2,
+    "policy": 2,
+    "research": 3,
+    "shopping": 3,
+    "spreadsheet": 3,
+    "travel": 3
+  },
+  "family_counts": {
+    "memory_corruption": 5,
+    "observation_conflict": 5,
+    "tool_failure": 5,
+    "tool_removal": 5
+  },
+  "family_route_matrix": {
+    "memory_corruption": {
+      "abstention": 1,
+      "clarification": 2,
+      "completion": 2,
+      "recovery": 0
+    },
+    "observation_conflict": {
+      "abstention": 1,
+      "clarification": 2,
+      "completion": 2,
+      "recovery": 0
+    },
+    "tool_failure": {
+      "abstention": 0,
+      "clarification": 1,
+      "completion": 1,
+      "recovery": 3
+    },
+    "tool_removal": {
+      "abstention": 1,
+      "clarification": 0,
+      "completion": 2,
+      "recovery": 2
+    }
+  },
+  "gates": {
+    "causal_route_validation_passed": true,
+    "design_audit_passed": true,
+    "hostile_route_audit_passed": true,
+    "intervention_isolation_passed": true,
+    "stage1_leakage_audit_passed": true,
+    "stage1_usability_audit_passed": true
+  },
+  "generator_version": "cab_review_ready_v2_pair_generator_v1",
+  "genuine_human_judgments": 0,
+  "genuine_model_trajectories": 0,
+  "hostile_attack_count": 226,
+  "packet_version": "compact20-review-ready-v2",
+  "pair_content_hashes": {
+    "private_slot_01": "943095b898bb1cb06fefaec224d988999e241e44dbc0b8f55265960441005b04",
+    "private_slot_02": "fde19d10851c42bfbfbcdca52d7eee2c26c92d9fbe99481a18694bc67ef4a9cd",
+    "private_slot_03": "4ec1183136d04f06c554e730e34f92dbd7e59de2acde4ebf65481f3d2da2b53d",
+    "private_slot_04": "9293945afcfeaaf61b938bbfa0815a0af17be0c2437d9c725493b7f012fd5126",
+    "private_slot_05": "8b7f2e578fecf0b08273851082acb39e87de72919f7fe7313e402132536b3eef",
+    "private_slot_06": "6c590586d687f29c8e3e0409ab45006fee9c4cc9f7a881458db29f45a0d49b78",
+    "private_slot_07": "6a6be345ae57472d1daeb1de0eeba687f6751e5600db28af424404318ea22b3d",
+    "private_slot_08": "3c30f61c9e440ac3be70face5b6275f38dec236dccef4f4123d32b6bf4e838cd",
+    "private_slot_09": "653968cf12e5c3bf7a0c68add1d6d994d4cba225df57bf8f8b9b2531979b5c11",
+    "private_slot_10": "e6a47f90db6c92902cc41ae1b1b2f8742e29ef1fc676833d756fc7e9b3e84d84",
+    "private_slot_11": "99d1e3fe83857f00c08d742018cf56722af273bd5c88ef26d1b77c4102255741",
+    "private_slot_12": "655e45193be79b379e7198ab1524c3a94bdfcab3ab92d22c09dd7d671ceea14b",
+    "private_slot_13": "662707bcb38c41f356df37012fc65e18ec50c4dffe1971356298fa63e03da676",
+    "private_slot_14": "0b4ff545f91c9a3b69ce3482401404aa3b0ae29c2e6cb57c09bf0b4a15b5511c",
+    "private_slot_15": "f1236519bfce544f8a93984590a2e1410638c832cbf380128228459dc1fb466f",
+    "private_slot_16": "d5e19d5e0a5b9afb16656d3a07d161348a489a02d9913192fab64229f42371a4",
+    "private_slot_17": "ff49a9e0782de8d6f9a9bf635328b6945265b1edc0aa9e1fb1734242a3072d68",
+    "private_slot_18": "505803cccef247e6cccd52c514af3ed5c07ec4dcaa0674e881613954c6505e63",
+    "private_slot_19": "60bc7fc53a7df06ecb4d0e595f1064e0191f7a6f17dde337fa45315294b701c8",
+    "private_slot_20": "874983b2730640653d972f727f40449e4b60e25f09881b674f279b73bcdb919d"
+  },
+  "pair_count": 20,
+  "private_bodies_committed": false,
+  "qualification_package_sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669",
+  "schema_version": "cab_review_ready_v2_public_commitment_v1",
+  "seed_commitment": "38fec0ccea7f439c2858e046205551081a953a0acf9f98126b4f22c8cf239e85",
+  "stage1_package_hashes": {
+    "stage1_reviewer_a.zip": "3fcd2192c68cc356b2a1506a2ca32f191caf00ccf5dc7769a87bcd47db618113",
+    "stage1_reviewer_b.zip": "0185fcfbe89402e6284999fa6ed472fb0e1f90d28335a8ccfc6094e158a2d6cf"
+  },
+  "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
+  "stage2_key_stored_in_repository": false,
+  "stage2_plaintext_persisted": false,
+  "stage2_vault_sha256": "1bf671d74764c79abf53e13fb5cffcfe823daf0c145fbdb90664819d9faadd9f",
+  "status": "CAB_NEW_PRIVATE_COMPACT20_V2_READY",
+  "unit_of_evaluation": "clean_intervention_pair"
+}

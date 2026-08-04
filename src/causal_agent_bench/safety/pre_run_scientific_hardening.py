@@ -255,6 +255,9 @@ def _guidance_passes(root: Path) -> bool:
     accepted_states = {
         FINAL_STATE,
         "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE",
+        # The reviewer-ready V2 repair supersedes the earlier pre-review pass and
+        # is the state CURRENT_PROJECT_STATE.md now declares.
+        "CAB_REVIEWER_READY_V2_REPAIR_COMPLETE",
     }
     if not any(state in body for state in accepted_states) or any(
         blocker not in body for blocker in EXTERNAL_BLOCKERS
