@@ -1,0 +1,522 @@
+{
+  "compact20": {
+    "adequately_powered_for_broad_claims": false,
+    "confirmatory": false,
+    "label": "pilot",
+    "purposes": [
+      "feasibility",
+      "protocol_validation",
+      "scorer_audit_basis",
+      "runtime_and_resource_calibration",
+      "effect_direction_exploration"
+    ],
+    "rank_instability_sensitivity": [
+      {
+        "assumed_mean_degradation": 0.03,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.1812,
+        "kendall_p05": -0.527,
+        "mean_max_rank_shift": 2.368,
+        "pairs": 20,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.9137,
+        "probability_of_tied_intervention_scores": 0.73,
+        "probability_of_top_model_identity_change": 0.6913,
+        "replicates": 800,
+        "spearman_mean": 0.2141,
+        "spearman_p05": -0.6456
+      },
+      {
+        "assumed_mean_degradation": 0.05,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.2207,
+        "kendall_p05": -0.5169,
+        "mean_max_rank_shift": 2.281,
+        "pairs": 20,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.9175,
+        "probability_of_tied_intervention_scores": 0.7163,
+        "probability_of_top_model_identity_change": 0.6525,
+        "replicates": 800,
+        "spearman_mean": 0.2624,
+        "spearman_p05": -0.6316
+      },
+      {
+        "assumed_mean_degradation": 0.08,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.1899,
+        "kendall_p05": -0.527,
+        "mean_max_rank_shift": 2.362,
+        "pairs": 20,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.9237,
+        "probability_of_tied_intervention_scores": 0.7163,
+        "probability_of_top_model_identity_change": 0.665,
+        "replicates": 800,
+        "spearman_mean": 0.2258,
+        "spearman_p05": -0.6669
+      },
+      {
+        "assumed_mean_degradation": 0.1,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.1942,
+        "kendall_p05": -0.4472,
+        "mean_max_rank_shift": 2.402,
+        "pairs": 20,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.9325,
+        "probability_of_tied_intervention_scores": 0.725,
+        "probability_of_top_model_identity_change": 0.6613,
+        "replicates": 800,
+        "spearman_mean": 0.231,
+        "spearman_p05": -0.5643
+      },
+      {
+        "assumed_mean_degradation": 0.15,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.2057,
+        "kendall_p05": -0.504,
+        "mean_max_rank_shift": 2.373,
+        "pairs": 20,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.9363,
+        "probability_of_tied_intervention_scores": 0.7262,
+        "probability_of_top_model_identity_change": 0.6525,
+        "replicates": 800,
+        "spearman_mean": 0.2433,
+        "spearman_p05": -0.631
+      }
+    ],
+    "status": "PILOT_FEASIBILITY_PROTOCOL_VALIDATION_SCORER_AUDIT_RUNTIME_CALIBRATION_EFFECT_DIRECTION_ONLY"
+  },
+  "empirical_results_present": false,
+  "genuine_model_trajectories": 0,
+  "model_family_interaction": {
+    "adequate_at_degradations": [],
+    "designation": "secondary_exploratory",
+    "grid": [
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.03,
+        "designation": "secondary_exploratory",
+        "estimated_power": 0.0451,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "null_rejection_rate": 0.0376,
+        "pairs": 100,
+        "permutations": 199,
+        "repeats_per_pair": 3,
+        "replicates": 133,
+        "test": "within-design permutation of family labels across items",
+        "test_calibrated_under_null": true
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.05,
+        "designation": "secondary_exploratory",
+        "estimated_power": 0.0526,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "null_rejection_rate": 0.0376,
+        "pairs": 100,
+        "permutations": 199,
+        "repeats_per_pair": 3,
+        "replicates": 133,
+        "test": "within-design permutation of family labels across items",
+        "test_calibrated_under_null": true
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.08,
+        "designation": "secondary_exploratory",
+        "estimated_power": 0.0451,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "null_rejection_rate": 0.0451,
+        "pairs": 100,
+        "permutations": 199,
+        "repeats_per_pair": 3,
+        "replicates": 133,
+        "test": "within-design permutation of family labels across items",
+        "test_calibrated_under_null": true
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.1,
+        "designation": "secondary_exploratory",
+        "estimated_power": 0.0451,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "null_rejection_rate": 0.0301,
+        "pairs": 100,
+        "permutations": 199,
+        "repeats_per_pair": 3,
+        "replicates": 133,
+        "test": "within-design permutation of family labels across items",
+        "test_calibrated_under_null": true
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.15,
+        "designation": "secondary_exploratory",
+        "estimated_power": 0.0977,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "null_rejection_rate": 0.0301,
+        "pairs": 100,
+        "permutations": 199,
+        "repeats_per_pair": 3,
+        "replicates": 133,
+        "test": "within-design permutation of family labels across items",
+        "test_calibrated_under_null": true
+      }
+    ],
+    "reason": "Power reaches the 0.80 confirmatory bar only at the assumed degradations listed below; the interaction is therefore designated secondary/exploratory for every other regime."
+  },
+  "primary_confirmatory_estimand": {
+    "adequately_powered_at_degradations": [
+      0.1,
+      0.15
+    ],
+    "compact20_grid": [
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.03,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 20,
+        "panel_average_power": 0.1278,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.05,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 20,
+        "panel_average_power": 0.1955,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.08,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 20,
+        "panel_average_power": 0.3008,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.1,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 20,
+        "panel_average_power": 0.3797,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.15,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 20,
+        "panel_average_power": 0.6391,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      }
+    ],
+    "design": "scale100",
+    "designation": "confirmatory",
+    "inference_scope": "Inference applies to the fixed evaluated model panel unless a model-superpopulation design is separately preregistered.",
+    "name": "paired clean-vs-intervention degradation on the fixed model panel",
+    "scale100_grid": [
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.03,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 100,
+        "panel_average_power": 0.2368,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.05,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 100,
+        "panel_average_power": 0.4023,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.08,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": false,
+        "pairs": 100,
+        "panel_average_power": 0.718,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.1,
+        "every_model_degrades_power": 0.0,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": true,
+        "pairs": 100,
+        "panel_average_power": 0.8647,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      },
+      {
+        "alpha": 0.05,
+        "assumed_mean_degradation": 0.15,
+        "every_model_degrades_power": 0.0075,
+        "is_empirical_finding": false,
+        "meets_confirmatory_adequacy": true,
+        "pairs": 100,
+        "panel_average_power": 1.0,
+        "repeats_per_pair": 1,
+        "replicates": 266
+      }
+    ]
+  },
+  "rank_instability_claim": {
+    "calibration_warning": "On this closely spaced five-model panel the raw reversal probability is dominated by sampling noise: it is already high with zero degradation. The raw probability is therefore NOT a usable estimand. Any rank-instability claim must be stated as excess over the matched zero-degradation noise floor, and Compact-20 must not be used for it at all.",
+    "estimand": "probability of at least one meaningful rank reversal between clean and intervention leaderboards on a fixed five-model panel",
+    "excess_over_noise_floor_discriminates_at_scale100": false,
+    "meaningful_reversal_definition": {
+      "min_absolute_score_gap": 0.02,
+      "min_rank_shift": 1
+    },
+    "noise_floor": {
+      "compact20_excess_over_floor_at_largest_effect": 0.0313,
+      "compact20_zero_degradation_reversal_probability": 0.905,
+      "scale100_excess_over_floor_at_largest_effect": 0.0125,
+      "scale100_zero_degradation_reversal_probability": 0.8275
+    },
+    "prospectively_calibrated": true,
+    "raw_reversal_probability_is_a_usable_estimand": false,
+    "regimes": {
+      "large": {
+        "assumed_mean_degradations": [
+          0.15
+        ],
+        "compact20_reversal_probability": [
+          0.9363
+        ],
+        "scale100_reversal_probability": [
+          0.84
+        ]
+      },
+      "medium": {
+        "assumed_mean_degradations": [
+          0.08,
+          0.1
+        ],
+        "compact20_reversal_probability": [
+          0.9237,
+          0.9325
+        ],
+        "scale100_reversal_probability": [
+          0.855,
+          0.8275
+        ]
+      },
+      "small": {
+        "assumed_mean_degradations": [
+          0.03,
+          0.05
+        ],
+        "compact20_reversal_probability": [
+          0.9137,
+          0.9175
+        ],
+        "scale100_reversal_probability": [
+          0.8263,
+          0.8337
+        ]
+      }
+    }
+  },
+  "scale100": {
+    "confirmatory": true,
+    "inference_scope": "Inference applies to the fixed evaluated model panel unless a model-superpopulation design is separately preregistered.",
+    "label": "primary_confirmatory",
+    "model_superpopulation_design_preregistered": false,
+    "rank_instability_sensitivity": [
+      {
+        "assumed_mean_degradation": 0.03,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.4963,
+        "kendall_p05": -0.1054,
+        "mean_max_rank_shift": 1.75,
+        "pairs": 100,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.8263,
+        "probability_of_tied_intervention_scores": 0.3,
+        "probability_of_top_model_identity_change": 0.5088,
+        "replicates": 800,
+        "spearman_mean": 0.5856,
+        "spearman_p05": -0.0821
+      },
+      {
+        "assumed_mean_degradation": 0.05,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.5023,
+        "kendall_p05": -0.0053,
+        "mean_max_rank_shift": 1.711,
+        "pairs": 100,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.8337,
+        "probability_of_tied_intervention_scores": 0.2888,
+        "probability_of_top_model_identity_change": 0.4963,
+        "replicates": 800,
+        "spearman_mean": 0.5976,
+        "spearman_p05": -0.0513
+      },
+      {
+        "assumed_mean_degradation": 0.08,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.4895,
+        "kendall_p05": 0.0,
+        "mean_max_rank_shift": 1.776,
+        "pairs": 100,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.855,
+        "probability_of_tied_intervention_scores": 0.2825,
+        "probability_of_top_model_identity_change": 0.4938,
+        "replicates": 800,
+        "spearman_mean": 0.5791,
+        "spearman_p05": -0.0513
+      },
+      {
+        "assumed_mean_degradation": 0.1,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.5172,
+        "kendall_p05": 0.0,
+        "mean_max_rank_shift": 1.677,
+        "pairs": 100,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.8275,
+        "probability_of_tied_intervention_scores": 0.2875,
+        "probability_of_top_model_identity_change": 0.4913,
+        "replicates": 800,
+        "spearman_mean": 0.6096,
+        "spearman_p05": -0.0513
+      },
+      {
+        "assumed_mean_degradation": 0.15,
+        "is_empirical_finding": false,
+        "kendall_mean": 0.5098,
+        "kendall_p05": 0.0,
+        "mean_max_rank_shift": 1.724,
+        "pairs": 100,
+        "panel_size": 5,
+        "probability_of_meaningful_rank_reversal": 0.84,
+        "probability_of_tied_intervention_scores": 0.3,
+        "probability_of_top_model_identity_change": 0.46,
+        "replicates": 800,
+        "spearman_mean": 0.6036,
+        "spearman_p05": 0.0
+      }
+    ]
+  },
+  "schema_version": "cab_review_ready_v2_power_plan_v1",
+  "separation_of_claims": {
+    "exploratory_estimands": [
+      "model x family interaction",
+      "Compact-20 effect direction",
+      "rank instability, reported only as excess over the matched noise floor"
+    ],
+    "planning_assumptions": [
+      "fixed five-model panel clean success rates",
+      "family-specific degradation multipliers",
+      "scorer noise and missing-trajectory rates"
+    ],
+    "powered_estimands": [
+      "clean-vs-intervention paired degradation on Scale-100"
+    ],
+    "unsupported_generalizations": [
+      "any statement about LLM agents in general rather than the evaluated panel",
+      "any claim that Compact-20 is confirmatory",
+      "any raw rank-reversal probability reported without its matched noise floor"
+    ]
+  },
+  "simulation_parameters": {
+    "deterministic": true,
+    "family_degradation_multipliers": {
+      "memory_corruption": 0.85,
+      "observation_conflict": 0.7,
+      "tool_failure": 1.0,
+      "tool_removal": 1.3
+    },
+    "fixed_panel_clean_success": [
+      0.72,
+      0.68,
+      0.65,
+      0.61,
+      0.55
+    ],
+    "item_difficulty_sd": 0.35,
+    "missing_trajectory_rate": 0.02,
+    "model_family_sensitivity_matrix": [
+      [
+        1.3,
+        0.8,
+        1.05,
+        0.55
+      ],
+      [
+        1.55,
+        1.25,
+        0.65,
+        0.6
+      ],
+      [
+        1.2,
+        0.85,
+        1.0,
+        0.75
+      ],
+      [
+        1.05,
+        1.15,
+        0.7,
+        0.9
+      ],
+      [
+        1.4,
+        0.95,
+        0.85,
+        0.7
+      ]
+    ],
+    "scorer_noise_rate": 0.02,
+    "seed": 20260804,
+    "sesoi_grid": [
+      0.03,
+      0.05,
+      0.08,
+      0.1,
+      0.15
+    ]
+  },
+  "status": "CAB_POWER_PLAN_CALIBRATED"
+}

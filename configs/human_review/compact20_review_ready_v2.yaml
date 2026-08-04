@@ -1,0 +1,86 @@
+# Frozen configuration for the reviewer-ready V2 packet.
+# Changing any value here invalidates the scientific freeze and requires a new
+# packet version plus a fresh human review.
+schema_version: cab_review_ready_v2_packet_config_v1
+packet_version: compact20-review-ready-v2
+
+unit_of_evaluation: clean_intervention_pair
+pair_count: 20
+
+composition:
+  families:
+    tool_removal: 5
+    tool_failure: 5
+    memory_corruption: 5
+    observation_conflict: 5
+  min_domains: 8
+  max_pairs_per_domain: 3
+  difficulty:
+    easy: 4
+    medium: 8
+    hard: 4
+    stress: 4
+  min_distinct_semantic_objectives: 16
+  anchor_groups: 4
+
+# Prospectively frozen. Never re-optimised after observing human or model
+# outcomes. Deconfounds intervention family from required response type: no
+# family maps to a single response type, and no response type is confined to a
+# single family.
+family_route_matrix:
+  tool_removal:      {completion: 2, recovery: 2, clarification: 0, abstention: 1}
+  tool_failure:      {completion: 1, recovery: 3, clarification: 1, abstention: 0}
+  memory_corruption: {completion: 2, recovery: 0, clarification: 2, abstention: 1}
+  observation_conflict: {completion: 2, recovery: 0, clarification: 2, abstention: 1}
+
+intervention_operators:
+  - remove_tool
+  - inject_tool_failure
+  - corrupt_memory_field
+  - inject_conflicting_observation
+
+tool_capabilities:
+  - collection_read
+  - record_lookup
+  - memory_read
+  - document_read
+  - indexed_lookup
+
+# There is no general-purpose artifact reader in the scientific route. Every
+# tool is bound to one named source and one declared field projection.
+universal_artifact_oracle_declared: false
+
+reasoning_closure:
+  - arithmetic
+  - comparison
+  - sorting
+  - set_membership
+  - filtering
+  - date_time_comparison
+  - conjunction_of_visible_conditions
+  - direct_lookup_from_visible_primitive_observations
+
+anchors:
+  allowed_nuisance_differences: [record_order, identifier_labels]
+  forbidden_semantic_differences:
+    - semantic_objective
+    - task_archetype
+    - answer_derivation_logic
+    - difficulty
+    - intervention_family
+    - route_requirement
+    - required_input_keys
+    - decision_relevant_numeric_values
+
+security:
+  private_root: private_data/human_review/compact20-review-ready-v2
+  stage2_key_environment_variable: CAB_STAGE2_KEY_PATH
+  stage2_key_inside_repository: false
+  stage2_plaintext_persisted: false
+  private_data_git_ignored: true
+
+status:
+  genuine_human_review_performed: false
+  c10: C10_PENDING_GENUINE_REVIEW
+  model_execution: MODEL_EXECUTION_BLOCKED
+  compact20_role: pilot
