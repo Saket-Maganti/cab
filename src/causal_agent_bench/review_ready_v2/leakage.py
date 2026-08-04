@@ -303,7 +303,11 @@ def usability_audit(packages: dict[str, bytes]) -> dict[str, Any]:
         checks = {
             "manifest_present": "manifest.json" in files,
             "instructions_present": any(name.endswith("INSTRUCTIONS.md") for name in files),
-            "conflict_declaration_present": "CONFLICT_OF_INTEREST.md" in files,
+            # Stage-1 packages still ship the free-text conflict form; qualification
+            # packages ship the structured declaration the coordinator ingests.
+            # Either satisfies the requirement that a reviewer is asked to declare.
+            "conflict_declaration_present": "CONFLICT_OF_INTEREST.md" in files
+            or "reviewer_declaration.json" in files,
             "form_present": bool(form),
             "every_referenced_file_exists": all(str(row["item_path"]) in files for row in items),
             "one_form_row_per_item": len(form_rows) == len(items),
