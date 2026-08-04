@@ -1,7 +1,7 @@
 # CAB Current Project State
 
 **Authority:** this is the sole current top-level state and next-action guide.
-**State:** `CAB_REVIEWER_READY_V2_REPAIR_COMPLETE`
+**State:** `CAB_REVIEW_WORKFLOW_INTEGRITY_REPAIR_COMPLETE`
 **Review packet:** `compact20-review-ready-v2` (all earlier packets are retired)
 **External gates:** `HUMAN_VALIDATION_REQUIRED`, `LIVE_EVIDENCE_REQUIRED`
 **Scientific execution during this pass:** none
@@ -13,10 +13,15 @@ handoff; a commit cannot truthfully contain its own future hash.
 ## Canonical review path (reviewer-ready V2)
 
 The repository is engineering-ready for genuine Stage-1 review.
+
+```text
 No genuine review has occurred.
-Stage 2 remains locked.
 C10 has not passed.
-Model execution is prohibited.
+Model execution is blocked.
+Stage 2 remains locked.
+Genuine human judgements: 0
+Genuine model trajectories: 0
+```
 
 The active packet is `compact20-review-ready-v2`. Every earlier Compact packet —
 including `compact20-final-private-v1` — is retired and rejected **in code** at
@@ -25,12 +30,35 @@ package-hash identity rather than by name. Resolve every path from
 `reports/reviewer_ready_v2/ACTIVE_PATH_REGISTRY.json`.
 
 ```bash
+export CAB_PACKET_SEED_PATH="$HOME/.cab/seeds/review_ready_v2.seed"
 export CAB_STAGE2_KEY_PATH="$HOME/.cab/keys/stage2_review_ready_v2.key"
+export CAB_QUALIFICATION_KEY_PATH="$HOME/.cab/keys/qualification_review_ready_v2.key"
+export CAB_COORDINATOR_KEY_PATH="$HOME/.cab/keys/coordinator_review_ready_v2.key"
 python3 scripts/cab_review_ready_v2.py validate-private-packet
 python3 scripts/cab_review_ready_v2.py validate-stage1-packages
 python3 scripts/cab_review_ready_v2.py fixture-e2e
 python3 scripts/cab_review_ready_v2.py verify-freeze
+python3 scripts/cab_review_ready_v2.py verify-provenance
+python3 scripts/cab_review_ready_v2.py coordinator-checklist
+python3 scripts/cab_review_ready_v2.py status
 ```
+
+## Reviewer-workflow integrity
+
+An independent audit of the previous pass reproduced a false production
+`C10_PASS` and found five further defects. All are closed, and each is now a
+permanent regression test in `tests/test_review_workflow_integrity.py`:
+
+| Defect | Repair |
+|---|---|
+| Qualification items and answer key were in tracked source | Content and answers are generated from the private seed into ignored storage; the key is encrypted under `CAB_QUALIFICATION_KEY_PATH`; the exposed version is retired and rejected under any name |
+| `fixture=False` decided whether evidence was genuine | Authenticity derives from the sealing authority: production receipts need an external coordinator key, fixture receipts are sealed by a public one and fail on origin, schema and MAC |
+| Ingestion hardcoded the reviewer's AI and conflict declarations | Every declaration field is parsed from the reviewer's own submitted file; a missing confirmation is a refusal, and a disclosed conflict requires an explicit coordinator decision |
+| A complete Stage-2 form counted as validation | Nine substantive dimensions with `YES`/`NO`/`UNSURE`/`NOT_APPLICABLE`; `NO` and `UNSURE` block and require notes; form completion and acceptance are recorded separately |
+| Stage-2 disagreements were never adjudicated | Separate Stage-1 and Stage-2 queues, separate adjudication, and exactly two ways to resolve a dispute: accept, or exclude |
+| C10 derived checks from raw reviewer rows | C10 reads only the final adjudicated records; agreement is computed only from the raw independent pre-adjudication submissions |
+| Reviewer and package identifiers were inconsistent | One canonical role enum, and an immutable private registry binding pseudonym → role → package hash → namespace |
+| The freeze named a non-ancestor generator commit | Provenance anchors to the last commit that touched the generator, verified with `git merge-base --is-ancestor` and from a `--single-branch` clone |
 
 Canonical documents:
 [runbook](docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md) ·

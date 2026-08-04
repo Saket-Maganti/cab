@@ -4,6 +4,14 @@ The freeze binds the generator source *and* its commit provenance, so a reviewer
 can verify that the committed generator at the recorded commit is byte-identical
 to the source that produced the private packet.  The external Stage-2 key value
 is never bound, recorded, or hashed.
+
+Provenance is recorded as *the last commit that touched the generator*, resolved
+with ``git rev-list -1 <ref> -- <paths>``.  That commit is by construction
+reachable from the branch being frozen, so the freeze verifies inside a
+``--single-branch`` clone with no reflog and no dangling objects.  Recording the
+current ``HEAD`` instead would be self-referential (the freeze cannot live inside
+the commit it names), and recording a sibling or amended-away commit produces a
+freeze that only verifies on the machine that built it.
 """
 
 from __future__ import annotations
@@ -32,13 +40,28 @@ FROZEN_SOURCES = (
     "src/causal_agent_bench/review_ready_v2/evidence.py",
     "src/causal_agent_bench/review_ready_v2/design.py",
     "src/causal_agent_bench/review_ready_v2/stage1.py",
+    "src/causal_agent_bench/review_ready_v2/stage2.py",
     "src/causal_agent_bench/review_ready_v2/qualification.py",
     "src/causal_agent_bench/review_ready_v2/leakage.py",
     "src/causal_agent_bench/review_ready_v2/vault.py",
+    "src/causal_agent_bench/review_ready_v2/keys.py",
+    "src/causal_agent_bench/review_ready_v2/receipts.py",
+    "src/causal_agent_bench/review_ready_v2/roles.py",
+    "src/causal_agent_bench/review_ready_v2/declarations.py",
+    "src/causal_agent_bench/review_ready_v2/assignments.py",
+    "src/causal_agent_bench/review_ready_v2/adjudication.py",
+    "src/causal_agent_bench/review_ready_v2/final_records.py",
     "src/causal_agent_bench/review_ready_v2/packet.py",
     "src/causal_agent_bench/review_ready_v2/workflow.py",
     "src/causal_agent_bench/review_ready_v2/registry.py",
     "src/causal_agent_bench/review_ready_v2/power.py",
+)
+
+#: The sources that actually materialise the twenty pairs.  Provenance is
+#: resolved against these, not against the whole package.
+GENERATOR_SOURCES = (
+    "src/causal_agent_bench/review_ready_v2/pairs.py",
+    "src/causal_agent_bench/review_ready_v2/catalog.py",
 )
 
 FROZEN_CONFIGS = {
@@ -47,6 +70,7 @@ FROZEN_CONFIGS = {
     "analysis_plan": "configs/reviewer_ready_v2/analysis_plan_v2.json",
     "power_plan": "configs/reviewer_ready_v2/power_plan_v2.json",
     "c10_contract": "configs/human_validation/c10_contract_v2.json",
+    "stage2_acceptance_policy": "configs/reviewer_ready_v2/stage2_acceptance_policy_v1.json",
     "system_identity_schema": "configs/pre_run/evaluated_system_identity.schema.json",
     "packet_config": "configs/human_review/compact20_review_ready_v2.yaml",
 }
@@ -65,7 +89,7 @@ FROZEN_DOCS = {
     "security_policy": "docs/PRIVATE_PACKET_SECURITY_POLICY.md",
 }
 
-WORKFLOW_VERSION = "cab_review_ready_v2_two_stage_workflow_v1"
+WORKFLOW_VERSION = "cab_review_ready_v2_two_stage_workflow_v2"
 
 
 def current_head(repo_root: Path) -> str:
@@ -81,6 +105,76 @@ def _committed_blob(repo_root: Path, commit: str, relative: str) -> bytes | None
     return result.stdout if result.returncode == 0 else None
 
 
+def _git(repo_root: Path, *args: str) -> tuple[int, str]:
+    result = subprocess.run(
+        ["git", *args], cwd=repo_root, check=False, capture_output=True, text=True
+    )
+    return result.returncode, result.stdout.strip()
+
+
+def last_commit_touching(repo_root: Path, paths: tuple[str, ...], ref: str = "HEAD") -> str | None:
+    """The most recent commit reachable from ``ref`` that changed ``paths``.
+
+    This is the only provenance anchor that survives a branch-only clone: it is
+    an ancestor of the branch by definition, so it needs no reflog, no sibling
+    commit, and no unreachable object.
+    """
+
+    code, out = _git(repo_root, "rev-list", "-1", ref, "--", *paths)
+    return out or None if code == 0 else None
+
+
+def commit_is_ancestor(repo_root: Path, commit: str, ref: str = "HEAD") -> bool:
+    code, _ = _git(repo_root, "merge-base", "--is-ancestor", commit, ref)
+    return code == 0
+
+
+def _blob_sha1(repo_root: Path, commit: str, relative: str) -> str | None:
+    code, out = _git(repo_root, "rev-parse", f"{commit}:{relative}")
+    return out if code == 0 and out else None
+
+
+def _blob_exists(repo_root: Path, blob: str) -> bool:
+    code, _ = _git(repo_root, "cat-file", "-e", f"{blob}^{{blob}}")
+    return code == 0
+
+
+def generator_provenance(repo_root: Path, *, generator_commit: str | None = None) -> dict[str, Any]:
+    """Bind the generator to a commit that is reachable from the branch."""
+
+    commit = generator_commit or last_commit_touching(repo_root, GENERATOR_SOURCES)
+    sources: list[dict[str, Any]] = []
+    content_matches = True
+    blobs_present = True
+    for relative in GENERATOR_SOURCES:
+        working = sha256_file(repo_root / relative)
+        blob = _committed_blob(repo_root, commit, relative) if commit else None
+        blob_sha1 = _blob_sha1(repo_root, commit, relative) if commit else None
+        matches = blob is not None and sha256_bytes(blob) == working
+        content_matches = content_matches and matches
+        blobs_present = blobs_present and bool(blob_sha1)
+        sources.append(
+            {
+                "path": relative,
+                "source_sha256": working,
+                "git_blob_sha1": blob_sha1,
+                "commit_content_matches": matches,
+            }
+        )
+    return {
+        "resolution": "git rev-list -1 <branch> -- " + " ".join(GENERATOR_SOURCES),
+        "source_commit": commit,
+        "commit_resolves": bool(commit)
+        and _git(repo_root, "cat-file", "-t", str(commit))[1] == "commit",
+        "commit_is_ancestor_of_head": bool(commit) and commit_is_ancestor(repo_root, str(commit)),
+        "commit_content_matches": content_matches,
+        "generator_blobs_present": blobs_present,
+        "sources": sources,
+        "requires_unreachable_objects": False,
+        "verifiable_from_single_branch_clone": True,
+    }
+
+
 def build_freeze(repo_root: Path, *, generator_commit: str | None = None) -> dict[str, Any]:
     commitment_path = repo_root / FROZEN_REPORTS["public_packet_commitment"]
     commitment = read_json(commitment_path)
@@ -91,7 +185,15 @@ def build_freeze(repo_root: Path, *, generator_commit: str | None = None) -> dic
         "two_stage_workflow_version": WORKFLOW_VERSION,
         "packet_commitment_sha256": commitment["commitment_sha256"],
         "stage1_package_hashes": commitment["stage1_package_hashes"],
-        "qualification_package_sha256": commitment["qualification_package_sha256"],
+        "qualification_version": commitment["qualification_version"],
+        "qualification_package_hashes": commitment["qualification_package_hashes"],
+        "qualification_commitment_sha256": commitment["qualification_commitment"][
+            "commitment_sha256"
+        ],
+        "qualification_key_environment_variable": commitment[
+            "qualification_key_environment_variable"
+        ],
+        "qualification_key_value_bound": False,
         "stage2_encrypted_vault_sha256": commitment["stage2_vault_sha256"],
         "stage2_key_environment_variable": commitment["stage2_key_environment_variable"],
         "stage2_key_value_bound": False,
@@ -119,18 +221,19 @@ def build_freeze(repo_root: Path, *, generator_commit: str | None = None) -> dic
             "run_hash_mismatch": "EXECUTION_REFUSED",
         },
     }
-    commit = generator_commit or current_head(repo_root)
-    generator_relative = "src/causal_agent_bench/review_ready_v2/pairs.py"
-    blob = _committed_blob(repo_root, commit, generator_relative)
-    manifest["generator"] = {
-        "path": generator_relative,
-        "source_sha256": sha256_file(repo_root / generator_relative),
-        "source_commit": commit,
-        "commit_resolves": blob is not None,
-        "commit_content_matches": bool(
-            blob is not None and sha256_bytes(blob) == sha256_file(repo_root / generator_relative)
-        ),
-    }
+    provenance = generator_provenance(repo_root, generator_commit=generator_commit)
+    if not provenance["commit_is_ancestor_of_head"]:
+        raise ValueError(
+            "refusing to write a freeze whose generator commit "
+            f"{provenance['source_commit']!r} is not an ancestor of HEAD; such a freeze verifies "
+            "only in the object database that built it, never in a fresh clone"
+        )
+    if not provenance["commit_content_matches"]:
+        raise ValueError(
+            "refusing to write a freeze whose recorded generator commit does not carry the "
+            "generator source currently on disk; commit the generator first"
+        )
+    manifest["generator"] = provenance
     manifest["freeze_sha256"] = sha256_bytes(canonical_bytes(manifest))
     return manifest
 
@@ -157,13 +260,33 @@ def verify_freeze(repo_root: Path, manifest_path: Path | None = None) -> dict[st
         checks[f"{group}_match"] = group_ok
 
     generator = manifest["generator"]
-    blob = _committed_blob(repo_root, generator["source_commit"], generator["path"])
-    checks["generator_source_matches"] = (
-        sha256_file(repo_root / generator["path"]) == generator["source_sha256"]
+    commit = str(generator["source_commit"])
+    working_matches = True
+    committed_matches = True
+    blobs_present = True
+    for source in generator["sources"]:
+        target = repo_root / source["path"]
+        working_matches = working_matches and target.is_file() and sha256_file(target) == source[
+            "source_sha256"
+        ]
+        blob = _committed_blob(repo_root, commit, source["path"])
+        committed_matches = committed_matches and bool(
+            blob is not None and sha256_bytes(blob) == source["source_sha256"]
+        )
+        blobs_present = blobs_present and bool(
+            source.get("git_blob_sha1") and _blob_exists(repo_root, str(source["git_blob_sha1"]))
+        )
+    checks["generator_source_matches"] = working_matches
+    checks["generator_commit_resolves"] = (
+        _git(repo_root, "cat-file", "-t", commit)[1] == "commit"
     )
-    checks["generator_commit_resolves"] = blob is not None
-    checks["generator_commit_content_matches"] = bool(
-        blob is not None and sha256_bytes(blob) == generator["source_sha256"]
+    # The check that makes the freeze portable: the recorded commit must be
+    # reachable from HEAD, not merely present in this machine's object store.
+    checks["generator_commit_is_ancestor_of_head"] = commit_is_ancestor(repo_root, commit)
+    checks["generator_commit_content_matches"] = committed_matches
+    checks["generator_blobs_resolve"] = blobs_present
+    checks["provenance_needs_no_unreachable_objects"] = (
+        generator.get("requires_unreachable_objects") is False
     )
 
     without_hash = dict(manifest)
@@ -178,6 +301,12 @@ def verify_freeze(repo_root: Path, manifest_path: Path | None = None) -> dict[st
         manifest["stage2_encrypted_vault_sha256"] == commitment["stage2_vault_sha256"]
     )
     checks["stage2_key_value_not_bound"] = manifest["stage2_key_value_bound"] is False
+    checks["qualification_hashes_match_commitment"] = (
+        manifest["qualification_package_hashes"] == commitment["qualification_package_hashes"]
+    )
+    checks["qualification_key_value_not_bound"] = (
+        manifest["qualification_key_value_bound"] is False
+    )
     return {
         "schema_version": "cab_review_ready_v2_freeze_check_v1",
         "status": "CAB_SCIENTIFIC_FREEZE_V2_VALID"
@@ -256,10 +385,14 @@ __all__ = [
     "FROZEN_DOCS",
     "FROZEN_REPORTS",
     "FROZEN_SOURCES",
+    "GENERATOR_SOURCES",
     "WORKFLOW_VERSION",
     "attestation_policy",
     "build_freeze",
+    "commit_is_ancestor",
     "current_head",
+    "generator_provenance",
+    "last_commit_touching",
     "verify_attestation",
     "verify_freeze",
 ]

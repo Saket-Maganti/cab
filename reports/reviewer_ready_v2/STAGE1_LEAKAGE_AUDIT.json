@@ -1,7 +1,7 @@
 {
   "archive_wide_secret_count": 136,
   "leaked_values_are_never_printed": true,
-  "package_count": 3,
+  "package_count": 4,
   "packages": [
     {
       "archive_wide_hit_count": 0,
@@ -16,14 +16,36 @@
         "no_stage2_value_in_a_filename": true,
         "no_unsafe_or_hidden_paths": true
       },
-      "file_count": 10,
+      "file_count": 11,
       "forbidden_structural_key_count": 0,
       "forbidden_token_count": 0,
       "items_value_scanned": 0,
-      "package": "qualification_packet",
+      "package": "qualification_reviewer_a",
       "passed": true,
       "per_item_derived_hit_count": 0,
-      "sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669"
+      "sha256": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1"
+    },
+    {
+      "archive_wide_hit_count": 0,
+      "checks": {
+        "archive_metadata_normalised": true,
+        "no_archive_wide_stage2_value_present": true,
+        "no_derived_gold_component_in_its_own_item": true,
+        "no_forbidden_structural_keys": true,
+        "no_forbidden_tokens": true,
+        "no_reference_key_file": true,
+        "no_source_code_shipped": true,
+        "no_stage2_value_in_a_filename": true,
+        "no_unsafe_or_hidden_paths": true
+      },
+      "file_count": 11,
+      "forbidden_structural_key_count": 0,
+      "forbidden_token_count": 0,
+      "items_value_scanned": 0,
+      "package": "qualification_reviewer_b",
+      "passed": true,
+      "per_item_derived_hit_count": 0,
+      "sha256": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f"
     },
     {
       "archive_wide_hit_count": 0,

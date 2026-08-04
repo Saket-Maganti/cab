@@ -4,6 +4,12 @@ This is the tracked copy of the instructions shipped inside each Stage-1
 package as `REVIEWER_INSTRUCTIONS.md`. Reviewers should work from the copy in
 their own package.
 
+```text
+No genuine review has occurred.
+C10 has not passed.
+Model execution is blocked.
+```
+
 ## What you are judging
 
 Each item shows the same user goal twice: a *clean* instance and an
@@ -39,15 +45,25 @@ One row per item, one value per column:
 | `reviewer_confidence` | 1-5 |
 | `notes` | free text |
 
-`notes` is required whenever `exclude_item=yes` or
-`ambiguity_present=material`.
+`notes` is required whenever `exclude_item=yes`,
+`ambiguity_present=material`, or `response_space_structurally_valid=unsure`.
+
+Filling every cell does not approve anything. Any gating dimension that does not
+land on an accepting value — and any `unsure`, `material` ambiguity, or
+confidence below 3 — sends that item to an independent adjudicator. That is the
+correct outcome, and it does not count against you.
 
 ## Rules
 
 - Work alone. Do not discuss any item with the other reviewer or anyone else.
 - Do not use any AI assistant or language model for any part of this review.
-- Declare any conflict of interest before you begin; authors and co-authors
-  cannot review.
+- Complete `reviewer_declaration.json` and return it with your qualification
+  answers. Every `*_confirmed` field must be a literal `true` written by you;
+  the coordinator cannot fill in any of it on your behalf, and a missing
+  confirmation stops the process rather than defaulting to anything.
+- Declare any conflict of interest before you begin. Disclosing one does not
+  automatically disqualify you; it routes the decision to the coordinator.
+  Concealing one invalidates the review.
 - Do not copy, publish, post, or upload any part of the package.
 - Expect roughly 8-12 minutes per item.
 - To correct a submitted row, send a complete corrected form and say it
@@ -62,3 +78,20 @@ One row per item, one value per column:
 Some declared tools are marked `restricted`. That means the capability is not
 part of the default repertoire and requires an explicit grant. It does not tell
 you anything about the expected response, and you should not infer one.
+
+## Qualification
+
+Before you are assigned a review package you complete a short calibration set.
+It is generated specifically for you: your items are not the other reviewer's
+items, and neither set exists anywhere in the public repository. One dimension
+per item decides the outcome and you are not told which one, so answer every
+dimension. The threshold is 80%.
+
+## A second stage exists
+
+If your Stage-1 submission is accepted you may later be asked to review the
+withheld material — expected results, accepted variants, answer contracts,
+scorer contracts and route policies. That stage uses `YES` / `NO` / `UNSURE` /
+`NOT_APPLICABLE`, and `NO` and `UNSURE` are substantive answers that require a
+note. Nothing about Stage 2 is visible to you now, and seeing it would end the
+blindness of your Stage-1 judgements.

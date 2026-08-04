@@ -25,10 +25,10 @@ HONEST_STATUS_BLOCK = (
 )
 
 NEXT_HUMAN_ACTION = (
-    "Recruit two independent qualified reviewers, give each only their assigned frozen Stage-1 "
-    "package and qualification materials, keep Stage 2 inaccessible until both qualified Stage-1 "
-    "submissions are validated and committed, then continue through the canonical two-stage "
-    "workflow."
+    "Recruit two independent qualified reviewers, create and accept their reviewer assignments "
+    "and signed declarations, give each only the assigned private qualification package and "
+    "frozen Stage-1 package, score qualification privately, ingest genuine Stage-1 submissions, "
+    "commit Stage 1, and keep Stage 2 inaccessible until every Stage-1 prerequisite passes."
 )
 
 
@@ -238,9 +238,18 @@ def build_readiness_report(
             "distinct_semantic_objectives": commitment["distinct_semantic_objectives"],
             "anchor_group_count": commitment["anchor_group_count"],
             "stage1_package_hashes": commitment["stage1_package_hashes"],
-            "qualification_package_sha256": commitment["qualification_package_sha256"],
+            "qualification_version": commitment["qualification_version"],
+            "qualification_package_hashes": commitment["qualification_package_hashes"],
+            "qualification_commitment_sha256": commitment["qualification_commitment"][
+                "commitment_sha256"
+            ],
+            "qualification_items_published": False,
+            "qualification_answers_published": False,
             "stage2_vault_sha256": commitment["stage2_vault_sha256"],
             "stage2_key_environment_variable": commitment["stage2_key_environment_variable"],
+            "qualification_key_environment_variable": commitment[
+                "qualification_key_environment_variable"
+            ],
             "stage2_key_stored_in_repository": False,
         },
         "external_exact_commit_attestation": {

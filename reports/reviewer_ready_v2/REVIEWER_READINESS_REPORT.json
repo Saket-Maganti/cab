@@ -58,7 +58,7 @@
     "CAB_LEVEL5_COMPLETE=false",
     "CAB_LEVEL6_COMPLETE=false"
   ],
-  "next_human_action": "Recruit two independent qualified reviewers, give each only their assigned frozen Stage-1 package and qualification materials, keep Stage 2 inaccessible until both qualified Stage-1 submissions are validated and committed, then continue through the canonical two-stage workflow.",
+  "next_human_action": "Recruit two independent qualified reviewers, create and accept their reviewer assignments and signed declarations, give each only the assigned private qualification package and frozen Stage-1 package, score qualification privately, ingest genuine Stage-1 submissions, commit Stage 1, and keep Stage 2 inaccessible until every Stage-1 prerequisite passes.",
   "packet": {
     "anchor_group_count": 4,
     "difficulty_counts": {
@@ -111,15 +111,23 @@
       }
     },
     "pair_count": 20,
-    "public_commitment_sha256": "4f5afe5ed626690fb8fd9dae23740b94e0a39ec2fa3999a65696114f942839c8",
-    "qualification_package_sha256": "62686629fdb8b514a7218f20945190fa7da98ff09bdb066acc69b9ec23328669",
+    "public_commitment_sha256": "af1f24ce4772b7520087e9862b2f6aded976f07df03def6b2faa59e162884f64",
+    "qualification_answers_published": false,
+    "qualification_commitment_sha256": "c48a945c5c5bef890c3c744881b8f25a2d01dfd87dfafbb849bcafaad3d1025e",
+    "qualification_items_published": false,
+    "qualification_key_environment_variable": "CAB_QUALIFICATION_KEY_PATH",
+    "qualification_package_hashes": {
+      "REVIEWER_A": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1",
+      "REVIEWER_B": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f"
+    },
+    "qualification_version": "cab_qualification_v3",
     "stage1_package_hashes": {
       "stage1_reviewer_a.zip": "3fcd2192c68cc356b2a1506a2ca32f191caf00ccf5dc7769a87bcd47db618113",
       "stage1_reviewer_b.zip": "0185fcfbe89402e6284999fa6ed472fb0e1f90d28335a8ccfc6094e158a2d6cf"
     },
     "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
     "stage2_key_stored_in_repository": false,
-    "stage2_vault_sha256": "1bf671d74764c79abf53e13fb5cffcfe823daf0c145fbdb90664819d9faadd9f",
+    "stage2_vault_sha256": "8530b782515d9626084a843bfdff8d9be65d108062069eeb356b5ccc94622ae4",
     "unit_of_evaluation": "clean_intervention_pair"
   },
   "packet_version": "compact20-review-ready-v2",

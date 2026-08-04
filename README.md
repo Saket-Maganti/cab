@@ -65,18 +65,46 @@ route. Stage-2 material is encrypted with a key that must live outside the
 repository.
 
 ```bash
+export CAB_PACKET_SEED_PATH="$HOME/.cab/seeds/review_ready_v2.seed"
 export CAB_STAGE2_KEY_PATH="$HOME/.cab/keys/stage2_review_ready_v2.key"
+export CAB_QUALIFICATION_KEY_PATH="$HOME/.cab/keys/qualification_review_ready_v2.key"
+export CAB_COORDINATOR_KEY_PATH="$HOME/.cab/keys/coordinator_review_ready_v2.key"
 python3 scripts/cab_review_ready_v2.py validate-private-packet
+python3 scripts/cab_review_ready_v2.py coordinator-checklist
 python3 scripts/cab_review_ready_v2.py fixture-e2e
+python3 scripts/cab_review_ready_v2.py status
 ```
 
-Every earlier Compact packet is retired and rejected in code at ingestion, C10,
-slice lock and execution authorization. See the
+The reviewer workflow is provenance-bound end to end. Reviewer roles use one
+canonical enum (`REVIEWER_A`, `REVIEWER_B`, `ADJUDICATOR`); an immutable private
+registry binds each pseudonym to exactly one package hash and one opaque id
+namespace; every reviewer submits their own declaration, which ingestion parses
+and never fills in; qualification items and answers are generated from the
+private seed and encrypted, so no clone of this repository can pass
+qualification; Stage 2 requires substantive acceptance rather than a completed
+form, with `NO` and `UNSURE` both blocking; Stage 1 and Stage 2 have separate
+disagreement queues and separate adjudication; and C10 reads only the final
+adjudicated records while agreement is computed only from the raw independent
+submissions.
+
+Authenticity is not a mode flag. Production receipts are sealed under an
+external coordinator acceptance key and verified on every gate; fixture receipts
+are sealed under a deliberately public one and fail production verification on
+origin, schema and message-authentication code.
+
+Every earlier Compact packet, and the earlier qualification version
+`cab_stage1_qualification_v2`, are retired and rejected in code at ingestion,
+C10, slice lock and execution authorization. See the
 [human review runbook](docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md) and the
 [V2 scientific design](docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md).
 
-Compact-20 is a pilot, not a confirmatory design. No genuine human review has
-occurred, C10 is `C10_PENDING_GENUINE_REVIEW`, and model execution is blocked.
+Compact-20 is a pilot, not a confirmatory design.
+
+```text
+No genuine review has occurred.
+C10 has not passed.
+Model execution is blocked.
+```
 
 ## Quick safe demo
 

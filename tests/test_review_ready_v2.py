@@ -51,9 +51,7 @@ from causal_agent_bench.review_ready_v2.operators import (
 )
 from causal_agent_bench.review_ready_v2.pairs import PairGenerationError, build_all_pairs
 from causal_agent_bench.review_ready_v2.qualification import (
-    QUALIFICATION_ITEMS,
-    QUALIFICATION_KEY,
-    build_qualification_package,
+    build_private_qualification,
     score_qualification,
 )
 from causal_agent_bench.review_ready_v2.registry import (
@@ -63,6 +61,7 @@ from causal_agent_bench.review_ready_v2.registry import (
     retired_packet_registry,
     retirement_enforcement_report,
 )
+from causal_agent_bench.review_ready_v2.roles import REVIEWER_A, REVIEWER_B
 from causal_agent_bench.review_ready_v2.routes import (
     validate_clean_route,
     validate_intervention_route,
@@ -477,7 +476,10 @@ def test_stage1_leakage_audit_passes(pairs: list[PairSpec]) -> None:
         payload, mapping, _ = build_stage1_package(pairs, SEED, role)
         packages[role] = payload
         mappings[role] = mapping
-    packages["qualification_packet"] = build_qualification_package()
+    for role in (REVIEWER_A, REVIEWER_B):
+        packages[f"qualification_{role.casefold()}"] = build_private_qualification(SEED, role)[
+            "package_bytes"
+        ]
     report = stage1_leakage_audit(packages, pairs, mappings)
     assert report["passed"], [row["checks"] for row in report["packages"]]
     assert report["leaked_values_are_never_printed"]
@@ -504,7 +506,10 @@ def test_packages_are_path_safe_and_ship_no_source(pairs: list[PairSpec]) -> Non
         role: build_stage1_package(pairs, SEED, role)[0]
         for role in ("stage1_reviewer_a", "stage1_reviewer_b")
     }
-    packages["qualification_packet"] = build_qualification_package()
+    for role in (REVIEWER_A, REVIEWER_B):
+        packages[f"qualification_{role.casefold()}"] = build_private_qualification(SEED, role)[
+            "package_bytes"
+        ]
     report = usability_audit(packages)
     assert report["passed"], [row["checks"] for row in report["packages"]]
     assert report["reviewer_orders_independent"]
@@ -521,28 +526,39 @@ def test_packages_are_path_safe_and_ship_no_source(pairs: list[PairSpec]) -> Non
 
 
 def test_qualification_is_separate_from_the_review_set(pairs: list[PairSpec]) -> None:
-    scenarios = {str(item["scenario"]) for item in QUALIFICATION_ITEMS}
-    assert scenarios.isdisjoint({pair.domain for pair in pairs})
-    blob = json.dumps(list(QUALIFICATION_ITEMS))
+    package = build_private_qualification(SEED, REVIEWER_A)
+    blob = json.dumps(
+        [json.loads(body) for name, body in _extract(package["package_bytes"]).items()
+         if name.startswith("items/")]
+    )
     for pair in pairs:
         assert pair.clean_gold_private not in blob
         assert pair.shared_goal not in blob
 
 
 def test_qualification_threshold_is_enforced() -> None:
+    package = build_private_qualification(SEED, REVIEWER_A)
+    key = package["answer_key"]
     perfect = {
         item_id: {str(entry["decisive_dimension"]): str(entry["expected_value"])}
-        for item_id, entry in QUALIFICATION_KEY.items()
+        for item_id, entry in key.items()
     }
-    assert score_qualification(perfect)["qualified"]
-    failing = {item_id: {} for item_id in QUALIFICATION_KEY}
-    result = score_qualification(failing)
+    assert score_qualification(perfect, key, reviewer_role=REVIEWER_A)["qualified"]
+    wrong = {
+        item_id: {
+            str(entry["decisive_dimension"]): "no"
+            if str(entry["expected_value"]) == "yes"
+            else "yes"
+        }
+        for item_id, entry in key.items()
+    }
+    result = score_qualification(wrong, key, reviewer_role=REVIEWER_A)
     assert not result["qualified"]
     assert result["threshold"] == 0.80
 
 
 def test_qualification_package_ships_no_key() -> None:
-    files = _extract(build_qualification_package())
+    files = _extract(build_private_qualification(SEED, REVIEWER_B)["package_bytes"])
     blob = b"".join(files.values()).lower()
     assert b"decisive_dimension" not in blob
     assert b"expected_value" not in blob
@@ -655,10 +671,18 @@ def test_fixture_end_to_end_workflow_passes() -> None:
     assert report["genuine_model_trajectories"] == 0
 
 
-def test_production_workspace_refuses_fixture_receipts(tmp_path: Path) -> None:
-    fixture = ReviewWorkspace(tmp_path / "packet", fixture=True)
+def test_production_workspace_refuses_fixture_receipts(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from causal_agent_bench.review_ready_v2.keys import create_external_key
+    from causal_agent_bench.review_ready_v2.receipts import COORDINATOR_KEY_ENV
+
+    monkeypatch.setenv(COORDINATOR_KEY_ENV, str(tmp_path / "keys" / "coordinator.key"))
+    create_external_key(COORDINATOR_KEY_ENV, tmp_path / "repo")
+
+    fixture = ReviewWorkspace.fixture(tmp_path / "packet")
     fixture.write("stage1_commitment", {"receipt_kind": "stage1_commitment"})
-    production = ReviewWorkspace(tmp_path / "packet", fixture=False)
+    production = ReviewWorkspace.production(tmp_path / "packet", tmp_path / "repo")
     production.receipts.mkdir(parents=True, exist_ok=True)
     (production.receipts / "stage1_commitment.json").write_bytes(
         (fixture.receipts / "stage1_commitment.json").read_bytes()
@@ -668,7 +692,7 @@ def test_production_workspace_refuses_fixture_receipts(tmp_path: Path) -> None:
 
 
 def test_stage2_unlock_requires_a_stage1_commitment(tmp_path: Path) -> None:
-    workspace = ReviewWorkspace(tmp_path / "packet", fixture=True)
+    workspace = ReviewWorkspace.fixture(tmp_path / "packet")
     with pytest.raises(WorkflowError):
         workspace.unlock_stage2(
             packet_commitment="a" * 64,
@@ -679,10 +703,10 @@ def test_stage2_unlock_requires_a_stage1_commitment(tmp_path: Path) -> None:
 
 
 def test_stage1_ingestion_requires_qualification(tmp_path: Path) -> None:
-    workspace = ReviewWorkspace(tmp_path / "packet", fixture=True)
+    workspace = ReviewWorkspace.fixture(tmp_path / "packet")
     with pytest.raises(WorkflowError):
         workspace.ingest_stage1(
-            "unqualified", b"", expected_item_ids=["X-01"], package_sha256="0" * 64
+            REVIEWER_A, b"", expected_item_ids=["X-01"], package_sha256="0" * 64
         )
 
 

@@ -1,12 +1,22 @@
 {
+  "c10": {
+    "counts_as_genuine_evidence": false,
+    "failed_checks": [
+      "artifact_origin_is_production",
+      "every_required_evidence_binding_present",
+      "evidence_counts_as_genuine"
+    ],
+    "mechanics_status": "C10_MECHANICS_PASS",
+    "status": "C10_PENDING_GENUINE_REVIEW"
+  },
   "counts_as_genuine_evidence": false,
   "evidence_class": "SYNTHETIC_TEST_FIXTURE_NOT_HUMAN_EVIDENCE",
   "genuine_human_judgments": 0,
   "genuine_model_trajectories": 0,
   "passed": true,
-  "schema_version": "cab_review_ready_v2_fixture_e2e_v1",
+  "schema_version": "cab_review_ready_v2_fixture_e2e_v2",
   "status": "CAB_TWO_STAGE_WORKFLOW_E2E_FIXTURE_VALIDATED",
-  "step_count": 16,
+  "step_count": 23,
   "steps": [
     {
       "detail": "",
@@ -19,7 +29,27 @@
       "step": "stage1_package_generation"
     },
     {
-      "detail": "both fixture reviewers qualified",
+      "detail": "each reviewer receives a different qualification package",
+      "passed": true,
+      "step": "private_qualification_generation"
+    },
+    {
+      "detail": "",
+      "passed": true,
+      "step": "reviewer_assignment_registry"
+    },
+    {
+      "detail": "a reviewer cannot also adjudicate",
+      "passed": true,
+      "step": "assignment_registry_refuses_role_overlap"
+    },
+    {
+      "detail": "declarations parsed from submitted files",
+      "passed": true,
+      "step": "reviewer_declarations"
+    },
+    {
+      "detail": "both fixture reviewers qualified privately",
       "passed": true,
       "step": "qualification_fixture"
     },
@@ -49,19 +79,29 @@
       "step": "stage2_fixture_ingestion"
     },
     {
-      "detail": "1 disputed pair(s)",
+      "detail": "1 disputed Stage-1 dimension(s)",
       "passed": true,
-      "step": "disagreement_queue"
+      "step": "stage1_disagreement_queue"
+    },
+    {
+      "detail": "1 disputed Stage-2 dimension(s)",
+      "passed": true,
+      "step": "stage2_disagreement_queue"
     },
     {
       "detail": "",
       "passed": true,
-      "step": "fixture_adjudication"
+      "step": "stage1_and_stage2_adjudication"
     },
     {
-      "detail": "raw=0.9844",
+      "detail": "stage1=0.9844 stage2=0.9861",
       "passed": true,
-      "step": "agreement_computed"
+      "step": "agreement_computed_from_raw"
+    },
+    {
+      "detail": "8 included, 0 excluded",
+      "passed": true,
+      "step": "final_adjudicated_records"
     },
     {
       "detail": "mechanics pass, genuine C10 still pending",
@@ -79,7 +119,12 @@
       "step": "fixture_execution_authorization"
     },
     {
-      "detail": "fixture receipts refused as genuine evidence",
+      "detail": "no fixture artifact can satisfy the production bindings",
+      "passed": true,
+      "step": "fixture_evidence_is_never_genuine"
+    },
+    {
+      "detail": "fixture receipts refused by the production authority",
       "passed": true,
       "step": "production_gates_reject_fixture_receipts"
     },

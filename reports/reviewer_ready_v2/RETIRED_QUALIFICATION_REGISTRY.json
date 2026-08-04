@@ -1,0 +1,15 @@
+{
+  "active_qualification_version": "cab_qualification_v3",
+  "enforcement": "enforce_active_qualification() rejects every retired version at generation, ingestion, scoring and C10, including a copy renamed to the active version, because the encrypted key vault records its own version inside the ciphertext.",
+  "retired_versions": [
+    {
+      "eligible_for_c10": false,
+      "eligible_for_genuine_review": false,
+      "qualification_version": "cab_stage1_qualification_v2",
+      "reason": "The five calibration items and the complete QUALIFICATION_KEY \u2014 decisive dimension, expected value and explanation for every item \u2014 were committed to tracked source, so any clone of this repository could pass it without judging anything.",
+      "status": "EXPOSED_QUALIFICATION_NOT_ELIGIBLE_FOR_GENUINE_REVIEW"
+    }
+  ],
+  "schema_version": "cab_retired_qualification_registry_v1",
+  "status": "CAB_RETIRED_QUALIFICATION_BLOCKED"
+}
