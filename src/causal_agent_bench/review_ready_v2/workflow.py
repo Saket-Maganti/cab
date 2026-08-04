@@ -5,9 +5,13 @@ exists, C10 stays ``C10_PENDING_GENUINE_REVIEW`` until genuine validated review
 data exists, the reviewed slice cannot be locked before C10 passes, and model
 execution cannot be authorized before the slice is locked.
 
-Fixture receipts are stamped ``SYNTHETIC_TEST_FIXTURE_NOT_HUMAN_EVIDENCE`` and are
-refused by every production gate, so the fixture end-to-end test can exercise the
-mechanics without ever creating genuine evidence.
+Authenticity is not a flag.  A workspace does not decide whether its artifacts
+are genuine — the *authority* that sealed each receipt does, and the production
+authority requires an external coordinator key that no synthetic run possesses.
+Fixture receipts are sealed by a deliberately public authority, stamped
+``SYNTHETIC_TEST_FIXTURE_NOT_HUMAN_EVIDENCE``, and fail production verification
+on origin, on schema, and on MAC.  There is no boolean anywhere that converts one
+into the other.
 """
 
 from __future__ import annotations
@@ -15,28 +19,75 @@ from __future__ import annotations
 import csv
 import io
 from dataclasses import dataclass
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 from causal_agent_bench.review_ready_v2 import PACKET_VERSION
+from causal_agent_bench.review_ready_v2.adjudication import (
+    STAGE1,
+    STAGE2,
+    AdjudicationError,
+    build_stage1_queue,
+    build_stage2_queue,
+    validate_adjudication,
+)
+from causal_agent_bench.review_ready_v2.assignments import (
+    AssignmentError,
+    assignment_for_role,
+    load_assignments,
+    verify_assignment,
+    verify_registry_complete,
+)
 from causal_agent_bench.review_ready_v2.common import (
-    FIXTURE_MARKER,
     read_json,
     sha256_bytes,
     sha256_json,
     write_json,
 )
+from causal_agent_bench.review_ready_v2.declarations import (
+    DECLARATION_VERSION,
+    DeclarationError,
+    declaration_blocks_qualification,
+    parse_declaration,
+)
+from causal_agent_bench.review_ready_v2.final_records import build_final_records
 from causal_agent_bench.review_ready_v2.qualification import (
     MIN_QUALIFICATION_RATE,
+    QUALIFICATION_SCHEMA_VERSION,
+    QualificationError,
+    enforce_active_qualification,
     score_qualification,
 )
+from causal_agent_bench.review_ready_v2.receipts import (
+    Authority,
+    ReceiptError,
+    coordinator_authority,
+    fixture_authority,
+    receipt_is_fixture,
+    seal_receipt,
+    verify_receipt,
+)
 from causal_agent_bench.review_ready_v2.registry import enforce_active_packet
+from causal_agent_bench.review_ready_v2.roles import (
+    ADJUDICATOR,
+    REVIEW_ROLES,
+    REVIEWER_A,
+    REVIEWER_B,
+    RoleError,
+    normalize_role,
+)
 from causal_agent_bench.review_ready_v2.stage1 import REVIEW_DIMENSIONS, REVIEW_FORM_COLUMNS
+from causal_agent_bench.review_ready_v2.stage2 import (
+    STAGE2_ACCEPTANCE_POLICY_VERSION,
+    STAGE2_FORM_COLUMNS,
+    STAGE2_FORM_SCHEMA_VERSION,
+    STAGE2_SUBSTANTIVE_DIMENSIONS,
+    validate_stage2_submission,
+)
 
-GENUINE_EVIDENCE_CLASS = "GENUINE_HUMAN_REVIEW"
-FIXTURE_EVIDENCE_CLASS = FIXTURE_MARKER
+WORKFLOW_SCHEMA_VERSION = "cab_review_ready_v2_two_stage_workflow_v2"
 
+#: Stage-1 dimensions whose agreement is gated.
 GATING_DIMENSIONS = (
     "clean_solvable",
     "clean_evidence_sufficient",
@@ -48,27 +99,26 @@ GATING_DIMENSIONS = (
     "exclude_item",
 )
 
-STAGE2_DIMENSIONS = (
-    "clean_gold_correct",
-    "intervention_gold_or_policy_correct",
-    "answer_contract_correct",
-    "scorer_compatible",
-    "route_policy_defensible",
-    "exclude_item",
-)
-
-STAGE2_FORM_COLUMNS = ("reviewer_item_id", *STAGE2_DIMENSIONS, "notes")
-
 ENUMS = {name: set(values) for name, values, _ in REVIEW_DIMENSIONS if values}
-STAGE2_ENUMS = {name: {"yes", "no", "unsure"} for name in STAGE2_DIMENSIONS}
+
+#: The bindings a review artifact must carry before it can count as genuine.
+REQUIRED_EVIDENCE_BINDINGS: tuple[str, ...] = (
+    "active_non_retired_packet",
+    "valid_reviewer_assignment",
+    "valid_declaration_receipt",
+    "valid_private_qualification_receipt",
+    "correct_package_hash",
+    "correct_reviewer_namespace",
+    "complete_submission",
+    "non_fixture_artifact_origin",
+    "production_schema_version",
+    "content_hash_intact",
+    "coordinator_acceptance_receipt",
+)
 
 
 class WorkflowError(RuntimeError):
     """A workflow gate refused to proceed."""
-
-
-def _now() -> str:
-    return datetime.now(UTC).isoformat()
 
 
 def parse_review_csv(payload: bytes, columns: tuple[str, ...]) -> dict[str, dict[str, str]]:
@@ -101,6 +151,10 @@ def validate_stage1_submission(
             problems.append({"reviewer_item_id": item_id, "column": "notes", "issue": "required"})
         if row.get("ambiguity_present", "").casefold() == "material" and not row.get("notes"):
             problems.append({"reviewer_item_id": item_id, "column": "notes", "issue": "required"})
+        if row.get("response_space_structurally_valid", "").casefold() == "unsure" and not row.get(
+            "notes"
+        ):
+            problems.append({"reviewer_item_id": item_id, "column": "notes", "issue": "required"})
     checks = {
         "no_missing_rows": not missing,
         "no_unexpected_rows": not unexpected,
@@ -112,124 +166,285 @@ def validate_stage1_submission(
         "unexpected_rows": unexpected,
         "malformed": problems,
         "checks": checks,
-        "passed": all(checks.values()),
-    }
-
-
-def validate_stage2_submission(
-    rows: dict[str, dict[str, str]], expected_item_ids: list[str]
-) -> dict[str, Any]:
-    problems: list[dict[str, str]] = []
-    missing = sorted(set(expected_item_ids) - set(rows))
-    for item_id, row in sorted(rows.items()):
-        for name, allowed in STAGE2_ENUMS.items():
-            if row.get(name, "").casefold() not in allowed:
-                problems.append({"reviewer_item_id": item_id, "column": name, "issue": "invalid_value"})
-    checks = {"no_missing_rows": not missing, "no_malformed_cells": not problems}
-    return {
-        "row_count": len(rows),
-        "missing_rows": missing,
-        "malformed": problems,
-        "checks": checks,
+        # A complete Stage-1 form is not an approval either; it is only well-formed.
+        "form_complete": all(checks.values()),
         "passed": all(checks.values()),
     }
 
 
 @dataclass
 class ReviewWorkspace:
-    """Coordinator-side workflow state under the private packet root."""
+    """Coordinator-side workflow state under the private packet root.
+
+    Construct through :meth:`production` or :meth:`fixture`.  ``authority``
+    carries the sealing key and the artifact origin; nothing else in the class
+    can change whether a receipt counts as evidence.
+    """
 
     private_root: Path
-    fixture: bool = False
+    authority: Authority
+    packet_version: str = PACKET_VERSION
+
+    @classmethod
+    def production(cls, private_root: Path, repo_root: Path) -> ReviewWorkspace:
+        """Fails closed unless the external coordinator acceptance key is present."""
+
+        return cls(private_root, coordinator_authority(repo_root))
+
+    @classmethod
+    def fixture(cls, private_root: Path) -> ReviewWorkspace:
+        """A synthetic namespace whose receipts can never be genuine evidence."""
+
+        return cls(private_root, fixture_authority())
+
+    # -- receipt plumbing --------------------------------------------------
+
+    @property
+    def is_production(self) -> bool:
+        return self.authority.is_production
+
+    @property
+    def evidence_class(self) -> str:
+        return self.authority.origin
 
     @property
     def receipts(self) -> Path:
-        directory = self.private_root / ("fixture_receipts" if self.fixture else "receipts")
+        directory = self.private_root / self.authority.namespace
         directory.mkdir(parents=True, exist_ok=True)
         directory.chmod(0o700)
         return directory
 
-    @property
-    def evidence_class(self) -> str:
-        return FIXTURE_EVIDENCE_CLASS if self.fixture else GENUINE_EVIDENCE_CLASS
-
-    def _stamp(self, payload: dict[str, Any]) -> dict[str, Any]:
-        stamped = {
-            **payload,
-            "packet_version": PACKET_VERSION,
-            "evidence_class": self.evidence_class,
-            "counts_as_genuine_evidence": not self.fixture,
-            "recorded_at": _now(),
-        }
-        stamped["receipt_sha256"] = sha256_json(stamped)
-        return stamped
-
     def write(self, name: str, payload: dict[str, Any]) -> dict[str, Any]:
-        stamped = self._stamp(payload)
+        sealed = seal_receipt(self.authority, {**payload, "packet_version": self.packet_version})
         path = self.receipts / f"{name}.json"
-        write_json(path, stamped)
+        write_json(path, sealed)
         path.chmod(0o600)
-        return stamped
+        return sealed
 
     def read(self, name: str) -> dict[str, Any]:
         path = self.receipts / f"{name}.json"
         if not path.is_file():
             raise WorkflowError(f"required receipt is missing: {name}")
         receipt = read_json(path)
-        if not self.fixture and receipt.get("evidence_class") == FIXTURE_EVIDENCE_CLASS:
+        if self.is_production and receipt_is_fixture(receipt):
             raise WorkflowError(
                 f"receipt {name} is a synthetic test fixture and cannot be used as genuine evidence"
+            )
+        try:
+            verify_receipt(self.authority, receipt)
+        except ReceiptError as error:
+            raise WorkflowError(f"receipt {name} failed verification: {error}") from error
+        if receipt.get("packet_version") != self.packet_version:
+            raise WorkflowError(
+                f"receipt {name} belongs to packet {receipt.get('packet_version')!r}, not "
+                f"{self.packet_version!r}"
             )
         return receipt
 
     def has(self, name: str) -> bool:
         return (self.receipts / f"{name}.json").is_file()
 
-    # -- Stage 1 ----------------------------------------------------------
+    # -- assignment registry ----------------------------------------------
 
-    def ingest_qualification(
-        self, reviewer_id: str, submission: dict[str, dict[str, str]]
-    ) -> dict[str, Any]:
-        result = score_qualification(submission)
-        if not result["qualified"]:
+    def assignments(self) -> dict[str, Any]:
+        try:
+            return load_assignments(self.private_root, packet_version=self.packet_version)
+        except AssignmentError as error:
+            raise WorkflowError(str(error)) from error
+
+    def _role(self, role: str) -> str:
+        try:
+            return normalize_role(role)
+        except RoleError as error:
+            raise WorkflowError(str(error)) from error
+
+    # -- declarations ------------------------------------------------------
+
+    def ingest_declaration(self, role: str, payload: dict[str, Any]) -> dict[str, Any]:
+        """Record a reviewer's own declaration.  No field is supplied by us."""
+
+        canonical = self._role(role)
+        try:
+            declaration = parse_declaration(payload)
+        except DeclarationError as error:
+            raise WorkflowError(f"reviewer declaration refused: {error}") from error
+        if declaration["package_role"] != canonical:
             raise WorkflowError(
-                f"reviewer {reviewer_id} did not reach the {MIN_QUALIFICATION_RATE:.0%} "
-                "qualification threshold; they cannot be assigned a review package"
+                f"the declaration was signed for {declaration['package_role']}, not {canonical}"
+            )
+        registry = self.assignments()
+        try:
+            verify_assignment(
+                registry,
+                role=canonical,
+                reviewer_pseudonym=declaration["reviewer_pseudonym"],
+                stage1_package_hash=declaration["stage1_package_hash"],
+                qualification_package_hash=declaration["qualification_package_hash"],
+            )
+        except AssignmentError as error:
+            raise WorkflowError(f"reviewer declaration refused: {error}") from error
+        if self.is_production and declaration["declaration_is_synthetic"]:
+            raise WorkflowError(
+                "a synthetic declaration cannot be recorded in a production workspace"
             )
         return self.write(
-            f"qualification_{reviewer_id}",
+            f"declaration_{canonical}",
             {
-                "receipt_kind": "reviewer_qualification",
-                "reviewer_pseudonymous_id": reviewer_id,
-                "rate": result["rate"],
-                "threshold": MIN_QUALIFICATION_RATE,
-                "qualified": True,
-                "ai_assistance_declared": False,
-                "conflict_of_interest_declared": False,
+                "receipt_kind": "reviewer_declaration",
+                "reviewer_role": canonical,
+                "declaration_version": DECLARATION_VERSION,
+                **declaration,
             },
         )
 
+    def accept_declaration(
+        self, role: str, *, decision: str, rationale: str
+    ) -> dict[str, Any]:
+        """Coordinator decision on a declaration that disclosed a conflict."""
+
+        canonical = self._role(role)
+        declaration = self.read(f"declaration_{canonical}")
+        if decision not in ("ACCEPTED", "REJECTED"):
+            raise WorkflowError("a coordinator declaration decision must be ACCEPTED or REJECTED")
+        if not str(rationale).strip():
+            raise WorkflowError("a coordinator declaration decision requires a rationale")
+        return self.write(
+            f"declaration_decision_{canonical}",
+            {
+                "receipt_kind": "coordinator_declaration_decision",
+                "reviewer_role": canonical,
+                "declaration_sha256": declaration["declaration_sha256"],
+                "coordinator_review_decision": decision,
+                "rationale": str(rationale).strip(),
+            },
+        )
+
+    def _declaration_for(self, role: str) -> dict[str, Any]:
+        canonical = self._role(role)
+        declaration = dict(self.read(f"declaration_{canonical}"))
+        if self.has(f"declaration_decision_{canonical}"):
+            decision = self.read(f"declaration_decision_{canonical}")
+            if decision["declaration_sha256"] != declaration["declaration_sha256"]:
+                raise WorkflowError(
+                    f"the coordinator decision for {canonical} was made against a different "
+                    "declaration than the one on file"
+                )
+            declaration["coordinator_review_decision"] = decision["coordinator_review_decision"]
+        blockers = declaration_blocks_qualification(declaration)
+        if blockers:
+            raise WorkflowError(
+                f"the declaration for {canonical} cannot support qualification: {blockers}"
+            )
+        return declaration
+
+    # -- qualification -----------------------------------------------------
+
+    def ingest_qualification(
+        self,
+        role: str,
+        submission: dict[str, dict[str, str]],
+        answer_key: dict[str, Any],
+        *,
+        qualification_version: str = QUALIFICATION_SCHEMA_VERSION,
+    ) -> dict[str, Any]:
+        """Score a reviewer against their own private key.  Never logs the key."""
+
+        canonical = self._role(role)
+        try:
+            enforce_active_qualification(qualification_version)
+        except QualificationError as error:
+            raise WorkflowError(str(error)) from error
+        declaration = self._declaration_for(canonical)
+        already = {
+            other
+            for other in REVIEW_ROLES
+            if other != canonical and self.has(f"qualification_{other}")
+        }
+        reused = {
+            other
+            for other in already
+            if self.read(f"qualification_{other}")["reviewer_pseudonym_sha256"]
+            == sha256_json(declaration["reviewer_pseudonym"])
+        }
+        if reused:
+            raise WorkflowError(
+                f"this reviewer already holds the qualification receipt for {sorted(reused)}; "
+                "one person cannot qualify as two reviewers"
+            )
+        try:
+            result = score_qualification(
+                submission, answer_key, reviewer_role=canonical, already_qualified_roles=set()
+            )
+        except QualificationError as error:
+            raise WorkflowError(f"qualification refused: {error}") from error
+        if not result["qualified"]:
+            raise WorkflowError(
+                f"{canonical} did not reach the {MIN_QUALIFICATION_RATE:.0%} qualification "
+                "threshold; they cannot be assigned a review package"
+            )
+        return self.write(
+            f"qualification_{canonical}",
+            {
+                "receipt_kind": "reviewer_qualification",
+                "reviewer_role": canonical,
+                "qualification_version": qualification_version,
+                # The pseudonym itself stays in the private registry; the receipt
+                # binds it by hash so receipts can be shown without naming anyone.
+                "reviewer_pseudonym_sha256": sha256_json(declaration["reviewer_pseudonym"]),
+                "declaration_sha256": declaration["declaration_sha256"],
+                "qualification_package_hash": declaration["qualification_package_hash"],
+                "rate": result["rate"],
+                "threshold": MIN_QUALIFICATION_RATE,
+                "qualified": True,
+                "item_count": result["item_count"],
+                "correct_count": result["correct_count"],
+                "answer_key_disclosed": False,
+            },
+        )
+
+    # -- Stage 1 -----------------------------------------------------------
+
     def ingest_stage1(
         self,
-        reviewer_id: str,
+        role: str,
         payload: bytes,
         *,
         expected_item_ids: list[str],
         package_sha256: str,
     ) -> dict[str, Any]:
-        if not self.has(f"qualification_{reviewer_id}"):
-            raise WorkflowError(f"reviewer {reviewer_id} is not qualified; Stage-1 ingestion refused")
+        canonical = self._role(role)
+        if not self.has(f"qualification_{canonical}"):
+            raise WorkflowError(f"{canonical} is not qualified; Stage-1 ingestion refused")
+        qualification = self.read(f"qualification_{canonical}")
+        declaration = self._declaration_for(canonical)
+        registry = self.assignments()
         rows = parse_review_csv(payload, REVIEW_FORM_COLUMNS)
+        try:
+            verify_assignment(
+                registry,
+                role=canonical,
+                reviewer_pseudonym=declaration["reviewer_pseudonym"],
+                stage1_package_hash=package_sha256,
+                item_ids=sorted(rows),
+            )
+        except AssignmentError as error:
+            raise WorkflowError(f"Stage-1 submission refused: {error}") from error
+        if declaration["stage1_package_hash"] != str(package_sha256).strip().casefold():
+            raise WorkflowError(
+                f"{canonical} declared a different Stage-1 package than the one submitted against"
+            )
         validation = validate_stage1_submission(rows, expected_item_ids)
         if not validation["passed"]:
-            raise WorkflowError(f"Stage-1 submission from {reviewer_id} is malformed")
+            raise WorkflowError(f"Stage-1 submission from {canonical} is malformed")
         return self.write(
-            f"stage1_submission_{reviewer_id}",
+            f"stage1_submission_{canonical}",
             {
                 "receipt_kind": "stage1_submission",
-                "reviewer_pseudonymous_id": reviewer_id,
-                "package_sha256": package_sha256,
+                "reviewer_role": canonical,
+                "package_sha256": str(package_sha256).strip().casefold(),
                 "submission_sha256": sha256_bytes(payload),
+                "qualification_receipt_sha256": qualification["receipt_sha256"],
+                "declaration_sha256": declaration["declaration_sha256"],
                 "row_count": validation["row_count"],
                 "judgements": rows,
                 "validation": validation["checks"],
@@ -239,7 +454,6 @@ class ReviewWorkspace:
     def commit_stage1(
         self,
         *,
-        reviewer_ids: tuple[str, str],
         packet_commitment: str,
         package_hashes: dict[str, str],
         review_schema_version: str,
@@ -247,28 +461,46 @@ class ReviewWorkspace:
         exact_commit: str,
     ) -> dict[str, Any]:
         enforce_active_packet(
-            packet_version=PACKET_VERSION,
+            packet_version=self.packet_version,
             commitment=packet_commitment,
             action="stage1_commitment",
             package_hashes=package_hashes,
         )
-        qualifications = {rid: self.read(f"qualification_{rid}") for rid in reviewer_ids}
-        submissions = {rid: self.read(f"stage1_submission_{rid}") for rid in reviewer_ids}
+        registry = self.assignments()
+        registry_check = verify_registry_complete(registry)
+        if not registry_check["passed"]:
+            raise WorkflowError(
+                f"the reviewer assignment registry is incomplete: {registry_check['checks']}"
+            )
+        declarations = {role: self._declaration_for(role) for role in REVIEW_ROLES}
+        qualifications = {role: self.read(f"qualification_{role}") for role in REVIEW_ROLES}
+        submissions = {role: self.read(f"stage1_submission_{role}") for role in REVIEW_ROLES}
         if not all(row["qualified"] for row in qualifications.values()):
             raise WorkflowError("both reviewers must be qualified before Stage-1 can be committed")
+        for role in REVIEW_ROLES:
+            assignment = assignment_for_role(registry, role)
+            if submissions[role]["package_sha256"] != assignment["stage1_package_hash"]:
+                raise WorkflowError(
+                    f"the Stage-1 submission for {role} is bound to a package that is not the one "
+                    "recorded in the assignment registry"
+                )
         return self.write(
             "stage1_commitment",
             {
                 "receipt_kind": "stage1_commitment",
                 "private_packet_commitment": packet_commitment,
                 "stage1_package_hashes": package_hashes,
+                "assignment_registry_sha256": registry["registry_sha256"],
+                "declaration_hashes": {
+                    role: row["declaration_sha256"] for role, row in sorted(declarations.items())
+                },
                 "qualification_receipt_hashes": {
-                    rid: row["receipt_sha256"] for rid, row in sorted(qualifications.items())
+                    role: row["receipt_sha256"] for role, row in sorted(qualifications.items())
                 },
                 "submission_hashes": {
-                    rid: row["submission_sha256"] for rid, row in sorted(submissions.items())
+                    role: row["submission_sha256"] for role, row in sorted(submissions.items())
                 },
-                "reviewer_pseudonymous_ids": sorted(reviewer_ids),
+                "reviewer_roles": sorted(REVIEW_ROLES),
                 "review_schema_version": review_schema_version,
                 "scientific_freeze_sha256": scientific_freeze_sha256,
                 "exact_commit": exact_commit,
@@ -276,7 +508,7 @@ class ReviewWorkspace:
             },
         )
 
-    # -- Stage 2 ----------------------------------------------------------
+    # -- Stage 2 -----------------------------------------------------------
 
     def unlock_stage2(
         self,
@@ -292,8 +524,11 @@ class ReviewWorkspace:
             "packet_commitment_matches": commitment["private_packet_commitment"] == packet_commitment,
             "freeze_hash_matches": commitment["scientific_freeze_sha256"] == scientific_freeze_sha256,
             "code_commit_matches": commitment["exact_commit"] == exact_commit,
+            "both_reviewers_declared": len(commitment["declaration_hashes"]) == 2,
             "both_reviewers_qualified": len(commitment["qualification_receipt_hashes"]) == 2,
             "both_submissions_present": len(commitment["submission_hashes"]) == 2,
+            "assignment_registry_unchanged": commitment["assignment_registry_sha256"]
+            == self.assignments()["registry_sha256"],
             "external_key_available": key_available,
         }
         if not all(checks.values()):
@@ -304,138 +539,184 @@ class ReviewWorkspace:
         )
 
     def ingest_stage2(
-        self, reviewer_id: str, payload: bytes, *, expected_item_ids: list[str]
+        self,
+        role: str,
+        payload: bytes,
+        *,
+        expected_item_ids: list[str],
+        applicability: dict[str, dict[str, bool]],
     ) -> dict[str, Any]:
+        canonical = self._role(role)
         self.read("stage2_unlock")
+        declaration = self._declaration_for(canonical)
+        registry = self.assignments()
         rows = parse_review_csv(payload, STAGE2_FORM_COLUMNS)
-        validation = validate_stage2_submission(rows, expected_item_ids)
-        if not validation["passed"]:
-            raise WorkflowError(f"Stage-2 submission from {reviewer_id} is malformed")
+        try:
+            verify_assignment(
+                registry,
+                role=canonical,
+                reviewer_pseudonym=declaration["reviewer_pseudonym"],
+                item_ids=sorted(rows),
+            )
+        except AssignmentError as error:
+            raise WorkflowError(f"Stage-2 submission refused: {error}") from error
+        validation = validate_stage2_submission(rows, expected_item_ids, applicability)
+        if not validation["form_complete"]:
+            raise WorkflowError(f"Stage-2 submission from {canonical} is malformed")
         return self.write(
-            f"stage2_submission_{reviewer_id}",
+            f"stage2_submission_{canonical}",
             {
                 "receipt_kind": "stage2_submission",
-                "reviewer_pseudonymous_id": reviewer_id,
+                "reviewer_role": canonical,
+                "form_schema_version": STAGE2_FORM_SCHEMA_VERSION,
+                "acceptance_policy_version": STAGE2_ACCEPTANCE_POLICY_VERSION,
+                "declaration_sha256": declaration["declaration_sha256"],
                 "submission_sha256": sha256_bytes(payload),
                 "judgements": rows,
                 "validation": validation["checks"],
+                # Recorded so that nothing downstream can mistake a complete form
+                # for an approval.
+                "form_complete": validation["form_complete"],
+                "blocking_value_count": validation["blocking_value_count"],
+                "substantively_accepted_without_adjudication": validation[
+                    "substantively_accepted_without_adjudication"
+                ],
             },
         )
 
-    # -- adjudication and agreement ---------------------------------------
+    # -- pairing, queues, adjudication -------------------------------------
 
     def _paired(
-        self, reviewer_ids: tuple[str, str], mappings: dict[str, dict[str, str]], stage: str
+        self, mappings: dict[str, dict[str, str]], stage: str
     ) -> dict[str, dict[str, dict[str, str]]]:
         by_pair: dict[str, dict[str, dict[str, str]]] = {}
-        for reviewer_id in reviewer_ids:
-            receipt = self.read(f"{stage}_submission_{reviewer_id}")
-            mapping = mappings[reviewer_id]
+        for role in REVIEW_ROLES:
+            receipt = self.read(f"{stage}_submission_{role}")
+            mapping = mappings[role]
             for item_id, row in receipt["judgements"].items():
                 pair_id = mapping.get(item_id)
                 if pair_id is None:
                     raise WorkflowError(f"unmapped reviewer item {item_id}")
-                by_pair.setdefault(pair_id, {})[reviewer_id] = row
+                by_pair.setdefault(pair_id, {})[role] = row
         return by_pair
 
-    def build_disagreement_queue(
-        self, *, reviewer_ids: tuple[str, str], mappings: dict[str, dict[str, str]]
+    def build_stage1_disagreements(
+        self, *, mappings: dict[str, dict[str, str]]
     ) -> dict[str, Any]:
-        paired = self._paired(reviewer_ids, mappings, "stage1")
-        disputes: list[dict[str, Any]] = []
-        for pair_id, rows in sorted(paired.items()):
-            if len(rows) != 2:
-                raise WorkflowError(f"pair {pair_id} lacks two independent judgements")
-            left, right = (rows[reviewer_id] for reviewer_id in reviewer_ids)
-            differing = sorted(
-                dimension
-                for dimension in GATING_DIMENSIONS
-                if left.get(dimension, "").casefold() != right.get(dimension, "").casefold()
-            )
-            if differing:
-                disputes.append(
-                    {
-                        "pair_id": pair_id,
-                        "disputed_dimensions": differing,
-                        "reviewer_values": {
-                            reviewer_id: {
-                                dimension: rows[reviewer_id].get(dimension, "")
-                                for dimension in differing
-                            }
-                            for reviewer_id in reviewer_ids
-                        },
-                    }
-                )
-        return self.write(
-            "disagreement_queue",
-            {
-                "receipt_kind": "disagreement_queue",
-                "pair_count": len(paired),
-                "disputed_pair_count": len(disputes),
-                "disputes": disputes,
-            },
-        )
+        try:
+            queue = build_stage1_queue(self._paired(mappings, STAGE1))
+        except AdjudicationError as error:
+            raise WorkflowError(str(error)) from error
+        return self.write("stage1_disagreement_queue", {"receipt_kind": "stage1_disagreement_queue", **queue})
+
+    def build_stage2_disagreements(
+        self, *, mappings: dict[str, dict[str, str]], applicability: dict[str, dict[str, bool]]
+    ) -> dict[str, Any]:
+        try:
+            queue = build_stage2_queue(self._paired(mappings, STAGE2), applicability)
+        except AdjudicationError as error:
+            raise WorkflowError(str(error)) from error
+        return self.write("stage2_disagreement_queue", {"receipt_kind": "stage2_disagreement_queue", **queue})
+
+    def _check_adjudicator(self, adjudicator_pseudonym: str) -> dict[str, Any]:
+        registry = self.assignments()
+        try:
+            adjudicator = assignment_for_role(registry, ADJUDICATOR)
+        except AssignmentError as error:
+            raise WorkflowError(str(error)) from error
+        if str(adjudicator["reviewer_pseudonym"]) != str(adjudicator_pseudonym).strip():
+            raise WorkflowError("the submitted adjudication is not from the assigned adjudicator")
+        reviewers = {
+            str(assignment_for_role(registry, role)["reviewer_pseudonym"]) for role in REVIEW_ROLES
+        }
+        if str(adjudicator["reviewer_pseudonym"]) in reviewers:
+            raise WorkflowError("the adjudicator must be independent of both reviewers")
+        return adjudicator
 
     def ingest_adjudication(
-        self, *, adjudicator_id: str, decisions: list[dict[str, Any]], reviewer_ids: tuple[str, str]
+        self, *, stage: str, adjudicator_pseudonym: str, decisions: list[dict[str, Any]]
     ) -> dict[str, Any]:
-        queue = self.read("disagreement_queue")
-        if adjudicator_id in reviewer_ids:
-            raise WorkflowError("the adjudicator must be independent of both reviewers")
-        disputed = {str(row["pair_id"]) for row in queue["disputes"]}
-        decided = {str(row["pair_id"]) for row in decisions}
-        if disputed != decided:
-            raise WorkflowError("adjudication must decide exactly the disputed pairs")
-        for decision in decisions:
-            if not decision.get("rationale"):
-                raise WorkflowError(f"adjudication for {decision['pair_id']} lacks a rationale")
+        if stage not in (STAGE1, STAGE2):
+            raise WorkflowError(f"unknown adjudication stage {stage!r}")
+        adjudicator = self._check_adjudicator(adjudicator_pseudonym)
+        queue = self.read(f"{stage}_disagreement_queue")
+        try:
+            validated = validate_adjudication(stage=stage, queue=queue, decisions=decisions)
+        except AdjudicationError as error:
+            raise WorkflowError(f"{stage} adjudication refused: {error}") from error
         return self.write(
-            "adjudication",
+            f"{stage}_adjudication",
             {
-                "receipt_kind": "adjudication",
-                "adjudicator_pseudonymous_id": adjudicator_id,
-                "decision_count": len(decisions),
-                "decisions": [
-                    {
-                        **decision,
-                        "reviewer_judgements": next(
-                            row["reviewer_values"]
-                            for row in queue["disputes"]
-                            if str(row["pair_id"]) == str(decision["pair_id"])
-                        ),
-                    }
-                    for decision in decisions
-                ],
+                "receipt_kind": f"{stage}_adjudication",
+                "adjudicator_assignment_sha256": adjudicator["assignment_sha256"],
+                "adjudicator_pseudonym_sha256": sha256_json(adjudicator["reviewer_pseudonym"]),
+                "disagreement_queue_sha256": queue["receipt_sha256"],
                 "submission_sha256": sha256_json(decisions),
+                **validated,
             },
         )
 
-    def compute_agreement(
-        self, *, reviewer_ids: tuple[str, str], mappings: dict[str, dict[str, str]]
-    ) -> dict[str, Any]:
-        paired = self._paired(reviewer_ids, mappings, "stage1")
-        per_dimension: dict[str, dict[str, Any]] = {}
-        for dimension in GATING_DIMENSIONS:
-            agree = 0
-            total = 0
-            for rows in paired.values():
-                left, right = (rows[reviewer_id] for reviewer_id in reviewer_ids)
-                total += 1
-                agree += left.get(dimension, "").casefold() == right.get(dimension, "").casefold()
-            per_dimension[dimension] = {
-                "agreed": agree,
-                "total": total,
-                "raw_agreement": round(agree / total, 4) if total else 0.0,
-            }
-        overall = sum(row["agreed"] for row in per_dimension.values())
-        total = sum(row["total"] for row in per_dimension.values())
+    # -- agreement (raw, pre-adjudication) ---------------------------------
+
+    def compute_agreement(self, *, mappings: dict[str, dict[str, str]]) -> dict[str, Any]:
+        """Raw agreement between the two independent submissions.
+
+        Adjudicated values are deliberately not consulted: resolving a dispute
+        must never make the reviewers look as though they had agreed.
+        """
+
+        stage1 = self._paired(mappings, STAGE1)
+        stage2 = (
+            self._paired(mappings, STAGE2)
+            if all(self.has(f"stage2_submission_{role}") for role in REVIEW_ROLES)
+            else {}
+        )
+
+        def per_dimension(
+            paired: dict[str, dict[str, dict[str, str]]], dimensions: tuple[str, ...]
+        ) -> dict[str, dict[str, Any]]:
+            table: dict[str, dict[str, Any]] = {}
+            for dimension in dimensions:
+                agree = 0
+                total = 0
+                for rows in paired.values():
+                    values = [
+                        str(rows[role].get(dimension, "")).strip().casefold() for role in sorted(rows)
+                    ]
+                    total += 1
+                    agree += len(set(values)) == 1
+                table[dimension] = {
+                    "agreed": agree,
+                    "total": total,
+                    "raw_agreement": round(agree / total, 4) if total else 0.0,
+                }
+            return table
+
+        stage1_table = per_dimension(stage1, GATING_DIMENSIONS)
+        stage2_table = per_dimension(stage2, STAGE2_SUBSTANTIVE_DIMENSIONS) if stage2 else {}
+
+        def overall(table: dict[str, dict[str, Any]]) -> float:
+            agreed = sum(row["agreed"] for row in table.values())
+            total = sum(row["total"] for row in table.values())
+            return round(agreed / total, 4) if total else 0.0
+
         return self.write(
             "agreement",
             {
                 "receipt_kind": "agreement",
-                "per_dimension": per_dimension,
-                "overall_raw_agreement": round(overall / total, 4) if total else 0.0,
-                "pair_count": len(paired),
+                "computed_from": "raw_independent_pre_adjudication_judgements",
+                "adjudicated_values_used": False,
+                "stage1": {
+                    "per_dimension": stage1_table,
+                    "overall_raw_agreement": overall(stage1_table),
+                    "pair_count": len(stage1),
+                },
+                "stage2": {
+                    "per_dimension": stage2_table,
+                    "overall_raw_agreement": overall(stage2_table),
+                    "pair_count": len(stage2),
+                },
+                "combined_rule": "both_stages_must_meet_the_threshold_independently",
                 "prevalence_note": (
                     "Chance-corrected coefficients are reported alongside prevalence diagnostics "
                     "but are not pass thresholds, because degenerate prevalence can make them "
@@ -444,125 +725,357 @@ class ReviewWorkspace:
             },
         )
 
+    # -- final adjudicated records ----------------------------------------
 
-def _majority(values: list[str]) -> str:
-    counts: dict[str, int] = {}
-    for value in values:
-        counts[value] = counts.get(value, 0) + 1
-    return max(sorted(counts), key=lambda key: counts[key])
+    def build_final_adjudicated_records(
+        self,
+        *,
+        mappings: dict[str, dict[str, str]],
+        applicability: dict[str, dict[str, bool]],
+        expected_pair_count: int,
+    ) -> dict[str, Any]:
+        stage1 = self._paired(mappings, STAGE1)
+        stage2 = (
+            self._paired(mappings, STAGE2)
+            if all(self.has(f"stage2_submission_{role}") for role in REVIEW_ROLES)
+            else {}
+        )
+        final = build_final_records(
+            stage1_paired=stage1,
+            stage2_paired=stage2,
+            stage1_adjudication=self.read("stage1_adjudication")
+            if self.has("stage1_adjudication")
+            else None,
+            stage2_adjudication=self.read("stage2_adjudication")
+            if self.has("stage2_adjudication")
+            else None,
+            applicability=applicability,
+            expected_pair_count=expected_pair_count,
+        )
+        return self.write(
+            "final_adjudicated_records", {"receipt_kind": "final_adjudicated_records", **final}
+        )
+
+    # -- evidence eligibility ---------------------------------------------
+
+    def evidence_eligibility(self) -> dict[str, Any]:
+        """Derive, from provenance alone, whether this workspace holds evidence.
+
+        Nothing here consults a mode flag.  Every binding is either present and
+        verifiable on disk, or it is not.
+        """
+
+        bindings: dict[str, bool] = dict.fromkeys(REQUIRED_EVIDENCE_BINDINGS, False)
+        try:
+            enforce_active_packet(packet_version=self.packet_version, action="evidence_eligibility")
+            bindings["active_non_retired_packet"] = True
+        except Exception:
+            pass
+        try:
+            registry = self.assignments()
+            bindings["valid_reviewer_assignment"] = verify_registry_complete(registry)["passed"]
+        except WorkflowError:
+            registry = {}
+        try:
+            declarations = [self._declaration_for(role) for role in REVIEW_ROLES]
+            bindings["valid_declaration_receipt"] = len(declarations) == 2 and not any(
+                row["declaration_is_synthetic"] for row in declarations
+            )
+        except WorkflowError:
+            declarations = []
+        try:
+            qualifications = [self.read(f"qualification_{role}") for role in REVIEW_ROLES]
+            bindings["valid_private_qualification_receipt"] = len(qualifications) == 2 and all(
+                row.get("qualification_version") == QUALIFICATION_SCHEMA_VERSION
+                and row.get("qualified") is True
+                for row in qualifications
+            )
+        except WorkflowError:
+            pass
+        try:
+            submissions = {role: self.read(f"stage1_submission_{role}") for role in REVIEW_ROLES}
+            stage2 = {role: self.read(f"stage2_submission_{role}") for role in REVIEW_ROLES}
+            bindings["complete_submission"] = bool(submissions) and bool(stage2)
+            if registry:
+                bindings["correct_package_hash"] = all(
+                    submissions[role]["package_sha256"]
+                    == assignment_for_role(registry, role)["stage1_package_hash"]
+                    for role in REVIEW_ROLES
+                )
+                bindings["correct_reviewer_namespace"] = all(
+                    all(
+                        str(item).startswith(
+                            f"{assignment_for_role(registry, role)['stage1_opaque_id_namespace']}-"
+                        )
+                        for item in submissions[role]["judgements"]
+                    )
+                    for role in REVIEW_ROLES
+                )
+        except (WorkflowError, AssignmentError):
+            pass
+
+        receipts = sorted(self.receipts.glob("*.json"))
+        loaded = []
+        for path in receipts:
+            try:
+                loaded.append(read_json(path))
+            except ValueError:
+                loaded.append({})
+        bindings["non_fixture_artifact_origin"] = bool(loaded) and not any(
+            receipt_is_fixture(receipt) for receipt in loaded
+        )
+        bindings["production_schema_version"] = bool(loaded) and all(
+            receipt.get("receipt_schema_version") == self.authority.schema_version
+            for receipt in loaded
+        )
+        content_intact = bool(loaded)
+        for receipt in loaded:
+            try:
+                verify_receipt(self.authority, receipt)
+            except ReceiptError:
+                content_intact = False
+                break
+        bindings["content_hash_intact"] = content_intact
+        bindings["coordinator_acceptance_receipt"] = self.is_production and content_intact
+
+        return {
+            "schema_version": "cab_review_ready_v2_evidence_eligibility_v1",
+            "artifact_origin": self.authority.origin,
+            "required_bindings": list(REQUIRED_EVIDENCE_BINDINGS),
+            "bindings": bindings,
+            "missing_bindings": sorted(name for name, value in bindings.items() if not value),
+            "counts_as_genuine_evidence": all(bindings.values())
+            and self.authority.counts_as_genuine_evidence,
+        }
+
+
+# --------------------------------------------------------------------------
+# C10
+# --------------------------------------------------------------------------
+
+
+def _raw_dimension_all(
+    paired: dict[str, dict[str, dict[str, str]]], dimension: str, accepting: set[str]
+) -> bool:
+    if not paired:
+        return False
+    return all(
+        all(str(row.get(dimension, "")).strip().casefold() in accepting for row in rows.values())
+        for rows in paired.values()
+    )
+
+
+def _raw_scale_at_least(
+    paired: dict[str, dict[str, dict[str, str]]], dimension: str, minimum: int
+) -> bool:
+    if not paired:
+        return False
+    for rows in paired.values():
+        for row in rows.values():
+            value = str(row.get(dimension, "")).strip()
+            if not value.isdigit() or int(value) < minimum:
+                return False
+    return True
 
 
 def run_c10(
     workspace: ReviewWorkspace,
     *,
     contract: dict[str, Any],
-    reviewer_ids: tuple[str, str],
     mappings: dict[str, dict[str, str]],
+    applicability: dict[str, dict[str, bool]],
     prerequisites: dict[str, bool],
     packet_commitment: str,
     scientific_freeze_sha256: str,
 ) -> dict[str, Any]:
-    """Evaluate C10 from genuine validated review data only."""
+    """Evaluate C10 from final adjudicated records and raw agreement only."""
 
     enforce_active_packet(
-        packet_version=PACKET_VERSION, commitment=packet_commitment, action="c10_evaluation"
+        packet_version=workspace.packet_version,
+        commitment=packet_commitment,
+        action="c10_evaluation",
     )
+    expected_pairs = int(contract.get("expected_pair_count", 20))
+    min_agreement = float(contract["min_raw_agreement"])
+    min_clarity = int(contract.get("min_task_clarity", 3))
+
+    eligibility = workspace.evidence_eligibility()
     commitment = workspace.read("stage1_commitment")
     agreement = workspace.read("agreement")
-    adjudication = workspace.read("adjudication")
-    stage1 = workspace._paired(reviewer_ids, mappings, "stage1")
-    stage2_available = all(
-        workspace.has(f"stage2_submission_{reviewer_id}") for reviewer_id in reviewer_ids
-    )
-    stage2 = (
-        workspace._paired(reviewer_ids, mappings, "stage2") if stage2_available else {}
-    )
-    resolved = {str(row["pair_id"]) for row in adjudication["decisions"]}
-    queued = {str(row["pair_id"]) for row in workspace.read("disagreement_queue")["disputes"]}
+    final = workspace.read("final_adjudicated_records")
+    registry_check = verify_registry_complete(workspace.assignments())
 
-    checks = {
-        "reviewer_identities_present": len(commitment["reviewer_pseudonymous_ids"]) == 2,
-        "reviewers_qualified": len(commitment["qualification_receipt_hashes"]) == 2,
-        "no_synthetic_fixture_evidence": not workspace.fixture,
-        "full_pair_coverage": len(stage1) == int(contract.get("expected_pair_count", 20)),
-        "agreement_meets_threshold": agreement["overall_raw_agreement"]
-        >= float(contract["min_raw_agreement"]),
-        "every_gating_dimension_meets_threshold": all(
-            row["raw_agreement"] >= float(contract["min_raw_agreement"])
-            for row in agreement["per_dimension"].values()
+    stage1_raw = workspace._paired(mappings, STAGE1)
+    stage2_present = all(workspace.has(f"stage2_submission_{role}") for role in REVIEW_ROLES)
+    stage2_raw = workspace._paired(mappings, STAGE2) if stage2_present else {}
+
+    stage1_queue = workspace.read("stage1_disagreement_queue")
+    stage2_queue = (
+        workspace.read("stage2_disagreement_queue")
+        if workspace.has("stage2_disagreement_queue")
+        else None
+    )
+    stage1_adj = (
+        workspace.read("stage1_adjudication") if workspace.has("stage1_adjudication") else None
+    )
+    stage2_adj = (
+        workspace.read("stage2_adjudication") if workspace.has("stage2_adjudication") else None
+    )
+
+    def resolved(queue: dict[str, Any] | None, adjudication: dict[str, Any] | None) -> bool:
+        if queue is None:
+            return False
+        if not queue["disputes"]:
+            return True
+        if adjudication is None:
+            return False
+        disputed = {f"{row['pair_id']}::{row['dimension']}" for row in queue["disputes"]}
+        decided = {f"{row['pair_id']}::{row['dimension']}" for row in adjudication["decisions"]}
+        return disputed <= decided
+
+    def accepted_everywhere(stage: str, dimension: str) -> bool:
+        included = [row for row in final["records"] if row["included"]]
+        if not included:
+            return False
+        return all(row[stage].get(dimension, {}).get("accepted") is True for row in included)
+
+    stage1_agreement = agreement["stage1"]
+    stage2_agreement = agreement["stage2"]
+
+    checks: dict[str, bool] = {
+        # -- reviewer prerequisites
+        "two_distinct_reviewers_assigned": registry_check["checks"]["both_reviewers_assigned"],
+        "separate_adjudicator_assigned": registry_check["checks"]["adjudicator_assigned"],
+        "no_role_overlap": registry_check["checks"]["all_roles_held_by_distinct_people"],
+        "assignment_registry_valid": registry_check["passed"],
+        "assignment_registry_unchanged_since_commitment": commitment[
+            "assignment_registry_sha256"
+        ]
+        == workspace.assignments()["registry_sha256"],
+        "both_declarations_valid": len(commitment["declaration_hashes"]) == 2,
+        "both_reviewers_qualified_privately": len(commitment["qualification_receipt_hashes"]) == 2,
+        "qualification_version_is_active": all(
+            workspace.read(f"qualification_{role}").get("qualification_version")
+            == QUALIFICATION_SCHEMA_VERSION
+            for role in REVIEW_ROLES
         ),
-        "adjudication_resolved": queued <= resolved,
-        "separate_adjudicator": adjudication["adjudicator_pseudonymous_id"] not in reviewer_ids,
-        "intervention_isolation_confirmed": _dimension_pass(stage1, "single_factor_isolation"),
-        "goal_preservation_confirmed": _dimension_pass(stage1, "goal_preserved"),
-        "gold_and_scorer_review_complete": stage2_available
-        and len(stage2) == int(contract.get("expected_pair_count", 20)),
+        "stage1_submissions_complete": len(commitment["submission_hashes"]) == 2,
+        "stage2_submissions_complete": stage2_present,
+        "package_hashes_bound_to_assignments": eligibility["bindings"]["correct_package_hash"],
+        "reviewer_namespaces_correct": eligibility["bindings"]["correct_reviewer_namespace"],
+        # -- Stage 1
+        "full_pair_coverage": len(stage1_raw) == expected_pairs,
+        "stage2_covers_every_stage1_pair": set(stage2_raw) == set(stage1_raw)
+        and len(stage2_raw) == expected_pairs,
+        "task_clarity_meets_threshold": _raw_scale_at_least(stage1_raw, "task_clarity", min_clarity),
+        "intervention_comprehensible": _raw_dimension_all(
+            stage1_raw, "intervention_understandable", {"yes"}
+        ),
+        "clean_solvability_accepted": accepted_everywhere(STAGE1, "clean_solvable"),
+        "evidence_sufficiency_accepted": accepted_everywhere(STAGE1, "clean_evidence_sufficient"),
+        "goal_preservation_accepted": accepted_everywhere(STAGE1, "goal_preserved"),
+        "single_factor_isolation_accepted": accepted_everywhere(STAGE1, "single_factor_isolation"),
+        "preserved_invariants_accepted": accepted_everywhere(STAGE1, "preserved_invariants_hold"),
+        "primitive_evidence_accepted": accepted_everywhere(STAGE1, "primitive_evidence_adequate"),
+        "stage1_disagreements_resolved": resolved(stage1_queue, stage1_adj),
+        # -- Stage 2
+        "gold_correctness_accepted": accepted_everywhere(STAGE2, "gold_correct"),
+        "accepted_variants_complete": accepted_everywhere(STAGE2, "accepted_variants_complete"),
+        "answer_contracts_accepted": accepted_everywhere(STAGE2, "answer_contract_valid"),
+        "scorer_compatibility_accepted": accepted_everywhere(STAGE2, "scorer_compatible"),
+        "intervention_policy_accepted": accepted_everywhere(STAGE2, "intervention_policy_valid"),
+        "route_policy_accepted": accepted_everywhere(STAGE2, "route_policy_defensible"),
+        "recovery_policy_accepted_where_applicable": accepted_everywhere(
+            STAGE2, "recovery_authorization_valid_or_not_applicable"
+        ),
+        "abstention_policy_accepted_where_applicable": accepted_everywhere(
+            STAGE2, "abstention_policy_valid_or_not_applicable"
+        ),
+        "clarification_policy_accepted_where_applicable": accepted_everywhere(
+            STAGE2, "clarification_policy_valid_or_not_applicable"
+        ),
+        "stage2_applicability_map_covers_every_pair": bool(applicability)
+        and all(str(row["pair_id"]) in applicability for row in final["records"]),
+        "no_unresolved_stage2_objection": bool(final["records"])
+        and not any(row["blocked_dimensions"] for row in final["records"]),
+        "stage2_disagreements_resolved": resolved(stage2_queue, stage2_adj),
+        # -- final records and exclusions
+        "final_records_built_for_every_pair": final["checks"][
+            "every_expected_pair_has_a_final_record"
+        ],
+        "final_records_have_no_unresolved_dimension": final["checks"]["no_unresolved_dimensions"],
+        "exclusions_applied": final["included_count"] + final["excluded_count"] == expected_pairs,
+        "included_slice_non_empty": final["included_count"] > 0,
+        # -- agreement, from raw independent judgements only
+        "agreement_computed_from_raw_judgements": agreement["adjudicated_values_used"] is False,
+        "stage1_agreement_meets_threshold": stage1_agreement["overall_raw_agreement"]
+        >= min_agreement,
+        "stage2_agreement_meets_threshold": bool(stage2_agreement["per_dimension"])
+        and stage2_agreement["overall_raw_agreement"] >= min_agreement,
+        "every_stage1_dimension_meets_threshold": bool(stage1_agreement["per_dimension"])
+        and all(
+            row["raw_agreement"] >= min_agreement
+            for row in stage1_agreement["per_dimension"].values()
+        ),
+        "every_stage2_dimension_meets_threshold": bool(stage2_agreement["per_dimension"])
+        and all(
+            row["raw_agreement"] >= min_agreement
+            for row in stage2_agreement["per_dimension"].values()
+        ),
+        # -- authenticity, derived from provenance rather than from a mode flag
+        "artifact_origin_is_production": workspace.is_production,
+        "every_required_evidence_binding_present": not eligibility["missing_bindings"],
+        "evidence_counts_as_genuine": eligibility["counts_as_genuine_evidence"],
+        # -- binding to the frozen packet and code
         "packet_commitment_matches": commitment["private_packet_commitment"] == packet_commitment,
         "freeze_hash_matches": commitment["scientific_freeze_sha256"] == scientific_freeze_sha256,
-        "prerequisites_satisfied": all(prerequisites.values()),
+        "prerequisites_satisfied": bool(prerequisites) and all(prerequisites.values()),
     }
+
     passed = all(checks.values())
-    # Mechanics status exists so the fixture-only end-to-end test can prove the
-    # pipeline works without ever producing a genuine C10 pass.
-    mechanics = all(value for name, value in checks.items() if name != "no_synthetic_fixture_evidence")
+    # Mechanics status lets the fixture end-to-end test prove the pipeline works
+    # without ever producing a genuine C10 pass.  It excludes exactly the checks
+    # that a fixture cannot satisfy by construction, and nothing else.
+    fixture_exempt = {
+        "artifact_origin_is_production",
+        "every_required_evidence_binding_present",
+        "evidence_counts_as_genuine",
+    }
+    mechanics = all(value for name, value in checks.items() if name not in fixture_exempt)
     return {
-        "schema_version": "cab_review_ready_v2_c10_report_v1",
+        "schema_version": "cab_review_ready_v2_c10_report_v2",
+        "workflow_schema_version": WORKFLOW_SCHEMA_VERSION,
         "claim_id": "C10",
         "status": "C10_PASS" if passed else "C10_PENDING_GENUINE_REVIEW",
         "mechanics_status": "C10_MECHANICS_PASS" if mechanics else "C10_MECHANICS_FAIL",
         "evidence_class": contract["evidence_class_on_pass"] if passed else "NO_GENUINE_EVIDENCE",
-        "counts_as_genuine_evidence": passed and not workspace.fixture,
+        "counts_as_genuine_evidence": passed and eligibility["counts_as_genuine_evidence"],
+        "artifact_origin": workspace.authority.origin,
         "checks": checks,
         "failed_checks": sorted(name for name, value in checks.items() if not value),
-        "agreement": agreement["per_dimension"],
+        "evidence_eligibility": eligibility,
+        "stage1_agreement": stage1_agreement["per_dimension"],
+        "stage2_agreement": stage2_agreement["per_dimension"],
+        "included_count": final["included_count"],
+        "excluded_count": final["excluded_count"],
         "passed": passed,
     }
 
 
-def _dimension_pass(paired: dict[str, dict[str, dict[str, str]]], dimension: str) -> bool:
-    return all(
-        all(row.get(dimension, "").casefold() in {"yes", "partial"} for row in rows.values())
-        for rows in paired.values()
-    )
+def build_exclusion_register(workspace: ReviewWorkspace) -> dict[str, Any]:
+    """Read exclusions off the final adjudicated records, not off raw rows."""
 
-
-def build_exclusion_register(
-    workspace: ReviewWorkspace,
-    *,
-    reviewer_ids: tuple[str, str],
-    mappings: dict[str, dict[str, str]],
-) -> dict[str, Any]:
-    paired = workspace._paired(reviewer_ids, mappings, "stage1")
-    adjudication = workspace.read("adjudication")
-    adjudicated = {
-        str(row["pair_id"]): row for row in adjudication["decisions"]
-    }
-    included: list[str] = []
-    excluded: list[dict[str, str]] = []
-    for pair_id, rows in sorted(paired.items()):
-        values = [row.get("exclude_item", "").casefold() for row in rows.values()]
-        decision = adjudicated.get(pair_id, {}).get("resolved_values", {}).get("exclude_item")
-        verdict = decision or (_majority(values) if len(set(values)) == 1 else "unresolved")
-        if verdict == "yes":
-            excluded.append(
-                {
-                    "pair_id": pair_id,
-                    "reason": "reviewer_or_adjudicated_exclusion",
-                    "source": "adjudication" if decision else "unanimous_reviewers",
-                }
-            )
-        elif verdict == "unresolved":
-            excluded.append({"pair_id": pair_id, "reason": "unresolved_exclusion_dispute", "source": "queue"})
-        else:
-            included.append(pair_id)
+    final = workspace.read("final_adjudicated_records")
     return workspace.write(
         "exclusion_register",
         {
             "receipt_kind": "exclusion_register",
-            "included_pair_ids": included,
-            "excluded_pairs": excluded,
-            "included_count": len(included),
-            "excluded_count": len(excluded),
+            "derived_from": "final_adjudicated_records",
+            "final_records_sha256": final["receipt_sha256"],
+            "included_pair_ids": final["included_pair_ids"],
+            "excluded_pairs": final["excluded_pairs"],
+            "included_count": final["included_count"],
+            "excluded_count": final["excluded_count"],
         },
     )
 
@@ -580,32 +1093,54 @@ def lock_reviewed_slice(
     exact_commit: str,
 ) -> dict[str, Any]:
     genuine_pass = c10_report.get("status") == "C10_PASS"
-    fixture_mechanics = workspace.fixture and c10_report.get("mechanics_status") == "C10_MECHANICS_PASS"
+    fixture_mechanics = (
+        not workspace.is_production and c10_report.get("mechanics_status") == "C10_MECHANICS_PASS"
+    )
     if not (genuine_pass or fixture_mechanics):
         raise WorkflowError("the reviewed slice cannot be locked before C10 passes")
-    if genuine_pass and workspace.fixture:
+    if genuine_pass and not workspace.is_production:
         raise WorkflowError("a fixture workspace can never produce a genuine C10 pass")
+    if genuine_pass and not c10_report.get("counts_as_genuine_evidence"):
+        raise WorkflowError("a C10 pass that does not count as genuine evidence cannot lock a slice")
     enforce_active_packet(
-        packet_version=PACKET_VERSION, commitment=packet_commitment, action="slice_lock"
+        packet_version=workspace.packet_version, commitment=packet_commitment, action="slice_lock"
     )
     register = workspace.read("exclusion_register")
-    adjudication = workspace.read("adjudication")
     commitment = workspace.read("stage1_commitment")
+    final = workspace.read("final_adjudicated_records")
+    registry = workspace.assignments()
+    stage2_submissions = {
+        role: workspace.read(f"stage2_submission_{role}")["submission_sha256"]
+        for role in REVIEW_ROLES
+    }
     return workspace.write(
         "slice_lock",
         {
             "receipt_kind": "reviewed_slice_lock",
             "included_pair_ids": register["included_pair_ids"],
             "excluded_pairs": register["excluded_pairs"],
-            "review_receipt_hashes": commitment["submission_hashes"],
-            "adjudication_receipt_sha256": adjudication["receipt_sha256"],
+            "private_packet_commitment": packet_commitment,
+            "assignment_registry_sha256": registry["registry_sha256"],
+            "declaration_hashes": commitment["declaration_hashes"],
+            "qualification_receipt_hashes": commitment["qualification_receipt_hashes"],
+            "stage1_submission_hashes": commitment["submission_hashes"],
+            "stage1_commitment_sha256": commitment["receipt_sha256"],
+            "stage2_submission_hashes": stage2_submissions,
+            "stage1_adjudication_sha256": workspace.read("stage1_adjudication")["receipt_sha256"]
+            if workspace.has("stage1_adjudication")
+            else None,
+            "stage2_adjudication_sha256": workspace.read("stage2_adjudication")["receipt_sha256"]
+            if workspace.has("stage2_adjudication")
+            else None,
+            "final_adjudicated_records_sha256": final["receipt_sha256"],
+            "exclusion_register_sha256": register["receipt_sha256"],
             "c10_report_sha256": sha256_json(c10_report),
+            "c10_schema_version": c10_report["schema_version"],
             "scorer_sha256": scorer_sha256,
             "endpoints_sha256": endpoints_sha256,
             "analysis_plan_sha256": analysis_plan_sha256,
             "system_identity_schema_sha256": system_identity_sha256,
             "scientific_freeze_sha256": scientific_freeze_sha256,
-            "private_packet_commitment": packet_commitment,
             "exact_commit": exact_commit,
             "locked": True,
         },
@@ -613,18 +1148,31 @@ def lock_reviewed_slice(
 
 
 def authorize_model_execution(
-    workspace: ReviewWorkspace, *, exact_commit: str, scientific_freeze_sha256: str
+    workspace: ReviewWorkspace,
+    *,
+    exact_commit: str,
+    scientific_freeze_sha256: str,
+    c10_report: dict[str, Any] | None = None,
+    external_attestation_present: bool = False,
 ) -> dict[str, Any]:
     if not workspace.has("slice_lock"):
         raise WorkflowError("model execution is blocked: no reviewed-slice lock receipt exists")
     lock = workspace.read("slice_lock")
+    report = c10_report or workspace.read("c10_report")
     checks = {
         "slice_locked": bool(lock.get("locked")),
         "commit_matches_lock": lock.get("exact_commit") == exact_commit,
         "freeze_matches_lock": lock.get("scientific_freeze_sha256") == scientific_freeze_sha256,
-        "evidence_class_matches_workspace": lock.get("evidence_class") == workspace.evidence_class,
-        "genuine_evidence_required_in_production": workspace.fixture
+        "artifact_origin_matches_workspace": lock.get("artifact_origin") == workspace.authority.origin,
+        "c10_report_matches_lock": lock.get("c10_report_sha256") == sha256_json(report),
+        "c10_is_not_stale": report.get("schema_version") == lock.get("c10_schema_version"),
+        "c10_belongs_to_this_packet": report.get("packet_version", workspace.packet_version)
+        == workspace.packet_version,
+        "stage2_complete": bool(lock.get("stage2_submission_hashes")),
+        "no_unresolved_objection": bool(lock.get("included_pair_ids")),
+        "genuine_evidence_required_in_production": (not workspace.is_production)
         or lock.get("counts_as_genuine_evidence") is True,
+        "external_attestation_present": (not workspace.is_production) or external_attestation_present,
         "included_slice_non_empty": bool(lock.get("included_pair_ids")),
     }
     if not all(checks.values()):
@@ -641,38 +1189,49 @@ def workflow_status(workspace: ReviewWorkspace) -> dict[str, Any]:
     """Public-safe status. Reports stage completion only, never review content."""
 
     stages = {
-        "qualification_receipts": sum(
-            1 for path in workspace.receipts.glob("qualification_*.json")
-        ),
-        "stage1_submissions": sum(
-            1 for path in workspace.receipts.glob("stage1_submission_*.json")
-        ),
+        "reviewer_assignments": len(workspace.assignments().get("assignments", {})),
+        "declaration_receipts": sum(1 for _ in workspace.receipts.glob("declaration_REVIEWER_*.json")),
+        "qualification_receipts": sum(1 for _ in workspace.receipts.glob("qualification_*.json")),
+        "stage1_submissions": sum(1 for _ in workspace.receipts.glob("stage1_submission_*.json")),
         "stage1_committed": workspace.has("stage1_commitment"),
         "stage2_unlocked": workspace.has("stage2_unlock"),
-        "stage2_submissions": sum(
-            1 for path in workspace.receipts.glob("stage2_submission_*.json")
-        ),
-        "disagreement_queue_built": workspace.has("disagreement_queue"),
-        "adjudicated": workspace.has("adjudication"),
+        "stage2_submissions": sum(1 for _ in workspace.receipts.glob("stage2_submission_*.json")),
+        "stage1_disagreement_queue_built": workspace.has("stage1_disagreement_queue"),
+        "stage2_disagreement_queue_built": workspace.has("stage2_disagreement_queue"),
+        "stage1_adjudicated": workspace.has("stage1_adjudication"),
+        "stage2_adjudicated": workspace.has("stage2_adjudication"),
         "agreement_computed": workspace.has("agreement"),
+        "final_records_built": workspace.has("final_adjudicated_records"),
+        "exclusion_register_built": workspace.has("exclusion_register"),
         "slice_locked": workspace.has("slice_lock"),
         "execution_authorized": workspace.has("execution_authorization"),
     }
+    c10_status = "C10_PENDING_GENUINE_REVIEW"
+    if workspace.has("c10_report"):
+        try:
+            c10_status = str(workspace.read("c10_report").get("status", c10_status))
+        except WorkflowError:
+            c10_status = "C10_PENDING_GENUINE_REVIEW"
     return {
-        "schema_version": "cab_review_ready_v2_workflow_status_v1",
-        "evidence_class": workspace.evidence_class,
+        "schema_version": "cab_review_ready_v2_workflow_status_v2",
+        "workflow_schema_version": WORKFLOW_SCHEMA_VERSION,
+        "artifact_origin": workspace.authority.origin,
         "stages": stages,
-        "c10_status": "C10_PENDING_GENUINE_REVIEW",
-        "model_execution": "MODEL_EXECUTION_BLOCKED",
+        "c10_status": c10_status,
+        "model_execution": "MODEL_EXECUTION_AUTHORIZED"
+        if stages["execution_authorized"]
+        else "MODEL_EXECUTION_BLOCKED",
+        "private_content_disclosed": False,
     }
 
 
 __all__ = [
-    "FIXTURE_EVIDENCE_CLASS",
     "GATING_DIMENSIONS",
-    "GENUINE_EVIDENCE_CLASS",
-    "STAGE2_DIMENSIONS",
+    "REQUIRED_EVIDENCE_BINDINGS",
+    "REVIEWER_A",
+    "REVIEWER_B",
     "STAGE2_FORM_COLUMNS",
+    "WORKFLOW_SCHEMA_VERSION",
     "ReviewWorkspace",
     "WorkflowError",
     "authorize_model_execution",
