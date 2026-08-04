@@ -1,6 +1,9 @@
 {
+  "agreement_rule": "stage1_and_stage2_must_each_meet_the_threshold_independently",
+  "agreement_source": "raw_independent_pre_adjudication_judgements",
   "claim_id": "C10",
   "description": "Controlled interventions isolate the intended factor while preserving the user goal.",
+  "eligibility_source": "final_adjudicated_item_records",
   "evidence_class_on_pass": "AUDITED_REAL_EVIDENCE",
   "expected_pair_count": 20,
   "gating_dimensions": [
@@ -16,19 +19,30 @@
   "min_independent_reviewers": 2,
   "min_qualification_rate": 0.8,
   "min_raw_agreement": 0.8,
+  "min_reviewer_confidence": 3,
+  "min_task_clarity": 3,
   "no_ai_or_proxy_review": true,
   "packet_version": "compact20-review-ready-v2",
   "reject_synthetic_fixtures": true,
   "require_full_pair_coverage": true,
   "require_separate_adjudicator": true,
+  "require_stage1_adjudication": true,
+  "require_stage2_adjudication": true,
   "require_stage2_gold_and_scorer_review": true,
   "required_prerequisites": [
     "retired_packet_registry_enforced",
+    "retired_qualification_registry_enforced",
     "stage1_leakage_audit",
     "intervention_isolation_audit",
     "causal_route_validation",
     "hostile_route_audit",
     "scientific_freeze_v2"
+  ],
+  "required_reviewer_declaration_version": "cab_reviewer_declaration_v1",
+  "required_reviewer_assignment_registry_schema": "cab_reviewer_assignment_registry_v1",
+  "required_qualification_version": "cab_qualification_v3",
+  "retired_qualification_versions": [
+    "cab_stage1_qualification_v2"
   ],
   "schema_version": "cab_c10_contract_v2",
   "stage1_required_dimensions": [
@@ -49,13 +63,25 @@
     "exclude_item",
     "reviewer_confidence"
   ],
-  "stage2_required_dimensions": [
-    "clean_gold_correct",
-    "intervention_gold_or_policy_correct",
-    "answer_contract_correct",
-    "scorer_compatible",
-    "route_policy_defensible",
-    "exclude_item"
+  "stage2_acceptance_policy": "configs/reviewer_ready_v2/stage2_acceptance_policy_v1.json",
+  "stage2_acceptance_policy_version": "cab_stage2_acceptance_policy_v1",
+  "stage2_blocking_values": [
+    "NO",
+    "UNSURE"
   ],
-  "threshold_note": "Raw agreement is gated per gating dimension and overall. Chance-corrected coefficients are reported with prevalence diagnostics but are not pass thresholds, because degenerate prevalence can leave them undefined on a twenty-pair pilot."
+  "stage2_form_completion_is_not_approval": true,
+  "stage2_required_dimensions": [
+    "gold_correct",
+    "accepted_variants_complete",
+    "answer_contract_valid",
+    "scorer_compatible",
+    "intervention_policy_valid",
+    "route_policy_defensible",
+    "recovery_authorization_valid_or_not_applicable",
+    "abstention_policy_valid_or_not_applicable",
+    "clarification_policy_valid_or_not_applicable",
+    "exclude_item",
+    "reviewer_confidence"
+  ],
+  "threshold_note": "Raw agreement is gated per gating dimension and overall, for Stage 1 and Stage 2 separately, and is always computed from the two independent pre-adjudication submissions. Adjudicated values decide eligibility and never enter an agreement statistic. Chance-corrected coefficients are reported with prevalence diagnostics but are not pass thresholds, because degenerate prevalence can leave them undefined on a twenty-pair pilot."
 }

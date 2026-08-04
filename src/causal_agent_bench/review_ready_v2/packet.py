@@ -19,16 +19,23 @@ from causal_agent_bench.review_ready_v2.common import (
 )
 from causal_agent_bench.review_ready_v2.design import design_audit
 from causal_agent_bench.review_ready_v2.hostile import hostile_route_audit
+from causal_agent_bench.review_ready_v2.keys import ExternalKeyError, load_external_key
 from causal_agent_bench.review_ready_v2.leakage import stage1_leakage_audit, usability_audit
 from causal_agent_bench.review_ready_v2.models import PairSpec
 from causal_agent_bench.review_ready_v2.operators import isolation_audit
 from causal_agent_bench.review_ready_v2.pairs import build_all_pairs
 from causal_agent_bench.review_ready_v2.qualification import (
-    QUALIFICATION_KEY,
-    build_qualification_package,
+    QUALIFICATION_KEY_ENV,
+    QUALIFICATION_SCHEMA_VERSION,
+    QualificationError,
+    build_private_qualification,
+    qualification_commitment,
+    seal_qualification_key,
 )
+from causal_agent_bench.review_ready_v2.roles import REVIEW_ROLES, package_basename
 from causal_agent_bench.review_ready_v2.routes import validate_pair_routes
 from causal_agent_bench.review_ready_v2.stage1 import build_stage1_package
+from causal_agent_bench.review_ready_v2.stage2 import applicability_for
 from causal_agent_bench.review_ready_v2.vault import load_or_create_key, write_vault
 
 GENERATOR_VERSION = "cab_review_ready_v2_pair_generator_v1"
@@ -59,6 +66,13 @@ def stage2_record(pair: PairSpec) -> dict[str, Any]:
         "recovery_authorization": pair.recovery_authorization_private,
         "abstention_opportunity": pair.abstention_opportunity_private,
         "clarification_requirement": pair.clarification_requirement_private,
+        "stage2_dimension_applicability": applicability_for(
+            {
+                "recovery_authorization": pair.recovery_authorization_private,
+                "abstention_opportunity": pair.abstention_opportunity_private,
+                "clarification_requirement": pair.clarification_requirement_private,
+            }
+        ),
         "source_to_gold_rationale": {
             "required_input_keys": list(pair.required_input_keys),
             "counterparty": pair.counterparty,
@@ -71,6 +85,77 @@ def stage2_record(pair: PairSpec) -> dict[str, Any]:
         },
         "model_outputs_included": False,
     }
+
+
+def write_qualification_packages(
+    qualification_dir: Path,
+    repo_root: Path,
+    *,
+    seed: bytes | None = None,
+    qualification: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Write both private qualification packages and the encrypted answer key.
+
+    Neither the instantiated items nor the answer key ever leaves this directory,
+    and the key is written only as ciphertext under ``CAB_QUALIFICATION_KEY_PATH``.
+    """
+
+    if qualification is None:
+        if seed is None:
+            raise QualificationError("qualification generation needs the private packet seed")
+        qualification = {role: build_private_qualification(seed, role) for role in REVIEW_ROLES}
+
+    qualification_dir.mkdir(parents=True, exist_ok=True)
+    qualification_dir.chmod(0o700)
+    hashes: dict[str, str] = {}
+    for role in REVIEW_ROLES:
+        target = qualification_dir / f"qualification_{role.casefold()}.zip"
+        target.write_bytes(qualification[role]["package_bytes"])
+        target.chmod(0o600)
+        hashes[role] = qualification[role]["package_sha256"]
+
+    try:
+        answer_key_key = load_external_key(QUALIFICATION_KEY_ENV, repo_root)
+    except ExternalKeyError as error:
+        raise QualificationError(
+            f"the qualification answer key must be stored outside the repository: {error}"
+        ) from error
+    sealed_key = seal_qualification_key(
+        {role: qualification[role]["answer_key"] for role in REVIEW_ROLES}, answer_key_key
+    )
+    key_vault = qualification_dir / "qualification_key.enc"
+    key_vault.write_bytes(sealed_key)
+    key_vault.chmod(0o600)
+
+    # The retired v2 layout kept a plaintext key and one shared packet here.
+    for stale in ("qualification_key.json", "qualification_packet.zip"):
+        stale_path = qualification_dir / stale
+        if stale_path.exists():
+            stale_path.unlink()
+
+    manifest = {
+        "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "packet_version": PACKET_VERSION,
+        "packages": {
+            role: {
+                "path": f"qualification_{role.casefold()}.zip",
+                "sha256": hashes[role],
+                "item_ids": qualification[role]["item_ids"],
+            }
+            for role in REVIEW_ROLES
+        },
+        "encrypted_key_path": "qualification_key.enc",
+        "encrypted_key_sha256": sha256_bytes(sealed_key),
+        "key_environment_variable": QUALIFICATION_KEY_ENV,
+        "plaintext_key_persisted": False,
+        "commitment": qualification_commitment(
+            package_hashes=hashes, encrypted_key_material_sha256=sha256_bytes(sealed_key)
+        ),
+    }
+    manifest_path = qualification_dir / "qualification_manifest_private.json"
+    write_json(manifest_path, manifest)
+    manifest_path.chmod(0o600)
+    return manifest
 
 
 def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = None) -> dict[str, Any]:
@@ -106,18 +191,30 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
     packages: dict[str, bytes] = {}
     mappings: dict[str, dict[str, str]] = {}
     package_hashes: dict[str, str] = {}
-    for role in ("stage1_reviewer_a", "stage1_reviewer_b"):
-        payload, mapping, _ = build_stage1_package(pairs, seed, role)
-        packages[role] = payload
-        mappings[role] = mapping
-        package_hashes[f"{role}.zip"] = sha256_bytes(payload)
-        (stage1_dir / f"{role}.zip").write_bytes(payload)
-        (stage1_dir / f"{role}.zip").chmod(0o600)
-        write_json(mappings_dir / f"{role}_mapping.json", {"reviewer_item_to_pair": mapping})
-        (mappings_dir / f"{role}_mapping.json").chmod(0o600)
+    for role in REVIEW_ROLES:
+        basename = package_basename(role)
+        payload, mapping, _ = build_stage1_package(pairs, seed, basename)
+        packages[basename] = payload
+        mappings[basename] = mapping
+        package_hashes[f"{basename}.zip"] = sha256_bytes(payload)
+        (stage1_dir / f"{basename}.zip").write_bytes(payload)
+        (stage1_dir / f"{basename}.zip").chmod(0o600)
+        write_json(mappings_dir / f"{basename}_mapping.json", {"reviewer_item_to_pair": mapping})
+        (mappings_dir / f"{basename}_mapping.json").chmod(0o600)
 
-    qualification_payload = build_qualification_package()
-    audited = {**packages, "qualification_packet": qualification_payload}
+    # Qualification is generated per reviewer from the private seed.  Neither the
+    # instantiated items nor the answer key exists in tracked source, and the key
+    # is written only as ciphertext under an external key.
+    qualification: dict[str, dict[str, Any]] = {
+        role: build_private_qualification(seed, role) for role in REVIEW_ROLES
+    }
+    audited = {
+        **packages,
+        **{
+            f"qualification_{role.casefold()}": qualification[role]["package_bytes"]
+            for role in REVIEW_ROLES
+        },
+    }
     leakage = stage1_leakage_audit(audited, pairs, mappings)
     if not leakage["passed"]:
         raise ValueError("Stage-1 leakage audit failed; refusing to publish reviewer packages")
@@ -125,10 +222,13 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
     if not usability["passed"]:
         raise ValueError("Stage-1 usability audit failed; refusing to publish reviewer packages")
 
-    (qualification_dir / "qualification_packet.zip").write_bytes(qualification_payload)
-    (qualification_dir / "qualification_packet.zip").chmod(0o600)
-    write_json(qualification_dir / "qualification_key.json", QUALIFICATION_KEY)
-    (qualification_dir / "qualification_key.json").chmod(0o600)
+    qualification_manifest = write_qualification_packages(
+        qualification_dir, repo_root, qualification=qualification
+    )
+    qualification_hashes = {
+        role: str(row["sha256"]) for role, row in qualification_manifest["packages"].items()
+    }
+    qual_commitment = qualification_manifest["commitment"]
 
     key_path, key = load_or_create_key(repo_root)
     records = [stage2_record(pair) for pair in pairs]
@@ -164,7 +264,12 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
         "anchor_group_count": len(design["anchors"]["groups"]),
         "pair_content_hashes": slot_hashes,
         "stage1_package_hashes": package_hashes,
-        "qualification_package_sha256": sha256_bytes(qualification_payload),
+        "qualification_commitment": qual_commitment,
+        "qualification_package_hashes": qualification_hashes,
+        "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "qualification_key_environment_variable": QUALIFICATION_KEY_ENV,
+        "qualification_items_published": False,
+        "qualification_reference_judgements_published": False,
         "stage2_vault_sha256": vault["vault_sha256"],
         "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
         "stage2_key_stored_in_repository": False,
@@ -194,6 +299,12 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
         "usability": usability,
         "vault": vault,
         "key_path_is_external": str(key_path.resolve()).startswith(str(repo_root.resolve())) is False,
+        "qualification": {
+            "version": QUALIFICATION_SCHEMA_VERSION,
+            "package_hashes": qualification_hashes,
+            "encrypted_key_sha256": qualification_manifest["encrypted_key_sha256"],
+            "plaintext_key_persisted": False,
+        },
     }
     return {"commitment": commitment, "reports": reports, "private_root": str(root)}
 
@@ -212,4 +323,5 @@ __all__ = [
     "load_pairs",
     "private_root_for",
     "stage2_record",
+    "write_qualification_packages",
 ]
