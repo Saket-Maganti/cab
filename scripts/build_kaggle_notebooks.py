@@ -399,20 +399,93 @@ def _setup_cell(spec: NotebookSpec) -> dict[str, object]:
         os.environ.setdefault("PYTHONHASHSEED", str(SEED))
 
         def locate_repo_root(start: Path) -> Path:
-            candidates = [start.resolve(), *start.resolve().parents]
-            for candidate in candidates:
+            # Find the repository, working or attached, without trusting any name.
+            # An already-checked-out tree wins when we are standing in one. Failing
+            # that, the bundle is found under /kaggle/input by inspecting archive
+            # *contents* - the same content-addressed discovery the CPU notebooks
+            # use - so the attached ZIP and the Kaggle dataset can both be renamed
+            # to anything without breaking this cell.
+            for candidate in [start.resolve(), *start.resolve().parents]:
                 if (candidate / "pyproject.toml").is_file() and (
                     candidate / "src" / "causal_agent_bench"
                 ).is_dir():
                     return candidate
+
             kaggle_input = Path("/kaggle/input")
             if kaggle_input.is_dir():
-                for pyproject in sorted(kaggle_input.glob("*/pyproject.toml")):
-                    candidate = pyproject.parent
-                    if (candidate / "src" / "causal_agent_bench").is_dir():
-                        return candidate
+                # Prefer the shared module when an extracted copy is importable.
+                for parent in sorted(kaggle_input.rglob("kaggle_input_discovery.py")):
+                    sys.path.insert(0, str(parent.parents[2]))
+                    break
+                try:
+                    from causal_agent_bench.kaggle_input_discovery import (
+                        discover_kaggle_input,
+                    )
+                except Exception:
+                    discover_kaggle_input = None
+                if discover_kaggle_input is not None:
+                    found = discover_kaggle_input(
+                        search_root=kaggle_input,
+                        working_root=Path("/kaggle/working"),
+                        expected_bundle_type="REPOSITORY_BUNDLE",
+                    )
+                    return Path(found["bundle_root"])
+
+                # Self-contained fallback: score archives by their member names.
+                import zipfile
+
+                sentinels = (
+                    ("CAB_KAGGLE_INPUT_MANIFEST.json", 6),
+                    ("reports/reviewer_ready_v2/ACTIVE_PATH_REGISTRY.json", 5),
+                    ("src/causal_agent_bench/", 4),
+                    ("configs/", 2),
+                    ("scripts/", 2),
+                    ("pyproject.toml", 1),
+                )
+                best_path, best_score = None, 0
+                for archive_path in sorted(kaggle_input.rglob("*")):
+                    if archive_path.suffix.casefold() != ".zip" or archive_path.is_symlink():
+                        continue
+                    try:
+                        with zipfile.ZipFile(archive_path) as archive:
+                            names = archive.namelist()
+                    except (zipfile.BadZipFile, OSError):
+                        continue
+                    tops = {n.split("/", 1)[0] for n in names if n}
+                    root = tops.pop() if len(tops) == 1 else ""
+                    prefix = f"{root}/" if root else ""
+                    relative = [n[len(prefix):] if prefix and n.startswith(prefix) else n for n in names]
+                    score = sum(
+                        weight
+                        for marker, weight in sentinels
+                        if (any(n.startswith(marker) for n in relative) if marker.endswith("/")
+                            else marker in relative)
+                    )
+                    if score > best_score:
+                        best_path, best_score = archive_path, score
+                if best_path is not None and best_score >= 8:
+                    destination = Path("/kaggle/working") / f"cab_input_{best_path.stat().st_size}"
+                    if not destination.is_dir():
+                        with zipfile.ZipFile(best_path) as archive:
+                            for info in archive.infolist():
+                                # chr(92) is a backslash: written this way so the
+                                # generated notebook source needs no escaping.
+                                parts = Path(info.filename.replace(chr(92), "/")).parts
+                                if info.filename.startswith("/") or ".." in parts:
+                                    raise RuntimeError(
+                                        f"refusing to extract unsafe member {info.filename!r}"
+                                    )
+                                archive.extract(info, destination)
+                    for depth in range(4):
+                        for candidate in sorted(destination.glob("/".join(["*"] * depth) or "*")):
+                            base = destination if depth == 0 else candidate
+                            if (base / "pyproject.toml").is_file() and (
+                                base / "src" / "causal_agent_bench"
+                            ).is_dir():
+                                return base
             raise RuntimeError(
-                "Repository root not found. Attach or clone the CAB repository, then rerun setup."
+                "Repository root not found. Attach the CAB bundle as a Kaggle dataset (any name), "
+                "or clone the repository, then rerun setup."
             )
 
         REPO_ROOT = locate_repo_root(Path.cwd())
