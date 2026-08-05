@@ -27,6 +27,13 @@ from causal_agent_bench.review_ready_v2.adjudication_packages import (
     STAGE1_PACKAGE_SCHEMA_VERSION,
     STAGE2_PACKAGE_SCHEMA_VERSION,
 )
+from causal_agent_bench.review_ready_v2.commitment_integrity import (
+    RETIRED_STAGE1_COMMITMENT_SCHEMA_VERSIONS,
+    REVIEW_INPUT_GRAPH_SCHEMA_VERSION,
+    STAGE1_COMMITMENT_SCHEMA_VERSION,
+    STAGE1_SNAPSHOT_SCHEMA_VERSION,
+    STAGE2_SNAPSHOT_SCHEMA_VERSION,
+)
 from causal_agent_bench.review_ready_v2.common import (
     canonical_bytes,
     read_json,
@@ -38,6 +45,7 @@ from causal_agent_bench.review_ready_v2.stage2_issuance import (
     REQUIRED_ISSUANCE_FIELDS,
     STAGE2_ISSUANCE_SCHEMA_VERSION,
 )
+from causal_agent_bench.review_ready_v2.workflow import RETIRED_WORKFLOW_SCHEMA_VERSIONS
 
 FREEZE_SCHEMA = "cab_review_ready_v2_scientific_freeze_v1"
 
@@ -63,6 +71,7 @@ FROZEN_SOURCES = (
     "src/causal_agent_bench/review_ready_v2/assignments.py",
     "src/causal_agent_bench/review_ready_v2/adjudication.py",
     "src/causal_agent_bench/review_ready_v2/adjudication_packages.py",
+    "src/causal_agent_bench/review_ready_v2/commitment_integrity.py",
     "src/causal_agent_bench/review_ready_v2/final_records.py",
     "src/causal_agent_bench/review_ready_v2/packet.py",
     "src/causal_agent_bench/review_ready_v2/workflow.py",
@@ -108,7 +117,7 @@ FROZEN_DOCS = {
     "security_policy": "docs/PRIVATE_PACKET_SECURITY_POLICY.md",
 }
 
-WORKFLOW_VERSION = "cab_review_ready_v2_two_stage_workflow_v2"
+WORKFLOW_VERSION = "cab_review_ready_v2_two_stage_workflow_v3"
 
 
 def current_head(repo_root: Path) -> str:
@@ -227,6 +236,18 @@ def build_freeze(repo_root: Path, *, generator_commit: str | None = None) -> dic
         "stage2_adjudicator_package_schema_version": STAGE2_PACKAGE_SCHEMA_VERSION,
         "adjudicator_package_binding_schema_version": BINDING_SCHEMA_VERSION,
         "adjudicator_package_binding_fields": list(BINDING_FIELDS),
+        # The immutable-evidence contract: which commitment and snapshot schemas
+        # the active gates accept, and which they refuse outright.
+        "stage1_commitment_schema_version": STAGE1_COMMITMENT_SCHEMA_VERSION,
+        "committed_stage1_snapshot_schema_version": STAGE1_SNAPSHOT_SCHEMA_VERSION,
+        "committed_stage2_snapshot_schema_version": STAGE2_SNAPSHOT_SCHEMA_VERSION,
+        "review_input_graph_schema_version": REVIEW_INPUT_GRAPH_SCHEMA_VERSION,
+        "retired_stage1_commitment_schema_versions": [
+            version
+            for version in RETIRED_STAGE1_COMMITMENT_SCHEMA_VERSIONS
+            if version is not None
+        ],
+        "retired_two_stage_workflow_versions": list(RETIRED_WORKFLOW_SCHEMA_VERSIONS),
         "frozen_sources": {
             path: sha256_file(repo_root / path) for path in FROZEN_SOURCES
         },

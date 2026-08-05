@@ -28,6 +28,12 @@ REQUIRED_ISSUANCE_FIELDS: tuple[str, ...] = (
     "reviewer_pseudonym_sha256",
     "reviewer_role",
     "stage1_commitment_sha256",
+    # The commitment hash alone would not survive a resealed Stage-1 receipt, so
+    # issuance also binds the immutable snapshot and this reviewer's own frozen
+    # judgement content.  Stage 2 is authorised by what Stage 1 actually said.
+    "stage1_snapshot_manifest_sha256",
+    "stage1_canonical_judgements_sha256",
+    "stage1_snapshot_receipt_sha256",
     "stage2_package_sha256",
     "stage2_opaque_id_namespace",
     "private_packet_commitment",
@@ -48,6 +54,9 @@ def build_stage2_issuance(
     reviewer_role: str,
     reviewer_pseudonym_sha256: str,
     stage1_commitment_sha256: str,
+    stage1_snapshot_manifest_sha256: str,
+    stage1_canonical_judgements_sha256: str,
+    stage1_snapshot_receipt_sha256: str,
     stage2_package_sha256: str,
     stage2_opaque_id_namespace: str,
     private_packet_commitment: str,
@@ -65,6 +74,9 @@ def build_stage2_issuance(
         "reviewer_role": str(reviewer_role),
         "reviewer_pseudonym_sha256": str(reviewer_pseudonym_sha256),
         "stage1_commitment_sha256": str(stage1_commitment_sha256),
+        "stage1_snapshot_manifest_sha256": str(stage1_snapshot_manifest_sha256),
+        "stage1_canonical_judgements_sha256": str(stage1_canonical_judgements_sha256),
+        "stage1_snapshot_receipt_sha256": str(stage1_snapshot_receipt_sha256),
         "stage2_package_sha256": str(stage2_package_sha256).strip().casefold(),
         "stage2_opaque_id_namespace": str(stage2_opaque_id_namespace),
         "private_packet_commitment": str(private_packet_commitment),
@@ -87,6 +99,9 @@ def verify_stage2_issuance(
     reviewer_role: str,
     reviewer_pseudonym_sha256: str,
     stage1_commitment_sha256: str,
+    stage1_snapshot_manifest_sha256: str,
+    stage1_canonical_judgements_sha256: str,
+    stage1_snapshot_receipt_sha256: str,
     stage2_package_sha256: str,
     stage2_opaque_id_namespace: str,
     private_packet_commitment: str,
@@ -116,6 +131,16 @@ def verify_stage2_issuance(
         == str(reviewer_pseudonym_sha256),
         "bound_to_the_current_stage1_commitment": str(issuance["stage1_commitment_sha256"])
         == str(stage1_commitment_sha256),
+        "bound_to_the_immutable_stage1_snapshot": str(issuance["stage1_snapshot_manifest_sha256"])
+        == str(stage1_snapshot_manifest_sha256),
+        "bound_to_this_reviewers_committed_stage1_judgements": str(
+            issuance["stage1_canonical_judgements_sha256"]
+        )
+        == str(stage1_canonical_judgements_sha256),
+        "bound_to_this_reviewers_committed_stage1_receipt": str(
+            issuance["stage1_snapshot_receipt_sha256"]
+        )
+        == str(stage1_snapshot_receipt_sha256),
         "bound_to_the_submitted_package": str(issuance["stage2_package_sha256"])
         == str(stage2_package_sha256).strip().casefold(),
         "bound_to_this_reviewer_namespace": namespace == str(stage2_opaque_id_namespace),
