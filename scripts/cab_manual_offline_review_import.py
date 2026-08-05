@@ -536,40 +536,72 @@ def cmd_quarantine(args: argparse.Namespace) -> dict[str, Any]:
     if not entries:
         return {"status": "NOTHING_TO_QUARANTINE", "import_epoch": workspace.import_epoch}
 
-    inventory = {
-        str(path.relative_to(source)): sha256_bytes(path.read_bytes()) for path in entries
-    }
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     destination = source.parent / f"{source.name}__stale_{stamp}"
     if destination.exists():
         raise Blocker(f"a quarantine directory already exists at {destination}")
     source.rename(destination)
     destination.chmod(0o700)
-
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    manifest = {
-        "schema_version": "cab_manual_import_quarantine_v1",
-        "quarantined_import_epoch": workspace.import_epoch,
-        "quarantined_at_utc": datetime.now(UTC).isoformat(),
-        "reason": str(args.reason or "superseded by a later import epoch"),
-        "file_count": len(inventory),
-        "file_sha256": inventory,
-        "inventory_sha256": sha256_json(inventory),
-        "receipts_were_edited": False,
-        "receipts_were_deleted": False,
-        "note": (
-            "The retired receipts are preserved outside Git under a name marked stale. They are "
-            "not consumed by any gate: a later epoch refuses them by epoch mismatch even if the "
-            "files are moved back."
-        ),
-    }
-    write_json(REPORT_DIR / "STALE_IMPORT_QUARANTINE.json", manifest)
+    _write_quarantine_register(
+        {destination.name: str(args.reason or "superseded by a later import epoch")}
+    )
     return {
         "status": "IMPORT_EPOCH_QUARANTINED",
         "quarantined_import_epoch": workspace.import_epoch,
-        "file_count": len(inventory),
-        "inventory_sha256": manifest["inventory_sha256"],
+        "quarantined_as": destination.name,
+        "file_count": len(entries),
     }
+
+
+def _write_quarantine_register(reasons: dict[str, str]) -> dict[str, Any]:
+    """Re-derive the register of retired epochs from what is actually on disk.
+
+    Rebuilt rather than appended to, so the register cannot drift from the
+    directories it describes, and so retiring a second epoch does not overwrite
+    the record of the first.  ``reasons`` supplies text for newly retired
+    directories; text already on file is preserved.
+    """
+
+    private_root = _private_root()
+    register_path = REPORT_DIR / "STALE_IMPORT_QUARANTINE.json"
+    previous = read_json(register_path) if register_path.is_file() else {}
+    known_reasons = {
+        name: str(entry.get("reason", ""))
+        for name, entry in (previous.get("quarantined") or {}).items()
+    } | reasons
+
+    quarantined: dict[str, Any] = {}
+    for directory in sorted(private_root.glob("manual_import_receipts*__stale_*")):
+        if not directory.is_dir():
+            continue
+        inventory = {
+            str(path.relative_to(directory)): sha256_bytes(path.read_bytes())
+            for path in sorted(directory.rglob("*"))
+            if path.is_file()
+        }
+        quarantined[directory.name] = {
+            "reason": known_reasons.get(directory.name, "superseded by a later import epoch"),
+            "file_count": len(inventory),
+            "file_sha256": inventory,
+            "inventory_sha256": sha256_json(inventory),
+        }
+
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    register = {
+        "schema_version": "cab_manual_import_quarantine_v2",
+        "recorded_at_utc": datetime.now(UTC).isoformat(),
+        "quarantined_epoch_count": len(quarantined),
+        "quarantined": quarantined,
+        "receipts_were_edited": False,
+        "receipts_were_deleted": False,
+        "note": (
+            "Retired receipts are preserved outside Git under a name marked stale. They are not "
+            "consumed by any gate: a later epoch refuses them by epoch mismatch even if the files "
+            "are moved back."
+        ),
+    }
+    write_json(register_path, register)
+    return register
 
 
 # --------------------------------------------------------------------------

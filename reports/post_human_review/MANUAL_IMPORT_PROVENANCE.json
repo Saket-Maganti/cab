@@ -1,0 +1,33 @@
+{
+  "artifact_origin": "MANUAL_OFFLINE_REVIEW_IMPORT_V1",
+  "coordinator_waiver_sha256": "eddace6a33154a39ea263c8b5ceabb340772f4f32303fdd6af99176bfe1c1232",
+  "declaration_files_collected": false,
+  "evidence_origin": "completed offline role-separated review forms",
+  "import_epoch": "v3",
+  "original_issue_receipt_available": false,
+  "qualification_commitment_sha256": "5cf02bd524f87fc22c73f05835aaee1e7ae541b91f9dad67ce821b7552d30221",
+  "qualification_evidence_imported": true,
+  "qualification_mode": "GENUINE_VERIFIED_SUBMISSIONS",
+  "qualification_pass_verified_in_this_chain": true,
+  "receipt_semantics": "import receipt, not retroactive issue receipt",
+  "reviewer_declaration_mode": "COORDINATOR_WAIVER",
+  "schema_version": "cab_manual_import_provenance_v1",
+  "stage1_commitment_sha256": "c2d10ea0d914583f590f8cb9fb36cc05a17deaf0d332452a66524bd363d2e1b7",
+  "stage1_submission_canonical_hashes": {
+    "REVIEWER_A": "d4c20476b819d0589c0f6f8b1370c3a459a9961fea9d4cdd95cf48099c6ca624",
+    "REVIEWER_B": "25e7accf3f0ca89b35e718f60be92c5c5b0ddc6fc922ee06592ee56d2a011bb4"
+  },
+  "stage1_submission_payload_hashes": {
+    "REVIEWER_A": "d1ef35fc727944fa397be0552393cc9667c7717a600e17f0cd18a9f2907cecde",
+    "REVIEWER_B": "faec1955c40918fe74ce7206756e818f79d7709f8f22153bb6b984b5533aa50f"
+  },
+  "stage2_commitment_sha256": "6767a7ba0163ba2f05d07fbe45eda036939dd0a95dc88e64f5551ae3e034aecd",
+  "stage2_submission_canonical_hashes": {
+    "REVIEWER_A": "d09c3c43968e98004e84def1b716001ec48668a2c66015c3ce3315b4f4dc85e2",
+    "REVIEWER_B": "f535103ccad61a211ab18caf4e2001431dbd358217bf6eb5fca813957ffd04be"
+  },
+  "stage2_submission_payload_hashes": {
+    "REVIEWER_A": "0f86122218c6e1ae208c7c0da2bbd43f4c1499f48ed61bd0dff7b63266c9d912",
+    "REVIEWER_B": "70b8a5633c542c9ec2f22f860a13d34c78b97f4b18b4a779ed866947d1193774"
+  }
+}

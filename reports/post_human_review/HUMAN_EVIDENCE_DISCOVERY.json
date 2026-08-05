@@ -1,0 +1,105 @@
+{
+  "candidate_count": 8,
+  "classification_basis": "column layout, opaque item-id namespace, and decision dimension vocabulary; filenames and directory names are never consulted",
+  "qualification_discovered": true,
+  "rejected_count": 16,
+  "rejected_reasons": [
+    "column_layout_matches_no_issued_review_template"
+  ],
+  "schema_version": "cab_manual_offline_review_discovery_v1",
+  "searched_roots": [
+    "/Users/saketmaganti/Projects/causal-agent-bench/human_review_files",
+    "/Users/saketmaganti/Downloads",
+    "/Users/saketmaganti/Desktop"
+  ],
+  "selected": {
+    "QUALIFICATION_FORM:55816697a229948594c7ec53d6a6f166fce34cd91a5ba366af32474d1e975668": {
+      "canonical_sha256": "55816697a229948594c7ec53d6a6f166fce34cd91a5ba366af32474d1e975668",
+      "item_id_count": 5,
+      "kind": "QUALIFICATION_FORM",
+      "namespace": "Q4",
+      "problems": [],
+      "raw_sha256": "bd6a08a64ec96ee4a7b2f51be024213d861f0d772921846fdebc164f7d6af670",
+      "role": null,
+      "row_count": 5,
+      "stage": null
+    },
+    "QUALIFICATION_FORM:b128c32000c025f6769c593c18d87bbea0c1f2f1b38c2f041bd475959d18d9e3": {
+      "canonical_sha256": "b128c32000c025f6769c593c18d87bbea0c1f2f1b38c2f041bd475959d18d9e3",
+      "item_id_count": 5,
+      "kind": "QUALIFICATION_FORM",
+      "namespace": "Q4",
+      "problems": [],
+      "raw_sha256": "a405ea8513671acce9a4c62f5f69e23090003136caabb013578d5d0d9a871ea5",
+      "role": null,
+      "row_count": 5,
+      "stage": null
+    },
+    "STAGE1_ADJUDICATION": {
+      "canonical_sha256": "1f30f041f482ddf26eac76f3b324ddf2407e58747590d9a27e4690fd5b84da6b",
+      "item_id_count": 3,
+      "kind": "STAGE1_ADJUDICATION",
+      "namespace": null,
+      "problems": [],
+      "raw_sha256": "75c159f45475b414de75fdf44bde1d9e668d286761b9e265a818191c05b93fac",
+      "role": null,
+      "row_count": 3,
+      "stage": "stage1"
+    },
+    "STAGE1_REVIEW_FORM:REVIEWER_A": {
+      "canonical_sha256": "d4c20476b819d0589c0f6f8b1370c3a459a9961fea9d4cdd95cf48099c6ca624",
+      "item_id_count": 20,
+      "kind": "STAGE1_REVIEW_FORM",
+      "namespace": "RA",
+      "problems": [],
+      "raw_sha256": "d1ef35fc727944fa397be0552393cc9667c7717a600e17f0cd18a9f2907cecde",
+      "role": "REVIEWER_A",
+      "row_count": 20,
+      "stage": "stage1"
+    },
+    "STAGE1_REVIEW_FORM:REVIEWER_B": {
+      "canonical_sha256": "25e7accf3f0ca89b35e718f60be92c5c5b0ddc6fc922ee06592ee56d2a011bb4",
+      "item_id_count": 20,
+      "kind": "STAGE1_REVIEW_FORM",
+      "namespace": "RB",
+      "problems": [],
+      "raw_sha256": "faec1955c40918fe74ce7206756e818f79d7709f8f22153bb6b984b5533aa50f",
+      "role": "REVIEWER_B",
+      "row_count": 20,
+      "stage": "stage1"
+    },
+    "STAGE2_ADJUDICATION": {
+      "canonical_sha256": "b24a06ebff40123e419471e264a6ee67f7050f83def642e2c84357e86bae9bed",
+      "item_id_count": 14,
+      "kind": "STAGE2_ADJUDICATION",
+      "namespace": null,
+      "problems": [],
+      "raw_sha256": "790aacaa22bb677b0f756fdb9b41da5f318a708316ee3f247d1555de69192eb4",
+      "role": null,
+      "row_count": 14,
+      "stage": "stage2"
+    },
+    "STAGE2_REVIEW_FORM:REVIEWER_A": {
+      "canonical_sha256": "d09c3c43968e98004e84def1b716001ec48668a2c66015c3ce3315b4f4dc85e2",
+      "item_id_count": 20,
+      "kind": "STAGE2_REVIEW_FORM",
+      "namespace": "RA",
+      "problems": [],
+      "raw_sha256": "0f86122218c6e1ae208c7c0da2bbd43f4c1499f48ed61bd0dff7b63266c9d912",
+      "role": "REVIEWER_A",
+      "row_count": 20,
+      "stage": "stage2"
+    },
+    "STAGE2_REVIEW_FORM:REVIEWER_B": {
+      "canonical_sha256": "f535103ccad61a211ab18caf4e2001431dbd358217bf6eb5fca813957ffd04be",
+      "item_id_count": 20,
+      "kind": "STAGE2_REVIEW_FORM",
+      "namespace": "RB",
+      "problems": [],
+      "raw_sha256": "70b8a5633c542c9ec2f22f860a13d34c78b97f4b18b4a779ed866947d1193774",
+      "role": "REVIEWER_B",
+      "row_count": 20,
+      "stage": "stage2"
+    }
+  }
+}

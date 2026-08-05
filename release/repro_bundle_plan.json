@@ -17,7 +17,7 @@
     "**/.pytest_cache/**",
     "**/*.pyc"
   ],
-  "generated_at": "2026-08-05T17:41:22.455864+00:00",
+  "generated_at": "2026-08-05T18:28:03.869467+00:00",
   "include": {
     "analysis_scripts": [
       "scripts/reproduce_artifact.py",

@@ -1,0 +1,200 @@
+{
+  "evidence": {
+    "adjudicated_values_used_in_agreement": false,
+    "canonical_sha256": {
+      "QUALIFICATION_FORM:55816697a229948594c7ec53d6a6f166fce34cd91a5ba366af32474d1e975668": "55816697a229948594c7ec53d6a6f166fce34cd91a5ba366af32474d1e975668",
+      "QUALIFICATION_FORM:b128c32000c025f6769c593c18d87bbea0c1f2f1b38c2f041bd475959d18d9e3": "b128c32000c025f6769c593c18d87bbea0c1f2f1b38c2f041bd475959d18d9e3",
+      "STAGE1_ADJUDICATION": "1f30f041f482ddf26eac76f3b324ddf2407e58747590d9a27e4690fd5b84da6b",
+      "STAGE1_REVIEW_FORM:REVIEWER_A": "d4c20476b819d0589c0f6f8b1370c3a459a9961fea9d4cdd95cf48099c6ca624",
+      "STAGE1_REVIEW_FORM:REVIEWER_B": "25e7accf3f0ca89b35e718f60be92c5c5b0ddc6fc922ee06592ee56d2a011bb4",
+      "STAGE2_ADJUDICATION": "b24a06ebff40123e419471e264a6ee67f7050f83def642e2c84357e86bae9bed",
+      "STAGE2_REVIEW_FORM:REVIEWER_A": "d09c3c43968e98004e84def1b716001ec48668a2c66015c3ce3315b4f4dc85e2",
+      "STAGE2_REVIEW_FORM:REVIEWER_B": "f535103ccad61a211ab18caf4e2001431dbd358217bf6eb5fca813957ffd04be"
+    },
+    "excluded_pair_count": 0,
+    "included_pair_count": 20,
+    "provenance_counts": {
+      "agreed_by_reviewers": 326,
+      "excluded": 0,
+      "resolved_by_adjudicator": 14
+    },
+    "qualification_discovered": true,
+    "raw_sha256": {
+      "QUALIFICATION_FORM:55816697a229948594c7ec53d6a6f166fce34cd91a5ba366af32474d1e975668": "bd6a08a64ec96ee4a7b2f51be024213d861f0d772921846fdebc164f7d6af670",
+      "QUALIFICATION_FORM:b128c32000c025f6769c593c18d87bbea0c1f2f1b38c2f041bd475959d18d9e3": "a405ea8513671acce9a4c62f5f69e23090003136caabb013578d5d0d9a871ea5",
+      "STAGE1_ADJUDICATION": "75c159f45475b414de75fdf44bde1d9e668d286761b9e265a818191c05b93fac",
+      "STAGE1_REVIEW_FORM:REVIEWER_A": "d1ef35fc727944fa397be0552393cc9667c7717a600e17f0cd18a9f2907cecde",
+      "STAGE1_REVIEW_FORM:REVIEWER_B": "faec1955c40918fe74ce7206756e818f79d7709f8f22153bb6b984b5533aa50f",
+      "STAGE2_ADJUDICATION": "790aacaa22bb677b0f756fdb9b41da5f318a708316ee3f247d1555de69192eb4",
+      "STAGE2_REVIEW_FORM:REVIEWER_A": "0f86122218c6e1ae208c7c0da2bbd43f4c1499f48ed61bd0dff7b63266c9d912",
+      "STAGE2_REVIEW_FORM:REVIEWER_B": "70b8a5633c542c9ec2f22f860a13d34c78b97f4b18b4a779ed866947d1193774"
+    },
+    "source_file_count": 8,
+    "stage1_disputed_dimensions": 3,
+    "stage1_overall_raw_agreement": 1.0,
+    "stage1_rows_per_reviewer": {
+      "REVIEWER_A": 20,
+      "REVIEWER_B": 20
+    },
+    "stage2_disputed_dimensions": 14,
+    "stage2_overall_raw_agreement": 0.9222,
+    "stage2_rows_per_reviewer": {
+      "REVIEWER_A": 20,
+      "REVIEWER_B": 20
+    },
+    "unresolved_count": 0
+  },
+  "gates": {
+    "authorized_study": "compact20_reviewed_pilot",
+    "c10_check_count": 44,
+    "c10_failed_checks": [],
+    "c10_receipt_sha256": "370f9970854767c40c440e91c502da8e34da73349ce235d3a5e55fab9c6ea36d",
+    "c10_state": "PASS",
+    "c10_status": "C10_MECHANICS_PASS_WITH_COORDINATOR_DECLARATION_WAIVER",
+    "exclusion_register_sha256": "5ff8c8c0115b0d974454fd338422ab6c33b6ffc76ed976fed2e2d9a99d9cc878",
+    "execution_authorization_sha256": "ec9cc1bdd8a4adacd1d1f794549108bd0d4bd9f7874ff152b787db9bbdf07874",
+    "locked_pair_count": 20,
+    "paid_providers_authorized": false,
+    "pair_content_digest": "e663525f8272db7bcb454c63bb279fd0ec3d7f6ec1a877fad9434a18f2acda2d",
+    "slice_lock_sha256": "86ee7eabdc789c8a6241dfe46b73bd6864a76d7f907845b76d43c765b0bd8c2d",
+    "withheld_studies": [
+      "scale100_confirmatory",
+      "main500_confirmatory",
+      "naturalistic_transfer",
+      "raac_ablation"
+    ]
+  },
+  "generated_at_utc": "2026-08-05T18:43:37.435761+00:00",
+  "genuine_model_trajectories": 0,
+  "immutable_graph": {
+    "adjudication_receipt_hashes": {
+      "stage1": "b1a64d6491c4fb9fbea626146804af32eadbe695dcb685d1c530b02ffd39cd72",
+      "stage2": "8166b4156bc544761e3a5d53e00f7ece1aafd158da3b8c13edc8fb1483791360"
+    },
+    "all_checks_passed": true,
+    "stage1_snapshot_manifest_sha256": "557aea4e45aebaf41db292c2b595eecea44050a6b2cc38f5c59489c54da69703",
+    "stage2_snapshot_manifest_sha256": "9ce6c2b6aeda976495e0982a9e69c2083d1e734177ea374f44d359cc94c10c05"
+  },
+  "kaggle": {
+    "arbitrary_name_case_count": 16,
+    "arbitrary_name_failed_cases": [],
+    "arbitrary_name_tests_passed": true,
+    "authentication_datasets_api": "OK",
+    "authentication_notebooks_api": "HTTP_401_UNAUTHORIZED",
+    "bundles": {
+      "compact20-t4x2": {
+        "bundle_content_sha256": "e09d9e8d6e31477b30d1913adfc3c534b8c0eb6299eca764bff27c6ffd42a5c4",
+        "bundle_type": "compact20-t4x2",
+        "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+        "filename": "CAB_KAGGLE_COMPACT20_T4X2_INPUT_e09d9e8d6e31477b.zip",
+        "member_count": 754,
+        "sha256": "d6372c091b20c54fbb8092e811eb3985b4e9affc0a3879b006cf7b3e85bfd080",
+        "size_bytes": 1897723
+      },
+      "cpu-preexecution": {
+        "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+        "bundle_type": "cpu-preexecution",
+        "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+        "filename": "CAB_KAGGLE_CPU_PREEXECUTION_INPUT_a07d72ae30d9bfb1.zip",
+        "member_count": 946,
+        "sha256": "7fdb57def2cd766c6b5be919d0e3bb795ea5fbd9e8403253754b43544efb5bd0",
+        "size_bytes": 2350338
+      }
+    },
+    "downloaded_output_bundles": [],
+    "remote_cpu_00": "NOT_RUN",
+    "remote_cpu_01": "NOT_RUN",
+    "remote_cpu_02": "NOT_RUN"
+  },
+  "kaggle_cpu_preflight_complete": false,
+  "kaggle_cpu_preflight_note": "The remote CPU notebooks were not executed. Kaggle's notebooks API rejects this account's token with HTTP 401 while the datasets API accepts it; see KAGGLE_CPU_NOTEBOOK_READINESS.md. No remote result is claimed.",
+  "live_model_execution_performed": false,
+  "local_cpu_validation": {
+    "commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+    "failed_gates": [
+      "max_ceiling_validation",
+      "leakage_gate"
+    ],
+    "failed_gates_preexisting": [
+      "max_ceiling_validation",
+      "leakage_gate"
+    ],
+    "gate_count": 15,
+    "no_regressions": true,
+    "passed": false,
+    "passed_gate_count": 13,
+    "pytest_counts": {
+      "passed": 1695,
+      "skipped": 1
+    },
+    "pytest_workers": 4,
+    "regressions": []
+  },
+  "provenance": {
+    "artifact_origin": "MANUAL_OFFLINE_REVIEW_IMPORT_V1",
+    "import_epoch": "v3",
+    "original_issue_receipt_available": false,
+    "quarantined_epoch_count": 2,
+    "quarantined_epochs": [
+      "manual_import_receipts__stale_20260805T173639Z",
+      "manual_import_receipts__v2__stale_20260805T174541Z"
+    ],
+    "quarantined_receipts_deleted": false,
+    "quarantined_receipts_edited": false,
+    "receipt_semantics": "import receipt, not retroactive issue receipt"
+  },
+  "qualification": {
+    "answer_key_disclosed": false,
+    "commitment_sha256": "5cf02bd524f87fc22c73f05835aaee1e7ae541b91f9dad67ce821b7552d30221",
+    "correct_counts": {
+      "REVIEWER_A": 4,
+      "REVIEWER_B": 4
+    },
+    "every_role_qualified": true,
+    "item_counts": {
+      "REVIEWER_A": 5,
+      "REVIEWER_B": 5
+    },
+    "mode": "GENUINE_VERIFIED_SUBMISSIONS",
+    "per_item_correctness_published": false,
+    "rates": {
+      "REVIEWER_A": 0.8,
+      "REVIEWER_B": 0.8
+    },
+    "scored_against_private_answer_key": true,
+    "threshold": 0.8
+  },
+  "repository": {
+    "branch": "main",
+    "commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+    "evidence_anchor_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e"
+  },
+  "reviewer_declarations": {
+    "confirmed": false,
+    "files_collected": false,
+    "mode": "COORDINATOR_WAIVER",
+    "waived_elements": [
+      "reviewer_declaration_files",
+      "production_issue_receipts"
+    ],
+    "waiver_sha256": "eddace6a33154a39ea263c8b5ceabb340772f4f32303fdd6af99176bfe1c1232"
+  },
+  "schema_version": "cab_post_human_review_final_report_v1",
+  "scientific_freeze": {
+    "freeze_sha256": "ca9a8552104bb6270b9a604b8915653efcafe60efd67c16d2d305f38b1e4f746",
+    "generator_provenance_passed": true,
+    "generator_provenance_status": "CAB_GENERATOR_PROVENANCE_PORTABLE",
+    "generator_source_commit": "c9cbd663b7e95700daac9b35e165b6330cdc0880",
+    "packet_commitment_sha256": "03653ff304126cd460fc8ee51a371e6741f4b2fb294b44632145aa687f48745b"
+  },
+  "statuses": [
+    "HUMAN_REVIEW_COMPLETE",
+    "QUALIFICATION_GENUINE_AND_VERIFIED",
+    "REVIEWER_DECLARATION_WAIVER_DISCLOSED",
+    "C10_PASS",
+    "COMPACT20_SLICE_LOCKED",
+    "COMPACT20_EXECUTION_AUTHORIZED",
+    "LOCAL_CPU_VALIDATION_COMPLETE_WITH_PREEXISTING_BLOCKERS",
+    "KAGGLE_CPU_RUNBOOKS_READY"
+  ]
+}

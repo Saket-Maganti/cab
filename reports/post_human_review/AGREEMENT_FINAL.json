@@ -1,0 +1,103 @@
+{
+  "adjudicated_values_used": false,
+  "agreement_receipt_sha256": "106e02cd9aff225d42ea4412a9b673747776e5fa99ac11c38230171ee2516882",
+  "computed_from": "immutable_imported_raw_pre_adjudication_judgements",
+  "schema_version": "cab_manual_import_agreement_v1",
+  "stage1": {
+    "overall_raw_agreement": 1.0,
+    "pair_count": 20,
+    "per_dimension": {
+      "clean_evidence_sufficient": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "clean_solvable": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "exclude_item": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "goal_preserved": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "preserved_invariants_hold": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "primitive_evidence_adequate": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "response_space_structurally_valid": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "single_factor_isolation": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      }
+    }
+  },
+  "stage2": {
+    "overall_raw_agreement": 0.9222,
+    "pair_count": 20,
+    "per_dimension": {
+      "abstention_policy_valid_or_not_applicable": {
+        "agreed": 19,
+        "raw_agreement": 0.95,
+        "total": 20
+      },
+      "accepted_variants_complete": {
+        "agreed": 16,
+        "raw_agreement": 0.8,
+        "total": 20
+      },
+      "answer_contract_valid": {
+        "agreed": 19,
+        "raw_agreement": 0.95,
+        "total": 20
+      },
+      "clarification_policy_valid_or_not_applicable": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "gold_correct": {
+        "agreed": 18,
+        "raw_agreement": 0.9,
+        "total": 20
+      },
+      "intervention_policy_valid": {
+        "agreed": 19,
+        "raw_agreement": 0.95,
+        "total": 20
+      },
+      "recovery_authorization_valid_or_not_applicable": {
+        "agreed": 20,
+        "raw_agreement": 1.0,
+        "total": 20
+      },
+      "route_policy_defensible": {
+        "agreed": 19,
+        "raw_agreement": 0.95,
+        "total": 20
+      },
+      "scorer_compatible": {
+        "agreed": 16,
+        "raw_agreement": 0.8,
+        "total": 20
+      }
+    }
+  }
+}

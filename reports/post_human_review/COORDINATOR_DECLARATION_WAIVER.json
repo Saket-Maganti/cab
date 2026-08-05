@@ -1,0 +1,45 @@
+{
+  "artifact_origin": "MANUAL_OFFLINE_REVIEW_IMPORT_V1",
+  "counts_as_genuine_evidence": true,
+  "declaration_files_collected": false,
+  "declaration_waiver_status": "COORDINATOR_DECLARATION_WAIVER_RECORDED",
+  "evidence_inventory_sha256": "5bc5b201869cb00f6b72923ec177624aa607408913d997a7f0f31095db1aa91e",
+  "evidence_origin": "completed offline role-separated review forms",
+  "exact_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+  "import_chain_schema_version": "cab_manual_offline_import_chain_v1",
+  "import_epoch": "v3",
+  "original_issue_receipt_available": false,
+  "packet_version": "compact20-review-ready-v2",
+  "private_packet_commitment": "03653ff304126cd460fc8ee51a371e6741f4b2fb294b44632145aa687f48745b",
+  "qualification_commitment_sha256": "5cf02bd524f87fc22c73f05835aaee1e7ae541b91f9dad67ce821b7552d30221",
+  "qualification_evidence_imported": true,
+  "qualification_mode": "GENUINE_VERIFIED_SUBMISSIONS",
+  "qualification_pass_verified_in_this_chain": true,
+  "qualification_waiver_status": null,
+  "receipt_kind": "coordinator_review_waiver",
+  "receipt_schema_version": "cab_review_ready_v2_manual_offline_import_receipt_v1",
+  "receipt_sha256": "eddace6a33154a39ea263c8b5ceabb340772f4f32303fdd6af99176bfe1c1232",
+  "recorded_at": "2026-08-05T17:45:41.510286+00:00",
+  "recorded_at_utc": "2026-08-05T17:45:41.510269+00:00",
+  "required_opt_in_flags": [
+    "--manual-offline-import",
+    "--coordinator-declaration-waiver"
+  ],
+  "reviewer_declarations_confirmed": false,
+  "scientific_freeze_sha256": "ca9a8552104bb6270b9a604b8915653efcafe60efd67c16d2d305f38b1e4f746",
+  "statements": [
+    "Separate reviewer declaration files were not collected.",
+    "The coordinator explicitly permits manual import of this completed evidence.",
+    "The two reviewer roles were kept separate and answer disjoint opaque namespaces.",
+    "The adjudicator evidence is separate from both reviewers' evidence.",
+    "No retrospective reviewer confirmation is asserted anywhere in this chain.",
+    "The imported judgements are preserved byte-for-byte and canonically.",
+    "The normal strict production workflow is unchanged for any future review.",
+    "Both reviewers' completed qualification submissions were imported and scored against the private answer key; every role met the threshold."
+  ],
+  "waived_elements": [
+    "reviewer_declaration_files",
+    "production_issue_receipts"
+  ],
+  "waiver_schema_version": "cab_coordinator_review_waiver_v1"
+}

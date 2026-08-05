@@ -488,7 +488,7 @@
     "scripts/build_final_integrity_closure_reports.py": "1372e34a3a72830fd2b4d8510e2fa88debb04a576bb248e1ea658878dd98061c",
     "scripts/build_final_pre_review_reports.py": "1596a02172a58e937f91748bdf65f845e039b8cd1ba443239b151dedee7ec359",
     "scripts/build_kaggle_cpu_notebooks.py": "461118c5733f37958a01ca3f05e3ef0b94e173dcff19ed8ba67b91ae322ebdfd",
-    "scripts/build_kaggle_input_bundles.py": "1e38afe69a432ba208e195173d897714aa3efbfd10fa4c559af67c31f7cee344",
+    "scripts/build_kaggle_input_bundles.py": "469c16ccc5a8a92355bdf02f8630396d07e89409d84d349b9cae82728f684876",
     "scripts/build_kaggle_notebooks.py": "3701c4d7741110ee3e28772e53875a5b19321f7b79d692eda505800c083f3a59",
     "scripts/build_level6_foundation.py": "c76c76f0b040fadb7550201595607872504acfdc069c37811bd018b1948c6670",
     "scripts/build_power_precision_reports.py": "b3709d870e4189be6cfc920caef5b32b00eaf1f227eed58657e75d89237499aa",
@@ -496,8 +496,8 @@
     "scripts/build_protected_heldout_exposure_inventory.py": "bf5277a3890f89931b4f8f7b9f2d12b90f5f94fe07523605b7994ccd9ce72530",
     "scripts/build_release_manifest.py": "d6226f9dd03db97f3bf54db3746d0ea3cfdd823ca5beee38a0bb8ed139c347b1"
   },
-  "generated_at": "2026-08-05T17:41:22.393470+00:00",
-  "inventory_file_count": 863,
+  "generated_at": "2026-08-05T18:28:03.814114+00:00",
+  "inventory_file_count": 866,
   "inventory_policy": {
     "categories": {
       "configs": [
@@ -606,11 +606,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "1a68081de20d88f89050c0cee06b052f2aa31b1f1db0535cd71d8a0764c665e5",
+  "release_bundle_hash": "96fe35fc84bf47918398d64bc4cbee4b56de52a8f8572a6ddf89c848f357feb3",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "cc05477fce2e74138dcb6d0fd615c36e2d75893e",
+    "git_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
@@ -664,10 +664,13 @@
     "scripts/build_protected_heldout_exposure_inventory.py",
     "scripts/build_release_manifest.py",
     "scripts/build_system_identity_manifest.py",
+    "scripts/cab_kaggle_arbitrary_name_probe.py",
     "scripts/cab_leakage_gate.py",
+    "scripts/cab_local_cpu_validation.py",
     "scripts/cab_manual_offline_review_import.py",
     "scripts/cab_max_ceiling_gate.py",
     "scripts/cab_post_human_review_baseline.py",
+    "scripts/cab_post_human_review_final_report.py",
     "scripts/cab_resource_preflight.py",
     "scripts/cab_review_ready_v2.py",
     "scripts/camera_ready_precheck.py",

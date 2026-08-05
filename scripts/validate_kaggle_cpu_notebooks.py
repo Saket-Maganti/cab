@@ -22,6 +22,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -146,20 +147,46 @@ def validate_all() -> dict[str, Any]:
 # --------------------------------------------------------------------------
 
 
-def _newest_bundle() -> Path:
-    bundles = sorted((REPO_ROOT / "dist" / "kaggle_inputs").glob("*.zip"))
-    if not bundles:
+def _cpu_bundle() -> Path:
+    """The CPU pre-execution bundle, chosen by what it declares it is.
+
+    Picking the newest archive by modification time quietly selects a T4x2
+    bundle whenever one was built more recently, and a T4x2 bundle carries a
+    deliberately narrower slice of the reports.  The lanes then fail on a missing
+    commitment, which reads as a broken chain rather than as the wrong input.
+    Selection is by manifest content, like every other input decision here.
+    """
+
+    directory = REPO_ROOT / "dist" / "kaggle_inputs"
+    matching: dict[str, Path] = {}
+    for path in sorted(directory.glob("*.zip")):
+        try:
+            with zipfile.ZipFile(path) as archive:
+                manifest = json.loads(archive.read("CAB_KAGGLE_INPUT_MANIFEST.json"))
+        except (KeyError, OSError, zipfile.BadZipFile, json.JSONDecodeError):
+            continue
+        if manifest.get("bundle_type") != "cpu-preexecution":
+            continue
+        content = str(manifest.get("bundle_content_sha256", path.name))
+        matching[content] = path
+    if not matching:
         raise SystemExit(
-            "no input bundle to execute against. Build one first:\n"
+            "no CPU pre-execution bundle to execute against. Build one first:\n"
             "  python3 scripts/build_kaggle_input_bundles.py --bundle-type cpu-preexecution"
         )
-    return max(bundles, key=lambda path: path.stat().st_mtime)
+    if len(matching) > 1:
+        listing = "\n".join(f"  {digest[:16]}  {path.name}" for digest, path in matching.items())
+        raise SystemExit(
+            "more than one distinct CPU pre-execution bundle is present; there is no honest way "
+            f"to choose between them. Remove the stale ones:\n{listing}"
+        )
+    return next(iter(matching.values()))
 
 
 def execute_offline(lane_filter: tuple[str, ...] = OFFLINE_EXECUTABLE_LANES) -> dict[str, Any]:
     """Run the safe lanes against a bundle with a deliberately random filename."""
 
-    bundle = _newest_bundle()
+    bundle = _cpu_bundle()
     results: list[dict[str, Any]] = []
     for path in sorted(NOTEBOOK_DIR.glob("*.ipynb")):
         notebook = load(path)

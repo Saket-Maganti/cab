@@ -6548,7 +6548,7 @@
   "files_failed": 0,
   "files_passed": 727,
   "files_scanned": 727,
-  "generated_at": "2026-08-05T17:45:09.757312+00:00",
+  "generated_at": "2026-08-05T18:35:23.506479+00:00",
   "passed": true,
   "schema_version": "cab_cpu_structured_data_validation_v1",
   "scope": "Tracked JSON, JSONL, YAML, YML, and Jupyter notebook files."

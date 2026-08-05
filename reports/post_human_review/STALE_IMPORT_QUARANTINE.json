@@ -1,0 +1,73 @@
+{
+  "note": "Retired receipts are preserved outside Git under a name marked stale. They are not consumed by any gate: a later epoch refuses them by epoch mismatch even if the files are moved back.",
+  "quarantined": {
+    "manual_import_receipts__stale_20260805T173639Z": {
+      "file_count": 23,
+      "file_sha256": {
+        "agreement.json": "d572247b068c3eca082eb5b9658ee4f04f1e10ba44677547d267c584c1f15d78",
+        "c10_report.json": "728741a85253bc9f867d4225fbd70180a76e61ddb872099d2d47a178cea283f0",
+        "committed_stage1/REVIEWER_A.stage1_submission.json": "088adbe5be12704254d2090993e2d172d725803f153218ca0225773ab53889b8",
+        "committed_stage1/REVIEWER_B.stage1_submission.json": "e9ff9c11f8c29a658220e8286e5b36c77420917aafdc96a88eec88020b74d34e",
+        "committed_stage1/manifest.json": "24e698b08e1fb30c42a9b8b2d991b357857250519f98ee216717f33e8e6ec142",
+        "committed_stage2/REVIEWER_A.stage2_submission.json": "a26f91ddc5ee324cfdf9544f524e2ab157a5c83cf52f37b6742b9c6ba1a6c4e7",
+        "committed_stage2/REVIEWER_B.stage2_submission.json": "ab66f257ded004a4f31f90abfe0e90904d86da441e9dc92b0cff11ac61d5d5fa",
+        "committed_stage2/manifest.json": "f3a6477e19f2e33def90d8a15afd250421cdc03646a9df97950cafd21399926f",
+        "coordinator_waiver.json": "568ae37e11826c8a2231203ddf043fed9967c5a379dfca5c5f89951b087f377f",
+        "exclusion_register.json": "532bf976ba2cf99b4ba7ca3b51d7dde11a61c13d49acd0b4ebd63879c71cc033",
+        "execution_authorization.json": "0f5971fb96a7f817c85c3abe9b773454b41d0057f24aaa5ede03b8637deba6eb",
+        "final_adjudicated_records.json": "cd3ae2df0c3d74ee9153e3e08bdc62e2c867e44f6b9b5b78f07222f56532b890",
+        "slice_lock.json": "47a2572cfcf82b8e1c7d3dd63b33a26359ec3a13795cabd9cdba83cb89adf9db",
+        "stage1_adjudication.json": "cb7813a3e0b53b1efb7fb9a23e45e121d8c21e6344e821c6015b4cd75922375e",
+        "stage1_commitment.json": "be657663e967a88ecb02e6ab4b2b90f1c47733df0db95b0efe827a92ee27ba7a",
+        "stage1_disagreement_queue.json": "4f754870b44831a1e55d7c559fc42d4ad4f66b797faff4b6860a075f29155aec",
+        "stage1_submission_REVIEWER_A.json": "088adbe5be12704254d2090993e2d172d725803f153218ca0225773ab53889b8",
+        "stage1_submission_REVIEWER_B.json": "e9ff9c11f8c29a658220e8286e5b36c77420917aafdc96a88eec88020b74d34e",
+        "stage2_adjudication.json": "352a8fdc6ee9df5a03533a82d1dd87fdeef0c6dc2b723e5a46a5747d5ccb155e",
+        "stage2_commitment.json": "ad5834b992a7ce8f9ba8be22e936032e6090f23d0bed63e7894ff9c888b3d8b0",
+        "stage2_disagreement_queue.json": "f204fea81b3b899fe99b65affc5fe305436953e4c511e91fa36a1d7b5ccf85d0",
+        "stage2_submission_REVIEWER_A.json": "a26f91ddc5ee324cfdf9544f524e2ab157a5c83cf52f37b6742b9c6ba1a6c4e7",
+        "stage2_submission_REVIEWER_B.json": "ab66f257ded004a4f31f90abfe0e90904d86da441e9dc92b0cff11ac61d5d5fa"
+      },
+      "inventory_sha256": "e58811ad17bcaf74c9761330e768221826b65826d808eef4f6b17825ae46ef06",
+      "reason": "superseded: sealed against the pre-refresh freeze 3789cc2b at commit 22dbff0, and recorded a qualification waiver for submissions that have since been supplied and scored"
+    },
+    "manual_import_receipts__v2__stale_20260805T174541Z": {
+      "file_count": 26,
+      "file_sha256": {
+        "agreement.json": "1df62b844cc3e57a3c688c1e1090379d2cd48f1ffa7b895153554374a2ac6515",
+        "c10_report.json": "4de272567acf59f22737b35f3b67e6064a67cb8658ebb7ef6342e1bdc9bdd1b7",
+        "committed_stage1/REVIEWER_A.stage1_submission.json": "94dce01bbff74cd01571f65b5a488a3236cb8cbf5d4c7668096377e963e29908",
+        "committed_stage1/REVIEWER_B.stage1_submission.json": "dc7d9baf4f5861e3a20d698c115a8f675e3e2565b6cb3b197fd997e8ffff79c0",
+        "committed_stage1/manifest.json": "03ed273f2536caadd1434652091ed04fb6a735d35836bf55fb4b49e21b65506a",
+        "committed_stage2/REVIEWER_A.stage2_submission.json": "efc391f3f2e1cb0a12ac52cdf9b2d7178fa080137d88753d4153de3721033b8b",
+        "committed_stage2/REVIEWER_B.stage2_submission.json": "042e6b1191b171f3224584fc2be95caad7fbc8a237b96b89a7a997def98fa956",
+        "committed_stage2/manifest.json": "5ebb3951c3095b1abf5c8663ce5c0cd0309e747b7553791df6cf2c981ee609a9",
+        "coordinator_waiver.json": "f54c6e7e12f060977a51905014c154cdeff02e864ef3fc5ac6e1d69ad0eeafa5",
+        "exclusion_register.json": "16c4018be97997942fda24145abe1410cc3b84bca316b9eeaf2485e57e84e27d",
+        "execution_authorization.json": "ba4fc6629e82bd7f12b8677009444f0b9784788e19a079bac7460e903d684178",
+        "final_adjudicated_records.json": "e437542dc95fedb192695b9e6d0236b0ab6448f17df3eac651a9805ae751105c",
+        "qualification_REVIEWER_A.json": "ffb3760bb9603a95a8d098b1236e4d3f0f8b2f26214b0caf1504307b2f1b63e0",
+        "qualification_REVIEWER_B.json": "938ff8f11ac7727727db77ccf712fc9bc442ad83b15e1f29e2c51680ed19c3c5",
+        "qualification_commitment.json": "eca764ebd2145c1fc7bde8ff5f6fb4b94ecd4ba177306a1c9cde18e1f98aaeee",
+        "slice_lock.json": "15f9acdaf542b7ac97fb8b5db1ca57a690b04b5aafb7c8ae1d4501e9f6c0cd5a",
+        "stage1_adjudication.json": "c956fc6383616ab67a9a89f3d4a230606f1b55046a272ebf5edb82679cb78f45",
+        "stage1_commitment.json": "fa24fc2a61edbf1e8ea741f6b352fae6fca1536d842319f86412b6fef1a5f879",
+        "stage1_disagreement_queue.json": "61b8c2278c96e046e67154d4ac2d53f2e9b74bea3e694c899cfa5ccb95379115",
+        "stage1_submission_REVIEWER_A.json": "94dce01bbff74cd01571f65b5a488a3236cb8cbf5d4c7668096377e963e29908",
+        "stage1_submission_REVIEWER_B.json": "dc7d9baf4f5861e3a20d698c115a8f675e3e2565b6cb3b197fd997e8ffff79c0",
+        "stage2_adjudication.json": "f0253cb55aa6e956a833006263bbf300d53caf91f255f99c9dc8f11effda019c",
+        "stage2_commitment.json": "4cdbb897e7aef08cca224d01506a1ea2c3b6d0b624643a6d77c26b5bc4b5d847",
+        "stage2_disagreement_queue.json": "abf79a0371ff7389424a636ce20ff95533c0ed3b2f76826e6fe837ece3ebf3a7",
+        "stage2_submission_REVIEWER_A.json": "efc391f3f2e1cb0a12ac52cdf9b2d7178fa080137d88753d4153de3721033b8b",
+        "stage2_submission_REVIEWER_B.json": "042e6b1191b171f3224584fc2be95caad7fbc8a237b96b89a7a997def98fa956"
+      },
+      "inventory_sha256": "014a7b628a13e3f037b43f1ad1f3e76c970c2d2c24afc55c24e78d4dde97e737",
+      "reason": "superseded: qualification was scored correctly, but the epoch was sealed at cc05477, before the commit carrying the scoring code and the re-anchored freeze it binds"
+    }
+  },
+  "quarantined_epoch_count": 2,
+  "receipts_were_deleted": false,
+  "receipts_were_edited": false,
+  "recorded_at_utc": "2026-08-05T17:46:38.424761+00:00",
+  "schema_version": "cab_manual_import_quarantine_v2"
+}
