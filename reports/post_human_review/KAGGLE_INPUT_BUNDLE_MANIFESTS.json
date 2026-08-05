@@ -1,0 +1,23 @@
+{
+  "bundles": {
+    "compact20-t4x2": {
+      "bundle_content_sha256": "e09d9e8d6e31477b30d1913adfc3c534b8c0eb6299eca764bff27c6ffd42a5c4",
+      "bundle_type": "compact20-t4x2",
+      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "filename": "CAB_KAGGLE_COMPACT20_T4X2_INPUT_e09d9e8d6e31477b.zip",
+      "member_count": 754,
+      "sha256": "d6372c091b20c54fbb8092e811eb3985b4e9affc0a3879b006cf7b3e85bfd080",
+      "size_bytes": 1897723
+    },
+    "cpu-preexecution": {
+      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_type": "cpu-preexecution",
+      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "filename": "CAB_KAGGLE_CPU_PREEXECUTION_INPUT_a07d72ae30d9bfb1.zip",
+      "member_count": 946,
+      "sha256": "7fdb57def2cd766c6b5be919d0e3bb795ea5fbd9e8403253754b43544efb5bd0",
+      "size_bytes": 2350338
+    }
+  },
+  "schema_version": "cab_kaggle_input_bundle_index_v1"
+}

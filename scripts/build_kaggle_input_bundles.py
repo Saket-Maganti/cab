@@ -67,6 +67,14 @@ FORBIDDEN_NAME_FRAGMENTS: tuple[str, ...] = (
     "kaggle.json",
 )
 
+#: Public, harmless, and excluded anyway: this build writes the bundle index, so
+#: including it would make each bundle contain a description of the one built
+#: before it.  Two runs over an unchanged repository would then disagree, and
+#: determinism is the whole claim a content hash makes.
+SELF_DESCRIBING_ARCNAMES: frozenset[str] = frozenset(
+    {"reports/post_human_review/KAGGLE_INPUT_BUNDLE_MANIFESTS.json"}
+)
+
 #: What the CPU pre-execution bundle carries.  Public commitments and the code
 #: needed to re-verify them; no private review material of any kind.
 PREEXECUTION_INCLUDES: tuple[str, ...] = (
@@ -176,6 +184,8 @@ def collect(patterns: tuple[str, ...], *, root: Path = REPO_ROOT) -> list[Member
             arcname = str(path.relative_to(root))
             if "__pycache__" in arcname or arcname.endswith(".pyc"):
                 continue
+            if arcname in SELF_DESCRIBING_ARCNAMES:
+                continue
             if arcname in ignored:
                 raise BundleError(
                     f"refusing to bundle {arcname}: the repository ignores it, which marks it "
@@ -244,7 +254,16 @@ def build_manifest(members: list[Member], *, bundle_type: str) -> dict[str, Any]
         "execution_authorization_sha256": report_field(
             "post_human_review/EXECUTION_AUTHORIZATION_FINAL.json", "receipt_sha256"
         ),
-        "c10_report_sha256": report_hash("post_human_review/C10_FINAL.json"),
+        # The receipt hash, like the two above it, so all three name the same
+        # kind of thing and a reader can compare each against the value inside
+        # the report itself.  The file hash is kept separately rather than
+        # conflated with it.
+        "c10_report_sha256": report_field("post_human_review/C10_FINAL.json", "receipt_sha256"),
+        "c10_report_file_sha256": report_hash("post_human_review/C10_FINAL.json"),
+        "qualification_mode": report_field(
+            "post_human_review/C10_FINAL.json", "qualification_mode"
+        ),
+        "declaration_mode": report_field("post_human_review/C10_FINAL.json", "declaration_mode"),
         "member_count": len(members),
         "members": [
             {"path": member.arcname, "sha256": member.sha256} for member in members

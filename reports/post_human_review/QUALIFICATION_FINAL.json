@@ -1,0 +1,43 @@
+{
+  "answer_key_disclosed": false,
+  "checks": {
+    "qualification_answer_key_not_disclosed": true,
+    "qualification_canonical_hashes_match_commitment": true,
+    "qualification_import_origin_matches": true,
+    "qualification_meets_threshold_for_every_role": true,
+    "qualification_payload_hashes_match_commitment": true,
+    "qualification_rates_match_commitment": true,
+    "qualification_receipt_hashes_match_commitment": true,
+    "qualification_roles_answered_distinct_item_sets": true,
+    "qualification_scored_against_private_key": true
+  },
+  "correct_counts": {
+    "REVIEWER_A": 4,
+    "REVIEWER_B": 4
+  },
+  "every_role_qualified": true,
+  "item_counts": {
+    "REVIEWER_A": 5,
+    "REVIEWER_B": 5
+  },
+  "per_item_correctness_published": false,
+  "public_qualification_commitment_sha256": "03c4ab20a9b2a9e4fc23ec351528d97b7ff294f31aaa417ef4bd8a7371830e91",
+  "qualification_commitment_sha256": "5cf02bd524f87fc22c73f05835aaee1e7ae541b91f9dad67ce821b7552d30221",
+  "qualification_mode": "GENUINE_VERIFIED_SUBMISSIONS",
+  "qualification_version": "cab_qualification_v4",
+  "rates": {
+    "REVIEWER_A": 0.8,
+    "REVIEWER_B": 0.8
+  },
+  "schema_version": "cab_manual_import_qualification_report_v1",
+  "scored_against_private_answer_key": true,
+  "submission_canonical_hashes": {
+    "REVIEWER_A": "55816697a229948594c7ec53d6a6f166fce34cd91a5ba366af32474d1e975668",
+    "REVIEWER_B": "b128c32000c025f6769c593c18d87bbea0c1f2f1b38c2f041bd475959d18d9e3"
+  },
+  "submission_payload_hashes": {
+    "REVIEWER_A": "bd6a08a64ec96ee4a7b2f51be024213d861f0d772921846fdebc164f7d6af670",
+    "REVIEWER_B": "a405ea8513671acce9a4c62f5f69e23090003136caabb013578d5d0d9a871ea5"
+  },
+  "threshold": 0.8
+}

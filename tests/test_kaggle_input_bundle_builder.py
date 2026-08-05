@@ -171,3 +171,35 @@ def test_the_bundle_is_discoverable_by_content_after_renaming(tmp_path: Path) ->
     assert discovery["archive_sha256"] == result["sha256"]
     verification = verify_bundle_manifest(Path(discovery["bundle_root"]))
     assert verification["passed"], verification
+
+
+def test_the_bundle_index_is_never_a_member_of_a_bundle() -> None:
+    """The index describes bundles; bundling it makes each one describe the last.
+
+    The include patterns deliberately cover the whole report directory, so the
+    exclusion has to be enforced rather than left to the glob.
+    """
+
+    index = "reports/post_human_review/KAGGLE_INPUT_BUNDLE_MANIFESTS.json"
+    if not (REPO_ROOT / index).is_file():
+        pytest.skip("no bundle index has been written in this working tree")
+    members = builder.collect(builder.PREEXECUTION_INCLUDES)
+    assert index not in {member.arcname for member in members}
+    # And it really would have been caught by the glob otherwise.
+    assert any(
+        member.arcname.startswith("reports/post_human_review/") for member in members
+    )
+
+
+def test_two_real_builds_over_an_unchanged_repository_agree(tmp_path: Path) -> None:
+    """Determinism over the real tree, not only over a synthetic member list.
+
+    The synthetic case cannot see a member that the build itself rewrites, which
+    is exactly how a self-referential include escapes notice.
+    """
+
+    first = builder.build(builder.PREEXECUTION, tmp_path / "one")
+    second = builder.build(builder.PREEXECUTION, tmp_path / "two")
+    assert first["bundle_content_sha256"] == second["bundle_content_sha256"]
+    assert first["sha256"] == second["sha256"]
+    assert first["member_count"] == second["member_count"]

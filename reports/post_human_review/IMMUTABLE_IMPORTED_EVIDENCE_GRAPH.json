@@ -1,0 +1,30 @@
+{
+  "adjudication_receipt_hashes": {
+    "stage1": "b1a64d6491c4fb9fbea626146804af32eadbe695dcb685d1c530b02ffd39cd72",
+    "stage2": "8166b4156bc544761e3a5d53e00f7ece1aafd158da3b8c13edc8fb1483791360"
+  },
+  "all_checks_passed": true,
+  "disagreement_queue_hashes": {
+    "stage1": "6e783febfbc39af4bb4abafb04fd344b80a5160e967ef66ecf4a0a14b53c37d7",
+    "stage2": "4a4782f3b34b9ff772eb172560459b548d862fe373cb4985554a302581781989"
+  },
+  "schema_version": "cab_immutable_imported_evidence_graph_v1",
+  "stage1_canonical_judgement_hashes": {
+    "REVIEWER_A": "c826a053567b217f36dc21ecaa1aaf5e395cb85da786561cc78b67014a146423",
+    "REVIEWER_B": "94ba8cff10f1195b38cc453c94b319a9edf22794f218e6a16685d8cd230d750c"
+  },
+  "stage1_snapshot_manifest_sha256": "557aea4e45aebaf41db292c2b595eecea44050a6b2cc38f5c59489c54da69703",
+  "stage1_snapshot_receipt_file_hashes": {
+    "REVIEWER_A": "34287b4ecb4620569848cbf90fde7ec62222c350f257a9eec25793743d0642ee",
+    "REVIEWER_B": "2e5d904c8de66e8335d7b26a6f7551bad77ec1d39f1a6c4121fac9ecc2ad7a2e"
+  },
+  "stage2_canonical_judgement_hashes": {
+    "REVIEWER_A": "40a159831d1474579bd620dccaaf3f8acdc040af1e66d5998f3a60a64908076d",
+    "REVIEWER_B": "37b00df98cbe353469c686942451d7963199c71700d3af24346c6f831977c076"
+  },
+  "stage2_snapshot_manifest_sha256": "9ce6c2b6aeda976495e0982a9e69c2083d1e734177ea374f44d359cc94c10c05",
+  "stage2_snapshot_receipt_file_hashes": {
+    "REVIEWER_A": "34d10cdcdcc79c0fdb6eebf3af1efd49074c0151554817ba170550fb039ef3a2",
+    "REVIEWER_B": "64620c2f2bf3bf1fe6c3eeb71ffa49bffd712f41719d457c887f9038dcb84e4f"
+  }
+}

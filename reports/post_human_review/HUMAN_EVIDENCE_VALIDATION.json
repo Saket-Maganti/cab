@@ -1,0 +1,39 @@
+{
+  "excluded_pair_count": 0,
+  "final_records_passed": true,
+  "included_pair_count": 20,
+  "private_notes_quoted": false,
+  "provenance_counts": {
+    "agreed_by_reviewers": 326,
+    "excluded": 0,
+    "resolved_by_adjudicator": 14
+  },
+  "qualification_correct_counts": {
+    "REVIEWER_A": 4,
+    "REVIEWER_B": 4
+  },
+  "qualification_mode": "GENUINE_VERIFIED_SUBMISSIONS",
+  "qualification_note": "Both reviewers' completed qualification submissions were imported and scored against the private answer key. The answer key is not disclosed and no per-item correctness is published.",
+  "qualification_rates": {
+    "REVIEWER_A": 0.8,
+    "REVIEWER_B": 0.8
+  },
+  "qualification_scored_in_this_chain": true,
+  "qualification_threshold": 0.8,
+  "reviewer_declaration_files_collected": false,
+  "reviewer_declaration_mode": "COORDINATOR_WAIVER",
+  "schema_version": "cab_human_evidence_validation_v1",
+  "stage1_disputed_dimensions": 3,
+  "stage1_overall_raw_agreement": 1.0,
+  "stage1_rows_per_reviewer": {
+    "REVIEWER_A": 20,
+    "REVIEWER_B": 20
+  },
+  "stage2_disputed_dimensions": 14,
+  "stage2_overall_raw_agreement": 0.9222,
+  "stage2_rows_per_reviewer": {
+    "REVIEWER_A": 20,
+    "REVIEWER_B": 20
+  },
+  "unresolved_count": 0
+}
