@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "clean_worktree": "PASS",
+    "clone": "PASS",
+    "fixture_e2e": "PASS",
+    "focused_tests": "PASS 283 passed, 1 skipped in 34.76s",
+    "hostile_audit": "PASS",
+    "import": "PASS",
+    "no_tracked_private_data": "PASS",
+    "private_root_absent": "PASS",
+    "release_hashes": "PASS",
+    "retired_schema_rejected": "PASS",
+    "status_documents": "PASS",
+    "verify_freeze": "PASS",
+    "verify_provenance": "PASS"
+  },
+  "clone_mode": "git clone --single-branch --branch main",
+  "failed_checks": [],
+  "passed": true,
+  "recorded_at": "2026-08-05T06:00:59.165032+00:00",
+  "schema_version": "cab_final_integrity_closure_fresh_clone_v1",
+  "status": "CAB_FRESH_CLONE_VERIFICATION_PASSED",
+  "untracked_files_copied": false,
+  "verified_commit": "f63464b97148c3e87cdcf09bd0a6b325e193dff0"
+}
