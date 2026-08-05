@@ -1,9 +1,12 @@
 # CAB Current Project State
 
 **Authority:** this is the sole current top-level state and next-action guide.
-**State:** `CAB_REVIEW_WORKFLOW_INTEGRITY_REPAIR_COMPLETE`
+**State:** `CAB_FINAL_INTEGRITY_CLOSURE_COMPLETE`
+**Distribution state:** `CAB_READY_FOR_GENUINE_REVIEWER_DISTRIBUTION`
 **Review packet:** `compact20-review-ready-v2` (all earlier packets are retired)
-**External gates:** `HUMAN_VALIDATION_REQUIRED`, `LIVE_EVIDENCE_REQUIRED`
+**Workflow schema:** `cab_review_ready_v2_two_stage_workflow_v3` (v1 and v2 are retired and refused)
+**External gates:** `HUMAN_VALIDATION_REQUIRED`, `LIVE_EVIDENCE_REQUIRED`,
+`C10_PENDING_GENUINE_REVIEW`, `MODEL_EXECUTION_BLOCKED`
 **Scientific execution during this pass:** none
 **Final pre-review baseline SHA:** `715d981cf68eb2741dd6e05b097b08445f87accf`
 **Publication SHA:** recorded after the direct-main push in
@@ -44,6 +47,49 @@ python3 scripts/cab_review_ready_v2.py verify-provenance
 python3 scripts/cab_review_ready_v2.py coordinator-checklist
 python3 scripts/cab_review_ready_v2.py status
 ```
+
+## Immutable committed review evidence
+
+An independent audit reproduced, against commit `131cd10`, a post-commitment
+mutation of committed Stage-1 evidence: the commitment bound only the reviewer's
+uploaded CSV hash, so a coordinator could edit the parsed judgements inside the
+sealed submission receipt, retain the original `submission_sha256`, re-seal with
+a valid MAC, and leave the whole downstream chain — up to
+`C10_MECHANICS_PASS` — satisfied.
+
+That defect and every adjacent one of its class are closed. Stage-1 commitment
+now freezes the verified receipt bytes into a write-once snapshot and binds three
+distinct digests per reviewer — uploaded payload, sealed receipt file, and
+canonical parsed judgement content — and every downstream gate reads only the
+snapshot. A live submission file that no longer matches is treated as tampering
+rather than as an update. Stage 2, both disagreement queues, both adjudications
+and the final records carry the same treatment, and C10 recomputes the agreement
+tables and the final records from the committed judgements rather than trusting
+the sealed reports.
+
+Sixty-six hostile mutations — resealed judgements, retained payload hashes,
+reviewer and issuance swaps, cross-workspace replays, snapshot and manifest
+replacement, symlink redirection, adjudication rewrites, stale C10, lock
+replacement and authorization replay — are each rejected at the first gate that
+consumes the changed artifact. They run as a regression suite
+(`tests/test_final_integrity_closure.py`) and as a standalone provider-free audit
+(`scripts/audit_final_review_integrity.py`).
+
+Canonical references:
+[immutable review chain](docs/reviewer_ready_v2/IMMUTABLE_REVIEW_CHAIN.md) ·
+[coordinator runbook](docs/reviewer_ready_v2/COORDINATOR_RUNBOOK.md) ·
+[recovery and correction policy](docs/reviewer_ready_v2/RECOVERY_AND_CORRECTION_POLICY.md).
+
+Verify it independently:
+
+```bash
+python scripts/audit_final_review_integrity.py
+python -m causal_agent_bench.review_ready_v2.cli verify-committed-evidence
+```
+
+This is engineering completeness and integrity closure for reviewer onboarding.
+It is not empirical completeness, not C10 completeness, and not authorization to
+run a model.
 
 ## Reviewer-workflow integrity
 
@@ -203,10 +249,11 @@ they are not current authorization.
 
 ## Exact next action
 
-> Recruit two independent qualified reviewers and one separate adjudicator,
-> create their private assignments and declarations, distribute only their
-> assigned qualification and Stage-1 packages, score qualification privately,
-> and keep Stage 2 locked until both valid Stage-1 submissions are committed.
+> Recruit two independent reviewers and one separate adjudicator; create
+> production assignments and declarations; run private qualification V4;
+> distribute only the role-specific frozen Stage-1 packages; commit immutable
+> Stage-1 evidence; unlock Stage 2; adjudicate; run C10; lock the reviewed slice;
+> and only then begin the one-task live smoke.
 
 After independent Stage-1 review, freeze the completed CSV hash and run the
 unchanged unlock validator. Then issue the Stage-2 packages, complete Stage 2,
