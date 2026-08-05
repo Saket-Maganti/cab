@@ -4,11 +4,18 @@
     "stage2": "8166b4156bc544761e3a5d53e00f7ece1aafd158da3b8c13edc8fb1483791360"
   },
   "all_checks_passed": true,
+  "artifact_origin": "MANUAL_OFFLINE_REVIEW_IMPORT_V1",
+  "coordinator_waiver_sha256": "eddace6a33154a39ea263c8b5ceabb340772f4f32303fdd6af99176bfe1c1232",
   "disagreement_queue_hashes": {
     "stage1": "6e783febfbc39af4bb4abafb04fd344b80a5160e967ef66ecf4a0a14b53c37d7",
     "stage2": "4a4782f3b34b9ff772eb172560459b548d862fe373cb4985554a302581781989"
   },
+  "frozen_source_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+  "import_epoch": "v3",
+  "private_packet_commitment": "03653ff304126cd460fc8ee51a371e6741f4b2fb294b44632145aa687f48745b",
+  "qualification_commitment_sha256": "5cf02bd524f87fc22c73f05835aaee1e7ae541b91f9dad67ce821b7552d30221",
   "schema_version": "cab_immutable_imported_evidence_graph_v1",
+  "scientific_freeze_sha256": "ca9a8552104bb6270b9a604b8915653efcafe60efd67c16d2d305f38b1e4f746",
   "stage1_canonical_judgement_hashes": {
     "REVIEWER_A": "c826a053567b217f36dc21ecaa1aaf5e395cb85da786561cc78b67014a146423",
     "REVIEWER_B": "94ba8cff10f1195b38cc453c94b319a9edf22794f218e6a16685d8cd230d750c"

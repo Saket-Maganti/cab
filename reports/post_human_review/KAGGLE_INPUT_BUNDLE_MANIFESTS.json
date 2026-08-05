@@ -1,22 +1,22 @@
 {
   "bundles": {
     "compact20-t4x2": {
-      "bundle_content_sha256": "e09d9e8d6e31477b30d1913adfc3c534b8c0eb6299eca764bff27c6ffd42a5c4",
+      "bundle_content_sha256": "9688df10309d506132f27e1b881b30fc0f09997c83f01659221590b45b3d7bf0",
       "bundle_type": "compact20-t4x2",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
-      "filename": "CAB_KAGGLE_COMPACT20_T4X2_INPUT_e09d9e8d6e31477b.zip",
-      "member_count": 754,
-      "sha256": "d6372c091b20c54fbb8092e811eb3985b4e9affc0a3879b006cf7b3e85bfd080",
-      "size_bytes": 1897723
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
+      "filename": "CAB_KAGGLE_COMPACT20_T4X2_INPUT_9688df10309d5061.zip",
+      "member_count": 756,
+      "sha256": "57872bad4c5671346339e7049e3d1bc246d6ef9c91535a28134cd531568a778d",
+      "size_bytes": 1908193
     },
     "cpu-preexecution": {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "cpu-preexecution",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
-      "filename": "CAB_KAGGLE_CPU_PREEXECUTION_INPUT_a07d72ae30d9bfb1.zip",
-      "member_count": 946,
-      "sha256": "7fdb57def2cd766c6b5be919d0e3bb795ea5fbd9e8403253754b43544efb5bd0",
-      "size_bytes": 2350338
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
+      "filename": "CAB_KAGGLE_CPU_PREEXECUTION_INPUT_9a5241b3346949bd.zip",
+      "member_count": 952,
+      "sha256": "a56ca6f7659725dd5fdd6fe7b11f672a56a39dd3011d5d0d55168517a9b8108f",
+      "size_bytes": 2385596
     }
   },
   "schema_version": "cab_kaggle_input_bundle_index_v1"

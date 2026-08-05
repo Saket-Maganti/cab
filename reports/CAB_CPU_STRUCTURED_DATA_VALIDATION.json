@@ -6018,6 +6018,186 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "reports/post_human_review/AGREEMENT_FINAL.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/BASELINE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/C10_FINAL.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/CAB_VALIDATION_LEDGER.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/COORDINATOR_DECLARATION_WAIVER.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/EXCLUSION_REGISTER_FINAL.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/EXECUTION_AUTHORIZATION_FINAL.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/HUMAN_EVIDENCE_DISCOVERY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/HUMAN_EVIDENCE_VALIDATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/IMMUTABLE_IMPORTED_EVIDENCE_GRAPH.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/KAGGLE_ARBITRARY_NAME_INPUT_TESTS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/KAGGLE_INPUT_BUNDLE_MANIFESTS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/LOCAL_CPU_EXECUTION_LEDGER.jsonl",
+      "records_or_cells_checked": 15,
+      "schema": "JSONL syntax (one JSON value per nonblank line)"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/LOCAL_CPU_VALIDATION_SUMMARY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/MANUAL_IMPORT_PROVENANCE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/POST_HUMAN_REVIEW_FINAL_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/QUALIFICATION_FINAL.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/REVIEWED_SLICE_LOCK_FINAL.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/STALE_IMPORT_QUARANTINE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/post_human_review/cab_resource_preflight_post_c10.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "reports/pre_run_hardening/CAB_PRE_RUN_HARDENING_STATE.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -6546,9 +6726,9 @@
     }
   ],
   "files_failed": 0,
-  "files_passed": 727,
-  "files_scanned": 727,
-  "generated_at": "2026-08-05T18:35:23.506479+00:00",
+  "files_passed": 747,
+  "files_scanned": 747,
+  "generated_at": "2026-08-05T18:50:59.326897+00:00",
   "passed": true,
   "schema_version": "cab_cpu_structured_data_validation_v1",
   "scope": "Tracked JSON, JSONL, YAML, YML, and Jupyter notebook files."

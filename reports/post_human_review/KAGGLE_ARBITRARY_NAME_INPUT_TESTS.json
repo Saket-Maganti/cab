@@ -2,10 +2,10 @@
   "case_count": 16,
   "cases": [
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "benign_name::archive.zip",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -19,10 +19,10 @@
       "selected_filename": "archive.zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "benign_name::my bundle with spaces.zip",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -36,10 +36,10 @@
       "selected_filename": "my bundle with spaces.zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "benign_name::\u00fcn\u00efc\u00f8d\u00e9-\u0430\u0440\u0445\u0438\u0432-\u675f.zip",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -53,10 +53,10 @@
       "selected_filename": "\u00fcn\u00efc\u00f8d\u00e9-\u0430\u0440\u0445\u0438\u0432-\u675f.zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "benign_name::UPPERCASE.ZIP",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -70,10 +70,10 @@
       "selected_filename": "UPPERCASE.ZIP"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "benign_name::MiXeD.Zip",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -87,10 +87,10 @@
       "selected_filename": "MiXeD.Zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "benign_name::final_FINAL_v3 (2).zip",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -104,10 +104,10 @@
       "selected_filename": "final_FINAL_v3 (2).zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "benign_name::cab-input.zip",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -121,10 +121,10 @@
       "selected_filename": "cab-input.zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "nested_kaggle_dataset_directory",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -138,10 +138,10 @@
       "selected_filename": "archive.zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "byte_identical_duplicate_is_not_an_ambiguity",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -155,10 +155,10 @@
       "selected_filename": "one.zip"
     },
     {
-      "bundle_content_sha256": "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce",
+      "bundle_content_sha256": "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1",
       "bundle_type": "REPOSITORY_BUNDLE",
       "case": "unrelated_zip_beside_a_valid_bundle",
-      "created_from_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+      "created_from_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
       "expected": "SELECTED",
       "manifest_checks": {
         "declares_no_private_material": true,
@@ -176,35 +176,35 @@
       "expected": "REFUSED",
       "observed_outcome": "REFUSED",
       "passed": true,
-      "reason": "FAIL_CLOSED_AMBIGUOUS_KAGGLE_INPUT: more than one attached bundle scores equally and their contents differ. Detach the one you do not want, or set CAB_KAGGLE_INPUT_PATH.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-weco"
+      "reason": "FAIL_CLOSED_AMBIGUOUS_KAGGLE_INPUT: more than one attached bundle scores equally and their contents differ. Detach the one you do not want, or set CAB_KAGGLE_INPUT_PATH.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-l9bx"
     },
     {
       "case": "path_traversal_member",
       "expected": "REFUSED",
       "observed_outcome": "REFUSED",
       "passed": true,
-      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-kj6damij/input/d/evil.zip | REPOSITORY_BUNDLE | 14 | 6 | "
+      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-axwqf6vs/input/d/evil.zip | REPOSITORY_BUNDLE | 14 | 6 | "
     },
     {
       "case": "absolute_path_member",
       "expected": "REFUSED",
       "observed_outcome": "REFUSED",
       "passed": true,
-      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-f9sllzke/input/d/evil.zip | REPOSITORY_BUNDLE | 14 | 6 | "
+      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-yhizl4cs/input/d/evil.zip | REPOSITORY_BUNDLE | 14 | 6 | "
     },
     {
       "case": "truncated_archive",
       "expected": "REFUSED",
       "observed_outcome": "REFUSED",
       "passed": true,
-      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-gb_ygh1z/input/d/cut.zip | UNKNOWN_BUNDLE | 0 | 0 | - | n"
+      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-fyhaihex/input/d/cut.zip | UNKNOWN_BUNDLE | 0 | 0 | - | n"
     },
     {
       "case": "zip_bomb_expansion_ratio",
       "expected": "REFUSED",
       "observed_outcome": "REFUSED",
       "passed": true,
-      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-q1g8vyp_/input/d/bomb.zip | REPOSITORY_BUNDLE | 10 | 4 | "
+      "reason": "NO_MATCHING_KAGGLE_INPUT: no attached archive or directory carries the expected CAB sentinels for REPOSITORY_BUNDLE.\n  path | type | score | members | sha256 | problems\n  /private/var/folders/w6/8r7w4_152rs2485545d0q96w0000gn/T/cab-name-probe-8hkjgleb/input/d/bomb.zip | REPOSITORY_BUNDLE | 10 | 4 | "
     },
     {
       "case": "no_bundle_attached_at_all",
@@ -219,10 +219,10 @@
   "expected_bundle_type": "REPOSITORY_BUNDLE",
   "failed_cases": [],
   "passed": true,
-  "probed_bundle": "CAB_KAGGLE_CPU_PREEXECUTION_INPUT_a07d72ae30d9bfb1.zip",
-  "probed_bundle_sha256": "7fdb57def2cd766c6b5be919d0e3bb795ea5fbd9e8403253754b43544efb5bd0",
+  "probed_bundle": "CAB_KAGGLE_CPU_PREEXECUTION_INPUT_9a5241b3346949bd.zip",
+  "probed_bundle_sha256": "a56ca6f7659725dd5fdd6fe7b11f672a56a39dd3011d5d0d55168517a9b8108f",
   "schema_version": "cab_kaggle_arbitrary_name_input_tests_v1",
   "selected_bundle_content_sha256": [
-    "a07d72ae30d9bfb1299e933d925a251f9876b27c945b17cde81f79f9bcbca7ce"
+    "9a5241b3346949bd89454fefcf2bce119d31a2fe1ba4b9658ac0b310fcd833a1"
   ]
 }
