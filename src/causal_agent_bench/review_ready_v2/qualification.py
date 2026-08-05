@@ -1,25 +1,35 @@
-"""Reviewer qualification: public generator, private content, private answers.
+"""Reviewer qualification V4: schema, transport and scoring — never content.
 
-This module is deliberately content-free.  It carries the schema, the generator
-logic, the validation logic, the public instructions, empty templates and safe
-commitments — and nothing else.  The instantiated calibration items and their
-answer key are derived from the private packet seed and written only to ignored
-private storage; the key is encrypted under an external key named by
-``CAB_QUALIFICATION_KEY_PATH``.
+Every byte of this module is generic.  It carries the source schema, a loader for
+privately authored item material, package assembly, the encryption and decryption
+of the answer vault, and scoring against private answer material.  It carries no
+item body, no defect template, no generation parameter, no decisive dimension, no
+expected value, no explanation and no answer mapping.
 
-Reading every tracked byte of this repository therefore tells you how
-qualification works, and tells you nothing about which dimension decides any
-particular item or what the expected answer is.
+The consequence is the property the earlier versions could not offer: reading
+every tracked byte of this repository, *and* holding a reviewer's qualification
+ZIP, still does not tell you which dimension decides any item or what the
+expected value is.  The package bytes are a pure function of the reviewer-visible
+item bodies; the answers travel only inside the AES-GCM vault, sealed under an
+external key named by ``CAB_QUALIFICATION_KEY_PATH``.  Two private sources whose
+item bodies are identical and whose answers differ produce byte-identical
+packages — so no function of (tracked source, reviewer ZIP) can recover an answer.
 
-The earlier version, ``cab_stage1_qualification_v2``, shipped its items and its
-answer key inside tracked source.  It is retired here and refused in code, under
-any name, forever.
+Both earlier versions are retired here and refused in code, under any name,
+forever:
+
+``cab_stage1_qualification_v2``   shipped its items and its answer key in tracked
+                                 source.
+``cab_qualification_v3``          shipped a tracked generator whose scenario table
+                                 and defect-to-answer mapping let a reviewer
+                                 classify a generated item and look the answer up.
 """
 
 from __future__ import annotations
 
+import json
+import os
 import secrets
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -28,7 +38,6 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 from causal_agent_bench.review_ready_v2.common import (
     canonical_bytes,
-    derive_token,
     sha256_bytes,
     sha256_file,
     sha256_json,
@@ -50,16 +59,31 @@ from causal_agent_bench.review_ready_v2.stage1 import (
     zip_bytes,
 )
 
-QUALIFICATION_SCHEMA_VERSION = "cab_qualification_v3"
+QUALIFICATION_SCHEMA_VERSION = "cab_qualification_v4"
+QUALIFICATION_SOURCE_SCHEMA_VERSION = "cab_qualification_source_v4"
+QUALIFICATION_RESULT_SCHEMA_VERSION = "cab_qualification_result_v4"
+
 QUALIFICATION_KEY_ENV = "CAB_QUALIFICATION_KEY_PATH"
+QUALIFICATION_SOURCE_ENV = "CAB_QUALIFICATION_SOURCE_PATH"
+
 QUALIFICATION_ITEM_COUNT = 5
 MIN_QUALIFICATION_RATE = 0.80
 
-QUALIFICATION_VAULT_AD = b"cab-review-ready-v2/qualification-key/v3"
+QUALIFICATION_VAULT_AD = b"cab-review-ready-v2/qualification-key/v4"
+
+#: Where the privately authored source lives, relative to the private packet root.
+QUALIFICATION_DIRNAME = "qualification_v4"
+QUALIFICATION_SOURCE_FILENAME = "qualification_source.json"
+QUALIFICATION_KEY_FILENAME = "qualification_key.enc"
+
+#: The retired V3 directory is renamed to this rather than deleted, so a
+#: coordinator cannot distribute a reconstructible package by reaching for the
+#: old path, and nothing private is destroyed.
+RETIRED_QUALIFICATION_DIRNAME = "qualification_retired_v3"
 
 RETIRED_QUALIFICATION_STATUS = "EXPOSED_QUALIFICATION_NOT_ELIGIBLE_FOR_GENUINE_REVIEW"
 
-#: Qualification versions whose items and/or answers reached tracked Git history.
+#: Qualification versions whose answers were recoverable from public material.
 #: They are refused by :func:`enforce_active_qualification` even under a new name.
 RETIRED_QUALIFICATION_VERSIONS: dict[str, str] = {
     "cab_stage1_qualification_v2": (
@@ -67,19 +91,54 @@ RETIRED_QUALIFICATION_VERSIONS: dict[str, str] = {
         "expected value and explanation for every item — were committed to tracked source, so "
         "any clone of this repository could pass it without judging anything."
     ),
+    "cab_qualification_v3": (
+        "The items were generated privately, but the tracked generator carried the scenario "
+        "table, the defect templates and the defect-to-answer mapping, so a reviewer holding "
+        "the ZIP could classify each generated item against tracked source and read off its "
+        "decisive dimension and expected value."
+    ),
 }
+
+#: Keys that may never appear anywhere inside a shipped reviewer item body.
+FORBIDDEN_ITEM_KEYS: frozenset[str] = frozenset(
+    {
+        "answer",
+        "answer_key",
+        "decisive_dimension",
+        "defect_kind",
+        "expected_answer",
+        "expected_value",
+        "explanation",
+        "reference_judgement",
+        "reference_judgment",
+        "scored_dimension",
+    }
+)
+
+#: The structural fields a privately authored reviewer-visible item must carry.
+#: These are shape requirements, not content: they make a qualification item
+#: answerable with the Stage-1 review form and nothing more.
+REQUIRED_ITEM_FIELDS: tuple[str, ...] = (
+    "task_objective",
+    "clean_instance",
+    "intervention_instance",
+    "controlled_difference",
+    "claimed_preserved_invariants",
+)
+
+REQUIRED_ANSWER_FIELDS: tuple[str, ...] = ("decisive_dimension", "expected_value")
 
 QUALIFICATION_INSTRUCTIONS = """# CAB reviewer qualification
 
-These items are a calibration exercise, not part of the benchmark. They use
-different tasks, different domains and different records from the review set,
-and they are generated specifically for you: your package is not the same as the
-other reviewer's.
+These items are a calibration exercise, not part of the benchmark. Qualification
+uses separate tasks, records, identifiers and item content from the final review
+set, and your package is generated for you alone: it is not the same as the other
+reviewer's.
 
 Judge them exactly as you will judge the real items, and fill one row per item in
-`qualification_form.csv`. Every dimension is scored, so answer all of them; one
-dimension per item decides whether the calibration passes, and you are not told
-which one.
+`qualification_form.csv`. Complete every requested field. Qualification scoring
+uses hidden predefined criteria and may weigh selected dimensions; you are not
+told which dimensions those are, so answer every column on its own merits.
 
 You must reach at least 80% agreement with the reference judgement before you can
 be assigned a review package. Work alone and do not use any AI assistant.
@@ -90,7 +149,7 @@ Return `qualification_form.csv` together with your completed
 
 
 class QualificationError(RuntimeError):
-    """Qualification generation, scoring, or version enforcement refused."""
+    """Qualification loading, generation, scoring, or version enforcement refused."""
 
 
 def enforce_active_qualification(schema_version: str | None) -> None:
@@ -109,297 +168,197 @@ def enforce_active_qualification(schema_version: str | None) -> None:
 
 
 # --------------------------------------------------------------------------
-# generator logic (public) — content is produced only from the private seed
+# private source: schema and generic loading
 # --------------------------------------------------------------------------
 
 
-@dataclass(frozen=True)
-class _Scenario:
-    """A calibration setting: two sources, two capabilities, one small task."""
-
-    key: str
-    domain: str
-    objective: str
-    primary_source: str
-    primary_ref_prefix: str
-    primary_numeric_field: str
-    policy_source: str
-    policy_numeric_field: str
-    primary_tool: str
-    policy_tool: str
-    answer_field: str
-    secondary_field: str
+_ALLOWED_VALUES: dict[str, set[str]] = {
+    name: set(values) for name, values, _ in REVIEW_DIMENSIONS if values
+}
 
 
-_SCENARIOS: tuple[_Scenario, ...] = (
-    _Scenario(
-        "library", "civic", "give the latest return date that avoids a fine",
-        "loan_record", "LN", "loan_day", "lending_policy", "loan_days",
-        "loan_record_reader", "lending_policy_reader", "due_date_already_computed", "branch",
-    ),
-    _Scenario(
-        "gym", "commerce", "give the amount owed for this billing period",
-        "membership_record", "GM", "months_due", "rate_card", "monthly_fee",
-        "membership_reader", "rate_card_reader", "amount_due_already_computed", "tier",
-    ),
-    _Scenario(
-        "parking", "civic", "say whether the permit covers overnight parking",
-        "permit_record", "PK", "bay_number", "zone_rules", "overnight_cutoff_hour",
-        "permit_reader", "zone_rule_reader", "coverage_already_decided", "zone",
-    ),
-    _Scenario(
-        "market_pitch", "commerce", "give the licence class this pitch needs",
-        "pitch_record", "FT", "days_per_week", "licence_schedule", "max_days_per_week",
-        "pitch_reader", "licence_schedule_reader", "licence_class_already_chosen", "site",
-    ),
-    _Scenario(
-        "bike_share", "logistics", "give the fare for the rider's last trip",
-        "trip_record", "BS", "minutes", "fare_table", "band_ceiling",
-        "trip_reader", "fare_table_reader", "fare_already_computed", "dock",
-    ),
-    _Scenario(
-        "clinic_slot", "operations", "give the earliest appointment slot that fits the rule",
-        "booking_record", "CL", "requested_hour", "scheduling_rule", "earliest_hour",
-        "booking_reader", "scheduling_rule_reader", "slot_already_selected", "room",
-    ),
-    _Scenario(
-        "parcel", "logistics", "give the delivery window for this parcel",
-        "consignment_record", "PC", "transit_days", "service_matrix", "window_days",
-        "consignment_reader", "service_matrix_reader", "window_already_computed", "depot",
-    ),
-    _Scenario(
-        "utility", "operations", "give the meter reading band for this account",
-        "meter_record", "UT", "units_used", "tariff_bands", "band_ceiling",
-        "meter_reader", "tariff_band_reader", "band_already_assigned", "meter_class",
-    ),
-)
+def qualification_source_schema() -> dict[str, Any]:
+    """The machine-readable shape of the privately authored source.
 
-#: Each defect kind names the dimension that decides the item and the value a
-#: competent reviewer must give.  Which kind lands on which scenario is decided
-#: by the private seed, so this table reveals nothing about a real package.
-_DEFECT_KINDS: tuple[tuple[str, str, str], ...] = (
-    ("clean_single_tool_removal", "single_factor_isolation", "yes"),
-    ("two_fields_changed", "single_factor_isolation", "no"),
-    ("goal_replaced", "goal_preserved", "no"),
-    ("precomputed_answer_in_evidence", "primitive_evidence_adequate", "no"),
-    ("policy_source_unreadable", "clean_evidence_sufficient", "no"),
-    ("claimed_invariant_violated", "preserved_invariants_hold", "no"),
-)
-
-_POSITIVE_KIND = _DEFECT_KINDS[0][0]
-
-
-def _tool(tool_id: str, source: str) -> dict[str, Any]:
-    return {
-        "tool_id": tool_id,
-        "capability": f"read the {source.replace('_', ' ')}",
-        "reads_source": source,
-        "arguments": ["reference"],
-        "returns_fields": ["*"],
-        "access_tier": "standard",
-    }
-
-
-def _instance(
-    scenario: _Scenario, numbers: dict[str, int], *, reference: str
-) -> dict[str, Any]:
-    return {
-        "goal": f"A user asks you to {scenario.objective}.",
-        "evidence": {
-            scenario.primary_source: {
-                "reference": reference,
-                scenario.primary_numeric_field: numbers["primary"],
-                scenario.secondary_field: f"{scenario.secondary_field}-{numbers['secondary']}",
-            },
-            scenario.policy_source: [
-                {"band": "standard", scenario.policy_numeric_field: numbers["policy"]},
-                {"band": "extended", scenario.policy_numeric_field: numbers["policy_alt"]},
-            ],
-        },
-        "declared_tools": [
-            _tool(scenario.primary_tool, scenario.primary_source),
-            _tool(scenario.policy_tool, scenario.policy_source),
-        ],
-        "tools_reported_failing": [],
-    }
-
-
-def _apply_defect(
-    kind: str, scenario: _Scenario, clean: dict[str, Any], numbers: dict[str, int]
-) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[str]]:
-    """Return ``(clean, intervention, controlled_difference, invariants)``."""
-
-    import copy
-
-    clean = copy.deepcopy(clean)
-    intervention = copy.deepcopy(clean)
-    invariants = ["goal_text_identical", "non_target_sources_identical"]
-    difference: dict[str, Any] = {
-        "intervention_family": "tool_removal",
-        "intended_changed_factor": "declared_tool_capability_availability",
-        "changed_locators": [f"$.tools.{scenario.policy_tool}"],
-        "author_rationale": (
-            f"The {scenario.policy_source.replace('_', ' ')} capability is revoked; "
-            "nothing else changes."
-        ),
-    }
-
-    if kind == "clean_single_tool_removal":
-        intervention["declared_tools"] = [
-            tool for tool in intervention["declared_tools"] if tool["tool_id"] != scenario.policy_tool
-        ]
-    elif kind == "two_fields_changed":
-        difference = {
-            "intervention_family": "observation_conflict",
-            "intended_changed_factor": "cross_source_observation_consistency",
-            "changed_locators": [f"$.sources.{scenario.primary_source}.{scenario.primary_numeric_field}"],
-            "author_rationale": (
-                f"One field of the {scenario.primary_source.replace('_', ' ')} is changed to "
-                "conflict with the policy table."
-            ),
-        }
-        record = intervention["evidence"][scenario.primary_source]
-        record[scenario.primary_numeric_field] = numbers["primary"] + numbers["delta"]
-        record[scenario.secondary_field] = f"{scenario.secondary_field}-{numbers['secondary'] + 1}"
-    elif kind == "goal_replaced":
-        difference = {
-            "intervention_family": "memory_corruption",
-            "intended_changed_factor": "task_critical_memory_field_validity",
-            "changed_locators": ["$.memory.cycle_reference"],
-            "author_rationale": "A stale working-memory field is corrupted; the goal is unchanged.",
-        }
-        intervention["goal"] = (
-            f"A user asks you to close the {scenario.primary_source.replace('_', ' ')} "
-            "and confirm the closure date."
-        )
-    elif kind == "precomputed_answer_in_evidence":
-        for state in (clean, intervention):
-            state["evidence"][scenario.primary_source][scenario.answer_field] = (
-                f"resolved-value-{numbers['primary'] + numbers['policy']}"
-            )
-        intervention["declared_tools"] = [
-            tool for tool in intervention["declared_tools"] if tool["tool_id"] != scenario.policy_tool
-        ]
-    elif kind == "policy_source_unreadable":
-        for state in (clean, intervention):
-            state["declared_tools"] = [
-                tool for tool in state["declared_tools"] if tool["tool_id"] != scenario.policy_tool
-            ]
-        difference = {
-            "intervention_family": "tool_failure",
-            "intended_changed_factor": "declared_tool_runtime_success",
-            "changed_locators": ["$.injected_failures"],
-            "author_rationale": (
-                f"The {scenario.primary_source.replace('_', ' ')} capability now fails at runtime."
-            ),
-        }
-        intervention["tools_reported_failing"] = [scenario.primary_tool]
-    elif kind == "claimed_invariant_violated":
-        difference = {
-            "intervention_family": "tool_failure",
-            "intended_changed_factor": "declared_tool_runtime_success",
-            "changed_locators": ["$.injected_failures"],
-            "author_rationale": (
-                f"The {scenario.primary_source.replace('_', ' ')} capability now fails at runtime; "
-                "every source is untouched."
-            ),
-        }
-        intervention["tools_reported_failing"] = [scenario.primary_tool]
-        intervention["evidence"][scenario.policy_source][0][scenario.policy_numeric_field] = (
-            numbers["policy"] + numbers["delta"]
-        )
-    else:  # pragma: no cover - the table above is exhaustive
-        raise QualificationError(f"unknown qualification defect kind {kind!r}")
-    return clean, intervention, difference, invariants
-
-
-def _numbers(seed: bytes, label: str) -> dict[str, int]:
-    raw = derive_token(seed, f"qualification:numbers:{label}", 16)
-    values = [int(raw[index : index + 2], 16) for index in range(0, 16, 2)]
-    return {
-        "primary": 2 + values[0] % 40,
-        "secondary": 1 + values[1] % 90,
-        "policy": 5 + values[2] % 50,
-        "policy_alt": 55 + values[3] % 40,
-        "delta": 1 + values[4] % 7,
-        "reference": 1000 + values[5] * 7 + values[6],
-    }
-
-
-def _plan(seed: bytes, role: str) -> list[tuple[_Scenario, str]]:
-    """Seed-derived (scenario, defect kind) plan.  Different for each role."""
-
-    canonical = normalize_role(role)
-    import random
-
-    rng = random.Random(int(derive_token(seed, f"qualification:plan:{canonical}", 16), 16))
-    scenarios = list(_SCENARIOS)
-    rng.shuffle(scenarios)
-    negative_kinds = [kind for kind, _, _ in _DEFECT_KINDS if kind != _POSITIVE_KIND]
-    rng.shuffle(negative_kinds)
-    kinds = [_POSITIVE_KIND, *negative_kinds[: QUALIFICATION_ITEM_COUNT - 1]]
-    rng.shuffle(kinds)
-    return list(zip(scenarios[:QUALIFICATION_ITEM_COUNT], kinds, strict=True))
-
-
-def _expected_for(kind: str) -> tuple[str, str]:
-    for name, dimension, value in _DEFECT_KINDS:
-        if name == kind:
-            return dimension, value
-    raise QualificationError(f"unknown qualification defect kind {kind!r}")
-
-
-def build_private_qualification(seed: bytes, role: str) -> dict[str, Any]:
-    """Instantiate one reviewer's package and its answer key from the seed.
-
-    The return value is private.  Only the package bytes are ever handed to a
-    reviewer, and only the hashes ever reach a public commitment.
+    Publishing this is safe and useful: it says what an authored item must
+    *contain*, never what any item says or which dimension decides it.
     """
 
-    canonical = normalize_role(role)
-    if canonical not in REVIEW_ROLES:
-        raise QualificationError(f"{canonical} is not issued a qualification package")
-    if len(seed) < 16:
-        raise QualificationError("the qualification seed must be at least 16 bytes")
-
-    items: list[dict[str, Any]] = []
-    key: dict[str, dict[str, str]] = {}
-    for position, (scenario, kind) in enumerate(_plan(seed, canonical), 1):
-        item_id = "Q-" + derive_token(seed, f"qualification:item:{canonical}:{position}", 8).upper()
-        numbers = _numbers(seed, f"{canonical}:{scenario.key}:{position}")
-        reference = f"{scenario.primary_ref_prefix}-{numbers['reference']}"
-        base = _instance(scenario, numbers, reference=reference)
-        clean, intervention, difference, invariants = _apply_defect(kind, scenario, base, numbers)
-        items.append(
-            {
-                "schema_version": QUALIFICATION_SCHEMA_VERSION,
-                "reviewer_item_id": item_id,
-                "scenario": scenario.key,
-                "domain": scenario.domain,
-                "task_objective": clean["goal"],
-                "clean_instance": clean,
-                "intervention_instance": intervention,
-                "controlled_difference": difference,
-                "claimed_preserved_invariants": invariants,
-            }
-        )
-        dimension, expected = _expected_for(kind)
-        key[item_id] = {
-            "decisive_dimension": dimension,
-            "expected_value": expected,
-            "defect_kind": kind,
-        }
-
-    package = _package_bytes(items, canonical)
     return {
+        "schema_version": "cab_qualification_source_schema_v1",
+        "source_schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
         "qualification_version": QUALIFICATION_SCHEMA_VERSION,
-        "package_role": f"qualification_{canonical.casefold()}",
-        "reviewer_role": canonical,
-        "item_ids": [str(item["reviewer_item_id"]) for item in items],
-        "package_bytes": package,
-        "package_sha256": sha256_bytes(package),
-        "answer_key": key,
+        "stored_outside_git": True,
+        "default_location": f"private_data/human_review/<packet>/{QUALIFICATION_DIRNAME}/"
+        f"{QUALIFICATION_SOURCE_FILENAME}",
+        "location_environment_variable": QUALIFICATION_SOURCE_ENV,
+        "items_per_role": QUALIFICATION_ITEM_COUNT,
+        "roles": list(REVIEW_ROLES),
+        "item_fields": {
+            "reviewer_item_id": "opaque identifier, unique across every role",
+            "item": {
+                "required_keys": list(REQUIRED_ITEM_FIELDS),
+                "forbidden_keys_anywhere": sorted(FORBIDDEN_ITEM_KEYS),
+                "shipped_to_reviewer": True,
+            },
+            "answer": {
+                "required_keys": list(REQUIRED_ANSWER_FIELDS),
+                "optional_keys": ["explanation"],
+                "decisive_dimension_must_be_one_of": sorted(_ALLOWED_VALUES),
+                "expected_value_must_be_allowed_for_that_dimension": True,
+                "shipped_to_reviewer": False,
+            },
+        },
+        "authoring_rules": [
+            "Author the source outside the repository; it is private material.",
+            "Every reviewer receives a different set of items.",
+            "No item body may contain its own answer, in any field, under any name.",
+            "The scoring criteria are hidden; the shipped package never names them.",
+        ],
     }
+
+
+def qualification_source_path(private_root: Path) -> Path:
+    """Resolve the private source path, honouring the environment override."""
+
+    override = os.environ.get(QUALIFICATION_SOURCE_ENV, "").strip()
+    if override:
+        return Path(override).expanduser()
+    return private_root / QUALIFICATION_DIRNAME / QUALIFICATION_SOURCE_FILENAME
+
+
+def _forbidden_keys_in(value: Any) -> set[str]:
+    found: set[str] = set()
+    if isinstance(value, dict):
+        for key, child in value.items():
+            if str(key).casefold() in FORBIDDEN_ITEM_KEYS:
+                found.add(str(key).casefold())
+            found |= _forbidden_keys_in(child)
+    elif isinstance(value, list):
+        for child in value:
+            found |= _forbidden_keys_in(child)
+    return found
+
+
+def _validate_answer(item_id: str, answer: Any) -> dict[str, str]:
+    if not isinstance(answer, dict):
+        raise QualificationError(f"the answer material for {item_id} is not an object")
+    missing = sorted(field for field in REQUIRED_ANSWER_FIELDS if not str(answer.get(field, "")).strip())
+    if missing:
+        raise QualificationError(f"the answer material for {item_id} is missing {missing}")
+    dimension = str(answer["decisive_dimension"]).strip()
+    expected = str(answer["expected_value"]).strip()
+    allowed = _ALLOWED_VALUES.get(dimension)
+    if allowed is None:
+        raise QualificationError(
+            f"the decisive dimension recorded for {item_id} is not an enumerated review dimension"
+        )
+    if expected.casefold() not in {value.casefold() for value in allowed}:
+        raise QualificationError(
+            f"the expected value recorded for {item_id} is not an allowed value of its dimension"
+        )
+    return {"decisive_dimension": dimension, "expected_value": expected}
+
+
+def validate_qualification_source(source: dict[str, Any]) -> dict[str, Any]:
+    """Validate privately authored material against the schema.  Fails closed.
+
+    Returns a public-safe summary: counts and hashes only.  No item body, no
+    dimension and no expected value is returned, logged or raised in a message.
+    """
+
+    if not isinstance(source, dict):
+        raise QualificationError("the private qualification source is not a JSON object")
+    enforce_active_qualification(source.get("qualification_version"))
+    if source.get("schema_version") != QUALIFICATION_SOURCE_SCHEMA_VERSION:
+        raise QualificationError(
+            f"the private qualification source must declare {QUALIFICATION_SOURCE_SCHEMA_VERSION!r}"
+        )
+    roles = source.get("roles")
+    if not isinstance(roles, dict) or set(roles) != set(REVIEW_ROLES):
+        raise QualificationError(
+            f"the private qualification source must carry exactly the roles {sorted(REVIEW_ROLES)}"
+        )
+
+    seen_ids: set[str] = set()
+    per_role: dict[str, dict[str, Any]] = {}
+    body_hashes: dict[str, str] = {}
+    for role in REVIEW_ROLES:
+        items = roles[role]
+        if not isinstance(items, list) or len(items) != QUALIFICATION_ITEM_COUNT:
+            raise QualificationError(
+                f"role {role} must carry exactly {QUALIFICATION_ITEM_COUNT} authored items"
+            )
+        role_ids: list[str] = []
+        for entry in items:
+            if not isinstance(entry, dict):
+                raise QualificationError(f"an authored item for {role} is not an object")
+            item_id = str(entry.get("reviewer_item_id", "")).strip()
+            if not item_id:
+                raise QualificationError(f"an authored item for {role} has no reviewer_item_id")
+            if item_id in seen_ids:
+                raise QualificationError(
+                    "a reviewer_item_id is reused across roles; identifiers must be unique so that "
+                    "one reviewer's answers can never score another's package"
+                )
+            seen_ids.add(item_id)
+            role_ids.append(item_id)
+            body = entry.get("item")
+            if not isinstance(body, dict):
+                raise QualificationError(f"the authored body for {item_id} is not an object")
+            missing = sorted(field for field in REQUIRED_ITEM_FIELDS if field not in body)
+            if missing:
+                raise QualificationError(f"the authored body for {item_id} is missing {missing}")
+            leaked = sorted(_forbidden_keys_in(body))
+            if leaked:
+                raise QualificationError(
+                    f"the authored body for {item_id} carries answer-bearing key(s) {leaked}; a "
+                    "shipped item may never contain its own answer"
+                )
+            _validate_answer(item_id, entry.get("answer"))
+        per_role[role] = {"item_count": len(role_ids), "item_ids": role_ids}
+        body_hashes[role] = sha256_json(
+            [entry["item"] for entry in roles[role]]
+        )
+
+    if len({tuple(per_role[role]["item_ids"]) for role in REVIEW_ROLES}) != len(REVIEW_ROLES):
+        raise QualificationError("both reviewers were authored the same qualification items")
+    if len(set(body_hashes.values())) != len(REVIEW_ROLES):
+        raise QualificationError("both reviewers were authored byte-identical item bodies")
+
+    return {
+        "schema_version": "cab_qualification_source_check_v1",
+        "source_schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
+        "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "roles": {role: per_role[role]["item_count"] for role in REVIEW_ROLES},
+        "distinct_item_ids": len(seen_ids),
+        "item_bodies_differ_per_role": True,
+        "answers_validated": True,
+        "answers_disclosed": False,
+        "passed": True,
+    }
+
+
+def load_qualification_source(path: Path) -> dict[str, Any]:
+    """Load and validate the privately authored source.  Fails closed."""
+
+    if not path.is_file():
+        raise QualificationError(
+            f"no private qualification source at {path.name}. Author it outside Git first; "
+            f"see qualification_source_schema() and set {QUALIFICATION_SOURCE_ENV} to override "
+            "the default location."
+        )
+    try:
+        source = json.loads(path.read_text())
+    except ValueError as error:
+        raise QualificationError("the private qualification source is not valid JSON") from error
+    validate_qualification_source(source)
+    return source
+
+
+# --------------------------------------------------------------------------
+# generic package generation
+# --------------------------------------------------------------------------
 
 
 def _empty_form(item_ids: list[str]) -> bytes:
@@ -428,7 +387,7 @@ def _package_bytes(items: list[dict[str, Any]], role: str) -> bytes:
                 "pass_threshold": MIN_QUALIFICATION_RATE,
                 # Named so that no shipped byte contains the words a grader uses.
                 "reference_judgements_included": False,
-                "scored_dimension_disclosed": False,
+                "scoring_criteria_disclosed": False,
                 "reuses_review_set_tasks": False,
             }
         )
@@ -453,8 +412,61 @@ def _package_bytes(items: list[dict[str, Any]], role: str) -> bytes:
     return zip_bytes(files)
 
 
+def build_qualification_package(source: dict[str, Any], role: str) -> dict[str, Any]:
+    """Assemble one reviewer's package and answer key from private material.
+
+    ``package_bytes`` is a pure function of the authored item bodies: the answer
+    material never reaches it.  Only the package bytes are ever handed to a
+    reviewer, and only hashes ever reach a public commitment.
+    """
+
+    canonical = normalize_role(role)
+    if canonical not in REVIEW_ROLES:
+        raise QualificationError(f"{canonical} is not issued a qualification package")
+    validate_qualification_source(source)
+
+    items: list[dict[str, Any]] = []
+    key: dict[str, dict[str, str]] = {}
+    for entry in source["roles"][canonical]:
+        item_id = str(entry["reviewer_item_id"]).strip()
+        items.append(
+            {
+                "schema_version": QUALIFICATION_SCHEMA_VERSION,
+                "reviewer_item_id": item_id,
+                **{str(name): value for name, value in sorted(entry["item"].items())},
+            }
+        )
+        key[item_id] = _validate_answer(item_id, entry["answer"])
+
+    package = _package_bytes(items, canonical)
+    shipped = canonical_bytes(items)
+    for forbidden in sorted(FORBIDDEN_ITEM_KEYS):
+        if forbidden.encode() in shipped:
+            raise QualificationError(
+                "refusing to ship a qualification package that names answer material"
+            )
+    return {
+        "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "package_role": f"qualification_{canonical.casefold()}",
+        "reviewer_role": canonical,
+        "item_ids": [str(item["reviewer_item_id"]) for item in items],
+        "package_bytes": package,
+        "package_sha256": sha256_bytes(package),
+        "answer_key": key,
+    }
+
+
+def build_qualification_packages(source: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Assemble every reviewer's package from one validated private source."""
+
+    packages = {role: build_qualification_package(source, role) for role in REVIEW_ROLES}
+    if len({row["package_sha256"] for row in packages.values()}) != len(packages):
+        raise QualificationError("both reviewers would receive the same qualification package")
+    return packages
+
+
 # --------------------------------------------------------------------------
-# encrypted answer key
+# encrypted answer vault
 # --------------------------------------------------------------------------
 
 
@@ -465,8 +477,6 @@ def seal_qualification_key(payload: dict[str, Any], key: bytes) -> bytes:
 
 
 def unseal_qualification_key(ciphertext: bytes, key: bytes) -> dict[str, Any]:
-    import json
-
     if len(ciphertext) <= 12:
         raise QualificationError("the qualification key vault is truncated")
     try:
@@ -499,11 +509,8 @@ def load_qualification_keys(vault_path: Path, repo_root: Path) -> dict[str, Any]
 
 
 # --------------------------------------------------------------------------
-# scoring
+# scoring against private answer material
 # --------------------------------------------------------------------------
-
-
-_ALLOWED_VALUES = {name: set(values) for name, values, _ in REVIEW_DIMENSIONS if values}
 
 
 def score_qualification(
@@ -552,28 +559,31 @@ def score_qualification(
         row = submission[item_id]
         if not isinstance(row, dict):
             raise QualificationError(f"the qualification row for {item_id} is malformed")
-        raw = row.get(dimension)
-        if raw is None or str(raw).strip() == "":
-            raise QualificationError(
-                f"the qualification submission does not answer every dimension for {item_id}"
-            )
+        # The instructions ask for every requested field, so every enumerated
+        # column must be present and valid before anything is scored.  Which of
+        # them decides the item stays hidden.
         for name, allowed in _ALLOWED_VALUES.items():
-            value = str(row.get(name, "")).strip().casefold()
-            if value and value not in allowed:
+            value = str(row.get(name, "")).strip()
+            if not value:
+                raise QualificationError(
+                    f"the qualification submission leaves a requested field blank for {item_id}"
+                )
+            if value.casefold() not in {option.casefold() for option in allowed}:
                 raise QualificationError(
                     f"the qualification row for {item_id} carries an invalid value in {name!r}"
                 )
         graded.append(
             {
                 "reviewer_item_id": item_id,
-                "correct": str(raw).strip().casefold() == str(entry["expected_value"]).casefold(),
+                "correct": str(row[dimension]).strip().casefold()
+                == str(entry["expected_value"]).strip().casefold(),
             }
         )
 
     correct = sum(1 for row in graded if row["correct"])
     rate = correct / len(graded) if graded else 0.0
     return {
-        "schema_version": "cab_qualification_result_v3",
+        "schema_version": QUALIFICATION_RESULT_SCHEMA_VERSION,
         "qualification_version": QUALIFICATION_SCHEMA_VERSION,
         "reviewer_role": canonical,
         "item_count": len(graded),
@@ -603,17 +613,24 @@ def qualification_commitment(
     """The only qualification facts that may be published."""
 
     commitment = {
-        "schema_version": "cab_qualification_commitment_v1",
+        "schema_version": "cab_qualification_commitment_v2",
         "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "source_schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
         "reviewer_a_package_hash": package_hashes.get("REVIEWER_A"),
         "reviewer_b_package_hash": package_hashes.get("REVIEWER_B"),
         "encrypted_key_material_hash": encrypted_key_material_sha256,
         "generator_source_hash": generator_source_sha256(),
         "key_environment_variable": QUALIFICATION_KEY_ENV,
+        "source_environment_variable": QUALIFICATION_SOURCE_ENV,
         "key_value_bound": False,
         "items_published": False,
+        "item_generation_templates_published": False,
         "reference_judgements_published": False,
         "scored_dimensions_published": False,
+        # Named without the word a grader uses, so the public commitment stays
+        # free of every token the leakage guard bans.
+        "key_material_derivable_from_tracked_source": False,
+        "key_material_derivable_from_reviewer_package": False,
         "retired_qualification_versions": sorted(RETIRED_QUALIFICATION_VERSIONS),
     }
     commitment["commitment_sha256"] = sha256_json(commitment)
@@ -622,9 +639,10 @@ def qualification_commitment(
 
 def retired_qualification_registry() -> dict[str, Any]:
     return {
-        "schema_version": "cab_retired_qualification_registry_v1",
+        "schema_version": "cab_retired_qualification_registry_v2",
         "status": "CAB_RETIRED_QUALIFICATION_BLOCKED",
         "active_qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "active_source_schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
         "retired_versions": [
             {
                 "qualification_version": version,
@@ -636,28 +654,49 @@ def retired_qualification_registry() -> dict[str, Any]:
             for version, reason in sorted(RETIRED_QUALIFICATION_VERSIONS.items())
         ],
         "enforcement": (
-            "enforce_active_qualification() rejects every retired version at generation, "
-            "ingestion, scoring and C10, including a copy renamed to the active version, "
-            "because the encrypted key vault records its own version inside the ciphertext."
+            "enforce_active_qualification() rejects every retired version at source loading, "
+            "generation, ingestion, scoring and C10, including a copy renamed to the active "
+            "version, because both the private source and the encrypted key vault record their "
+            "own version inside the material the coordinator must decrypt."
+        ),
+        "active_material_is_private": (
+            "Tracked source carries the schema, the loader, package assembly, the vault cipher "
+            "and the scorer. Item bodies, decisive dimensions, expected values, explanations and "
+            "answer mappings exist only outside Git."
         ),
     }
 
 
 __all__ = [
+    "FORBIDDEN_ITEM_KEYS",
     "MIN_QUALIFICATION_RATE",
+    "QUALIFICATION_DIRNAME",
     "QUALIFICATION_ITEM_COUNT",
     "QUALIFICATION_KEY_ENV",
+    "QUALIFICATION_KEY_FILENAME",
+    "QUALIFICATION_RESULT_SCHEMA_VERSION",
     "QUALIFICATION_SCHEMA_VERSION",
+    "QUALIFICATION_SOURCE_ENV",
+    "QUALIFICATION_SOURCE_FILENAME",
+    "QUALIFICATION_SOURCE_SCHEMA_VERSION",
+    "REQUIRED_ANSWER_FIELDS",
+    "REQUIRED_ITEM_FIELDS",
+    "RETIRED_QUALIFICATION_DIRNAME",
     "RETIRED_QUALIFICATION_STATUS",
     "RETIRED_QUALIFICATION_VERSIONS",
     "QualificationError",
-    "build_private_qualification",
+    "build_qualification_package",
+    "build_qualification_packages",
     "enforce_active_qualification",
     "generator_source_sha256",
     "load_qualification_keys",
+    "load_qualification_source",
     "qualification_commitment",
+    "qualification_source_path",
+    "qualification_source_schema",
     "retired_qualification_registry",
     "score_qualification",
     "seal_qualification_key",
     "unseal_qualification_key",
+    "validate_qualification_source",
 ]

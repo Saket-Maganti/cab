@@ -31,6 +31,10 @@ from causal_agent_bench.review_ready_v2.adjudication import (
     build_stage2_queue,
     validate_adjudication,
 )
+from causal_agent_bench.review_ready_v2.adjudication_packages import (
+    AdjudicationPackageError,
+    verify_package_binding,
+)
 from causal_agent_bench.review_ready_v2.assignments import (
     AssignmentError,
     assignment_for_role,
@@ -84,6 +88,12 @@ from causal_agent_bench.review_ready_v2.stage2 import (
     STAGE2_SUBSTANTIVE_DIMENSIONS,
     validate_stage2_submission,
 )
+from causal_agent_bench.review_ready_v2.stage2_issuance import (
+    STAGE2_ISSUANCE_SCHEMA_VERSION,
+    Stage2IssuanceError,
+    build_stage2_issuance,
+    verify_stage2_issuance,
+)
 
 WORKFLOW_SCHEMA_VERSION = "cab_review_ready_v2_two_stage_workflow_v2"
 
@@ -109,6 +119,7 @@ REQUIRED_EVIDENCE_BINDINGS: tuple[str, ...] = (
     "valid_private_qualification_receipt",
     "correct_package_hash",
     "correct_reviewer_namespace",
+    "sealed_stage2_issuance_receipt",
     "complete_submission",
     "non_fixture_artifact_origin",
     "production_schema_version",
@@ -538,6 +549,55 @@ class ReviewWorkspace:
             "stage2_unlock", {"receipt_kind": "stage2_unlock", "checks": checks, "unlocked": True}
         )
 
+    def issue_stage2_package(
+        self,
+        role: str,
+        *,
+        package_sha256: str,
+        packet_commitment: str,
+        scientific_freeze_sha256: str,
+        exact_commit: str,
+    ) -> dict[str, Any]:
+        """Seal the receipt that permanently binds one reviewer's Stage-2 archive."""
+
+        canonical = self._role(role)
+        self.read("stage2_unlock")
+        commitment = self.read("stage1_commitment")
+        if commitment["private_packet_commitment"] != packet_commitment:
+            raise WorkflowError(
+                "refusing to issue a Stage-2 package against a packet the Stage-1 commitment "
+                "does not name"
+            )
+        declaration = self._declaration_for(canonical)
+        qualification = self.read(f"qualification_{canonical}")
+        try:
+            assignment = assignment_for_role(self.assignments(), canonical)
+        except AssignmentError as error:
+            raise WorkflowError(str(error)) from error
+        try:
+            payload = build_stage2_issuance(
+                reviewer_role=canonical,
+                reviewer_pseudonym_sha256=sha256_json(declaration["reviewer_pseudonym"]),
+                stage1_commitment_sha256=commitment["receipt_sha256"],
+                stage2_package_sha256=package_sha256,
+                stage2_opaque_id_namespace=assignment["stage2_opaque_id_namespace"],
+                private_packet_commitment=packet_commitment,
+                qualification_receipt_sha256=qualification["receipt_sha256"],
+                reviewer_declaration_sha256=declaration["declaration_sha256"],
+                scientific_freeze_sha256=scientific_freeze_sha256,
+                exact_commit=exact_commit,
+            )
+        except Stage2IssuanceError as error:
+            raise WorkflowError(f"Stage-2 issuance refused: {error}") from error
+        return self.write(f"stage2_issuance_{canonical}", payload)
+
+    def _stage2_issuance_hashes(self) -> dict[str, str]:
+        return {
+            role: str(self.read(f"stage2_issuance_{role}")["receipt_sha256"])
+            for role in REVIEW_ROLES
+            if self.has(f"stage2_issuance_{role}")
+        }
+
     def ingest_stage2(
         self,
         role: str,
@@ -545,20 +605,49 @@ class ReviewWorkspace:
         *,
         expected_item_ids: list[str],
         applicability: dict[str, dict[str, bool]],
+        package_sha256: str,
+        packet_commitment: str,
+        scientific_freeze_sha256: str,
+        exact_commit: str,
     ) -> dict[str, Any]:
         canonical = self._role(role)
         self.read("stage2_unlock")
         declaration = self._declaration_for(canonical)
+        qualification = self.read(f"qualification_{canonical}")
+        commitment = self.read("stage1_commitment")
         registry = self.assignments()
         rows = parse_review_csv(payload, STAGE2_FORM_COLUMNS)
         try:
-            verify_assignment(
+            assignment = verify_assignment(
                 registry,
                 role=canonical,
                 reviewer_pseudonym=declaration["reviewer_pseudonym"],
                 item_ids=sorted(rows),
             )
         except AssignmentError as error:
+            raise WorkflowError(f"Stage-2 submission refused: {error}") from error
+        if not self.has(f"stage2_issuance_{canonical}"):
+            raise WorkflowError(
+                f"Stage-2 submission refused: no sealed issuance receipt exists for {canonical}; "
+                "generate the Stage-2 packages before accepting a Stage-2 submission"
+            )
+        issuance = self.read(f"stage2_issuance_{canonical}")
+        try:
+            issuance_checks = verify_stage2_issuance(
+                issuance,
+                reviewer_role=canonical,
+                reviewer_pseudonym_sha256=sha256_json(declaration["reviewer_pseudonym"]),
+                stage1_commitment_sha256=commitment["receipt_sha256"],
+                stage2_package_sha256=package_sha256,
+                stage2_opaque_id_namespace=assignment["stage2_opaque_id_namespace"],
+                private_packet_commitment=packet_commitment,
+                qualification_receipt_sha256=qualification["receipt_sha256"],
+                reviewer_declaration_sha256=declaration["declaration_sha256"],
+                scientific_freeze_sha256=scientific_freeze_sha256,
+                exact_commit=exact_commit,
+                submitted_item_ids=sorted(rows),
+            )
+        except Stage2IssuanceError as error:
             raise WorkflowError(f"Stage-2 submission refused: {error}") from error
         validation = validate_stage2_submission(rows, expected_item_ids, applicability)
         if not validation["form_complete"]:
@@ -572,6 +661,10 @@ class ReviewWorkspace:
                 "acceptance_policy_version": STAGE2_ACCEPTANCE_POLICY_VERSION,
                 "declaration_sha256": declaration["declaration_sha256"],
                 "submission_sha256": sha256_bytes(payload),
+                "stage2_issuance_sha256": issuance["receipt_sha256"],
+                "stage2_issuance_schema_version": STAGE2_ISSUANCE_SCHEMA_VERSION,
+                "stage2_package_sha256": str(package_sha256).strip().casefold(),
+                "issuance_checks": issuance_checks,
                 "judgements": rows,
                 "validation": validation["checks"],
                 # Recorded so that nothing downstream can mistake a complete form
@@ -607,16 +700,36 @@ class ReviewWorkspace:
             queue = build_stage1_queue(self._paired(mappings, STAGE1))
         except AdjudicationError as error:
             raise WorkflowError(str(error)) from error
-        return self.write("stage1_disagreement_queue", {"receipt_kind": "stage1_disagreement_queue", **queue})
+        return self.write(
+            "stage1_disagreement_queue",
+            {
+                "receipt_kind": "stage1_disagreement_queue",
+                "stage2_issuance_hashes": self._stage2_issuance_hashes(),
+                **queue,
+            },
+        )
 
     def build_stage2_disagreements(
         self, *, mappings: dict[str, dict[str, str]], applicability: dict[str, dict[str, bool]]
     ) -> dict[str, Any]:
+        issuance = self._stage2_issuance_hashes()
+        if set(issuance) != set(REVIEW_ROLES):
+            raise WorkflowError(
+                "a Stage-2 disagreement queue requires a sealed Stage-2 issuance receipt for both "
+                "reviewers; the queue would otherwise describe unissued packages"
+            )
         try:
             queue = build_stage2_queue(self._paired(mappings, STAGE2), applicability)
         except AdjudicationError as error:
             raise WorkflowError(str(error)) from error
-        return self.write("stage2_disagreement_queue", {"receipt_kind": "stage2_disagreement_queue", **queue})
+        return self.write(
+            "stage2_disagreement_queue",
+            {
+                "receipt_kind": "stage2_disagreement_queue",
+                "stage2_issuance_hashes": issuance,
+                **queue,
+            },
+        )
 
     def _check_adjudicator(self, adjudicator_pseudonym: str) -> dict[str, Any]:
         registry = self.assignments()
@@ -633,13 +746,52 @@ class ReviewWorkspace:
             raise WorkflowError("the adjudicator must be independent of both reviewers")
         return adjudicator
 
+    def record_adjudicator_package(self, *, stage: str, package: dict[str, Any]) -> dict[str, Any]:
+        """Seal what was issued, so a later adjudication can be matched to it."""
+
+        if stage not in (STAGE1, STAGE2):
+            raise WorkflowError(f"unknown adjudication stage {stage!r}")
+        binding = dict(package["binding"])
+        binding.pop("schema_version", None)
+        return self.write(
+            f"{stage}_adjudicator_package",
+            {
+                "receipt_kind": f"{stage}_adjudicator_package",
+                "package_schema_version": package["schema_version"],
+                "package_filename": package["filename"],
+                "package_sha256": package["package_sha256"],
+                **binding,
+            },
+        )
+
     def ingest_adjudication(
-        self, *, stage: str, adjudicator_pseudonym: str, decisions: list[dict[str, Any]]
+        self,
+        *,
+        stage: str,
+        adjudicator_pseudonym: str,
+        decisions: list[dict[str, Any]],
+        package_sha256: str,
     ) -> dict[str, Any]:
         if stage not in (STAGE1, STAGE2):
             raise WorkflowError(f"unknown adjudication stage {stage!r}")
         adjudicator = self._check_adjudicator(adjudicator_pseudonym)
         queue = self.read(f"{stage}_disagreement_queue")
+        if not self.has(f"{stage}_adjudicator_package"):
+            raise WorkflowError(
+                f"{stage} adjudication refused: no adjudicator package was issued, so there is "
+                "nothing this decision could have been made against"
+            )
+        issued = self.read(f"{stage}_adjudicator_package")
+        try:
+            package_checks = verify_package_binding(
+                issued,
+                stage=stage,
+                queue=queue,
+                package_sha256=package_sha256,
+                adjudicator_assignment_sha256=adjudicator["assignment_sha256"],
+            )
+        except AdjudicationPackageError as error:
+            raise WorkflowError(f"{stage} adjudication refused: {error}") from error
         try:
             validated = validate_adjudication(stage=stage, queue=queue, decisions=decisions)
         except AdjudicationError as error:
@@ -651,6 +803,10 @@ class ReviewWorkspace:
                 "adjudicator_assignment_sha256": adjudicator["assignment_sha256"],
                 "adjudicator_pseudonym_sha256": sha256_json(adjudicator["reviewer_pseudonym"]),
                 "disagreement_queue_sha256": queue["receipt_sha256"],
+                "adjudicator_package_sha256": issued["package_sha256"],
+                "adjudicator_package_receipt_sha256": issued["receipt_sha256"],
+                "adjudicator_package_checks": package_checks,
+                "stage2_issuance_hashes": self._stage2_issuance_hashes(),
                 "submission_sha256": sha256_json(decisions),
                 **validated,
             },
@@ -753,7 +909,12 @@ class ReviewWorkspace:
             expected_pair_count=expected_pair_count,
         )
         return self.write(
-            "final_adjudicated_records", {"receipt_kind": "final_adjudicated_records", **final}
+            "final_adjudicated_records",
+            {
+                "receipt_kind": "final_adjudicated_records",
+                "stage2_issuance_hashes": self._stage2_issuance_hashes(),
+                **final,
+            },
         )
 
     # -- evidence eligibility ---------------------------------------------
@@ -795,7 +956,12 @@ class ReviewWorkspace:
         try:
             submissions = {role: self.read(f"stage1_submission_{role}") for role in REVIEW_ROLES}
             stage2 = {role: self.read(f"stage2_submission_{role}") for role in REVIEW_ROLES}
+            issuance = self._stage2_issuance_hashes()
             bindings["complete_submission"] = bool(submissions) and bool(stage2)
+            bindings["sealed_stage2_issuance_receipt"] = set(issuance) == set(REVIEW_ROLES) and all(
+                stage2[role].get("stage2_issuance_sha256") == issuance[role]
+                for role in REVIEW_ROLES
+            )
             if registry:
                 bindings["correct_package_hash"] = all(
                     submissions[role]["package_sha256"]
@@ -878,6 +1044,34 @@ def _raw_scale_at_least(
     return True
 
 
+def _adjudicator_packages_bound(
+    workspace: ReviewWorkspace,
+    stage1_queue: dict[str, Any] | None,
+    stage2_queue: dict[str, Any] | None,
+    stage1_adj: dict[str, Any] | None,
+    stage2_adj: dict[str, Any] | None,
+) -> bool:
+    """Every adjudicated stage decided the package that was actually issued."""
+
+    for stage, queue, adjudication in (
+        (STAGE1, stage1_queue, stage1_adj),
+        (STAGE2, stage2_queue, stage2_adj),
+    ):
+        if queue is None or not queue["disputes"]:
+            continue
+        if adjudication is None or not workspace.has(f"{stage}_adjudicator_package"):
+            return False
+        issued = workspace.read(f"{stage}_adjudicator_package")
+        if issued["disagreement_queue_sha256"] != queue["receipt_sha256"]:
+            return False
+        if adjudication.get("adjudicator_package_sha256") != issued["package_sha256"]:
+            return False
+        disputed = sorted({str(row["pair_id"]) for row in queue["disputes"]})
+        if list(issued.get("disputed_pair_ids", [])) != disputed:
+            return False
+    return True
+
+
 def run_c10(
     workspace: ReviewWorkspace,
     *,
@@ -942,6 +1136,18 @@ def run_c10(
     stage1_agreement = agreement["stage1"]
     stage2_agreement = agreement["stage2"]
 
+    issuance = workspace._stage2_issuance_hashes()
+    stage2_submissions = {
+        role: workspace.read(f"stage2_submission_{role}")
+        for role in REVIEW_ROLES
+        if workspace.has(f"stage2_submission_{role}")
+    }
+
+    def issuance_bound_into(receipt: dict[str, Any] | None) -> bool:
+        if receipt is None:
+            return False
+        return dict(receipt.get("stage2_issuance_hashes") or {}) == issuance
+
     checks: dict[str, bool] = {
         # -- reviewer prerequisites
         "two_distinct_reviewers_assigned": registry_check["checks"]["both_reviewers_assigned"],
@@ -963,6 +1169,30 @@ def run_c10(
         "stage2_submissions_complete": stage2_present,
         "package_hashes_bound_to_assignments": eligibility["bindings"]["correct_package_hash"],
         "reviewer_namespaces_correct": eligibility["bindings"]["correct_reviewer_namespace"],
+        # -- Stage-2 issuance, bound end to end
+        "stage2_issuance_receipts_issued": set(issuance) == set(REVIEW_ROLES),
+        "stage2_issuance_bound_to_submissions": bool(stage2_submissions)
+        and all(
+            stage2_submissions[role].get("stage2_issuance_sha256") == issuance.get(role)
+            for role in REVIEW_ROLES
+            if role in stage2_submissions
+        )
+        and set(stage2_submissions) == set(REVIEW_ROLES),
+        "stage2_issuance_matches_stage1_commitment": bool(issuance)
+        and all(
+            workspace.read(f"stage2_issuance_{role}")["stage1_commitment_sha256"]
+            == commitment["receipt_sha256"]
+            for role in issuance
+        ),
+        "stage2_issuance_bound_into_queue": issuance_bound_into(stage2_queue),
+        "stage2_issuance_bound_into_final_records": issuance_bound_into(final),
+        "stage2_issuance_bound_into_adjudication": (
+            stage2_queue is not None and not stage2_queue["disputes"]
+        )
+        or issuance_bound_into(stage2_adj),
+        "adjudicator_packages_bound_to_their_queues": _adjudicator_packages_bound(
+            workspace, stage1_queue, stage2_queue, stage1_adj, stage2_adj
+        ),
         # -- Stage 1
         "full_pair_coverage": len(stage1_raw) == expected_pairs,
         "stage2_covers_every_stage1_pair": set(stage2_raw) == set(stage1_raw)
@@ -1113,10 +1343,31 @@ def lock_reviewed_slice(
         role: workspace.read(f"stage2_submission_{role}")["submission_sha256"]
         for role in REVIEW_ROLES
     }
+    stage2_issuance = workspace._stage2_issuance_hashes()
+    if set(stage2_issuance) != set(REVIEW_ROLES):
+        raise WorkflowError(
+            "the reviewed slice cannot be locked without a sealed Stage-2 issuance receipt for "
+            "both reviewers"
+        )
     return workspace.write(
         "slice_lock",
         {
             "receipt_kind": "reviewed_slice_lock",
+            "stage2_issuance_hashes": stage2_issuance,
+            "stage2_package_hashes": {
+                role: workspace.read(f"stage2_issuance_{role}")["stage2_package_sha256"]
+                for role in REVIEW_ROLES
+            },
+            "stage1_adjudicator_package_sha256": workspace.read("stage1_adjudicator_package")[
+                "package_sha256"
+            ]
+            if workspace.has("stage1_adjudicator_package")
+            else None,
+            "stage2_adjudicator_package_sha256": workspace.read("stage2_adjudicator_package")[
+                "package_sha256"
+            ]
+            if workspace.has("stage2_adjudicator_package")
+            else None,
             "included_pair_ids": register["included_pair_ids"],
             "excluded_pairs": register["excluded_pairs"],
             "private_packet_commitment": packet_commitment,
@@ -1169,6 +1420,10 @@ def authorize_model_execution(
         "c10_belongs_to_this_packet": report.get("packet_version", workspace.packet_version)
         == workspace.packet_version,
         "stage2_complete": bool(lock.get("stage2_submission_hashes")),
+        "stage2_issuance_bound_into_lock": set(lock.get("stage2_issuance_hashes") or {})
+        == set(REVIEW_ROLES),
+        "stage2_issuance_unchanged_since_lock": dict(lock.get("stage2_issuance_hashes") or {})
+        == workspace._stage2_issuance_hashes(),
         "no_unresolved_objection": bool(lock.get("included_pair_ids")),
         "genuine_evidence_required_in_production": (not workspace.is_production)
         or lock.get("counts_as_genuine_evidence") is True,
@@ -1195,9 +1450,14 @@ def workflow_status(workspace: ReviewWorkspace) -> dict[str, Any]:
         "stage1_submissions": sum(1 for _ in workspace.receipts.glob("stage1_submission_*.json")),
         "stage1_committed": workspace.has("stage1_commitment"),
         "stage2_unlocked": workspace.has("stage2_unlock"),
+        "stage2_issuance_receipts": sum(
+            1 for _ in workspace.receipts.glob("stage2_issuance_REVIEWER_*.json")
+        ),
         "stage2_submissions": sum(1 for _ in workspace.receipts.glob("stage2_submission_*.json")),
         "stage1_disagreement_queue_built": workspace.has("stage1_disagreement_queue"),
         "stage2_disagreement_queue_built": workspace.has("stage2_disagreement_queue"),
+        "stage1_adjudicator_package_issued": workspace.has("stage1_adjudicator_package"),
+        "stage2_adjudicator_package_issued": workspace.has("stage2_adjudicator_package"),
         "stage1_adjudicated": workspace.has("stage1_adjudication"),
         "stage2_adjudicated": workspace.has("stage2_adjudication"),
         "agreement_computed": workspace.has("agreement"),

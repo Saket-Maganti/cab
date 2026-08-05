@@ -1,0 +1,170 @@
+{
+  "adjudicator_packages": {
+    "adjudicator_must_be_neither_reviewer": true,
+    "binding_fields": [
+      "private_packet_commitment",
+      "stage",
+      "disagreement_queue_sha256",
+      "disputed_pair_ids",
+      "adjudicator_assignment_sha256",
+      "adjudicator_pseudonym_sha256",
+      "scientific_freeze_sha256",
+      "exact_commit"
+    ],
+    "binding_schema_version": "cab_adjudicator_package_binding_v1",
+    "disputed_items_only": true,
+    "package_filenames": {
+      "stage1": "stage1_adjudicator_package.zip",
+      "stage2": "stage2_adjudicator_package.zip"
+    },
+    "schema_version": "cab_adjudicator_package_schema_v1",
+    "stage1_package_schema_version": "cab_stage1_adjudicator_package_v1",
+    "stage1_withholds_stage2_material": [
+      "abstention_opportunity",
+      "accepted_variants",
+      "clarification_requirement",
+      "clean_answer_contract",
+      "clean_gold",
+      "clean_scorer_contract",
+      "intervention_answer_contract",
+      "intervention_gold_or_policy",
+      "intervention_scorer_contract",
+      "recovery_authorization",
+      "route_requirement_clean",
+      "route_requirement_intervention",
+      "source_to_gold_rationale",
+      "stage2_dimension_applicability"
+    ],
+    "stage2_conditional_evidence": [
+      "recovery_authorization",
+      "abstention_opportunity",
+      "clarification_requirement"
+    ],
+    "stage2_package_schema_version": "cab_stage2_adjudicator_package_v1",
+    "stage2_required_evidence": [
+      "clean_gold",
+      "intervention_gold_or_policy",
+      "clean_answer_contract",
+      "intervention_answer_contract",
+      "clean_scorer_contract",
+      "intervention_scorer_contract",
+      "route_requirement_clean",
+      "route_requirement_intervention",
+      "stage2_dimension_applicability"
+    ]
+  },
+  "private_content_disclosed": false,
+  "qualification_source": {
+    "authoring_rules": [
+      "Author the source outside the repository; it is private material.",
+      "Every reviewer receives a different set of items.",
+      "No item body may contain its own answer, in any field, under any name.",
+      "The scoring criteria are hidden; the shipped package never names them."
+    ],
+    "default_location": "private_data/human_review/<packet>/qualification_v4/qualification_source.json",
+    "item_fields": {
+      "answer": {
+        "decisive_dimension_must_be_one_of": [
+          "ambiguity_present",
+          "clean_evidence_sufficient",
+          "clean_goal_clear",
+          "clean_solvable",
+          "declared_tools_adequate",
+          "exclude_item",
+          "goal_preserved",
+          "intended_factor_identifiable",
+          "intervention_realistic",
+          "intervention_understandable",
+          "preserved_invariants_hold",
+          "primitive_evidence_adequate",
+          "response_space_structurally_valid",
+          "reviewer_confidence",
+          "single_factor_isolation",
+          "task_clarity"
+        ],
+        "expected_value_must_be_allowed_for_that_dimension": true,
+        "optional_keys": [
+          "explanation"
+        ],
+        "required_keys": [
+          "decisive_dimension",
+          "expected_value"
+        ],
+        "shipped_to_reviewer": false
+      },
+      "item": {
+        "forbidden_keys_anywhere": [
+          "answer",
+          "answer_key",
+          "decisive_dimension",
+          "defect_kind",
+          "expected_answer",
+          "expected_value",
+          "explanation",
+          "reference_judgement",
+          "reference_judgment",
+          "scored_dimension"
+        ],
+        "required_keys": [
+          "task_objective",
+          "clean_instance",
+          "intervention_instance",
+          "controlled_difference",
+          "claimed_preserved_invariants"
+        ],
+        "shipped_to_reviewer": true
+      },
+      "reviewer_item_id": "opaque identifier, unique across every role"
+    },
+    "items_per_role": 5,
+    "location_environment_variable": "CAB_QUALIFICATION_SOURCE_PATH",
+    "qualification_version": "cab_qualification_v4",
+    "roles": [
+      "REVIEWER_A",
+      "REVIEWER_B"
+    ],
+    "schema_version": "cab_qualification_source_schema_v1",
+    "source_schema_version": "cab_qualification_source_v4",
+    "stored_outside_git": true
+  },
+  "schema_version": "cab_reviewer_distribution_schemas_v1",
+  "stage2_issuance": {
+    "bound_into": [
+      "stage2_submission_receipt",
+      "stage2_disagreement_queue",
+      "stage1_adjudicator_package",
+      "stage2_adjudicator_package",
+      "final_adjudicated_records",
+      "c10_report",
+      "reviewed_slice_lock",
+      "model_execution_authorization"
+    ],
+    "issuance_receipt_version": "cab_stage2_issuance_receipt_v1",
+    "refuses": [
+      "a modified Stage-2 archive",
+      "another reviewer's archive",
+      "an issuance receipt copied between reviewers",
+      "an issuance bound to a superseded Stage-1 commitment",
+      "an issuance carrying the wrong opaque-id namespace",
+      "an issuance bound to another packet, freeze, or commit"
+    ],
+    "required_fields": [
+      "reviewer_pseudonym_sha256",
+      "reviewer_role",
+      "stage1_commitment_sha256",
+      "stage2_package_sha256",
+      "stage2_opaque_id_namespace",
+      "private_packet_commitment",
+      "qualification_receipt_sha256",
+      "reviewer_declaration_sha256",
+      "scientific_freeze_sha256",
+      "exact_commit",
+      "issued_at"
+    ],
+    "required_for": "stage2_ingestion",
+    "reviewer_pseudonyms_published": false,
+    "schema_version": "cab_stage2_issuance_schema_v1",
+    "sealed_by": "coordinator_acceptance_key"
+  },
+  "status": "CAB_REVIEWER_DISTRIBUTION_SCHEMAS_PUBLISHED"
+}

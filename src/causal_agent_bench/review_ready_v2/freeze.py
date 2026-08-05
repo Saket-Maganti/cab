@@ -21,11 +21,22 @@ from pathlib import Path
 from typing import Any
 
 from causal_agent_bench.review_ready_v2 import PACKET_VERSION
+from causal_agent_bench.review_ready_v2.adjudication_packages import (
+    BINDING_FIELDS,
+    BINDING_SCHEMA_VERSION,
+    STAGE1_PACKAGE_SCHEMA_VERSION,
+    STAGE2_PACKAGE_SCHEMA_VERSION,
+)
 from causal_agent_bench.review_ready_v2.common import (
     canonical_bytes,
     read_json,
     sha256_bytes,
     sha256_file,
+)
+from causal_agent_bench.review_ready_v2.qualification import RETIRED_QUALIFICATION_VERSIONS
+from causal_agent_bench.review_ready_v2.stage2_issuance import (
+    REQUIRED_ISSUANCE_FIELDS,
+    STAGE2_ISSUANCE_SCHEMA_VERSION,
 )
 
 FREEZE_SCHEMA = "cab_review_ready_v2_scientific_freeze_v1"
@@ -41,6 +52,7 @@ FROZEN_SOURCES = (
     "src/causal_agent_bench/review_ready_v2/design.py",
     "src/causal_agent_bench/review_ready_v2/stage1.py",
     "src/causal_agent_bench/review_ready_v2/stage2.py",
+    "src/causal_agent_bench/review_ready_v2/stage2_issuance.py",
     "src/causal_agent_bench/review_ready_v2/qualification.py",
     "src/causal_agent_bench/review_ready_v2/leakage.py",
     "src/causal_agent_bench/review_ready_v2/vault.py",
@@ -50,6 +62,7 @@ FROZEN_SOURCES = (
     "src/causal_agent_bench/review_ready_v2/declarations.py",
     "src/causal_agent_bench/review_ready_v2/assignments.py",
     "src/causal_agent_bench/review_ready_v2/adjudication.py",
+    "src/causal_agent_bench/review_ready_v2/adjudication_packages.py",
     "src/causal_agent_bench/review_ready_v2/final_records.py",
     "src/causal_agent_bench/review_ready_v2/packet.py",
     "src/causal_agent_bench/review_ready_v2/workflow.py",
@@ -78,7 +91,13 @@ FROZEN_CONFIGS = {
 FROZEN_REPORTS = {
     "public_packet_commitment": "reports/reviewer_ready_v2/PUBLIC_PACKET_COMMITMENT.json",
     "retired_packet_registry": "reports/reviewer_ready_v2/RETIRED_PACKET_REGISTRY.json",
+    "retired_qualification_registry": (
+        "reports/reviewer_ready_v2/RETIRED_QUALIFICATION_REGISTRY.json"
+    ),
     "active_path_registry": "reports/reviewer_ready_v2/ACTIVE_PATH_REGISTRY.json",
+    "reviewer_distribution_schemas": (
+        "reports/reviewer_ready_v2/REVIEWER_DISTRIBUTION_SCHEMAS.json"
+    ),
 }
 
 FROZEN_DOCS = {
@@ -190,13 +209,24 @@ def build_freeze(repo_root: Path, *, generator_commit: str | None = None) -> dic
         "qualification_commitment_sha256": commitment["qualification_commitment"][
             "commitment_sha256"
         ],
+        "qualification_source_schema_version": commitment["qualification_source_schema_version"],
         "qualification_key_environment_variable": commitment[
             "qualification_key_environment_variable"
         ],
         "qualification_key_value_bound": False,
+        "qualification_source_value_bound": False,
+        "retired_qualification_versions": sorted(RETIRED_QUALIFICATION_VERSIONS),
         "stage2_encrypted_vault_sha256": commitment["stage2_vault_sha256"],
         "stage2_key_environment_variable": commitment["stage2_key_environment_variable"],
         "stage2_key_value_bound": False,
+        # The reviewer-distribution contracts: what a Stage-2 issuance receipt and
+        # an adjudicator package must be, frozen alongside the science they gate.
+        "stage2_issuance_schema_version": STAGE2_ISSUANCE_SCHEMA_VERSION,
+        "stage2_issuance_required_fields": list(REQUIRED_ISSUANCE_FIELDS),
+        "stage1_adjudicator_package_schema_version": STAGE1_PACKAGE_SCHEMA_VERSION,
+        "stage2_adjudicator_package_schema_version": STAGE2_PACKAGE_SCHEMA_VERSION,
+        "adjudicator_package_binding_schema_version": BINDING_SCHEMA_VERSION,
+        "adjudicator_package_binding_fields": list(BINDING_FIELDS),
         "frozen_sources": {
             path: sha256_file(repo_root / path) for path in FROZEN_SOURCES
         },
@@ -306,6 +336,28 @@ def verify_freeze(repo_root: Path, manifest_path: Path | None = None) -> dict[st
     )
     checks["qualification_key_value_not_bound"] = (
         manifest["qualification_key_value_bound"] is False
+    )
+    checks["qualification_source_value_not_bound"] = (
+        manifest.get("qualification_source_value_bound") is False
+    )
+    checks["qualification_version_is_active_and_not_retired"] = (
+        manifest["qualification_version"] not in RETIRED_QUALIFICATION_VERSIONS
+        and manifest["qualification_version"] == commitment["qualification_version"]
+    )
+    checks["retired_qualification_versions_recorded"] = sorted(
+        manifest.get("retired_qualification_versions", [])
+    ) == sorted(RETIRED_QUALIFICATION_VERSIONS)
+    checks["stage2_issuance_schema_matches_code"] = (
+        manifest.get("stage2_issuance_schema_version") == STAGE2_ISSUANCE_SCHEMA_VERSION
+        and list(manifest.get("stage2_issuance_required_fields", []))
+        == list(REQUIRED_ISSUANCE_FIELDS)
+    )
+    checks["adjudicator_package_schemas_match_code"] = (
+        manifest.get("stage1_adjudicator_package_schema_version") == STAGE1_PACKAGE_SCHEMA_VERSION
+        and manifest.get("stage2_adjudicator_package_schema_version")
+        == STAGE2_PACKAGE_SCHEMA_VERSION
+        and manifest.get("adjudicator_package_binding_schema_version") == BINDING_SCHEMA_VERSION
+        and list(manifest.get("adjudicator_package_binding_fields", [])) == list(BINDING_FIELDS)
     )
     return {
         "schema_version": "cab_review_ready_v2_freeze_check_v1",

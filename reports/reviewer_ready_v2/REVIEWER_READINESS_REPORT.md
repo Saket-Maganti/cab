@@ -3,7 +3,7 @@
 `CAB_REVIEWER_READY_V2_REPAIR_COMPLETE`
 
 Packet version: `compact20-review-ready-v2`
-Public commitment: `af1f24ce4772b7520087e9862b2f6aded976f07df03def6b2faa59e162884f64`
+Public commitment: `03653ff304126cd460fc8ee51a371e6741f4b2fb294b44632145aa687f48745b`
 
 ## Gates
 

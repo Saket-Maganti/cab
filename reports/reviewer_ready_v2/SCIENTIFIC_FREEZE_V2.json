@@ -1,6 +1,17 @@
 {
+  "adjudicator_package_binding_fields": [
+    "private_packet_commitment",
+    "stage",
+    "disagreement_queue_sha256",
+    "disputed_pair_ids",
+    "adjudicator_assignment_sha256",
+    "adjudicator_pseudonym_sha256",
+    "scientific_freeze_sha256",
+    "exact_commit"
+  ],
+  "adjudicator_package_binding_schema_version": "cab_adjudicator_package_binding_v1",
   "benchmark_version": "compact20-review-ready-v2",
-  "freeze_sha256": "3aed39cf544da151a1c5e84f94122db7845d2ed16d8c1d20640f48744e26e94a",
+  "freeze_sha256": "6a7b15b21d4a899e7cb95bf110625c5f72fc33899da20dfa93f9ce9c6b023fad",
   "frozen_configs": {
     "analysis_plan": {
       "path": "configs/reviewer_ready_v2/analysis_plan_v2.json",
@@ -8,7 +19,7 @@
     },
     "c10_contract": {
       "path": "configs/human_validation/c10_contract_v2.json",
-      "sha256": "d130d052f7747100048bb308b84d5bc1eda133c6a8a8698ef91d4b491b0df2fa"
+      "sha256": "97b29bc03dd0f1267aa53d16ec26920c76a0bac5758f7d73780098cc897025d9"
     },
     "endpoints": {
       "path": "configs/reviewer_ready_v2/frozen_endpoints_v2.json",
@@ -38,15 +49,15 @@
   "frozen_docs": {
     "coordinator_runbook": {
       "path": "docs/STAGE2_COORDINATOR_RUNBOOK_V2.md",
-      "sha256": "6ec13b84564306bfc3b21831ec5eaac08b7d5d099262bd5d6ab557dd38103880"
+      "sha256": "ed20f1ce11632cb3ec8779f3880140d993a9e9f003ca446c658685134dae9b8d"
     },
     "review_runbook": {
       "path": "docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md",
-      "sha256": "9817af38ae77e78f8c095f0054c6e8feff1935a1bc6383e5bfdd12cd47a16af5"
+      "sha256": "288b3ed9a8d2fbfe5b1128a5d538be7a5c6ede9b4a9f3175f70425d3bbe925a2"
     },
     "reviewer_instructions": {
       "path": "docs/STAGE1_REVIEWER_INSTRUCTIONS_V2.md",
-      "sha256": "12da5cf08d1eb9a778f8c499a44af7ae841a9fbb01c9abdd29aa8237884b055d"
+      "sha256": "bf938b9d94349c6f6e049f1b7806582b0a0ff54953e75657420969ed2892d90c"
     },
     "scientific_design": {
       "path": "docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md",
@@ -60,19 +71,28 @@
   "frozen_reports": {
     "active_path_registry": {
       "path": "reports/reviewer_ready_v2/ACTIVE_PATH_REGISTRY.json",
-      "sha256": "dc4aa4576b47e24d6417d588a8153400f912dcb061598ec8b6ac31b0a312ab06"
+      "sha256": "435cbbea7928150bfff983a5e94a18c6f64014bc9216449e6d1123bcf8ff80ff"
     },
     "public_packet_commitment": {
       "path": "reports/reviewer_ready_v2/PUBLIC_PACKET_COMMITMENT.json",
-      "sha256": "1d4f19efc25496c267afa1b5572ffc4a87dd85cf87fb1ee48b3a0dac2b64f88d"
+      "sha256": "6d17ecc7f9a97dde7ee0139eef1dbbf3a6fdf7a9f1e35b14aaa853c7f3e9a846"
     },
     "retired_packet_registry": {
       "path": "reports/reviewer_ready_v2/RETIRED_PACKET_REGISTRY.json",
       "sha256": "18b918ed104cdcb1ef62d006f503ae92d1debde29770b71e507aa0222ede2ffe"
+    },
+    "retired_qualification_registry": {
+      "path": "reports/reviewer_ready_v2/RETIRED_QUALIFICATION_REGISTRY.json",
+      "sha256": "49b7c872300ed735896f507257373a20ff2b4719fa1734094a3b51fd45e16be5"
+    },
+    "reviewer_distribution_schemas": {
+      "path": "reports/reviewer_ready_v2/REVIEWER_DISTRIBUTION_SCHEMAS.json",
+      "sha256": "30a1ac0745b76c40d886c52a289ce49c425c8c1389066fddc0ffde463a9f91d1"
     }
   },
   "frozen_sources": {
     "src/causal_agent_bench/review_ready_v2/adjudication.py": "6345c454b2a2e8ebcc0e7bb638b1c1bdd71e1f60ff49879669a838065214388f",
+    "src/causal_agent_bench/review_ready_v2/adjudication_packages.py": "77b26cbd0677e7f71698bac760cc5155181f63332c4a9657e5970ece8ebb74b1",
     "src/causal_agent_bench/review_ready_v2/assignments.py": "2b30f356415d6613a36d0ac506a503b5c157335fa0cc7f2c5905a5f2d8f971f4",
     "src/causal_agent_bench/review_ready_v2/catalog.py": "554521c4044435cd4a3ac6cfd21496ce5878d71705ba4d576dbbb87c6bb31b52",
     "src/causal_agent_bench/review_ready_v2/declarations.py": "fb2db578c8a0e6b213ac236107997b661edf09ecb8f97b1226557ce222628d36",
@@ -83,19 +103,20 @@
     "src/causal_agent_bench/review_ready_v2/leakage.py": "301323d9784c09ea9e3594448d058084c75d55a854e8b1022ac83f76a8689acb",
     "src/causal_agent_bench/review_ready_v2/models.py": "2ed77859fa2090716d9f89446ca4aaf868c76caa68d1eb27463bbf84b4896762",
     "src/causal_agent_bench/review_ready_v2/operators.py": "6a4593692d4fdb16be77ca50bfaafc7005fa59801904559f23e53551d9c58bf8",
-    "src/causal_agent_bench/review_ready_v2/packet.py": "4f13fae037ff725b42408a85a4371bfc37ae8718642d11f2a58858b4f1e32bf4",
+    "src/causal_agent_bench/review_ready_v2/packet.py": "0633d97ae514637ed4dd4e2e43d5da372c589861974fdefc9cc206588d61e5c5",
     "src/causal_agent_bench/review_ready_v2/pairs.py": "57f193cee713938d8152a6cdc2217695895b2123c3b2d646a2d61b2c595c364d",
     "src/causal_agent_bench/review_ready_v2/power.py": "b008677fdaf52e03001845638770be32339f93de37a5891d464899619628c419",
-    "src/causal_agent_bench/review_ready_v2/qualification.py": "104a1b547ba3b19bcdd4977341a0660e88559d249e20c3586f037cb85f2677bb",
+    "src/causal_agent_bench/review_ready_v2/qualification.py": "209c00a50c776c210862117a3364246eae28aec2820c63c55cc80b058951f8e2",
     "src/causal_agent_bench/review_ready_v2/receipts.py": "665408956621aba17acdeaf7ee34e0cfc6e58495013d004feb7b6d74ac2f1308",
-    "src/causal_agent_bench/review_ready_v2/registry.py": "ad6f7fabf584e656f46453b0926b6e136cc7a123c0ce2892d3a31d9bbbf13e64",
+    "src/causal_agent_bench/review_ready_v2/registry.py": "0c5885f7955cfa06d180f5e69698ab2dd8389b07c728b72200fde129110e1926",
     "src/causal_agent_bench/review_ready_v2/roles.py": "d92654c90cfbbb730fabd5feef1ec5f7ffb1d98e64dcdefa2bd63f39d75c98a6",
     "src/causal_agent_bench/review_ready_v2/routes.py": "784a3118ceb23310fd8aea0822f7e7c88924b910686767f166164c490d026b99",
     "src/causal_agent_bench/review_ready_v2/runtime.py": "95dc3ad14c64b82faed89377b6f8eb26036cedd59ed3a296b74306e66f0a177a",
     "src/causal_agent_bench/review_ready_v2/stage1.py": "035d8dbdf022358aa500c9a8fba1cf03dc6303b1d5a0e0507c27673deb0a9a10",
     "src/causal_agent_bench/review_ready_v2/stage2.py": "33c5573127257e7cc9ee9684207b3db742fccc4f98b3a803873d103b84f45218",
+    "src/causal_agent_bench/review_ready_v2/stage2_issuance.py": "74c6dac6e08449c43123a9efa0f2c27f5b73e11762db4a375862b0472ce41785",
     "src/causal_agent_bench/review_ready_v2/vault.py": "e08f66d0d5f9a48f5c00be964c4481d46c957c01d22d32c751af7e303bb73b61",
-    "src/causal_agent_bench/review_ready_v2/workflow.py": "13f7aa08474c2d5f985be1d7d9b06273c1e2a33cc669244009701b53db798a89"
+    "src/causal_agent_bench/review_ready_v2/workflow.py": "f52327269e5b0535db17bbd60b127edbb245a2905c120bb78d3aa08c6246a96f"
   },
   "generator": {
     "commit_content_matches": true,
@@ -129,21 +150,43 @@
     "run_hash_mismatch": "EXECUTION_REFUSED",
     "scorer_change": "NEW_SCORER_VERSION_AND_FRESH_REVIEW_REQUIRED"
   },
-  "packet_commitment_sha256": "af1f24ce4772b7520087e9862b2f6aded976f07df03def6b2faa59e162884f64",
-  "qualification_commitment_sha256": "c48a945c5c5bef890c3c744881b8f25a2d01dfd87dfafbb849bcafaad3d1025e",
+  "packet_commitment_sha256": "03653ff304126cd460fc8ee51a371e6741f4b2fb294b44632145aa687f48745b",
+  "qualification_commitment_sha256": "03c4ab20a9b2a9e4fc23ec351528d97b7ff294f31aaa417ef4bd8a7371830e91",
   "qualification_key_environment_variable": "CAB_QUALIFICATION_KEY_PATH",
   "qualification_key_value_bound": false,
   "qualification_package_hashes": {
-    "REVIEWER_A": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1",
-    "REVIEWER_B": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f"
+    "REVIEWER_A": "5a844155f7c67c1fbc77359b488270ffc1bc86730037624ff39b67e705856f55",
+    "REVIEWER_B": "98ba00fdf79f3c20c02cc04d7142d9dacf84d5a1a774c695ae531c76b3328a0f"
   },
-  "qualification_version": "cab_qualification_v3",
+  "qualification_source_schema_version": "cab_qualification_source_v4",
+  "qualification_source_value_bound": false,
+  "qualification_version": "cab_qualification_v4",
+  "retired_qualification_versions": [
+    "cab_qualification_v3",
+    "cab_stage1_qualification_v2"
+  ],
   "schema_version": "cab_review_ready_v2_scientific_freeze_v1",
+  "stage1_adjudicator_package_schema_version": "cab_stage1_adjudicator_package_v1",
   "stage1_package_hashes": {
     "stage1_reviewer_a.zip": "3fcd2192c68cc356b2a1506a2ca32f191caf00ccf5dc7769a87bcd47db618113",
     "stage1_reviewer_b.zip": "0185fcfbe89402e6284999fa6ed472fb0e1f90d28335a8ccfc6094e158a2d6cf"
   },
-  "stage2_encrypted_vault_sha256": "8530b782515d9626084a843bfdff8d9be65d108062069eeb356b5ccc94622ae4",
+  "stage2_adjudicator_package_schema_version": "cab_stage2_adjudicator_package_v1",
+  "stage2_encrypted_vault_sha256": "d5f83c3788552588ed758989ec9bcd6b55952d67c1d0b2285a4a7e06173358c9",
+  "stage2_issuance_required_fields": [
+    "reviewer_pseudonym_sha256",
+    "reviewer_role",
+    "stage1_commitment_sha256",
+    "stage2_package_sha256",
+    "stage2_opaque_id_namespace",
+    "private_packet_commitment",
+    "qualification_receipt_sha256",
+    "reviewer_declaration_sha256",
+    "scientific_freeze_sha256",
+    "exact_commit",
+    "issued_at"
+  ],
+  "stage2_issuance_schema_version": "cab_stage2_issuance_receipt_v1",
   "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
   "stage2_key_value_bound": false,
   "status": "CAB_SCIENTIFIC_FREEZE_V2_VALID",

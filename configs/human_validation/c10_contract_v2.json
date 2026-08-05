@@ -1,4 +1,5 @@
 {
+  "adjudicator_packages_carry_disputed_items_only": true,
   "agreement_rule": "stage1_and_stage2_must_each_meet_the_threshold_independently",
   "agreement_source": "raw_independent_pre_adjudication_judgements",
   "claim_id": "C10",
@@ -23,12 +24,16 @@
   "min_task_clarity": 3,
   "no_ai_or_proxy_review": true,
   "packet_version": "compact20-review-ready-v2",
+  "qualification_answers_stored_outside_git": true,
   "reject_synthetic_fixtures": true,
+  "require_adjudicator_packages": true,
   "require_full_pair_coverage": true,
   "require_separate_adjudicator": true,
   "require_stage1_adjudication": true,
   "require_stage2_adjudication": true,
   "require_stage2_gold_and_scorer_review": true,
+  "require_stage2_issuance_receipt": true,
+  "required_adjudicator_package_binding_schema": "cab_adjudicator_package_binding_v1",
   "required_prerequisites": [
     "retired_packet_registry_enforced",
     "retired_qualification_registry_enforced",
@@ -36,12 +41,19 @@
     "intervention_isolation_audit",
     "causal_route_validation",
     "hostile_route_audit",
-    "scientific_freeze_v2"
+    "scientific_freeze_v2",
+    "stage2_issuance_bound",
+    "adjudicator_packages_bound"
   ],
-  "required_reviewer_declaration_version": "cab_reviewer_declaration_v1",
+  "required_qualification_source_schema": "cab_qualification_source_v4",
+  "required_qualification_version": "cab_qualification_v4",
   "required_reviewer_assignment_registry_schema": "cab_reviewer_assignment_registry_v1",
-  "required_qualification_version": "cab_qualification_v3",
+  "required_reviewer_declaration_version": "cab_reviewer_declaration_v1",
+  "required_stage1_adjudicator_package_schema": "cab_stage1_adjudicator_package_v1",
+  "required_stage2_adjudicator_package_schema": "cab_stage2_adjudicator_package_v1",
+  "required_stage2_issuance_schema": "cab_stage2_issuance_receipt_v1",
   "retired_qualification_versions": [
+    "cab_qualification_v3",
     "cab_stage1_qualification_v2"
   ],
   "schema_version": "cab_c10_contract_v2",

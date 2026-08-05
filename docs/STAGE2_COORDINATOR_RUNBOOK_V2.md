@@ -18,7 +18,8 @@ refuses if any of them does not:
 
 - a valid Stage-1 commitment receipt exists;
 - both reviewers hold their own signed declarations;
-- both reviewers are qualified against their own private qualification package;
+- both reviewers are qualified against their own private qualification package,
+  on the active `cab_qualification_v4` version;
 - both Stage-1 submissions are complete and validated;
 - no unresolved malformed rows remain;
 - the reviewer assignment registry is unchanged since the Stage-1 commitment;
@@ -49,6 +50,26 @@ python scripts/cab_review_ready_v2.py generate-stage2-packages --output-dir "$HO
 - No Stage-2 plaintext is ever persisted next to the vault; the command reports
   any file it finds there.
 - Only hashes and counts are printed.
+
+### Issuance
+
+Generating the archives also seals one **issuance receipt** per reviewer. Each
+receipt binds the archive hash to that reviewer's pseudonym hash, canonical
+role, opaque-id namespace, declaration hash, qualification receipt hash, the
+Stage-1 commitment that authorised the release, the packet commitment, the
+scientific freeze hash, the exact commit and the issue time.
+
+Stage-2 ingestion requires the receipt and re-derives every binding from the
+workspace, so `ingest-stage2` takes `--package` and hashes the archive it is
+given. Each of the following fails closed rather than degrading to a warning: a
+modified archive, another reviewer's archive, an issuance receipt copied between
+reviewers, an issuance bound to a superseded Stage-1 commitment, a wrong
+opaque-id namespace, and a wrong packet, freeze or commit.
+
+The issuance hash is then carried into the Stage-2 submission receipt, the
+Stage-2 disagreement queue, both adjudicator packages, the final adjudicated
+records, C10, the reviewed-slice lock and the execution authorization, so an
+unissued Stage-2 submission cannot reach a pass by any route.
 
 ## What Stage 2 actually asks
 
@@ -84,9 +105,39 @@ contradicts the applicability map, or an applicability policy mismatch between
 the two reviewers.
 
 Adjudicator materials are generated **only after** the relevant queue exists,
-and contain only the disputed dimensions. Do not pre-generate a generic
-adjudicator package covering all items — that would expose the whole slice to a
-third person for no reason.
+and contain only the disputed items. Do not pre-generate a generic adjudicator
+package covering all items — that would expose the whole slice to a third person
+for no reason.
+
+```bash
+python scripts/cab_review_ready_v2.py generate-stage1-adjudicator-package --output-dir "$HOME/.cab/outbound/adjudication"
+python scripts/cab_review_ready_v2.py generate-stage2-adjudicator-package --output-dir "$HOME/.cab/outbound/adjudication"
+```
+
+A queue records *that* two reviewers disagreed; it does not carry enough of the
+item to settle the disagreement. These packages do.
+
+`stage1_adjudicator_package.zip` carries, per disputed item, the clean and
+intervention task context, the primitive evidence, the controlled difference
+with its intended changed factor, the claimed preserved invariants, the declared
+tool capabilities, both reviewers' values, confidence and notes, and a
+structured adjudication form. It withholds Stage-2 gold and scorer material
+exactly as a Stage-1 reviewer package does, and generation refuses outright if
+any Stage-2 key reaches it.
+
+`stage2_adjudicator_package.zip` carries the withheld material that is in
+dispute: the gold and policy, the accepted variants, the answer and scorer
+contracts, the route requirements, the applicability map, and the recovery,
+abstention or clarification policy where the item has one — alongside both
+reviewers' judgements and the same structured form. Policies the item genuinely
+lacks are named as absent rather than silently omitted.
+
+Each package is sealed to its packet commitment, stage, disagreement-queue hash,
+disputed item ids, adjudicator assignment, Stage-2 issuance hashes, freeze hash,
+exact commit and its own archive hash. Ingestion takes `--package`, hashes it,
+and refuses an adjudication submitted against a stale package — one built before
+the queue was rebuilt — or against any other package. Rebuilding a queue
+therefore means reissuing its package.
 
 Each decision requires `final_value`, `rationale`, `evidence_reference`,
 `confidence` and `exclude_item`, and binds both reviewer values, the
@@ -94,6 +145,10 @@ adjudicator's assignment hash and the queue hash. There are exactly two ways to
 resolve a disputed dimension: a final value that accepts under the frozen rule,
 or `exclude_item=YES`. An adjudicator cannot record a third outcome, so no
 unresolved `NO` or `UNSURE` can survive into C10.
+
+The adjudicator must be neither reviewer. The assignment registry refuses the
+overlap when the role is created, and ingestion re-checks it against the
+registry before it accepts a single decision.
 
 ## Final adjudicated records
 
@@ -113,11 +168,14 @@ does not hold: two distinct assigned reviewers and a separate adjudicator with
 no role overlap; a valid, untampered assignment registry; both signed
 declarations; both private qualification passes on the active (non-retired)
 qualification version; complete Stage-1 and Stage-2 submissions bound to the
-correct package hashes and item namespaces; full pair coverage; every Stage-1
-and Stage-2 dimension accepted in the final adjudicated records; every
-disagreement resolved; exclusions applied; Stage-1 and Stage-2 raw agreement
-each at or above threshold, per dimension and overall; and every authenticity
-binding present.
+correct package hashes and item namespaces; a sealed Stage-2 issuance receipt
+for each reviewer, matching that reviewer's submission and the current Stage-1
+commitment, and carried into the queue, the final records and the adjudications;
+every adjudicated stage decided against the adjudicator package that was
+actually issued for its queue; full pair coverage; every Stage-1 and Stage-2
+dimension accepted in the final adjudicated records; every disagreement
+resolved; exclusions applied; Stage-1 and Stage-2 raw agreement each at or above
+threshold, per dimension and overall; and every authenticity binding present.
 
 Agreement is computed from the two independent pre-adjudication submissions.
 Adjudicated values decide eligibility and never enter an agreement statistic —
@@ -136,10 +194,11 @@ Until genuine review happens, C10 is `C10_PENDING_GENUINE_REVIEW`. It is not
 The reviewed slice cannot be locked before C10 passes. The lock binds the packet
 commitment, the assignment registry digest, both declaration hashes, both
 qualification receipt hashes, both Stage-1 submission hashes, the Stage-1
-commitment, both Stage-2 submission hashes, both adjudication hashes, the final
-adjudicated records, the exclusion register, the C10 report, the scorer,
-endpoint, analysis-plan and system-identity hashes, the exact Git commit and the
-scientific freeze hash.
+commitment, both Stage-2 submission hashes, both Stage-2 issuance receipt
+hashes, both issued Stage-2 archive hashes, both adjudicator package hashes,
+both adjudication hashes, the final adjudicated records, the exclusion register,
+the C10 report, the scorer, endpoint, analysis-plan and system-identity hashes,
+the exact Git commit and the scientific freeze hash.
 
 Model execution cannot be authorized before the slice is locked, and is refused
 on a fixture C10, a manually edited or re-hashed C10, a stale C10, a C10 from

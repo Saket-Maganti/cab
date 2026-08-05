@@ -18,7 +18,7 @@
       "item_count": 5,
       "package": "qualification_reviewer_a",
       "passed": true,
-      "sha256": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1"
+      "sha256": "5a844155f7c67c1fbc77359b488270ffc1bc86730037624ff39b67e705856f55"
     },
     {
       "checks": {
@@ -37,7 +37,7 @@
       "item_count": 5,
       "package": "qualification_reviewer_b",
       "passed": true,
-      "sha256": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f"
+      "sha256": "98ba00fdf79f3c20c02cc04d7142d9dacf84d5a1a774c695ae531c76b3328a0f"
     },
     {
       "checks": {

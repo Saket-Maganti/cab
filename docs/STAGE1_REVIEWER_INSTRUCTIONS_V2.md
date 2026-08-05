@@ -83,9 +83,15 @@ you anything about the expected response, and you should not infer one.
 
 Before you are assigned a review package you complete a short calibration set.
 It is generated specifically for you: your items are not the other reviewer's
-items, and neither set exists anywhere in the public repository. One dimension
-per item decides the outcome and you are not told which one, so answer every
-dimension. The threshold is 80%.
+items, and neither set exists anywhere in the public repository. Qualification
+uses separate tasks, records, identifiers and item content from the final review
+set.
+
+Complete every requested field. Qualification scoring uses hidden predefined
+criteria and may weigh selected dimensions; you are not told which ones, so
+answer every column on its own merits rather than guessing at what is graded. A
+row that leaves a requested field blank is rejected before it is scored. The
+threshold is 80%.
 
 ## A second stage exists
 

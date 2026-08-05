@@ -64,11 +64,20 @@ exhaustion, and no general-purpose artifact reader exists in the scientific
 route. Stage-2 material is encrypted with a key that must live outside the
 repository.
 
+Reviewer qualification is private material rather than generated code.
+`qualification-source-schema` prints the shape an authored source must have;
+the coordinator authors it outside Git and `validate-qualification-source`
+checks it without printing any of it. A fresh clone has no source and the
+command refuses, which is the intended state: the answers are not in the
+repository to be found.
+
 ```bash
 export CAB_PACKET_SEED_PATH="$HOME/.cab/seeds/review_ready_v2.seed"
 export CAB_STAGE2_KEY_PATH="$HOME/.cab/keys/stage2_review_ready_v2.key"
 export CAB_QUALIFICATION_KEY_PATH="$HOME/.cab/keys/qualification_review_ready_v2.key"
 export CAB_COORDINATOR_KEY_PATH="$HOME/.cab/keys/coordinator_review_ready_v2.key"
+python3 scripts/cab_review_ready_v2.py qualification-source-schema
+python3 scripts/cab_review_ready_v2.py validate-qualification-source
 python3 scripts/cab_review_ready_v2.py validate-private-packet
 python3 scripts/cab_review_ready_v2.py coordinator-checklist
 python3 scripts/cab_review_ready_v2.py fixture-e2e
@@ -79,22 +88,30 @@ The reviewer workflow is provenance-bound end to end. Reviewer roles use one
 canonical enum (`REVIEWER_A`, `REVIEWER_B`, `ADJUDICATOR`); an immutable private
 registry binds each pseudonym to exactly one package hash and one opaque id
 namespace; every reviewer submits their own declaration, which ingestion parses
-and never fills in; qualification items and answers are generated from the
-private seed and encrypted, so no clone of this repository can pass
-qualification; Stage 2 requires substantive acceptance rather than a completed
-form, with `NO` and `UNSURE` both blocking; Stage 1 and Stage 2 have separate
-disagreement queues and separate adjudication; and C10 reads only the final
-adjudicated records while agreement is computed only from the raw independent
-submissions.
+and never fills in; qualification items and answers are authored outside Git and
+encrypted, so neither a clone of this repository nor a reviewer's own package
+reveals what any item is scored on; Stage 2 requires substantive acceptance
+rather than a completed form, with `NO` and `UNSURE` both blocking; every
+Stage-2 archive is issued under a coordinator-sealed receipt that ingestion
+re-derives and refuses to substitute; Stage 1 and Stage 2 have separate
+disagreement queues, separate adjudication, and separate evidence-bearing
+adjudicator packages covering the disputed items only; and C10 reads only the
+final adjudicated records while agreement is computed only from the raw
+independent submissions.
 
 Authenticity is not a mode flag. Production receipts are sealed under an
 external coordinator acceptance key and verified on every gate; fixture receipts
 are sealed under a deliberately public one and fail production verification on
 origin, schema and message-authentication code.
 
-Every earlier Compact packet, and the earlier qualification version
-`cab_stage1_qualification_v2`, are retired and rejected in code at ingestion,
-C10, slice lock and execution authorization. See the
+Every earlier Compact packet, and both earlier qualification versions
+(`cab_stage1_qualification_v2`, which published its answer key, and
+`cab_qualification_v3`, whose tracked generator let a reviewer look an answer up
+from the item), are retired and rejected in code at ingestion, C10, slice lock
+and execution authorization. The active qualification is `cab_qualification_v4`:
+tracked source carries the schema, the loader, package assembly, the vault
+cipher and the scorer, while item bodies, decisive dimensions, expected values
+and explanations exist only outside Git. See the
 [human review runbook](docs/HUMAN_REVIEW_READY_V2_RUNBOOK.md) and the
 [V2 scientific design](docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md).
 

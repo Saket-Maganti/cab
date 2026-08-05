@@ -32,7 +32,10 @@ from causal_agent_bench.review_ready_v2.evidence import (
     primitive_evidence_report,
     scan_answer_bearing,
 )
-from causal_agent_bench.review_ready_v2.fixture_e2e import run_fixture_e2e
+from causal_agent_bench.review_ready_v2.fixture_e2e import (
+    fixture_qualification_source,
+    run_fixture_e2e,
+)
 from causal_agent_bench.review_ready_v2.hostile import hostile_route_audit
 from causal_agent_bench.review_ready_v2.leakage import (
     _extract,
@@ -51,7 +54,7 @@ from causal_agent_bench.review_ready_v2.operators import (
 )
 from causal_agent_bench.review_ready_v2.pairs import PairGenerationError, build_all_pairs
 from causal_agent_bench.review_ready_v2.qualification import (
-    build_private_qualification,
+    build_qualification_package,
     score_qualification,
 )
 from causal_agent_bench.review_ready_v2.registry import (
@@ -96,6 +99,22 @@ from causal_agent_bench.review_ready_v2.workflow import (
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SEED = hashlib.sha256(b"cab-review-ready-v2-test-seed").digest()
+
+#: Qualification content is private, so tests exercise the transport and the
+#: scorer against the synthetic fixture source, never against the real one.
+QUALIFICATION_SOURCE = fixture_qualification_source()
+
+
+def qualification_package(role: str) -> dict:
+    return build_qualification_package(QUALIFICATION_SOURCE, role)
+
+
+def complete_qualification_row(**overrides: str) -> dict[str, str]:
+    """A row with every requested field filled, as the instructions demand."""
+
+    row = {name: (values[0] if values else "") for name, values, _ in REVIEW_DIMENSIONS}
+    row.update(overrides)
+    return row
 
 
 @pytest.fixture(scope="module")
@@ -477,7 +496,7 @@ def test_stage1_leakage_audit_passes(pairs: list[PairSpec]) -> None:
         packages[role] = payload
         mappings[role] = mapping
     for role in (REVIEWER_A, REVIEWER_B):
-        packages[f"qualification_{role.casefold()}"] = build_private_qualification(SEED, role)[
+        packages[f"qualification_{role.casefold()}"] = qualification_package(role)[
             "package_bytes"
         ]
     report = stage1_leakage_audit(packages, pairs, mappings)
@@ -507,7 +526,7 @@ def test_packages_are_path_safe_and_ship_no_source(pairs: list[PairSpec]) -> Non
         for role in ("stage1_reviewer_a", "stage1_reviewer_b")
     }
     for role in (REVIEWER_A, REVIEWER_B):
-        packages[f"qualification_{role.casefold()}"] = build_private_qualification(SEED, role)[
+        packages[f"qualification_{role.casefold()}"] = qualification_package(role)[
             "package_bytes"
         ]
     report = usability_audit(packages)
@@ -526,7 +545,7 @@ def test_packages_are_path_safe_and_ship_no_source(pairs: list[PairSpec]) -> Non
 
 
 def test_qualification_is_separate_from_the_review_set(pairs: list[PairSpec]) -> None:
-    package = build_private_qualification(SEED, REVIEWER_A)
+    package = qualification_package(REVIEWER_A)
     blob = json.dumps(
         [json.loads(body) for name, body in _extract(package["package_bytes"]).items()
          if name.startswith("items/")]
@@ -537,19 +556,22 @@ def test_qualification_is_separate_from_the_review_set(pairs: list[PairSpec]) ->
 
 
 def test_qualification_threshold_is_enforced() -> None:
-    package = build_private_qualification(SEED, REVIEWER_A)
-    key = package["answer_key"]
+    key = qualification_package(REVIEWER_A)["answer_key"]
     perfect = {
-        item_id: {str(entry["decisive_dimension"]): str(entry["expected_value"])}
+        item_id: complete_qualification_row(
+            **{str(entry["decisive_dimension"]): str(entry["expected_value"])}
+        )
         for item_id, entry in key.items()
     }
     assert score_qualification(perfect, key, reviewer_role=REVIEWER_A)["qualified"]
     wrong = {
-        item_id: {
-            str(entry["decisive_dimension"]): "no"
-            if str(entry["expected_value"]) == "yes"
-            else "yes"
-        }
+        item_id: complete_qualification_row(
+            **{
+                str(entry["decisive_dimension"]): "no"
+                if str(entry["expected_value"]) == "yes"
+                else "yes"
+            }
+        )
         for item_id, entry in key.items()
     }
     result = score_qualification(wrong, key, reviewer_role=REVIEWER_A)
@@ -558,10 +580,11 @@ def test_qualification_threshold_is_enforced() -> None:
 
 
 def test_qualification_package_ships_no_key() -> None:
-    files = _extract(build_private_qualification(SEED, REVIEWER_B)["package_bytes"])
+    files = _extract(qualification_package(REVIEWER_B)["package_bytes"])
     blob = b"".join(files.values()).lower()
     assert b"decisive_dimension" not in blob
     assert b"expected_value" not in blob
+    assert b"explanation" not in blob
     assert not any("key" in name.casefold() for name in files)
 
 

@@ -25,11 +25,18 @@ from causal_agent_bench.review_ready_v2.models import PairSpec
 from causal_agent_bench.review_ready_v2.operators import isolation_audit
 from causal_agent_bench.review_ready_v2.pairs import build_all_pairs
 from causal_agent_bench.review_ready_v2.qualification import (
+    QUALIFICATION_DIRNAME,
     QUALIFICATION_KEY_ENV,
+    QUALIFICATION_KEY_FILENAME,
     QUALIFICATION_SCHEMA_VERSION,
+    QUALIFICATION_SOURCE_ENV,
+    QUALIFICATION_SOURCE_SCHEMA_VERSION,
+    RETIRED_QUALIFICATION_DIRNAME,
     QualificationError,
-    build_private_qualification,
+    build_qualification_packages,
+    load_qualification_source,
     qualification_commitment,
+    qualification_source_path,
     seal_qualification_key,
 )
 from causal_agent_bench.review_ready_v2.roles import REVIEW_ROLES, package_basename
@@ -87,23 +94,53 @@ def stage2_record(pair: PairSpec) -> dict[str, Any]:
     }
 
 
+def retire_v3_qualification_directory(private_root: Path) -> str | None:
+    """Rename the retired V3 qualification directory out of the way.
+
+    Nothing is deleted.  The point is that a coordinator reaching for the old
+    path cannot distribute a package whose answers are reconstructible from
+    tracked source.
+    """
+
+    stale = private_root / "qualification"
+    if not stale.is_dir():
+        return None
+    retired = private_root / RETIRED_QUALIFICATION_DIRNAME
+    if retired.exists():
+        return str(retired.name)
+    stale.rename(retired)
+    marker = retired / "RETIRED.txt"
+    marker.write_text(
+        "cab_qualification_v3 is retired: its tracked generator carried the scenario table\n"
+        "and the defect-to-answer mapping, so a reviewer holding this package could look up\n"
+        "every expected value in public source. Do not distribute anything from this\n"
+        "directory. The active material is in "
+        f"{QUALIFICATION_DIRNAME}/.\n"
+    )
+    marker.chmod(0o600)
+    return str(retired.name)
+
+
 def write_qualification_packages(
     qualification_dir: Path,
     repo_root: Path,
     *,
-    seed: bytes | None = None,
+    source: dict[str, Any] | None = None,
     qualification: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Write both private qualification packages and the encrypted answer key.
 
-    Neither the instantiated items nor the answer key ever leaves this directory,
-    and the key is written only as ciphertext under ``CAB_QUALIFICATION_KEY_PATH``.
+    Neither the authored items nor the answer key ever leaves this directory, and
+    the key is written only as ciphertext under ``CAB_QUALIFICATION_KEY_PATH``.
     """
 
     if qualification is None:
-        if seed is None:
-            raise QualificationError("qualification generation needs the private packet seed")
-        qualification = {role: build_private_qualification(seed, role) for role in REVIEW_ROLES}
+        if source is None:
+            raise QualificationError(
+                "qualification generation needs the privately authored source; author it "
+                f"outside Git or set {QUALIFICATION_SOURCE_ENV}"
+            )
+        qualification = build_qualification_packages(source)
 
     qualification_dir.mkdir(parents=True, exist_ok=True)
     qualification_dir.chmod(0o700)
@@ -123,7 +160,7 @@ def write_qualification_packages(
     sealed_key = seal_qualification_key(
         {role: qualification[role]["answer_key"] for role in REVIEW_ROLES}, answer_key_key
     )
-    key_vault = qualification_dir / "qualification_key.enc"
+    key_vault = qualification_dir / QUALIFICATION_KEY_FILENAME
     key_vault.write_bytes(sealed_key)
     key_vault.chmod(0o600)
 
@@ -135,6 +172,7 @@ def write_qualification_packages(
 
     manifest = {
         "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "source_schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
         "packet_version": PACKET_VERSION,
         "packages": {
             role: {
@@ -144,9 +182,10 @@ def write_qualification_packages(
             }
             for role in REVIEW_ROLES
         },
-        "encrypted_key_path": "qualification_key.enc",
+        "encrypted_key_path": QUALIFICATION_KEY_FILENAME,
         "encrypted_key_sha256": sha256_bytes(sealed_key),
         "key_environment_variable": QUALIFICATION_KEY_ENV,
+        "source_environment_variable": QUALIFICATION_SOURCE_ENV,
         "plaintext_key_persisted": False,
         "commitment": qualification_commitment(
             package_hashes=hashes, encrypted_key_material_sha256=sha256_bytes(sealed_key)
@@ -179,9 +218,13 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
         raise ValueError("hostile route audit failed; refusing to write a packet")
 
     root = private_root or private_root_for(repo_root)
+    # Load the privately authored qualification material before anything is
+    # written, so a missing or invalid source fails before it can leave a
+    # half-generated packet behind.
+    source = load_qualification_source(qualification_source_path(root))
     coordinator = root / "coordinator"
     stage1_dir = root / "stage1"
-    qualification_dir = root / "qualification"
+    qualification_dir = root / QUALIFICATION_DIRNAME
     stage2_dir = root / "stage2"
     mappings_dir = root / "mappings"
     for directory in (coordinator, stage1_dir, qualification_dir, stage2_dir, mappings_dir):
@@ -202,12 +245,10 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
         write_json(mappings_dir / f"{basename}_mapping.json", {"reviewer_item_to_pair": mapping})
         (mappings_dir / f"{basename}_mapping.json").chmod(0o600)
 
-    # Qualification is generated per reviewer from the private seed.  Neither the
-    # instantiated items nor the answer key exists in tracked source, and the key
-    # is written only as ciphertext under an external key.
-    qualification: dict[str, dict[str, Any]] = {
-        role: build_private_qualification(seed, role) for role in REVIEW_ROLES
-    }
+    # Qualification is assembled per reviewer from privately authored material.
+    # Neither the item bodies nor the answers exist in tracked source, and the
+    # key is written only as ciphertext under an external key.
+    qualification: dict[str, dict[str, Any]] = build_qualification_packages(source)
     audited = {
         **packages,
         **{
@@ -225,6 +266,7 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
     qualification_manifest = write_qualification_packages(
         qualification_dir, repo_root, qualification=qualification
     )
+    retired_qualification_dir = retire_v3_qualification_directory(root)
     qualification_hashes = {
         role: str(row["sha256"]) for role, row in qualification_manifest["packages"].items()
     }
@@ -267,8 +309,11 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
         "qualification_commitment": qual_commitment,
         "qualification_package_hashes": qualification_hashes,
         "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "qualification_source_schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
         "qualification_key_environment_variable": QUALIFICATION_KEY_ENV,
+        "qualification_source_environment_variable": QUALIFICATION_SOURCE_ENV,
         "qualification_items_published": False,
+        "qualification_item_generation_templates_published": False,
         "qualification_reference_judgements_published": False,
         "stage2_vault_sha256": vault["vault_sha256"],
         "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
@@ -301,9 +346,11 @@ def build_packet(repo_root: Path, seed: bytes, *, private_root: Path | None = No
         "key_path_is_external": str(key_path.resolve()).startswith(str(repo_root.resolve())) is False,
         "qualification": {
             "version": QUALIFICATION_SCHEMA_VERSION,
+            "source_schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
             "package_hashes": qualification_hashes,
             "encrypted_key_sha256": qualification_manifest["encrypted_key_sha256"],
             "plaintext_key_persisted": False,
+            "retired_directory_renamed_to": retired_qualification_dir,
         },
     }
     return {"commitment": commitment, "reports": reports, "private_root": str(root)}
@@ -322,6 +369,7 @@ __all__ = [
     "build_packet",
     "load_pairs",
     "private_root_for",
+    "retire_v3_qualification_directory",
     "stage2_record",
     "write_qualification_packages",
 ]

@@ -11,7 +11,23 @@ from pathlib import Path
 from typing import Any
 
 from causal_agent_bench.review_ready_v2 import PACKET_VERSION
+from causal_agent_bench.review_ready_v2.adjudication_packages import (
+    BINDING_SCHEMA_VERSION,
+    STAGE1_PACKAGE_SCHEMA_VERSION,
+    STAGE2_PACKAGE_SCHEMA_VERSION,
+)
 from causal_agent_bench.review_ready_v2.common import read_json
+from causal_agent_bench.review_ready_v2.qualification import (
+    QUALIFICATION_DIRNAME,
+    QUALIFICATION_KEY_FILENAME,
+    QUALIFICATION_SCHEMA_VERSION,
+    QUALIFICATION_SOURCE_ENV,
+    QUALIFICATION_SOURCE_FILENAME,
+    QUALIFICATION_SOURCE_SCHEMA_VERSION,
+    RETIRED_QUALIFICATION_DIRNAME,
+    RETIRED_QUALIFICATION_VERSIONS,
+)
+from causal_agent_bench.review_ready_v2.stage2_issuance import STAGE2_ISSUANCE_SCHEMA_VERSION
 
 RETIREMENT_STATUS = "EXPOSED_OR_INVALID_DEVELOPMENT_FIXTURE_NOT_ELIGIBLE_FOR_GENUINE_REVIEW"
 REGISTRY_SCHEMA = "cab_review_ready_v2_retired_packet_registry_v1"
@@ -181,10 +197,16 @@ def active_path_registry(repo_root: Path) -> dict[str, Any]:
             f"{private_root}/stage1/stage1_reviewer_b.zip",
         ],
         "active_qualification_package_paths": [
-            f"{private_root}/qualification/qualification_reviewer_a.zip",
-            f"{private_root}/qualification/qualification_reviewer_b.zip",
+            f"{private_root}/{QUALIFICATION_DIRNAME}/qualification_reviewer_a.zip",
+            f"{private_root}/{QUALIFICATION_DIRNAME}/qualification_reviewer_b.zip",
         ],
-        "active_qualification_key_path": f"{private_root}/qualification/qualification_key.enc",
+        "active_qualification_key_path": (
+            f"{private_root}/{QUALIFICATION_DIRNAME}/{QUALIFICATION_KEY_FILENAME}"
+        ),
+        "active_qualification_source_path": (
+            f"{private_root}/{QUALIFICATION_DIRNAME}/{QUALIFICATION_SOURCE_FILENAME}"
+        ),
+        "retired_qualification_directory": f"{private_root}/{RETIRED_QUALIFICATION_DIRNAME}",
         "active_reviewer_assignment_registry": f"{private_root}/coordinator/reviewer_assignments.json",
         "active_stage2_vault_path": f"{private_root}/stage2/stage2_vault.enc",
         "external_key_environment_variables": [
@@ -193,13 +215,19 @@ def active_path_registry(repo_root: Path) -> dict[str, Any]:
             "CAB_COORDINATOR_KEY_PATH",
             "CAB_PACKET_SEED_PATH",
         ],
+        "private_material_environment_variables": [QUALIFICATION_SOURCE_ENV],
         "external_key_environment_variable": "CAB_STAGE2_KEY_PATH",
         "canonical_reviewer_roles": ["REVIEWER_A", "REVIEWER_B", "ADJUDICATOR"],
         "active_review_schema": "cab_stage1_pair_review_v2",
         "active_review_form_schema": "cab_stage1_review_form_v2",
         "active_stage2_form_schema": "cab_stage2_review_form_v2",
-        "active_qualification_version": "cab_qualification_v3",
-        "retired_qualification_versions": ["cab_stage1_qualification_v2"],
+        "active_stage2_issuance_schema": STAGE2_ISSUANCE_SCHEMA_VERSION,
+        "active_stage1_adjudicator_package_schema": STAGE1_PACKAGE_SCHEMA_VERSION,
+        "active_stage2_adjudicator_package_schema": STAGE2_PACKAGE_SCHEMA_VERSION,
+        "active_adjudicator_package_binding_schema": BINDING_SCHEMA_VERSION,
+        "active_qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "active_qualification_source_schema": QUALIFICATION_SOURCE_SCHEMA_VERSION,
+        "retired_qualification_versions": sorted(RETIRED_QUALIFICATION_VERSIONS),
         "active_stage2_acceptance_policy": (
             "configs/reviewer_ready_v2/stage2_acceptance_policy_v1.json"
         ),
@@ -216,6 +244,8 @@ def active_path_registry(repo_root: Path) -> dict[str, Any]:
         "canonical_scientific_design": "docs/COMPACT20_V2_SCIENTIFIC_DESIGN.md",
         "canonical_security_policy": "docs/PRIVATE_PACKET_SECURITY_POLICY.md",
         "canonical_cli_commands": [
+            "qualification-source-schema",
+            "validate-qualification-source",
             "create-reviewer-assignment",
             "generate-private-qualification-packages",
             "ingest-reviewer-declaration",
@@ -227,7 +257,9 @@ def active_path_registry(repo_root: Path) -> dict[str, Any]:
             "generate-stage2-packages",
             "ingest-stage2",
             "build-stage1-disagreements",
+            "generate-stage1-adjudicator-package",
             "build-stage2-disagreements",
+            "generate-stage2-adjudicator-package",
             "ingest-stage1-adjudication",
             "ingest-stage2-adjudication",
             "build-final-adjudicated-records",
@@ -242,6 +274,7 @@ def active_path_registry(repo_root: Path) -> dict[str, Any]:
             "private_data/final_hostile_pre_run/compact20-final-private-v1": "RETIRED",
             "data/manifests/compact20_final_private_commitment.json": "RETIRED_COMMITMENT_RECORD",
             "reports/final_hostile_pre_run/SCIENTIFIC_FREEZE_MANIFEST.json": "SUPERSEDED_BY_FREEZE_V2",
+            f"{private_root}/qualification": "RETIRED_QUALIFICATION_V3_DO_NOT_DISTRIBUTE",
         },
         "repository_root_relative": True,
         "repo_root_checked": str(repo_root.name),

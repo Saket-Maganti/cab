@@ -21,15 +21,35 @@ from pathlib import Path
 from typing import Any
 
 from causal_agent_bench.review_ready_v2 import PACKET_VERSION
-from causal_agent_bench.review_ready_v2.adjudication import STAGE1, STAGE2, adjudication_package
+from causal_agent_bench.review_ready_v2.adjudication import STAGE1, STAGE2
+from causal_agent_bench.review_ready_v2.adjudication_packages import (
+    BINDING_FIELDS,
+    BINDING_SCHEMA_VERSION,
+    PACKAGE_FILENAMES,
+    STAGE1_PACKAGE_SCHEMA_VERSION,
+    STAGE2_CONDITIONAL_EVIDENCE,
+    STAGE2_ONLY_KEYS,
+    STAGE2_PACKAGE_SCHEMA_VERSION,
+    STAGE2_REQUIRED_EVIDENCE,
+    build_stage1_adjudicator_package,
+    build_stage2_adjudicator_package,
+    disputed_pair_ids,
+    package_binding,
+)
 from causal_agent_bench.review_ready_v2.assignments import (
     AssignmentError,
+    assignment_for_role,
     create_assignment,
     load_assignments,
     public_assignment_summary,
     verify_registry_complete,
 )
-from causal_agent_bench.review_ready_v2.common import read_json, sha256_bytes, write_json
+from causal_agent_bench.review_ready_v2.common import (
+    read_json,
+    sha256_bytes,
+    sha256_json,
+    write_json,
+)
 from causal_agent_bench.review_ready_v2.declarations import DeclarationError
 from causal_agent_bench.review_ready_v2.design import design_audit
 from causal_agent_bench.review_ready_v2.fixture_e2e import run_fixture_e2e
@@ -49,15 +69,23 @@ from causal_agent_bench.review_ready_v2.packet import (
     build_packet,
     load_pairs,
     private_root_for,
+    retire_v3_qualification_directory,
     write_qualification_packages,
 )
 from causal_agent_bench.review_ready_v2.power import build_power_plan
 from causal_agent_bench.review_ready_v2.qualification import (
+    QUALIFICATION_DIRNAME,
     QUALIFICATION_KEY_ENV,
+    QUALIFICATION_KEY_FILENAME,
     QUALIFICATION_SCHEMA_VERSION,
+    QUALIFICATION_SOURCE_ENV,
     QualificationError,
     load_qualification_keys,
+    load_qualification_source,
+    qualification_source_path,
+    qualification_source_schema,
     retired_qualification_registry,
+    validate_qualification_source,
 )
 from causal_agent_bench.review_ready_v2.receipts import (
     COORDINATOR_KEY_ENV,
@@ -80,6 +108,7 @@ from causal_agent_bench.review_ready_v2.report import (
     readiness_markdown,
 )
 from causal_agent_bench.review_ready_v2.roles import (
+    ADJUDICATOR,
     CANONICAL_ROLES,
     REVIEW_ROLES,
     RoleError,
@@ -87,12 +116,13 @@ from causal_agent_bench.review_ready_v2.roles import (
     package_basename,
 )
 from causal_agent_bench.review_ready_v2.routes import validate_pair_routes
-from causal_agent_bench.review_ready_v2.stage1 import build_stage1_package, zip_bytes
+from causal_agent_bench.review_ready_v2.stage1 import build_stage1_package, stage1_item, zip_bytes
 from causal_agent_bench.review_ready_v2.stage2 import (
     STAGE2_REVIEWER_INSTRUCTIONS,
     acceptance_policy,
     stage2_form_template,
 )
+from causal_agent_bench.review_ready_v2.stage2_issuance import issuance_schema
 from causal_agent_bench.review_ready_v2.vault import (
     KEY_ENV,
     VaultError,
@@ -181,10 +211,35 @@ def _applicability_by_pair(repo_root: Path, private_root: Path) -> dict[str, dic
     }
 
 
+def _qualification_dir(private_root: Path) -> Path:
+    return private_root / QUALIFICATION_DIRNAME
+
+
+def _qualification_package_path(private_root: Path, role: str) -> Path:
+    return _qualification_dir(private_root) / f"qualification_{role.casefold()}.zip"
+
+
 def _qualification_keys(repo_root: Path, private_root: Path) -> dict[str, Any]:
     return load_qualification_keys(
-        private_root / "qualification" / "qualification_key.enc", repo_root
+        _qualification_dir(private_root) / QUALIFICATION_KEY_FILENAME, repo_root
     )
+
+
+def _outside_repo(repo_root: Path, raw: str, label: str) -> Path:
+    output = Path(raw).expanduser()
+    if str(output.resolve()).startswith(str(repo_root.resolve())):
+        raise SystemExit(f"{label} must be written outside the repository root")
+    output.mkdir(parents=True, exist_ok=True)
+    output.chmod(0o700)
+    return output
+
+
+def _frozen_identity(repo_root: Path) -> tuple[str, str, str]:
+    """``(packet_commitment, freeze_hash, exact_commit)`` for provenance binding."""
+
+    commitment = read_json(repo_root / REPORT_DIR / "PUBLIC_PACKET_COMMITMENT.json")
+    freeze = read_json(repo_root / REPORT_DIR / "SCIENTIFIC_FREEZE_V2.json")
+    return commitment["commitment_sha256"], freeze["freeze_sha256"], current_head(repo_root)
 
 
 # --------------------------------------------------------------------------
@@ -252,21 +307,43 @@ def cmd_generate_stage1_packages(repo_root: Path, args: argparse.Namespace) -> d
 def cmd_generate_private_qualification_packages(
     repo_root: Path, args: argparse.Namespace
 ) -> dict[str, Any]:
-    seed = _seed(repo_root, args.seed)
     private_root = _private_root(repo_root, args)
+    source = load_qualification_source(qualification_source_path(private_root))
     manifest = write_qualification_packages(
-        private_root / "qualification", repo_root, seed=seed
+        _qualification_dir(private_root), repo_root, source=source
     )
+    retired = retire_v3_qualification_directory(private_root)
     return {
         "status": "CAB_PRIVATE_QUALIFICATION_PACKAGES_READY",
         "qualification_version": manifest["qualification_version"],
+        "source_schema_version": manifest["source_schema_version"],
         "qualification_package_hashes": {
             role: row["sha256"] for role, row in manifest["packages"].items()
         },
         "encrypted_key_sha256": manifest["encrypted_key_sha256"],
         "answer_key_environment_variable": QUALIFICATION_KEY_ENV,
+        "source_environment_variable": QUALIFICATION_SOURCE_ENV,
         "plaintext_answer_key_persisted": False,
+        "retired_directory_renamed_to": retired,
     }
+
+
+def cmd_validate_qualification_source(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    """Check privately authored qualification material without disclosing any of it."""
+
+    private_root = _private_root(repo_root, args)
+    path = qualification_source_path(private_root)
+    source = load_qualification_source(path)
+    return {
+        "status": "CAB_QUALIFICATION_SOURCE_VALID",
+        "source_is_git_ignored": "private_data" in path.parts
+        or not str(path.resolve()).startswith(str(repo_root.resolve())),
+        **validate_qualification_source(source),
+    }
+
+
+def cmd_qualification_source_schema(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    return qualification_source_schema()
 
 
 def cmd_validate_stage1_packages(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
@@ -278,7 +355,7 @@ def cmd_validate_stage1_packages(repo_root: Path, args: argparse.Namespace) -> d
         path = private_root / "stage1" / f"{basename}.zip"
         if path.is_file():
             packages[basename] = path.read_bytes()
-        qualification = private_root / "qualification" / f"qualification_{role.casefold()}.zip"
+        qualification = _qualification_package_path(private_root, role)
         if qualification.is_file():
             packages[f"qualification_{role.casefold()}"] = qualification.read_bytes()
     leakage = stage1_leakage_audit(packages, pairs, _mappings_by_basename(private_root))
@@ -308,9 +385,7 @@ def cmd_create_reviewer_assignment(repo_root: Path, args: argparse.Namespace) ->
     stage1_hash = qualification_hash = None
     if role in REVIEW_ROLES:
         stage1_path = private_root / "stage1" / f"{package_basename(role)}.zip"
-        qualification_path = (
-            private_root / "qualification" / f"qualification_{role.casefold()}.zip"
-        )
+        qualification_path = _qualification_package_path(private_root, role)
         for label, path in (("Stage-1", stage1_path), ("qualification", qualification_path)):
             if not path.is_file():
                 raise SystemExit(
@@ -465,11 +540,8 @@ def cmd_generate_stage2_packages(repo_root: Path, args: argparse.Namespace) -> d
     workspace = _workspace(repo_root, args)
     workspace.read("stage2_unlock")
     private_root = workspace.private_root
-    output = Path(args.output_dir).expanduser()
-    if str(output.resolve()).startswith(str(repo_root.resolve())):
-        raise SystemExit("Stage-2 packages must be written outside the repository root")
-    output.mkdir(parents=True, exist_ok=True)
-    output.chmod(0o700)
+    packet_commitment, freeze_sha256, exact_commit = _frozen_identity(repo_root)
+    output = _outside_repo(repo_root, args.output_dir, "Stage-2 packages")
     hashes: dict[str, str] = {}
     with unlocked_workspace(prefix="cab-stage2-build-") as scratch:
         by_pair = _stage2_records(repo_root, private_root)
@@ -500,14 +572,28 @@ def cmd_generate_stage2_packages(repo_root: Path, args: argparse.Namespace) -> d
             target.chmod(0o600)
             hashes[role] = sha256_bytes(payload)
         leftover = sorted(path.name for path in scratch.rglob("*") if path.is_file())
+    # Issuance is what makes the hash mean something: nothing downstream accepts a
+    # Stage-2 submission that is not backed by one of these sealed receipts.
+    issuance: dict[str, str] = {}
+    for role in REVIEW_ROLES:
+        receipt = workspace.issue_stage2_package(
+            role,
+            package_sha256=hashes[role],
+            packet_commitment=packet_commitment,
+            scientific_freeze_sha256=freeze_sha256,
+            exact_commit=exact_commit,
+        )
+        issuance[role] = receipt["receipt_sha256"]
     remaining = sorted(
         path.name
         for path in (private_root / "stage2").iterdir()
         if path.is_file() and path.suffix != ".enc"
     )
     return {
-        "status": "CAB_STAGE2_PACKAGES_GENERATED",
+        "status": "CAB_STAGE2_PACKAGES_ISSUED",
         "package_hashes": hashes,
+        "issuance_receipt_hashes": issuance,
+        "issuance_schema_version": issuance_schema()["issuance_receipt_version"],
         "scratch_files_left_behind": leftover,
         "plaintext_beside_vault": remaining,
         "written_outside_repository": True,
@@ -516,21 +602,32 @@ def cmd_generate_stage2_packages(repo_root: Path, args: argparse.Namespace) -> d
 
 def cmd_ingest_stage2(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     role = _role(args)
-    _require(args, "submission")
+    _require(args, "submission", "package")
     workspace = _workspace(repo_root, args)
     private_root = workspace.private_root
     mapping = _mappings(private_root)[role]
     by_pair = _applicability_by_pair(repo_root, private_root)
+    packet_commitment, freeze_sha256, exact_commit = _frozen_identity(repo_root)
+    package = Path(args.package).expanduser()
+    if not package.is_file():
+        raise SystemExit(
+            "--package must point at the exact Stage-2 archive this reviewer was issued"
+        )
     receipt = workspace.ingest_stage2(
         role,
         Path(args.submission).read_bytes(),
         expected_item_ids=sorted(mapping),
         applicability={item_id: by_pair[pair_id] for item_id, pair_id in mapping.items()},
+        package_sha256=sha256_bytes(package.read_bytes()),
+        packet_commitment=packet_commitment,
+        scientific_freeze_sha256=freeze_sha256,
+        exact_commit=exact_commit,
     )
     return {
         "status": "STAGE2_SUBMISSION_RECORDED",
         "reviewer_role": role,
         "submission_sha256": receipt["submission_sha256"],
+        "stage2_issuance_sha256": receipt["stage2_issuance_sha256"],
         "form_complete": receipt["form_complete"],
         "blocking_value_count": receipt["blocking_value_count"],
         "form_completion_is_not_approval": True,
@@ -545,12 +642,12 @@ def cmd_ingest_stage2(repo_root: Path, args: argparse.Namespace) -> dict[str, An
 def cmd_build_stage1_disagreements(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     workspace = _workspace(repo_root, args)
     receipt = workspace.build_stage1_disagreements(mappings=_mappings(workspace.private_root))
-    _write_adjudication_package(repo_root, args, receipt, STAGE1)
     return {
         "status": "CAB_STAGE1_DISAGREEMENT_QUEUE_BUILT",
         "pair_count": receipt["pair_count"],
         "disputed_pair_count": receipt["disputed_pair_count"],
         "disputed_dimension_count": receipt["disputed_dimension_count"],
+        "next_step": "generate-stage1-adjudicator-package --output-dir <outside-repo>",
     }
 
 
@@ -560,42 +657,136 @@ def cmd_build_stage2_disagreements(repo_root: Path, args: argparse.Namespace) ->
         mappings=_mappings(workspace.private_root),
         applicability=_applicability_by_pair(repo_root, workspace.private_root),
     )
-    _write_adjudication_package(repo_root, args, receipt, STAGE2)
     return {
         "status": "CAB_STAGE2_DISAGREEMENT_QUEUE_BUILT",
         "pair_count": receipt["pair_count"],
         "disputed_pair_count": receipt["disputed_pair_count"],
         "disputed_dimension_count": receipt["disputed_dimension_count"],
+        "next_step": "generate-stage2-adjudicator-package --output-dir <outside-repo>",
     }
 
 
-def _write_adjudication_package(
-    repo_root: Path, args: argparse.Namespace, queue: dict[str, Any], stage: str
-) -> None:
-    if not getattr(args, "output_dir", None):
-        return
-    output = Path(args.output_dir).expanduser()
-    if str(output.resolve()).startswith(str(repo_root.resolve())):
-        raise SystemExit("adjudication packages must be written outside the repository root")
-    output.mkdir(parents=True, exist_ok=True)
-    output.chmod(0o700)
-    target = output / f"{stage}_adjudication_package.json"
-    write_json(target, adjudication_package(queue))
+def _adjudicator_binding(
+    repo_root: Path, workspace: ReviewWorkspace, *, stage: str, queue: dict[str, Any]
+) -> dict[str, Any]:
+    packet_commitment, freeze_sha256, exact_commit = _frozen_identity(repo_root)
+    adjudicator = assignment_for_role(workspace.assignments(), ADJUDICATOR)
+    reviewers = {
+        str(assignment_for_role(workspace.assignments(), role)["reviewer_pseudonym"])
+        for role in REVIEW_ROLES
+    }
+    if str(adjudicator["reviewer_pseudonym"]) in reviewers:
+        raise SystemExit("the adjudicator must be independent of both reviewers")
+    return package_binding(
+        stage=stage,
+        queue=queue,
+        private_packet_commitment=packet_commitment,
+        adjudicator_assignment_sha256=adjudicator["assignment_sha256"],
+        adjudicator_pseudonym_sha256=sha256_json(adjudicator["reviewer_pseudonym"]),
+        scientific_freeze_sha256=freeze_sha256,
+        exact_commit=exact_commit,
+        stage2_issuance_hashes=workspace._stage2_issuance_hashes(),
+    )
+
+
+def _write_adjudicator_package(
+    repo_root: Path, args: argparse.Namespace, package: dict[str, Any]
+) -> Path:
+    output = _outside_repo(repo_root, args.output_dir, "adjudicator packages")
+    target = output / package["filename"]
+    target.write_bytes(package["package_bytes"])
     target.chmod(0o600)
+    return target
+
+
+def cmd_generate_stage1_adjudicator_package(
+    repo_root: Path, args: argparse.Namespace
+) -> dict[str, Any]:
+    _require(args, "output_dir")
+    workspace = _workspace(repo_root, args)
+    private_root = workspace.private_root
+    queue = workspace.read("stage1_disagreement_queue")
+    mappings = _mappings(private_root)
+    pairs = {pair.pair_id: pair for pair in load_pairs(private_root)}
+    disputed = disputed_pair_ids(queue)
+    views = {
+        pair_id: stage1_item(pairs[pair_id], f"ADJ-{pair_id}")
+        for pair_id in disputed
+        if pair_id in pairs
+    }
+    package = build_stage1_adjudicator_package(
+        queue=queue,
+        stage1_views=views,
+        paired_rows=workspace._paired(mappings, STAGE1),
+        binding=_adjudicator_binding(repo_root, workspace, stage=STAGE1, queue=queue),
+    )
+    target = _write_adjudicator_package(repo_root, args, package)
+    receipt = workspace.record_adjudicator_package(stage=STAGE1, package=package)
+    return {
+        "status": "CAB_STAGE1_ADJUDICATOR_PACKAGE_ISSUED",
+        "package_filename": target.name,
+        "package_sha256": package["package_sha256"],
+        "disputed_item_count": len(package["disputed_pair_ids"]),
+        "receipt_sha256": receipt["receipt_sha256"],
+        "stage2_material_included": False,
+        "written_outside_repository": True,
+    }
+
+
+def cmd_generate_stage2_adjudicator_package(
+    repo_root: Path, args: argparse.Namespace
+) -> dict[str, Any]:
+    _require(args, "output_dir")
+    workspace = _workspace(repo_root, args)
+    private_root = workspace.private_root
+    queue = workspace.read("stage2_disagreement_queue")
+    mappings = _mappings(private_root)
+    records = _stage2_records(repo_root, private_root)
+    applicability = _applicability_by_pair(repo_root, private_root)
+    disputed = set(disputed_pair_ids(queue))
+    package = build_stage2_adjudicator_package(
+        queue=queue,
+        stage2_records={
+            pair_id: record for pair_id, record in records.items() if pair_id in disputed
+        },
+        applicability={
+            pair_id: row for pair_id, row in applicability.items() if pair_id in disputed
+        },
+        paired_rows=workspace._paired(mappings, STAGE2),
+        binding=_adjudicator_binding(repo_root, workspace, stage=STAGE2, queue=queue),
+    )
+    target = _write_adjudicator_package(repo_root, args, package)
+    receipt = workspace.record_adjudicator_package(stage=STAGE2, package=package)
+    return {
+        "status": "CAB_STAGE2_ADJUDICATOR_PACKAGE_ISSUED",
+        "package_filename": target.name,
+        "package_sha256": package["package_sha256"],
+        "disputed_item_count": len(package["disputed_pair_ids"]),
+        "receipt_sha256": receipt["receipt_sha256"],
+        "non_disputed_items_included": False,
+        "written_outside_repository": True,
+    }
 
 
 def _ingest_adjudication(repo_root: Path, args: argparse.Namespace, stage: str) -> dict[str, Any]:
-    _require(args, "pseudonym", "decisions")
+    _require(args, "pseudonym", "decisions", "package")
     workspace = _workspace(repo_root, args)
+    package = Path(args.package).expanduser()
+    if not package.is_file():
+        raise SystemExit(
+            f"--package must point at the exact {PACKAGE_FILENAMES[stage]} the adjudicator was issued"
+        )
     receipt = workspace.ingest_adjudication(
         stage=stage,
         adjudicator_pseudonym=args.pseudonym,
         decisions=json.loads(Path(args.decisions).read_text()),
+        package_sha256=sha256_bytes(package.read_bytes()),
     )
     return {
         "status": f"CAB_{stage.upper()}_ADJUDICATION_RECORDED",
         "decision_count": receipt["decision_count"],
         "excluded_pair_count": len(receipt["excluded_pair_ids"]),
+        "adjudicator_package_sha256": receipt["adjudicator_package_sha256"],
         "all_disputes_resolved": receipt["all_disputes_resolved"],
     }
 
@@ -664,6 +855,18 @@ def cmd_run_c10(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
             "retired_packet_registry_enforced": retirement_enforcement_report()["passed"],
             "retired_qualification_registry_enforced": bool(
                 retired_qualification_registry()["retired_versions"]
+            ),
+            "qualification_version_matches_contract": contract["required_qualification_version"]
+            == QUALIFICATION_SCHEMA_VERSION,
+            "stage2_issuance_schema_matches_contract": contract["required_stage2_issuance_schema"]
+            == issuance_schema()["issuance_receipt_version"],
+            "adjudicator_package_schemas_match_contract": (
+                contract["required_stage1_adjudicator_package_schema"]
+                == STAGE1_PACKAGE_SCHEMA_VERSION
+                and contract["required_stage2_adjudicator_package_schema"]
+                == STAGE2_PACKAGE_SCHEMA_VERSION
+                and contract["required_adjudicator_package_binding_schema"]
+                == BINDING_SCHEMA_VERSION
             ),
             "scientific_freeze_v2": verify_freeze(repo_root)["passed"],
         },
@@ -771,7 +974,15 @@ def cmd_coordinator_checklist(repo_root: Path, args: argparse.Namespace) -> dict
             QUALIFICATION_KEY_ENV: "qualification answer key",
             COORDINATOR_KEY_ENV: "coordinator acceptance key that seals production receipts",
         },
+        "private_material_authored_outside_git": {
+            QUALIFICATION_SOURCE_ENV: (
+                "privately authored qualification items and answers; see "
+                "qualification-source-schema"
+            ),
+        },
         "ordered_steps": [
+            "qualification-source-schema  # then author the source outside Git",
+            "validate-qualification-source",
             "generate-private-packet",
             "validate-private-packet",
             "generate-stage1-packages",
@@ -788,11 +999,13 @@ def cmd_coordinator_checklist(repo_root: Path, args: argparse.Namespace) -> dict
             "commit-stage1",
             "unlock-stage2",
             "generate-stage2-packages --output-dir <outside-repo>",
-            "ingest-stage2 --role <role> --submission <file>",
-            "build-stage1-disagreements --output-dir <outside-repo>",
-            "build-stage2-disagreements --output-dir <outside-repo>",
-            "ingest-stage1-adjudication --pseudonym <pseudonym> --decisions <file>",
-            "ingest-stage2-adjudication --pseudonym <pseudonym> --decisions <file>",
+            "ingest-stage2 --role <role> --submission <file> --package <issued-stage2-zip>",
+            "build-stage1-disagreements",
+            "generate-stage1-adjudicator-package --output-dir <outside-repo>",
+            "build-stage2-disagreements",
+            "generate-stage2-adjudicator-package --output-dir <outside-repo>",
+            "ingest-stage1-adjudication --pseudonym <pseudonym> --decisions <file> --package <zip>",
+            "ingest-stage2-adjudication --pseudonym <pseudonym> --decisions <file> --package <zip>",
             "build-final-adjudicated-records",
             "compute-agreement",
             "run-c10",
@@ -805,6 +1018,18 @@ def cmd_coordinator_checklist(repo_root: Path, args: argparse.Namespace) -> dict
             "accept-reviewer-declaration is required only when a reviewer disclosed a conflict.",
             "Stage-2 material must never be sent before commit-stage1 and unlock-stage2 succeed.",
             "A complete Stage-2 form is not an approval; adjudicate every NO and every UNSURE.",
+            (
+                "Every Stage-2 submission must be ingested against the exact archive that was "
+                "issued to that reviewer; a modified or swapped archive is refused."
+            ),
+            (
+                "Rebuild a disagreement queue and the matching adjudicator package must be "
+                "reissued; an adjudication against the stale package is refused."
+            ),
+            (
+                "The qualification source is private material. Author it outside Git, never "
+                "commit it, and never quote an item or an expected value in a report."
+            ),
             "No genuine review has occurred. C10 has not passed. Model execution is blocked.",
         ],
     }
@@ -852,6 +1077,31 @@ def cmd_verify_provenance(repo_root: Path, args: argparse.Namespace) -> dict[str
     }
 
 
+def _distribution_schemas() -> dict[str, Any]:
+    """The reviewer-distribution contracts, published as shape without content."""
+
+    return {
+        "schema_version": "cab_reviewer_distribution_schemas_v1",
+        "status": "CAB_REVIEWER_DISTRIBUTION_SCHEMAS_PUBLISHED",
+        "qualification_source": qualification_source_schema(),
+        "stage2_issuance": issuance_schema(),
+        "adjudicator_packages": {
+            "schema_version": "cab_adjudicator_package_schema_v1",
+            "stage1_package_schema_version": STAGE1_PACKAGE_SCHEMA_VERSION,
+            "stage2_package_schema_version": STAGE2_PACKAGE_SCHEMA_VERSION,
+            "binding_schema_version": BINDING_SCHEMA_VERSION,
+            "binding_fields": list(BINDING_FIELDS),
+            "package_filenames": dict(PACKAGE_FILENAMES),
+            "stage1_withholds_stage2_material": sorted(STAGE2_ONLY_KEYS),
+            "stage2_required_evidence": list(STAGE2_REQUIRED_EVIDENCE),
+            "stage2_conditional_evidence": list(STAGE2_CONDITIONAL_EVIDENCE),
+            "disputed_items_only": True,
+            "adjudicator_must_be_neither_reviewer": True,
+        },
+        "private_content_disclosed": False,
+    }
+
+
 def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
     private_root = _private_root(repo_root, args)
     pairs = load_pairs(private_root)
@@ -867,8 +1117,8 @@ def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, An
         packages[package_basename(role)] = (
             private_root / "stage1" / f"{package_basename(role)}.zip"
         ).read_bytes()
-        packages[f"qualification_{role.casefold()}"] = (
-            private_root / "qualification" / f"qualification_{role.casefold()}.zip"
+        packages[f"qualification_{role.casefold()}"] = _qualification_package_path(
+            private_root, role
         ).read_bytes()
     leakage = stage1_leakage_audit(packages, pairs, _mappings_by_basename(private_root))
     usability = usability_audit(packages)
@@ -881,6 +1131,7 @@ def cmd_build_reports(repo_root: Path, args: argparse.Namespace) -> dict[str, An
     write_json(report_dir / "RETIRED_PACKET_REGISTRY.json", retired_packet_registry())
     write_json(report_dir / "RETIRED_QUALIFICATION_REGISTRY.json", retired_qualification_registry())
     write_json(report_dir / "ACTIVE_PATH_REGISTRY.json", active_path_registry(repo_root))
+    write_json(report_dir / "REVIEWER_DISTRIBUTION_SCHEMAS.json", _distribution_schemas())
     write_json(report_dir / "RETIREMENT_ENFORCEMENT.json", retirement)
     write_json(report_dir / "DESIGN_AUDIT.json", public_design_summary(design))
     write_json(report_dir / "INTERVENTION_ISOLATION_AUDIT.json", public_isolation_summary(isolation))
@@ -960,6 +1211,8 @@ COMMANDS = {
     "generate-private-packet": cmd_generate_private_packet,
     "validate-private-packet": cmd_validate_private_packet,
     "generate-stage1-packages": cmd_generate_stage1_packages,
+    "qualification-source-schema": cmd_qualification_source_schema,
+    "validate-qualification-source": cmd_validate_qualification_source,
     "generate-private-qualification-packages": cmd_generate_private_qualification_packages,
     "validate-stage1-packages": cmd_validate_stage1_packages,
     # reviewer provenance
@@ -978,6 +1231,8 @@ COMMANDS = {
     # disagreement and adjudication
     "build-stage1-disagreements": cmd_build_stage1_disagreements,
     "build-stage2-disagreements": cmd_build_stage2_disagreements,
+    "generate-stage1-adjudicator-package": cmd_generate_stage1_adjudicator_package,
+    "generate-stage2-adjudicator-package": cmd_generate_stage2_adjudicator_package,
     "ingest-stage1-adjudication": cmd_ingest_stage1_adjudication,
     "ingest-stage2-adjudication": cmd_ingest_stage2_adjudication,
     "build-final-adjudicated-records": cmd_build_final_adjudicated_records,
@@ -1024,6 +1279,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--rationale", default=None, help="coordinator rationale for a decision")
     parser.add_argument("--submission", default=None, help="path to a reviewer submission file")
     parser.add_argument("--decisions", default=None, help="path to an adjudication decision file")
+    parser.add_argument(
+        "--package",
+        default=None,
+        help=(
+            "path to the exact issued archive a submission answers: the reviewer's Stage-2 ZIP, "
+            "or the adjudicator package for this stage"
+        ),
+    )
     parser.add_argument("--output-dir", default=None, help="where packages are written")
     parser.add_argument("--attestation", default=None, help="path to the external attestation")
     parser.add_argument("--generator-commit", default=None)

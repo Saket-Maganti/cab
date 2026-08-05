@@ -1,7 +1,16 @@
 {
-  "active_qualification_version": "cab_qualification_v3",
-  "enforcement": "enforce_active_qualification() rejects every retired version at generation, ingestion, scoring and C10, including a copy renamed to the active version, because the encrypted key vault records its own version inside the ciphertext.",
+  "active_material_is_private": "Tracked source carries the schema, the loader, package assembly, the vault cipher and the scorer. Item bodies, decisive dimensions, expected values, explanations and answer mappings exist only outside Git.",
+  "active_qualification_version": "cab_qualification_v4",
+  "active_source_schema_version": "cab_qualification_source_v4",
+  "enforcement": "enforce_active_qualification() rejects every retired version at source loading, generation, ingestion, scoring and C10, including a copy renamed to the active version, because both the private source and the encrypted key vault record their own version inside the material the coordinator must decrypt.",
   "retired_versions": [
+    {
+      "eligible_for_c10": false,
+      "eligible_for_genuine_review": false,
+      "qualification_version": "cab_qualification_v3",
+      "reason": "The items were generated privately, but the tracked generator carried the scenario table, the defect templates and the defect-to-answer mapping, so a reviewer holding the ZIP could classify each generated item against tracked source and read off its decisive dimension and expected value.",
+      "status": "EXPOSED_QUALIFICATION_NOT_ELIGIBLE_FOR_GENUINE_REVIEW"
+    },
     {
       "eligible_for_c10": false,
       "eligible_for_genuine_review": false,
@@ -10,6 +19,6 @@
       "status": "EXPOSED_QUALIFICATION_NOT_ELIGIBLE_FOR_GENUINE_REVIEW"
     }
   ],
-  "schema_version": "cab_retired_qualification_registry_v1",
+  "schema_version": "cab_retired_qualification_registry_v2",
   "status": "CAB_RETIRED_QUALIFICATION_BLOCKED"
 }
