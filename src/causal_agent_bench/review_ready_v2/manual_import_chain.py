@@ -58,10 +58,16 @@ from causal_agent_bench.review_ready_v2.final_records import (
 )
 from causal_agent_bench.review_ready_v2.manual_import import (
     ADJUDICATION_COLUMNS,
+    QUALIFICATION_FORM,
     STAGE1_ADJUDICATION,
     STAGE2_ADJUDICATION,
     Candidate,
     read_csv_rows,
+)
+from causal_agent_bench.review_ready_v2.qualification import (
+    QualificationError,
+    enforce_active_qualification,
+    score_qualification,
 )
 from causal_agent_bench.review_ready_v2.receipts import (
     Authority,
@@ -87,6 +93,14 @@ IMPORT_CHAIN_SCHEMA_VERSION = "cab_manual_offline_import_chain_v1"
 IMPORT_COMMITMENT_SCHEMA_VERSION = "cab_manual_offline_import_commitment_v1"
 IMPORT_WAIVER_SCHEMA_VERSION = "cab_coordinator_review_waiver_v1"
 IMPORT_C10_SCHEMA_VERSION = "cab_manual_offline_import_c10_v1"
+IMPORT_QUALIFICATION_SCHEMA_VERSION = "cab_manual_offline_import_qualification_v1"
+
+#: The import epoch a workspace opens by default.  An epoch names one complete
+#: attempt at importing a review: its receipts live in their own directory *and*
+#: carry the epoch inside the sealed payload, so a receipt from an abandoned
+#: epoch cannot be moved into a later one and still authenticate.  Correcting an
+#: import means starting a new epoch, never editing a sealed receipt in place.
+DEFAULT_IMPORT_EPOCH = "v1"
 
 #: The literal opt-in flags a caller must pass.  Two flags, not one, so that
 #: neither an accidental re-run nor a copied command line can activate this path.
@@ -103,18 +117,30 @@ WAIVED_ELEMENTS: tuple[str, ...] = (
     "qualification_submission_evidence",
 )
 
-#: Status strings.  The chain never emits ``REVIEWER_DECLARATIONS_CONFIRMED`` or
-#: any qualification-pass claim, because neither was established.
+#: Status strings.  The chain never emits ``REVIEWER_DECLARATIONS_CONFIRMED``,
+#: because no declaration was collected.  A qualification pass is claimed only
+#: when genuine submissions were scored against the private answer key.
 DECLARATION_WAIVER_STATUS = "COORDINATOR_DECLARATION_WAIVER_RECORDED"
 QUALIFICATION_WAIVER_STATUS = "COORDINATOR_QUALIFICATION_EVIDENCE_WAIVER_RECORDED"
 C10_PASS_STATUS = "C10_MECHANICS_PASS_WITH_COORDINATOR_WAIVERS"
+C10_PASS_STATUS_DECLARATION_ONLY = "C10_MECHANICS_PASS_WITH_COORDINATOR_DECLARATION_WAIVER"
 C10_FAIL_STATUS = "C10_MECHANICS_FAIL"
+
+#: How the qualification screen was established.  ``GENUINE_VERIFIED_SUBMISSIONS``
+#: means both reviewers' completed submissions were scored against the private
+#: answer key in this chain; ``COORDINATOR_WAIVER`` means none was imported and
+#: no rate is claimed anywhere.
+QUALIFICATION_MODE_GENUINE = "GENUINE_VERIFIED_SUBMISSIONS"
+QUALIFICATION_MODE_WAIVED = "COORDINATOR_WAIVER"
 
 #: Receipts that record a completed one-way transition.  Write-once, always.
 _SEALED_NAMES: frozenset[str] = frozenset(
     {
         "coordinator_waiver",
         "import_manifest",
+        "qualification_REVIEWER_A",
+        "qualification_REVIEWER_B",
+        "qualification_commitment",
         "stage1_submission_REVIEWER_A",
         "stage1_submission_REVIEWER_B",
         "stage1_commitment",
@@ -331,18 +357,34 @@ class ImportWorkspace:
     private_root: Path
     authority: Authority
     packet_version: str
+    import_epoch: str = DEFAULT_IMPORT_EPOCH
 
     @classmethod
-    def open(cls, private_root: Path, repo_root: Path, *, packet_version: str) -> ImportWorkspace:
+    def open(
+        cls,
+        private_root: Path,
+        repo_root: Path,
+        *,
+        packet_version: str,
+        import_epoch: str = DEFAULT_IMPORT_EPOCH,
+    ) -> ImportWorkspace:
+        epoch = str(import_epoch).strip()
+        if not epoch or not epoch.replace("_", "").replace("-", "").isalnum():
+            raise ImportChainError(
+                f"an import epoch must be a non-empty alphanumeric label, not {import_epoch!r}"
+            )
         try:
             authority = manual_import_authority(repo_root)
         except ReceiptError as error:
             raise ImportChainError(str(error)) from error
-        return cls(private_root, authority, packet_version)
+        return cls(private_root, authority, packet_version, epoch)
 
     @property
     def receipts(self) -> Path:
-        directory = self.private_root / self.authority.namespace
+        name = self.authority.namespace
+        if self.import_epoch != DEFAULT_IMPORT_EPOCH:
+            name = f"{name}__{self.import_epoch}"
+        directory = self.private_root / name
         directory.mkdir(parents=True, exist_ok=True)
         directory.chmod(0o700)
         return directory
@@ -371,6 +413,7 @@ class ImportWorkspace:
             {
                 **payload,
                 "packet_version": self.packet_version,
+                "import_epoch": self.import_epoch,
                 "import_chain_schema_version": IMPORT_CHAIN_SCHEMA_VERSION,
             },
         )
@@ -406,6 +449,13 @@ class ImportWorkspace:
                 f"receipt {name} belongs to packet {receipt.get('packet_version')!r}, not "
                 f"{self.packet_version!r}"
             )
+        # The epoch is inside the MAC, so a receipt from an abandoned import
+        # cannot be copied into a later epoch's directory and pass as current.
+        if receipt.get("import_epoch") != self.import_epoch:
+            raise ImportChainError(
+                f"receipt {name} belongs to import epoch {receipt.get('import_epoch')!r}, not "
+                f"{self.import_epoch!r}; evidence from an abandoned import cannot be reused"
+            )
         return receipt
 
     def live_paths(self, stage: str) -> dict[str, Path]:
@@ -413,6 +463,223 @@ class ImportWorkspace:
 
     def has_snapshot(self, stage: str) -> bool:
         return snapshot_exists(self.receipts, stage)
+
+
+# --------------------------------------------------------------------------
+# genuine qualification evidence
+# --------------------------------------------------------------------------
+
+
+def import_qualification_submissions(
+    workspace: ImportWorkspace,
+    *,
+    candidates: dict[str, Candidate],
+    answer_keys: dict[str, Any],
+    qualification_version: str,
+    public_qualification_commitment: str,
+    exact_commit: str,
+    scientific_freeze_sha256: str,
+    packet_commitment: str,
+) -> dict[str, Any]:
+    """Score both reviewers' completed qualification submissions against the key.
+
+    This is the one place the chain may claim a qualification result, and it may
+    claim it only by *deriving* it: the private answer key decides, the reviewer's
+    own file supplies the answers, and a submission that misses the threshold is
+    a blocker rather than a note.  A role is never taken on assertion — the caller
+    attributes it from the answered item set, and this function re-checks that
+    attribution against the key before scoring.
+
+    The sealed receipt carries counts, the rate, the threshold and hashes.  It
+    never carries a decisive dimension, an expected value, or per-item
+    correctness, so it can be summarized publicly without leaking the key.
+    """
+
+    if workspace.has("qualification_commitment"):
+        raise ImportChainError(
+            "qualification evidence is already committed for this import epoch; a correction "
+            "requires a fresh import epoch, not an edit in place"
+        )
+    if set(candidates) != set(REVIEW_ROLES):
+        raise ImportChainError(
+            "qualification import requires exactly one completed submission per reviewer role"
+        )
+    missing_keys = sorted(set(REVIEW_ROLES) - set(answer_keys))
+    if missing_keys:
+        raise ImportChainError(
+            f"the encrypted qualification key holds no answers for {missing_keys}"
+        )
+
+    receipts: dict[str, dict[str, Any]] = {}
+    for role in sorted(REVIEW_ROLES):
+        candidate = candidates[role]
+        if candidate.kind != QUALIFICATION_FORM:
+            raise ImportChainError(
+                f"the file offered as the {role} qualification submission classifies as "
+                f"{candidate.kind}"
+            )
+        payload = candidate.path.read_bytes()
+        if sha256_bytes(payload) != candidate.raw_sha256:
+            raise ImportChainError(
+                f"the {role} qualification file changed on disk between discovery and import"
+            )
+        _, rows = read_csv_rows(payload)
+        submission = {str(row["reviewer_item_id"]).strip(): row for row in rows}
+        if len(submission) != len(rows):
+            raise ImportChainError(
+                f"the {role} qualification submission answers an item twice"
+            )
+        # The caller attributed the role from the answered items; re-derive it
+        # here so a mis-attributed file is refused rather than mis-scored.
+        if set(submission) != set(answer_keys[role]):
+            raise ImportChainError(
+                f"the submission offered as {role}'s qualification does not answer {role}'s "
+                "issued item set; roles cannot be assigned by assertion"
+            )
+        try:
+            enforce_active_qualification(qualification_version)
+            result = score_qualification(submission, answer_keys[role], reviewer_role=role)
+        except QualificationError as error:
+            raise ImportChainError(f"{role} qualification refused: {error}") from error
+        if not result["qualified"]:
+            raise ImportChainError(
+                f"{role} scored {result['correct_count']}/{result['item_count']} and did not reach "
+                f"the {result['threshold']:.0%} qualification threshold; their review evidence "
+                "cannot be imported"
+            )
+        receipts[role] = workspace.write(
+            f"qualification_{role}",
+            {
+                "receipt_kind": "reviewer_qualification",
+                "import_origin": workspace.authority.origin,
+                "qualification_schema_version": IMPORT_QUALIFICATION_SCHEMA_VERSION,
+                "qualification_version": qualification_version,
+                "reviewer_role": role,
+                "submission_sha256": candidate.raw_sha256,
+                "canonical_content_sha256": candidate.canonical_sha256,
+                "source_filename_recorded_for_audit_only": candidate.path.name,
+                "opaque_id_namespace": candidate.namespace,
+                "reviewer_item_ids_sha256": sha256_json(sorted(submission)),
+                "item_count": result["item_count"],
+                "correct_count": result["correct_count"],
+                "rate": result["rate"],
+                "threshold": result["threshold"],
+                "qualified": True,
+                "scored_against_private_answer_key": True,
+                # Deliberately absent: the graded per-item breakdown, which would
+                # let a reader recover expected values from the reviewer's answers.
+                "per_item_correctness_recorded": False,
+                "answer_key_disclosed": False,
+                "declaration_collected": False,
+                "imported_at_utc": datetime.now(UTC).isoformat(),
+            },
+        )
+
+    namespaces = {str(receipts[role]["opaque_id_namespace"]) for role in REVIEW_ROLES}
+    item_digests = {str(receipts[role]["reviewer_item_ids_sha256"]) for role in REVIEW_ROLES}
+    if len(item_digests) != len(REVIEW_ROLES):
+        raise ImportChainError(
+            "both qualification submissions answer the same items; they cannot be two "
+            "independently issued packages"
+        )
+    return workspace.write(
+        "qualification_commitment",
+        {
+            "receipt_kind": "qualification_commitment",
+            "qualification_schema_version": IMPORT_QUALIFICATION_SCHEMA_VERSION,
+            "import_origin": workspace.authority.origin,
+            "qualification_version": qualification_version,
+            "qualification_mode": QUALIFICATION_MODE_GENUINE,
+            "public_qualification_commitment_sha256": public_qualification_commitment,
+            "private_packet_commitment": packet_commitment,
+            "scientific_freeze_sha256": scientific_freeze_sha256,
+            "frozen_source_commit": exact_commit,
+            "reviewer_roles": sorted(REVIEW_ROLES),
+            "opaque_id_namespaces": sorted(namespaces),
+            "submission_payload_hashes": {
+                role: str(receipts[role]["submission_sha256"]) for role in sorted(REVIEW_ROLES)
+            },
+            "submission_canonical_hashes": {
+                role: str(receipts[role]["canonical_content_sha256"])
+                for role in sorted(REVIEW_ROLES)
+            },
+            "qualification_receipt_hashes": {
+                role: receipt_content_sha256(receipts[role]) for role in sorted(REVIEW_ROLES)
+            },
+            "rates": {role: receipts[role]["rate"] for role in sorted(REVIEW_ROLES)},
+            "correct_counts": {
+                role: receipts[role]["correct_count"] for role in sorted(REVIEW_ROLES)
+            },
+            "item_counts": {role: receipts[role]["item_count"] for role in sorted(REVIEW_ROLES)},
+            "threshold": min(float(receipts[role]["threshold"]) for role in REVIEW_ROLES),
+            "every_role_qualified": True,
+            "answer_key_disclosed": False,
+        },
+    )
+
+
+def verify_imported_qualification(workspace: ImportWorkspace) -> dict[str, Any]:
+    """Re-derive the qualification commitment from the sealed per-role receipts.
+
+    Returns ``None`` for ``commitment`` when no qualification evidence was
+    imported at all — the waived case — so the caller can distinguish "no
+    qualification was claimed" from "a qualification claim does not hold up".
+    """
+
+    if not workspace.has("qualification_commitment"):
+        return {"commitment": None, "receipts": {}, "checks": {}, "every_role_qualified": False}
+    commitment = workspace.read("qualification_commitment")
+    receipts = {role: workspace.read(f"qualification_{role}") for role in REVIEW_ROLES}
+    checks = {
+        "qualification_receipt_hashes_match_commitment": {
+            role: receipt_content_sha256(receipts[role]) for role in REVIEW_ROLES
+        }
+        == dict(commitment.get("qualification_receipt_hashes") or {}),
+        "qualification_payload_hashes_match_commitment": {
+            role: str(receipts[role]["submission_sha256"]) for role in REVIEW_ROLES
+        }
+        == dict(commitment.get("submission_payload_hashes") or {}),
+        "qualification_canonical_hashes_match_commitment": {
+            role: str(receipts[role]["canonical_content_sha256"]) for role in REVIEW_ROLES
+        }
+        == dict(commitment.get("submission_canonical_hashes") or {}),
+        "qualification_rates_match_commitment": {
+            role: receipts[role]["rate"] for role in REVIEW_ROLES
+        }
+        == dict(commitment.get("rates") or {}),
+        "qualification_scored_against_private_key": all(
+            receipts[role].get("scored_against_private_answer_key") is True
+            for role in REVIEW_ROLES
+        ),
+        "qualification_meets_threshold_for_every_role": all(
+            float(receipts[role]["rate"]) >= float(receipts[role]["threshold"])
+            and receipts[role].get("qualified") is True
+            for role in REVIEW_ROLES
+        ),
+        "qualification_roles_answered_distinct_item_sets": len(
+            {str(receipts[role]["reviewer_item_ids_sha256"]) for role in REVIEW_ROLES}
+        )
+        == len(REVIEW_ROLES),
+        "qualification_import_origin_matches": all(
+            receipts[role].get("artifact_origin") == workspace.authority.origin
+            for role in REVIEW_ROLES
+        )
+        and commitment.get("artifact_origin") == workspace.authority.origin,
+        "qualification_answer_key_not_disclosed": commitment.get("answer_key_disclosed") is False
+        and all(receipts[role].get("answer_key_disclosed") is False for role in REVIEW_ROLES),
+    }
+    failed = sorted(name for name, ok in checks.items() if not ok)
+    if failed:
+        raise ImportChainError(
+            f"the imported qualification evidence has changed since it was committed: {failed}"
+        )
+    return {
+        "commitment": commitment,
+        "commitment_sha256": receipt_content_sha256(commitment),
+        "receipts": receipts,
+        "checks": checks,
+        "every_role_qualified": bool(commitment.get("every_role_qualified")),
+    }
 
 
 # --------------------------------------------------------------------------
@@ -428,21 +695,46 @@ def record_coordinator_waiver(
     exact_commit: str,
     scientific_freeze_sha256: str,
     packet_commitment: str,
+    qualification_commitment: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Seal exactly what was, and was not, collected.
 
     The waiver is bound to *this* evidence inventory: reusing it against a
     different set of files fails, so a stale waiver cannot authorize new
     evidence it was never written about.
+
+    When ``qualification_commitment`` is supplied, genuine qualification
+    submissions were scored in this epoch and only the reviewer-declaration
+    waiver remains.  Without it, nothing about qualification is claimed.
     """
 
     if workspace.has("coordinator_waiver"):
         raise ImportChainError("a coordinator waiver is already sealed for this import namespace")
+    verified = qualification_commitment is not None
+    if qualification_commitment is not None:
+        if not qualification_discovered:
+            raise ImportChainError(
+                "a qualification commitment was supplied for evidence that discovery did not find"
+            )
+        if not qualification_commitment.get("every_role_qualified"):
+            raise ImportChainError(
+                "refusing to record a waiver that claims a qualification pass the commitment does "
+                "not establish for every reviewer role"
+            )
     waived = [
         element
         for element in WAIVED_ELEMENTS
         if not (element == "qualification_submission_evidence" and qualification_discovered)
     ]
+    qualification_statement = (
+        "Both reviewers' completed qualification submissions were imported and scored against "
+        "the private answer key; every role met the threshold."
+        if verified
+        else (
+            "Qualification submissions were not imported; no qualification score is "
+            "claimed, re-derived, or implied by this chain."
+        )
+    )
     return workspace.write(
         "coordinator_waiver",
         {
@@ -454,9 +746,17 @@ def record_coordinator_waiver(
             "qualification_waiver_status": (
                 None if qualification_discovered else QUALIFICATION_WAIVER_STATUS
             ),
+            "qualification_mode": (
+                QUALIFICATION_MODE_GENUINE if verified else QUALIFICATION_MODE_WAIVED
+            ),
             "declaration_files_collected": False,
             "qualification_evidence_imported": qualification_discovered,
-            "qualification_pass_verified_in_this_chain": False,
+            "qualification_pass_verified_in_this_chain": verified,
+            "qualification_commitment_sha256": (
+                str(qualification_commitment["receipt_sha256"])
+                if qualification_commitment is not None
+                else None
+            ),
             "reviewer_declarations_confirmed": False,
             "original_issue_receipt_available": False,
             "required_opt_in_flags": list(REQUIRED_OPT_IN_FLAGS),
@@ -472,10 +772,7 @@ def record_coordinator_waiver(
                 "No retrospective reviewer confirmation is asserted anywhere in this chain.",
                 "The imported judgements are preserved byte-for-byte and canonically.",
                 "The normal strict production workflow is unchanged for any future review.",
-                (
-                    "Qualification submissions were not imported; no qualification score is "
-                    "claimed, re-derived, or implied by this chain."
-                ),
+                qualification_statement,
             ],
             "recorded_at_utc": datetime.now(UTC).isoformat(),
         },
@@ -840,9 +1137,17 @@ def _graph_bindings(workspace: ImportWorkspace) -> dict[str, Any]:
     """The immutable inputs every derived artifact is permanently bound to."""
 
     stage1 = verify_imported_snapshot(workspace, stage=STAGE1)
+    qualification = verify_imported_qualification(workspace)
     bindings: dict[str, Any] = {
         "import_origin": workspace.authority.origin,
+        "import_epoch": workspace.import_epoch,
         "coordinator_waiver_sha256": stage1["waiver_sha256"],
+        "qualification_commitment_sha256": qualification.get("commitment_sha256"),
+        "qualification_mode": (
+            QUALIFICATION_MODE_GENUINE
+            if qualification["every_role_qualified"]
+            else QUALIFICATION_MODE_WAIVED
+        ),
         "stage1_commitment_sha256": stage1["commitment_sha256"],
         "stage1_snapshot_manifest_sha256": stage1["snapshot_manifest_sha256"],
         "stage1_snapshot_receipt_hashes": stage1["snapshot_receipt_file_hashes"],
@@ -1026,11 +1331,16 @@ def build_final_adjudicated_records(
 __all__ = [
     "C10_FAIL_STATUS",
     "C10_PASS_STATUS",
+    "C10_PASS_STATUS_DECLARATION_ONLY",
     "DECLARATION_WAIVER_STATUS",
+    "DEFAULT_IMPORT_EPOCH",
     "IMPORT_C10_SCHEMA_VERSION",
     "IMPORT_CHAIN_SCHEMA_VERSION",
     "IMPORT_COMMITMENT_SCHEMA_VERSION",
+    "IMPORT_QUALIFICATION_SCHEMA_VERSION",
     "IMPORT_WAIVER_SCHEMA_VERSION",
+    "QUALIFICATION_MODE_GENUINE",
+    "QUALIFICATION_MODE_WAIVED",
     "QUALIFICATION_WAIVER_STATUS",
     "REQUIRED_OPT_IN_FLAGS",
     "WAIVED_ELEMENTS",
@@ -1040,7 +1350,9 @@ __all__ = [
     "build_final_adjudicated_records",
     "compute_agreement",
     "import_adjudication",
+    "import_qualification_submissions",
     "import_review_submissions",
     "record_coordinator_waiver",
+    "verify_imported_qualification",
     "verify_imported_snapshot",
 ]

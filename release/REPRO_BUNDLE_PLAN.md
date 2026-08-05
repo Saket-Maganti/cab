@@ -1,6 +1,6 @@
 # Reproducibility Bundle Plan
 
-Generated: `2026-07-28T04:30:02.531093+00:00`
+Generated: `2026-08-05T17:41:22.455864+00:00`
 
 ## Included (future public release)
 
@@ -25,7 +25,7 @@ Generated: `2026-07-28T04:30:02.531093+00:00`
 - `configs/ablations/react_tool_TEMPLATE_NOT_APPROVED.yaml`
 - `configs/ablations/recovery_aware_TEMPLATE_NOT_APPROVED.yaml`
 - `configs/ablations/self_check_TEMPLATE_NOT_APPROVED.yaml`
-- ... 90 more
+- ... 112 more
 
 ### synthetic_datasets
 - `data/frozen/pilot_v0.1/`
@@ -53,8 +53,8 @@ Generated: `2026-07-28T04:30:02.531093+00:00`
 - `docs/BENCHMARK_TAXONOMY.md`
 - `docs/BENCHMARK_THEORY_OF_CHANGE.md`
 - `docs/C10_INTERVENTION_ISOLATION_VALIDATION_PROTOCOL.md`
+- `docs/CAB_BENCHMARK_CONSTITUTION.md`
 - `docs/CAB_FOCUSED_PROJECT_SURFACE.md`
-- `docs/CLAIM_ARCHITECTURE.md`
 - ... 25 more
 
 ### paper

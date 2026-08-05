@@ -11,13 +11,20 @@ Subcommands::
 
     discover      classify candidate files by content and report what was found
     import        seal the discovered evidence into write-once snapshots
+    quarantine    retire a superseded import epoch, preserving its hashes
     verify        re-verify the whole immutable graph from disk
     gates         run C10, the exclusion register, the slice lock, authorization
     report        write the public counts-and-hashes reports
     status        summarise where the chain currently stands
 
+Work happens inside an *import epoch*.  Every receipt is sealed with its epoch
+inside the MAC, so a receipt from an abandoned attempt cannot be moved into a
+later epoch and pass as current.  Correcting an import means opening a new epoch
+and re-importing from the source files, never editing a sealed receipt.
+
 Private evidence and sealed receipts stay outside Git.  Public reports carry
-counts and hashes only, and never quote a reviewer's note.
+counts and hashes only, and never quote a reviewer's note or disclose the
+qualification answer key.
 """
 
 from __future__ import annotations
@@ -26,6 +33,7 @@ import argparse
 import json
 import subprocess
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -35,6 +43,7 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 from causal_agent_bench.review_ready_v2.adjudication import STAGE1, STAGE2
 from causal_agent_bench.review_ready_v2.common import (
     read_json,
+    sha256_bytes,
     sha256_json,
     write_json,
 )
@@ -44,12 +53,14 @@ from causal_agent_bench.review_ready_v2.manual_import import (
     STAGE2_ADJUDICATION,
     STAGE2_REVIEW_FORM,
     ManualImportError,
+    attribute_qualification_roles,
     default_search_roots,
     discover_completed_review,
     discovery_report,
     select_evidence_set,
 )
 from causal_agent_bench.review_ready_v2.manual_import_chain import (
+    DEFAULT_IMPORT_EPOCH,
     REQUIRED_OPT_IN_FLAGS,
     ImportChainError,
     ImportWorkspace,
@@ -57,8 +68,10 @@ from causal_agent_bench.review_ready_v2.manual_import_chain import (
     build_final_adjudicated_records,
     compute_agreement,
     import_adjudication,
+    import_qualification_submissions,
     import_review_submissions,
     record_coordinator_waiver,
+    verify_imported_qualification,
     verify_imported_snapshot,
 )
 from causal_agent_bench.review_ready_v2.manual_import_gates import (
@@ -66,6 +79,11 @@ from causal_agent_bench.review_ready_v2.manual_import_gates import (
     build_exclusion_register,
     lock_reviewed_slice,
     run_c10,
+)
+from causal_agent_bench.review_ready_v2.qualification import (
+    QUALIFICATION_SCHEMA_VERSION,
+    QualificationError,
+    load_qualification_keys,
 )
 from causal_agent_bench.review_ready_v2.roles import (
     REVIEW_ROLES,
@@ -148,10 +166,28 @@ def _pair_content_hashes(private_root: Path) -> dict[str, str]:
     return {str(row["pair_id"]): sha256_json(row) for row in rows}
 
 
-def _workspace() -> ImportWorkspace:
+def _workspace(args: argparse.Namespace | None = None) -> ImportWorkspace:
+    epoch = getattr(args, "import_epoch", None) or DEFAULT_IMPORT_EPOCH
     return ImportWorkspace.open(
-        _private_root(), REPO_ROOT, packet_version=_registry()["active_private_packet_version"]
+        _private_root(),
+        REPO_ROOT,
+        packet_version=_registry()["active_private_packet_version"],
+        import_epoch=epoch,
     )
+
+
+def _qualification_keys() -> dict[str, Any]:
+    """The private per-role answer key.  Never printed, never written to disk."""
+
+    registry = _registry()
+    vault = REPO_ROOT / registry["active_qualification_key_path"]
+    try:
+        return load_qualification_keys(vault, REPO_ROOT)
+    except QualificationError as error:
+        raise Blocker(
+            f"the genuine qualification submissions cannot be verified without the answer key: "
+            f"{error}"
+        ) from error
 
 
 def _require_opt_in(args: argparse.Namespace) -> None:
@@ -192,7 +228,7 @@ def cmd_discover(args: argparse.Namespace) -> dict[str, Any]:
 def cmd_import(args: argparse.Namespace) -> dict[str, Any]:
     _require_opt_in(args)
     report, chosen = _discover(args)
-    workspace = _workspace()
+    workspace = _workspace(args)
     private_root = _private_root()
     packet_commitment, freeze_sha, exact_commit = _frozen_identity()
     mappings = _mappings(private_root)
@@ -207,6 +243,33 @@ def cmd_import(args: argparse.Namespace) -> dict[str, Any]:
                 raise Blocker(f"no frozen applicability record for {pair_id}")
             applicability_by_item[item_id] = applicability_by_pair[pair_id]
 
+    # Qualification is scored before anything else is sealed, because the waiver
+    # has to state the truth about it and the waiver is written once.
+    qualification_commitment: dict[str, Any] | None = None
+    if report["qualification_discovered"]:
+        if workspace.has("qualification_commitment"):
+            qualification_commitment = workspace.read("qualification_commitment")
+        else:
+            answer_keys = _qualification_keys()
+            try:
+                by_role = attribute_qualification_roles(
+                    chosen, {role: set(items) for role, items in answer_keys.items()}
+                )
+            except ManualImportError as error:
+                raise Blocker(str(error)) from error
+            qualification_commitment = import_qualification_submissions(
+                workspace,
+                candidates=by_role,
+                answer_keys=answer_keys,
+                qualification_version=QUALIFICATION_SCHEMA_VERSION,
+                public_qualification_commitment=read_json(
+                    REVIEWER_REPORTS / "SCIENTIFIC_FREEZE_V2.json"
+                )["qualification_commitment_sha256"],
+                exact_commit=exact_commit,
+                scientific_freeze_sha256=freeze_sha,
+                packet_commitment=packet_commitment,
+            )
+
     waiver = (
         workspace.read("coordinator_waiver")
         if workspace.has("coordinator_waiver")
@@ -217,10 +280,16 @@ def cmd_import(args: argparse.Namespace) -> dict[str, Any]:
             exact_commit=exact_commit,
             scientific_freeze_sha256=freeze_sha,
             packet_commitment=packet_commitment,
+            qualification_commitment=qualification_commitment,
         )
     )
 
-    steps: dict[str, Any] = {"coordinator_waiver_sha256": waiver["receipt_sha256"]}
+    steps: dict[str, Any] = {
+        "import_epoch": workspace.import_epoch,
+        "coordinator_waiver_sha256": waiver["receipt_sha256"],
+        "qualification_mode": waiver["qualification_mode"],
+        "qualification_commitment_sha256": waiver["qualification_commitment_sha256"],
+    }
 
     for stage, kind in ((STAGE1, STAGE1_REVIEW_FORM), (STAGE2, STAGE2_REVIEW_FORM)):
         if workspace.has(f"{stage}_commitment"):
@@ -278,9 +347,41 @@ def cmd_import(args: argparse.Namespace) -> dict[str, Any]:
     return steps
 
 
+def _anchor_commit(workspace: ImportWorkspace) -> str:
+    """The commit the sealed evidence was anchored to, proved reachable from HEAD.
+
+    Evidence is sealed *before* the commit that records it, so demanding equality
+    with the live HEAD could only ever hold for the instant between sealing and
+    committing.  The durable property — and the one a fresh clone can check — is
+    that the anchor is an ancestor of HEAD, which is the same rule the scientific
+    freeze applies to its own generator commit.
+    """
+
+    anchor = str(workspace.read(f"{STAGE1}_commitment")["frozen_source_commit"])
+    if _git("cat-file", "-t", anchor) != "commit":
+        raise Blocker(
+            f"the imported evidence is anchored to {anchor!r}, which does not resolve in this "
+            "repository; the chain cannot be verified from this clone"
+        )
+    reachable = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", anchor, "HEAD"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if reachable.returncode != 0:
+        raise Blocker(
+            f"the imported evidence is anchored to {anchor}, which is not an ancestor of HEAD; "
+            "the code that produced this evidence is not reachable from the current branch"
+        )
+    return anchor
+
+
 def cmd_verify(args: argparse.Namespace) -> dict[str, Any]:
-    workspace = _workspace()
-    packet_commitment, freeze_sha, exact_commit = _frozen_identity()
+    workspace = _workspace(args)
+    packet_commitment, freeze_sha, head = _frozen_identity()
+    anchor = _anchor_commit(workspace)
+    qualification = verify_imported_qualification(workspace)
     verified = {}
     for stage in (STAGE1, STAGE2):
         result = verify_imported_snapshot(
@@ -288,7 +389,7 @@ def cmd_verify(args: argparse.Namespace) -> dict[str, Any]:
             stage=stage,
             expected_packet_commitment=packet_commitment,
             expected_scientific_freeze_sha256=freeze_sha,
-            expected_frozen_source_commit=exact_commit,
+            expected_frozen_source_commit=anchor,
         )
         verified[stage] = {
             "commitment_sha256": result["commitment_sha256"],
@@ -297,11 +398,21 @@ def cmd_verify(args: argparse.Namespace) -> dict[str, Any]:
             "check_count": len(result["checks"]),
             "all_checks_passed": all(result["checks"].values()),
         }
-    return {"status": "IMMUTABLE_IMPORTED_EVIDENCE_VERIFIED", "stages": verified}
+    return {
+        "status": "IMMUTABLE_IMPORTED_EVIDENCE_VERIFIED",
+        "import_epoch": workspace.import_epoch,
+        "anchor_commit": anchor,
+        "anchor_is_ancestor_of_head": True,
+        "head": head,
+        "scientific_freeze_sha256": freeze_sha,
+        "qualification_verified": qualification["every_role_qualified"],
+        "qualification_commitment_sha256": qualification.get("commitment_sha256"),
+        "stages": verified,
+    }
 
 
 def cmd_gates(args: argparse.Namespace) -> dict[str, Any]:
-    workspace = _workspace()
+    workspace = _workspace(args)
     private_root = _private_root()
     packet_commitment, freeze_sha, exact_commit = _frozen_identity()
     contract = read_json(CONTRACT_PATH)
@@ -353,8 +464,11 @@ def cmd_gates(args: argparse.Namespace) -> dict[str, Any]:
     return {
         "status": c10["status"],
         "c10_state": c10["c10_state"],
+        "c10_report_sha256": c10["receipt_sha256"],
+        "import_epoch": workspace.import_epoch,
         "declaration_mode": c10["declaration_mode"],
         "qualification_mode": c10["qualification_mode"],
+        "qualification_passed": c10["qualification_passed"],
         "waiver_statuses": c10["waiver_statuses"],
         "included_pair_count": c10["included_pair_count"],
         "excluded_pair_count": c10["excluded_pair_count"],
@@ -369,12 +483,13 @@ def cmd_gates(args: argparse.Namespace) -> dict[str, Any]:
 
 def cmd_status(args: argparse.Namespace) -> dict[str, Any]:
     try:
-        workspace = _workspace()
+        workspace = _workspace(args)
     except ImportChainError as error:
         return {"status": "MANUAL_IMPORT_UNAVAILABLE", "reason": str(error)}
     present = {
         name: workspace.has(name)
         for name in (
+            "qualification_commitment",
             "coordinator_waiver",
             "stage1_commitment",
             "stage2_commitment",
@@ -400,8 +515,60 @@ def cmd_status(args: argparse.Namespace) -> dict[str, Any]:
     return {
         "status": state,
         "artifact_origin": workspace.authority.origin,
+        "import_epoch": workspace.import_epoch,
         "receipts_present": present,
         "genuine_model_trajectories": 0,
+    }
+
+
+def cmd_quarantine(args: argparse.Namespace) -> dict[str, Any]:
+    """Retire an import epoch's receipts without destroying or rewriting them.
+
+    An abandoned import is evidence too: it records what was believed at the
+    time.  Rather than delete it, this moves the whole directory aside under a
+    name that says it is stale and writes a hash inventory so an auditor can
+    still prove what it contained.  Nothing sealed is edited.
+    """
+
+    workspace = _workspace(args)
+    source = workspace.receipts
+    entries = sorted(path for path in source.rglob("*") if path.is_file())
+    if not entries:
+        return {"status": "NOTHING_TO_QUARANTINE", "import_epoch": workspace.import_epoch}
+
+    inventory = {
+        str(path.relative_to(source)): sha256_bytes(path.read_bytes()) for path in entries
+    }
+    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    destination = source.parent / f"{source.name}__stale_{stamp}"
+    if destination.exists():
+        raise Blocker(f"a quarantine directory already exists at {destination}")
+    source.rename(destination)
+    destination.chmod(0o700)
+
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    manifest = {
+        "schema_version": "cab_manual_import_quarantine_v1",
+        "quarantined_import_epoch": workspace.import_epoch,
+        "quarantined_at_utc": datetime.now(UTC).isoformat(),
+        "reason": str(args.reason or "superseded by a later import epoch"),
+        "file_count": len(inventory),
+        "file_sha256": inventory,
+        "inventory_sha256": sha256_json(inventory),
+        "receipts_were_edited": False,
+        "receipts_were_deleted": False,
+        "note": (
+            "The retired receipts are preserved outside Git under a name marked stale. They are "
+            "not consumed by any gate: a later epoch refuses them by epoch mismatch even if the "
+            "files are moved back."
+        ),
+    }
+    write_json(REPORT_DIR / "STALE_IMPORT_QUARANTINE.json", manifest)
+    return {
+        "status": "IMPORT_EPOCH_QUARANTINED",
+        "quarantined_import_epoch": workspace.import_epoch,
+        "file_count": len(inventory),
+        "inventory_sha256": manifest["inventory_sha256"],
     }
 
 
@@ -413,7 +580,7 @@ def cmd_status(args: argparse.Namespace) -> dict[str, Any]:
 def cmd_report(args: argparse.Namespace) -> dict[str, Any]:
     """Write the public reports.  Counts and hashes only; no note text."""
 
-    workspace = _workspace()
+    workspace = _workspace(args)
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     written: list[str] = []
 
@@ -431,6 +598,36 @@ def cmd_report(args: argparse.Namespace) -> dict[str, Any]:
         },
     )
 
+    qualification = verify_imported_qualification(workspace)
+    if qualification["commitment"] is not None:
+        emit(
+            "QUALIFICATION_FINAL.json",
+            {
+                "schema_version": "cab_manual_import_qualification_report_v1",
+                "qualification_mode": qualification["commitment"]["qualification_mode"],
+                "qualification_version": qualification["commitment"]["qualification_version"],
+                "scored_against_private_answer_key": True,
+                "threshold": qualification["commitment"]["threshold"],
+                "item_counts": qualification["commitment"]["item_counts"],
+                "correct_counts": qualification["commitment"]["correct_counts"],
+                "rates": qualification["commitment"]["rates"],
+                "every_role_qualified": qualification["every_role_qualified"],
+                "submission_payload_hashes": qualification["commitment"][
+                    "submission_payload_hashes"
+                ],
+                "submission_canonical_hashes": qualification["commitment"][
+                    "submission_canonical_hashes"
+                ],
+                "qualification_commitment_sha256": qualification["commitment_sha256"],
+                "public_qualification_commitment_sha256": qualification["commitment"][
+                    "public_qualification_commitment_sha256"
+                ],
+                "answer_key_disclosed": False,
+                "per_item_correctness_published": False,
+                "checks": qualification["checks"],
+            },
+        )
+
     stage1 = verify_imported_snapshot(workspace, stage=STAGE1)
     stage2 = verify_imported_snapshot(workspace, stage=STAGE2)
     emit(
@@ -438,10 +635,17 @@ def cmd_report(args: argparse.Namespace) -> dict[str, Any]:
         {
             "schema_version": "cab_manual_import_provenance_v1",
             "artifact_origin": workspace.authority.origin,
+            "import_epoch": workspace.import_epoch,
             "evidence_origin": waiver["evidence_origin"],
             "original_issue_receipt_available": waiver["original_issue_receipt_available"],
             "declaration_files_collected": waiver["declaration_files_collected"],
+            "reviewer_declaration_mode": "COORDINATOR_WAIVER",
             "qualification_evidence_imported": waiver["qualification_evidence_imported"],
+            "qualification_mode": waiver["qualification_mode"],
+            "qualification_pass_verified_in_this_chain": waiver[
+                "qualification_pass_verified_in_this_chain"
+            ],
+            "qualification_commitment_sha256": waiver["qualification_commitment_sha256"],
             "receipt_semantics": "import receipt, not retroactive issue receipt",
             "coordinator_waiver_sha256": waiver["receipt_sha256"],
             "stage1_commitment_sha256": stage1["commitment_sha256"],
@@ -511,11 +715,35 @@ def cmd_report(args: argparse.Namespace) -> dict[str, Any]:
             "unresolved_count": len(final["unresolved"]),
             "final_records_passed": final["passed"],
             "provenance_counts": final["provenance_counts"],
-            "qualification_scored_in_this_chain": False,
-            "qualification_note": (
-                "No qualification submission was imported. No qualification rate is claimed, "
-                "re-derived, or implied anywhere in this chain."
+            "qualification_scored_in_this_chain": qualification["commitment"] is not None,
+            "qualification_mode": waiver["qualification_mode"],
+            "qualification_correct_counts": (
+                qualification["commitment"]["correct_counts"]
+                if qualification["commitment"] is not None
+                else {}
             ),
+            "qualification_rates": (
+                qualification["commitment"]["rates"]
+                if qualification["commitment"] is not None
+                else {}
+            ),
+            "qualification_threshold": (
+                qualification["commitment"]["threshold"]
+                if qualification["commitment"] is not None
+                else None
+            ),
+            "qualification_note": (
+                "Both reviewers' completed qualification submissions were imported and scored "
+                "against the private answer key. The answer key is not disclosed and no per-item "
+                "correctness is published."
+                if qualification["commitment"] is not None
+                else (
+                    "No qualification submission was imported. No qualification rate is claimed, "
+                    "re-derived, or implied anywhere in this chain."
+                )
+            ),
+            "reviewer_declaration_files_collected": False,
+            "reviewer_declaration_mode": "COORDINATOR_WAIVER",
             "private_notes_quoted": False,
         },
     )
@@ -540,6 +768,7 @@ def cmd_report(args: argparse.Namespace) -> dict[str, Any]:
 COMMANDS = {
     "discover": cmd_discover,
     "import": cmd_import,
+    "quarantine": cmd_quarantine,
     "verify": cmd_verify,
     "gates": cmd_gates,
     "report": cmd_report,
@@ -569,6 +798,18 @@ def main(argv: list[str] | None = None) -> int:
         "--require-qualification",
         action="store_true",
         help="refuse to proceed unless completed qualification submissions are discovered",
+    )
+    parser.add_argument(
+        "--import-epoch",
+        default=DEFAULT_IMPORT_EPOCH,
+        help=(
+            "which import epoch to operate on. An epoch is one complete attempt at importing a "
+            "review; correcting an import means starting a new one, never editing sealed receipts"
+        ),
+    )
+    parser.add_argument(
+        "--reason",
+        help="why an epoch is being quarantined, recorded in the quarantine manifest",
     )
     args = parser.parse_args(argv)
 

@@ -26,14 +26,18 @@ from causal_agent_bench.review_ready_v2.final_records import dimension_is_accept
 from causal_agent_bench.review_ready_v2.manual_import_chain import (
     C10_FAIL_STATUS,
     C10_PASS_STATUS,
+    C10_PASS_STATUS_DECLARATION_ONLY,
     DECLARATION_WAIVER_STATUS,
     IMPORT_C10_SCHEMA_VERSION,
+    QUALIFICATION_MODE_GENUINE,
+    QUALIFICATION_MODE_WAIVED,
     QUALIFICATION_WAIVER_STATUS,
     ImportChainError,
     ImportWorkspace,
     _graph_bindings,
     _paired,
     canonical_import_adjudication_digest,
+    verify_imported_qualification,
     verify_imported_snapshot,
 )
 from causal_agent_bench.review_ready_v2.roles import REVIEW_ROLES
@@ -86,6 +90,8 @@ def run_c10(
     """
 
     waiver = workspace.read("coordinator_waiver")
+    qualification = verify_imported_qualification(workspace)
+    qualification_verified = qualification["every_role_qualified"]
     stage1 = verify_imported_snapshot(
         workspace,
         stage=STAGE1,
@@ -132,10 +138,32 @@ def run_c10(
         == waiver["receipt_sha256"],
         "no_reviewer_declaration_is_asserted": waiver.get("reviewer_declarations_confirmed")
         is False,
-        "no_qualification_pass_is_asserted": waiver.get(
-            "qualification_pass_verified_in_this_chain"
+        # Not "no qualification pass is asserted" — a pass may be asserted, but
+        # only when scored submissions establish it.  The check is that the claim
+        # in the waiver matches the evidence actually sealed in this epoch.
+        "qualification_claim_matches_imported_evidence": bool(
+            waiver.get("qualification_pass_verified_in_this_chain")
         )
-        is False,
+        is qualification_verified,
+        "qualification_mode_matches_imported_evidence": waiver.get("qualification_mode")
+        == (QUALIFICATION_MODE_GENUINE if qualification_verified else QUALIFICATION_MODE_WAIVED),
+        "qualification_commitment_bound_into_waiver": (
+            waiver.get("qualification_commitment_sha256")
+            == qualification["commitment"]["receipt_sha256"]
+            if qualification_verified
+            else waiver.get("qualification_commitment_sha256") is None
+        ),
+        "qualification_scored_against_private_key_when_claimed": (
+            all(qualification["checks"].values()) if qualification_verified else True
+        ),
+        "qualification_bound_to_active_freeze_when_claimed": (
+            qualification["commitment"].get("scientific_freeze_sha256")
+            == scientific_freeze_sha256
+            and qualification["commitment"].get("frozen_source_commit") == exact_commit
+            and qualification["commitment"].get("private_packet_commitment") == packet_commitment
+            if qualification_verified
+            else True
+        ),
         "packet_commitment_matches_active": stage1["commitment"]["private_packet_commitment"]
         == packet_commitment,
         "scientific_freeze_matches_active": stage1["commitment"]["scientific_freeze_sha256"]
@@ -231,7 +259,14 @@ def run_c10(
     }
 
     failed = _failed(checks)
-    status = C10_PASS_STATUS if not failed else C10_FAIL_STATUS
+    if failed:
+        status = C10_FAIL_STATUS
+    elif qualification_verified:
+        # Only the declaration waiver survives: qualification stopped being a
+        # waiver the moment real submissions were scored against the key.
+        status = C10_PASS_STATUS_DECLARATION_ONLY
+    else:
+        status = C10_PASS_STATUS
     report = {
         "receipt_kind": "c10_report",
         "c10_schema_version": IMPORT_C10_SCHEMA_VERSION,
@@ -241,14 +276,25 @@ def run_c10(
         # The qualifier is part of the result, not a footnote to it.
         "declaration_mode": "COORDINATOR_WAIVER",
         "declaration_files_collected": False,
+        "reviewer_declaration_files_collected": False,
         "qualification_mode": (
-            "COORDINATOR_WAIVER" if not waiver.get("qualification_evidence_imported") else "IMPORTED"
+            QUALIFICATION_MODE_GENUINE if qualification_verified else QUALIFICATION_MODE_WAIVED
         ),
         "qualification_evidence_imported": bool(waiver.get("qualification_evidence_imported")),
-        "qualification_pass_verified": False,
+        "qualification_pass_verified": qualification_verified,
+        "qualification_passed": qualification_verified,
+        "qualification_commitment_sha256": qualification.get("commitment_sha256"),
+        "qualification_rates": dict(
+            (qualification["commitment"] or {}).get("rates") or {}
+        )
+        if qualification_verified
+        else {},
+        "qualification_threshold": (
+            qualification["commitment"]["threshold"] if qualification_verified else None
+        ),
         "waiver_statuses": [
             DECLARATION_WAIVER_STATUS,
-            *([] if waiver.get("qualification_evidence_imported") else [QUALIFICATION_WAIVER_STATUS]),
+            *([] if qualification_verified else [QUALIFICATION_WAIVER_STATUS]),
         ],
         "evidence_class": (
             "AUDITED_REAL_EVIDENCE_VIA_MANUAL_OFFLINE_IMPORT" if not failed else "INELIGIBLE"
@@ -271,7 +317,13 @@ def run_c10(
         },
         "scope_note": (
             "C10 mechanics only. This does not assert that the production issue-declare-submit "
-            "sequence was followed, and it asserts no reviewer qualification result."
+            "sequence was followed, and it asserts no reviewer declaration."
+            + (
+                " The qualification result is derived from both reviewers' completed submissions "
+                "scored against the private answer key."
+                if qualification_verified
+                else " It asserts no reviewer qualification result."
+            )
         ),
         **_graph_bindings(workspace),
     }
@@ -373,7 +425,10 @@ def lock_reviewed_slice(
             "c10_state": c10["c10_state"],
             "c10_status": c10["status"],
             "declaration_mode": c10["declaration_mode"],
+            "reviewer_declaration_files_collected": False,
             "qualification_mode": c10["qualification_mode"],
+            "qualification_passed": bool(c10.get("qualification_passed")),
+            "qualification_commitment_sha256": c10.get("qualification_commitment_sha256"),
             "waiver_statuses": list(c10["waiver_statuses"]),
             "coordinator_waiver_sha256": waiver["receipt_sha256"],
             "exclusion_register_sha256": register["receipt_sha256"],
@@ -427,7 +482,10 @@ def authorize_model_execution(
             "c10_report_sha256": c10["receipt_sha256"],
             "c10_state": c10["c10_state"],
             "declaration_mode": c10["declaration_mode"],
+            "reviewer_declaration_files_collected": False,
             "qualification_mode": c10["qualification_mode"],
+            "qualification_passed": bool(c10.get("qualification_passed")),
+            "qualification_commitment_sha256": c10.get("qualification_commitment_sha256"),
             "waiver_statuses": list(c10["waiver_statuses"]),
             "coordinator_waiver_sha256": waiver["receipt_sha256"],
             "scorer_version": lock["scorer_version"],

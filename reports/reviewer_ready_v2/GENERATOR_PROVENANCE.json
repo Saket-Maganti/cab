@@ -7,7 +7,7 @@
     "recorded_commit_matches_live_resolution": true,
     "recorded_commit_resolves": true
   },
-  "head": "131cd10abe519a7174171bb47e90347326862ca4",
+  "head": "cc05477fce2e74138dcb6d0fd615c36e2d75893e",
   "passed": true,
   "source_commit": "c9cbd663b7e95700daac9b35e165b6330cdc0880",
   "status": "CAB_GENERATOR_PROVENANCE_PORTABLE"

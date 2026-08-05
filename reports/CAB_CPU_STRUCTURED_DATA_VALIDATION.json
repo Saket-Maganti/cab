@@ -114,6 +114,15 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": ".github/workflows/final-hostile-pre-run.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": ".github/workflows/final-pre-review-hardening.yml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
@@ -124,6 +133,15 @@
       "fix_applied": false,
       "passed": true,
       "path": ".github/workflows/level5-foundation.yml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": ".github/workflows/level6-foundation.yml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
     },
@@ -861,6 +879,42 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "configs/final_hostile_pre_run/analysis_plan.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/final_hostile_pre_run/exposed_candidate_policy.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/final_hostile_pre_run/power_plan.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/final_hostile_pre_run/scorer.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "configs/generate_main500_confirmatory_v1.yaml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
@@ -933,7 +987,25 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "configs/human_review/compact20_review_ready_v2.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "configs/human_validation/c10_contract_v1.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/human_validation/c10_contract_v2.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -1467,6 +1539,51 @@
       "path": "configs/raac/raac_light.yaml",
       "records_or_cells_checked": 1,
       "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/reviewer_ready_v2/analysis_plan_v2.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/reviewer_ready_v2/frozen_endpoints_v2.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/reviewer_ready_v2/power_plan_v2.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/reviewer_ready_v2/scorer_v2.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "configs/reviewer_ready_v2/stage2_acceptance_policy_v1.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
     },
     {
       "error": null,
@@ -3633,6 +3750,24 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "data/manifests/compact20_final_private_commitment.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "data/manifests/compact20_level6_review_supersession.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "data/manifests/compact20_review_packet_v2_public_commitment.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -4893,6 +5028,87 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_00_INPUT_AND_ENVIRONMENT_PREFLIGHT.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_01_C10_SLICE_AND_AUTHORIZATION_AUDIT.ipynb",
+      "records_or_cells_checked": 11,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_02_PROVIDER_FREE_FULL_VALIDATION.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_03_COMPACT20_POSTRUN_MERGE_SCORE_AUDIT.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_04_SCALE100_POSTRUN_MERGE_SCORE_AUDIT.ipynb",
+      "records_or_cells_checked": 8,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_05_RAAC_BASELINE_ABLATION_ANALYSIS.ipynb",
+      "records_or_cells_checked": 8,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_06_NATURALISTIC_POSTRUN_ANALYSIS.ipynb",
+      "records_or_cells_checked": 8,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_07_FINAL_BOOTSTRAP_PAPER_RELEASE.ipynb",
+      "records_or_cells_checked": 8,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "notebooks/kaggle_cpu/CAB_CPU_08_FAILURE_RECOVERY_AND_ARCHIVE_REPAIR.ipynb",
+      "records_or_cells_checked": 10,
+      "schema": "Jupyter notebook JSON structure"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "notebooks/provider_pilot/5model_100task_provider_runbook.ipynb",
       "records_or_cells_checked": 7,
       "schema": "Jupyter notebook JSON structure"
@@ -4993,6 +5209,15 @@
       "fix_applied": false,
       "passed": true,
       "path": "promptpacks/CAB_Insane_Uplift_Prompt_Pack/manifest.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "promptpacks/CAB_LEVEL5_PLUS_PROMPT_PACK/PACK_MANIFEST.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -5262,6 +5487,177 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "reports/final_hostile_pre_run/EXPOSED_CANDIDATE_LEDGER.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/RELEASE_ATTESTATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/SCIENTIFIC_FREEZE_MANIFEST.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-000000-000500.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-000500-001000.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-001000-001500.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-001500-002000.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-002000-002500.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-002500-003000.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-003000-003500.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_hostile_pre_run/power_shards/power-003500-004000.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_integrity_closure/BASELINE_REPOSITORY_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_integrity_closure/FINAL_INTEGRITY_CLOSURE_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_integrity_closure/FRESH_CLONE_VERIFICATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_integrity_closure/FULL_VALIDATION_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_integrity_closure/HOSTILE_INTEGRITY_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_integrity_closure/SCIENTIFIC_KERNEL_PRESERVATION_BASELINE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/final_integrity_closure/SCIENTIFIC_KERNEL_PRESERVATION_FINAL.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "reports/final_pre_review/ADVERSARIAL_AUDIT.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -5487,6 +5883,123 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "reports/level6_foundation/BUILD_PROVENANCE_TEMPLATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/CAB_LEVEL6_STATE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/DEPENDENCY_LICENSES.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/FINAL_TIP_RELEASE_PATH.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/GOVERNANCE_FIXTURE_DEMONSTRATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/HIERARCHICAL_POWER_ANALYTIC_V2.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/HIERARCHICAL_POWER_MONTE_CARLO_V2.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/LEVEL6_ADVERSARIAL_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/MEASUREMENT_FIXTURE_DEMONSTRATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/PORTABILITY_CONFORMANCE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/PROTECTED_EVALUATOR_FIXTURE_DEMONSTRATION.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/REVIEW_ARCHIVE_COMMITMENTS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/level6_foundation/SBOM.cdx.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "reports/paper_asset_eligibility.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -5640,6 +6153,186 @@
       "error_location": null,
       "fix_applied": false,
       "passed": true,
+      "path": "reports/reviewer_ready_v2/ACTIVE_PATH_REGISTRY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/ATTESTATION_POLICY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/BASELINE_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/CAUSAL_ROUTE_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/DESIGN_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/FIXTURE_E2E_WORKFLOW.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/GENERATOR_PROVENANCE.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/HOSTILE_ROUTE_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/INTERVENTION_ISOLATION_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/PUBLIC_PACKET_COMMITMENT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/RETIRED_PACKET_REGISTRY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/RETIRED_QUALIFICATION_REGISTRY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/RETIREMENT_ENFORCEMENT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/REVIEWER_DISTRIBUTION_SCHEMAS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/REVIEWER_READINESS_REPORT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/SCIENTIFIC_FREEZE_V2.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/STAGE1_LEAKAGE_AUDIT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/STAGE1_PACKAGE_RECEIPT.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/STAGE2_ACCEPTANCE_POLICY.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "reports/reviewer_ready_v2/STAGE2_VAULT_STATUS.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
       "path": "reports/run_health_report.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
@@ -5650,6 +6343,69 @@
       "fix_applied": false,
       "passed": true,
       "path": "reviews/repo_audit_upgrade_map.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "spec/final_hostile_pre_run/private_compact20_public_commitment.schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "spec/level6/conformance_vectors.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "spec/level6/openapi.yaml",
+      "records_or_cells_checked": 1,
+      "schema": "YAML safe-load syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "spec/level6/schemas/governance_decision.schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "spec/level6/schemas/level6_evidence_counters.schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "spec/level6/schemas/recovery_attempt.schema.json",
+      "records_or_cells_checked": 1,
+      "schema": "JSON syntax"
+    },
+    {
+      "error": null,
+      "error_location": null,
+      "fix_applied": false,
+      "passed": true,
+      "path": "spec/level6/schemas/semantic_fact.schema.json",
       "records_or_cells_checked": 1,
       "schema": "JSON syntax"
     },
@@ -5790,9 +6546,9 @@
     }
   ],
   "files_failed": 0,
-  "files_passed": 643,
-  "files_scanned": 643,
-  "generated_at": "2026-08-01T18:40:03.574230+00:00",
+  "files_passed": 727,
+  "files_scanned": 727,
+  "generated_at": "2026-08-05T17:45:09.757312+00:00",
   "passed": true,
   "schema_version": "cab_cpu_structured_data_validation_v1",
   "scope": "Tracked JSON, JSONL, YAML, YML, and Jupyter notebook files."
