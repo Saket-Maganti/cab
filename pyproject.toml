@@ -145,6 +145,17 @@ ignore = [
 # sibling scripts, so module-level imports legitimately follow that statement.
 "scripts/*" = ["E402"]
 
+# Generated Kaggle notebooks. A notebook cell must put the attached bundle on
+# sys.path before it can import the package from it, so imports legitimately
+# follow a statement — the same reason `scripts/*` is exempt above. Import
+# *ordering* in these files is the generator's business, not a reviewer's; every
+# substantive rule (unused imports, unused variables, undefined names) still
+# applies, which is what actually catches a broken notebook.
+# The T4 notebooks predate this and carry their own `# noqa: E402` markers, so
+# they only need the ordering rules relaxed.
+"notebooks/kaggle_cpu/*.ipynb" = ["E401", "E402", "I001"]
+"notebooks/kaggle/*.ipynb" = ["E401", "I001"]
+
 # Gate-by-default typing. mypy type-checks the WHOLE package; every module must
 # pass unless it is explicitly exempted in the `ignore_errors` override below.
 # This locks in the 101 modules that are already clean and forces any NEW module
