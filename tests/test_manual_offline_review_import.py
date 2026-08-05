@@ -30,6 +30,7 @@ from causal_agent_bench.review_ready_v2.manual_import import (
     STAGE2_REVIEW_FORM,
     UNCLASSIFIED,
     ManualImportError,
+    attribute_qualification_roles,
     classify_file,
     discover_completed_review,
     select_evidence_set,
@@ -41,8 +42,10 @@ from causal_agent_bench.review_ready_v2.manual_import_chain import (
     build_final_adjudicated_records,
     compute_agreement,
     import_adjudication,
+    import_qualification_submissions,
     import_review_submissions,
     record_coordinator_waiver,
+    verify_imported_qualification,
     verify_imported_snapshot,
 )
 from causal_agent_bench.review_ready_v2.manual_import_gates import (
@@ -51,6 +54,7 @@ from causal_agent_bench.review_ready_v2.manual_import_gates import (
     lock_reviewed_slice,
     run_c10,
 )
+from causal_agent_bench.review_ready_v2.qualification import QUALIFICATION_SCHEMA_VERSION
 from causal_agent_bench.review_ready_v2.receipts import (
     COORDINATOR_KEY_ENV,
     MANUAL_IMPORT_ORIGIN,
@@ -58,6 +62,7 @@ from causal_agent_bench.review_ready_v2.receipts import (
     ReceiptError,
     coordinator_authority,
     manual_import_authority,
+    seal_receipt,
     verify_receipt,
 )
 from causal_agent_bench.review_ready_v2.roles import REVIEW_ROLES, REVIEWER_A, REVIEWER_B
@@ -825,3 +830,449 @@ def test_a_stage2_adjudication_cannot_answer_the_stage1_queue(chain, tmp_path) -
     # itself refuses the cross-stage substitution.
     with pytest.raises(ImportChainError, match=r"another stage|already sealed"):
         import_adjudication(workspace, stage=STAGE1, candidate=stage2_file)
+
+
+# --------------------------------------------------------------------------
+# genuine qualification evidence
+# --------------------------------------------------------------------------
+
+#: Five synthetic qualification items per role, in the shared Q4 namespace.  The
+#: item sets are disjoint because each reviewer is issued their own package, and
+#: that disjointness is the only thing that attributes a role.
+QUALIFICATION_ITEMS = {
+    REVIEWER_A: [f"Q4-A{index:07X}" for index in range(5)],
+    REVIEWER_B: [f"Q4-B{index:07X}" for index in range(5)],
+}
+
+
+def _qualification_key(*, wrong_for: dict[str, int] | None = None) -> dict[str, Any]:
+    """A synthetic answer key.  ``wrong_for`` marks how many items a role misses.
+
+    The default puts each role at four of five — exactly on the threshold — so
+    that a test which nudges a rate is changing something real.
+    """
+
+    wrong_for = dict.fromkeys(REVIEW_ROLES, 1) | (wrong_for or {})
+    keys: dict[str, Any] = {}
+    for role, items in QUALIFICATION_ITEMS.items():
+        misses = wrong_for.get(role, 0)
+        keys[role] = {
+            item: {
+                "decisive_dimension": "clean_solvable",
+                # The fixture forms answer "yes" everywhere, so expecting "no"
+                # is how an item is made wrong.
+                "expected_value": "no" if index < misses else "yes",
+            }
+            for index, item in enumerate(items)
+        }
+    return keys
+
+
+def _write_qualification(directory: Path, role: str) -> Path:
+    rows = [_stage1_row(item, ambiguity="none") for item in QUALIFICATION_ITEMS[role]]
+    return _write_csv(directory / f"qual_{role}.csv", REVIEW_FORM_COLUMNS, rows)
+
+
+@pytest.fixture
+def qualified(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+    """A workspace with both qualification submissions imported and scored."""
+
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    monkeypatch.setenv(COORDINATOR_KEY_ENV, str(tmp_path / "keys" / "coordinator.key"))
+    create_external_key(COORDINATOR_KEY_ENV, repo)
+
+    evidence = tmp_path / "evidence"
+    _build_evidence(evidence)
+    for role in REVIEW_ROLES:
+        _write_qualification(evidence, role)
+
+    workspace = ImportWorkspace.open(tmp_path / "packet", repo, packet_version=PACKET)
+    chosen = select_evidence_set(
+        discover_completed_review([evidence]), require_qualification=True
+    )
+    keys = _qualification_key()
+    by_role = attribute_qualification_roles(
+        chosen, {role: set(items) for role, items in keys.items()}
+    )
+    commitment = import_qualification_submissions(
+        workspace,
+        candidates=by_role,
+        answer_keys=keys,
+        qualification_version=QUALIFICATION_SCHEMA_VERSION,
+        public_qualification_commitment="q" * 64,
+        exact_commit=COMMIT,
+        scientific_freeze_sha256=FREEZE,
+        packet_commitment=COMMITMENT,
+    )
+    return {
+        "workspace": workspace,
+        "repo": repo,
+        "commitment": commitment,
+        "chosen": chosen,
+        "keys": keys,
+        "by_role": by_role,
+        "tmp_path": tmp_path,
+        "evidence": evidence,
+    }
+
+
+def test_qualification_roles_are_attributed_from_the_answered_items(qualified) -> None:
+    for role, candidate in qualified["by_role"].items():
+        assert set(candidate.item_ids) == set(QUALIFICATION_ITEMS[role])
+
+
+def test_renaming_the_qualification_files_does_not_change_attribution(tmp_path) -> None:
+    """The filename says one role; the answered items say the other.  Items win."""
+
+    evidence = tmp_path / "evidence"
+    _build_evidence(evidence)
+    a_bytes = _write_qualification(evidence, REVIEWER_A).read_bytes()
+    b_bytes = _write_qualification(evidence, REVIEWER_B).read_bytes()
+    (evidence / f"qual_{REVIEWER_A}.csv").write_bytes(b_bytes)
+    (evidence / f"qual_{REVIEWER_B}.csv").write_bytes(a_bytes)
+
+    keys = _qualification_key()
+    by_role = attribute_qualification_roles(
+        select_evidence_set(discover_completed_review([evidence])),
+        {role: set(items) for role, items in keys.items()},
+    )
+    assert by_role[REVIEWER_A].path.name == f"qual_{REVIEWER_B}.csv"
+    assert set(by_role[REVIEWER_A].item_ids) == set(QUALIFICATION_ITEMS[REVIEWER_A])
+
+
+def test_a_qualification_form_matching_no_issued_package_is_unattributable(tmp_path) -> None:
+    evidence = tmp_path / "evidence"
+    _build_evidence(evidence)
+    rows = [_stage1_row(f"Q4-Z{index:07X}", ambiguity="none") for index in range(5)]
+    _write_csv(evidence / "stranger.csv", REVIEW_FORM_COLUMNS, rows)
+    for role in REVIEW_ROLES:
+        _write_qualification(evidence, role)
+
+    keys = _qualification_key()
+    with pytest.raises(ManualImportError, match="QUALIFICATION_ROLE_UNATTRIBUTABLE"):
+        attribute_qualification_roles(
+            select_evidence_set(discover_completed_review([evidence])),
+            {role: set(items) for role, items in keys.items()},
+        )
+
+
+def test_a_missing_qualification_submission_fails_closed(tmp_path) -> None:
+    evidence = tmp_path / "evidence"
+    _build_evidence(evidence)
+    _write_qualification(evidence, REVIEWER_A)
+    keys = _qualification_key()
+    with pytest.raises(ManualImportError, match="QUALIFICATION_EVIDENCE_INCOMPLETE"):
+        attribute_qualification_roles(
+            select_evidence_set(discover_completed_review([evidence])),
+            {role: set(items) for role, items in keys.items()},
+        )
+
+
+def test_a_submission_below_the_threshold_blocks_the_import(tmp_path, monkeypatch) -> None:
+    """Four of five is a pass; three of five is a blocker, not a footnote."""
+
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    monkeypatch.setenv(COORDINATOR_KEY_ENV, str(tmp_path / "keys" / "coordinator.key"))
+    create_external_key(COORDINATOR_KEY_ENV, repo)
+    evidence = tmp_path / "evidence"
+    _build_evidence(evidence)
+    for role in REVIEW_ROLES:
+        _write_qualification(evidence, role)
+
+    workspace = ImportWorkspace.open(tmp_path / "packet", repo, packet_version=PACKET)
+    keys = _qualification_key(wrong_for={REVIEWER_B: 2})
+    by_role = attribute_qualification_roles(
+        select_evidence_set(discover_completed_review([evidence])),
+        {role: set(items) for role, items in keys.items()},
+    )
+    with pytest.raises(ImportChainError, match="qualification threshold"):
+        import_qualification_submissions(
+            workspace,
+            candidates=by_role,
+            answer_keys=keys,
+            qualification_version=QUALIFICATION_SCHEMA_VERSION,
+            public_qualification_commitment="q" * 64,
+            exact_commit=COMMIT,
+            scientific_freeze_sha256=FREEZE,
+            packet_commitment=COMMITMENT,
+        )
+
+
+def test_the_qualification_receipt_never_records_per_item_correctness(qualified) -> None:
+    workspace = qualified["workspace"]
+    for role in REVIEW_ROLES:
+        receipt = workspace.read(f"qualification_{role}")
+        assert receipt["per_item_correctness_recorded"] is False
+        assert receipt["answer_key_disclosed"] is False
+        assert "graded" not in receipt
+        # No expected value or decisive dimension may travel in the receipt.
+        body = json.dumps(receipt)
+        assert "decisive_dimension" not in body
+        assert "expected_value" not in body
+
+
+def test_a_changed_qualification_rate_is_refused(qualified) -> None:
+    workspace = qualified["workspace"]
+    _tamper(
+        workspace.path_for(f"qualification_{REVIEWER_A}"),
+        lambda payload: payload.update({"rate": 1.0}),
+    )
+    with pytest.raises(ImportChainError, match=r"failed verification|has changed"):
+        verify_imported_qualification(workspace)
+
+
+def test_a_resealed_qualification_receipt_still_fails_its_commitment(qualified) -> None:
+    """A valid MAC over edited content is not enough: the commitment binds it."""
+
+    workspace = qualified["workspace"]
+    authority = manual_import_authority(qualified["repo"])
+    path = workspace.path_for(f"qualification_{REVIEWER_B}")
+    payload = json.loads(path.read_text())
+    payload.pop("receipt_mac")
+    payload.pop("receipt_sha256")
+    payload["correct_count"] = 5
+    payload["rate"] = 1.0
+    path.write_text(json.dumps(seal_receipt(authority, payload), indent=2, sort_keys=True) + "\n")
+    with pytest.raises(ImportChainError, match="has changed since it was committed"):
+        verify_imported_qualification(workspace)
+
+
+def test_a_waiver_cannot_claim_a_pass_the_commitment_does_not_establish(qualified) -> None:
+    workspace = qualified["workspace"]
+    forged = {**qualified["commitment"], "every_role_qualified": False}
+    with pytest.raises(ImportChainError, match="does not establish"):
+        record_coordinator_waiver(
+            workspace,
+            evidence_inventory_sha256="0" * 64,
+            qualification_discovered=True,
+            exact_commit=COMMIT,
+            scientific_freeze_sha256=FREEZE,
+            packet_commitment=COMMITMENT,
+            qualification_commitment=forged,
+        )
+
+
+def test_a_waiver_cannot_claim_qualification_that_was_never_discovered(qualified) -> None:
+    with pytest.raises(ImportChainError, match="discovery did not find"):
+        record_coordinator_waiver(
+            qualified["workspace"],
+            evidence_inventory_sha256="0" * 64,
+            qualification_discovered=False,
+            exact_commit=COMMIT,
+            scientific_freeze_sha256=FREEZE,
+            packet_commitment=COMMITMENT,
+            qualification_commitment=qualified["commitment"],
+        )
+
+
+def test_qualification_evidence_cannot_be_reimported_over_its_commitment(qualified) -> None:
+    with pytest.raises(ImportChainError, match="already committed"):
+        import_qualification_submissions(
+            qualified["workspace"],
+            candidates=qualified["by_role"],
+            answer_keys=qualified["keys"],
+            qualification_version=QUALIFICATION_SCHEMA_VERSION,
+            public_qualification_commitment="q" * 64,
+            exact_commit=COMMIT,
+            scientific_freeze_sha256=FREEZE,
+            packet_commitment=COMMITMENT,
+        )
+
+
+# --------------------------------------------------------------------------
+# import epochs
+# --------------------------------------------------------------------------
+
+
+def test_a_new_epoch_starts_with_an_empty_receipt_store(chain) -> None:
+    workspace = chain["workspace"]
+    later = ImportWorkspace.open(
+        chain["private_root"], chain["repo"], packet_version=PACKET, import_epoch="v2"
+    )
+    assert later.receipts != workspace.receipts
+    assert not later.has("coordinator_waiver")
+    assert workspace.has("coordinator_waiver")
+
+
+def test_a_receipt_from_an_abandoned_epoch_cannot_be_reused_in_a_later_one(chain) -> None:
+    """Moving a sealed receipt forward keeps its MAC valid and still fails."""
+
+    workspace = chain["workspace"]
+    later = ImportWorkspace.open(
+        chain["private_root"], chain["repo"], packet_version=PACKET, import_epoch="v2"
+    )
+    shutil.copy2(
+        workspace.path_for("coordinator_waiver"), later.path_for("coordinator_waiver")
+    )
+    # The MAC verifies — the epoch is what refuses it.
+    verify_receipt(later.authority, json.loads(later.path_for("coordinator_waiver").read_text()))
+    with pytest.raises(ImportChainError, match="import epoch"):
+        later.read("coordinator_waiver")
+
+
+def test_an_epoch_label_must_be_a_plain_alphanumeric_token(chain) -> None:
+    for bad in ("", "  ", "../escape", "v2/../v1"):
+        with pytest.raises(ImportChainError, match="alphanumeric"):
+            ImportWorkspace.open(
+                chain["private_root"], chain["repo"], packet_version=PACKET, import_epoch=bad
+            )
+
+
+# --------------------------------------------------------------------------
+# the complete chain, with genuine qualification evidence
+# --------------------------------------------------------------------------
+
+
+@pytest.fixture
+def qualified_chain(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+    """A complete chain whose qualification was scored rather than waived."""
+
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    monkeypatch.setenv(COORDINATOR_KEY_ENV, str(tmp_path / "keys" / "coordinator.key"))
+    create_external_key(COORDINATOR_KEY_ENV, repo)
+
+    evidence = tmp_path / "evidence"
+    _build_evidence(evidence)
+    for role in REVIEW_ROLES:
+        _write_qualification(evidence, role)
+
+    private_root = tmp_path / "packet"
+    workspace = ImportWorkspace.open(
+        private_root, repo, packet_version=PACKET, import_epoch="v2"
+    )
+    chosen = select_evidence_set(
+        discover_completed_review([evidence]), require_qualification=True
+    )
+    keys = _qualification_key()
+    commitment = import_qualification_submissions(
+        workspace,
+        candidates=attribute_qualification_roles(
+            chosen, {role: set(items) for role, items in keys.items()}
+        ),
+        answer_keys=keys,
+        qualification_version=QUALIFICATION_SCHEMA_VERSION,
+        public_qualification_commitment="q" * 64,
+        exact_commit=COMMIT,
+        scientific_freeze_sha256=FREEZE,
+        packet_commitment=COMMITMENT,
+    )
+    waiver = record_coordinator_waiver(
+        workspace,
+        evidence_inventory_sha256="0" * 64,
+        qualification_discovered=True,
+        exact_commit=COMMIT,
+        scientific_freeze_sha256=FREEZE,
+        packet_commitment=COMMITMENT,
+        qualification_commitment=commitment,
+    )
+    mappings = _mappings()
+    applicability_by_pair = _applicability()
+    applicability_by_item = {
+        item_id: applicability_by_pair[pair]
+        for role in REVIEW_ROLES
+        for item_id, pair in mappings[role].items()
+    }
+    for stage, kind in ((STAGE1, STAGE1_REVIEW_FORM), (STAGE2, STAGE2_REVIEW_FORM)):
+        import_review_submissions(
+            workspace,
+            stage=stage,
+            candidates={role: chosen[f"{kind}:{role}"] for role in REVIEW_ROLES},
+            expected_item_ids={role: sorted(mappings[role]) for role in REVIEW_ROLES},
+            applicability=applicability_by_item if stage == STAGE2 else None,
+            waiver=waiver,
+            packet_commitment=COMMITMENT,
+            scientific_freeze_sha256=FREEZE,
+            exact_commit=COMMIT,
+            review_schema_version="cab_stage1_review_form_v2",
+        )
+    for stage, kind in ((STAGE1, STAGE1_ADJUDICATION), (STAGE2, STAGE2_ADJUDICATION)):
+        build_disagreement_queue(
+            workspace,
+            stage=stage,
+            mappings=mappings,
+            applicability=applicability_by_pair if stage == STAGE2 else None,
+        )
+        import_adjudication(workspace, stage=stage, candidate=chosen[kind])
+    compute_agreement(workspace, mappings=mappings)
+    build_final_adjudicated_records(
+        workspace,
+        mappings=mappings,
+        applicability=applicability_by_pair,
+        expected_pair_count=20,
+    )
+    return {
+        "workspace": workspace,
+        "repo": repo,
+        "private_root": private_root,
+        "mappings": mappings,
+        "applicability": applicability_by_pair,
+        "commitment": commitment,
+        "waiver": waiver,
+    }
+
+
+def test_genuine_qualification_removes_the_qualification_waiver_from_c10(
+    qualified_chain,
+) -> None:
+    c10 = _c10(qualified_chain)
+    assert c10["c10_state"] == "PASS"
+    assert c10["status"] == "C10_MECHANICS_PASS_WITH_COORDINATOR_DECLARATION_WAIVER"
+    assert c10["qualification_mode"] == "GENUINE_VERIFIED_SUBMISSIONS"
+    assert c10["qualification_passed"] is True
+    # The declaration waiver survives and is still stated plainly.
+    assert c10["declaration_mode"] == "COORDINATOR_WAIVER"
+    assert c10["reviewer_declaration_files_collected"] is False
+    assert c10["waiver_statuses"] == ["COORDINATOR_DECLARATION_WAIVER_RECORDED"]
+
+
+def test_the_qualification_mode_travels_into_the_lock_and_authorization(
+    qualified_chain,
+) -> None:
+    workspace = qualified_chain["workspace"]
+    _c10(qualified_chain)
+    build_exclusion_register(workspace)
+    lock = lock_reviewed_slice(
+        workspace,
+        pair_content_hashes={pair: f"{index:064d}" for index, pair in enumerate(PAIRS)},
+        scorer_version="cab_stage2_acceptance_policy_v1",
+        split_version=PACKET,
+        exact_commit=COMMIT,
+    )
+    authorization = authorize_model_execution(workspace, exact_commit=COMMIT)
+    for receipt in (lock, authorization):
+        assert receipt["qualification_mode"] == "GENUINE_VERIFIED_SUBMISSIONS"
+        assert receipt["qualification_passed"] is True
+        assert receipt["reviewer_declaration_files_collected"] is False
+        assert receipt["waiver_statuses"] == ["COORDINATOR_DECLARATION_WAIVER_RECORDED"]
+    assert authorization["qualification_commitment_sha256"] == (
+        qualified_chain["commitment"]["receipt_sha256"]
+    )
+
+
+def test_deleting_the_qualification_commitment_fails_c10_rather_than_downgrading_it(
+    qualified_chain,
+) -> None:
+    """The waiver still claims a pass; losing the evidence must fail, not soften."""
+
+    workspace = qualified_chain["workspace"]
+    workspace.path_for("qualification_commitment").unlink()
+    c10 = _c10(qualified_chain)
+    assert c10["c10_state"] == "FAIL"
+    assert "qualification_claim_matches_imported_evidence" in c10["failed_checks"]
+
+
+def test_a_qualification_bound_to_another_freeze_fails_c10(qualified_chain) -> None:
+    workspace = qualified_chain["workspace"]
+    authority = manual_import_authority(qualified_chain["repo"])
+    path = workspace.path_for("qualification_commitment")
+    payload = json.loads(path.read_text())
+    payload.pop("receipt_mac")
+    payload.pop("receipt_sha256")
+    payload["scientific_freeze_sha256"] = "e" * 64
+    path.write_text(json.dumps(seal_receipt(authority, payload), indent=2, sort_keys=True) + "\n")
+    c10 = _c10(qualified_chain)
+    assert c10["c10_state"] == "FAIL"
+    assert "qualification_bound_to_active_freeze_when_claimed" in c10["failed_checks"]

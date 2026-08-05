@@ -15,9 +15,9 @@
   },
   "blocking_gates": [],
   "external_exact_commit_attestation": {
-    "present_when_this_report_was_generated": true,
+    "present_when_this_report_was_generated": false,
     "required_before_distribution": true,
-    "status_when_this_report_was_generated": "CAB_EXACT_COMMIT_ATTESTATION_CREATED",
+    "status_when_this_report_was_generated": "EXTERNAL_EXACT_COMMIT_ATTESTATION_PENDING",
     "tracked_policy": "reports/reviewer_ready_v2/ATTESTATION_POLICY.json",
     "verify_with": "python3 scripts/cab_review_ready_v2.py verify-attestation",
     "why_not_tracked": "An exact-commit attestation cannot be committed inside the commit it attests, so it is written outside the repository after the final tracked commit."

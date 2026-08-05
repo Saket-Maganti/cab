@@ -54,7 +54,7 @@ it with:
 python3 scripts/cab_review_ready_v2.py verify-attestation
 ```
 
-Status when this report was generated: `CAB_EXACT_COMMIT_ATTESTATION_CREATED`
+Status when this report was generated: `EXTERNAL_EXACT_COMMIT_ATTESTATION_PENDING`
 
 ## Audits
 

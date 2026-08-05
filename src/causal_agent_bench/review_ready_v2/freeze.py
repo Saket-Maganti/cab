@@ -77,6 +77,13 @@ FROZEN_SOURCES = (
     "src/causal_agent_bench/review_ready_v2/workflow.py",
     "src/causal_agent_bench/review_ready_v2/registry.py",
     "src/causal_agent_bench/review_ready_v2/power.py",
+    # The manual offline-import path decides what evidence exists, whether C10
+    # passes over it, and which slice may be executed.  A reviewer who verifies
+    # the freeze should be verifying that code too, not only the production
+    # path it sits beside.
+    "src/causal_agent_bench/review_ready_v2/manual_import.py",
+    "src/causal_agent_bench/review_ready_v2/manual_import_chain.py",
+    "src/causal_agent_bench/review_ready_v2/manual_import_gates.py",
 )
 
 #: The sources that actually materialise the twenty pairs.  Provenance is

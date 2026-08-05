@@ -518,6 +518,66 @@ def select_evidence_set(
     return chosen
 
 
+def attribute_qualification_roles(
+    chosen: dict[str, Candidate], expected_item_ids: dict[str, set[str]]
+) -> dict[str, Candidate]:
+    """Decide which reviewer each qualification submission answers, by content.
+
+    A qualification form carries no role marker: every item shares the ``Q4``
+    namespace, and the filename is never consulted.  What *does* separate the two
+    submissions is which five opaque items they answer, because each reviewer was
+    issued their own package.  Matching the answered item-id set against the
+    private key's per-role item sets therefore attributes a role from evidence
+    rather than from a coordinator's assertion.
+
+    Fails closed on every ambiguity: a submission matching no role, a submission
+    matching two roles, two submissions matching one role, or a role with no
+    submission at all.
+    """
+
+    candidates = [
+        candidate
+        for slot, candidate in sorted(chosen.items())
+        if candidate.kind == QUALIFICATION_FORM
+    ]
+    if not candidates:
+        raise ManualImportError(
+            "QUALIFICATION_EVIDENCE_MISSING: no completed qualification submission was discovered "
+            "and no qualification score may be invented"
+        )
+
+    attributed: dict[str, list[Candidate]] = {}
+    for candidate in candidates:
+        answered = set(candidate.item_ids)
+        matched = sorted(role for role, items in expected_item_ids.items() if items == answered)
+        if not matched:
+            raise ManualImportError(
+                "QUALIFICATION_ROLE_UNATTRIBUTABLE: a discovered qualification submission answers "
+                "an item set that matches no reviewer's issued package; it cannot be scored "
+                "against any answer key"
+            )
+        if len(matched) > 1:
+            raise ManualImportError(
+                "QUALIFICATION_ROLE_AMBIGUOUS: a discovered qualification submission matches "
+                f"{matched}; two reviewers cannot have been issued identical items"
+            )
+        attributed.setdefault(matched[0], []).append(candidate)
+
+    conflicting = sorted(role for role, found in attributed.items() if len(found) > 1)
+    if conflicting:
+        raise ManualImportError(
+            f"FAIL_CLOSED_AMBIGUOUS_QUALIFICATION_EVIDENCE: {conflicting} matched more than one "
+            "completed submission with different content; resolve by hand which one was submitted"
+        )
+    missing = sorted(set(expected_item_ids) - set(attributed))
+    if missing:
+        raise ManualImportError(
+            "QUALIFICATION_EVIDENCE_INCOMPLETE: no completed qualification submission was "
+            f"discovered for {missing}"
+        )
+    return {role: found[0] for role, found in attributed.items()}
+
+
 def discovery_report(result: DiscoveryResult, chosen: dict[str, Candidate]) -> dict[str, Any]:
     """A public, counts-and-hashes-only description.  Never quotes a note."""
 
@@ -555,6 +615,7 @@ __all__ = [
     "Candidate",
     "DiscoveryResult",
     "ManualImportError",
+    "attribute_qualification_roles",
     "canonical_review_content",
     "classify_file",
     "classify_payload",

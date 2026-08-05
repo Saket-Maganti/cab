@@ -132,6 +132,13 @@ SPECS: tuple[NotebookSpec, ...] = (
                 missing = sorted(name for name, path in required.items() if not path.is_file())
                 assert not missing, f"the bundle is missing required commitments: {missing}"
                 DOCUMENTS = {name: json.loads(path.read_text()) for name, path in required.items()}
+                # Present only when qualification submissions were actually
+                # imported and scored. Its absence is a claim of nothing, and is
+                # checked against what C10 claims rather than assumed benign.
+                qualification_path = reports / "post_human_review" / "QUALIFICATION_FINAL.json"
+                if qualification_path.is_file():
+                    DOCUMENTS["qualification"] = json.loads(qualification_path.read_text())
+                    required["qualification"] = qualification_path
                 record("commitment_files", {name: file_sha256(path) for name, path in required.items()})
                 print("loaded", len(DOCUMENTS), "commitment documents")
                 """,
@@ -171,8 +178,46 @@ SPECS: tuple[NotebookSpec, ...] = (
                     "declaration_waiver_disclosed":
                         authorization["declaration_mode"] == "COORDINATOR_WAIVER",
                     "no_declaration_is_claimed": waiver["reviewer_declarations_confirmed"] is False,
-                    "no_qualification_pass_is_claimed":
-                        waiver["qualification_pass_verified_in_this_chain"] is False,
+                    "declaration_files_are_not_claimed":
+                        authorization["reviewer_declaration_files_collected"] is False,
+                    # A qualification pass may be claimed only where scored
+                    # submissions establish it, and the claim must be identical
+                    # in the waiver, C10 and the authorization.
+                    "qualification_claim_is_consistent": (
+                        waiver["qualification_pass_verified_in_this_chain"]
+                        is c10["qualification_passed"]
+                        is authorization["qualification_passed"]
+                    ),
+                    "qualification_mode_is_consistent": (
+                        waiver["qualification_mode"]
+                        == c10["qualification_mode"]
+                        == lock["qualification_mode"]
+                        == authorization["qualification_mode"]
+                    ),
+                    "qualification_claim_is_backed_by_evidence": (
+                        (
+                            "qualification" in DOCUMENTS
+                            and DOCUMENTS["qualification"]["every_role_qualified"] is True
+                            and DOCUMENTS["qualification"]["qualification_commitment_sha256"]
+                            == waiver["qualification_commitment_sha256"]
+                            == authorization["qualification_commitment_sha256"]
+                            and all(
+                                float(rate) >= float(DOCUMENTS["qualification"]["threshold"])
+                                for rate in DOCUMENTS["qualification"]["rates"].values()
+                            )
+                        )
+                        if c10["qualification_passed"]
+                        else (
+                            waiver["qualification_commitment_sha256"] is None
+                            and "qualification" not in DOCUMENTS
+                        )
+                    ),
+                    "qualification_answer_key_is_not_disclosed": (
+                        DOCUMENTS["qualification"]["answer_key_disclosed"] is False
+                        and DOCUMENTS["qualification"]["per_item_correctness_published"] is False
+                        if "qualification" in DOCUMENTS
+                        else True
+                    ),
                     "paid_providers_not_authorized":
                         authorization["paid_providers_authorized"] is False,
                     "only_the_pilot_is_authorized":
