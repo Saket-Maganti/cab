@@ -38,11 +38,22 @@ COORDINATOR_KEY_ENV = "CAB_COORDINATOR_KEY_PATH"
 PRODUCTION_ORIGIN = "PRODUCTION_COORDINATOR_ACCEPTED"
 FIXTURE_ORIGIN = FIXTURE_MARKER
 
+#: Evidence that reached us through the manual offline-import path rather than
+#: through the normal issue-declare-submit sequence.  It is genuine human
+#: judgement, sealed under the coordinator's own key, but it is *not* production
+#: evidence: no declaration was collected and no issue receipt preceded it.  The
+#: separate origin and HMAC domain mean a manual-import receipt can never
+#: authenticate against a production gate, and a production receipt can never
+#: authenticate against an import gate, in either direction.
+MANUAL_IMPORT_ORIGIN = "MANUAL_OFFLINE_REVIEW_IMPORT_V1"
+
 PRODUCTION_RECEIPT_SCHEMA = "cab_review_ready_v2_production_receipt_v1"
 FIXTURE_RECEIPT_SCHEMA = "cab_review_ready_v2_fixture_receipt_v1"
+MANUAL_IMPORT_RECEIPT_SCHEMA = "cab_review_ready_v2_manual_offline_import_receipt_v1"
 
 _PRODUCTION_DOMAIN = b"cab-review-ready-v2/production-coordinator-receipt/v1"
 _FIXTURE_DOMAIN = b"cab-review-ready-v2/synthetic-test-fixture-receipt/v1"
+_MANUAL_IMPORT_DOMAIN = b"cab-review-ready-v2/manual-offline-review-import/v1"
 
 #: Deliberately public.  Fixture receipts are sealed with it so that they are
 #: reproducible in tests and worthless as evidence.
@@ -100,6 +111,30 @@ def coordinator_authority(repo_root: Path) -> Authority:
         namespace="receipts",
         counts_as_genuine_evidence=True,
         _domain=_PRODUCTION_DOMAIN,
+        _key=key,
+    )
+
+
+def manual_import_authority(repo_root: Path) -> Authority:
+    """The manual offline-import authority.  Fails closed without the external key.
+
+    Its receipts count as genuine evidence — the judgements really were made by
+    the reviewers — but they carry an origin that says plainly how they arrived.
+    Nothing sealed here can satisfy a gate that requires the production origin.
+    """
+
+    try:
+        key = load_external_key(COORDINATOR_KEY_ENV, repo_root)
+    except ExternalKeyError as error:
+        raise ReceiptError(
+            f"manual-import receipts require the coordinator acceptance key: {error}"
+        ) from error
+    return Authority(
+        origin=MANUAL_IMPORT_ORIGIN,
+        schema_version=MANUAL_IMPORT_RECEIPT_SCHEMA,
+        namespace="manual_import_receipts",
+        counts_as_genuine_evidence=True,
+        _domain=_MANUAL_IMPORT_DOMAIN,
         _key=key,
     )
 
@@ -174,6 +209,8 @@ __all__ = [
     "COORDINATOR_KEY_ENV",
     "FIXTURE_ORIGIN",
     "FIXTURE_RECEIPT_SCHEMA",
+    "MANUAL_IMPORT_ORIGIN",
+    "MANUAL_IMPORT_RECEIPT_SCHEMA",
     "PRODUCTION_ORIGIN",
     "PRODUCTION_RECEIPT_SCHEMA",
     "Authority",
@@ -181,6 +218,7 @@ __all__ = [
     "coordinator_authority",
     "coordinator_key_available",
     "fixture_authority",
+    "manual_import_authority",
     "receipt_is_fixture",
     "seal_receipt",
     "verify_receipt",

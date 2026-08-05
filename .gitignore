@@ -40,6 +40,11 @@ reports/**/_pair_link_scratch/
 data/raw/private/
 # Protected evaluation payloads and private commitments never enter public Git.
 private_data/
+
+# Raw completed human-review submissions. These carry reviewer notes and
+# role-linked judgements and must never enter Git; the chain imports them into
+# sealed private receipts outside the working tree.
+human_review_files/
 *.log
 paper/*.aux
 paper/*.bbl

@@ -36,6 +36,7 @@ import json
 import os
 import secrets
 import stat
+from collections.abc import Callable
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -736,6 +737,7 @@ def create_submission_snapshot(
     receipts: dict[str, dict[str, Any]],
     reviewer_bindings: dict[str, dict[str, Any]],
     manifest_bindings: dict[str, Any],
+    digest_for: Callable[[dict[str, Any]], str] | None = None,
 ) -> dict[str, Any]:
     """Freeze the verified receipt bytes into a write-once sealed snapshot.
 
@@ -759,7 +761,11 @@ def create_submission_snapshot(
             "write-once. Start a fresh workspace rather than recommitting."
         )
 
-    digest_for = {
+    # The production digests bind the declaration, qualification and issuance
+    # hashes a production receipt must carry.  A caller whose evidence class does
+    # not have those bindings supplies its own digest, which must cover the same
+    # scientific content plus whatever provenance that class does bind.
+    digest_for = digest_for or {
         STAGE1: canonical_stage1_judgements_digest,
         STAGE2: canonical_stage2_judgements_digest,
     }[stage]
@@ -877,16 +883,21 @@ def read_snapshot_receipts(
     manifest: dict[str, Any],
     live_paths: dict[str, Path] | None = None,
     require_private: bool = False,
+    digest_for: Callable[[dict[str, Any]], str] | None = None,
 ) -> tuple[dict[str, dict[str, Any]], dict[str, bool]]:
     """Read the frozen receipts and re-derive every digest the manifest binds.
 
     ``live_paths`` is checked but never *used*: a live receipt that no longer
     matches the snapshot is reported as a conflict rather than quietly ignored,
     because silence would let tampering look like a no-op.
+
+    ``digest_for`` must be the same function the snapshot was created with;
+    passing a different one makes every judgement digest mismatch, which is
+    reported as a failed check rather than silently accepted.
     """
 
     directory = snapshot_directory(receipts_root, stage)
-    digest_for = {
+    digest_for = digest_for or {
         STAGE1: canonical_stage1_judgements_digest,
         STAGE2: canonical_stage2_judgements_digest,
     }[stage]
