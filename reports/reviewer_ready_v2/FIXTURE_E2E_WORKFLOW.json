@@ -16,7 +16,7 @@
   "passed": true,
   "schema_version": "cab_review_ready_v2_fixture_e2e_v2",
   "status": "CAB_TWO_STAGE_WORKFLOW_E2E_FIXTURE_VALIDATED",
-  "step_count": 23,
+  "step_count": 27,
   "steps": [
     {
       "detail": "",
@@ -74,6 +74,16 @@
       "step": "stage2_fixture_unlock"
     },
     {
+      "detail": "one coordinator-sealed issuance receipt per reviewer",
+      "passed": true,
+      "step": "stage2_issuance_receipts_sealed"
+    },
+    {
+      "detail": "a submission against another reviewer's archive fails on the issuance binding",
+      "passed": true,
+      "step": "stage2_package_swap_refused"
+    },
+    {
       "detail": "",
       "passed": true,
       "step": "stage2_fixture_ingestion"
@@ -87,6 +97,16 @@
       "detail": "1 disputed Stage-2 dimension(s)",
       "passed": true,
       "step": "stage2_disagreement_queue"
+    },
+    {
+      "detail": "disputed items only, in both stages",
+      "passed": true,
+      "step": "adjudicator_packages_carry_only_disputed_items"
+    },
+    {
+      "detail": "an adjudication against another package fails on the package binding",
+      "passed": true,
+      "step": "stale_adjudicator_package_refused"
     },
     {
       "detail": "",

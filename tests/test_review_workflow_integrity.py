@@ -47,6 +47,7 @@ from causal_agent_bench.review_ready_v2.fixture_e2e import (
     FIXTURE_PSEUDONYMS,
     fixture_applicability,
     fixture_pair_ids,
+    fixture_qualification_source,
     run_fixture_e2e,
 )
 from causal_agent_bench.review_ready_v2.freeze import (
@@ -60,7 +61,7 @@ from causal_agent_bench.review_ready_v2.qualification import (
     QUALIFICATION_SCHEMA_VERSION,
     RETIRED_QUALIFICATION_VERSIONS,
     QualificationError,
-    build_private_qualification,
+    build_qualification_package,
     enforce_active_qualification,
     score_qualification,
 )
@@ -80,6 +81,7 @@ from causal_agent_bench.review_ready_v2.roles import (
     RoleError,
     normalize_role,
 )
+from causal_agent_bench.review_ready_v2.stage1 import REVIEW_DIMENSIONS
 from causal_agent_bench.review_ready_v2.stage2 import (
     NO,
     NOT_APPLICABLE,
@@ -156,6 +158,32 @@ def stage2_paired(*, value: str = YES, notes: str = "") -> dict[str, dict[str, d
     return paired
 
 
+QUALIFICATION_SOURCE = fixture_qualification_source()
+
+
+def qualification_package(role: str) -> dict[str, Any]:
+    """A package built from synthetic material; the real source stays private."""
+
+    return build_qualification_package(QUALIFICATION_SOURCE, role)
+
+
+def complete_qualification_row(**overrides: str) -> dict[str, str]:
+    row = {name: (values[0] if values else "") for name, values, _ in REVIEW_DIMENSIONS}
+    row.update(overrides)
+    return row
+
+
+def qualification_submission(key: dict[str, Any], *, correct: bool = True) -> dict[str, Any]:
+    submission: dict[str, Any] = {}
+    for item, entry in key.items():
+        expected = str(entry["expected_value"])
+        value = expected if correct else ("no" if expected == "yes" else "yes")
+        submission[item] = complete_qualification_row(
+            **{str(entry["decisive_dimension"]): value}
+        )
+    return submission
+
+
 def good_declaration(role: str, *, stage1: str, qualification: str, **overrides: Any) -> dict[str, Any]:
     payload = {
         **declaration_template(),
@@ -196,8 +224,11 @@ def test_tracked_source_carries_no_qualification_answers() -> None:
 
     assert not hasattr(qualification, "QUALIFICATION_KEY")
     assert not hasattr(qualification, "QUALIFICATION_ITEMS")
-    # The generator's defect table names dimensions, but no instantiated item and
-    # no expected value for any real reviewer package exists in tracked source.
+    # V3 kept the scenario table, the defect constructions and the mapping from a
+    # construction to its dimension and value.  None of them survives.
+    for removed in ("_SCENARIOS", "_DEFECT_KINDS", "_apply_defect", "build_private_qualification"):
+        assert not hasattr(qualification, removed), removed
+        assert removed not in source, removed
     assert "QUALIFICATION_KEY: dict" not in source
     assert '"expected_value": "yes"' not in source
     assert '"expected_value": "no"' not in source
@@ -217,19 +248,22 @@ def test_retired_qualification_is_rejected_even_when_renamed() -> None:
         enforce_active_qualification("cab_stage1_qualification_v2_renamed")
 
 
-def test_qualification_content_requires_the_private_seed() -> None:
-    """Two different seeds produce different items and different answers."""
+def test_qualification_content_requires_the_private_source() -> None:
+    """Different authored material produces different items and different answers."""
 
-    first = build_private_qualification(b"seed-one-seed-one-seed-one-32byte", REVIEWER_A)
-    second = build_private_qualification(b"seed-two-seed-two-seed-two-32byte", REVIEWER_A)
+    other = json.loads(json.dumps(QUALIFICATION_SOURCE))
+    for index, entry in enumerate(other["roles"][REVIEWER_A]):
+        entry["reviewer_item_id"] = f"ALT-{index:03d}"
+        entry["item"]["task_objective"] = f"A different authored objective {index}."
+    first = qualification_package(REVIEWER_A)
+    second = build_qualification_package(other, REVIEWER_A)
     assert first["package_sha256"] != second["package_sha256"]
     assert set(first["answer_key"]) != set(second["answer_key"])
 
 
 def test_each_reviewer_gets_a_different_qualification_package() -> None:
-    seed = b"cab-test-qualification-seed-32byt"
-    first = build_private_qualification(seed, REVIEWER_A)
-    second = build_private_qualification(seed, REVIEWER_B)
+    first = qualification_package(REVIEWER_A)
+    second = qualification_package(REVIEWER_B)
     assert first["package_sha256"] != second["package_sha256"]
     assert set(first["answer_key"]) != set(second["answer_key"])
 
@@ -238,13 +272,14 @@ def test_qualification_package_ships_no_expected_values() -> None:
     import zipfile
     from io import BytesIO
 
-    package = build_private_qualification(b"cab-test-qualification-seed-32byt", REVIEWER_A)
+    package = qualification_package(REVIEWER_A)
     archive = zipfile.ZipFile(BytesIO(package["package_bytes"]))
     for name in archive.namelist():
         blob = archive.read(name)
         assert b"expected_value" not in blob, name
         assert b"decisive_dimension" not in blob, name
         assert b"defect_kind" not in blob, name
+        assert b"explanation" not in blob, name
 
 
 # --------------------------------------------------------------------------
@@ -924,12 +959,8 @@ def test_not_applicable_is_refused_where_the_dimension_applies() -> None:
 
 
 def test_qualification_scoring_rejects_incomplete_and_malformed_rows() -> None:
-    package = build_private_qualification(b"cab-test-qualification-seed-32byt", REVIEWER_A)
-    key = package["answer_key"]
-    perfect = {
-        item: {str(entry["decisive_dimension"]): str(entry["expected_value"])}
-        for item, entry in key.items()
-    }
+    key = qualification_package(REVIEWER_A)["answer_key"]
+    perfect = qualification_submission(key)
     assert score_qualification(perfect, key, reviewer_role=REVIEWER_A)["qualified"]
 
     incomplete = dict(perfect)
@@ -943,23 +974,22 @@ def test_qualification_scoring_rejects_incomplete_and_malformed_rows() -> None:
     with pytest.raises(QualificationError, match="invalid value"):
         score_qualification(malformed, key, reviewer_role=REVIEWER_A)
 
-    extra = {**perfect, "Q-NOT-YOURS": {"goal_preserved": "yes"}}
+    # "Complete every requested field" is now enforced, not merely requested.
+    blank = {item: dict(row) for item, row in perfect.items()}
+    blank[first]["task_clarity"] = ""
+    with pytest.raises(QualificationError, match="blank"):
+        score_qualification(blank, key, reviewer_role=REVIEWER_A)
+
+    extra = {**perfect, "Q-NOT-YOURS": complete_qualification_row()}
     with pytest.raises(QualificationError, match="not in this reviewer"):
         score_qualification(extra, key, reviewer_role=REVIEWER_A)
 
 
 def test_qualification_threshold_is_enforced() -> None:
-    package = build_private_qualification(b"cab-test-qualification-seed-32byt", REVIEWER_B)
-    key = package["answer_key"]
-    wrong = {
-        item: {
-            str(entry["decisive_dimension"]): "no"
-            if str(entry["expected_value"]) == "yes"
-            else "yes"
-        }
-        for item, entry in key.items()
-    }
-    result = score_qualification(wrong, key, reviewer_role=REVIEWER_B)
+    key = qualification_package(REVIEWER_B)["answer_key"]
+    result = score_qualification(
+        qualification_submission(key, correct=False), key, reviewer_role=REVIEWER_B
+    )
     assert result["qualified"] is False
     assert result["rate"] == 0.0
     assert result["answer_key_disclosed"] is False

@@ -34,6 +34,8 @@ export CAB_PACKET_SEED_PATH="$HOME/.cab/seeds/review_ready_v2.seed"
 export CAB_STAGE2_KEY_PATH="$HOME/.cab/keys/stage2_review_ready_v2.key"
 export CAB_QUALIFICATION_KEY_PATH="$HOME/.cab/keys/qualification_review_ready_v2.key"
 export CAB_COORDINATOR_KEY_PATH="$HOME/.cab/keys/coordinator_review_ready_v2.key"
+python3 scripts/cab_review_ready_v2.py qualification-source-schema
+python3 scripts/cab_review_ready_v2.py validate-qualification-source
 python3 scripts/cab_review_ready_v2.py validate-private-packet
 python3 scripts/cab_review_ready_v2.py validate-stage1-packages
 python3 scripts/cab_review_ready_v2.py fixture-e2e
@@ -47,11 +49,16 @@ python3 scripts/cab_review_ready_v2.py status
 
 An independent audit of the previous pass reproduced a false production
 `C10_PASS` and found five further defects. All are closed, and each is now a
-permanent regression test in `tests/test_review_workflow_integrity.py`:
+permanent regression test in `tests/test_review_workflow_integrity.py`. A
+final reviewer-distribution patch closed three further defects, each covered by
+`tests/test_reviewer_distribution_patch.py`:
 
 | Defect | Repair |
 |---|---|
-| Qualification items and answer key were in tracked source | Content and answers are generated from the private seed into ignored storage; the key is encrypted under `CAB_QUALIFICATION_KEY_PATH`; the exposed version is retired and rejected under any name |
+| Qualification items and answer key were in tracked source | `cab_stage1_qualification_v2` is retired and rejected under any name |
+| The V3 qualification was reconstructible: its tracked generator carried the scenario table and the construction-to-answer mapping, so a reviewer could classify their own item against public code | `cab_qualification_v3` is retired and rejected under any name. `cab_qualification_v4` keeps only schema, loader, package assembly, vault cipher and scorer in Git; item bodies, decisive dimensions, expected values and explanations are authored outside Git and sealed under `CAB_QUALIFICATION_KEY_PATH`. Package bytes are a pure function of the item bodies, so two sources with identical bodies and different answers produce byte-identical packages |
+| Adjudicator packages carried disputes without the evidence to decide them | Separate Stage-1 and Stage-2 adjudicator archives, disputed items only: Stage 1 carries task context, primitive evidence, the controlled difference, the intended changed factor, invariants, tool capabilities and both reviewers' judgements, and withholds Stage-2 material; Stage 2 carries the disputed gold, variants, contracts, applicability map and conditional policies |
+| Stage-2 package hashes were generated and honoured by nothing | Each archive is issued under a coordinator-sealed receipt binding pseudonym hash, role, Stage-1 commitment, archive hash, namespace, packet commitment, qualification receipt, declaration, freeze and commit; ingestion re-derives all of it, and the hash travels into the queue, both adjudicator packages, the final records, C10, the slice lock and the execution authorization |
 | `fixture=False` decided whether evidence was genuine | Authenticity derives from the sealing authority: production receipts need an external coordinator key, fixture receipts are sealed by a public one and fail on origin, schema and MAC |
 | Ingestion hardcoded the reviewer's AI and conflict declarations | Every declaration field is parsed from the reviewer's own submitted file; a missing confirmation is a refusal, and a disclosed conflict requires an explicit coordinator decision |
 | A complete Stage-2 form counted as validation | Nine substantive dimensions with `YES`/`NO`/`UNSURE`/`NOT_APPLICABLE`; `NO` and `UNSURE` block and require notes; form completion and acceptance are recorded separately |
@@ -196,12 +203,16 @@ they are not current authorization.
 
 ## Exact next action
 
-> Recruit and onboard two genuine qualified independent Compact-20 reviewers
-> using the regenerated packet, plus a separate adjudicator.
+> Recruit two independent qualified reviewers and one separate adjudicator,
+> create their private assignments and declarations, distribute only their
+> assigned qualification and Stage-1 packages, score qualification privately,
+> and keep Stage 2 locked until both valid Stage-1 submissions are committed.
 
 After independent Stage-1 review, freeze the completed CSV hash and run the
-unchanged unlock validator. Then complete Stage 2 and separate adjudication and
-run the unchanged C10 validator. Only an authentic passing result plus a trusted
-scientific-scope cryptographic receipt permits model execution.
+unchanged unlock validator. Then issue the Stage-2 packages, complete Stage 2,
+issue the two adjudicator packages against their queues, complete separate
+adjudication and run the unchanged C10 validator. Only an authentic passing
+result plus a trusted scientific-scope cryptographic receipt permits model
+execution.
 
 `CAB_LEVEL5_COMPLETE=false`.

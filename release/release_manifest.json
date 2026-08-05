@@ -432,7 +432,7 @@
   "file_hashes": {
     "CITATION.cff": "b06e651a23cef83a9146c44aff3ab21ff798050527d69358720c5d04d0de7886",
     "LICENSE": "8d0468fb95d7b7c38a706380450b3d55a6fc54e8756f450e60cbc24d48c4e1e0",
-    "README.md": "40117aeb678e0920252f149faf39f014484fe593b9aa582b778889660f7d6d0c",
+    "README.md": "4ab781cb3bc9b3b52599b2367e412b84c5b1d518f5626da47190217651ab2362",
     "configs/5model_100task_TEMPLATE_NOT_APPROVED.yaml": "7cd5cbe0eae7b95db5925c43eb6abb8a306389472158272bb131c7ccc0b0df03",
     "configs/ablation_interventions.yaml": "8ce559a97ae18478138beca333a0085a29b47d4c72b0499edd6af9e1b1ea5bf4",
     "configs/ablation_matrix_local_stub.yaml": "21c31bc3550e343c35eb5fac0af5bbc5f5279c29b5bf05d00532dcb833c88a80",
@@ -490,8 +490,8 @@
     "scripts/cab_max_ceiling_gate.py": "9ca96db371a5f2147c3883721e53964d9c55ee927d6ae7c3fe6992c88bf823fa",
     "scripts/cab_resource_preflight.py": "45dcbacb0b49c41f123fdb1e0ed992a75ab933b175c862c7f69767a0ab944e3a"
   },
-  "generated_at": "2026-08-04T17:39:50.584472+00:00",
-  "inventory_file_count": 842,
+  "generated_at": "2026-08-05T02:17:39.167774+00:00",
+  "inventory_file_count": 844,
   "inventory_policy": {
     "categories": {
       "configs": [
@@ -600,11 +600,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "34fe29c50549b33b01f637cab5b20a5c444dffc3fdd2ba24c7c2662d9b2e403b",
+  "release_bundle_hash": "9e2e690cd60ee06b48ede45ad1f8fb3acbb377d1284dc3ddbb8af083b6c68e72",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "b4977c487cb56e6438a36f330d7f55542d1803ab",
+    "git_commit": "ab16089848c9dc30bbe597704cfe79e164cdb0b2",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",
@@ -880,6 +880,7 @@
     "src/causal_agent_bench/resources.py",
     "src/causal_agent_bench/review_ready_v2/__init__.py",
     "src/causal_agent_bench/review_ready_v2/adjudication.py",
+    "src/causal_agent_bench/review_ready_v2/adjudication_packages.py",
     "src/causal_agent_bench/review_ready_v2/assignments.py",
     "src/causal_agent_bench/review_ready_v2/catalog.py",
     "src/causal_agent_bench/review_ready_v2/cli.py",
@@ -907,6 +908,7 @@
     "src/causal_agent_bench/review_ready_v2/runtime.py",
     "src/causal_agent_bench/review_ready_v2/stage1.py",
     "src/causal_agent_bench/review_ready_v2/stage2.py",
+    "src/causal_agent_bench/review_ready_v2/stage2_issuance.py",
     "src/causal_agent_bench/review_ready_v2/vault.py",
     "src/causal_agent_bench/review_ready_v2/workflow.py",
     "src/causal_agent_bench/runners/__init__.py",

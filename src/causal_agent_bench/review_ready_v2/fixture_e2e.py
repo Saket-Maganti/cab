@@ -13,14 +13,36 @@ because the production gates verify a coordinator MAC it does not possess.
 from __future__ import annotations
 
 import secrets
+from collections.abc import Iterator
+from contextlib import contextmanager
+from pathlib import Path
 from typing import Any
 
 from causal_agent_bench.review_ready_v2 import PACKET_VERSION
 from causal_agent_bench.review_ready_v2.adjudication import STAGE1, STAGE2
-from causal_agent_bench.review_ready_v2.assignments import create_assignment
-from causal_agent_bench.review_ready_v2.common import FIXTURE_MARKER, canonical_bytes, sha256_bytes
+from causal_agent_bench.review_ready_v2.adjudication_packages import (
+    build_stage1_adjudicator_package,
+    build_stage2_adjudicator_package,
+    disputed_pair_ids,
+    package_binding,
+)
+from causal_agent_bench.review_ready_v2.assignments import (
+    assignment_for_role,
+    create_assignment,
+)
+from causal_agent_bench.review_ready_v2.common import (
+    FIXTURE_MARKER,
+    canonical_bytes,
+    sha256_bytes,
+    sha256_json,
+)
 from causal_agent_bench.review_ready_v2.declarations import DECLARATION_VERSION
-from causal_agent_bench.review_ready_v2.qualification import build_private_qualification
+from causal_agent_bench.review_ready_v2.qualification import (
+    QUALIFICATION_ITEM_COUNT,
+    QUALIFICATION_SCHEMA_VERSION,
+    QUALIFICATION_SOURCE_SCHEMA_VERSION,
+    build_qualification_packages,
+)
 from causal_agent_bench.review_ready_v2.receipts import coordinator_authority
 from causal_agent_bench.review_ready_v2.roles import (
     ADJUDICATOR,
@@ -106,6 +128,97 @@ _STAGE1_ACCEPTING_ROW = {
 
 def fixture_pair_ids() -> list[str]:
     return [f"fixture-pair-{index:02d}" for index in range(1, FIXTURE_PAIR_COUNT + 1)]
+
+
+def fixture_qualification_source() -> dict[str, Any]:
+    """A synthetic stand-in for privately authored qualification material.
+
+    Every body says out loud that it is a fixture, and the answers are trivial by
+    construction.  It exercises the loader, the package assembler, the vault and
+    the scorer without standing in for the private source, which no tracked file
+    may contain.
+    """
+
+    roles: dict[str, Any] = {}
+    for role_index, role in enumerate(REVIEW_ROLES, 1):
+        items = []
+        for position in range(1, QUALIFICATION_ITEM_COUNT + 1):
+            items.append(
+                {
+                    "reviewer_item_id": f"FQ-{role_index}{position:02d}",
+                    "item": {
+                        "evidence_class": FIXTURE_MARKER,
+                        "task_objective": (
+                            f"Synthetic calibration item {role_index}-{position}. "
+                            "Not a benchmark task and not private material."
+                        ),
+                        "clean_instance": {"goal": "fixture goal", "evidence": {}},
+                        "intervention_instance": {"goal": "fixture goal", "evidence": {}},
+                        "controlled_difference": {"intended_changed_factor": "fixture_factor"},
+                        "claimed_preserved_invariants": ["goal_text_identical"],
+                    },
+                    "answer": {
+                        "decisive_dimension": "single_factor_isolation",
+                        "expected_value": "yes" if position % 2 else "no",
+                    },
+                }
+            )
+        roles[role] = items
+    return {
+        "schema_version": QUALIFICATION_SOURCE_SCHEMA_VERSION,
+        "qualification_version": QUALIFICATION_SCHEMA_VERSION,
+        "evidence_class": FIXTURE_MARKER,
+        "roles": roles,
+    }
+
+
+def _fixture_stage1_view(pair_id: str) -> dict[str, Any]:
+    """The sanitized Stage-1 evidence an adjudicator receives for one item."""
+
+    instance = {
+        "goal": f"Synthetic goal for {pair_id}.",
+        "evidence": {"fixture_source": {"reference": pair_id, "value": 1}},
+        "declared_tools": [{"tool_id": "fixture_reader", "capability": "read the fixture source"}],
+        "tools_reported_failing": [],
+    }
+    return {
+        "evidence_class": FIXTURE_MARKER,
+        "task_objective": f"Synthetic task objective for {pair_id}.",
+        "shared_goal": f"Synthetic shared goal for {pair_id}.",
+        "clean_instance": dict(instance),
+        "intervention_instance": {**instance, "tools_reported_failing": ["fixture_reader"]},
+        "controlled_difference": {
+            "intervention_family": "tool_failure",
+            "intended_changed_factor": "declared_tool_runtime_success",
+            "changed_locators": ["$.injected_failures"],
+        },
+        "claimed_preserved_invariants": ["goal_text_identical"],
+        "evidence_field_manifest": {"fixture_source": ["reference", "value"]},
+    }
+
+
+def _fixture_stage2_record(pair_id: str, applicability: dict[str, bool]) -> dict[str, Any]:
+    """The withheld material an adjudicator receives for one disputed item."""
+
+    return {
+        "evidence_class": FIXTURE_MARKER,
+        "pair_id": pair_id,
+        "semantic_objective_id": f"fixture-objective-{pair_id}",
+        "intervention_family": "tool_failure",
+        "clean_gold": "fixture-clean-gold",
+        "intervention_gold_or_policy": "fixture-intervention-policy",
+        "clean_answer_contract": {"format": "fixture"},
+        "intervention_answer_contract": {"format": "fixture"},
+        "clean_scorer_contract": {"scorer_id": "fixture_scorer"},
+        "intervention_scorer_contract": {"scorer_id": "fixture_scorer"},
+        "route_requirement_clean": "completion",
+        "route_requirement_intervention": "recovery",
+        "recovery_authorization": {"authorized_action_id": "fixture-recovery"},
+        "abstention_opportunity": None,
+        "clarification_requirement": None,
+        "stage2_dimension_applicability": dict(applicability),
+        "source_to_gold_rationale": {"derivation": "fixture"},
+    }
 
 
 def fixture_applicability() -> dict[str, dict[str, bool]]:
@@ -232,11 +345,28 @@ def _declaration(role: str, *, stage1_hash: str, qualification_hash: str) -> dic
     }
 
 
-def run_fixture_e2e(*, prerequisites: dict[str, bool] | None = None) -> dict[str, Any]:
+@contextmanager
+def _fixture_root(root: Path | None) -> Iterator[Path]:
+    """A caller-owned directory, or a temp one that is wiped on the way out."""
+
+    if root is not None:
+        root.mkdir(parents=True, exist_ok=True)
+        root.chmod(0o700)
+        yield root
+        return
+    with unlocked_workspace(prefix="cab-fixture-e2e-") as scratch:
+        yield scratch
+
+
+def run_fixture_e2e(
+    *, prerequisites: dict[str, bool] | None = None, root: Path | None = None
+) -> dict[str, Any]:
     """Run the complete workflow against synthetic fixtures under a temp path.
 
     ``prerequisites`` is exposed so a hostile test can prove that an empty
-    prerequisite map fails C10 rather than vacuously satisfying it.
+    prerequisite map fails C10 rather than vacuously satisfying it.  ``root``
+    lets a test keep the sealed receipts after the run so it can inspect what
+    each gate actually bound; when it is omitted the run leaves nothing behind.
     """
 
     steps: list[dict[str, Any]] = []
@@ -244,7 +374,7 @@ def run_fixture_e2e(*, prerequisites: dict[str, bool] | None = None) -> dict[str
     def record(name: str, ok: bool, detail: str = "") -> None:
         steps.append({"step": name, "passed": bool(ok), "detail": detail})
 
-    with unlocked_workspace(prefix="cab-fixture-e2e-") as root:
+    with _fixture_root(root) as root:
         private_root = root / "fixture_packet"
         workspace = ReviewWorkspace.fixture(private_root)
         workspace.packet_version = FIXTURE_PACKET_VERSION
@@ -252,14 +382,12 @@ def run_fixture_e2e(*, prerequisites: dict[str, bool] | None = None) -> dict[str
         packages: dict[str, bytes] = {}
         mappings: dict[str, dict[str, str]] = {}
         item_ids: dict[str, list[str]] = {}
-        qualification: dict[str, dict[str, Any]] = {}
-        fixture_seed = b"cab-fixture-qualification-seed-32b"
         for role in REVIEW_ROLES:
             payload, mapping, ids = _fixture_package(role)
             packages[role] = payload
             mappings[role] = mapping
             item_ids[role] = ids
-            qualification[role] = build_private_qualification(fixture_seed, role)
+        qualification = build_qualification_packages(fixture_qualification_source())
         record("fixture_packet_generation", len(fixture_pair_ids()) == FIXTURE_PAIR_COUNT)
         record(
             "stage1_package_generation",
@@ -368,6 +496,47 @@ def run_fixture_e2e(*, prerequisites: dict[str, bool] | None = None) -> dict[str
         record("stage2_fixture_unlock", workspace.has("stage2_unlock"))
 
         applicability_by_pair = fixture_applicability()
+        stage2_archives = {
+            role: canonical_bytes({"evidence_class": FIXTURE_MARKER, "stage2_package_for": role})
+            for role in REVIEW_ROLES
+        }
+        for role in REVIEW_ROLES:
+            workspace.issue_stage2_package(
+                role,
+                package_sha256=sha256_bytes(stage2_archives[role]),
+                packet_commitment=packet_commitment,
+                scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+                exact_commit=FIXTURE_COMMIT,
+            )
+        record(
+            "stage2_issuance_receipts_sealed",
+            all(workspace.has(f"stage2_issuance_{role}") for role in REVIEW_ROLES),
+            "one coordinator-sealed issuance receipt per reviewer",
+        )
+
+        swap_rejected = False
+        try:
+            workspace.ingest_stage2(
+                REVIEWER_A,
+                _stage2_form(mappings[REVIEWER_A], applicability_by_pair, objection=False),
+                expected_item_ids=item_ids[REVIEWER_A],
+                applicability={
+                    item_id: applicability_by_pair[mappings[REVIEWER_A][item_id]]
+                    for item_id in mappings[REVIEWER_A]
+                },
+                package_sha256=sha256_bytes(stage2_archives[REVIEWER_B]),
+                packet_commitment=packet_commitment,
+                scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+                exact_commit=FIXTURE_COMMIT,
+            )
+        except WorkflowError:
+            swap_rejected = True
+        record(
+            "stage2_package_swap_refused",
+            swap_rejected,
+            "a submission against another reviewer's archive fails on the issuance binding",
+        )
+
         for role in REVIEW_ROLES:
             per_item = {
                 item_id: applicability_by_pair[mappings[role][item_id]]
@@ -380,6 +549,10 @@ def run_fixture_e2e(*, prerequisites: dict[str, bool] | None = None) -> dict[str
                 ),
                 expected_item_ids=item_ids[role],
                 applicability=per_item,
+                package_sha256=sha256_bytes(stage2_archives[role]),
+                packet_commitment=packet_commitment,
+                scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+                exact_commit=FIXTURE_COMMIT,
             )
         record("stage2_fixture_ingestion", True)
 
@@ -396,6 +569,69 @@ def run_fixture_e2e(*, prerequisites: dict[str, bool] | None = None) -> dict[str
             "stage2_disagreement_queue",
             stage2_queue["disputed_dimension_count"] >= 1,
             f"{stage2_queue['disputed_dimension_count']} disputed Stage-2 dimension(s)",
+        )
+
+        adjudicator = assignment_for_role(workspace.assignments(), ADJUDICATOR)
+        adjudicator_packages: dict[str, dict[str, Any]] = {}
+        for stage, queue in ((STAGE1, stage1_queue), (STAGE2, stage2_queue)):
+            binding = package_binding(
+                stage=stage,
+                queue=queue,
+                private_packet_commitment=packet_commitment,
+                adjudicator_assignment_sha256=adjudicator["assignment_sha256"],
+                adjudicator_pseudonym_sha256=sha256_json(adjudicator["reviewer_pseudonym"]),
+                scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+                exact_commit=FIXTURE_COMMIT,
+                stage2_issuance_hashes=workspace._stage2_issuance_hashes(),
+            )
+            disputed = disputed_pair_ids(queue)
+            if stage == STAGE1:
+                package = build_stage1_adjudicator_package(
+                    queue=queue,
+                    stage1_views={pair_id: _fixture_stage1_view(pair_id) for pair_id in disputed},
+                    paired_rows=workspace._paired(mappings, STAGE1),
+                    binding=binding,
+                )
+            else:
+                package = build_stage2_adjudicator_package(
+                    queue=queue,
+                    stage2_records={
+                        pair_id: _fixture_stage2_record(pair_id, applicability_by_pair[pair_id])
+                        for pair_id in disputed
+                    },
+                    applicability={
+                        pair_id: applicability_by_pair[pair_id] for pair_id in disputed
+                    },
+                    paired_rows=workspace._paired(mappings, STAGE2),
+                    binding=binding,
+                )
+            adjudicator_packages[stage] = package
+            workspace.record_adjudicator_package(stage=stage, package=package)
+        record(
+            "adjudicator_packages_carry_only_disputed_items",
+            all(
+                set(adjudicator_packages[stage]["disputed_pair_ids"])
+                == set(disputed_pair_ids(queue))
+                and 0 < len(adjudicator_packages[stage]["disputed_pair_ids"]) < FIXTURE_PAIR_COUNT
+                for stage, queue in ((STAGE1, stage1_queue), (STAGE2, stage2_queue))
+            ),
+            "disputed items only, in both stages",
+        )
+
+        stale_rejected = False
+        try:
+            workspace.ingest_adjudication(
+                stage=STAGE1,
+                adjudicator_pseudonym=FIXTURE_PSEUDONYMS[ADJUDICATOR],
+                decisions=[],
+                package_sha256=sha256_bytes(b"a different adjudicator package"),
+            )
+        except WorkflowError:
+            stale_rejected = True
+        record(
+            "stale_adjudicator_package_refused",
+            stale_rejected,
+            "an adjudication against another package fails on the package binding",
         )
 
         for stage, queue, final_value in (
@@ -417,6 +653,7 @@ def run_fixture_e2e(*, prerequisites: dict[str, bool] | None = None) -> dict[str
                     }
                     for row in queue["disputes"]
                 ],
+                package_sha256=adjudicator_packages[stage]["package_sha256"],
             )
         record(
             "stage1_and_stage2_adjudication",
@@ -584,5 +821,6 @@ __all__ = [
     "FIXTURE_PSEUDONYMS",
     "fixture_applicability",
     "fixture_pair_ids",
+    "fixture_qualification_source",
     "run_fixture_e2e",
 ]

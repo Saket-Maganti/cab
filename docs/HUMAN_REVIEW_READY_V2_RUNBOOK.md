@@ -39,16 +39,18 @@ a retired packet; the gates reject them by identity, not by name.
 | Private packet root | `private_data/human_review/compact20-review-ready-v2/` (Git-ignored) |
 | Reviewer A Stage-1 package | `<root>/stage1/stage1_reviewer_a.zip` |
 | Reviewer B Stage-1 package | `<root>/stage1/stage1_reviewer_b.zip` |
-| Reviewer A qualification | `<root>/qualification/qualification_reviewer_a.zip` |
-| Reviewer B qualification | `<root>/qualification/qualification_reviewer_b.zip` |
-| Encrypted qualification key | `<root>/qualification/qualification_key.enc` |
+| Reviewer A qualification | `<root>/qualification_v4/qualification_reviewer_a.zip` |
+| Reviewer B qualification | `<root>/qualification_v4/qualification_reviewer_b.zip` |
+| Private qualification source | `<root>/qualification_v4/qualification_source.json` (authored outside Git) |
+| Encrypted qualification key | `<root>/qualification_v4/qualification_key.enc` |
+| Retired V3 qualification | `<root>/qualification_retired_v3/` — never distribute |
 | Reviewer assignment registry | `<root>/coordinator/reviewer_assignments.json` |
 | Encrypted Stage 2 | `<root>/stage2/stage2_vault.enc` |
 | Public commitment | `reports/reviewer_ready_v2/PUBLIC_PACKET_COMMITMENT.json` |
 | Scientific freeze | `reports/reviewer_ready_v2/SCIENTIFIC_FREEZE_V2.json` |
 | Stage-2 acceptance policy | `configs/reviewer_ready_v2/stage2_acceptance_policy_v1.json` |
 
-## External keys
+## External keys and private material
 
 Four secrets live outside the repository, named only by environment variable.
 No key value is ever committed, logged, hashed into a report, or bound into the
@@ -68,11 +70,36 @@ synthetic run from being stamped as genuine. It is tamper-evidence and
 coordinator authority; it is **not** a proof of any reviewer's identity, and
 nothing in this project claims otherwise.
 
+One further artifact is private, and it is not a key: the authored qualification
+source. `CAB_QUALIFICATION_SOURCE_PATH` overrides its default location. It holds
+the item bodies, the decisive dimension of each item, its expected value and its
+explanation, and none of that may ever enter Git. Tracked code holds only the
+schema, the loader, package assembly, the vault cipher and the scorer, so
+reading every tracked byte and holding a reviewer's ZIP still does not tell you
+what any item is scored on.
+
 ## The sequence
 
 Each step is a gate. A later step cannot run until the earlier receipt exists
 and validates. `python3 scripts/cab_review_ready_v2.py coordinator-checklist`
 prints this list with the exact flags.
+
+### Author the private qualification source
+
+```bash
+python3 scripts/cab_review_ready_v2.py qualification-source-schema
+python3 scripts/cab_review_ready_v2.py validate-qualification-source
+```
+
+The first command prints the required shape: five authored items per reviewer,
+each with a reviewer-visible body and an answer recording a decisive dimension
+and its expected value. Author it outside Git at the private path above. Every
+reviewer must receive different items, no body may contain its own answer, and
+the whole file stays out of the repository forever. The validator reports counts
+and nothing else — it never prints an item, a dimension or a value.
+
+`generate-private-packet` refuses to run without a valid source, so a
+half-authored qualification cannot produce a distributable packet.
 
 ### Prepare the packages
 
@@ -83,7 +110,9 @@ python3 scripts/cab_review_ready_v2.py validate-stage1-packages
 ```
 
 `generate-private-packet` also writes both private qualification packages and
-the encrypted answer key. To rebuild only the qualification material, use
+the encrypted answer key, and renames any retired V3 qualification directory to
+`qualification_retired_v3/` so it cannot be distributed by accident. To rebuild
+only the qualification material, use
 `generate-private-qualification-packages`.
 
 ### Bind each reviewer to exactly one package
@@ -122,13 +151,18 @@ python3 scripts/cab_review_ready_v2.py score-private-qualification --role REVIEW
 ```
 
 The answer key is decrypted in coordinator mode only, from
-`$CAB_QUALIFICATION_KEY_PATH`. The threshold is 0.80. The receipt records the
-rate and per-item correctness; it never records a decisive dimension, an
+`$CAB_QUALIFICATION_KEY_PATH`. The threshold is 0.80. A submission that leaves
+any requested field blank is rejected before it is scored. The receipt records
+the rate and per-item correctness; it never records a decisive dimension, an
 expected value, or an explanation.
 
-The earlier qualification version, `cab_stage1_qualification_v2`, shipped its
-items and its answer key in tracked source. It is retired and rejected in code
-under any name.
+Two earlier qualification versions are retired and rejected in code under any
+name. `cab_stage1_qualification_v2` shipped its items and its answer key in
+tracked source. `cab_qualification_v3` generated its items privately but kept
+the scenario table and the construction-to-answer mapping in tracked source, so
+a reviewer holding the ZIP could classify each item against public code and read
+the answer off. The active version, `cab_qualification_v4`, keeps no content at
+all in Git.
 
 ### Stage 1
 
@@ -148,7 +182,7 @@ the review schema, the freeze hash and the exact commit.
 ```bash
 python3 scripts/cab_review_ready_v2.py unlock-stage2
 python3 scripts/cab_review_ready_v2.py generate-stage2-packages --output-dir <outside-repo>
-python3 scripts/cab_review_ready_v2.py ingest-stage2 --role REVIEWER_A --submission <file>
+python3 scripts/cab_review_ready_v2.py ingest-stage2 --role REVIEWER_A --submission <file> --package <issued-zip>
 ```
 
 Stage 2 asks for substantive acceptance of gold, accepted variants, answer
@@ -157,17 +191,56 @@ the recovery / abstention / clarification policies. `YES` and a
 map-corroborated `NOT_APPLICABLE` accept; `NO` and `UNSURE` both block and both
 require notes. **A complete Stage-2 form is not an approval.**
 
+`generate-stage2-packages` seals one issuance receipt per reviewer, binding the
+archive hash to the reviewer's pseudonym hash, canonical role, opaque-id
+namespace, declaration hash, qualification receipt hash, the Stage-1 commitment
+that authorised it, the packet commitment, the freeze hash and the exact commit.
+`ingest-stage2` requires that receipt and re-derives every one of those bindings
+from the workspace, which is why it needs `--package`: the archive is hashed at
+ingestion and compared. A modified archive, another reviewer's archive, a
+receipt copied between reviewers, an issuance bound to a superseded Stage-1
+commitment, a wrong namespace, or a wrong freeze or commit all fail closed. The
+issuance hash then travels into the submission receipt, the disagreement queue,
+both adjudicator packages, the final adjudicated records, C10, the slice lock
+and the execution authorization.
+
 ### Disagreement and adjudication
 
 ```bash
-python3 scripts/cab_review_ready_v2.py build-stage1-disagreements --output-dir <outside-repo>
-python3 scripts/cab_review_ready_v2.py build-stage2-disagreements --output-dir <outside-repo>
-python3 scripts/cab_review_ready_v2.py ingest-stage1-adjudication --pseudonym <pseudonym> --decisions <file>
-python3 scripts/cab_review_ready_v2.py ingest-stage2-adjudication --pseudonym <pseudonym> --decisions <file>
+python3 scripts/cab_review_ready_v2.py build-stage1-disagreements
+python3 scripts/cab_review_ready_v2.py generate-stage1-adjudicator-package --output-dir <outside-repo>
+python3 scripts/cab_review_ready_v2.py build-stage2-disagreements
+python3 scripts/cab_review_ready_v2.py generate-stage2-adjudicator-package --output-dir <outside-repo>
+python3 scripts/cab_review_ready_v2.py ingest-stage1-adjudication --pseudonym <pseudonym> --decisions <file> --package <zip>
+python3 scripts/cab_review_ready_v2.py ingest-stage2-adjudication --pseudonym <pseudonym> --decisions <file> --package <zip>
 ```
 
-The two stages have separate queues because they dispute different things. Each
-adjudicator decision needs `final_value`, `rationale`, `evidence_reference`,
+The two stages have separate queues because they dispute different things, and
+they get separate packages for the same reason. Both cover the disputed items
+only; no non-disputed item is in either archive.
+
+The Stage-1 package carries, per disputed item, the clean and intervention task
+context, the primitive evidence, the controlled difference with its intended
+changed factor, the claimed preserved invariants, the declared tool
+capabilities, both reviewers' values, confidence and notes, and a structured
+adjudication form. It withholds Stage-2 gold and scorer material exactly as a
+Stage-1 reviewer package does, and generation refuses outright if any Stage-2
+key reaches it.
+
+The Stage-2 package carries the withheld material that is actually in dispute:
+gold and policy, accepted variants, the answer and scorer contracts, the route
+requirements, the applicability map, and the recovery, abstention or
+clarification policy where the item has one, alongside both reviewers'
+judgements and the same structured form.
+
+Each package is sealed to its packet commitment, stage, disagreement-queue hash,
+disputed item ids, adjudicator assignment, freeze hash, exact commit and its own
+archive hash. `--package` is hashed at ingestion, so an adjudication submitted
+against a stale package — one built before the queue was rebuilt — or against a
+different package is refused. The adjudicator must be neither reviewer; the
+assignment registry refuses the overlap when the role is created.
+
+Each adjudicator decision needs `final_value`, `rationale`, `evidence_reference`,
 `confidence` and `exclude_item`. There are exactly two ways to resolve a
 disputed dimension: give a value that accepts under the frozen rule, or exclude
 the item. An unresolved objection cannot proceed.
@@ -219,8 +292,7 @@ flag, mode, or edit converts a fixture artifact into genuine evidence.
 
 ## The exact next human action
 
-> Recruit two independent qualified reviewers, create and accept their reviewer
-> assignments and signed declarations, give each only the assigned private
-> qualification package and frozen Stage-1 package, score qualification
-> privately, ingest genuine Stage-1 submissions, commit Stage 1, and keep Stage
-> 2 inaccessible until every Stage-1 prerequisite passes.
+> Recruit two independent qualified reviewers and one separate adjudicator,
+> create their private assignments and declarations, distribute only their
+> assigned qualification and Stage-1 packages, score qualification privately,
+> and keep Stage 2 locked until both valid Stage-1 submissions are committed.

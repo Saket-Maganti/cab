@@ -1,7 +1,7 @@
 {
   "anchor_group_count": 4,
   "c10_status": "C10_PENDING_GENUINE_REVIEW",
-  "commitment_sha256": "af1f24ce4772b7520087e9862b2f6aded976f07df03def6b2faa59e162884f64",
+  "commitment_sha256": "03653ff304126cd460fc8ee51a371e6741f4b2fb294b44632145aa687f48745b",
   "difficulty_counts": {
     "easy": 4,
     "hard": 4,
@@ -90,30 +90,39 @@
   "pair_count": 20,
   "private_bodies_committed": false,
   "qualification_commitment": {
-    "commitment_sha256": "c48a945c5c5bef890c3c744881b8f25a2d01dfd87dfafbb849bcafaad3d1025e",
-    "encrypted_key_material_hash": "d1a0e27a3a89de5a7956c106ef44ce433ba5bfc7b93d27190ce8140be254fc9f",
-    "generator_source_hash": "104a1b547ba3b19bcdd4977341a0660e88559d249e20c3586f037cb85f2677bb",
+    "commitment_sha256": "03c4ab20a9b2a9e4fc23ec351528d97b7ff294f31aaa417ef4bd8a7371830e91",
+    "encrypted_key_material_hash": "793486ffc6b08a30f03d3e33812939712fec69bcefa32adef17153eaa3bb9005",
+    "generator_source_hash": "209c00a50c776c210862117a3364246eae28aec2820c63c55cc80b058951f8e2",
+    "item_generation_templates_published": false,
     "items_published": false,
     "key_environment_variable": "CAB_QUALIFICATION_KEY_PATH",
+    "key_material_derivable_from_reviewer_package": false,
+    "key_material_derivable_from_tracked_source": false,
     "key_value_bound": false,
-    "qualification_version": "cab_qualification_v3",
+    "qualification_version": "cab_qualification_v4",
     "reference_judgements_published": false,
     "retired_qualification_versions": [
+      "cab_qualification_v3",
       "cab_stage1_qualification_v2"
     ],
-    "reviewer_a_package_hash": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1",
-    "reviewer_b_package_hash": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f",
-    "schema_version": "cab_qualification_commitment_v1",
-    "scored_dimensions_published": false
+    "reviewer_a_package_hash": "5a844155f7c67c1fbc77359b488270ffc1bc86730037624ff39b67e705856f55",
+    "reviewer_b_package_hash": "98ba00fdf79f3c20c02cc04d7142d9dacf84d5a1a774c695ae531c76b3328a0f",
+    "schema_version": "cab_qualification_commitment_v2",
+    "scored_dimensions_published": false,
+    "source_environment_variable": "CAB_QUALIFICATION_SOURCE_PATH",
+    "source_schema_version": "cab_qualification_source_v4"
   },
+  "qualification_item_generation_templates_published": false,
   "qualification_items_published": false,
   "qualification_key_environment_variable": "CAB_QUALIFICATION_KEY_PATH",
   "qualification_package_hashes": {
-    "REVIEWER_A": "aa99871fabeddf0e655ee08bf4bc3ced82adf2d58ecdd5dcec2a1164b77abdb1",
-    "REVIEWER_B": "f50fe0abc2a3301216da0b88ee6590de59f6d88fd04620838d9017f74b97741f"
+    "REVIEWER_A": "5a844155f7c67c1fbc77359b488270ffc1bc86730037624ff39b67e705856f55",
+    "REVIEWER_B": "98ba00fdf79f3c20c02cc04d7142d9dacf84d5a1a774c695ae531c76b3328a0f"
   },
   "qualification_reference_judgements_published": false,
-  "qualification_version": "cab_qualification_v3",
+  "qualification_source_environment_variable": "CAB_QUALIFICATION_SOURCE_PATH",
+  "qualification_source_schema_version": "cab_qualification_source_v4",
+  "qualification_version": "cab_qualification_v4",
   "schema_version": "cab_review_ready_v2_public_commitment_v1",
   "seed_commitment": "38fec0ccea7f439c2858e046205551081a953a0acf9f98126b4f22c8cf239e85",
   "stage1_package_hashes": {
@@ -123,7 +132,7 @@
   "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
   "stage2_key_stored_in_repository": false,
   "stage2_plaintext_persisted": false,
-  "stage2_vault_sha256": "8530b782515d9626084a843bfdff8d9be65d108062069eeb356b5ccc94622ae4",
+  "stage2_vault_sha256": "d5f83c3788552588ed758989ec9bcd6b55952d67c1d0b2285a4a7e06173358c9",
   "status": "CAB_NEW_PRIVATE_COMPACT20_V2_READY",
   "unit_of_evaluation": "clean_intervention_pair"
 }
