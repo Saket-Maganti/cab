@@ -4,9 +4,9 @@
 #
 #    pip-compile --output-file=constraints.txt pyproject.toml
 #
-annotated-doc==0.0.4
+annotated-doc==0.0.5
     # via typer
-annotated-types==0.7.0
+annotated-types==0.8.0
     # via pydantic
 cffi==2.1.0
     # via cryptography
@@ -25,13 +25,13 @@ numpy==2.4.6
     #   causal-agent-bench (pyproject.toml)
     #   pandas
     #   scipy
-pandas==3.0.3
+pandas==3.0.5
     # via causal-agent-bench (pyproject.toml)
 pycparser==3.0
     # via cffi
 pydantic==2.13.4
     # via causal-agent-bench (pyproject.toml)
-pydantic-core==2.46.4
+pydantic-core==2.47.0
     # via pydantic
 pygments==2.20.0
     # via rich
@@ -49,9 +49,9 @@ shellingham==1.5.4
     # via typer
 six==1.17.0
     # via python-dateutil
-typer==0.26.4
+typer==0.27.0
     # via causal-agent-bench (pyproject.toml)
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   pydantic
     #   pydantic-core
