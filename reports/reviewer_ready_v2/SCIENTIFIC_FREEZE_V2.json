@@ -11,7 +11,9 @@
   ],
   "adjudicator_package_binding_schema_version": "cab_adjudicator_package_binding_v1",
   "benchmark_version": "compact20-review-ready-v2",
-  "freeze_sha256": "6a7b15b21d4a899e7cb95bf110625c5f72fc33899da20dfa93f9ce9c6b023fad",
+  "committed_stage1_snapshot_schema_version": "cab_committed_stage1_snapshot_v1",
+  "committed_stage2_snapshot_schema_version": "cab_committed_stage2_snapshot_v1",
+  "freeze_sha256": "3789cc2b78e51dac886feaac945acc810aae3d6f8cbb03d40700d0bf2f301675",
   "frozen_configs": {
     "analysis_plan": {
       "path": "configs/reviewer_ready_v2/analysis_plan_v2.json",
@@ -87,7 +89,7 @@
     },
     "reviewer_distribution_schemas": {
       "path": "reports/reviewer_ready_v2/REVIEWER_DISTRIBUTION_SCHEMAS.json",
-      "sha256": "30a1ac0745b76c40d886c52a289ce49c425c8c1389066fddc0ffde463a9f91d1"
+      "sha256": "db55e44aa932a0e5879fde5181b5b2f401e59195de99aa86b4958a91b867058c"
     }
   },
   "frozen_sources": {
@@ -95,6 +97,7 @@
     "src/causal_agent_bench/review_ready_v2/adjudication_packages.py": "77b26cbd0677e7f71698bac760cc5155181f63332c4a9657e5970ece8ebb74b1",
     "src/causal_agent_bench/review_ready_v2/assignments.py": "2b30f356415d6613a36d0ac506a503b5c157335fa0cc7f2c5905a5f2d8f971f4",
     "src/causal_agent_bench/review_ready_v2/catalog.py": "554521c4044435cd4a3ac6cfd21496ce5878d71705ba4d576dbbb87c6bb31b52",
+    "src/causal_agent_bench/review_ready_v2/commitment_integrity.py": "46e0e3a4078259c16a4608081001559153ec3ff34f26143f6a8adef475601661",
     "src/causal_agent_bench/review_ready_v2/declarations.py": "fb2db578c8a0e6b213ac236107997b661edf09ecb8f97b1226557ce222628d36",
     "src/causal_agent_bench/review_ready_v2/design.py": "cd14aebf5bb4d549f8c87b9047b5d1d720ca635253e842cf7f34dd5debfa1de8",
     "src/causal_agent_bench/review_ready_v2/evidence.py": "d17e2c078f6c8b5ef66b2eb854a58440e760f94729011de7f491cb53e7b50fb9",
@@ -114,9 +117,9 @@
     "src/causal_agent_bench/review_ready_v2/runtime.py": "95dc3ad14c64b82faed89377b6f8eb26036cedd59ed3a296b74306e66f0a177a",
     "src/causal_agent_bench/review_ready_v2/stage1.py": "035d8dbdf022358aa500c9a8fba1cf03dc6303b1d5a0e0507c27673deb0a9a10",
     "src/causal_agent_bench/review_ready_v2/stage2.py": "33c5573127257e7cc9ee9684207b3db742fccc4f98b3a803873d103b84f45218",
-    "src/causal_agent_bench/review_ready_v2/stage2_issuance.py": "74c6dac6e08449c43123a9efa0f2c27f5b73e11762db4a375862b0472ce41785",
+    "src/causal_agent_bench/review_ready_v2/stage2_issuance.py": "9c39c9977c255277d54d3d1163081173aa6d1aefb13413aad66c4330c48ef71c",
     "src/causal_agent_bench/review_ready_v2/vault.py": "e08f66d0d5f9a48f5c00be964c4481d46c957c01d22d32c751af7e303bb73b61",
-    "src/causal_agent_bench/review_ready_v2/workflow.py": "f52327269e5b0535db17bbd60b127edbb245a2905c120bb78d3aa08c6246a96f"
+    "src/causal_agent_bench/review_ready_v2/workflow.py": "9b86970b2744ff9e496749113d9fe57abdc679d9ff7aea59a976ca3983ec00dc"
   },
   "generator": {
     "commit_content_matches": true,
@@ -165,8 +168,18 @@
     "cab_qualification_v3",
     "cab_stage1_qualification_v2"
   ],
+  "retired_stage1_commitment_schema_versions": [
+    "cab_stage1_commitment_v1",
+    "cab_stage1_commitment_v2"
+  ],
+  "retired_two_stage_workflow_versions": [
+    "cab_review_ready_v2_two_stage_workflow_v1",
+    "cab_review_ready_v2_two_stage_workflow_v2"
+  ],
+  "review_input_graph_schema_version": "cab_review_input_graph_v1",
   "schema_version": "cab_review_ready_v2_scientific_freeze_v1",
   "stage1_adjudicator_package_schema_version": "cab_stage1_adjudicator_package_v1",
+  "stage1_commitment_schema_version": "cab_stage1_commitment_v3",
   "stage1_package_hashes": {
     "stage1_reviewer_a.zip": "3fcd2192c68cc356b2a1506a2ca32f191caf00ccf5dc7769a87bcd47db618113",
     "stage1_reviewer_b.zip": "0185fcfbe89402e6284999fa6ed472fb0e1f90d28335a8ccfc6094e158a2d6cf"
@@ -177,6 +190,9 @@
     "reviewer_pseudonym_sha256",
     "reviewer_role",
     "stage1_commitment_sha256",
+    "stage1_snapshot_manifest_sha256",
+    "stage1_canonical_judgements_sha256",
+    "stage1_snapshot_receipt_sha256",
     "stage2_package_sha256",
     "stage2_opaque_id_namespace",
     "private_packet_commitment",
@@ -190,5 +206,5 @@
   "stage2_key_environment_variable": "CAB_STAGE2_KEY_PATH",
   "stage2_key_value_bound": false,
   "status": "CAB_SCIENTIFIC_FREEZE_V2_VALID",
-  "two_stage_workflow_version": "cab_review_ready_v2_two_stage_workflow_v2"
+  "two_stage_workflow_version": "cab_review_ready_v2_two_stage_workflow_v3"
 }
