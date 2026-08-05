@@ -331,13 +331,185 @@ def cmd_preservation() -> int:
     return 0 if comparison["scientific_kernel_preserved"] else 1
 
 
+# --------------------------------------------------------------------------
+# final reports
+# --------------------------------------------------------------------------
+
+
+def _validation_markdown(payload: dict[str, Any]) -> str:
+    lines = [
+        "# CAB final integrity closure — full validation report",
+        "",
+        f"Recorded at `{payload['recorded_at']}` against `{payload['head_commit']}`.",
+        "",
+        "Provider-free throughout. No provider call was made, no model was run, and",
+        "no genuine human review was performed or simulated.",
+        "",
+        "## Tests",
+        "",
+        "| suite | result |",
+        "| --- | --- |",
+    ]
+    for name, row in payload["tests"].items():
+        lines.append(f"| `{name}` | {row} |")
+    lines += [
+        "",
+        "## Static, security and policy checks",
+        "",
+        "| check | result |",
+        "| --- | --- |",
+    ]
+    for name, row in payload["static_checks"].items():
+        lines.append(f"| {name} | {row} |")
+    packaging = payload["packaging"]
+    lines += [
+        "",
+        "## Packaging and reproducibility",
+        "",
+        "| artifact | value |",
+        "| --- | --- |",
+        f"| wheel (build 1) | `{packaging['wheel_sha256_build1']}` |",
+        f"| wheel (build 2) | `{packaging['wheel_sha256_build2']}` |",
+        f"| sdist (build 1) | `{packaging['sdist_sha256_build1']}` |",
+        f"| sdist (build 2) | `{packaging['sdist_sha256_build2']}` |",
+        f"| normalized wheel content digest | `{packaging['normalized_wheel_digest']}` |",
+        f"| normalized sdist content digest | `{packaging['normalized_sdist_digest']}` |",
+        f"| normalized contents reproduce | {packaging['normalized_reproducible']} |",
+        f"| `twine check` | {packaging['twine_check']} |",
+        "",
+        "Raw archive hashes differ between builds because zip and tar embed",
+        "modification times. The *contents* are byte-identical, which is what",
+        "reproducibility means here; the normalized digests above are the",
+        "comparable values.",
+        "",
+        "## Hostile audit",
+        "",
+        f"- attacks attempted: **{payload['hostile_audit']['attack_count']}**",
+        f"- rejected: **{payload['hostile_audit']['rejected_count']}**",
+        f"- falsely accepted: **{payload['hostile_audit']['falsely_accepted_count']}**",
+        f"- status: **{payload['hostile_audit']['status']}**",
+        "",
+        "## Current scientific state",
+        "",
+        "```text",
+        "genuine human judgments: 0",
+        "genuine adjudications: 0",
+        "genuine model trajectories: 0",
+        "paper-eligible empirical assets: 0",
+        "supported empirical claims: 0",
+        "C10: pending genuine review",
+        "model execution: blocked",
+        "```",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def cmd_validation(measured_path: Path) -> int:
+    measured = _read_json(measured_path)
+    audit = _read_json(OUT / "HOSTILE_INTEGRITY_AUDIT.json")
+    payload = {
+        "schema_version": "cab_final_integrity_closure_validation_v1",
+        "recorded_at": datetime.now(UTC).isoformat(),
+        "head_commit": _git("rev-parse", "HEAD"),
+        "branch": _git("rev-parse", "--abbrev-ref", "HEAD"),
+        "provider_calls_performed": 0,
+        "models_executed": 0,
+        "genuine_human_judgments": 0,
+        "genuine_adjudications": 0,
+        "genuine_model_trajectories": 0,
+        "paper_eligible_empirical_assets": 0,
+        "supported_empirical_claims": 0,
+        "c10_status": "C10_PENDING_GENUINE_REVIEW",
+        "model_execution": "MODEL_EXECUTION_BLOCKED",
+        "hostile_audit": {
+            "attack_count": audit["attack_count"],
+            "rejected_count": audit["rejected_count"],
+            "falsely_accepted_count": audit["falsely_accepted_count"],
+            "status": audit["status"],
+        },
+        **measured,
+    }
+    _write_json(OUT / "FULL_VALIDATION_REPORT.json", payload)
+    (OUT / "FULL_VALIDATION_REPORT.md").write_text(_validation_markdown(payload))
+    print("full validation report written")
+    return 0
+
+
+def _fresh_clone_markdown(payload: dict[str, Any]) -> str:
+    lines = [
+        "# CAB final integrity closure — fresh-clone verification",
+        "",
+        f"Recorded at `{payload['recorded_at']}`.",
+        "",
+        "The repository was cloned with `--single-branch --branch main` into a clean",
+        f"path at commit `{payload['verified_commit']}`. No untracked file was copied in,",
+        "so every check below ran against exactly what a reviewer would receive.",
+        "",
+        "The private packet is not in the clone at all — it is gitignored — so the",
+        "private-package surfaces are verified by hash and by externally supplied",
+        "protected paths, never by a Git-tracked private body.",
+        "",
+        "| check | result |",
+        "| --- | --- |",
+    ]
+    for name, row in payload["checks"].items():
+        lines.append(f"| `{name}` | {row} |")
+    lines += [
+        "",
+        f"**Result: {payload['status']}**",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def cmd_fresh_clone(results_path: Path) -> int:
+    rows: dict[str, str] = {}
+    verified_commit = ""
+    for line in results_path.read_text().splitlines():
+        if " :: " not in line:
+            continue
+        name, value = line.split(" :: ", 1)
+        if name.strip() == "head":
+            verified_commit = value.strip()
+            continue
+        rows[name.strip()] = value.strip()
+    failed = sorted(name for name, value in rows.items() if not value.startswith("PASS"))
+    payload = {
+        "schema_version": "cab_final_integrity_closure_fresh_clone_v1",
+        "recorded_at": datetime.now(UTC).isoformat(),
+        "verified_commit": verified_commit,
+        "clone_mode": "git clone --single-branch --branch main",
+        "untracked_files_copied": False,
+        "checks": rows,
+        "failed_checks": failed,
+        "passed": not failed,
+        "status": "CAB_FRESH_CLONE_VERIFICATION_PASSED"
+        if not failed
+        else "CAB_FRESH_CLONE_VERIFICATION_FAILED",
+    }
+    _write_json(OUT / "FRESH_CLONE_VERIFICATION.json", payload)
+    (OUT / "FRESH_CLONE_VERIFICATION.md").write_text(_fresh_clone_markdown(payload))
+    print(payload["status"])
+    return 0 if payload["passed"] else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=("baseline", "preservation"))
+    parser.add_argument("mode", choices=("baseline", "preservation", "validation", "fresh-clone"))
+    parser.add_argument(
+        "--input", type=Path, default=None, help="measured results for validation/fresh-clone"
+    )
     args = parser.parse_args(argv)
     if args.mode == "baseline":
         return cmd_baseline()
-    return cmd_preservation()
+    if args.mode == "preservation":
+        return cmd_preservation()
+    if args.input is None:
+        parser.error(f"--input is required for {args.mode}")
+    if args.mode == "validation":
+        return cmd_validation(args.input)
+    return cmd_fresh_clone(args.input)
 
 
 if __name__ == "__main__":

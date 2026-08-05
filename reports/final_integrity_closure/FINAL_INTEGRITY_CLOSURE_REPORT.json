@@ -1,0 +1,137 @@
+{
+  "confirmed_exploit": {
+    "after_repair": {
+      "altered_parsed_content_visible_downstream": false,
+      "committed_payload_hashes_unchanged": true,
+      "current_stage1_receipt_hashes_changed": true,
+      "non_fixture_mechanics_checks_still_passing": false,
+      "stage1_commitment_unchanged": true
+    },
+    "before_repair": {
+      "altered_parsed_content_visible_downstream": true,
+      "committed_payload_hashes_unchanged": true,
+      "current_stage1_receipt_hashes_changed": true,
+      "non_fixture_mechanics_checks_still_passing": true,
+      "stage1_commitment_unchanged": true
+    },
+    "c10_status_after_repair": "C10_MECHANICS_FAIL",
+    "first_rejecting_gate": "verify_committed_stage1_snapshot",
+    "reproduced_against": "131cd10abe519a7174171bb47e90347326862ca4"
+  },
+  "counters": {
+    "CAB_LEVEL5_COMPLETE": false,
+    "CAB_LEVEL6_COMPLETE": false,
+    "GENUINE_ADJUDICATIONS": 0,
+    "GENUINE_HUMAN_JUDGMENTS": 0,
+    "GENUINE_MODEL_TRAJECTORIES": 0,
+    "PAPER_ELIGIBLE_EMPIRICAL_ASSETS": 0,
+    "SUPPORTED_EMPIRICAL_CLAIMS": 0
+  },
+  "drifted_surfaces": [],
+  "executive_result": "CAB_FINAL_INTEGRITY_CLOSURE_COMPLETE",
+  "fresh_clone_verification": "CAB_FRESH_CLONE_VERIFICATION_PASSED",
+  "full_validation": {
+    "packaging": {
+      "normalized_reproducible": true,
+      "normalized_sdist_digest": "7c2774629a1df724a462c98e162365ea12fc7cd508d91fde03e0a579d3cd5179",
+      "normalized_wheel_digest": "90d7f5677bf298128477f411e18afae663bf062559fe37239c23fb90bc14621e",
+      "sdist_entry_count": 473,
+      "sdist_sha256_build1": "60cdd0292920550f0ac66281e1bc6ed54fd28a8406599745557e63d89d6163e2",
+      "sdist_sha256_build2": "441ec8b91802947b596000fb64f9e24f80dfdf7434382f08d45716be28490aaf",
+      "twine_check": "PASSED for both artifacts",
+      "wheel_entry_count": 305,
+      "wheel_sha256_build1": "ec640d9beb3d30b7fcba057d6061490d97c8c119d5a3305be8703d0ec47029df",
+      "wheel_sha256_build2": "0faa22eb26c19dc2333fa62ede43d9a54d1d1c827ac478fef171e14780ab0c16"
+    },
+    "static_checks": {
+      "active path registry": "verified as part of build-reports",
+      "codespell": "pass (warnings only, on non-UTF-8 private binary files that are not tracked)",
+      "mypy": "Success: no issues found in 298 source files",
+      "private-material tracking scan (git ls-files private_data)": "empty",
+      "retired packet and qualification registries": "verified as part of build-reports",
+      "ruff": "All checks passed",
+      "scripts/audit_configs.py": "PASS (0 issues, 115 pre-existing warnings)",
+      "scripts/audit_repo_consistency.py": "PASS (0 issues, 0 warnings)",
+      "scripts/check_claim_ledger.py": "claim ledger is valid",
+      "scripts/check_evidence_safety.py": "OK (120 live run dirs scanned; C1-C8/C10 mock support blocked)",
+      "scripts/check_reviewer_proofing.py": "passed, 20 attacks documented",
+      "scripts/run_fast_checks.py": "completed, all lanes green",
+      "scripts/security_check.py": "security-check: PASS",
+      "secret-name scan": "no key or secret material tracked; matches are documentation and the external-key loader",
+      "verify-freeze": "CAB_SCIENTIFIC_FREEZE_V2_VALID, mismatched_paths: []",
+      "verify-provenance": "CAB_GENERATOR_PROVENANCE_PORTABLE"
+    },
+    "tests": {
+      "full provider-free suite (tests/)": "1505 passed, 1 skipped, 0 failed",
+      "pytest-xdist": "available; the suite was also run with -o addopts='' -p no:randomly for a deterministic count",
+      "skip reason": "tests/test_llm_agents.py:690 \u2014 OpenAI integration test requires OPENAI_API_KEY and OPENAI_MODEL_ID; no provider call was made",
+      "tests/test_final_integrity_closure.py": "102 passed (66 hostile attacks + 36 positive and policy tests)",
+      "tests/test_pre_run_scientific_hardening.py": "9 passed",
+      "tests/test_review_ready_v2.py": "passed",
+      "tests/test_review_ready_v2_power_and_freeze.py": "18 passed",
+      "tests/test_review_workflow_integrity.py": "passed",
+      "tests/test_reviewer_distribution_patch.py": "passed"
+    }
+  },
+  "genuine_human_review_performed": false,
+  "hostile_audit": {
+    "attack_count": 66,
+    "attacks_by_receipt_chain": {
+      "adjudication": 12,
+      "agreement": 1,
+      "artifact_origin": 1,
+      "c10_report": 2,
+      "committed_stage1_snapshot": 6,
+      "exclusion_register": 1,
+      "execution_authorization": 1,
+      "final_adjudicated_records": 3,
+      "reviewed_slice_lock": 3,
+      "reviewer_declaration": 1,
+      "stage1_commitment": 2,
+      "stage1_submission": 20,
+      "stage2_issuance": 5,
+      "stage2_submission": 8
+    },
+    "falsely_accepted_count": 0,
+    "rejected_count": 66,
+    "status": "CAB_HOSTILE_INTEGRITY_AUDIT_PASSED"
+  },
+  "labels": [
+    "CAB_FINAL_INTEGRITY_CLOSURE_COMPLETE",
+    "CAB_STAGE1_IMMUTABLE_SNAPSHOT_VALID",
+    "CAB_STAGE1_POST_COMMIT_MUTATION_EXPLOIT_CLOSED",
+    "CAB_ALL_REVIEW_RECEIPT_CHAINS_REVALIDATED",
+    "CAB_STAGE2_UNLOCK_BOUND_TO_COMMITTED_STAGE1_BYTES",
+    "CAB_STAGE2_ISSUANCE_BOUND_TO_IMMUTABLE_STAGE1",
+    "CAB_ADJUDICATION_INPUTS_IMMUTABLE_AND_BOUND",
+    "CAB_C10_INPUT_GRAPH_IMMUTABLE_AND_COMPLETE",
+    "CAB_SLICE_LOCK_INPUT_GRAPH_IMMUTABLE_AND_COMPLETE",
+    "CAB_EXECUTION_AUTHORIZATION_FAILS_CLOSED",
+    "CAB_SCIENTIFIC_KERNEL_V2_PRESERVED",
+    "CAB_PRIVATE_QUALIFICATION_V4_PRESERVED",
+    "CAB_STAGE2_PRIVATE_AND_UNEXPOSED",
+    "CAB_FREEZE_AND_RELEASE_PROVENANCE_REFRESHED",
+    "CAB_REPOSITORY_CLEAN",
+    "CAB_PUSHED_TO_ORIGIN_MAIN",
+    "CAB_READY_FOR_GENUINE_REVIEWER_DISTRIBUTION",
+    "HUMAN_VALIDATION_REQUIRED",
+    "C10_PENDING_GENUINE_REVIEW",
+    "MODEL_EXECUTION_BLOCKED"
+  ],
+  "models_executed": 0,
+  "next_action": "Recruit two independent reviewers and one separate adjudicator; create production assignments and declarations; run private qualification V4; distribute only the role-specific frozen Stage-1 packages; commit immutable Stage-1 evidence; unlock Stage 2; adjudicate; run C10; lock the reviewed slice; and only then begin the one-task live smoke.",
+  "private_material_tracked_in_git": [],
+  "provider_calls_performed": 0,
+  "recorded_at": "2026-08-05T06:02:43.462212+00:00",
+  "repository": {
+    "branch": "main",
+    "freeze_and_provenance_commit": "f63464b97148c3e87cdcf09bd0a6b325e193dff0",
+    "remote": "https://github.com/Saket-Maganti/cab.git",
+    "repair_source_commit": "82315dccd4096d3522323de583de9f9bd3f0d1b7",
+    "starting_commit": "131cd10abe519a7174171bb47e90347326862ca4"
+  },
+  "schema_version": "cab_final_integrity_closure_report_v1",
+  "scientific_freeze_after": "3789cc2b78e51dac886feaac945acc810aae3d6f8cbb03d40700d0bf2f301675",
+  "scientific_freeze_before": "6a7b15b21d4a899e7cb95bf110625c5f72fc33899da20dfa93f9ce9c6b023fad",
+  "scientific_kernel_preserved": true
+}
