@@ -2,10 +2,10 @@
 
 - **Release ID:** `causal-agent-bench-0.1.0`
 - **Package version:** `0.1.0`
-- **Generated:** `2026-08-05T18:28:03.814114+00:00`
-- **Git commit:** `23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e` (dirty=True)
+- **Generated:** `2026-08-05T18:51:17.713293+00:00`
+- **Git commit:** `50487b6f29b2f54665e09aa03860028b416e67fe` (dirty=True)
 - **Python:** `3.11.9`
-- **Bundle hash:** `96fe35fc84bf47918398d64bc4cbee4b56de52a8f8572a6ddf89c848f357feb3`
+- **Bundle hash:** `31dd6468f5565f875e259993f97912e936819fda2d6711bf1d21b008eba47d99`
 
 ## Inventory counts
 

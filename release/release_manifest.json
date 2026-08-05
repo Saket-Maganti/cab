@@ -496,7 +496,7 @@
     "scripts/build_protected_heldout_exposure_inventory.py": "bf5277a3890f89931b4f8f7b9f2d12b90f5f94fe07523605b7994ccd9ce72530",
     "scripts/build_release_manifest.py": "d6226f9dd03db97f3bf54db3746d0ea3cfdd823ca5beee38a0bb8ed139c347b1"
   },
-  "generated_at": "2026-08-05T18:28:03.814114+00:00",
+  "generated_at": "2026-08-05T18:51:17.713293+00:00",
   "inventory_file_count": 866,
   "inventory_policy": {
     "categories": {
@@ -606,11 +606,11 @@
     "paper/latexpaper/sections/04a_recovery_aware_agent_control.tex",
     "paper/latexpaper/sections/05_metrics.tex"
   ],
-  "release_bundle_hash": "96fe35fc84bf47918398d64bc4cbee4b56de52a8f8572a6ddf89c848f357feb3",
+  "release_bundle_hash": "31dd6468f5565f875e259993f97912e936819fda2d6711bf1d21b008eba47d99",
   "release_id": "causal-agent-bench-0.1.0",
   "release_version": "0.1.0-dev",
   "repo_metadata": {
-    "git_commit": "23b6f9f7e509502cd9c70e5f3b1e5cf313b1e50e",
+    "git_commit": "50487b6f29b2f54665e09aa03860028b416e67fe",
     "git_dirty": true,
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python_version": "3.11.9",

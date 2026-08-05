@@ -692,6 +692,17 @@ def cmd_report(args: argparse.Namespace) -> dict[str, Any]:
         "IMMUTABLE_IMPORTED_EVIDENCE_GRAPH.json",
         {
             "schema_version": "cab_immutable_imported_evidence_graph_v1",
+            # What the graph is anchored to, stated in the file that describes
+            # the graph, so an auditor reading only this one can tell.
+            "import_epoch": workspace.import_epoch,
+            "artifact_origin": workspace.authority.origin,
+            "scientific_freeze_sha256": str(
+                stage1["commitment"]["scientific_freeze_sha256"]
+            ),
+            "private_packet_commitment": str(stage1["commitment"]["private_packet_commitment"]),
+            "frozen_source_commit": str(stage1["commitment"]["frozen_source_commit"]),
+            "coordinator_waiver_sha256": stage1["waiver_sha256"],
+            "qualification_commitment_sha256": qualification.get("commitment_sha256"),
             "stage1_snapshot_manifest_sha256": stage1["snapshot_manifest_sha256"],
             "stage2_snapshot_manifest_sha256": stage2["snapshot_manifest_sha256"],
             "stage1_canonical_judgement_hashes": stage1["canonical_judgement_hashes"],
