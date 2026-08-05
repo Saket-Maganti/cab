@@ -452,6 +452,11 @@ def _issuance_arguments(**overrides: str) -> dict[str, str]:
         "reviewer_role": REVIEWER_A,
         "reviewer_pseudonym_sha256": "1" * 64,
         "stage1_commitment_sha256": "2" * 64,
+        # Issuance is bound to the immutable Stage-1 snapshot as well as to the
+        # commitment, so a resealed Stage-1 receipt cannot authorise Stage 2.
+        "stage1_snapshot_manifest_sha256": "a" * 64,
+        "stage1_canonical_judgements_sha256": "b" * 64,
+        "stage1_snapshot_receipt_sha256": "c" * 64,
         "stage2_package_sha256": "3" * 64,
         "stage2_opaque_id_namespace": "RA",
         "private_packet_commitment": "4" * 64,
@@ -470,6 +475,9 @@ def _issuance_arguments(**overrides: str) -> dict[str, str]:
         ("reviewer_role", REVIEWER_B),
         ("reviewer_pseudonym_sha256", "9" * 64),
         ("stage1_commitment_sha256", "9" * 64),
+        ("stage1_snapshot_manifest_sha256", "9" * 64),
+        ("stage1_canonical_judgements_sha256", "9" * 64),
+        ("stage1_snapshot_receipt_sha256", "9" * 64),
         ("stage2_package_sha256", "9" * 64),
         ("stage2_opaque_id_namespace", "RB"),
         ("private_packet_commitment", "9" * 64),

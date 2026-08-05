@@ -257,9 +257,12 @@ def _guidance_passes(root: Path) -> bool:
         "CAB_FINAL_PRE_REVIEW_HARDENING_COMPLETE",
         # The reviewer-ready V2 repair supersedes the earlier pre-review pass.
         "CAB_REVIEWER_READY_V2_REPAIR_COMPLETE",
-        # The reviewer-workflow integrity repair supersedes both and is the state
-        # CURRENT_PROJECT_STATE.md now declares.
+        # The reviewer-workflow integrity repair supersedes both.
         "CAB_REVIEW_WORKFLOW_INTEGRITY_REPAIR_COMPLETE",
+        # The final integrity closure supersedes all of the above and is the
+        # state CURRENT_PROJECT_STATE.md now declares: committed review evidence
+        # is immutable, and every downstream gate reads the committed snapshot.
+        "CAB_FINAL_INTEGRITY_CLOSURE_COMPLETE",
     }
     if not any(state in body for state in accepted_states) or any(
         blocker not in body for blocker in EXTERNAL_BLOCKERS

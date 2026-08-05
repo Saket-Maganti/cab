@@ -15,6 +15,7 @@ from __future__ import annotations
 import secrets
 from collections.abc import Iterator
 from contextlib import contextmanager
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -356,6 +357,298 @@ def _fixture_root(root: Path | None) -> Iterator[Path]:
         return
     with unlocked_workspace(prefix="cab-fixture-e2e-") as scratch:
         yield scratch
+
+
+@dataclass
+class FixtureWorkflow:
+    """A resumable fixture run of the real workflow, stage by stage.
+
+    ``run_fixture_e2e`` is a narrative: it walks the happy path once and records
+    what each gate did.  A hostile test needs something different — to stop at an
+    arbitrary stage, corrupt a specific sealed artifact, and then push every
+    remaining gate and watch it refuse.  This driver exposes exactly that, and it
+    calls the same public coordinator APIs, so an attack that this refuses is an
+    attack the real workflow refuses.
+
+    Nothing here is evidence.  Every artifact is sealed by the public fixture
+    authority and stamped ``SYNTHETIC_TEST_FIXTURE_NOT_HUMAN_EVIDENCE``.
+    """
+
+    root: Path
+    workspace: ReviewWorkspace
+    packages: dict[str, bytes] = field(default_factory=dict)
+    mappings: dict[str, dict[str, str]] = field(default_factory=dict)
+    item_ids: dict[str, list[str]] = field(default_factory=dict)
+    qualification: dict[str, Any] = field(default_factory=dict)
+    stage2_archives: dict[str, bytes] = field(default_factory=dict)
+    applicability: dict[str, dict[str, bool]] = field(default_factory=dict)
+    adjudicator_packages: dict[str, dict[str, Any]] = field(default_factory=dict)
+    packet_commitment: str = ""
+
+    @classmethod
+    def create(cls, root: Path) -> FixtureWorkflow:
+        root.mkdir(parents=True, exist_ok=True)
+        root.chmod(0o700)
+        workspace = ReviewWorkspace.fixture(root / "fixture_packet")
+        workspace.packet_version = FIXTURE_PACKET_VERSION
+        driver = cls(
+            root=root,
+            workspace=workspace,
+            packet_commitment=sha256_bytes(b"fixture-packet-commitment"),
+            applicability=fixture_applicability(),
+        )
+        for role in REVIEW_ROLES:
+            payload, mapping, ids = _fixture_package(role)
+            driver.packages[role] = payload
+            driver.mappings[role] = mapping
+            driver.item_ids[role] = ids
+            driver.stage2_archives[role] = canonical_bytes(
+                {"evidence_class": FIXTURE_MARKER, "stage2_package_for": role}
+            )
+        driver.qualification = build_qualification_packages(fixture_qualification_source())
+        return driver
+
+    @property
+    def private_root(self) -> Path:
+        return self.workspace.private_root
+
+    def per_item_applicability(self, role: str) -> dict[str, dict[str, bool]]:
+        return {
+            item_id: self.applicability[self.mappings[role][item_id]]
+            for item_id in self.mappings[role]
+        }
+
+    # -- stages ------------------------------------------------------------
+
+    def enrol(self) -> FixtureWorkflow:
+        for role in REVIEW_ROLES:
+            create_assignment(
+                self.private_root,
+                packet_version=FIXTURE_PACKET_VERSION,
+                reviewer_pseudonym=FIXTURE_PSEUDONYMS[role],
+                role=role,
+                stage1_package_hash=sha256_bytes(self.packages[role]),
+                qualification_package_hash=self.qualification[role]["package_sha256"],
+            )
+        create_assignment(
+            self.private_root,
+            packet_version=FIXTURE_PACKET_VERSION,
+            reviewer_pseudonym=FIXTURE_PSEUDONYMS[ADJUDICATOR],
+            role=ADJUDICATOR,
+        )
+        for role in REVIEW_ROLES:
+            self.workspace.ingest_declaration(
+                role,
+                _declaration(
+                    role,
+                    stage1_hash=sha256_bytes(self.packages[role]),
+                    qualification_hash=self.qualification[role]["package_sha256"],
+                ),
+            )
+            self.workspace.ingest_qualification(
+                role,
+                _qualification_submission(self.qualification[role]["answer_key"]),
+                self.qualification[role]["answer_key"],
+            )
+        return self
+
+    def submit_stage1(self) -> FixtureWorkflow:
+        for role in REVIEW_ROLES:
+            self.workspace.ingest_stage1(
+                role,
+                _stage1_form(self.mappings[role], dispute=role == REVIEWER_B),
+                expected_item_ids=self.item_ids[role],
+                package_sha256=sha256_bytes(self.packages[role]),
+            )
+        return self
+
+    def commit_stage1(self) -> FixtureWorkflow:
+        self.workspace.commit_stage1(
+            packet_commitment=self.packet_commitment,
+            package_hashes={
+                role: sha256_bytes(payload) for role, payload in self.packages.items()
+            },
+            review_schema_version="cab_stage1_review_form_v2",
+            scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+            exact_commit=FIXTURE_COMMIT,
+            expected_item_ids=self.item_ids,
+        )
+        return self
+
+    def open_stage2(self) -> FixtureWorkflow:
+        self.workspace.unlock_stage2(
+            packet_commitment=self.packet_commitment,
+            scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+            exact_commit=FIXTURE_COMMIT,
+            key_available=True,
+        )
+        for role in REVIEW_ROLES:
+            self.workspace.issue_stage2_package(
+                role,
+                package_sha256=sha256_bytes(self.stage2_archives[role]),
+                packet_commitment=self.packet_commitment,
+                scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+                exact_commit=FIXTURE_COMMIT,
+            )
+        return self
+
+    def submit_stage2(self) -> FixtureWorkflow:
+        for role in REVIEW_ROLES:
+            self.workspace.ingest_stage2(
+                role,
+                _stage2_form(self.mappings[role], self.applicability, objection=role == REVIEWER_A),
+                expected_item_ids=self.item_ids[role],
+                applicability=self.per_item_applicability(role),
+                package_sha256=sha256_bytes(self.stage2_archives[role]),
+                packet_commitment=self.packet_commitment,
+                scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+                exact_commit=FIXTURE_COMMIT,
+            )
+        return self
+
+    def build_queues(self) -> FixtureWorkflow:
+        self.workspace.build_stage1_disagreements(mappings=self.mappings)
+        self.workspace.build_stage2_disagreements(
+            mappings=self.mappings, applicability=self.applicability
+        )
+        return self
+
+    def issue_adjudicator_packages(self) -> FixtureWorkflow:
+        adjudicator = assignment_for_role(self.workspace.assignments(), ADJUDICATOR)
+        for stage in (STAGE1, STAGE2):
+            queue = self.workspace.read(f"{stage}_disagreement_queue")
+            binding = package_binding(
+                stage=stage,
+                queue=queue,
+                private_packet_commitment=self.packet_commitment,
+                adjudicator_assignment_sha256=adjudicator["assignment_sha256"],
+                adjudicator_pseudonym_sha256=sha256_json(adjudicator["reviewer_pseudonym"]),
+                scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+                exact_commit=FIXTURE_COMMIT,
+                stage2_issuance_hashes=self.workspace._stage2_issuance_hashes(),
+            )
+            disputed = disputed_pair_ids(queue)
+            if stage == STAGE1:
+                package = build_stage1_adjudicator_package(
+                    queue=queue,
+                    stage1_views={pair_id: _fixture_stage1_view(pair_id) for pair_id in disputed},
+                    paired_rows=self.workspace._paired(self.mappings, STAGE1),
+                    binding=binding,
+                )
+            else:
+                package = build_stage2_adjudicator_package(
+                    queue=queue,
+                    stage2_records={
+                        pair_id: _fixture_stage2_record(pair_id, self.applicability[pair_id])
+                        for pair_id in disputed
+                    },
+                    applicability={pair_id: self.applicability[pair_id] for pair_id in disputed},
+                    paired_rows=self.workspace._paired(self.mappings, STAGE2),
+                    binding=binding,
+                )
+            self.adjudicator_packages[stage] = package
+            self.workspace.record_adjudicator_package(stage=stage, package=package)
+        return self
+
+    def adjudicate(self) -> FixtureWorkflow:
+        for stage, default in ((STAGE1, "no"), (STAGE2, YES)):
+            queue = self.workspace.read(f"{stage}_disagreement_queue")
+            self.workspace.ingest_adjudication(
+                stage=stage,
+                adjudicator_pseudonym=FIXTURE_PSEUDONYMS[ADJUDICATOR],
+                decisions=[
+                    {
+                        "pair_id": row["pair_id"],
+                        "dimension": row["dimension"],
+                        "final_value": _fixture_final_value(stage, row, default),
+                        "rationale": "Fixture adjudication; no genuine judgement was made.",
+                        "evidence_reference": "fixture://synthetic-item",
+                        "confidence": "4",
+                        "exclude_item": "NO",
+                    }
+                    for row in queue["disputes"]
+                ],
+                package_sha256=self.adjudicator_packages[stage]["package_sha256"],
+            )
+        return self
+
+    def settle(self) -> FixtureWorkflow:
+        self.workspace.compute_agreement(mappings=self.mappings)
+        self.workspace.build_final_adjudicated_records(
+            mappings=self.mappings,
+            applicability=self.applicability,
+            expected_pair_count=FIXTURE_PAIR_COUNT,
+        )
+        return self
+
+    def c10(self, *, prerequisites: dict[str, bool] | None = None) -> dict[str, Any]:
+        report = run_c10(
+            self.workspace,
+            contract=FIXTURE_C10_CONTRACT,
+            mappings=self.mappings,
+            applicability=self.applicability,
+            prerequisites={"fixture_prerequisites": True}
+            if prerequisites is None
+            else prerequisites,
+            packet_commitment=self.packet_commitment,
+            scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+        )
+        self.workspace.write("c10_report", report)
+        return report
+
+    def lock(self, report: dict[str, Any]) -> dict[str, Any]:
+        build_exclusion_register(self.workspace)
+        return lock_reviewed_slice(
+            self.workspace,
+            c10_report=report,
+            packet_commitment=self.packet_commitment,
+            scorer_sha256="0" * 64,
+            endpoints_sha256="1" * 64,
+            analysis_plan_sha256="2" * 64,
+            system_identity_sha256="3" * 64,
+            scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+            exact_commit=FIXTURE_COMMIT,
+        )
+
+    def authorize(self, report: dict[str, Any]) -> dict[str, Any]:
+        return authorize_model_execution(
+            self.workspace,
+            exact_commit=FIXTURE_COMMIT,
+            scientific_freeze_sha256=FIXTURE_FREEZE_SHA,
+            c10_report=report,
+        )
+
+    # -- convenience -------------------------------------------------------
+
+    #: Stages in workflow order, so a test can say "take me to Stage-1 commitment".
+    STAGES: tuple[str, ...] = (
+        "enrol",
+        "submit_stage1",
+        "commit_stage1",
+        "open_stage2",
+        "submit_stage2",
+        "build_queues",
+        "issue_adjudicator_packages",
+        "adjudicate",
+        "settle",
+    )
+
+    def advance_to(self, stage: str) -> FixtureWorkflow:
+        """Run every stage up to and including ``stage``."""
+
+        if stage not in self.STAGES:
+            raise ValueError(f"unknown fixture stage {stage!r}")
+        for name in self.STAGES[: self.STAGES.index(stage) + 1]:
+            getattr(self, name)()
+        return self
+
+    def finish(self) -> dict[str, Any]:
+        """Complete the run from ``settle`` through execution authorization."""
+
+        report = self.c10()
+        self.lock(report)
+        self.authorize(report)
+        return report
 
 
 def run_fixture_e2e(
@@ -816,9 +1109,12 @@ def _fixture_final_value(stage: str, dispute: dict[str, Any], default: str) -> s
 
 __all__ = [
     "FIXTURE_C10_CONTRACT",
+    "FIXTURE_COMMIT",
+    "FIXTURE_FREEZE_SHA",
     "FIXTURE_PACKET_VERSION",
     "FIXTURE_PAIR_COUNT",
     "FIXTURE_PSEUDONYMS",
+    "FixtureWorkflow",
     "fixture_applicability",
     "fixture_pair_ids",
     "fixture_qualification_source",

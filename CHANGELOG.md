@@ -2,6 +2,11 @@
 
 ## Unreleased - Phase-2 pilot readiness
 
+- Made committed human-review evidence immutable. Stage-1 commitment used to bind only the reviewer's uploaded CSV hash, so a coordinator could edit the parsed judgements inside the sealed submission receipt, keep the original `submission_sha256`, re-seal, and leave every downstream gate — up to `C10_MECHANICS_PASS` — satisfied. Commitment now freezes the verified receipt bytes into a write-once snapshot and binds three distinct digests per reviewer (uploaded payload, sealed receipt file, canonical parsed judgement content); every downstream gate reads only the snapshot, and a live receipt that no longer matches it is treated as tampering. Stage 2, both disagreement queues, both adjudications and the final records carry the same treatment, C10 recomputes the agreement tables and the final records from the committed judgements, and execution authorization revalidates the whole chain rather than trusting `locked: true`.
+- Added `review_ready_v2.commitment_integrity` (canonical digests, write-once snapshots, atomic writes, symlink and private-mode defences), `verify_committed_stage1_snapshot`/`verify_committed_stage2_snapshot`/`review_input_graph`, and the `verify-committed-evidence` CLI command.
+- Retired `cab_review_ready_v2_two_stage_workflow_v2` and every earlier Stage-1 commitment schema. They are refused by the active gates and are not migrated; review evidence recorded under them is development-only.
+- Added a 66-case hostile regression suite (`tests/test_final_integrity_closure.py`) and a standalone provider-free audit (`scripts/audit_final_review_integrity.py`), plus `docs/reviewer_ready_v2/` covering the immutable chain, the coordinator runbook and the recovery policy.
+
 - Hardened config validation with provider readiness checks, safe missing-key reporting, and dry-run report generation.
 - Added provider specs, OpenAI-compatible/local OpenAI-compatible adapters, response caching, and structured LLM call hashes.
 - Added canonical LLM tool-call protocol parsing with raw/parsed trajectory logging.

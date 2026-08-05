@@ -137,7 +137,10 @@ from causal_agent_bench.review_ready_v2.workflow import (
     authorize_model_execution,
     build_exclusion_register,
     lock_reviewed_slice,
+    review_input_graph,
     run_c10,
+    verify_committed_stage1_snapshot,
+    verify_committed_stage2_snapshot,
     workflow_status,
 )
 
@@ -502,14 +505,58 @@ def cmd_commit_stage1(repo_root: Path, args: argparse.Namespace) -> dict[str, An
     workspace = _workspace(repo_root, args)
     commitment = read_json(repo_root / REPORT_DIR / "PUBLIC_PACKET_COMMITMENT.json")
     freeze = read_json(repo_root / REPORT_DIR / "SCIENTIFIC_FREEZE_V2.json")
+    mappings = _mappings(workspace.private_root)
     receipt = workspace.commit_stage1(
         packet_commitment=commitment["commitment_sha256"],
         package_hashes=commitment["stage1_package_hashes"],
         review_schema_version="cab_stage1_review_form_v2",
         scientific_freeze_sha256=freeze["freeze_sha256"],
         exact_commit=current_head(repo_root),
+        expected_item_ids={role: sorted(mapping) for role, mapping in mappings.items()},
     )
-    return {"status": "CAB_STAGE1_COMMITTED", "receipt_sha256": receipt["receipt_sha256"]}
+    return {
+        "status": "CAB_STAGE1_COMMITTED",
+        "receipt_sha256": receipt["receipt_sha256"],
+        "commitment_schema_version": receipt["commitment_schema_version"],
+        "stage1_snapshot_manifest_sha256": receipt["stage1_snapshot_manifest_sha256"],
+        "stage1_evidence_is_now_immutable": True,
+    }
+
+
+def cmd_verify_committed_evidence(repo_root: Path, args: argparse.Namespace) -> dict[str, Any]:
+    """Re-derive the committed review evidence and report every binding.
+
+    Safe to run at any point after Stage-1 commitment, and the first thing to run
+    if a workspace has been moved, restored from backup, or touched by anything
+    other than this CLI.
+    """
+
+    workspace = _workspace(repo_root, args)
+    commitment = read_json(repo_root / REPORT_DIR / "PUBLIC_PACKET_COMMITMENT.json")
+    freeze = read_json(repo_root / REPORT_DIR / "SCIENTIFIC_FREEZE_V2.json")
+    stage1 = verify_committed_stage1_snapshot(
+        workspace,
+        expected_packet_commitment=commitment["commitment_sha256"],
+        expected_scientific_freeze_sha256=freeze["freeze_sha256"],
+    )
+    payload: dict[str, Any] = {
+        "status": "CAB_COMMITTED_REVIEW_EVIDENCE_VERIFIED",
+        "stage1_commitment_sha256": stage1["stage1_commitment_sha256"],
+        "stage1_snapshot_manifest_sha256": stage1["stage1_snapshot_manifest_sha256"],
+        "stage1_canonical_judgement_hashes": stage1["canonical_judgement_hashes"],
+        "stage1_checks": stage1["checks"],
+        "stage2_committed": workspace.has_committed_snapshot(STAGE2),
+    }
+    if payload["stage2_committed"]:
+        stage2 = verify_committed_stage2_snapshot(workspace)
+        payload["stage2_snapshot_manifest_sha256"] = stage2["stage2_snapshot_manifest_sha256"]
+        payload["stage2_canonical_judgement_hashes"] = stage2["canonical_judgement_hashes"]
+        payload["stage2_checks"] = stage2["checks"]
+    graph = review_input_graph(workspace)
+    payload["complete_input_graph_valid"] = graph["complete_input_graph_valid"]
+    payload["input_graph_failed_checks"] = graph["failed_checks"]
+    payload["reviewer_content_disclosed"] = False
+    return payload
 
 
 # --------------------------------------------------------------------------
@@ -996,7 +1043,8 @@ def cmd_coordinator_checklist(repo_root: Path, args: argparse.Namespace) -> dict
             "accept-reviewer-declaration --role <role> --decision ACCEPTED --rationale <text>",
             "score-private-qualification --role <role> --submission <file>",
             "ingest-stage1 --role <role> --submission <file>",
-            "commit-stage1",
+            "commit-stage1  # freezes Stage-1 evidence into a write-once snapshot",
+            "verify-committed-evidence  # re-derive every binding before going on",
             "unlock-stage2",
             "generate-stage2-packages --output-dir <outside-repo>",
             "ingest-stage2 --role <role> --submission <file> --package <issued-stage2-zip>",
@@ -1015,6 +1063,19 @@ def cmd_coordinator_checklist(repo_root: Path, args: argparse.Namespace) -> dict
         ],
         "rules": [
             "Never edit a receipt, a registry, or a queue by hand; every one is content-bound.",
+            (
+                "commit-stage1 is irreversible. It copies the verified receipts into a "
+                "write-once snapshot; from then on every gate reads the snapshot and refuses "
+                "a live receipt that no longer matches it."
+            ),
+            (
+                "There is no correction path. A mistake before genuine review means a fresh "
+                "workspace and a fresh packet version, not an edit."
+            ),
+            (
+                "Run verify-committed-evidence after any move, restore or backup of the "
+                "private root, and before every distribution."
+            ),
             "accept-reviewer-declaration is required only when a reviewer disclosed a conflict.",
             "Stage-2 material must never be sent before commit-stage1 and unlock-stage2 succeed.",
             "A complete Stage-2 form is not an approval; adjudicate every NO and every UNSURE.",
@@ -1224,6 +1285,7 @@ COMMANDS = {
     # stage 1
     "ingest-stage1": cmd_ingest_stage1,
     "commit-stage1": cmd_commit_stage1,
+    "verify-committed-evidence": cmd_verify_committed_evidence,
     # stage 2
     "unlock-stage2": cmd_unlock_stage2,
     "generate-stage2-packages": cmd_generate_stage2_packages,

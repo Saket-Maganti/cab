@@ -336,7 +336,11 @@ def test_production_workspace_refuses_a_copied_fixture_receipt(
     fixture = ReviewWorkspace.fixture(production_workspace.private_root)
     fixture.write("stage1_commitment", {"receipt_kind": "stage1_commitment", "stage1_final": True})
     source = fixture.receipts / "stage1_commitment.json"
-    (production_workspace.receipts / "stage1_commitment.json").write_bytes(source.read_bytes())
+    copied = production_workspace.receipts / "stage1_commitment.json"
+    copied.write_bytes(source.read_bytes())
+    # Give the copy the permissions a real production receipt would carry, so the
+    # refusal below is the origin check rather than the private-mode check.
+    copied.chmod(0o600)
     with pytest.raises(WorkflowError, match="synthetic test fixture"):
         production_workspace.read("stage1_commitment")
 
@@ -891,17 +895,23 @@ def test_the_audited_false_c10_pass_now_fails_closed(
         )
     blocked_at.append("stage1_requires_qualification")
 
-    # Step 5: C10 cannot even be evaluated without the receipt chain.
-    with pytest.raises(WorkflowError, match="required receipt is missing"):
-        run_c10(
-            workspace,
-            contract=FIXTURE_C10_CONTRACT,
-            mappings=MAPPINGS,
-            applicability=APPLICABILITY,
-            prerequisites={},
-            packet_commitment=sha256_bytes(b"attacker-chosen"),
-            scientific_freeze_sha256="a" * 64,
-        )
+    # Step 5: C10 without the receipt chain fails closed rather than scoring it.
+    # It reports rather than raises so that a mutated or absent chain leaves a
+    # recorded C10_MECHANICS_FAIL no caller can mistake for "not applicable".
+    report = run_c10(
+        workspace,
+        contract=FIXTURE_C10_CONTRACT,
+        mappings=MAPPINGS,
+        applicability=APPLICABILITY,
+        prerequisites={},
+        packet_commitment=sha256_bytes(b"attacker-chosen"),
+        scientific_freeze_sha256="a" * 64,
+    )
+    assert report["status"] == "C10_PENDING_GENUINE_REVIEW"
+    assert report["mechanics_status"] == "C10_MECHANICS_FAIL"
+    assert report["passed"] is False
+    assert report["counts_as_genuine_evidence"] is False
+    assert "required receipt is missing" in report["input_graph_failure"]
     blocked_at.append("c10_requires_the_full_receipt_chain")
 
     assert blocked_at == [
